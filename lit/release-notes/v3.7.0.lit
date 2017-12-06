@@ -31,6 +31,21 @@
   }
 
   \note{feature,breaking}{
+    Some credentials must be provided that were previously generated.
+    
+    Changes to the bosh job specs are as follows:
+    - atc:
+      - added `token_signing_key` (type `rsa`)
+    - tsa:
+      - added `token_signing_key` (must equal `atc.token_signing_key`)
+      - added `host_key` (type `ssh`, replaces existing `host_key` which was just the private key)
+      - removed `host_public_key`
+      - removed `athorize_generated_worker_key`
+      - `authorized_keys` must now contain all workers' `groundcrew.tsa.worker_key`s
+    - groundcrew:
+      - `tsa.worker_key` (type: `ssh` replaces `tsa.private_key`)
+      
+  
     Our BOSH release used to have a few magical mystical packages called
     \code{generated_something}. These packages would generate a RSA key every
     time they compiled, in service of automagically wiring up security
