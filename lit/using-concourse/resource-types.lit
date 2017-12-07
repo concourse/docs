@@ -224,6 +224,8 @@ before using it!
     \link{Pushover notifications}{https://github.com/redfactorlabs/concourse-pushover-resource}
   }{
     \link{SonarQube static code analysis}{https://github.com/cathive/concourse-sonarqube-resource}
+  }{
+    \link{Spinnaker Resource}{https://github.com/burdzwastaken/concourse-spinnaker-resource}
   }
 
   \section{
