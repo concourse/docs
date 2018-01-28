@@ -230,6 +230,8 @@ before using it!
     \link{Spinnaker Resource}{https://github.com/burdzwastaken/concourse-spinnaker-resource}
   }{
     \link{New Relic Deploy Resource}{https://github.com/crstamps2/newrelic-deploy-resource}
+  }{
+    \link{Serverless Resource}{https://github.com/marcelocorreia/concourse-serverless-resource}
   }
 
   \section{
