@@ -230,6 +230,10 @@ before using it!
     \link{Spinnaker Resource}{https://github.com/burdzwastaken/concourse-spinnaker-resource}
   }{
     \link{New Relic Deploy Resource}{https://github.com/crstamps2/newrelic-deploy-resource}
+  }{
+    \link{Artifactory Resource}{https://github.com/emerald-squad/artifactory-resource}
+  }{
+    \link{CF blue green Resource}{https://github.com/emerald-squad/cf-blue-green-resource}
   }
 
   \section{
