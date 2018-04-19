@@ -4,7 +4,7 @@
 
 Concourse is a fairly simple distributed system built up from the following
 components. You'll see them referenced here and there throughout the
-documentation, so you may want to skim this page just to get an idea of what
+documentation, so you may want to skip this page just to get an idea of what
 they are.
 
 \tutorial-image{images/concourse_architecture.png}
