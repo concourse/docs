@@ -218,7 +218,7 @@ values are not present, the action will error.
       vault:
         auth:
           backend: token
-          client_token: token
+          client_token: c2c2fbd5-2893-b385-6fa5-30050439f698
         url: https://10.2.0.3:8200
     }}}
   }
