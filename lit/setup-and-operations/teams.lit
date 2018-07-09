@@ -296,9 +296,9 @@ as).
       \list{
         \code{--bitbucket-cloud-auth-auth-url=https://example.bitbucket.org/login/oauth/authorize}
       }{
-        \code{--github-auth-token-url=https://example.bitbucket.org/login/oauth/access_token}
+        \code{--bitbucket-cloud-auth-token-url=https://example.bitbucket.org/login/oauth/access_token}
       }{
-        \code{--github-auth-api-url=https://example.bitbucket.org/api/}
+        \code{--bitbucket-cloud-auth-api-url=https://example.bitbucket.org/api/}
       }
 
       Make sure the API URL ends with a slash!
@@ -321,7 +321,7 @@ as).
           Authorize an team's members within an organization.
         }
       }{
-        \definition{\code{--github-auth-repository=TEAM/REPO}}{
+        \definition{\code{--bitbucket-cloud-auth-repository=TEAM/REPO}}{
           Authorize members of a specific repository.
         }
       }
