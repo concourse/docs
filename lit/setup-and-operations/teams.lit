@@ -182,6 +182,9 @@ as).
 
       First you need to \link{create an OAuth application on
       GitHub}{https://github.com/settings/applications/new}.
+      If you plan to use OAauth for teams or organization, 
+      you need to create the OAuth application under your
+      organizations settings page - Developer settings -> OAuth Apps.
 
       The name, home page, and description don't matter but should be set to
       something that lets users trust their origin. The \italic{Authorization
