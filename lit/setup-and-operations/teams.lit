@@ -245,6 +245,94 @@ as).
   }
 
   \section{
+    \title{Bitbucket Cloud OAuth}{bitbucket-cloud-auth}
+
+    \omit-children-from-table-of-contents
+
+    A Concourse server can authenticate against Bitbucket Cloud to take advantage of
+    their permission model and other security improvements in their
+    infrastructure. There are a number of steps you need to take to enable
+    this.
+
+    Configuring the Bitbucket OAuth for your team may
+    look something like:
+
+    \codeblock{bash}{{{
+    $ fly set-team -n concourse \
+        --bitbucket-cloud-auth-client-id $CLIENT_ID \
+        --bitbucket-cloud-auth-client-secret $CLIENT_SECRET \
+        --bitbucket-cloud-auth-team TEAM_NAME
+    }}}
+
+    \section{
+      \title{Configuring the callback URL}
+
+      First you need to \link{create an OAuth application on
+      Bitbucket Cloud}{https://confluence.atlassian.com/bitbucket/oauth-on-bitbucket-cloud-238027431.html}.
+
+      The description and URL are optional but should be set to
+      something that lets users trust their origin. The \italic{Authorization
+      callback URL} should be the external URL of your Concourse server with
+      \code{/auth/github/callback} appended. For example, Concourse's own CI
+      server's callback URL is
+      \code{https://ci.concourse-ci.org/auth/github/callback}.
+    }
+
+    \section{
+      \title{Configuring the Client}
+
+      You will be given a Client ID and a Client Secret for your new
+      application. These will then be passed to the following flags:
+
+      \list{
+        \code{--bitbucket-cloud-auth-client-id=CLIENT_ID}
+      }{
+        \code{--bitbucket-cloud-auth-client-secret=CLIENT_SECRET}
+      }
+
+      If you want to override default values, you'll also need to set the
+      following flags:
+
+      \list{
+        \code{--bitbucket-cloud-auth-auth-url=https://example.bitbucket.org/login/oauth/authorize}
+      }{
+        \code{--bitbucket-cloud-auth-token-url=https://example.bitbucket.org/login/oauth/access_token}
+      }{
+        \code{--bitbucket-cloud-auth-api-url=https://example.bitbucket.org/api/}
+      }
+
+      Make sure the API URL ends with a slash!
+    }
+
+    \section{
+      \title{Authorizing Bitbucket Cloud users, teams, and repositories}
+
+      You're now able to set the teams, users and specific repositories who
+      should have access to your server.
+
+      This is done by passing the following flags:
+
+      \definitions{
+        \definition{\code{--bitbucket-cloud-auth-user=LOGIN}}{
+          Authorize an individual user.
+        }
+      }{
+        \definition{\code{--bitbucket-cloud-auth-team=TEAM_NAME}}{
+          Authorize an team's members within an organization.
+        }
+      }{
+        \definition{\code{--bitbucket-cloud-auth-repository=TEAM/REPO}}{
+          Authorize members of a specific repository.
+        }
+      }
+
+      These flags can be specified multiple times to permit multiple levels of
+      access.
+    }
+  }
+
+
+  \section{
     \title{UAA/CF oAuth}{uaa-cf-auth}
 
     \omit-children-from-table-of-contents
