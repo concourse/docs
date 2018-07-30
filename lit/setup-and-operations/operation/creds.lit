@@ -112,6 +112,7 @@ values are not present, the action will error.
 
     \define-attribute{vault-client-token: string}{
       Client token for accessing secrets within the Vault server.
+      This needs to be a periodic token so it may be renewed.
 
       Environment variable \code{CONCOURSE_VAULT_CLIENT_TOKEN}.
     }
@@ -201,11 +202,25 @@ values are not present, the action will error.
       concourse web ... \
         --vault-url https://10.2.0.3:8200 \
         --vault-ca-cert /etc/my-ca.cert \
+        --vault-auth-backend token  \
         --vault-client-token c2c2fbd5-2893-b385-6fa5-30050439f698
     }}}
 
-    For all of these configurations, the ATC will periodically renew its token,
-    ensuring it doesn't expire.
+    For all of these configurations, the ATC will periodically renew its periodic
+    vault token, ensuring it doesn't expire.
+
+    If you are using bosh for deployments \link{ATC job manifest
+    vault}{https://bosh.io/jobs/atc?source=github.com/concourse/concourse&version=3.14.1#p%3dvault}
+
+    Example:
+
+    \codeblock{bash}{{{
+      vault:
+        auth:
+          backend: token
+          client_token: c2c2fbd5-2893-b385-6fa5-30050439f698
+        url: https://10.2.0.3:8200
+    }}}
   }
 
   \section{
