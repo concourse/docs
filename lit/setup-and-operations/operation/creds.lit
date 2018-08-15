@@ -53,6 +53,23 @@ values are not present, the action will error.
   \omit-children-from-table-of-contents
 
   \section{
+    \title{Usage With Tasks}
+
+    In order to set an environment variable for a task using Vault, you will need to set a params key value pair.
+
+    Here is an example:
+
+    \codeblock{yaml}{{{
+      jobs:
+      - name: hello-world
+        plan:
+        - task: say-hello
+          params:
+            SYS_USERNAME: ((vault-system-username))
+    }}}
+  }
+
+  \section{
     \title{Configuration}
 
     The ATC is statically configured with a Vault server URL (plus any TLS
