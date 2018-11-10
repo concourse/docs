@@ -1,7 +1,7 @@
 package splash
 
 import (
-	_ "concourse-lit/chromastyle"
+	_ "github.com/concourse/docs/src/concourse-lit/chromastyle"
 
 	"github.com/vito/booklit"
 	"github.com/vito/booklit/chroma"

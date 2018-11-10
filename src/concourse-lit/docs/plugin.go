@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	_ "concourse-lit/chromastyle"
+	_ "github.com/concourse/docs/src/concourse-lit/chromastyle"
 
 	"github.com/blang/semver"
 	"github.com/vito/booklit"
