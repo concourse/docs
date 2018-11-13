@@ -19,7 +19,7 @@ before using it!
 }{
   \table-row{\link{Slack notifications}{https://github.com/cloudfoundry-community/slack-notification-resource}}{by \ghuser{cloudfoundry-community}}
 }{
-  \table-row{\link{Github Pull Requests}{https://github.com/jtarchie/github-pullrequest-resource}}{by \ghuser{jtarchie}}
+  \table-row{\link{Github Pull Requests}{https://github.com/telia-oss/github-pr-resource}}{by \ghuser{telia-oss}}
 }{
   \table-row{\link{GitLab Merge Requests}{https://github.com/swisscom/gitlab-merge-request-resource}}{by \ghuser{swisscom}}
 }{
@@ -214,6 +214,10 @@ before using it!
   \table-row{\link{Knative Service Resource}{https://github.com/jchesterpivotal/knative-service-resource}}{by \ghuser{jchesterpivotal}}
 }{
   \table-row{\link{Sentry Releases Resource}{https://github.com/rubenv/concourse-sentry-releases-resource}}{by \ghuser{rubenv}}
+}{
+  \table-row{\link{Gate Resource}{https://github.com/Meshcloud/gate-resource}}{by \ghuser{Meshcloud}}
+}{
+  \table-row{\link{Packer}{https://github.com/Snapkitchen/concourse-packer-resource}}{by \ghuser{Snapkitchen}}
 }
 
 \section{

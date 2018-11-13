@@ -90,6 +90,16 @@ against the teams that have granted them access.
     }}
 
     This can be useful if you've forgotten your team name.
+
+    \bold{\code{fly teams -d}\aux{: With Details}}
+
+    To list all the teams with authentication details and members, run:
+
+    \codeblock{bash}{{
+    $ fly -t example teams -d
+    }}
+
+    This can be helpful when debugging OAuth, OIDC groups or listing all individual members.
   }
 
   \section{
@@ -193,6 +203,33 @@ against the teams that have granted them access.
     }}}
   }
 
+    \section{
+    \title{GitLab Auth}{gitlab-auth}
+
+    You can configure which groups and individual users
+    should have access to your team.
+
+    This is done by passing the following flags:
+
+    \definitions{
+      \definition{\code{--gitlab-user=USERNAME}}{
+        Authorize an individual user.
+      }
+    }{
+      \definition{\code{--gitlab-group=GROUP_NAME}}{
+        Authorize an entire groups's members.
+      }
+    }
+
+    For example:
+
+    \codeblock{bash}{{{
+    $ fly set-team -n my-team \
+        --gitlab-user my-gitlab-user \
+        --gitlab-team my-team
+    }}}
+  }
+
   \section{
     \title{CF Auth}{uaa-cf-auth}
 
@@ -282,6 +319,24 @@ against the teams that have granted them access.
         --oidc-user my-username \
         --oidc-group my-group
     }}}
+  }
+
+  \section{
+    \title{Debugging Team Auth Configuration}{team-auth-debugging}
+
+    You can list users and groups for all teams pertaining how the team is
+    created based on group or individual user. Helpful for troubleshooting.
+
+    For example:
+
+    \codeblock{bash}{{{
+    $ fly -t target teams -d
+    }}}
+
+    When authentication errors occur look at concourse TSA logs.
+
+    Also, make sure workers and web UI are restarted when fundamental changes
+    occur to the auth configurations (i.e. changing the callback URL.)
   }
 }
 
