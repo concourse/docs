@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60508041-1"></script>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-60508041-1');
+    </script>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=775" />
+    <title>Concourse CI - get step</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+    <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+    <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+    <link rel="stylesheet" type="text/css" href="css/survey.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+    <script src="js/search.js"></script>
+  </head>
+  <body class="with-examples">
+    <div id="top">
+      <div id="survey">
+        <span>The Concourse 2018 Community Survey is here and we'd love your <a href="https://docs.google.com/forms/d/e/1FAIpQLScWHuP130rJAcqBJhQtyIUCqbMcY4Qj0beHtfOnWEQugWSuUw/viewform">feedback</a>!</span>
+      </div>
+      <div class="header">
+        <h1><a href="/" class="logo"></a><a href="/">Concourse</a></h1>
+
+        <nav>
+          <a href="tutorials.html">tutorial</a>
+          <a href="reference.html">reference</a>
+          <a href="https://discuss.concourse-ci.org">discuss</a>
+          <a href="download.html">download</a>
+
+          <div class="search" id="search"  onclick="gtag('event', 'search-click');">
+            <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
+          </div>
+        </nav>
+
+        <script type="text/javascript">
+          Elm.Main.embed(document.getElementById("search"));
+        </script>
+      </div>
+    </div>
+    <div id="content">
+      <div class="side">
+        
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="index.html" >Docs</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle"  />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="about.html" >About</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="setup-and-operations.html" >Setup &amp; Operations</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concepts.html" >Concepts</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tutorials.html" >Tutorials</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="reference.html" >Reference</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="contribute.html" >Contribute</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="community.html" >Community</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">8&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="trademarks.html" >Trademarks</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="reference.html" >Reference</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle"  />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="fly.html" ><code>fly</code></a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tasks.html" >Tasks</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="builds.html" >Builds</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="pipelines.html" >Pipelines</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="jobs.html" >Jobs</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resources.html" >Resources</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resource-types.html" >Resource Types</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="jobs.html" >Jobs</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle"  />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="steps.html" >Steps</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="managing-jobs.html" >Managing Jobs</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="steps.html" >Steps</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle" checked />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="get-step.html"  class="self"><code>get</code> step</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="put-step.html" ><code>put</code> step</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="task-step.html" ><code>task</code> step</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="aggregate-step.html" ><code>aggregate</code> step</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="do-step.html" ><code>do</code> step</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="try-step.html" ><code>try</code> step</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="on-success-step-hook.html" ><code>on_success</code> step hook</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="on-failure-step-hook.html" ><code>on_failure</code> step hook</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="on-abort-step-hook.html" ><code>on_abort</code> step hook</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="ensure-step-hook.html" ><code>ensure</code> step hook</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="tags-step-modifier.html" ><code>tags</code> step modifier</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="timeout-step-modifier.html" ><code>timeout</code> step modifier</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="attempts-step-modifier.html" ><code>attempts</code> step modifier</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+
+
+
+
+
+<div class="context">
+  <div class="top">
+    On this page:
+  </div>
+
+  <nav>
+    <div class="children">
+      <table>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="get-step.html#get-step-get"><code><strong>get</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="get-step.html#get-step-resource"><code><strong>resource</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="get-step.html#get-step-version"><code><strong>version</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="get-step.html#get-step-passed"><code><strong>passed</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="get-step.html#get-step-params"><code><strong>params</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="get-step.html#get-step-trigger"><code><strong>trigger</strong></code></a></td>
+        </tr>
+        
+
+        
+  
+    
+  
+
+      </table>
+    </div>
+  </nav>
+</div>
+
+
+<ul class="improve-docs">
+  <li><img src="images/github.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+
+  <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+</ul>
+      </div>
+      <div class="page">
+        <div class="section" id="section_get-step">
+  
+  <h1 class="section-header"><a name="get-step"></a><code>get</code> step</h1>
+  
+
+  <p>Fetches a resource, making it available to subsequent steps via the given name.</p><div class="definition">
+  <div class="definition-thumb">
+    <a name="get-step-get"></a>
+    <pre><a href="get-step.html#get-step-get"><strong>get</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Required.</em> The name of the resource once it is fetched. This name satisfies logical inputs to a <a href="tasks.html">Task</a>, and may be referenced within the plan itself (e.g. in the <code>file</code> attribute of a <a href="task-step.html"><code>task</code></a> step).</p><p>This is also the name of the resource to fetch, if <code>resource</code> is not set.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="get-step-resource"></a>
+    <pre><a href="get-step.html#get-step-resource"><strong>resource</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional. Defaults to <code>get</code>, the name.</em> The resource to fetch, as configured in <a href="pipelines.html#pipeline-resources"><code><strong>resources</strong></code></a>.</p><p>Use this attribute to rename a resource from the overall pipeline context into the job-specific context.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="get-step-version"></a>
+    <pre><a href="get-step.html#get-step-version"><strong>version</strong></a>: (&#34;latest&#34; | &#34;every&#34; | {version})</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional. Defaults to <code>latest</code>.</em> The version of the resource to fetch.</p><p>If set to <code>latest</code>, scheduling will just find the latest available version of a resource and use it, allowing versions to be skipped.  This is usually what you want, e.g. if someone pushes 100 git commits.</p><p>If set to <code>every</code>, builds will walk through all available versions of the resource. Note that if <code>passed</code> is also configured, it will only step through the versions satisfying the constraints.</p><p>If set to a specific version (e.g. <code>{ref: abcdef123}</code>), only that version will be used. Note that the version must be available and detected by the resource, otherwise the input will never be satisfied. You may want to use <a href="managing-resources.html#fly-check-resource"><code>fly check-resource</code></a> to force detection of resource versions, if you need to use an older one that was never detected (as all newly configured resources start from the latest version).</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="get-step-passed"></a>
+    <pre><a href="get-step.html#get-step-passed"><strong>passed</strong></a>: [string]</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> When specified, only the versions of the resource that made it through the given list of jobs will be considered when triggering and fetching.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="get-step-params"></a>
+    <pre><a href="get-step.html#get-step-params"><strong>params</strong></a>: object</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> A map of arbitrary configuration to forward to the resource. Refer to the resource type&#39;s documentation to see what it supports.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="get-step-trigger"></a>
+    <pre><a href="get-step.html#get-step-trigger"><strong>trigger</strong></a>: boolean</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional. Default <code>false</code>.</em> Set to <code>true</code> to auto-trigger new builds of the plan&#39;s job whenever this step has new versions available, as specified by the <code>resource</code> and any <code>passed</code> constraints.</p><p>Otherwise, if no <code>get</code> steps set this to <code>true</code>, the job can only be manually triggered.</p>
+  </div>
+</div>
+
+  
+    
+  
+</div>
+      </div>
+      
+      <div class="examples">
+        <div class="examples-page">
+          <h2>Examples</h2>
+
+          <div class="example">
+  <h3>Simple Fetch &amp; Test</h3>
+
+  <p>Almost every simple unit test job will look something like this: fetch my code with a <a href="get-step.html"><code>get</code> step</a> and run its tests with a <a href="task-step.html"><code>task</code> step</a>.</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>my-repo<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>unit<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>my-repo/ci/unit.yml<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div>
+</div><div class="example">
+  <h3>Fanning In</h3>
+
+  <p>If multiple <code>get</code>s are configured with <code>passed</code> constraints, all of the mentioned jobs are correlated. That is, with the following set of inputs:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>a<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>passed:<span style="color:#e6e7e8"> </span>[a-unit,<span style="color:#e6e7e8"> </span>integration]<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>b<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>passed:<span style="color:#e6e7e8"> </span>[b-unit,<span style="color:#e6e7e8"> </span>integration]<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>x<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>passed:<span style="color:#e6e7e8"> </span>[integration]<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div><p>This means &#34;give me the versions of <code>a</code>, <code>b</code>, and <code>x</code> that have passed the <em>same build</em> of <code>integration</code>, with the same version of <code>a</code> passing <code>a-unit</code> and the same version of <code>b</code> passing <code>b-unit</code>.&#34;</p><p>This is crucial to being able to implement safe &#34;fan-in&#34; semantics as things progress through a pipeline.</p>
+</div><div class="example">
+  <h3>Fetching with <code>params</code></h3>
+
+  <p>The following plan fetches a version number via the <code>semver</code> resource, bumps it to the next release candidate, and <a href="put-step.html"><code>put</code></a>s it back.</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>version<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>params:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>bump:<span style="color:#e6e7e8"> </span>minor<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>rc:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>put:<span style="color:#e6e7e8"> </span>version<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>params:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>version:<span style="color:#e6e7e8"> </span>version/number<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div>
+</div>
+        </div>
+      </div>
+      
+    </div>
+  </body>
+</html>

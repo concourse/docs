@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60508041-1"></script>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-60508041-1');
+    </script>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=775" />
+    <title>Concourse CI - Resource Types</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+    <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+    <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+    <link rel="stylesheet" type="text/css" href="css/survey.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+    <script src="js/search.js"></script>
+  </head>
+  <body class="with-examples">
+    <div id="top">
+      <div id="survey">
+        <span>The Concourse 2018 Community Survey is here and we'd love your <a href="https://docs.google.com/forms/d/e/1FAIpQLScWHuP130rJAcqBJhQtyIUCqbMcY4Qj0beHtfOnWEQugWSuUw/viewform">feedback</a>!</span>
+      </div>
+      <div class="header">
+        <h1><a href="/" class="logo"></a><a href="/">Concourse</a></h1>
+
+        <nav>
+          <a href="tutorials.html">tutorial</a>
+          <a href="reference.html">reference</a>
+          <a href="https://discuss.concourse-ci.org">discuss</a>
+          <a href="download.html">download</a>
+
+          <div class="search" id="search"  onclick="gtag('event', 'search-click');">
+            <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
+          </div>
+        </nav>
+
+        <script type="text/javascript">
+          Elm.Main.embed(document.getElementById("search"));
+        </script>
+      </div>
+    </div>
+    <div id="content">
+      <div class="side">
+        
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="index.html" >Docs</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle"  />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="about.html" >About</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="setup-and-operations.html" >Setup &amp; Operations</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concepts.html" >Concepts</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tutorials.html" >Tutorials</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="reference.html" >Reference</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="contribute.html" >Contribute</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="community.html" >Community</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">8&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="trademarks.html" >Trademarks</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="reference.html" >Reference</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle" checked />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="fly.html" ><code>fly</code></a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tasks.html" >Tasks</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="builds.html" >Builds</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="pipelines.html" >Pipelines</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="jobs.html" >Jobs</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resources.html" >Resources</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resource-types.html"  class="self">Resource Types</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="resource-types.html"  class="self">Resource Types</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle" checked />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="managing-resource-types.html" >Managing Resource Types</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="included-resources.html" >Resources Provided With Concourse</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="community-resources.html" >Community Resources</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="implementing-resources.html" >Implementing a Resource</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+
+
+<div class="context">
+  <div class="top">
+    On this page:
+  </div>
+
+  <nav>
+    <div class="children">
+      <table>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-name"><code><strong>name</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-type"><code><strong>type</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-source"><code><strong>source</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-privileged"><code><strong>privileged</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-params"><code><strong>params</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-check-every"><code><strong>check_every</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-tags"><code><strong>tags</strong></code></a></td>
+        </tr>
+        
+
+        
+  
+
+      </table>
+    </div>
+  </nav>
+</div>
+
+
+<ul class="improve-docs">
+  <li><img src="images/github.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+
+  <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+</ul>
+      </div>
+      <div class="page">
+        <div class="section" id="section_resource-types">
+  
+  <h1 class="section-header"><a name="resource-types"></a><span class="section-number">5.7 </span>Resource Types</h1>
+  
+
+  <p>Each resource in a pipeline has a <code>type</code>. The resource&#39;s type determines what versions are detected, the bits that are fetched when used for a <a href="get-step.html"><code>get</code> step</a>, and the side effect that occurs when used for a <a href="put-step.html"><code>put</code> step</a>.</p><p>Out of the box, Concourse comes with a few resource types to cover common CI use cases like dealing with Git repositories and S3 buckets.</p><p>Beyond these core types, each pipeline can configure its own resource types by specifying <code>resource_types</code> at the top level. Each resource type is itself defined as a resource that provides the container image for the pipeline resource type (see <a href="implementing-resources.html">Implementing a Resource</a>). You will almost always be using the <a href="https://github.com/concourse/docker-image-resource"><code>docker-image</code> resource type</a> when doing this.</p><p>Pipeline-provided resource types can override the core resource types, and can be defined in terms of each other. Also, a pipeline resource type can use the core type that it&#39;s overriding. This is useful if you want to e.g. provide your own custom <code>docker-image</code> resource, by overriding the core one (and using it one last time for the override itself), and then using it for all other pipeline resource types.</p><p>Similar to <a href="resources.html">Resources</a>, each configured resource type consists of the following attributes:</p><div class="definition">
+  <div class="definition-thumb">
+    <a name="resource-type-name"></a>
+    <pre><a href="resource-types.html#resource-type-name"><strong>name</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Required.</em> The name of the new resource type. This should be short and simple. This name will be referenced by <a href="pipelines.html#pipeline-resources"><code><strong>resources</strong></code></a> defined within the same pipeline, and <a href="tasks.html#image_resource"><code><strong>image_resource</strong></code></a>s used by tasks running in the pipeline.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="resource-type-type"></a>
+    <pre><a href="resource-types.html#resource-type-type"><strong>type</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Required.</em> The type of the resource used to provide the resource type&#39;s container image. Yes, this is a bit meta. Usually this will be <code>docker-image</code>, as the resource type must result in a container image, though there may be other image formats (possibly themselves defined as pipeline resource types!).</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="resource-type-source"></a>
+    <pre><a href="resource-types.html#resource-type-source"><strong>source</strong></a>: object</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> The location of the resource type&#39;s resource. This varies by resource type, and is a black box to Concourse; it is blindly passed to the resource at runtime.</p><p>To use <code>docker-image</code> as an example, the source would contain something like <code>repository: username/reponame</code>. See the <a href="https://github.com/concourse/docker-image-resource">Docker Image resource</a> (or whatever resource type your resource type uses) for more information.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="resource-type-privileged"></a>
+    <pre><a href="resource-types.html#resource-type-privileged"><strong>privileged</strong></a>: boolean</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional. Default <code>false</code>.</em> If set to <code>true</code>, the resource&#39;s containers will be run with full capabilities, as determined by the Garden backend the task runs on. For Linux-based backends it typically determines whether or not the container will run in a separate user namespace, and whether the <code>root</code> user is &#34;actual&#34; <code>root</code> (if set to <code>true</code>) or a user namespaced <code>root</code> (if set to <code>false</code>, the default).</p><p>This is a gaping security hole; only configure it if the resource type needs it (which should be called out in its documentation). This is not up to the resource type to decide dynamically, so as to prevent privilege escalation via third-party resource type exploits.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="resource-type-params"></a>
+    <pre><a href="resource-types.html#resource-type-params"><strong>params</strong></a>: object</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> Arbitrary params to pass when fetching the resource.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="resource-type-check-every"></a>
+    <pre><a href="resource-types.html#resource-type-check-every"><strong>check_every</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional. Default <code>1m</code>.</em> The interval on which to check for new versions of the resource type. Acceptable interval options are defined by the <a href="https://golang.org/pkg/time/#ParseDuration">time.ParseDuration function</a>.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="resource-type-tags"></a>
+    <pre><a href="resource-types.html#resource-type-tags"><strong>tags</strong></a>: [string]</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional. Default <code>[]</code>.</em> A list of tags to determine which workers the checks will be performed on. You&#39;ll want to specify this if the source is internal to a worker&#39;s network, for example. See also <a href="tags-step-modifier.html"><code>tags</code> step modifier</a>.</p>
+  </div>
+</div>
+<ol id="table-of-contents" class="toc">
+
+  <li><a href="managing-resource-types.html">Managing Resource Types</a>
+
+    
+<ol>
+
+  <li><a href="managing-resource-types.html#fly-check-resource-type"><code>fly check-resource-type</code></a>
+
+    
+  </li>
+
+</ol>
+
+  </li>
+
+  <li><a href="included-resources.html">Resources Provided With Concourse</a>
+
+    
+<ol>
+
+  <li><a href="included-resources.html#deprecated-resources">Deprecated Resources</a>
+
+    
+  </li>
+
+</ol>
+
+  </li>
+
+  <li><a href="community-resources.html">Community Resources</a>
+
+    
+<ol>
+
+  <li><a href="community-resources.html#adding-to-this-list">Adding to this list</a>
+
+    
+  </li>
+
+</ol>
+
+  </li>
+
+  <li><a href="implementing-resources.html">Implementing a Resource</a>
+
+    
+<ol>
+
+  <li><a href="implementing-resources.html#resource-check"><code>check</code>: Check for new versions.</a>
+
+    
+  </li>
+
+  <li><a href="implementing-resources.html#in"><code>in</code>: Fetch a given resource.</a>
+
+    
+  </li>
+
+  <li><a href="implementing-resources.html#out"><code>out</code>: Update a resource.</a>
+
+    
+  </li>
+
+  <li><a href="implementing-resources.html#resource-metadata">Metadata</a>
+
+    
+  </li>
+
+  <li><a href="implementing-resources.html#resource-certs">Certificate Propagation</a>
+
+    
+  </li>
+
+</ol>
+
+  </li>
+
+</ol>
+
+
+  
+</div>
+      </div>
+      
+      <div class="examples">
+        <div class="examples-page">
+          <h2>Examples</h2>
+
+          <div class="example">
+  <h3>Using Resource Types</h3>
+
+  <p><a href="resource-types.html">Resource Types</a> can be used to extend the functionality of your pipeline and provide deeper integrations. This example uses one to trigger a job whenever a new <a href="http://www.qwantz.com">Dinosaur Comic</a> is out.</p><div class="highlight"><pre style="">---<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>resource_types:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>rss<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>docker-image<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>repository:<span style="color:#e6e7e8"> </span>suhlig/concourse-rss-resource<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>tag:<span style="color:#e6e7e8"> </span>latest<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>resources:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>booklit-releases<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>rss<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>url:<span style="color:#e6e7e8"> </span>http://www.qwantz.com/rssfeed.php<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>jobs:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>announce<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>booklit-releases<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div>
+</div>
+        </div>
+      </div>
+      
+    </div>
+  </body>
+</html>

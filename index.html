@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60508041-1"></script>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-60508041-1');
+    </script>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=775" />
+    <title>Concourse CI - Docs</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+    <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+    <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+    <link rel="stylesheet" type="text/css" href="css/survey.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+    <script src="js/search.js"></script>
+  </head>
+  <body>
+    <div id="top">
+      <div id="survey">
+        <span>The Concourse 2018 Community Survey is here and we'd love your <a href="https://docs.google.com/forms/d/e/1FAIpQLScWHuP130rJAcqBJhQtyIUCqbMcY4Qj0beHtfOnWEQugWSuUw/viewform">feedback</a>!</span>
+      </div>
+      <div class="header">
+        <h1><a href="/" class="logo"></a><a href="/">Concourse</a></h1>
+
+        <nav>
+          <a href="tutorials.html">tutorial</a>
+          <a href="reference.html">reference</a>
+          <a href="https://discuss.concourse-ci.org">discuss</a>
+          <a href="download.html">download</a>
+
+          <div class="search" id="search"  onclick="gtag('event', 'search-click');">
+            <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
+          </div>
+        </nav>
+
+        <script type="text/javascript">
+          Elm.Main.embed(document.getElementById("search"));
+        </script>
+      </div>
+    </div>
+    <div id="content">
+      <div class="side">
+        
+
+
+
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="index.html"  class="self">Docs</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle" checked />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="about.html" >About</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="setup-and-operations.html" >Setup &amp; Operations</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concepts.html" >Concepts</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tutorials.html" >Tutorials</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="reference.html" >Reference</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="contribute.html" >Contribute</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="community.html" >Community</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">8&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="trademarks.html" >Trademarks</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+
+
+
+<ul class="improve-docs">
+  <li><img src="images/github.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+
+  <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+</ul>
+      </div>
+      <div class="page wide">
+        <div class="section" id="section_index">
+  
+
+  <div class="splash-intro">
+  <div class="side-by-side">
+    <div class="segment example">
+      <h2><p>Concourse is an open-source continuous thing-doer.</p></h2>
+    </div>
+
+    <div class="segment">
+      <p>Built on the simple mechanics of <a href="resources.html">resources</a>, <a href="tasks.html">tasks</a>, and <a href="jobs.html">jobs</a>, Concourse presents a general approach to automation that makes it great for <a href="https://en.wikipedia.org/wiki/Continuous_integration">CI</a>/<a href="https://en.wikipedia.org/wiki/Continuous_delivery">CD</a>.</p>
+    </div>
+  </div>
+</div><div class="quickstart">
+  <input id="quickstart" type="checkbox" class="toggle" />
+  <label for="quickstart" class="quickstart-label">Quick Start</label>
+
+  <div class="quickstart-content">
+    <p>Concourse is distributed as a single <code>concourse</code> binary, making it easy to run just about anywhere, especially with Docker.</p><div class="highlight"><pre style="">$ wget https://concourse-ci.org/docker-compose.yml
+$ docker-compose up
+Creating docs_concourse-db_1 ... <span style="color:#2ecc71;font-weight:bold">done</span>
+Creating docs_concourse_1    ... <span style="color:#2ecc71;font-weight:bold">done</span>
+</pre>
+</div><p>Concourse will be running at <a href="http://127.0.0.1:8080">127.0.0.1:8080</a>. You can log in with the username/password as <code>test</code>/<code>test</code>.</p><p>Next, install <a href="fly.html"><code>fly</code></a> by downloading it from the web UI and target your local Concourse as the <code>test</code> user:</p><div class="highlight"><pre style="">$ fly -t tutorial login -c http://127.0.0.1:8080 -u <span style="color:#8f4b2d">test</span> -p <span style="color:#8f4b2d">test</span>
+logging in to team <span style="color:#e74c3c">&#39;main&#39;</span>
+
+target saved
+</pre>
+</div><p>Then, head to <a href="https://concoursetutorial.com/basics/task-hello-world/">Hello World</a> to kick the tires!</p>
+  </div>
+</div><div class="splash-example">
+  <h2>
+    Configuration As Code
+  </h2>
+
+  <div class="side-by-side">
+    <div class="segment example">
+      <div class="highlight"><pre style="">resources:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>booklit<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>git<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8"> </span>{uri:<span style="color:#e6e7e8"> </span><span style="color:#e67e22">&#34;https://github.com/vito/booklit&#34;</span>}<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>jobs:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>unit<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>booklit<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>test<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>booklit/ci/test.yml<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div>
+    </div>
+
+    <div class="segment">
+      <p>You can think of a <a href="pipelines.html">pipeline</a> as a distributed, higher-level, continuously-running <code>Makefile</code>.</p><p>Each entry under <code>resources</code> is a dependency, and each entry under <code>jobs</code> describes a <a href="steps.html"><code>plan</code></a> to run when the job is triggered (either manually or by a <a href="get-step.html"><code>get</code> step</a>).</p><p>Jobs can depend on resources that have <a href="get-step.html#get-step-passed"><code><strong>passed</strong></code></a> through prior jobs. The resulting sequence of jobs and resources is a dependency graph that continuously pushes your project forward, from source code to production.</p>
+    </div>
+  </div>
+</div><div class="splash-example">
+  <h2>
+    Fancy Visualization
+  </h2>
+
+  <div class="side-by-side">
+    <div class="segment example">
+      <p><img src="images/concourse-pipeline.png" alt="" /></p>
+    </div>
+
+    <div class="segment">
+      <p>Your pipeline configuration is then visualized in the web UI, taking only one click to get from a red (failed) box to seeing why it failed.</p><p>The visualization also provides a &#34;gut check&#34; feedback loop - if it <em>looks</em> wrong, it probably <em>is</em> wrong.</p>
+    </div>
+  </div>
+</div><div class="splash-example">
+  <h2>
+    CI Under Source Control
+  </h2>
+
+  <div class="side-by-side">
+    <div class="segment example">
+      <div class="highlight"><pre style="">$ fly -t ci set-pipeline -p booklit -c pipeline.yml
+$ vim pipeline.yml
+$ fly -t ci set-pipeline -p booklit -c pipeline.yml
+$ git add pipeline.yml
+$ git commit -m <span style="color:#e67e22">&#34;initial pipeline&#34;</span>
+</pre>
+</div>
+    </div>
+
+    <div class="segment">
+      <p>All administration is done using <a href="fly.html">the <code>fly</code> CLI</a>. The <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a> command pushes the config up to Concourse. Once it looks good, you can then check the file in to source control. This makes it easy to recover if your Concourse server burns down.</p>
+    </div>
+  </div>
+</div><div class="splash-example">
+  <h2>
+    Reproducible, Debuggable Builds
+  </h2>
+
+  <div class="side-by-side">
+    <div class="segment example">
+      <div class="highlight"><pre style="">$ fly -t ci intercept -j booklit/unit -s unit
+root@2c15ff11:/tmp/build/0df9eea0# ps
+    PID TTY          TIME CMD
+    <span style="color:#1abc9c;font-weight:bold">171</span> pts/1    <span style="color:#1abc9c;font-weight:bold">00</span>:00:00 bash
+   <span style="color:#1abc9c;font-weight:bold">1876</span> pts/1    <span style="color:#1abc9c;font-weight:bold">00</span>:00:00 ps
+root@2c15ff11:/tmp/build/0df9eea0# ls
+depspath  gopath
+root@2c15ff11:/tmp/build/0df9eea0# █
+</pre>
+</div>
+    </div>
+
+    <div class="segment">
+      <p>Everything runs in containers, ensuring a clean environment on every run. Each <a href="task-step.html#task">task</a> specifies its own image, giving it full control over its dependencies, rather than managing them on your workers.</p><p>The <a href="builds.html#fly-intercept"><code>fly intercept</code></a> command will pop you right into one of your build&#39;s containers, which can be useful for debugging.</p>
+    </div>
+  </div>
+</div><div class="splash-example">
+  <h2>
+    Rapid Local Iteration
+  </h2>
+
+  <div class="side-by-side">
+    <div class="segment example">
+      <div class="highlight"><pre style="">~/booklit $ fly -t ci execute -c ci/test.yml
+executing build <span style="color:#1abc9c;font-weight:bold">1</span> at http://127.0.0.1:8080/builds/1
+initializing
+booklit: <span style="color:#1abc9c;font-weight:bold">4</span>.74 MiB/s 0s
+running gopath/src/github.com/vito/booklit/ci/test
+fetching dependencies...
+installing ginkgo...
+running tests...
+█
+</pre>
+</div>
+    </div>
+
+    <div class="segment">
+      <p>The <a href="running-tasks.html#fly-execute"><code>fly execute</code></a> command executes a task as a one-off build, with your local changes. This will run your code in exactly the same way it would run in your pipeline, without you having to repeatedly push broken commits until it works. Achieve the fabled green build #1!</p><p>When a job fails, you can also use <a href="running-tasks.html#fly-execute"><code>fly execute</code></a> with <code>-j</code> flag to run with the same inputs as the failed job. You can then replace an input with your local changes with <code>-i</code> to test if your fix is valid.</p>
+    </div>
+  </div>
+</div><div class="splash-example">
+  <h2>
+    Bring Your Own Integrations
+  </h2>
+
+  <div class="side-by-side">
+    <div class="segment example">
+      <div class="highlight"><pre style="">resource_types:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>slack<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>docker-image<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>repository:<span style="color:#e6e7e8"> </span>quay.io/ahelal/bender<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>tag:<span style="color:#e6e7e8"> </span>latest<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>resources:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>slack-deploy<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>slack<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>slack_token:<span style="color:#e6e7e8"> </span>((slack_token))<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>channel:<span style="color:#e6e7e8"> </span><span style="color:#e67e22">&#34;admin&#34;</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>grammar:<span style="color:#e6e7e8"> </span><span style="color:#e67e22">&#34;dang! deploy it now!&#34;</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>jobs:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>prod-deploy<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>slack-deploy<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span><span style="color:#bdc3c7"># ...</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div>
+    </div>
+
+    <div class="segment">
+      <p>Concourse does not have a complex plugin system. Instead, it has a single strong abstraction.</p><p>The <code>resources</code> section of a pipeline lists <a href="resources.html">Resources</a>, which are abstract external locations where your pipeline will monitor for changes, fetch bits from, and push bits to.</p><p>For example, a resource with type <code>git</code> refers to a git repository, which will be <code>clone</code>d in a <a href="get-step.html"><code>get</code> step</a> and <code>push</code>ed to in a <a href="put-step.html"><code>put</code> step</a>. Behind the scenes, Concourse will continuously run <code>git fetch</code> to look for new commits that jobs may want to trigger on.</p><p>At its core, though, Concourse knows nothing about Git. It comes with a <code>git</code> resource type out of the box, but you could just as easily bring your own into your pipeline. Resource types are implemented as container images containing scripts - using the <code>docker-image</code> resource type, they can be fetched from a Docker registry.</p>
+    </div>
+  </div>
+</div>
+
+  
+</div>
+      </div>
+      
+    </div>
+  </body>
+</html>

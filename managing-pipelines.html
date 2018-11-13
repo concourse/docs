@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60508041-1"></script>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-60508041-1');
+    </script>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=775" />
+    <title>Concourse CI - Managing Pipelines</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+    <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+    <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+    <link rel="stylesheet" type="text/css" href="css/survey.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+    <script src="js/search.js"></script>
+  </head>
+  <body>
+    <div id="top">
+      <div id="survey">
+        <span>The Concourse 2018 Community Survey is here and we'd love your <a href="https://docs.google.com/forms/d/e/1FAIpQLScWHuP130rJAcqBJhQtyIUCqbMcY4Qj0beHtfOnWEQugWSuUw/viewform">feedback</a>!</span>
+      </div>
+      <div class="header">
+        <h1><a href="/" class="logo"></a><a href="/">Concourse</a></h1>
+
+        <nav>
+          <a href="tutorials.html">tutorial</a>
+          <a href="reference.html">reference</a>
+          <a href="https://discuss.concourse-ci.org">discuss</a>
+          <a href="download.html">download</a>
+
+          <div class="search" id="search"  onclick="gtag('event', 'search-click');">
+            <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
+          </div>
+        </nav>
+
+        <script type="text/javascript">
+          Elm.Main.embed(document.getElementById("search"));
+        </script>
+      </div>
+    </div>
+    <div id="content">
+      <div class="side">
+        
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="index.html" >Docs</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle"  />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="about.html" >About</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="setup-and-operations.html" >Setup &amp; Operations</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concepts.html" >Concepts</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tutorials.html" >Tutorials</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="reference.html" >Reference</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="contribute.html" >Contribute</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="community.html" >Community</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">8&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="trademarks.html" >Trademarks</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="reference.html" >Reference</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle"  />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="fly.html" ><code>fly</code></a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tasks.html" >Tasks</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="builds.html" >Builds</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="pipelines.html" >Pipelines</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="jobs.html" >Jobs</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resources.html" >Resources</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resource-types.html" >Resource Types</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="pipelines.html" >Pipelines</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle" checked />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="setting-pipelines.html" >Setting Pipelines</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="managing-pipelines.html"  class="self">Managing Pipelines</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="pipeline-groups.html" >Grouping Jobs</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="managing-pipelines.html"  class="self">Managing Pipelines</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle" checked />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="managing-pipelines.html#fly-pipelines" ><code>fly pipelines</code></a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="managing-pipelines.html#fly-rename-pipeline" ><code>fly rename-pipeline</code></a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="managing-pipelines.html#fly-pause-pipeline" ><code>fly pause-pipeline</code></a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="managing-pipelines.html#fly-unpause-pipeline" ><code>fly unpause-pipeline</code></a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="managing-pipelines.html#fly-expose-pipeline" ><code>fly expose-pipeline</code></a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="managing-pipelines.html#fly-hide-pipeline" ><code>fly hide-pipeline</code></a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="managing-pipelines.html#fly-get-pipeline" ><code>fly get-pipeline</code></a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="managing-pipelines.html#fly-destroy-pipeline" ><code>fly destroy-pipeline</code></a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="managing-pipelines.html#fly-order-pipelines" ><code>fly order-pipelines</code></a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+
+
+
+<ul class="improve-docs">
+  <li><img src="images/github.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+
+  <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+</ul>
+      </div>
+      <div class="page">
+        <div class="section" id="section_managing-pipelines">
+  
+  <h1 class="section-header"><a name="managing-pipelines"></a>Managing Pipelines</h1>
+  
+
+  
+
+  
+    
+      <div class="section" id="section_fly-pipelines">
+  
+  <h2 class="section-header"><a name="fly-pipelines"></a><code>fly pipelines</code></h2>
+  
+
+  <p>To list the currently-configured pipelines and their paused state, run:</p><div class="highlight"><pre style="">$ fly -t example pipelines
+</pre>
+</div>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_fly-rename-pipeline">
+  
+  <h2 class="section-header"><a name="fly-rename-pipeline"></a><code>fly rename-pipeline</code></h2>
+  
+
+  <p>To rename a pipeline, run:</p><div class="highlight"><pre style="">$ fly -t example rename-pipeline <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --old-name my-pipeline <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --new-name my-cool-pipeline
+</pre>
+</div>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_fly-pause-pipeline">
+  
+  <h2 class="section-header"><a name="fly-pause-pipeline"></a><code>fly pause-pipeline</code></h2>
+  
+
+  <p>To pause a pipeline, run:</p><div class="highlight"><pre style="">$ fly -t example pause-pipeline --pipeline my-pipeline
+</pre>
+</div><p>This will prevent jobs from being scheduled and stop the periodic checking for new versions of resources. Builds that are in-flight will still finish.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_fly-unpause-pipeline">
+  
+  <h2 class="section-header"><a name="fly-unpause-pipeline"></a><code>fly unpause-pipeline</code></h2>
+  
+
+  <p>To unpause a pipeline, run:</p><div class="highlight"><pre style="">$ fly -t example unpause-pipeline --pipeline my-pipeline
+</pre>
+</div><p>This will resume job scheduling and resource checking.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_fly-expose-pipeline">
+  
+  <h2 class="section-header"><a name="fly-expose-pipeline"></a><code>fly expose-pipeline</code></h2>
+  
+
+  <p>By default, newly configured pipelines are only visible to the pipeline&#39;s team. To make a pipeline viewable by other teams and unauthenticated users, run:</p><div class="highlight"><pre style="">$ fly -t example expose-pipeline --pipeline my-pipeline
+</pre>
+</div><p>This feature is useful if you&#39;re using Concourse for an open source project and you&#39;d like your community to be able to see into your build pipeline.</p><p>To undo this change, see <a href="managing-pipelines.html#fly-hide-pipeline"><code>fly hide-pipeline</code></a>.</p><p>Exposing a pipeline reveals basically everything but the output of builds. The pipeline will be publicly viewable, as well as resource versions and metadata, which includes things like commit messages. Build output will remain hidden by default unless the job configures <a href="jobs.html#job-public"><code>public: true</code></a>.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_fly-hide-pipeline">
+  
+  <h2 class="section-header"><a name="fly-hide-pipeline"></a><code>fly hide-pipeline</code></h2>
+  
+
+  <p>If you realize that you&#39;ve made a terrible mistake in <a href="managing-pipelines.html#fly-expose-pipeline">exposing your pipeline</a>, you can run:</p><div class="highlight"><pre style="">$ fly -t example hide-pipeline --pipeline my-pipeline
+</pre>
+</div><p>If you&#39;re panicking you can run the command&#39;s short form, <code>hp</code>, instead.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_fly-get-pipeline">
+  
+  <h2 class="section-header"><a name="fly-get-pipeline"></a><code>fly get-pipeline</code></h2>
+  
+
+  <p>Fly can be used to fetch and update the configuration for your pipelines. This is achieved by using the <a href="managing-pipelines.html#fly-get-pipeline"><code>fly get-pipeline</code></a> and <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a> commands. For example, to fetch the current configuration of your <code>my-pipeline</code> Concourse pipeline and print it on <code>STDOUT</code> run the following:</p><div class="highlight"><pre style="">$ fly -t example get-pipeline --pipeline my-pipeline
+</pre>
+</div><p>To get JSON instead of YAML you can use the <code>-j</code> or <code>--json</code> argument. This can be useful when inspecting your config with <a href="http://stedolan.github.io/jq/">jq</a>.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_fly-destroy-pipeline">
+  
+  <h2 class="section-header"><a name="fly-destroy-pipeline"></a><code>fly destroy-pipeline</code></h2>
+  
+
+  <p>Every now and then you just don&#39;t want a pipeline to be around anymore. Running <code>fly destroy-pipeline</code> will stop the pipeline activity and remove all data collected by the pipeline, including build history and collected versions.</p><p>For example, to destroy the <code>my-pipeline</code> pipeline, you would run:</p><div class="highlight"><pre style="">$ fly -t example destroy-pipeline --pipeline my-pipeline
+</pre>
+</div>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_fly-order-pipelines">
+  
+  <h2 class="section-header"><a name="fly-order-pipelines"></a><code>fly order-pipelines</code></h2>
+  
+
+  <p>To configure the ordering of pipelines, run:</p><div class="highlight"><pre style="">$ fly -t example order-pipelines <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --pipeline pipeline-1 <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --pipeline pipeline-2 <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --pipeline pipeline-3
+</pre>
+</div><p>Note that this command only ensures that the given pipelines are in the given order. If there are other pipelines that you haven&#39;t included in the command, they may appear in-between, before, or after the given set.</p>
+
+  
+    
+  
+</div>
+    
+  
+</div>
+      </div>
+      
+    </div>
+  </body>
+</html>

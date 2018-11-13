@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60508041-1"></script>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-60508041-1');
+    </script>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=775" />
+    <title>Concourse CI - Jobs</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+    <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+    <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+    <link rel="stylesheet" type="text/css" href="css/survey.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+    <script src="js/search.js"></script>
+  </head>
+  <body>
+    <div id="top">
+      <div id="survey">
+        <span>The Concourse 2018 Community Survey is here and we'd love your <a href="https://docs.google.com/forms/d/e/1FAIpQLScWHuP130rJAcqBJhQtyIUCqbMcY4Qj0beHtfOnWEQugWSuUw/viewform">feedback</a>!</span>
+      </div>
+      <div class="header">
+        <h1><a href="/" class="logo"></a><a href="/">Concourse</a></h1>
+
+        <nav>
+          <a href="tutorials.html">tutorial</a>
+          <a href="reference.html">reference</a>
+          <a href="https://discuss.concourse-ci.org">discuss</a>
+          <a href="download.html">download</a>
+
+          <div class="search" id="search"  onclick="gtag('event', 'search-click');">
+            <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
+          </div>
+        </nav>
+
+        <script type="text/javascript">
+          Elm.Main.embed(document.getElementById("search"));
+        </script>
+      </div>
+    </div>
+    <div id="content">
+      <div class="side">
+        
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="index.html" >Docs</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle"  />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="about.html" >About</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="setup-and-operations.html" >Setup &amp; Operations</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concepts.html" >Concepts</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tutorials.html" >Tutorials</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="reference.html" >Reference</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="contribute.html" >Contribute</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="community.html" >Community</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">8&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="trademarks.html" >Trademarks</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="reference.html" >Reference</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle" checked />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="fly.html" ><code>fly</code></a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tasks.html" >Tasks</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="builds.html" >Builds</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="pipelines.html" >Pipelines</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="jobs.html"  class="self">Jobs</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resources.html" >Resources</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resource-types.html" >Resource Types</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="jobs.html"  class="self">Jobs</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle" checked />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="steps.html" >Steps</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="managing-jobs.html" >Managing Jobs</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+
+
+<div class="context">
+  <div class="top">
+    On this page:
+  </div>
+
+  <nav>
+    <div class="children">
+      <table>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="jobs.html#job-name"><code><strong>name</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="jobs.html#job-plan"><code><strong>plan</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="jobs.html#job-serial"><code><strong>serial</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="jobs.html#job-build-logs-to-retain"><code><strong>build_logs_to_retain</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="jobs.html#job-serial-groups"><code><strong>serial_groups</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="jobs.html#job-max-in-flight"><code><strong>max_in_flight</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="jobs.html#job-public"><code><strong>public</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="jobs.html#job-disable-manual-trigger"><code><strong>disable_manual_trigger</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="jobs.html#job-interruptible"><code><strong>interruptible</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="jobs.html#job-on-success"><code><strong>on_success</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="jobs.html#job-on-failure"><code><strong>on_failure</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="jobs.html#job-on-abort"><code><strong>on_abort</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="jobs.html#job-ensure"><code><strong>ensure</strong></code></a></td>
+        </tr>
+        
+
+        
+  
+
+      </table>
+    </div>
+  </nav>
+</div>
+
+
+<ul class="improve-docs">
+  <li><img src="images/github.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+
+  <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+</ul>
+      </div>
+      <div class="page">
+        <div class="section" id="section_jobs">
+  
+  <h1 class="section-header"><a name="jobs"></a><span class="section-number">5.5 </span>Jobs</h1>
+  
+
+  <p><a href="jobs.html">Jobs</a> determine the <em>actions</em> of your pipeline, how resources progress through it, and how everything is visualized. They are listed under the <code>jobs</code> key in the pipeline configuration.</p><p>The most important attribute of a job is its build plan, configured as <a href="jobs.html#job-plan"><code><strong>plan</strong></code></a>. This determines the sequence of <a href="steps.html">Steps</a> to execute in any builds of the job.</p><div class="definition">
+  <div class="definition-thumb">
+    <a name="job-name"></a>
+    <pre><a href="jobs.html#job-name"><strong>name</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Required.</em> The name of the job. This should be short; it will show up in URLs.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="job-plan"></a>
+    <pre><a href="jobs.html#job-plan"><strong>plan</strong></a>: [step]</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Required.</em> The sequence of <a href="steps.html">steps</a> to execute.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="job-serial"></a>
+    <pre><a href="jobs.html#job-serial"><strong>serial</strong></a>: boolean</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional. Default <code>false</code>.</em> If set to <code>true</code>, builds will queue up and execute one-by-one, rather than executing in parallel.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="job-build-logs-to-retain"></a>
+    <pre><a href="jobs.html#job-build-logs-to-retain"><strong>build_logs_to_retain</strong></a>: number</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> If configured, only the last specified number of builds will have their build logs persisted. This is useful if you have a job that runs periodically but after some amount of time the logs aren&#39;t worth keeping around.</p><p>Example:</p><div class="highlight"><pre style="">jobs:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>smoke-tests<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>build_logs_to_retain:<span style="color:#e6e7e8"> </span><span style="color:#1abc9c;font-weight:bold">100</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>10m<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>smoke-tests<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span><span style="color:#bdc3c7"># ...</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="job-serial-groups"></a>
+    <pre><a href="jobs.html#job-serial-groups"><strong>serial_groups</strong></a>: [string]</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional. Default <code>[]</code>.</em> When set to an array of arbitrary tag-like strings, builds of this job and other jobs referencing the same tags will be serialized.</p><p>This can be used to ensure that certain jobs do not run at the same time, like so:</p><div class="highlight"><pre style="">jobs:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>job-a<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>serial_groups:<span style="color:#e6e7e8"> </span>[some-tag]<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>job-b<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>serial_groups:<span style="color:#e6e7e8"> </span>[some-tag,<span style="color:#e6e7e8"> </span>some-other-tag]<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>job-c<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>serial_groups:<span style="color:#e6e7e8"> </span>[some-other-tag]<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div><p>In this example, <code>job-a</code> and <code>job-c</code> can run concurrently, but neither job can run builds at the same time as <code>job-b</code>.</p><p>The builds are executed in their order of creation, across all jobs with common tags.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="job-max-in-flight"></a>
+    <pre><a href="jobs.html#job-max-in-flight"><strong>max_in_flight</strong></a>: integer</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> If set, specifies a maximum number of builds to run at a time. If <code>serial</code> or <code>serial_groups</code> are set, they take precedence and force this value to be <code>1</code>.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="job-public"></a>
+    <pre><a href="jobs.html#job-public"><strong>public</strong></a>: boolean</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional. Default <code>false</code>.</em> If set to <code>true</code>, the build log of this job will be viewable by unauthenticated users. Unauthenticated users will always be able to see the inputs, outputs, and build status history of a job. This is useful if you would like to expose your pipeline publicly without showing sensitive information in the build log.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="job-disable-manual-trigger"></a>
+    <pre><a href="jobs.html#job-disable-manual-trigger"><strong>disable_manual_trigger</strong></a>: boolean</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional. Default <code>false</code>.</em> If set to <code>true</code>, manual triggering of the job (via the web UI or <a href="managing-jobs.html#fly-trigger-job"><code>fly trigger-job</code></a>) will be disabled.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="job-interruptible"></a>
+    <pre><a href="jobs.html#job-interruptible"><strong>interruptible</strong></a>: boolean</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional. Default <code>false</code>.</em> Normally, when a worker is shutting down it will wait for builds with containers running on that worker to finish before exiting. If this value is set to <code>true</code>, the worker will not wait on the builds of this job. You may want this if e.g. you have a self-deploying Concourse or long-running-but-low-importance jobs.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="job-on-success"></a>
+    <pre><a href="jobs.html#job-on-success"><strong>on_success</strong></a>: step</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> Step to execute when the job succeeds. Equivalent to the <a href="on-success-step-hook.html#on_success"><code><strong>on_success</strong></code></a> step attribute.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="job-on-failure"></a>
+    <pre><a href="jobs.html#job-on-failure"><strong>on_failure</strong></a>: step</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> Step to execute when the job fails. Equivalent to the <a href="on-failure-step-hook.html#on_failure"><code><strong>on_failure</strong></code></a> step attribute.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="job-on-abort"></a>
+    <pre><a href="jobs.html#job-on-abort"><strong>on_abort</strong></a>: step</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> Step to execute when the job aborts. Equivalent to the <a href="on-abort-step-hook.html#on_abort"><code><strong>on_abort</strong></code></a> step attribute.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="job-ensure"></a>
+    <pre><a href="jobs.html#job-ensure"><strong>ensure</strong></a>: step</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> Step to execute regardless of whether the job succeeds, fails, errors, or aborts. Equivalent to the <a href="ensure-step-hook.html#ensure"><code><strong>ensure</strong></code></a> step attribute.</p>
+  </div>
+</div>
+<ol id="table-of-contents" class="toc">
+
+  <li><a href="steps.html">Steps</a>
+
+    
+<ol id="table-of-contents" class="toc">
+
+  <li><a href="get-step.html"><code>get</code> step</a>
+
+    
+  </li>
+
+  <li><a href="put-step.html"><code>put</code> step</a>
+
+    
+  </li>
+
+  <li><a href="task-step.html"><code>task</code> step</a>
+
+    
+  </li>
+
+  <li><a href="aggregate-step.html"><code>aggregate</code> step</a>
+
+    
+  </li>
+
+  <li><a href="do-step.html"><code>do</code> step</a>
+
+    
+  </li>
+
+  <li><a href="try-step.html"><code>try</code> step</a>
+
+    
+  </li>
+
+  <li><a href="on-success-step-hook.html"><code>on_success</code> step hook</a>
+
+    
+  </li>
+
+  <li><a href="on-failure-step-hook.html"><code>on_failure</code> step hook</a>
+
+    
+  </li>
+
+  <li><a href="on-abort-step-hook.html"><code>on_abort</code> step hook</a>
+
+    
+  </li>
+
+  <li><a href="ensure-step-hook.html"><code>ensure</code> step hook</a>
+
+    
+  </li>
+
+  <li><a href="tags-step-modifier.html"><code>tags</code> step modifier</a>
+
+    
+  </li>
+
+  <li><a href="timeout-step-modifier.html"><code>timeout</code> step modifier</a>
+
+    
+  </li>
+
+  <li><a href="attempts-step-modifier.html"><code>attempts</code> step modifier</a>
+
+    
+  </li>
+
+</ol>
+
+  </li>
+
+  <li><a href="managing-jobs.html">Managing Jobs</a>
+
+    
+<ol>
+
+  <li><a href="managing-jobs.html#fly-jobs"><code>fly jobs</code></a>
+
+    
+  </li>
+
+  <li><a href="managing-jobs.html#fly-trigger-job"><code>fly trigger-job</code></a>
+
+    
+  </li>
+
+  <li><a href="managing-jobs.html#fly-pause-job"><code>fly pause-job</code></a>
+
+    
+  </li>
+
+  <li><a href="managing-jobs.html#fly-unpause-job"><code>fly unpause-job</code></a>
+
+    
+  </li>
+
+  <li><a href="managing-jobs.html#fly-clear-task-cache"><code>fly clear-task-cache</code></a>
+
+    
+  </li>
+
+</ol>
+
+  </li>
+
+</ol>
+
+
+  
+</div>
+      </div>
+      
+    </div>
+  </body>
+</html>

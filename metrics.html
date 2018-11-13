@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60508041-1"></script>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-60508041-1');
+    </script>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=775" />
+    <title>Concourse CI - Metrics</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+    <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+    <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+    <link rel="stylesheet" type="text/css" href="css/survey.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+    <script src="js/search.js"></script>
+  </head>
+  <body>
+    <div id="top">
+      <div id="survey">
+        <span>The Concourse 2018 Community Survey is here and we'd love your <a href="https://docs.google.com/forms/d/e/1FAIpQLScWHuP130rJAcqBJhQtyIUCqbMcY4Qj0beHtfOnWEQugWSuUw/viewform">feedback</a>!</span>
+      </div>
+      <div class="header">
+        <h1><a href="/" class="logo"></a><a href="/">Concourse</a></h1>
+
+        <nav>
+          <a href="tutorials.html">tutorial</a>
+          <a href="reference.html">reference</a>
+          <a href="https://discuss.concourse-ci.org">discuss</a>
+          <a href="download.html">download</a>
+
+          <div class="search" id="search"  onclick="gtag('event', 'search-click');">
+            <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
+          </div>
+        </nav>
+
+        <script type="text/javascript">
+          Elm.Main.embed(document.getElementById("search"));
+        </script>
+      </div>
+    </div>
+    <div id="content">
+      <div class="side">
+        
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="index.html" >Docs</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle"  />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="about.html" >About</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="setup-and-operations.html" >Setup &amp; Operations</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concepts.html" >Concepts</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tutorials.html" >Tutorials</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="reference.html" >Reference</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="contribute.html" >Contribute</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="community.html" >Community</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">8&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="trademarks.html" >Trademarks</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="setup-and-operations.html" >Setup &amp; Operations</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle"  />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">2.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="download.html" >Download</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">2.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="install.html" >Install</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">2.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="getting-started.html" >Getting Started</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">2.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">2.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="teams.html" >Teams</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">2.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="administration.html" >Administration</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="operation.html" >Operation</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle" checked />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="topology.html" >Deployment Topology</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="encryption.html" >Encryption</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="creds.html" >Credential Management</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="metrics.html"  class="self">Metrics</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="metrics.html"  class="self">Metrics</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle" checked />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="metrics.html#configuring-metrics" >Configuring Metrics</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="metrics.html#whats-emitted" >What&#39;s emitted?</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+
+
+<div class="context">
+  <div class="top">
+    On this page:
+  </div>
+
+  <nav>
+    <div class="children">
+      <table>
+        
+
+        
+  
+    
+      
+      
+  
+    
+  
+
+    
+      
+        <tr>
+          <td class="number-cell" align="left">2.4.4.2&nbsp;</td>
+          <td class="title-cell">
+  <a href="metrics.html#whats-emitted" >What&#39;s emitted?</a>
+</td>
+        </tr>
+        
+          <tr>
+            <td class="number-cell"></td>
+            <td class="title-cell"><a href="#ZgotmplZ">scheduling: full duration (ms)</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell"></td>
+            <td class="title-cell"><a href="#ZgotmplZ">scheduling: loading versions duration (ms)</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell"></td>
+            <td class="title-cell"><a href="#ZgotmplZ">scheduling: job duration (ms)</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell"></td>
+            <td class="title-cell"><a href="metrics.html#worker%20containers">worker containers</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell"></td>
+            <td class="title-cell"><a href="metrics.html#worker%20volumes">worker volumes</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell"></td>
+            <td class="title-cell"><a href="metrics.html#build%20started">build started</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell"></td>
+            <td class="title-cell"><a href="metrics.html#build%20finished">build finished</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell"></td>
+            <td class="title-cell"><a href="metrics.html#http%20response%20time">http response time</a></td>
+          </tr>
+        
+      
+      
+  
+    
+  
+
+    
+  
+
+      </table>
+    </div>
+  </nav>
+</div>
+
+
+<ul class="improve-docs">
+  <li><img src="images/github.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+
+  <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+</ul>
+      </div>
+      <div class="page">
+        <div class="section" id="section_metrics">
+  
+  <h1 class="section-header"><a name="metrics"></a>Metrics</h1>
+  
+
+  <p>Metrics are essential in understanding how any large system is behaving and performing. Concourse can emit metrics about both the system health itself and about the builds that it is running. Operators can tap into these metrics in order to observe the health of the system.</p><p>In the spirit of openness, the <a href="https://metrics.concourse-ci.org/dashboard/db/concourse">metrics from our deployment</a> are public. We consider it a bug to emit anything sensitive or secret into our metrics pipeline.</p>
+
+  
+    
+      <div class="section" id="section_configuring-metrics">
+  
+  <h2 class="section-header"><a name="configuring-metrics"></a>Configuring Metrics</h2>
+  
+
+  <p>The <a href="concepts.html#component-atc">ATC</a> can be configured to emit metrics on start.</p><p>Currently supported metrics emitters are InfluxDB, NewRelic, Prometheus, Datadog, and Riemann. There is also a dummy emitter that will just spit the metrics out in to the logs at <code>DEBUG</code> level, which can be enabled with the <code>--emit-to-logs</code> flag.</p><p>There are various flags for different emitters; run <code>concourse web --help</code> and look for &#34;Metric Emitter&#34; to see what&#39;s available.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_whats-emitted">
+  
+  <h2 class="section-header"><a name="whats-emitted"></a>What&#39;s emitted?</h2>
+  
+
+  <p>This reference section lists of all of the metrics that Concourse emits. We don&#39;t include the warning and critical levels as they will keep changing as we optimise the system. To find those, please refer to the source of truth: <a href="https://github.com/concourse/atc/blob/master/metric/metrics.go">the code</a>.</p><div class="definition">
+  <div class="definition-thumb">
+    <a name="scheduling: full duration (ms)"></a>
+    <pre>scheduling: full duration (ms)</pre>
+  </div>
+
+  <div class="definition-content">
+    <p>This is the time taken (in milliseconds) to schedule an entire pipeline including the time taken to load the version information from the database and calculate the latest valid versions for each job.</p><p><span style="font-size: 120%">Attributes</span> <dl>
+  
+  <dt><p><code>pipeline</code></p></dt>
+    <dd><p>The pipeline which was being scheduled.</p></dd>
+  
+</dl></p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="scheduling: loading versions duration (ms)"></a>
+    <pre>scheduling: loading versions duration (ms)</pre>
+  </div>
+
+  <div class="definition-content">
+    <p>This is the time taken (in milliseconds) to load the version information from the database.</p><p><span style="font-size: 120%">Attributes</span> <dl>
+  
+  <dt><p><code>pipeline</code></p></dt>
+    <dd><p>The pipeline which was being scheduled.</p></dd>
+  
+</dl></p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="scheduling: job duration (ms)"></a>
+    <pre>scheduling: job duration (ms)</pre>
+  </div>
+
+  <div class="definition-content">
+    <p>This is the time taken (in milliseconds) to calculate the set of valid input versions when scheduling a job. It is emitted once for each job per pipeline scheduling tick.</p><p><span style="font-size: 120%">Attributes</span> <dl>
+  
+  <dt><p><code>pipeline</code></p></dt>
+    <dd><p>The pipeline which was being scheduled.</p></dd>
+  
+  <dt><p><code>job</code></p></dt>
+    <dd><p>The job which was being scheduled.</p></dd>
+  
+</dl></p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="worker containers"></a>
+    <pre>worker containers</pre>
+  </div>
+
+  <div class="definition-content">
+    <p>The number of containers that are currently running on your workers.</p><p><span style="font-size: 120%">Attributes</span> <dl>
+  
+  <dt><p><code>worker</code></p></dt>
+    <dd><p>The name of the worker.</p></dd>
+  
+</dl></p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="worker volumes"></a>
+    <pre>worker volumes</pre>
+  </div>
+
+  <div class="definition-content">
+    <p>The number of volumes that are currently present on your workers.</p><p><span style="font-size: 120%">Attributes</span> <dl>
+  
+  <dt><p><code>worker</code></p></dt>
+    <dd><p>The name of the worker.</p></dd>
+  
+</dl></p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="build started"></a>
+    <pre>build started</pre>
+  </div>
+
+  <div class="definition-content">
+    <p>This event is emitted when a build starts. Its value is the build ID of the build. However, it is most useful for annotating your metrics with the start and end of different jobs.</p><p><span style="font-size: 120%">Attributes</span> <dl>
+  
+  <dt><p><code>pipeline</code></p></dt>
+    <dd><p>The pipeline which contains the build being started.</p></dd>
+  
+  <dt><p><code>job</code></p></dt>
+    <dd><p>The job which configured the build being started.</p></dd>
+  
+  <dt><p><code>build_name</code></p></dt>
+    <dd><p>The name of the build being started. (Remember that build numbers in Concourse are actually names and are strings).</p></dd>
+  
+  <dt><p><code>build_id</code></p></dt>
+    <dd><p>The ID of the build being started.</p></dd>
+  
+</dl></p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="build finished"></a>
+    <pre>build finished</pre>
+  </div>
+
+  <div class="definition-content">
+    <p>This event is emitted when a build ends. Its value is the duration of the build in milliseconds. You can use this metric in conjunction with <code>build started</code> to annotate your metrics with when builds started and stopped.</p><p><span style="font-size: 120%">Attributes</span> <dl>
+  
+  <dt><p><code>pipeline</code></p></dt>
+    <dd><p>The pipeline which contains the build that finished.</p></dd>
+  
+  <dt><p><code>job</code></p></dt>
+    <dd><p>The job which configured the build that finished.</p></dd>
+  
+  <dt><p><code>build_name</code></p></dt>
+    <dd><p>The name of the build that finished. (Remember that build numbers in Concourse are actually names and are strings).</p></dd>
+  
+  <dt><p><code>build_id</code></p></dt>
+    <dd><p>The ID of the build that finished.</p></dd>
+  
+  <dt><p><code>build_status</code></p></dt>
+    <dd><p>The resulting status of the build; one of &#34;succeeded&#34;, &#34;failed&#34;, &#34;errored&#34;, or &#34;aborted&#34;.</p></dd>
+  
+</dl></p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="http response time"></a>
+    <pre>http response time</pre>
+  </div>
+
+  <div class="definition-content">
+    <p>This metric is emitted for each HTTP request to an ATC (both API and web requests). It contains the duration (in milliseconds) for each request and is useful for finding slow requests.</p><p><span style="font-size: 120%">Attributes</span> <dl>
+  
+  <dt><p><code>route</code></p></dt>
+    <dd><p>The route which the HTTP request matched. i.e. /builds/:id</p></dd>
+  
+  <dt><p><code>path</code></p></dt>
+    <dd><p>The literal path of the HTTP request. i.e. /builds/1234</p></dd>
+  
+</dl></p>
+  </div>
+</div>
+
+  
+    
+  
+</div>
+    
+  
+</div>
+      </div>
+      
+    </div>
+  </body>
+</html>

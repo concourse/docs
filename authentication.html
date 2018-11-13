@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60508041-1"></script>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-60508041-1');
+    </script>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=775" />
+    <title>Concourse CI - Configuring Team Auth</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+    <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+    <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+    <link rel="stylesheet" type="text/css" href="css/survey.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+    <script src="js/search.js"></script>
+  </head>
+  <body>
+    <div id="top">
+      <div id="survey">
+        <span>The Concourse 2018 Community Survey is here and we'd love your <a href="https://docs.google.com/forms/d/e/1FAIpQLScWHuP130rJAcqBJhQtyIUCqbMcY4Qj0beHtfOnWEQugWSuUw/viewform">feedback</a>!</span>
+      </div>
+      <div class="header">
+        <h1><a href="/" class="logo"></a><a href="/">Concourse</a></h1>
+
+        <nav>
+          <a href="tutorials.html">tutorial</a>
+          <a href="reference.html">reference</a>
+          <a href="https://discuss.concourse-ci.org">discuss</a>
+          <a href="download.html">download</a>
+
+          <div class="search" id="search"  onclick="gtag('event', 'search-click');">
+            <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
+          </div>
+        </nav>
+
+        <script type="text/javascript">
+          Elm.Main.embed(document.getElementById("search"));
+        </script>
+      </div>
+    </div>
+    <div id="content">
+      <div class="side">
+        
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="index.html" >Docs</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle"  />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="about.html" >About</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="setup-and-operations.html" >Setup &amp; Operations</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concepts.html" >Concepts</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tutorials.html" >Tutorials</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="reference.html" >Reference</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="contribute.html" >Contribute</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="community.html" >Community</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">8&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="trademarks.html" >Trademarks</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="setup-and-operations.html" >Setup &amp; Operations</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle"  />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">2.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="download.html" >Download</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">2.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="install.html" >Install</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">2.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="getting-started.html" >Getting Started</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">2.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">2.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="teams.html" >Teams</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">2.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="administration.html" >Administration</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="teams.html" >Teams</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle" checked />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="main-team.html" ><code>main</code> team</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="creating-and-updating-teams.html" >Creating &amp; Updating Teams</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="managing-teams.html" >Managing Teams</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="authentication.html"  class="self">Configuring Team Auth</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="exposing.html" >Pipeline &amp; Build Visibility</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="teams-caveats.html" >Security Caveats</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="authentication.html"  class="self">Configuring Team Auth</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle" checked />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="authentication.html#local-auth" >Local Auth</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="authentication.html#github-auth" >GitHub Auth</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="authentication.html#uaa-cf-auth" >CF Auth</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="authentication.html#generic-oauth" >Generic oAuth</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="authentication.html#generic-oidc" >Generic OIDC</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+
+
+
+<ul class="improve-docs">
+  <li><img src="images/github.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+
+  <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+</ul>
+      </div>
+      <div class="page">
+        <div class="section" id="section_authentication">
+  
+  <h1 class="section-header"><a name="authentication"></a>Configuring Team Auth</h1>
+  
+
+  <p>Continuous Integration servers often contain a considerable number of secrets to let them access source code and deploy applications. It is important that those secrets remain well guarded. Concourse provides options for both authentication and authorization to give you control over who can access your server and how much they can see.</p><blockquote class="aside"><p>If you access your Concourse server over the public internet then all of the options below are useless without using TLS to secure your connection.</p></blockquote><p>The authentication methods for teams are determined by flags passed to <a href="creating-and-updating-teams.html#fly-set-team"><code>fly set-team</code></a>, except for the <a href="main-team.html"><code>main</code> team</a>, which is configured as part of the deployment.</p><p>Any number of the following providers can be enabled at any one time. Users will be given a choice when logging in as to which one they would like to use.</p><div class="warning">
+  <p>In order to use any of the auth providers listed below, you must first enable the provider by configuring any required information at deployment time as per the <a href="install.html#auth-config">Configuring Auth Providers</a> guide.</p>
+</div>
+
+  
+    
+      <div class="section" id="section_local-auth">
+  
+  <h2 class="section-header"><a name="local-auth"></a>Local Auth</h2>
+  
+
+  <p>You can grant <a href="install.html#local-auth-config">local users</a> access to a team via the <code>--local-user</code> flag.</p><p>For example:</p><div class="highlight"><pre style="">$ fly set-team -n my-team <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --local-user some_username
+</pre>
+</div>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_github-auth">
+  
+  <h2 class="section-header"><a name="github-auth"></a>GitHub Auth</h2>
+  
+
+  <p>You can configure which organizations, teams, and individual users should have access to your team.</p><p>This is done by passing the following flags:</p><dl>
+  
+  <dt><code>--github-user=LOGIN</code></dt>
+    <dd><p>Authorize an individual user.</p></dd>
+  
+  <dt><code>--github-org=ORG_NAME</code></dt>
+    <dd><p>Authorize an entire organization&#39;s members.</p></dd>
+  
+  <dt><code>--github-team=ORG_NAME:TEAM_NAME</code></dt>
+    <dd><p>Authorize a team&#39;s members within an organization.</p></dd>
+  
+</dl><p>For example:</p><div class="highlight"><pre style="">$ fly set-team -n my-team <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --github-user my-github-login <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --github-org my-org <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --github-team my-other-org:my-team
+</pre>
+</div>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_uaa-cf-auth">
+  
+  <h2 class="section-header"><a name="uaa-cf-auth"></a>CF Auth</h2>
+  
+
+  <p>You can configure which org/space members from a CF deployment should have access to your team.</p><dl>
+  
+  <dt><code>--cf-user=USERNAME</code></dt>
+    <dd><p>Authorize an individual user.</p></dd>
+  
+  <dt><code>--cf-org=ORG_NAME</code></dt>
+    <dd><p>Authorize an entire organization&#39;s members.</p></dd>
+  
+  <dt><code>--cf-space=ORG_NAME:SPACE_NAME</code></dt>
+    <dd><p>Authorize the members of a space within an organization.</p></dd>
+  
+</dl><p>For example:</p><div class="highlight"><pre style="">$ fly set-team -n my-team <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --cf-user my-username <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --cf-org my-org <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --cf-space my-other-org:my-space
+</pre>
+</div>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_generic-oauth">
+  
+  <h2 class="section-header"><a name="generic-oauth"></a>Generic oAuth</h2>
+  
+
+  <p>You can configure users and groups from a generic oAuth provider.</p><p>You may only configure groups if the auth provider exposes this information in either the token itself, or in the contents of the userinfo endpoint. You can configure which claim points to the groups information by specifying the <code>groups-key</code> at startup.</p><dl>
+  
+  <dt><code>--oauth-user=USERNAME</code></dt>
+    <dd><p>Authorize an individual user.</p></dd>
+  
+  <dt><code>--oauth-group=GROUP_NAME</code></dt>
+    <dd><p>Authorize anyone from the group.</p></dd>
+  
+</dl><p>For example:</p><div class="highlight"><pre style="">$ fly set-team -n my-team <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --oauth-user my-username <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --oauth-group my-group
+</pre>
+</div>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_generic-oidc">
+  
+  <h2 class="section-header"><a name="generic-oidc"></a>Generic OIDC</h2>
+  
+
+  <p>You can configure users and groups from a generic OIDC provider. This is very similar to the oAuth connector. The main difference being that OIDC providers must adhere to the OIDC specification, whereas generic oAuth providers can be a little more flexible.</p><p>You may only configure groups if the auth provider exposes this information in the contents of the userinfo endpoint. You can configure which claim points to the groups information by specifying the <code>groups-key</code> at startup.</p><dl>
+  
+  <dt><code>--oidc-user=USERNAME</code></dt>
+    <dd><p>Authorize an individual user.</p></dd>
+  
+  <dt><code>--oidc-group=GROUP_NAME</code></dt>
+    <dd><p>Authorize anyone from the group.</p></dd>
+  
+</dl><p>For example:</p><div class="highlight"><pre style="">$ fly set-team -n my-team <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --oidc-user my-username <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --oidc-group my-group
+</pre>
+</div>
+
+  
+    
+  
+</div>
+    
+  
+</div>
+      </div>
+      
+    </div>
+  </body>
+</html>

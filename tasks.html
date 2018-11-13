@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60508041-1"></script>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-60508041-1');
+    </script>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=775" />
+    <title>Concourse CI - Tasks</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+    <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+    <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+    <link rel="stylesheet" type="text/css" href="css/survey.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+    <script src="js/search.js"></script>
+  </head>
+  <body class="with-examples">
+    <div id="top">
+      <div id="survey">
+        <span>The Concourse 2018 Community Survey is here and we'd love your <a href="https://docs.google.com/forms/d/e/1FAIpQLScWHuP130rJAcqBJhQtyIUCqbMcY4Qj0beHtfOnWEQugWSuUw/viewform">feedback</a>!</span>
+      </div>
+      <div class="header">
+        <h1><a href="/" class="logo"></a><a href="/">Concourse</a></h1>
+
+        <nav>
+          <a href="tutorials.html">tutorial</a>
+          <a href="reference.html">reference</a>
+          <a href="https://discuss.concourse-ci.org">discuss</a>
+          <a href="download.html">download</a>
+
+          <div class="search" id="search"  onclick="gtag('event', 'search-click');">
+            <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
+          </div>
+        </nav>
+
+        <script type="text/javascript">
+          Elm.Main.embed(document.getElementById("search"));
+        </script>
+      </div>
+    </div>
+    <div id="content">
+      <div class="side">
+        
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="index.html" >Docs</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle"  />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="about.html" >About</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="setup-and-operations.html" >Setup &amp; Operations</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concepts.html" >Concepts</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tutorials.html" >Tutorials</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="reference.html" >Reference</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="contribute.html" >Contribute</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="community.html" >Community</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">8&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="trademarks.html" >Trademarks</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="reference.html" >Reference</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle" checked />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="fly.html" ><code>fly</code></a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tasks.html"  class="self">Tasks</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="builds.html" >Builds</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="pipelines.html" >Pipelines</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="jobs.html" >Jobs</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resources.html" >Resources</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resource-types.html" >Resource Types</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="tasks.html"  class="self">Tasks</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle" checked />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="running-tasks.html" >Running Tasks</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="task-environment.html" >Task Environment</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+
+
+<div class="context">
+  <div class="top">
+    On this page:
+  </div>
+
+  <nav>
+    <div class="children">
+      <table>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="tasks.html#task-platform"><code><strong>platform</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="tasks.html#image-resource-type"><code><strong>image_resource.type</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="tasks.html#image-resource-source"><code><strong>image_resource.source</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="tasks.html#image-resource-params"><code><strong>image_resource.params</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="tasks.html#image-resource-version"><code><strong>image_resource.version</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="tasks.html#task-image-resource"><code><strong>image_resource</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="tasks.html#image_resource"><code><strong>image_resource</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="tasks.html#task-rootfs-uri"><code><strong>rootfs_uri</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="tasks.html#input-name"><code><strong>inputs.name</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="tasks.html#input-path"><code><strong>inputs.path</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="tasks.html#input-optional"><code><strong>inputs.optional</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="tasks.html#task-inputs"><code><strong>inputs</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="tasks.html#output-name"><code><strong>outputs.name</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="tasks.html#output-path"><code><strong>outputs.path</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="tasks.html#task-outputs"><code><strong>outputs</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="tasks.html#cache-path"><code><strong>caches.path</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="tasks.html#task-caches"><code><strong>caches</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="tasks.html#caches"><code><strong>caches</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="tasks.html#task-run-path"><code><strong>run.path</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="tasks.html#task-run-args"><code><strong>run.args</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="tasks.html#task-run-dir"><code><strong>run.dir</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="tasks.html#task-run-user"><code><strong>run.user</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="tasks.html#task-run"><code><strong>run</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="tasks.html#task-params"><code><strong>params</strong></code></a></td>
+        </tr>
+        
+
+        
+  
+
+      </table>
+    </div>
+  </nav>
+</div>
+
+
+<ul class="improve-docs">
+  <li><img src="images/github.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+
+  <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+</ul>
+      </div>
+      <div class="page">
+        <div class="section" id="section_tasks">
+  
+  <h1 class="section-header"><a name="tasks"></a><span class="section-number">5.2 </span>Tasks</h1>
+  
+
+  <p>The smallest configurable unit in a Concourse pipeline is a single task. A task can be thought of as a function from <a href="tasks.html#task-inputs"><code><strong>inputs</strong></code></a> to <a href="tasks.html#task-outputs"><code><strong>outputs</strong></code></a> that can either succeed or fail.</p><p>Going a bit further, ideally tasks are <em>pure</em> functions: given the same set of inputs, it should either always succeed with the same outputs or always fail. This is entirely up to your script&#39;s level of discipline, however. Flaky tests or dependencies on the internet are the most common source of impurity.</p><p>Once you have a running Concourse deployment, you can start configuring your tasks and executing them interactively from your terminal with the <a href="fly.html">Fly</a> commandline tool.</p><p>Once you&#39;ve figured out your tasks&#39;s configuration, you can reuse it for a <a href="jobs.html">Job</a> in your <a href="pipelines.html">Pipeline</a>.</p><p>Conventionally a task&#39;s configuration is placed in the same repository as the code it&#39;s testing, possibly under some <code>ci</code> directory.</p><p>A task&#39;s configuration specifies the following:</p><div class="definition">
+  <div class="definition-thumb">
+    <a name="task-platform"></a>
+    <pre><a href="tasks.html#task-platform"><strong>platform</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Required.</em> The platform the task should run on. By convention, <code>windows</code>, <code>linux</code>, or <code>darwin</code> are specified. This determines the pool of workers that the task can run against. The base deployment provides Linux workers.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="task-image-resource"></a><a name="image_resource"></a>
+    <pre><a href="tasks.html#task-image-resource"><strong>image_resource</strong></a>: resource</pre>
+  </div>
+
+  <div class="definition-content">
+    <p>Where <em><code>resource</code></em> is:</p><div class="definition">
+  <div class="definition-thumb">
+    <a name="image-resource-type"></a>
+    <pre><a href="tasks.html#image-resource-type"><strong>type</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Required.</em> The type of the resource. Usually <code>docker-image</code>.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="image-resource-source"></a>
+    <pre><a href="tasks.html#image-resource-source"><strong>source</strong></a>: object</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Required.</em> The configuration for the resource; see <a href="resources.html#resource-source"><code><strong>source</strong></code></a>.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="image-resource-params"></a>
+    <pre><a href="tasks.html#image-resource-params"><strong>params</strong></a>: object</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> A map of arbitrary configuration to forward to the resource. Refer to the resource type&#39;s documentation to see what it supports.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="image-resource-version"></a>
+    <pre><a href="tasks.html#image-resource-version"><strong>version</strong></a>: object</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> A specific version of the resource to fetch. This should be a map with string keys and values. If not specified, the latest version will be fetched.</p>
+  </div>
+</div><p><em>Optional.</em> The base image of the container, as provided by a <a href="resources.html">resource</a> definition.</p><p>You can use any resource that returns a filesystem in the correct format (a <code>/rootfs</code> directory and a <code>metadata.json</code> file in the top level) but normally this will be the <a href="https://github.com/concourse/docker-image-resource">Docker Image resource</a>. If you&#39;d like to make a resource of your own that supports this please use that as a reference implementation for now.</p><p>If you want to use an artifact source within the plan containing an image, you must set the <a href="task-step.html#task-step-image"><code><strong>image</strong></code></a> in the plan step instead.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="task-rootfs-uri"></a>
+    <pre><a href="tasks.html#task-rootfs-uri"><strong>rootfs_uri</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> A string specifying the rootfs uri of the container, as interpreted by your worker&#39;s Garden backend.</p><p><a href="tasks.html#image_resource"><code><strong>image_resource</strong></code></a> is a preferred way to specify base image and <code>rootfs_uri</code> is not recommended. With <code>rootfs_uri</code> image fetching is delegated to backend which does not guarantee image caching and might result in some permission errors. You should only use this if you cannot use <a href="tasks.html#image_resource"><code><strong>image_resource</strong></code></a> for some reason, and you know what you&#39;re doing.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="task-inputs"></a>
+    <pre><a href="tasks.html#task-inputs"><strong>inputs</strong></a>: [input]</pre>
+  </div>
+
+  <div class="definition-content">
+    <p>Where <em><code>input</code></em> is:</p><div class="definition">
+  <div class="definition-thumb">
+    <a name="input-name"></a>
+    <pre><a href="tasks.html#input-name"><strong>name</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Required.</em> The logical name of the input.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="input-path"></a>
+    <pre><a href="tasks.html#input-path"><strong>path</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> The path where the input will be placed. If not specified, the input&#39;s <code>name</code> is used.</p><p>Paths are relative to the working directory of the task. Absolute paths are not respected.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="input-optional"></a>
+    <pre><a href="tasks.html#input-optional"><strong>optional</strong></a>: bool</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> If <code>true</code>, then the input is not required by the task. The task may run even if this input is missing.</p><p>An <code>optional</code> input that is missing will not appear in the current directory of the running task.</p>
+  </div>
+</div><p><em>Optional.</em> The set of artifacts used by task, determining which artifacts will be available in the current directory when the task runs.</p><p>These are satisfied by <a href="get-step.html"><code>get</code> step</a>s or <a href="tasks.html#task-outputs"><code><strong>outputs</strong></code></a> of a previous task. These can also be provided by <code>-i</code> with <a href="running-tasks.html#fly-execute"><code>fly execute</code></a>.</p><p>If any required inputs are missing at run-time, then the task will error immediately.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="task-outputs"></a>
+    <pre><a href="tasks.html#task-outputs"><strong>outputs</strong></a>: [output]</pre>
+  </div>
+
+  <div class="definition-content">
+    <p>Where <em><code>output</code></em> is:</p><div class="definition">
+  <div class="definition-thumb">
+    <a name="output-name"></a>
+    <pre><a href="tasks.html#output-name"><strong>name</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Required.</em> The logical name of the output. The contents under <code>path</code> will be made available to the rest of the plan under this name.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="output-path"></a>
+    <pre><a href="tasks.html#output-path"><strong>path</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> The path to a directory where the output will be taken from. If not specified, the output&#39;s <code>name</code> is used.</p><p>Paths are relative to the working directory of the task. Absolute paths are not respected.</p><p>Note that this value <em>must not overlap</em> with any other inputs or outputs. Each output results in a new empty directory that your task should place artifacts in; if the path overlaps it&#39;ll clobber whatever files used to be there.</p>
+  </div>
+</div><p><em>Optional.</em> The artifacts produced by the task.</p><p>Each output configures a directory to make available to later steps in the <a href="steps.html">build plan</a>. The directory will be automatically created before the task runs, and the task should place any artifacts it wants to export in the directory.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="task-caches"></a><a name="caches"></a>
+    <pre><a href="tasks.html#task-caches"><strong>caches</strong></a>: [cache]</pre>
+  </div>
+
+  <div class="definition-content">
+    <p>Where <em><code>cache</code></em> is:</p><div class="definition">
+  <div class="definition-thumb">
+    <a name="cache-path"></a>
+    <pre><a href="tasks.html#cache-path"><strong>path</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Required.</em> The path to a directory to be cached.</p><p>Paths are relative to the working directory of the task. Absolute paths are not respected.</p><p>Note that this value <em>must not overlap</em> with any other caches in the same task. Each cache results in a new empty directory that your task can place artifacts in; if the path overlaps it&#39;ll clobber whatever files used to be there.</p>
+  </div>
+</div><p><em>Optional.</em> The cached directories shared between task runs.</p><p>On the task&#39;s first run, all cache directories will be empty. It is the responsibility of the task to populate these directories with any artifacts to be cached. On subsequent runs, the cached directories will contain those artifacts.</p><p>Caches are scoped to the worker the task is run on, so you will not get a cache hit when subsequent builds run on different workers. This also means that caching is not intended to share state between workers, and your task should be able to run whether or not the cache is warmed.</p><p>Caches are also scoped to a particular task name inside of a pipeline&#39;s job. As a consequence, if the job name, step name or cache path are changed, the cache will not be used. This also means that caches do not exist for one-off builds.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="task-run"></a>
+    <pre><a href="tasks.html#task-run"><strong>run</strong></a>: run-config</pre>
+  </div>
+
+  <div class="definition-content">
+    <p>Where <em><code>run-config</code></em> is:</p><div class="definition">
+  <div class="definition-thumb">
+    <a name="task-run-path"></a>
+    <pre><a href="tasks.html#task-run-path"><strong>path</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Required.</em> The command to execute.</p><p>This is commonly a path to a script provided by one of the task&#39;s inputs, e.g. <code>my-resource/scripts/test</code>. It could also be a command like <code>bash</code> (respecting standard <code>$PATH</code> lookup rules), or an absolute path to a file to execute, e.g. <code>/bin/bash</code>.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="task-run-args"></a>
+    <pre><a href="tasks.html#task-run-args"><strong>args</strong></a>: [string]</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> Arguments to pass to the command. Note that when executed with Fly, any arguments passed to Fly are appended to this array.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="task-run-dir"></a>
+    <pre><a href="tasks.html#task-run-dir"><strong>dir</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> A directory, relative to the initial working directory, to set as the working directory when running the script.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="task-run-user"></a>
+    <pre><a href="tasks.html#task-run-user"><strong>user</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> Explicitly set the user to run as. If not specified, this defaults to the user configured by the task&#39;s image. If not specified there, it&#39;s up to the Garden backend, and may be e.g. <code>root</code> on Linux.</p>
+  </div>
+</div><p><em>Required.</em> The command to execute in the container.</p><p>Note that this is <em>not</em> provided as a script blob, but explicit <code>path</code> and <code>args</code> values; this allows <code>fly</code> to forward arguments to the script, and forces your config <code>.yml</code> to stay fairly small.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="task-params"></a>
+    <pre><a href="tasks.html#task-params"><strong>params</strong></a>: {string: string}</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> A key-value mapping of values that are exposed to the task via environment variables.</p><p>Use this to provide things like credentials, not to set up the task&#39;s Bash environment (they do not support interpolation).</p>
+  </div>
+</div>
+<ol id="table-of-contents" class="toc">
+
+  <li><a href="running-tasks.html">Running Tasks</a>
+
+    
+<ol>
+
+  <li><a href="running-tasks.html#fly-execute"><code>fly execute</code></a>
+
+    
+  </li>
+
+</ol>
+
+  </li>
+
+  <li><a href="task-environment.html">Task Environment</a>
+
+    
+  </li>
+
+</ol>
+
+
+  
+</div>
+      </div>
+      
+      <div class="examples">
+        <div class="examples-page">
+          <h2>Examples</h2>
+
+          <div class="example">
+  <h3>Ruby App</h3>
+
+  <p>This configuration specifies that the task must run with the <code>ruby:2.1</code> Docker image with a <code>my-app</code> input, and when the task is executed it will run the <code>scripts/test</code> script in the same repo.</p><div class="highlight"><pre style="">---<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>platform:<span style="color:#e6e7e8"> </span>linux<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>image_resource:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>docker-image<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>repository:<span style="color:#e6e7e8"> </span>ruby<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>tag:<span style="color:#e6e7e8"> </span><span style="color:#e74c3c">&#39;2.1&#39;</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>inputs:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>my-app<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>run:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>path:<span style="color:#e6e7e8"> </span>my-app/scripts/test<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div>
+</div><div class="example">
+  <h3>Producing Outputs</h3>
+
+  <p>A task can configure <a href="tasks.html#task-outputs"><code><strong>outputs</strong></code></a> to produce artifacts that can then be propagated to a <a href="put-step.html"><code>put</code> step</a> or another <a href="task-step.html"><code>task</code> step</a> in the same plan. They can also be downloaded with <a href="running-tasks.html#fly-execute"><code>fly execute</code></a> by passing <code>-o</code>.</p><div class="highlight"><pre style="">---<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>platform:<span style="color:#e6e7e8"> </span>linux<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>image_resource:<span style="color:#e6e7e8"> </span><span style="color:#bdc3c7"># ...</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>inputs:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>project-src<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>outputs:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>built-project<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>run:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>path:<span style="color:#e6e7e8"> </span>project-src/ci/build<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div><p>...assuming <code>project-src/ci/build</code> looks something like:</p><div class="highlight"><pre style=""><span style="color:#bdc3c7">#!/bin/bash
+</span><span style="color:#bdc3c7"></span>
+<span style="color:#8f4b2d">set</span> -e -u -x
+
+<span style="color:#8f4b2d">export</span> <span style="color:#3498db">GOPATH</span>=<span style="color:#3498db">$PWD</span>/project-src
+
+go build -o built-project/my-project <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>  github.com/concourse/my-project
+</pre>
+</div><p>...this task could then be used in a <a href="steps.html">build plan</a> like so:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>project-src<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>build-bin<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>project-src/ci/build.yml<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>put:<span style="color:#e6e7e8"> </span>project-bin<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>params:<span style="color:#e6e7e8"> </span>file:<span style="color:#e6e7e8"> </span>built-project/my-project<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div>
+</div><div class="example">
+  <h3>Caching Ephemeral State</h3>
+
+  <p>The following task and script could be used by a Node project to cache the <code>node_modules</code> directory:</p><div class="highlight"><pre style="">---<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>platform:<span style="color:#e6e7e8"> </span>linux<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>image_resource:<span style="color:#e6e7e8"> </span><span style="color:#bdc3c7"># ...</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>inputs:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>project-src<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>caches:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>path:<span style="color:#e6e7e8"> </span>project-src/node_modules<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>run:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>path:<span style="color:#e6e7e8"> </span>project-src/ci/build<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div><p>...assuming <code>project-src/ci/build</code> looks something like:</p><div class="highlight"><pre style=""><span style="color:#bdc3c7">#!/bin/bash
+</span><span style="color:#bdc3c7"></span>
+<span style="color:#8f4b2d">set</span> -e -u -x
+
+<span style="color:#8f4b2d">cd</span> project-src
+npm install
+
+<span style="color:#bdc3c7"># ...
+</span><span style="color:#bdc3c7"></span></pre>
+</div><p>...this task would cache the contents of <code>project-src/node_modules</code> between runs of this task on the same worker.</p>
+</div><div class="example">
+  <h3>Private Docker Registry</h3>
+
+  <p>The following task uses an image from a private registry. Assuming the CA is configured properly on the workers, SSL should Just Work™.</p><p>Note that, at present, credentials must be inlined when using <a href="tasks.html#image_resource"><code><strong>image_resource</strong></code></a>. We recognize that this kind of sucks, since tasks are often checked in. Until we fix this, you can use <a href="task-step.html#task-step-image"><code><strong>image</strong></code></a> in your pipeline instead. (However this will prevent <a href="running-tasks.html#fly-execute"><code>fly execute</code></a> from having an image available. Bummer.)</p><div class="highlight"><pre style="">---<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>platform:<span style="color:#e6e7e8"> </span>linux<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>image_resource:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>docker-image<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>repository:<span style="color:#e6e7e8"> </span>my.local.registry:<span style="color:#1abc9c;font-weight:bold">8080</span>/my/image<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>username:<span style="color:#e6e7e8"> </span>myuser<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>password:<span style="color:#e6e7e8"> </span>mypass<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>email:<span style="color:#e6e7e8"> </span>x@x.com<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>inputs:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>my-app<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>run:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>path:<span style="color:#e6e7e8"> </span>my-app/scripts/test<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div>
+</div>
+        </div>
+      </div>
+      
+    </div>
+  </body>
+</html>

@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60508041-1"></script>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-60508041-1');
+    </script>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=775" />
+    <title>Concourse CI - task step</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+    <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+    <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+    <link rel="stylesheet" type="text/css" href="css/survey.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+    <script src="js/search.js"></script>
+  </head>
+  <body class="with-examples">
+    <div id="top">
+      <div id="survey">
+        <span>The Concourse 2018 Community Survey is here and we'd love your <a href="https://docs.google.com/forms/d/e/1FAIpQLScWHuP130rJAcqBJhQtyIUCqbMcY4Qj0beHtfOnWEQugWSuUw/viewform">feedback</a>!</span>
+      </div>
+      <div class="header">
+        <h1><a href="/" class="logo"></a><a href="/">Concourse</a></h1>
+
+        <nav>
+          <a href="tutorials.html">tutorial</a>
+          <a href="reference.html">reference</a>
+          <a href="https://discuss.concourse-ci.org">discuss</a>
+          <a href="download.html">download</a>
+
+          <div class="search" id="search"  onclick="gtag('event', 'search-click');">
+            <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
+          </div>
+        </nav>
+
+        <script type="text/javascript">
+          Elm.Main.embed(document.getElementById("search"));
+        </script>
+      </div>
+    </div>
+    <div id="content">
+      <div class="side">
+        
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="index.html" >Docs</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle"  />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="about.html" >About</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="setup-and-operations.html" >Setup &amp; Operations</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concepts.html" >Concepts</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tutorials.html" >Tutorials</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="reference.html" >Reference</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="contribute.html" >Contribute</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="community.html" >Community</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">8&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="trademarks.html" >Trademarks</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="reference.html" >Reference</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle"  />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="fly.html" ><code>fly</code></a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tasks.html" >Tasks</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="builds.html" >Builds</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="pipelines.html" >Pipelines</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="jobs.html" >Jobs</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resources.html" >Resources</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resource-types.html" >Resource Types</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="jobs.html" >Jobs</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle"  />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="steps.html" >Steps</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="managing-jobs.html" >Managing Jobs</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="steps.html" >Steps</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle" checked />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="get-step.html" ><code>get</code> step</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="put-step.html" ><code>put</code> step</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="task-step.html"  class="self"><code>task</code> step</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="aggregate-step.html" ><code>aggregate</code> step</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="do-step.html" ><code>do</code> step</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="try-step.html" ><code>try</code> step</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="on-success-step-hook.html" ><code>on_success</code> step hook</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="on-failure-step-hook.html" ><code>on_failure</code> step hook</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="on-abort-step-hook.html" ><code>on_abort</code> step hook</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="ensure-step-hook.html" ><code>ensure</code> step hook</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="tags-step-modifier.html" ><code>tags</code> step modifier</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="timeout-step-modifier.html" ><code>timeout</code> step modifier</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="attempts-step-modifier.html" ><code>attempts</code> step modifier</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+
+
+
+
+
+<div class="context">
+  <div class="top">
+    On this page:
+  </div>
+
+  <nav>
+    <div class="children">
+      <table>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="task-step.html#task"><code><strong>task</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="task-step.html#config"><code><strong>config</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="task-step.html#file"><code><strong>file</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="task-step.html#task-step-privileged"><code><strong>privileged</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="task-step.html#task-step-params"><code><strong>params</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="task-step.html#task-step-image"><code><strong>image</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="task-step.html#input_mapping"><code><strong>input_mapping</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="task-step.html#output_mapping"><code><strong>output_mapping</strong></code></a></td>
+        </tr>
+        
+
+        
+  
+    
+  
+
+      </table>
+    </div>
+  </nav>
+</div>
+
+
+<ul class="improve-docs">
+  <li><img src="images/github.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+
+  <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+</ul>
+      </div>
+      <div class="page">
+        <div class="section" id="section_task-step">
+  
+  <h1 class="section-header"><a name="task-step"></a><code>task</code> step</h1>
+  
+
+  <p>Executes a <a href="tasks.html">Task</a>, either from a file fetched via the preceding steps, or with inlined configuration.</p><p>If any task in the build plan fails, the build will complete with failure. By default, any subsequent steps will not be performed. You can perform additional steps after failure by adding a <a href="on-failure-step-hook.html"><code>on_failure</code></a> or <a href="ensure-step-hook.html"><code>ensure</code></a> step hook.</p><p>When a task completes, the files in its declared outputs will be made avaliable to subsequent steps. This allows those subsequent steps to process the result of a task.</p><div class="definition">
+  <div class="definition-thumb">
+    <a name="task"></a>
+    <pre><a href="task-step.html#task"><strong>task</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Required.</em> A freeform name for the task that&#39;s being executed. Common examples would be <code>unit</code> or <code>integration</code>.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="config"></a>
+    <pre><a href="task-step.html#config"><strong>config</strong></a>: object</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Required.</em> The <a href="tasks.html">task config</a> to execute. An alternative to <a href="task-step.html#file"><code><strong>file</strong></code></a>.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="file"></a>
+    <pre><a href="task-step.html#file"><strong>file</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Required.</em> A dynamic alternative to <a href="task-step.html#config"><code><strong>config</strong></code></a>.</p><p><code>file</code> points at a <code>.yml</code> file containing the <a href="tasks.html">task config</a>, which allows this to be tracked with your resources.</p><p>The first segment in the path should refer to another source from the plan, and the rest of the path is relative to that source.</p><p>For example, if in your plan you have the following <a href="get-step.html"><code>get</code></a> step:</p><div class="highlight"><pre style="">-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>something<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div><p>And the <code>something</code> resource provided a <code>unit.yml</code> file, you would set <code>file: something/unit.yml</code>.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="task-step-privileged"></a>
+    <pre><a href="task-step.html#task-step-privileged"><strong>privileged</strong></a>: boolean</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional. Default <code>false</code>.</em> If set to <code>true</code>, the task will run with full capabilities, as determined by the Garden backend the task runs on. For Linux-based backends it typically determines whether or not the container will run in a separate user namespace, and whether the <code>root</code> user is &#34;actual&#34; <code>root</code> (if set to <code>true</code>) or a user namespaced <code>root</code> (if set to <code>false</code>, the default).</p><p>This is a gaping security hole; use wisely and only if necessary. This is not part of the task configuration to prevent privilege escalation via pull requests.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="task-step-params"></a>
+    <pre><a href="task-step.html#task-step-params"><strong>params</strong></a>: object</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> A map of task parameters to set, overriding those configured in <code>config</code> or <code>file</code>.</p><p>For example:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>my-repo<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>integration<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>my-repo/ci/integration.yml<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>params:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>REMOTE_SERVER:<span style="color:#e6e7e8"> </span><span style="color:#1abc9c;font-weight:bold">10.20</span>.<span style="color:#1abc9c;font-weight:bold">30.40</span>:<span style="color:#1abc9c;font-weight:bold">8080</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>USERNAME:<span style="color:#e6e7e8"> </span>my-user<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>PASSWORD:<span style="color:#e6e7e8"> </span>my-pass<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div><p>This is often used in combination with <a href="setting-pipelines.html#pipeline-params"><code>((parameters))</code></a> in the pipeline.</p><p>For example:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>my-repo<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>integration<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>my-repo/ci/integration.yml<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>params:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>REMOTE_SERVER:<span style="color:#e6e7e8"> </span><span style="color:#1abc9c;font-weight:bold">10.20</span>.<span style="color:#1abc9c;font-weight:bold">30.40</span>:<span style="color:#1abc9c;font-weight:bold">8080</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>USERNAME:<span style="color:#e6e7e8"> </span>((integration-username))<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>PASSWORD:<span style="color:#e6e7e8"> </span>((integration-password))<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div><p>Looking into the <code>task.yml</code>, a common pattern is to list the param in the task definition with no value. This indicates that you expect the pipeline to provide the value.</p><p>For example, in the <code>task.yml</code>:</p><div class="highlight"><pre style="">params:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>FOO:<span style="color:#e6e7e8"> </span>fizzbuzz<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>BAR:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div><p>And in the <code>pipeline.yml</code>:</p><div class="highlight"><pre style="">params:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>BAR:<span style="color:#e6e7e8"> </span>qux<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div><p>If the pipeline used this <code>task.yml</code> but did not set <code>BAR</code>, the value of <code>$BAR</code> would be set to the empty string in the task container.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="task-step-image"></a>
+    <pre><a href="task-step.html#task-step-image"><strong>image</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> Names an artifact source within the plan containing an image to use for the task. This overrides any <a href="tasks.html#image_resource"><code><strong>image_resource</strong></code></a> configuration present in the task configuration.</p><p>This is very useful when part of your pipeline involves building an image, possibly with dependencies pre-baked. You can then propagate that image through the rest of your pipeline, guaranteeing that the correct version (and thus a consistent set of dependencies) is used throughout your pipeline.</p><p>For example, here&#39;s a pipeline building an image in one job and propagating it to the next:</p><div class="highlight"><pre style="">resources:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>my-project<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>git<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8"> </span>{uri:<span style="color:#e6e7e8"> </span>https://github.com/my-user/my-project}<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>my-task-image<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>docker-image<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8"> </span>{repository:<span style="color:#e6e7e8"> </span>my-user/my-repo}<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>jobs:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>build-task-image<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>my-project<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>put:<span style="color:#e6e7e8"> </span>my-task-image<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>params:<span style="color:#e6e7e8"> </span>{build:<span style="color:#e6e7e8"> </span>my-project/ci/images/my-task}<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>use-task-image<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>my-task-image<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>passed:<span style="color:#e6e7e8"> </span>[build-task-image]<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>my-project<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>passed:<span style="color:#e6e7e8"> </span>[build-task-image]<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>use-task-image<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>image:<span style="color:#e6e7e8"> </span>my-task-image<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>my-project/ci/tasks/my-task.yml<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div><p>This can also be used in the simpler case of explicitly keeping track of dependent images, in which case you just wouldn&#39;t have a job building it (<code>build-task-image</code> in the above example).</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="input_mapping"></a>
+    <pre><a href="task-step.html#input_mapping"><strong>input_mapping</strong></a>: object</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> A map from task input names to concrete names in the build plan. This allows a task with generic input names to be used multiple times in the same plan, mapping its inputs to specific resources within the plan.</p><p>For example:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>diego-release<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>cf-release<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>ci-scripts<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>audit-diego-release<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>ci-scripts/audit-release.yml<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>input_mapping:<span style="color:#e6e7e8"> </span>{release-repo:<span style="color:#e6e7e8"> </span>diego-release}<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>audit-cf-release<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>ci-scripts/audit-release.yml<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>input_mapping:<span style="color:#e6e7e8"> </span>{release-repo:<span style="color:#e6e7e8"> </span>cf-release}<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="output_mapping"></a>
+    <pre><a href="task-step.html#output_mapping"><strong>output_mapping</strong></a>: object</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> A map from task output names to concrete names to register in the build plan. This allows a task with generic output names to be used multiple times in the same plan.</p><p>This is often used together with <a href="task-step.html#input_mapping"><code><strong>input_mapping</strong></code></a>. For example:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>diego-release<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>cf-release<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>ci-scripts<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>create-diego-release<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>ci-scripts/create-release.yml<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>input_mapping:<span style="color:#e6e7e8"> </span>{release-repo:<span style="color:#e6e7e8"> </span>diego-release}<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>output_mapping:<span style="color:#e6e7e8"> </span>{release-tarball:<span style="color:#e6e7e8"> </span>diego-release-tarball}<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>create-cf-release<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>ci-scripts/create-release.yml<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>input_mapping:<span style="color:#e6e7e8"> </span>{release-repo:<span style="color:#e6e7e8"> </span>cf-release}<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>output_mapping:<span style="color:#e6e7e8"> </span>{release-tarball:<span style="color:#e6e7e8"> </span>cf-release-tarball}<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div>
+  </div>
+</div>
+
+  
+    
+  
+</div>
+      </div>
+      
+      <div class="examples">
+        <div class="examples-page">
+          <h2>Examples</h2>
+
+          <div class="example">
+  <h3>Inputs &amp; Outputs</h3>
+
+  <p>The following plan pulls down a repo, makes a commit to it, and pushes the commit to another repo (the task must have an output called <code>repo-with-commit</code>):</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>my-repo<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>commit<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>my-repo/commit.yml<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>put:<span style="color:#e6e7e8"> </span>other-repo<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>params:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>repository:<span style="color:#e6e7e8"> </span>repo-with-commit<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div>
+</div><div class="example">
+  <h3>Build Matrix with <code>aggregate</code></h3>
+
+  <p>The following plan fetches a single repository and executes multiple tasks, using the <a href="aggregate-step.html"><code>aggregate</code></a> step, in a build matrix style configuration:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>my-repo<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>aggregate:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>go-<span style="color:#1abc9c;font-weight:bold">1.3</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>my-repo/go-<span style="color:#1abc9c;font-weight:bold">1.3</span>.yml<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>go-<span style="color:#1abc9c;font-weight:bold">1.4</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>my-repo/ci/go-<span style="color:#1abc9c;font-weight:bold">1.4</span>.yml<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div><p>Only if both tasks succeed will the build go green. See also <a href="aggregate-step.html"><code>aggregate</code> step</a>.</p>
+</div>
+        </div>
+      </div>
+      
+    </div>
+  </body>
+</html>

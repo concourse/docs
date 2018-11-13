@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60508041-1"></script>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-60508041-1');
+    </script>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=775" />
+    <title>Concourse CI - Pipelines</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+    <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+    <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+    <link rel="stylesheet" type="text/css" href="css/survey.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+    <script src="js/search.js"></script>
+  </head>
+  <body class="with-examples">
+    <div id="top">
+      <div id="survey">
+        <span>The Concourse 2018 Community Survey is here and we'd love your <a href="https://docs.google.com/forms/d/e/1FAIpQLScWHuP130rJAcqBJhQtyIUCqbMcY4Qj0beHtfOnWEQugWSuUw/viewform">feedback</a>!</span>
+      </div>
+      <div class="header">
+        <h1><a href="/" class="logo"></a><a href="/">Concourse</a></h1>
+
+        <nav>
+          <a href="tutorials.html">tutorial</a>
+          <a href="reference.html">reference</a>
+          <a href="https://discuss.concourse-ci.org">discuss</a>
+          <a href="download.html">download</a>
+
+          <div class="search" id="search"  onclick="gtag('event', 'search-click');">
+            <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
+          </div>
+        </nav>
+
+        <script type="text/javascript">
+          Elm.Main.embed(document.getElementById("search"));
+        </script>
+      </div>
+    </div>
+    <div id="content">
+      <div class="side">
+        
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="index.html" >Docs</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle"  />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="about.html" >About</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="setup-and-operations.html" >Setup &amp; Operations</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concepts.html" >Concepts</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tutorials.html" >Tutorials</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="reference.html" >Reference</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="contribute.html" >Contribute</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="community.html" >Community</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">8&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="trademarks.html" >Trademarks</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="reference.html" >Reference</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle" checked />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="fly.html" ><code>fly</code></a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tasks.html" >Tasks</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="builds.html" >Builds</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="pipelines.html"  class="self">Pipelines</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="jobs.html" >Jobs</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resources.html" >Resources</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5.7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resource-types.html" >Resource Types</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="pipelines.html"  class="self">Pipelines</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle" checked />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="setting-pipelines.html" >Setting Pipelines</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="managing-pipelines.html" >Managing Pipelines</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="pipeline-groups.html" >Grouping Jobs</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+
+
+<div class="context">
+  <div class="top">
+    On this page:
+  </div>
+
+  <nav>
+    <div class="children">
+      <table>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="pipelines.html#pipeline-jobs"><code><strong>jobs</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="pipelines.html#pipeline-resources"><code><strong>resources</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="pipelines.html#pipeline-resource-types"><code><strong>resource_types</strong></code></a></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" class="title-cell"><a href="pipelines.html#groups"><code><strong>groups</strong></code></a></td>
+        </tr>
+        
+
+        
+  
+
+      </table>
+    </div>
+  </nav>
+</div>
+
+
+<ul class="improve-docs">
+  <li><img src="images/github.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+
+  <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+</ul>
+      </div>
+      <div class="page">
+        <div class="section" id="section_pipelines">
+  
+  <h1 class="section-header"><a name="pipelines"></a><span class="section-number">5.4 </span>Pipelines</h1>
+  
+
+  <p>A pipeline is the result of configuring <a href="jobs.html">Jobs</a> and <a href="resources.html">Resources</a> together. When you configure a pipeline, it takes on a life of its own, to continuously detect resource versions and automatically queue new builds for jobs as they have new available inputs.</p><p>Pipelines are configured as declarative YAML files, fitting the following schema:</p><div class="definition">
+  <div class="definition-thumb">
+    <a name="pipeline-jobs"></a>
+    <pre><a href="pipelines.html#pipeline-jobs"><strong>jobs</strong></a>: [job]</pre>
+  </div>
+
+  <div class="definition-content">
+    <p>A set of <a href="jobs.html">job</a>s for the pipeline to continuously check.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="pipeline-resources"></a>
+    <pre><a href="pipelines.html#pipeline-resources"><strong>resources</strong></a>: [resource]</pre>
+  </div>
+
+  <div class="definition-content">
+    <p>A set of <a href="resources.html">resource</a>s for the pipeline to continuously check.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="pipeline-resource-types"></a>
+    <pre><a href="pipelines.html#pipeline-resource-types"><strong>resource_types</strong></a>: [resource_type]</pre>
+  </div>
+
+  <div class="definition-content">
+    <p>A set of <a href="resource-types.html">resource type</a>s for resources within the pipeline to use.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="groups"></a>
+    <pre><a href="pipelines.html#groups"><strong>groups</strong></a>: [group]</pre>
+  </div>
+
+  <div class="definition-content">
+    <p>A list of <a href="pipeline-groups.html">groups</a> to use for cleaning up/organizing jobs in the web UI.</p>
+  </div>
+</div>
+<ol id="table-of-contents" class="toc">
+
+  <li><a href="setting-pipelines.html">Setting Pipelines</a>
+
+    
+<ol>
+
+  <li><a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a>
+
+    
+  </li>
+
+  <li><a href="setting-pipelines.html#fly-validate-pipeline"><code>fly validate-pipeline</code></a>
+
+    
+  </li>
+
+  <li><a href="setting-pipelines.html#fly-format-pipeline"><code>fly format-pipeline</code></a>
+
+    
+  </li>
+
+</ol>
+
+  </li>
+
+  <li><a href="managing-pipelines.html">Managing Pipelines</a>
+
+    
+<ol>
+
+  <li><a href="managing-pipelines.html#fly-pipelines"><code>fly pipelines</code></a>
+
+    
+  </li>
+
+  <li><a href="managing-pipelines.html#fly-rename-pipeline"><code>fly rename-pipeline</code></a>
+
+    
+  </li>
+
+  <li><a href="managing-pipelines.html#fly-pause-pipeline"><code>fly pause-pipeline</code></a>
+
+    
+  </li>
+
+  <li><a href="managing-pipelines.html#fly-unpause-pipeline"><code>fly unpause-pipeline</code></a>
+
+    
+  </li>
+
+  <li><a href="managing-pipelines.html#fly-expose-pipeline"><code>fly expose-pipeline</code></a>
+
+    
+  </li>
+
+  <li><a href="managing-pipelines.html#fly-hide-pipeline"><code>fly hide-pipeline</code></a>
+
+    
+  </li>
+
+  <li><a href="managing-pipelines.html#fly-get-pipeline"><code>fly get-pipeline</code></a>
+
+    
+  </li>
+
+  <li><a href="managing-pipelines.html#fly-destroy-pipeline"><code>fly destroy-pipeline</code></a>
+
+    
+  </li>
+
+  <li><a href="managing-pipelines.html#fly-order-pipelines"><code>fly order-pipelines</code></a>
+
+    
+  </li>
+
+</ol>
+
+  </li>
+
+  <li><a href="pipeline-groups.html">Grouping Jobs</a>
+
+    
+  </li>
+
+</ol>
+
+
+  
+</div>
+      </div>
+      
+      <div class="examples">
+        <div class="examples-page">
+          <h2>Examples</h2>
+
+          <div class="example">
+  <h3>Hello, world!</h3>
+
+  <p>The following example makes use of an embedded <a href="tasks.html">task config</a> to define the smallest possible pipeline.</p><div class="highlight"><pre style="">jobs:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>hello-world<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>say-hello<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>config:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">      </span>platform:<span style="color:#e6e7e8"> </span>linux<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">      </span>image_resource:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">        </span>type:<span style="color:#e6e7e8"> </span>docker-image<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">        </span>source:<span style="color:#e6e7e8"> </span>{repository:<span style="color:#e6e7e8"> </span>alpine}<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">      </span>run:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">        </span>path:<span style="color:#e6e7e8"> </span>echo<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">        </span>args:<span style="color:#e6e7e8"> </span>[<span style="color:#e67e22">&#34;Hello, world!&#34;</span>]<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div>
+</div><div class="example">
+  <h3>Small Go Project</h3>
+
+  <p>When it comes to real-world projects, task configs are usually stored alongside the code that it&#39;s testing. This makes the pipeline a bit smaller and makes the config able to change without needing to reconfigure the pipeline.</p><div class="highlight"><pre style="">---<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>resources:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>booklit<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>git<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>uri:<span style="color:#e6e7e8"> </span>https://github.com/vito/booklit<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>branch:<span style="color:#e6e7e8"> </span>master<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>jobs:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>unit<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>booklit<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>unit<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>booklit/ci/test.yml<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div>
+</div><div class="example">
+  <h3>Chaining Jobs</h3>
+
+  <p>Promoting resources to downstream jobs is done by setting <a href="get-step.html#get-step-passed"><code><strong>passed</strong></code></a> on a <a href="get-step.html"><code>get</code> step</a>.</p><p>Note that nothing in <code>unit</code> says anything about triggering <code>build</code>. Job definitions are self-contained; they describe their dependencies and where they come from, which results in a dependency flow that Concourse pushes forward.</p><div class="highlight"><pre style="">---<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>resources:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>booklit<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>git<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>uri:<span style="color:#e6e7e8"> </span>https://github.com/vito/booklit<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>branch:<span style="color:#e6e7e8"> </span>master<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>jobs:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>unit<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>booklit<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>unit<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>booklit/ci/test.yml<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>build<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>booklit<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>passed:<span style="color:#e6e7e8"> </span>[unit]<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>unit<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>booklit/ci/build.yml<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div>
+</div><div class="example">
+  <h3>Using Resource Types</h3>
+
+  <p><a href="resource-types.html">Resource Types</a> can be used to extend the functionality of your pipeline and provide deeper integrations. This example uses one to trigger a job whenever a new <a href="http://www.qwantz.com">Dinosaur Comic</a> is out.</p><div class="highlight"><pre style="">---<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>resource_types:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>rss<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>docker-image<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>repository:<span style="color:#e6e7e8"> </span>suhlig/concourse-rss-resource<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>tag:<span style="color:#e6e7e8"> </span>latest<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>resources:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>booklit-releases<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>rss<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>url:<span style="color:#e6e7e8"> </span>http://www.qwantz.com/rssfeed.php<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>jobs:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>announce<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>booklit-releases<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre>
+</div>
+</div>
+        </div>
+      </div>
+      
+    </div>
+  </body>
+</html>

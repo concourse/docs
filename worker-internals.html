@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60508041-1"></script>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-60508041-1');
+    </script>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=775" />
+    <title>Concourse CI - Workers</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+    <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+    <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+    <link rel="stylesheet" type="text/css" href="css/survey.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+    <script src="js/search.js"></script>
+  </head>
+  <body>
+    <div id="top">
+      <div id="survey">
+        <span>The Concourse 2018 Community Survey is here and we'd love your <a href="https://docs.google.com/forms/d/e/1FAIpQLScWHuP130rJAcqBJhQtyIUCqbMcY4Qj0beHtfOnWEQugWSuUw/viewform">feedback</a>!</span>
+      </div>
+      <div class="header">
+        <h1><a href="/" class="logo"></a><a href="/">Concourse</a></h1>
+
+        <nav>
+          <a href="tutorials.html">tutorial</a>
+          <a href="reference.html">reference</a>
+          <a href="https://discuss.concourse-ci.org">discuss</a>
+          <a href="download.html">download</a>
+
+          <div class="search" id="search"  onclick="gtag('event', 'search-click');">
+            <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
+          </div>
+        </nav>
+
+        <script type="text/javascript">
+          Elm.Main.embed(document.getElementById("search"));
+        </script>
+      </div>
+    </div>
+    <div id="content">
+      <div class="side">
+        
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="index.html" >Docs</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle"  />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="about.html" >About</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="setup-and-operations.html" >Setup &amp; Operations</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concepts.html" >Concepts</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tutorials.html" >Tutorials</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="reference.html" >Reference</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="contribute.html" >Contribute</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="community.html" >Community</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">8&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="trademarks.html" >Trademarks</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="concepts.html" >Concepts</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle"  />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">3.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concepts.html#component-atc" >ATC</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">3.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concepts.html#component-tsa" >TSA</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">3.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concepts.html#component-garden" >Garden</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">3.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concepts.html#component-baggageclaim" >BaggageClaim</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">3.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concepts.html#architecture-worker" >Workers</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">3.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concepts.html#internals" >Internals</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="concepts.html#internals" >Internals</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle" checked />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="caching-and-retention.html" >Caching &amp; Retention</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="database-schema.html" >Database Schema</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="garbage-collection.html" >Garbage Collection</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="volume-internals.html" >Volumes</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="container-internals.html" >Containers</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="worker-internals.html"  class="self">Workers</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+  <a href="worker-internals.html"  class="self">Workers</a>
+
+      </div>
+
+      <input type="checkbox" class="toggle" checked />
+      <span class="arrow"></span>
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="worker-internals.html#worker-lifecycle" >Lifecycle</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+
+
+<div class="context">
+  <div class="top">
+    On this page:
+  </div>
+
+  <nav>
+    <div class="children">
+      <table>
+        
+
+        
+  
+    
+      
+        <tr>
+          <td class="number-cell" align="left">3.6.6.1&nbsp;</td>
+          <td class="title-cell">
+  <a href="worker-internals.html#worker-lifecycle" >Lifecycle</a>
+</td>
+        </tr>
+        
+          <tr>
+            <td class="number-cell"></td>
+            <td class="title-cell"><a href="worker-internals.html#RUNNING-table"><code><strong>RUNNING</strong></code></a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell"></td>
+            <td class="title-cell"><a href="worker-internals.html#STALLED-table"><code><strong>STALLED</strong></code></a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell"></td>
+            <td class="title-cell"><a href="worker-internals.html#LANDING-table"><code><strong>LANDING</strong></code></a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell"></td>
+            <td class="title-cell"><a href="worker-internals.html#LANDED-table"><code><strong>LANDED</strong></code></a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell"></td>
+            <td class="title-cell"><a href="worker-internals.html#RETIRING-table"><code><strong>RETIRING</strong></code></a></td>
+          </tr>
+        
+      
+      
+  
+    
+  
+
+    
+  
+
+      </table>
+    </div>
+  </nav>
+</div>
+
+
+<ul class="improve-docs">
+  <li><img src="images/github.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+
+  <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+</ul>
+      </div>
+      <div class="page">
+        <div class="section" id="section_worker-internals">
+  
+  <h1 class="section-header"><a name="worker-internals"></a>Workers</h1>
+  
+
+  
+
+  
+    
+      <div class="section" id="section_worker-lifecycle">
+  
+  <h2 class="section-header"><a name="worker-lifecycle"></a>Lifecycle</h2>
+  
+
+  <div class="definition">
+  <div class="definition-thumb">
+    <a name="RUNNING-table"></a>
+    <pre><a href="worker-internals.html#RUNNING-table"><strong>RUNNING</strong></a></pre>
+  </div>
+
+  <div class="definition-content">
+    <p>A worker in this state is registered with the cluster and ready to start running containers and storing volumes.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="STALLED-table"></a>
+    <pre><a href="worker-internals.html#STALLED-table"><strong>STALLED</strong></a></pre>
+  </div>
+
+  <div class="definition-content">
+    <p>A worker in this state was previously registered with the cluster, but stopped advertising itself for some reason.  Ususally this is due to network connectivity issues, or the worker stopping unexpectedly.</p><p>If the worker remains in this state and cannot be recovered, it can be removed using the <a href="administration.html#fly-prune-worker"><code>fly prune-worker</code></a> command.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="LANDING-table"></a>
+    <pre><a href="worker-internals.html#LANDING-table"><strong>LANDING</strong></a></pre>
+  </div>
+
+  <div class="definition-content">
+    <p>The <code>concourse land-worker</code> command will put a worker in the LANDING state to safely drain its assignments for temporary downtime.</p><p>The ATC will wait for builds on the worker for <a href="database-schema.html#jobs-table"><code><strong>jobs</strong></code></a> which aren&#39;t interruptible to finish, and transition the worker into <a href="worker-internals.html#LANDED-table"><code><strong>LANDED</strong></code></a> state.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="LANDED-table"></a>
+    <pre><a href="worker-internals.html#LANDED-table"><strong>LANDED</strong></a></pre>
+  </div>
+
+  <div class="definition-content">
+    <p>A worker in this state has successfully waited for all non-interruptible <a href="database-schema.html#jobs-table"><code><strong>jobs</strong></code></a> on it after having <code>concourse land-worker</code> called. It will no longer be used to schedule any new containers or create volumes until it registers as <a href="worker-internals.html#RUNNING-table"><code><strong>RUNNING</strong></code></a> again.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="RETIRING-table"></a>
+    <pre><a href="worker-internals.html#RETIRING-table"><strong>RETIRING</strong></a></pre>
+  </div>
+
+  <div class="definition-content">
+    <p>The <code>concourse retire-worker</code> command will put a worker in the RETIRING state to remove it from the cluster permanently.</p><p>The ATC will wait for builds on the worker for <a href="database-schema.html#jobs-table"><code><strong>jobs</strong></code></a> which aren&#39;t interruptible to finish, and remove the worker.</p>
+  </div>
+</div>
+
+  
+    
+  
+</div>
+    
+  
+</div>
+      </div>
+      
+    </div>
+  </body>
+</html>
