@@ -25,9 +25,6 @@
   </head>
   <body>
     <div id="top">
-      <div id="survey">
-        <span>The Concourse 2018 Community Survey is here and we'd love your <a href="https://docs.google.com/forms/d/e/1FAIpQLScWHuP130rJAcqBJhQtyIUCqbMcY4Qj0beHtfOnWEQugWSuUw/viewform">feedback</a>!</span>
-      </div>
       <div class="header">
         <h1><a href="/" class="logo"></a><a href="/">Concourse</a></h1>
 
@@ -345,6 +342,15 @@
               <td class="number-cell" align="left"></td>
             
             <td class="title-cell">
+  <a href="authentication.html#gitlab-auth" >GitLab Auth</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
   <a href="authentication.html#uaa-cf-auth" >CF Auth</a>
 </td>
           </tr>
@@ -364,6 +370,15 @@
             
             <td class="title-cell">
   <a href="authentication.html#generic-oidc" >Generic OIDC</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="authentication.html#team-auth-debugging" >Debugging Team Auth Configuration</a>
 </td>
           </tr>
         
@@ -431,6 +446,30 @@
 </span><span style="color:#3498db"></span>    --github-user my-github-login <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --github-org my-org <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --github-team my-other-org:my-team
+</pre>
+</div>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_gitlab-auth">
+  
+  <h2 class="section-header"><a name="gitlab-auth"></a>GitLab Auth</h2>
+  
+
+  <p>You can configure which groups and individual users should have access to your team.</p><p>This is done by passing the following flags:</p><dl>
+  
+  <dt><code>--gitlab-user=USERNAME</code></dt>
+    <dd><p>Authorize an individual user.</p></dd>
+  
+  <dt><code>--gitlab-group=GROUP_NAME</code></dt>
+    <dd><p>Authorize an entire groups&#39;s members.</p></dd>
+  
+</dl><p>For example:</p><div class="highlight"><pre style="">$ fly set-team -n my-team <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --gitlab-user my-gitlab-user <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --gitlab-team my-team
 </pre>
 </div>
 
@@ -509,6 +548,20 @@
 </span><span style="color:#3498db"></span>    --oidc-group my-group
 </pre>
 </div>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_team-auth-debugging">
+  
+  <h2 class="section-header"><a name="team-auth-debugging"></a>Debugging Team Auth Configuration</h2>
+  
+
+  <p>You can list users and groups for all teams pertaining how the team is created based on group or individual user. Helpful for troubleshooting.</p><p>For example:</p><div class="highlight"><pre style="">$ fly -t target teams -d
+</pre>
+</div><p>When authentication errors occur look at concourse TSA logs.</p><p>Also, make sure workers and web UI are restarted when fundamental changes occur to the auth configurations (i.e. changing the callback URL.)</p>
 
   
     

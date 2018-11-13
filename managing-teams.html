@@ -25,9 +25,6 @@
   </head>
   <body>
     <div id="top">
-      <div id="survey">
-        <span>The Concourse 2018 Community Survey is here and we'd love your <a href="https://docs.google.com/forms/d/e/1FAIpQLScWHuP130rJAcqBJhQtyIUCqbMcY4Qj0beHtfOnWEQugWSuUw/viewform">feedback</a>!</span>
-      </div>
       <div class="header">
         <h1><a href="/" class="logo"></a><a href="/">Concourse</a></h1>
 
@@ -383,7 +380,9 @@
 
   <p>To list all the teams, run:</p><div class="highlight"><pre style="">$ fly -t example teams
 </pre>
-</div><p>This can be useful if you&#39;ve forgotten your team name.</p>
+</div><p>This can be useful if you&#39;ve forgotten your team name.</p><p><strong><code>fly teams -d</code>: With Details</strong></p><p>To list all the teams with authentication details and members, run:</p><div class="highlight"><pre style="">$ fly -t example teams -d
+</pre>
+</div><p>This can be helpful when debugging OAuth, OIDC groups or listing all individual members.</p>
 
   
     

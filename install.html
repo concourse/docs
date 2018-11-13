@@ -25,9 +25,6 @@
   </head>
   <body>
     <div id="top">
-      <div id="survey">
-        <span>The Concourse 2018 Community Survey is here and we'd love your <a href="https://docs.google.com/forms/d/e/1FAIpQLScWHuP130rJAcqBJhQtyIUCqbMcY4Qj0beHtfOnWEQugWSuUw/viewform">feedback</a>!</span>
-      </div>
       <div class="header">
         <h1><a href="/" class="logo"></a><a href="/">Concourse</a></h1>
 
@@ -463,6 +460,73 @@
   
 </div>
     
+      <div class="section" id="section_gitlab-auth-config">
+  
+  <h3 class="section-header"><a name="gitlab-auth-config"></a>GitLab Auth</h3>
+  
+
+  <p>A Concourse server can authenticate against GitLab to take advantage of their permission model.</p>
+
+  
+    
+      <div class="section" id="section_creating-a-gitlab-application">
+  
+  <h4 class="section-header"><a name="creating-a-gitlab-application"></a>Creating a GitLab application</h4>
+  
+
+  <p>First you need to <a href="https://gitlab.com/profile/applications">create an OAuth application on GitLab</a>.</p><p>The redirect URI will be the external URL of your Concourse server with <code>/sky/issuer/callback</code> appended. For example, Concourse&#39;s own CI server&#39;s callback URL would be <code>https://ci.concourse-ci.org/sky/issuer/callback</code>.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_configuring-the-client">
+  
+  <h4 class="section-header"><a name="configuring-the-client"></a>Configuring the client</h4>
+  
+
+  <p>You will be given a Client ID and a Client Secret for your new application. These will then be passed as the following flags to <code>concourse web</code>:</p><ul>
+
+  <li><p><code>--gitlab-client-id=CLIENT_ID</code></p></li>
+
+  <li><p><code>--gitlab-client-secret=CLIENT_SECRET</code></p></li>
+
+</ul><p>Here&#39;s a full example:</p><div class="highlight"><pre style="">concourse web <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>  --gitlab-client-id CLIENT_ID <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>  --gitlab-client-secret CLIENT_SECRET
+</pre>
+</div><p>If you&#39;re configuring a self hosted GitLab instance, you&#39;ll also need to set the following flag:</p><ul>
+
+  <li><p><code>--gitlab-host=https://gitlab.example.com</code></p></li>
+
+</ul><p>The GitLab host must contain a scheme and not a trailing slash.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_adding-gitlab-users-to-the-main-team">
+  
+  <h4 class="section-header"><a name="adding-gitlab-users-to-the-main-team"></a>Adding GitLab Users to the <code>main</code> Team</h4>
+  
+
+  <p>Once you have added the GitLab auth connector, you can specify a GitLab Group and/or GitLab User to the <a href="main-team.html"><code>main</code> team</a>.</p><div class="highlight"><pre style="">concourse web <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>  ... <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>  --main-team-gitlab-group=GROUP_NAME <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>  --main-team-gitlab-user=USERNAME
+</pre>
+</div>
+
+  
+    
+  
+</div>
+    
+  
+</div>
+    
       <div class="section" id="section_cf-auth-config">
   
   <h3 class="section-header"><a name="cf-auth-config"></a>CF Auth</h3>
@@ -662,12 +726,12 @@
   
 </div>
     
-      <div class="section" id="section_future-providers">
+      <div class="section" id="section_dex-connectors-and-future-providers">
   
-  <h3 class="section-header"><a name="future-providers"></a>Future providers</h3>
+  <h3 class="section-header"><a name="dex-connectors-and-future-providers"></a>Dex Connectors &amp; Future Providers</h3>
   
 
-  <p>Concourse uses a fork of <a href="https://github.com/coreos/dex">coreos/dex</a> for its authentication. Adding a new OAuth provider is as simple as submiting a pull request to our fork at <a href="https://github.com/concourse/dex">concourse/dex</a> and then adding a bit of configuration to <a href="https://github.com/concourse/skymarshal">concourse/skymarshal</a>.</p>
+  <p>Concourse uses a fork of <a href="https://github.com/coreos/dex">coreos/dex</a> for its authentication. You can find additional documentation on the supported auth providers in the dex <a href="https://github.com/dexidp/dex/tree/master/Documentation/connectors">connectors documentation</a></p><p>Adding a new auth provider to Concourse is as simple as submitting a pull request to our fork at <a href="https://github.com/concourse/dex">concourse/dex</a> and then adding a bit of configuration to <a href="https://github.com/concourse/skymarshal">concourse/skymarshal</a>.</p>
 
   
     
