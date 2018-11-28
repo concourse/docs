@@ -849,8 +849,7 @@
   <div class="definition-content">
     <p>Paramter to pass when logging in via the backend. Can be specified multiple times.</p><p>Environment variable <code>CONCOURSE_VAULT_AUTH_PARAM</code> (pass comma-separated list).</p><p>Example:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_VAULT_AUTH_PARAM</span>=<span style="color:#e67e22">&#34;role_id=x,secret_id=x&#34;</span> <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>concourse web ...
-</pre>
-</div>
+</pre></div>
   </div>
 </div><p>For example, to point the ATC at an internal Vault server with TLS signed by a local CA, using an <a href="https://www.vaultproject.io/docs/auth/approle.html">AppRole</a> auth backend, you may configure:</p><div class="highlight"><pre style="">concourse web ... <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --vault-url https://10.2.0.3:8200 <span style="color:#3498db">\
@@ -865,20 +864,17 @@
 </span><span style="color:#3498db"></span><span style="color:#3498db">CONCOURSE_VAULT_AUTH_BACKEND</span>=<span style="color:#e67e22">&#34;approle&#34;</span> <span style="color:#3498db">\
 </span><span style="color:#3498db"></span><span style="color:#3498db">CONCOURSE_VAULT_AUTH_PARAM</span>=<span style="color:#e67e22">&#34;role_id=db02de05-fa39-4855-059b-67221c5c2f63,secret_id=6a174c20-f6de-a53c-74d2-6018fcceff64&#34;</span> <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>concourse web ...
-</pre>
-</div><p>You may instead want to use the <a href="https://www.vaultproject.io/docs/auth/cert.html">TLS</a> auth backend, in which case you would specify a client certificate and private key, like so:</p><div class="highlight"><pre style="">concourse web ... <span style="color:#3498db">\
+</pre></div><p>You may instead want to use the <a href="https://www.vaultproject.io/docs/auth/cert.html">TLS</a> auth backend, in which case you would specify a client certificate and private key, like so:</p><div class="highlight"><pre style="">concourse web ... <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --vault-url https://10.2.0.3:8200 <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --vault-ca-cert /etc/my-ca.cert <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --vault-client-cert /etc/my-client.cert <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --vault-client-key /etc/my-client.key <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --vault-auth-backend cert
-</pre>
-</div><p>In this case no params are necessary, as the TLS auth backend will check the certificate against all roles if no name is specified.</p><p>Alternatively, if you&#39;ve got a <a href="https://www.vaultproject.io/docs/concepts/tokens.html#periodic-tokens">periodic token</a> created, you can pass it directly as <code>--vault-client-token</code>. Make sure the period is long enough to account for any ATC downtime, however, including the time between generating it and getting the ATC running.</p><div class="highlight"><pre style="">concourse web ... <span style="color:#3498db">\
+</pre></div><p>In this case no params are necessary, as the TLS auth backend will check the certificate against all roles if no name is specified.</p><p>Alternatively, if you&#39;ve got a <a href="https://www.vaultproject.io/docs/concepts/tokens.html#periodic-tokens">periodic token</a> created, you can pass it directly as <code>--vault-client-token</code>. Make sure the period is long enough to account for any ATC downtime, however, including the time between generating it and getting the ATC running.</p><div class="highlight"><pre style="">concourse web ... <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --vault-url https://10.2.0.3:8200 <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --vault-ca-cert /etc/my-ca.cert <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --vault-client-token c2c2fbd5-2893-b385-6fa5-30050439f698
-</pre>
-</div><p>For all of these configurations, the ATC will periodically renew its token, ensuring it doesn&#39;t expire.</p>
+</pre></div><p>For all of these configurations, the ATC will periodically renew its token, ensuring it doesn&#39;t expire.</p>
 
   
     
@@ -937,8 +933,7 @@
 </span><span style="color:#3498db"></span>  --credhub-ca-cert /etc/my-ca.cert <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --credhub-client-id =db02de05-fa39-4855-059b-67221c5c2f63 <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --credhub-client-secret 6a174c20-f6de-a53c-74d2-6018fcceff64
-</pre>
-</div>
+</pre></div>
 
   
     
@@ -1044,8 +1039,7 @@
 </span><span style="color:#3498db"></span><span style="color:#3498db">CONCOURSE_AWS_SSM_ACCESS_KEY</span>=<span style="color:#e67e22">&#34;AKIAIOSFODNN7EXAMPLE&#34;</span> <span style="color:#3498db">\
 </span><span style="color:#3498db"></span><span style="color:#3498db">CONCOURSE_AWS_SSM_SECRET_KEY</span>=<span style="color:#e67e22">&#34;wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&#34;</span> <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>concourse web ...
-</pre>
-</div><p>A more secure method is to configure an <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html">IAM role</a> for your EC2 ATC instance so that credentials are fetched automatically from the EC2 metadata service.</p>
+</pre></div><p>A more secure method is to configure an <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html">IAM role</a> for your EC2 ATC instance so that credentials are fetched automatically from the EC2 metadata service.</p>
 
   
     
@@ -1083,8 +1077,7 @@
         }
     ]
 }
-</pre>
-</div><p>Note that the <code>TEAM_NAME</code>, <code>PIPELINE_NAME</code>, and <code>KMS_KEY_ID</code> text above should be replaced to fit your Concourse setup.</p><p>For more information on how to use IAM roles to restrict access to SSM parameters, review the <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-access.html">official documentation</a>.</p>
+</pre></div><p>Note that the <code>TEAM_NAME</code>, <code>PIPELINE_NAME</code>, and <code>KMS_KEY_ID</code> text above should be replaced to fit your Concourse setup.</p><p>For more information on how to use IAM roles to restrict access to SSM parameters, review the <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-access.html">official documentation</a>.</p>
 
   
     
@@ -1099,12 +1092,10 @@
   <p>When resolving a parameter such as <code>((foo_param))</code>, Concourse will look in the following paths, in order:</p><ul>
 
   <li><div class="highlight"><pre style="">/concourse/TEAM_NAME/PIPELINE_NAME/foo_param
-</pre>
-</div></li>
+</pre></div></li>
 
   <li><div class="highlight"><pre style="">/concourse/TEAM_NAME/foo_param
-</pre>
-</div></li>
+</pre></div></li>
 
 </ul><p>The leading <code>/concourse</code> can be changed by specifying <code>--aws-ssm-pipeline-secret-template</code> or <code>--aws-ssm-team-secret-template</code> variables.</p>
 
@@ -1194,8 +1185,7 @@
 </span><span style="color:#3498db"></span><span style="color:#3498db">CONCOURSE_AWS_SECRETSMANAGER_ACCESS_KEY</span>=<span style="color:#e67e22">&#34;AKIAIOSFODNN7EXAMPLE&#34;</span> <span style="color:#3498db">\
 </span><span style="color:#3498db"></span><span style="color:#3498db">CONCOURSE_AWS_SECRETSMANAGER_SECRET_KEY</span>=<span style="color:#e67e22">&#34;wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&#34;</span> <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>concourse web ...
-</pre>
-</div><p>A more secure method is to configure an <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html">IAM role</a> for your EC2 ATC instance so that credentials are fetched automatically from the EC2 metadata service.</p>
+</pre></div><p>A more secure method is to configure an <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html">IAM role</a> for your EC2 ATC instance so that credentials are fetched automatically from the EC2 metadata service.</p>
 
   
     
@@ -1233,8 +1223,7 @@
         }
     ]
 }
-</pre>
-</div><p>Note that the <code>TEAM_NAME</code> and <code>PIPELINE_NAME</code> text above should be replaced to fit your Concourse setup.</p><p>For more information on how to use IAM roles to restrict access to Secrets Manager, review the <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_identity-based-policies.html">official documentation</a>.</p>
+</pre></div><p>Note that the <code>TEAM_NAME</code> and <code>PIPELINE_NAME</code> text above should be replaced to fit your Concourse setup.</p><p>For more information on how to use IAM roles to restrict access to Secrets Manager, review the <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_identity-based-policies.html">official documentation</a>.</p>
 
   
     
@@ -1249,12 +1238,10 @@
   <p>When resolving a parameter such as <code>((foo_param))</code>, Concourse will look in the following paths, in order:</p><ul>
 
   <li><div class="highlight"><pre style="">/concourse/TEAM_NAME/PIPELINE_NAME/foo_param
-</pre>
-</div></li>
+</pre></div></li>
 
   <li><div class="highlight"><pre style="">/concourse/TEAM_NAME/foo_param
-</pre>
-</div></li>
+</pre></div></li>
 
 </ul><p>The leading <code>/concourse</code> can be changed by specifying <code>--aws-secretsmanager-pipeline-secret-template</code> or <code>--aws-secretsmanager-team-secret-template</code> variables.</p>
 

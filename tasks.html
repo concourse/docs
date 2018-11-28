@@ -653,8 +653,7 @@
 </span><span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>run:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>path:<span style="color:#e6e7e8"> </span>my-app/scripts/test<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div>
+</span><span style="color:#e6e7e8"></span></pre></div>
 </div><div class="example">
   <h3>Producing Outputs</h3>
 
@@ -671,24 +670,21 @@
 </span><span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>run:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>path:<span style="color:#e6e7e8"> </span>project-src/ci/build<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div><p>...assuming <code>project-src/ci/build</code> looks something like:</p><div class="highlight"><pre style=""><span style="color:#bdc3c7">#!/bin/bash
-</span><span style="color:#bdc3c7"></span>
+</span><span style="color:#e6e7e8"></span></pre></div><p>...assuming <code>project-src/ci/build</code> looks something like:</p><div class="highlight"><pre style=""><span style="color:#e74c3c;font-weight:bold">#!/bin/bash
+</span><span style="color:#e74c3c;font-weight:bold"></span>
 <span style="color:#8f4b2d">set</span> -e -u -x
 
 <span style="color:#8f4b2d">export</span> <span style="color:#3498db">GOPATH</span>=<span style="color:#3498db">$PWD</span>/project-src
 
 go build -o built-project/my-project <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  github.com/concourse/my-project
-</pre>
-</div><p>...this task could then be used in a <a href="steps.html">build plan</a> like so:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
+</pre></div><p>...this task could then be used in a <a href="steps.html">build plan</a> like so:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>project-src<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>build-bin<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>project-src/ci/build.yml<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>put:<span style="color:#e6e7e8"> </span>project-bin<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>params:<span style="color:#e6e7e8"> </span>file:<span style="color:#e6e7e8"> </span>built-project/my-project<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div>
+</span><span style="color:#e6e7e8"></span></pre></div>
 </div><div class="example">
   <h3>Caching Ephemeral State</h3>
 
@@ -705,17 +701,15 @@ go build -o built-project/my-project <span style="color:#3498db">\
 </span><span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>run:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>path:<span style="color:#e6e7e8"> </span>project-src/ci/build<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div><p>...assuming <code>project-src/ci/build</code> looks something like:</p><div class="highlight"><pre style=""><span style="color:#bdc3c7">#!/bin/bash
-</span><span style="color:#bdc3c7"></span>
+</span><span style="color:#e6e7e8"></span></pre></div><p>...assuming <code>project-src/ci/build</code> looks something like:</p><div class="highlight"><pre style=""><span style="color:#e74c3c;font-weight:bold">#!/bin/bash
+</span><span style="color:#e74c3c;font-weight:bold"></span>
 <span style="color:#8f4b2d">set</span> -e -u -x
 
 <span style="color:#8f4b2d">cd</span> project-src
 npm install
 
 <span style="color:#bdc3c7"># ...
-</span><span style="color:#bdc3c7"></span></pre>
-</div><p>...this task would cache the contents of <code>project-src/node_modules</code> between runs of this task on the same worker.</p>
+</span><span style="color:#bdc3c7"></span></pre></div><p>...this task would cache the contents of <code>project-src/node_modules</code> between runs of this task on the same worker.</p>
 </div><div class="example">
   <h3>Private Docker Registry</h3>
 
@@ -735,8 +729,7 @@ npm install
 </span><span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>run:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>path:<span style="color:#e6e7e8"> </span>my-app/scripts/test<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div>
+</span><span style="color:#e6e7e8"></span></pre></div>
 </div>
         </div>
       </div>

@@ -556,8 +556,7 @@
 </span><span style="color:#e6e7e8">  </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>unit<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>my-repo/ci/unit.yml<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div>
+</span><span style="color:#e6e7e8"></span></pre></div>
 </div><div class="example">
   <h3>Fanning In</h3>
 
@@ -568,8 +567,7 @@
 </span><span style="color:#e6e7e8">  </span>passed:<span style="color:#e6e7e8"> </span>[b-unit,<span style="color:#e6e7e8"> </span>integration]<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>x<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>passed:<span style="color:#e6e7e8"> </span>[integration]<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div><p>This means &#34;give me the versions of <code>a</code>, <code>b</code>, and <code>x</code> that have passed the <em>same build</em> of <code>integration</code>, with the same version of <code>a</code> passing <code>a-unit</code> and the same version of <code>b</code> passing <code>b-unit</code>.&#34;</p><p>This is crucial to being able to implement safe &#34;fan-in&#34; semantics as things progress through a pipeline.</p>
+</span><span style="color:#e6e7e8"></span></pre></div><p>This means &#34;give me the versions of <code>a</code>, <code>b</code>, and <code>x</code> that have passed the <em>same build</em> of <code>integration</code>, with the same version of <code>a</code> passing <code>a-unit</code> and the same version of <code>b</code> passing <code>b-unit</code>.&#34;</p><p>This is crucial to being able to implement safe &#34;fan-in&#34; semantics as things progress through a pipeline.</p>
 </div><div class="example">
   <h3>Fetching with <code>params</code></h3>
 
@@ -581,8 +579,7 @@
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>put:<span style="color:#e6e7e8"> </span>version<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>params:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>version:<span style="color:#e6e7e8"> </span>version/number<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div>
+</span><span style="color:#e6e7e8"></span></pre></div>
 </div>
         </div>
       </div>

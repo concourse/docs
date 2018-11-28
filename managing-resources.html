@@ -343,11 +343,9 @@
   
 
   <p>To force immediate checking for new versions of a resource, rather than waiting for the periodic checking, run:</p><div class="highlight"><pre style="">$ fly -t example check-resource --resource my-pipeline/my-resource
-</pre>
-</div><p>To check from a particular version, including the given version, append the <code>--from</code> flag like so:</p><div class="highlight"><pre style="">$ fly -t example check-resource --resource my-pipeline/my-resource <span style="color:#3498db">\
+</pre></div><p>To check from a particular version, including the given version, append the <code>--from</code> flag like so:</p><div class="highlight"><pre style="">$ fly -t example check-resource --resource my-pipeline/my-resource <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --from ref:abcdef
-</pre>
-</div><p>This can be useful for collecting versions that are older than the current ones, given that a newly configured resource will only start from the latest version.</p><p>Note the <code>ref:</code> prefix is resource-dependent. For example, the <em>bosh-io-release</em> resource might use <code>version:11.2</code> in place of <code>ref:abcdef</code>.</p>
+</pre></div><p>This can be useful for collecting versions that are older than the current ones, given that a newly configured resource will only start from the latest version.</p><p>Note the <code>ref:</code> prefix is resource-dependent. For example, the <em>bosh-io-release</em> resource might use <code>version:11.2</code> in place of <code>ref:abcdef</code>.</p>
 
   
     
@@ -360,8 +358,7 @@
   
 
   <p>To pause the periodic checking of a resource, run:</p><div class="highlight"><pre style="">$ fly -t example pause-resource --resource my-pipeline/my-resource
-</pre>
-</div><p>This will stop the resource from detecting new versions.</p>
+</pre></div><p>This will stop the resource from detecting new versions.</p>
 
   
     
@@ -374,8 +371,7 @@
   
 
   <p>To unpause a resource, run:</p><div class="highlight"><pre style="">$ fly -t example unpause-resource --resource my-pipeline/my-resource
-</pre>
-</div><p>This will resume resource version detection.</p>
+</pre></div><p>This will resume resource version detection.</p>
 
   
     

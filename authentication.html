@@ -418,8 +418,7 @@
 
   <p>You can grant <a href="install.html#local-auth-config">local users</a> access to a team via the <code>--local-user</code> flag.</p><p>For example:</p><div class="highlight"><pre style="">$ fly set-team -n my-team <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --local-user some_username
-</pre>
-</div>
+</pre></div>
 
   
     
@@ -446,8 +445,7 @@
 </span><span style="color:#3498db"></span>    --github-user my-github-login <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --github-org my-org <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --github-team my-other-org:my-team
-</pre>
-</div>
+</pre></div>
 
   
     
@@ -470,8 +468,7 @@
 </dl><p>For example:</p><div class="highlight"><pre style="">$ fly set-team -n my-team <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --gitlab-user my-gitlab-user <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --gitlab-team my-team
-</pre>
-</div>
+</pre></div>
 
   
     
@@ -498,8 +495,7 @@
 </span><span style="color:#3498db"></span>    --cf-user my-username <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --cf-org my-org <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --cf-space my-other-org:my-space
-</pre>
-</div>
+</pre></div>
 
   
     
@@ -522,8 +518,7 @@
 </dl><p>For example:</p><div class="highlight"><pre style="">$ fly set-team -n my-team <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --oauth-user my-username <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --oauth-group my-group
-</pre>
-</div>
+</pre></div>
 
   
     
@@ -546,8 +541,7 @@
 </dl><p>For example:</p><div class="highlight"><pre style="">$ fly set-team -n my-team <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --oidc-user my-username <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --oidc-group my-group
-</pre>
-</div>
+</pre></div>
 
   
     
@@ -560,8 +554,7 @@
   
 
   <p>You can list users and groups for all teams pertaining how the team is created based on group or individual user. Helpful for troubleshooting.</p><p>For example:</p><div class="highlight"><pre style="">$ fly -t target teams -d
-</pre>
-</div><p>When authentication errors occur look at concourse TSA logs.</p><p>Also, make sure workers and web UI are restarted when fundamental changes occur to the auth configurations (i.e. changing the callback URL.)</p>
+</pre></div><p>When authentication errors occur look at concourse TSA logs.</p><p>Also, make sure workers and web UI are restarted when fundamental changes occur to the auth configurations (i.e. changing the callback URL.)</p>
 
   
     

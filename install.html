@@ -334,8 +334,7 @@
 </span><span style="color:#3498db"></span>  --main-team-local-user myuser <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --external-url http://my-ci.example.com <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --worker-work-dir /opt/concourse/worker
-</pre>
-</div><p>This command is shorthand for running a single <a href="topology.html#web-node"><code>web</code> node</a> and <a href="topology.html#worker-node"><code>worker</code> node</a> on the same machine, auto-wired to trust each other. We&#39;ve also configured some local auth for the <a href="main-team.html"><code>main</code> team</a> - you may want to change that (see <a href="authentication.html">Configuring Team Auth</a>).</p><p>So far we&#39;ve assumed that you have a local PostgreSQL server running on the default port (<code>5432</code>) with an <code>atc</code> database, accessible by the current UNIX user. If your database lives elsewhere, just specify the <code>--postgres-*</code> flags (consult <code>concourse quickstart --help</code> for more information).</p><p>The addition of the <code>--external-url</code> flag is not technically necessary, so if you&#39;re just testing things it&#39;s safe to omit it. Concourse uses it as a base when generating URLs to itself, so you won&#39;t want those to be the default <code>http://127.0.0.1:8080</code> URL when you&#39;re developing on a different machine than the server.</p>
+</pre></div><p>This command is shorthand for running a single <a href="topology.html#web-node"><code>web</code> node</a> and <a href="topology.html#worker-node"><code>worker</code> node</a> on the same machine, auto-wired to trust each other. We&#39;ve also configured some local auth for the <a href="main-team.html"><code>main</code> team</a> - you may want to change that (see <a href="authentication.html">Configuring Team Auth</a>).</p><p>So far we&#39;ve assumed that you have a local PostgreSQL server running on the default port (<code>5432</code>) with an <code>atc</code> database, accessible by the current UNIX user. If your database lives elsewhere, just specify the <code>--postgres-*</code> flags (consult <code>concourse quickstart --help</code> for more information).</p><p>The addition of the <code>--external-url</code> flag is not technically necessary, so if you&#39;re just testing things it&#39;s safe to omit it. Concourse uses it as a base when generating URLs to itself, so you won&#39;t want those to be the default <code>http://127.0.0.1:8080</code> URL when you&#39;re developing on a different machine than the server.</p>
 
   
     
@@ -366,8 +365,7 @@
 
   <p>In order to add new users to the system, you can supply the <code>--add-local-user</code> flag to the <code>concourse web</code> subcommand like so:</p><div class="highlight"><pre style="">concourse web <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --add-local-user myuser:mypass
-</pre>
-</div><p>This will allow someone to log in with the username <code>myuser</code> and password <code>mypass</code>. Note that this user doesn&#39;t intrinsically have access to anything - they must be granted access on a team-by-team basis (see <a href="teams.html">Teams</a>).</p>
+</pre></div><p>This will allow someone to log in with the username <code>myuser</code> and password <code>mypass</code>. Note that this user doesn&#39;t intrinsically have access to anything - they must be granted access on a team-by-team basis (see <a href="teams.html">Teams</a>).</p>
 
   
     
@@ -379,8 +377,7 @@
   <p>Once you have added the user <code>myuser</code>, you can add them to the <a href="main-team.html"><code>main</code> team</a>:</p><div class="highlight"><pre style="">concourse web <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  ...
   --main-team-local-user myuser
-</pre>
-</div>
+</pre></div>
 
   
     
@@ -425,8 +422,7 @@
 </ul><p>Note that the client must be created under an <em>organization</em> if you want to authorize users based on organization/team membership. If the client is created under a personal account, only individual users can be authorized.</p><p>Here&#39;s a full example:</p><div class="highlight"><pre style="">concourse web <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --github-client-id CLIENT_ID <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --github-client-secret CLIENT_SECRET
-</pre>
-</div><p>If you&#39;re configuring GitHub Enterprise, you&#39;ll also need to set the following flags:</p><ul>
+</pre></div><p>If you&#39;re configuring GitHub Enterprise, you&#39;ll also need to set the following flags:</p><ul>
 
   <li><p><code>--github-host=github.example.com</code></p></li>
 
@@ -449,8 +445,7 @@
 </span><span style="color:#3498db"></span>  --main-team-github-org=ORG_NAME <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --main-team-github-team=ORG_NAME:TEAM_NAME <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --main-team-github-user=USERNAME
-</pre>
-</div>
+</pre></div>
 
   
     
@@ -495,8 +490,7 @@
 </ul><p>Here&#39;s a full example:</p><div class="highlight"><pre style="">concourse web <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --gitlab-client-id CLIENT_ID <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --gitlab-client-secret CLIENT_SECRET
-</pre>
-</div><p>If you&#39;re configuring a self hosted GitLab instance, you&#39;ll also need to set the following flag:</p><ul>
+</pre></div><p>If you&#39;re configuring a self hosted GitLab instance, you&#39;ll also need to set the following flag:</p><ul>
 
   <li><p><code>--gitlab-host=https://gitlab.example.com</code></p></li>
 
@@ -516,8 +510,7 @@
 </span><span style="color:#3498db"></span>  ... <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --main-team-gitlab-group=GROUP_NAME <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --main-team-gitlab-user=USERNAME
-</pre>
-</div>
+</pre></div>
 
   
     
@@ -549,8 +542,7 @@
 </span><span style="color:#e6e7e8">  </span>access-token-validity:<span style="color:#e6e7e8"> </span><span style="color:#1abc9c;font-weight:bold">3600</span><span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>refresh-token-validity:<span style="color:#e6e7e8"> </span><span style="color:#1abc9c;font-weight:bold">3600</span><span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>redirect-uri:<span style="color:#e6e7e8"> </span>https://concourse.example.com/sky/issuer/callback<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div>
+</span><span style="color:#e6e7e8"></span></pre></div>
 
   
     
@@ -576,8 +568,7 @@
 </span><span style="color:#3498db"></span>  --cf-client-id CLIENT_ID <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --cf-client-secret CLIENT_SECRET <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --cf-api-url CF_API_URL
-</pre>
-</div>
+</pre></div>
 
   
     
@@ -595,8 +586,7 @@
 </span><span style="color:#3498db"></span>  --main-team-cf-space=ORG_NAME:SPACE_NAME <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --main-team-cf-space-guid=SPACE_GUID <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --main-team-cf-user=USERNAME
-</pre>
-</div>
+</pre></div>
 
   
     
@@ -637,8 +627,7 @@
 </span><span style="color:#3498db"></span>  --oidc-client-id=CLIENT_ID <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --oidc-client-secret=CLIENT_SECRET <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --oidc-issuer=https://oidc.example.com
-</pre>
-</div>
+</pre></div>
 
   
     
@@ -654,8 +643,7 @@
 </span><span style="color:#3498db"></span>  ... <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --main-team-oidc-group=GROUP_NAME <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --main-team-oidc-user=USERNAME
-</pre>
-</div>
+</pre></div>
 
   
     
@@ -698,8 +686,7 @@
 </span><span style="color:#3498db"></span>  --oauth-auth-url=https://oauth.example.com/oauth2/auth <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --oauth-token-url=https://oauth.example.com/oauth2/token <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --oauth-userinfo-url=https://oauth.example.com/oauth2/userinfo
-</pre>
-</div>
+</pre></div>
 
   
     
@@ -715,8 +702,7 @@
 </span><span style="color:#3498db"></span>  ... <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --main-team-oidc-group=GROUP_NAME <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --main-team-oidc-user=USERNAME
-</pre>
-</div>
+</pre></div>
 
   
     
@@ -769,10 +755,8 @@
 </dl><p>To generate these keys, run:</p><div class="highlight"><pre style="">ssh-keygen -t rsa -f tsa_host_key -N <span style="color:#e74c3c">&#39;&#39;</span>
 ssh-keygen -t rsa -f worker_key -N <span style="color:#e74c3c">&#39;&#39;</span>
 ssh-keygen -t rsa -f session_signing_key -N <span style="color:#e74c3c">&#39;&#39;</span>
-</pre>
-</div><p>...and we&#39;ll also start on an <code>authorized_keys</code> file, currently listing this initial worker key:</p><div class="highlight"><pre style="">cp worker_key.pub authorized_worker_keys
-</pre>
-</div>
+</pre></div><p>...and we&#39;ll also start on an <code>authorized_keys</code> file, currently listing this initial worker key:</p><div class="highlight"><pre style="">cp worker_key.pub authorized_worker_keys
+</pre></div>
 
   
     
@@ -791,8 +775,7 @@ ssh-keygen -t rsa -f session_signing_key -N <span style="color:#e74c3c">&#39;&#3
 </span><span style="color:#3498db"></span>  --tsa-host-key tsa_host_key <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --tsa-authorized-keys authorized_worker_keys <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --external-url http://my-ci.example.com
-</pre>
-</div><p>Just as with <a href="install.html#quickstart">Quick Start</a>, this example is configuring local auth for the <a href="main-team.html"><code>main</code> team</a>, and assumes a local PostgreSQL server. You&#39;ll want to consult <code>concourse web --help</code> for more configuration options.</p><p>The <a href="topology.html#web-node"><code>web</code> node</a> can be scaled up for high availability, and they&#39;ll also roughly share their scheduling workloads, using the database to synchronize. This is done by just running more <code>web</code> commands on different machines, and optionally putting them behind a load balancer.</p><p>To run a cluster of <a href="topology.html#web-node"><code>web</code> node</a>s, you&#39;ll just need to pass the following flags:</p><ul>
+</pre></div><p>Just as with <a href="install.html#quickstart">Quick Start</a>, this example is configuring local auth for the <a href="main-team.html"><code>main</code> team</a>, and assumes a local PostgreSQL server. You&#39;ll want to consult <code>concourse web --help</code> for more configuration options.</p><p>The <a href="topology.html#web-node"><code>web</code> node</a> can be scaled up for high availability, and they&#39;ll also roughly share their scheduling workloads, using the database to synchronize. This is done by just running more <code>web</code> commands on different machines, and optionally putting them behind a load balancer.</p><p>To run a cluster of <a href="topology.html#web-node"><code>web</code> node</a>s, you&#39;ll just need to pass the following flags:</p><ul>
 
   <li><p>The <code>--postgres-*</code> flags must all be set to the same database.</p></li>
 
@@ -812,8 +795,7 @@ ssh-keygen -t rsa -f session_signing_key -N <span style="color:#e74c3c">&#39;&#3
 </span><span style="color:#3498db"></span>  --postgres-database concourse <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --external-url https://ci.example.com <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --peer-url http://10.0.16.10:8080
-</pre>
-</div><p>Node 1 (only difference is <code>--peer-url</code>):</p><div class="highlight"><pre style="">concourse web <span style="color:#3498db">\
+</pre></div><p>Node 1 (only difference is <code>--peer-url</code>):</p><div class="highlight"><pre style="">concourse web <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --add-local-user myuser:mypass <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --main-team-local-user myuser <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --session-signing-key session_signing_key <span style="color:#3498db">\
@@ -825,8 +807,7 @@ ssh-keygen -t rsa -f session_signing_key -N <span style="color:#e74c3c">&#39;&#3
 </span><span style="color:#3498db"></span>  --postgres-database concourse <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --external-url https://ci.example.com <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --peer-url http://10.0.16.11:8080
-</pre>
-</div>
+</pre></div>
 
   
     
@@ -843,8 +824,7 @@ ssh-keygen -t rsa -f session_signing_key -N <span style="color:#e74c3c">&#39;&#3
 </span><span style="color:#3498db"></span>  --tsa-host <span style="color:#1abc9c;font-weight:bold">127</span>.0.0.1:2222 <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --tsa-public-key tsa_host_key.pub <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --tsa-worker-private-key worker_key
-</pre>
-</div><p>Note that the worker must be run as <code>root</code>, as it orchestrates containers.</p><p>You may want a few workers, depending on the resource usage of your pipeline. There should be one per machine; running multiple on one box doesn&#39;t really make sense, as each worker runs as many containers as Concourse requests of it.</p><p>The <code>--work-dir</code> flag specifies where container data should be placed. Make sure it has plenty of disk space available, as it&#39;s where all the disk usage across your builds and resources will end up.</p><p>The <code>--tsa-host</code> refers to wherever the TSA on your <a href="topology.html#web-node"><code>web</code> node</a> is listening. This may be an address to a load balancer if you&#39;re running multiple <code>web</code> nodes, or just a local address like <code>127.0.0.1:2222</code> if you&#39;re running everything on one box.</p><p>The <code>--tsa-public-key</code> flag is used to ensure we&#39;re connecting to the TSA we should be connecting to, and is used like <code>known_hosts</code> with the <code>ssh</code> command. Refer to <a href="install.html#generating-keys">Generating Keys</a> if you&#39;re not sure what this means.</p><p>The <code>--tsa-worker-private-key</code> flag specifies the key to use when authenticating to the TSA. Refer to <a href="install.html#generating-keys">Generating Keys</a> if you&#39;re not sure what this means.</p><p>Workers have a statically configured <code>platform</code> and a set of <code>tags</code>, both of which determine where steps in a <a href="steps.html">Build Plan</a> are scheduled.</p><p>The Linux <code>concourse</code> binary comes with <a href="included-resources.html">a set of core resource types</a> baked in. If you are planning to use them you need to have at least one Linux worker.</p>
+</pre></div><p>Note that the worker must be run as <code>root</code>, as it orchestrates containers.</p><p>You may want a few workers, depending on the resource usage of your pipeline. There should be one per machine; running multiple on one box doesn&#39;t really make sense, as each worker runs as many containers as Concourse requests of it.</p><p>The <code>--work-dir</code> flag specifies where container data should be placed. Make sure it has plenty of disk space available, as it&#39;s where all the disk usage across your builds and resources will end up.</p><p>The <code>--tsa-host</code> refers to wherever the TSA on your <a href="topology.html#web-node"><code>web</code> node</a> is listening. This may be an address to a load balancer if you&#39;re running multiple <code>web</code> nodes, or just a local address like <code>127.0.0.1:2222</code> if you&#39;re running everything on one box.</p><p>The <code>--tsa-public-key</code> flag is used to ensure we&#39;re connecting to the TSA we should be connecting to, and is used like <code>known_hosts</code> with the <code>ssh</code> command. Refer to <a href="install.html#generating-keys">Generating Keys</a> if you&#39;re not sure what this means.</p><p>The <code>--tsa-worker-private-key</code> flag specifies the key to use when authenticating to the TSA. Refer to <a href="install.html#generating-keys">Generating Keys</a> if you&#39;re not sure what this means.</p><p>Workers have a statically configured <code>platform</code> and a set of <code>tags</code>, both of which determine where steps in a <a href="steps.html">Build Plan</a> are scheduled.</p><p>The Linux <code>concourse</code> binary comes with <a href="included-resources.html">a set of core resource types</a> baked in. If you are planning to use them you need to have at least one Linux worker.</p>
 
   
     

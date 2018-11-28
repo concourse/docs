@@ -334,8 +334,7 @@
   
 
   <p>You can execute a task like this:</p><div class="highlight"><pre style="">$ fly -t example execute --config tests.yml
-</pre>
-</div><p>Your files will be uploaded and the task will be executed with them. The working directory name will be used as the input name. If they do not match, you must specify <code>-i name=.</code> instead, where <code>name</code> is the input name from the task configuration.</p><p>Fly will automatically capture <code>SIGINT</code> and <code>SIGTERM</code> and abort the build when received. This allows it to be transparently composed with other toolchains.</p><p>By default, Fly will not send extra files or large files in your current directory that would normally be ignored by your version control system. You can use the <code>--include-ignored</code> flags in order to send ignored files to Concourse along with those that are not ignored.</p><p>If your task needs to run as <code>root</code> then you can specify the <code>-p</code> or <code>--privileged</code> flag.</p>
+</pre></div><p>Your files will be uploaded and the task will be executed with them. The working directory name will be used as the input name. If they do not match, you must specify <code>-i name=.</code> instead, where <code>name</code> is the input name from the task configuration.</p><p>Fly will automatically capture <code>SIGINT</code> and <code>SIGTERM</code> and abort the build when received. This allows it to be transparently composed with other toolchains.</p><p>By default, Fly will not send extra files or large files in your current directory that would normally be ignored by your version control system. You can use the <code>--include-ignored</code> flags in order to send ignored files to Concourse along with those that are not ignored.</p><p>If your task needs to run as <code>root</code> then you can specify the <code>-p</code> or <code>--privileged</code> flag.</p>
 
   
     
@@ -348,12 +347,10 @@
 </span><span style="color:#3498db"></span>    --config build-stemcell.yml <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --input <span style="color:#3498db">code</span>=. <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --input <span style="color:#3498db">stemcells</span>=../stemcells
-</pre>
-</div><p>This would work together with a <code>build-stemcell.yml</code> if its <code>inputs:</code> section was as follows:</p><div class="highlight"><pre style="">inputs:<span style="color:#e6e7e8">
+</pre></div><p>This would work together with a <code>build-stemcell.yml</code> if its <code>inputs:</code> section was as follows:</p><div class="highlight"><pre style="">inputs:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>code<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>stemcells<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div><p>If you specify an input then the default input will no longer be added automatically and you will need to explicitly list it (as with the <code>code</code> input above).</p><p>This feature can be used to mimic other resources and try out combinations of input that would normally not be possible in a pipeline.</p>
+</span><span style="color:#e6e7e8"></span></pre></div><p>If you specify an input then the default input will no longer be added automatically and you will need to explicitly list it (as with the <code>code</code> input above).</p><p>This feature can be used to mimic other resources and try out combinations of input that would normally not be possible in a pipeline.</p>
 
   
     
@@ -369,8 +366,7 @@
 </span><span style="color:#3498db"></span>    --config task.yml <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --inputs-from main/integration <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --input <span style="color:#3498db">foo</span>=./foo
-</pre>
-</div><p>This will trigger a one-off-build using the <code>task.yml</code> task config, basing its inputs on the latest candidates for the <code>integration</code> job in the <code>main</code> pipeline, with the <code>foo</code> input overridden to specify local code to run.</p><p>This can be used to more closely replicate the state in CI when weeding out flakiness, or as a shortcut for local development so that you don&#39;t have to upload every single resource from your local machine.</p>
+</pre></div><p>This will trigger a one-off-build using the <code>task.yml</code> task config, basing its inputs on the latest candidates for the <code>integration</code> job in the <code>main</code> pipeline, with the <code>foo</code> input overridden to specify local code to run.</p><p>This can be used to more closely replicate the state in CI when weeding out flakiness, or as a shortcut for local development so that you don&#39;t have to upload every single resource from your local machine.</p>
 
   
     
@@ -386,11 +382,9 @@
 </span><span style="color:#3498db"></span>    --config build-stemcell.yml <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --input <span style="color:#3498db">code</span>=. <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --output <span style="color:#3498db">stemcell</span>=/tmp/stemcell
-</pre>
-</div><p>This would work together with a <code>build-stemcell.yml</code> if its <code>outputs:</code> section was as follows:</p><div class="highlight"><pre style="">outputs:<span style="color:#e6e7e8">
+</pre></div><p>This would work together with a <code>build-stemcell.yml</code> if its <code>outputs:</code> section was as follows:</p><div class="highlight"><pre style="">outputs:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>stemcell<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div><p>This feature is useful to farm work out to your Concourse server to build things in a repeatable manner.</p>
+</span><span style="color:#e6e7e8"></span></pre></div><p>This feature is useful to farm work out to your Concourse server to build things in a repeatable manner.</p>
 
   
     
@@ -405,10 +399,8 @@
   <p>Any params listed in the task configuration can be specified by using environment variables.</p><p>So, if you have a task with the following params:</p><div class="highlight"><pre style="">params:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>FOO:<span style="color:#e6e7e8"> </span>fizzbuzz<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>BAR:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div><p>...and you run:</p><div class="highlight"><pre style=""><span style="color:#3498db">BAR</span>=hello fly execute
-</pre>
-</div><p>The task would then run with <code>BAR</code> as <code>&#34;hello&#34;</code>, and <code>FOO</code> as <code>&#34;fizzbuzz&#34;</code> (its default value).</p>
+</span><span style="color:#e6e7e8"></span></pre></div><p>...and you run:</p><div class="highlight"><pre style=""><span style="color:#3498db">BAR</span>=hello fly execute
+</pre></div><p>The task would then run with <code>BAR</code> as <code>&#34;hello&#34;</code>, and <code>FOO</code> as <code>&#34;fizzbuzz&#34;</code> (its default value).</p>
 
   
     
@@ -421,8 +413,7 @@
   
 
   <p>If you want to execute a task on a worker that has a specific tag, you can do so by passing <code>--tag</code>:</p><div class="highlight"><pre style="">fly -t example execute --config task.yml --tag bar
-</pre>
-</div><p>This will execute the task specified by <code>task.yml</code> on a worker that has been tagged <code>bar</code>.</p>
+</pre></div><p>This will execute the task specified by <code>task.yml</code> on a worker that has been tagged <code>bar</code>.</p>
 
   
     

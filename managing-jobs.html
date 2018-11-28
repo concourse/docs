@@ -370,8 +370,7 @@
   
 
   <p>To list the jobs configured in a pipeline, run:</p><div class="highlight"><pre style="">$ fly -t example <span style="color:#8f4b2d">jobs</span> -p my-pipeline
-</pre>
-</div>
+</pre></div>
 
   
     
@@ -384,10 +383,8 @@
   
 
   <p>To immediately queue a new build of a job, run:</p><div class="highlight"><pre style="">$ fly -t example trigger-job --job my-pipeline/my-job
-</pre>
-</div><p>This will enqueue a new build of the <code>my-job</code> job in the <code>my-pipeline</code> pipeline.</p><p>To start watching the newly created build, append the <code>--watch</code> flag like so:</p><div class="highlight"><pre style="">$ fly -t example trigger-job --job my-pipeline/my-job --watch
-</pre>
-</div>
+</pre></div><p>This will enqueue a new build of the <code>my-job</code> job in the <code>my-pipeline</code> pipeline.</p><p>To start watching the newly created build, append the <code>--watch</code> flag like so:</p><div class="highlight"><pre style="">$ fly -t example trigger-job --job my-pipeline/my-job --watch
+</pre></div>
 
   
     
@@ -400,8 +397,7 @@
   
 
   <p>To prevent scheduling and running builds of a job, run:</p><div class="highlight"><pre style="">$ fly -t example pause-job --job my-pipeline/my-job
-</pre>
-</div><p>This will prevent pending builds of the job from being scheduled, though builds that are in-flight will still run, and pending builds will still be created as normal.</p>
+</pre></div><p>This will prevent pending builds of the job from being scheduled, though builds that are in-flight will still run, and pending builds will still be created as normal.</p>
 
   
     
@@ -414,8 +410,7 @@
   
 
   <p>To resume scheduling of a job, run:</p><div class="highlight"><pre style="">$ fly -t example unpause-job --job my-pipeline/my-job
-</pre>
-</div><p>This will resume scheduling of builds queued for the job.</p>
+</pre></div><p>This will resume scheduling of builds queued for the job.</p>
 
   
     
@@ -428,13 +423,11 @@
   
 
   <p>If you&#39;ve got a <a href="tasks.html#task-caches">task cache</a> that you need to clear out for whatever reason, this can be done like so:</p><div class="highlight"><pre style="">$ fly -t example clear-task-cache --job my-pipeline/my-job --step my-step-name
-</pre>
-</div><p>This will immediately invalidate the caches - they&#39;ll be garbage collected asynchronously and subsequent builds will run with empty caches.</p><p>You can also clear out a particular path for the given step&#39;s cache, using <code>--cache-path</code>:</p><div class="highlight"><pre style="">$ fly -t example clear-task-cache <span style="color:#3498db">\
+</pre></div><p>This will immediately invalidate the caches - they&#39;ll be garbage collected asynchronously and subsequent builds will run with empty caches.</p><p>You can also clear out a particular path for the given step&#39;s cache, using <code>--cache-path</code>:</p><div class="highlight"><pre style="">$ fly -t example clear-task-cache <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --job my-pipeline/my-job <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --step my-step-name <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --cache-path go/pkg
-</pre>
-</div><p>If <code>--cache-path</code> is not specified, all caches for the given step will be cleared.</p>
+</pre></div><p>If <code>--cache-path</code> is not specified, all caches for the given step will be cleared.</p>
 
   
     

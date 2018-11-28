@@ -179,13 +179,11 @@
 $ docker-compose up
 Creating docs_concourse-db_1 ... <span style="color:#2ecc71;font-weight:bold">done</span>
 Creating docs_concourse_1    ... <span style="color:#2ecc71;font-weight:bold">done</span>
-</pre>
-</div><p>Concourse will be running at <a href="http://127.0.0.1:8080">127.0.0.1:8080</a>. You can log in with the username/password as <code>test</code>/<code>test</code>.</p><p>Next, install <a href="fly.html"><code>fly</code></a> by downloading it from the web UI and target your local Concourse as the <code>test</code> user:</p><div class="highlight"><pre style="">$ fly -t tutorial login -c http://127.0.0.1:8080 -u <span style="color:#8f4b2d">test</span> -p <span style="color:#8f4b2d">test</span>
+</pre></div><p>Concourse will be running at <a href="http://127.0.0.1:8080">127.0.0.1:8080</a>. You can log in with the username/password as <code>test</code>/<code>test</code>.</p><p>Next, install <a href="fly.html"><code>fly</code></a> by downloading it from the web UI and target your local Concourse as the <code>test</code> user:</p><div class="highlight"><pre style="">$ fly -t tutorial login -c http://127.0.0.1:8080 -u <span style="color:#8f4b2d">test</span> -p <span style="color:#8f4b2d">test</span>
 logging in to team <span style="color:#e74c3c">&#39;main&#39;</span>
 
 target saved
-</pre>
-</div><p>Then, head to <a href="https://concoursetutorial.com/basics/task-hello-world/">Hello World</a> to kick the tires!</p>
+</pre></div><p>Then, head to <a href="https://concoursetutorial.com/basics/task-hello-world/">Hello World</a> to kick the tires!</p>
   </div>
 </div><div class="splash-example">
   <h2>
@@ -206,8 +204,7 @@ target saved
 </span><span style="color:#e6e7e8">    </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>test<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>booklit/ci/test.yml<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div>
+</span><span style="color:#e6e7e8"></span></pre></div>
     </div>
 
     <div class="segment">
@@ -240,8 +237,7 @@ $ vim pipeline.yml
 $ fly -t ci set-pipeline -p booklit -c pipeline.yml
 $ git add pipeline.yml
 $ git commit -m <span style="color:#e67e22">&#34;initial pipeline&#34;</span>
-</pre>
-</div>
+</pre></div>
     </div>
 
     <div class="segment">
@@ -263,8 +259,7 @@ root@2c15ff11:/tmp/build/0df9eea0# ps
 root@2c15ff11:/tmp/build/0df9eea0# ls
 depspath  gopath
 root@2c15ff11:/tmp/build/0df9eea0# █
-</pre>
-</div>
+</pre></div>
     </div>
 
     <div class="segment">
@@ -287,8 +282,7 @@ fetching dependencies...
 installing ginkgo...
 running tests...
 █
-</pre>
-</div>
+</pre></div>
     </div>
 
     <div class="segment">
@@ -323,8 +317,7 @@ running tests...
 </span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>slack-deploy<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span><span style="color:#bdc3c7"># ...</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div>
+</span><span style="color:#e6e7e8"></span></pre></div>
     </div>
 
     <div class="segment">

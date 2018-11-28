@@ -530,21 +530,18 @@
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>put:<span style="color:#e6e7e8"> </span>repo-master<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>params:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>repository:<span style="color:#e6e7e8"> </span>repo-develop<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div>
+</span><span style="color:#e6e7e8"></span></pre></div>
 </div><div class="example">
   <h3>Tweaking the Implicit <code>get</code></h3>
 
   <p>If the logical name (whatever <code>put</code> specifies) differs from the concrete resource, you would specify <code>resource</code> as well, like so:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>put:<span style="color:#e6e7e8"> </span>resource-image<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>resource:<span style="color:#e6e7e8"> </span>docker-image-resource<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div><p>Additionally, you can control the settings of the implicit <code>get</code> step by setting <code>get_params</code>. For example, if you did not want a <code>put</code> step utilizing the <a href="https://github.com/concourse/docker-image-resource"> <code>docker-image</code> resource type</a> to download the image, you would implement your <code>put</code> step as such:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre></div><p>Additionally, you can control the settings of the implicit <code>get</code> step by setting <code>get_params</code>. For example, if you did not want a <code>put</code> step utilizing the <a href="https://github.com/concourse/docker-image-resource"> <code>docker-image</code> resource type</a> to download the image, you would implement your <code>put</code> step as such:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>put:<span style="color:#e6e7e8"> </span>docker-build<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>params:<span style="color:#e6e7e8"> </span>{build:<span style="color:#e6e7e8"> </span>git-resource}<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>get_params:<span style="color:#e6e7e8"> </span>{skip_download:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span>}<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div>
+</span><span style="color:#e6e7e8"></span></pre></div>
 </div>
         </div>
       </div>

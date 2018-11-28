@@ -329,10 +329,8 @@
 
   <p>The first thing you&#39;ll want to do is authenticate with your target. This is done with the <a href="fly.html#fly-login"><code>fly login</code></a> command. This is also useful to save targets under a more convenient alias, so you don&#39;t have to type out the URL all the time:</p><p>The <code>login</code> command serves double duty: it authenticates with a given endpoint, and saves it under a more convenient name. The name and token are stored in <code>~/.flyrc</code> (though you shouldn&#39;t really edit the file manually).</p><p>Concourse deployments can be occupied by multiple <a href="teams.html">teams</a>. To specify the team to which to log in, specify the <code>--team-name</code> or <code>-n</code> flag. If not specified, this defaults to the <a href="main-team.html"><code>main</code> team</a>.</p><p>So, to log in to a team <code>my-team</code> an endpoint served at <code>https://ci.example.com</code> and save it as the more convenient name <code>example</code>, you would run:</p><div class="highlight"><pre style="">$ fly --target example login --team-name my-team <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --concourse-url https://ci.example.com
-</pre>
-</div><p>The <code>login</code> command will see which authentication methods are available for the specified team and prompt you to choose one. For basic auth, it will ask your username and password and use them to acquire a token. For OAuth, it will give you a link to click, and after you&#39;ve gone through the OAuth flow it will print an OAuth token on the page that you can then copy and paste into the prompt.</p><p>Note that if no authentication methods are configured, <code>fly</code> will acquire a token without any prompting. You can then use the alias like normal.</p><p>In any case, a token is saved in your <code>~/.flyrc</code>, which will expire after one day.</p><p>If your Concourse uses SSL but does not have a certificate signed by a trusted CA, you can use the <code>--ca-cert</code> flag so that <code>fly</code> can trust the connection, like so:</p><div class="highlight"><pre style="">$ fly -t example login -c https://ci.example.com --ca-cert ./ca.crt
-</pre>
-</div><p>This will read the value out of the file <code>./ca.crt</code> and save it into <code>~/.flyrc</code> so you don&#39;t have to pass it on every <code>login</code> invocation.</p><p>After you&#39;ve logged in you can use <code>--target example</code> (or <code>-t example</code> for short) to run a command against the saved target <code>example</code>. For eample, <code>fly -t example builds</code> will list the last few builds on the <code>example</code> Concourse instance.</p><p>The <code>-t</code> flag is intentionally stateless and must be explicitly added to each command. This reduces the risk of accidentally running a command against the wrong environment when you have multiple targets defined.</p>
+</pre></div><p>The <code>login</code> command will see which authentication methods are available for the specified team and prompt you to choose one. For basic auth, it will ask your username and password and use them to acquire a token. For OAuth, it will give you a link to click, and after you&#39;ve gone through the OAuth flow it will print an OAuth token on the page that you can then copy and paste into the prompt.</p><p>Note that if no authentication methods are configured, <code>fly</code> will acquire a token without any prompting. You can then use the alias like normal.</p><p>In any case, a token is saved in your <code>~/.flyrc</code>, which will expire after one day.</p><p>If your Concourse uses SSL but does not have a certificate signed by a trusted CA, you can use the <code>--ca-cert</code> flag so that <code>fly</code> can trust the connection, like so:</p><div class="highlight"><pre style="">$ fly -t example login -c https://ci.example.com --ca-cert ./ca.crt
+</pre></div><p>This will read the value out of the file <code>./ca.crt</code> and save it into <code>~/.flyrc</code> so you don&#39;t have to pass it on every <code>login</code> invocation.</p><p>After you&#39;ve logged in you can use <code>--target example</code> (or <code>-t example</code> for short) to run a command against the saved target <code>example</code>. For eample, <code>fly -t example builds</code> will list the last few builds on the <code>example</code> Concourse instance.</p><p>The <code>-t</code> flag is intentionally stateless and must be explicitly added to each command. This reduces the risk of accidentally running a command against the wrong environment when you have multiple targets defined.</p>
 
   
     
@@ -345,8 +343,7 @@
   
 
   <p>To see what targets are currently known to <code>fly</code>, run:</p><div class="highlight"><pre style="">$ fly targets
-</pre>
-</div><p>This will show each target&#39;s name, URL, and when its token expires.</p>
+</pre></div><p>This will show each target&#39;s name, URL, and when its token expires.</p>
 
   
     
@@ -359,8 +356,7 @@
   
 
   <p>To check your current authentication status with a given target, run:</p><div class="highlight"><pre style="">$ fly -t example status
-</pre>
-</div><p>This will let you know if the token has expired.</p>
+</pre></div><p>This will let you know if the token has expired.</p>
 
   
     
@@ -373,10 +369,8 @@
   
 
   <p>There are cases when you would like to remove all evidence of a particular target. This is achieved by the <code>logout</code> command. There are two variants of this command, one to get rid of a specific target, and another to remove all targets from the <code>~/.flyrc</code> file.</p><p>To remove a specific target run:</p><div class="highlight"><pre style="">$ fly -t example <span style="color:#8f4b2d">logout</span>
-</pre>
-</div><p>To remove all targets run:</p><div class="highlight"><pre style="">$ fly <span style="color:#8f4b2d">logout</span> -a
-</pre>
-</div><p>Note: These two variations are mutually exclusive. If the target parameter <code>-t</code> and all parameter <code>-a</code> are both specified, an error will occur.</p>
+</pre></div><p>To remove all targets run:</p><div class="highlight"><pre style="">$ fly <span style="color:#8f4b2d">logout</span> -a
+</pre></div><p>Note: These two variations are mutually exclusive. If the target parameter <code>-t</code> and all parameter <code>-a</code> are both specified, an error will occur.</p>
 
   
     
@@ -389,8 +383,7 @@
   
 
   <p>Occasionally we add additional features to <code>fly</code> or make changes to the communiction between it and Concourse&#39;s API server. To make sure you&#39;re running the latest and greatest version that works with the Concourse you are targeting we provide a command called <code>sync</code> that will update your local <code>fly</code>. It can be used like so:</p><div class="highlight"><pre style="">$ fly -t example sync
-</pre>
-</div><p>The <code>fly</code> command will also warn you if it notices that your CLI version is out of sync with the server.</p>
+</pre></div><p>The <code>fly</code> command will also warn you if it notices that your CLI version is out of sync with the server.</p>
 
   
     

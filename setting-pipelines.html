@@ -363,8 +363,7 @@
   <p>To submit a pipeline configuration to Concourse from a file on your local disk you can use the <code>-c</code> or <code>--config</code> flag, like so:</p><div class="highlight"><pre style="">$ fly -t example set-pipeline <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --pipeline my-pipeline <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --config pipeline.yml
-</pre>
-</div><p>This will present a diff of the changes and ask you to confirm the changes. If you accept then Concourse&#39;s pipeline configuration will switch to the pipeline definition in the YAML file specified.</p>
+</pre></div><p>This will present a diff of the changes and ask you to confirm the changes. If you accept then Concourse&#39;s pipeline configuration will switch to the pipeline definition in the YAML file specified.</p>
 
   
     
@@ -380,23 +379,19 @@
 </span><span style="color:#e6e7e8">    </span>uri:<span style="color:#e6e7e8"> </span>git@...<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>branch:<span style="color:#e6e7e8"> </span>master<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>private_key:<span style="color:#e6e7e8"> </span>((private-repo-key))<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div><p>...you could then configure this pipeline like so:</p><div class="highlight"><pre style="">$ fly -t example set-pipeline <span style="color:#3498db">\
+</span><span style="color:#e6e7e8"></span></pre></div><p>...you could then configure this pipeline like so:</p><div class="highlight"><pre style="">$ fly -t example set-pipeline <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --pipeline my-pipeline <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --config pipeline.yml <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --var <span style="color:#e67e22">&#34;</span><span style="color:#e67e22">private-repo-key=</span><span style="color:#2ecc71;font-weight:bold">$(</span>cat id_rsa<span style="color:#2ecc71;font-weight:bold">)</span><span style="color:#e67e22">&#34;</span>
-</pre>
-</div><p>Or, if you had a <code>credentials.yml</code> as follows:</p><div class="highlight"><pre style="">private-repo-key:<span style="color:#e6e7e8"> </span><span style="color:#e67e22">|</span><span style="color:#e67e22">
+</pre></div><p>Or, if you had a <code>credentials.yml</code> as follows:</p><div class="highlight"><pre style="">private-repo-key:<span style="color:#e6e7e8"> </span><span style="color:#e67e22">|</span><span style="color:#e67e22">
 </span><span style="color:#e67e22">  </span><span style="color:#e67e22">-----BEGIN RSA PRIVATE KEY-----
 </span><span style="color:#e67e22">  ...
 </span><span style="color:#e67e22">  -----END RSA PRIVATE KEY-----</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div><p>...you could configure it like so:</p><div class="highlight"><pre style="">$ fly -t example set-pipeline <span style="color:#3498db">\
+</span><span style="color:#e6e7e8"></span></pre></div><p>...you could configure it like so:</p><div class="highlight"><pre style="">$ fly -t example set-pipeline <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --pipeline my-pipeline <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --config pipeline.yml <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --load-vars-from credentials.yml
-</pre>
-</div><p>If both <code>--var</code> and <code>--load-vars-from</code> are specified, the <code>--var</code> flags take precedence.</p><p>Values other than strings (e.g. bools, arrays) may also be specified via params. Concatenation is also supported in the form of <code>foo-((bar))</code>.</p>
+</pre></div><p>If both <code>--var</code> and <code>--load-vars-from</code> are specified, the <code>--var</code> flags take precedence.</p><p>Values other than strings (e.g. bools, arrays) may also be specified via params. Concatenation is also supported in the form of <code>foo-((bar))</code>.</p>
 
   
     
@@ -412,8 +407,7 @@
   
 
   <p>To validate a local pipeline configuration without submitting it to Concourse, run <code>validate-pipeline</code>:</p><div class="highlight"><pre style="">$ fly validate-pipeline --config pipeline.yml
-</pre>
-</div><p>By default, pipeline errors will cause <code>validate-pipeline</code> to fail, but warnings won&#39;t. To fail on both errors and warnings, pass the `--strict` flag.</p>
+</pre></div><p>By default, pipeline errors will cause <code>validate-pipeline</code> to fail, but warnings won&#39;t. To fail on both errors and warnings, pass the `--strict` flag.</p>
 
   
     
@@ -426,8 +420,7 @@
   
 
   <p>To format a pipeline config in a &#34;canonical&#34; form (i.e. keys are in normal order, with <code>name</code> first for example), run:</p><div class="highlight"><pre style="">$ fly format-pipeline --config pipeline.yml
-</pre>
-</div><p>This will print the formatted pipeline config to <code>stdout</code>. To update the file in-place, pass <code>--write/-w</code>.</p>
+</pre></div><p>This will print the formatted pipeline config to <code>stdout</code>. To update the file in-place, pass <code>--write/-w</code>.</p>
 
   
     

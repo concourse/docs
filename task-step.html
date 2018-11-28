@@ -516,8 +516,7 @@
 
   <div class="definition-content">
     <p><em>Required.</em> A dynamic alternative to <a href="task-step.html#config"><code><strong>config</strong></code></a>.</p><p><code>file</code> points at a <code>.yml</code> file containing the <a href="tasks.html">task config</a>, which allows this to be tracked with your resources.</p><p>The first segment in the path should refer to another source from the plan, and the rest of the path is relative to that source.</p><p>For example, if in your plan you have the following <a href="get-step.html"><code>get</code></a> step:</p><div class="highlight"><pre style="">-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>something<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div><p>And the <code>something</code> resource provided a <code>unit.yml</code> file, you would set <code>file: something/unit.yml</code>.</p>
+</span><span style="color:#e6e7e8"></span></pre></div><p>And the <code>something</code> resource provided a <code>unit.yml</code> file, you would set <code>file: something/unit.yml</code>.</p>
   </div>
 </div><div class="definition">
   <div class="definition-thumb">
@@ -543,8 +542,7 @@
 </span><span style="color:#e6e7e8">    </span>REMOTE_SERVER:<span style="color:#e6e7e8"> </span><span style="color:#1abc9c;font-weight:bold">10.20</span>.<span style="color:#1abc9c;font-weight:bold">30.40</span>:<span style="color:#1abc9c;font-weight:bold">8080</span><span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>USERNAME:<span style="color:#e6e7e8"> </span>my-user<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>PASSWORD:<span style="color:#e6e7e8"> </span>my-pass<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div><p>This is often used in combination with <a href="setting-pipelines.html#pipeline-params"><code>((parameters))</code></a> in the pipeline.</p><p>For example:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre></div><p>This is often used in combination with <a href="setting-pipelines.html#pipeline-params"><code>((parameters))</code></a> in the pipeline.</p><p>For example:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>my-repo<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>integration<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>my-repo/ci/integration.yml<span style="color:#e6e7e8">
@@ -552,15 +550,12 @@
 </span><span style="color:#e6e7e8">    </span>REMOTE_SERVER:<span style="color:#e6e7e8"> </span><span style="color:#1abc9c;font-weight:bold">10.20</span>.<span style="color:#1abc9c;font-weight:bold">30.40</span>:<span style="color:#1abc9c;font-weight:bold">8080</span><span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>USERNAME:<span style="color:#e6e7e8"> </span>((integration-username))<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>PASSWORD:<span style="color:#e6e7e8"> </span>((integration-password))<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div><p>Looking into the <code>task.yml</code>, a common pattern is to list the param in the task definition with no value. This indicates that you expect the pipeline to provide the value.</p><p>For example, in the <code>task.yml</code>:</p><div class="highlight"><pre style="">params:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre></div><p>Looking into the <code>task.yml</code>, a common pattern is to list the param in the task definition with no value. This indicates that you expect the pipeline to provide the value.</p><p>For example, in the <code>task.yml</code>:</p><div class="highlight"><pre style="">params:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>FOO:<span style="color:#e6e7e8"> </span>fizzbuzz<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>BAR:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div><p>And in the <code>pipeline.yml</code>:</p><div class="highlight"><pre style="">params:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre></div><p>And in the <code>pipeline.yml</code>:</p><div class="highlight"><pre style="">params:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>BAR:<span style="color:#e6e7e8"> </span>qux<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div><p>If the pipeline used this <code>task.yml</code> but did not set <code>BAR</code>, the value of <code>$BAR</code> would be set to the empty string in the task container.</p>
+</span><span style="color:#e6e7e8"></span></pre></div><p>If the pipeline used this <code>task.yml</code> but did not set <code>BAR</code>, the value of <code>$BAR</code> would be set to the empty string in the task container.</p>
   </div>
 </div><div class="definition">
   <div class="definition-thumb">
@@ -594,8 +589,7 @@
 </span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>use-task-image<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>image:<span style="color:#e6e7e8"> </span>my-task-image<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>my-project/ci/tasks/my-task.yml<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div><p>This can also be used in the simpler case of explicitly keeping track of dependent images, in which case you just wouldn&#39;t have a job building it (<code>build-task-image</code> in the above example).</p>
+</span><span style="color:#e6e7e8"></span></pre></div><p>This can also be used in the simpler case of explicitly keeping track of dependent images, in which case you just wouldn&#39;t have a job building it (<code>build-task-image</code> in the above example).</p>
   </div>
 </div><div class="definition">
   <div class="definition-thumb">
@@ -614,8 +608,7 @@
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>audit-cf-release<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>ci-scripts/audit-release.yml<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>input_mapping:<span style="color:#e6e7e8"> </span>{release-repo:<span style="color:#e6e7e8"> </span>cf-release}<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div>
+</span><span style="color:#e6e7e8"></span></pre></div>
   </div>
 </div><div class="definition">
   <div class="definition-thumb">
@@ -636,8 +629,7 @@
 </span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>ci-scripts/create-release.yml<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>input_mapping:<span style="color:#e6e7e8"> </span>{release-repo:<span style="color:#e6e7e8"> </span>cf-release}<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>output_mapping:<span style="color:#e6e7e8"> </span>{release-tarball:<span style="color:#e6e7e8"> </span>cf-release-tarball}<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div>
+</span><span style="color:#e6e7e8"></span></pre></div>
   </div>
 </div>
 
@@ -661,8 +653,7 @@
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>put:<span style="color:#e6e7e8"> </span>other-repo<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>params:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>repository:<span style="color:#e6e7e8"> </span>repo-with-commit<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div>
+</span><span style="color:#e6e7e8"></span></pre></div>
 </div><div class="example">
   <h3>Build Matrix with <code>aggregate</code></h3>
 
@@ -673,8 +664,7 @@
 </span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>my-repo/go-<span style="color:#1abc9c;font-weight:bold">1.3</span>.yml<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>go-<span style="color:#1abc9c;font-weight:bold">1.4</span><span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>my-repo/ci/go-<span style="color:#1abc9c;font-weight:bold">1.4</span>.yml<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div><p>Only if both tasks succeed will the build go green. See also <a href="aggregate-step.html"><code>aggregate</code> step</a>.</p>
+</span><span style="color:#e6e7e8"></span></pre></div><p>Only if both tasks succeed will the build go green. See also <a href="aggregate-step.html"><code>aggregate</code> step</a>.</p>
 </div>
         </div>
       </div>

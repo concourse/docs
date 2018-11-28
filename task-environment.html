@@ -327,8 +327,7 @@
 </span><span style="color:#e67e22">    go version
 </span><span style="color:#e67e22">    find .
 </span><span style="color:#e67e22">    touch some-output/my-built-artifact</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div><p>...will produce the following output:</p><div class="highlight"><pre style="">+ whoami
+</span><span style="color:#e6e7e8"></span></pre></div><p>...will produce the following output:</p><div class="highlight"><pre style="">+ whoami
 root
 + env
 <span style="color:#3498db">USER</span>=root
@@ -352,8 +351,7 @@ go version go1.6 linux/amd64
 ./some/custom/path/bar
 ./some-output
 + touch some-output/my-built-artifact
-</pre>
-</div><p>...and propagate <code>my-built-artifact</code> to any later <a href="task-step.html"><code>task</code> step</a>s or <a href="put-step.html"><code>put</code> step</a>s that reference the <code>some-output</code> artifact, in the same way that this task had <code>some-input</code> as an input.</p>
+</pre></div><p>...and propagate <code>my-built-artifact</code> to any later <a href="task-step.html"><code>task</code> step</a>s or <a href="put-step.html"><code>put</code> step</a>s that reference the <code>some-output</code> artifact, in the same way that this task had <code>some-input</code> as an input.</p>
 
   
     

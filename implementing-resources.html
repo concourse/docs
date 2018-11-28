@@ -409,18 +409,15 @@
   },
   <span style="color:#9b59b6;font-weight:bold">&#34;version&#34;</span>: { <span style="color:#9b59b6;font-weight:bold">&#34;ref&#34;</span>: <span style="color:#e67e22">&#34;61cebf&#34;</span> }
 }
-</pre>
-</div><p>Upon receiving this payload the <code>git</code> resource would probably do something like:</p><div class="highlight"><pre style="">[ -d /tmp/repo ] || git clone git://some-uri /tmp/repo
+</pre></div><p>Upon receiving this payload the <code>git</code> resource would probably do something like:</p><div class="highlight"><pre style="">[ -d /tmp/repo ] || git clone git://some-uri /tmp/repo
 <span style="color:#8f4b2d">cd</span> /tmp/repo
 git pull &amp;&amp; git log 61cbef..HEAD
-</pre>
-</div><p>Note that it conditionally clones; the container for checking versions is reused between checks, so that it can efficiently pull rather than cloning every time.</p><p>And the output, assuming <code>d74e01</code> is the commit immediately after <code>61cbef</code>:</p><div class="highlight"><pre style="">[
+</pre></div><p>Note that it conditionally clones; the container for checking versions is reused between checks, so that it can efficiently pull rather than cloning every time.</p><p>And the output, assuming <code>d74e01</code> is the commit immediately after <code>61cbef</code>:</p><div class="highlight"><pre style="">[
   { <span style="color:#9b59b6;font-weight:bold">&#34;ref&#34;</span>: <span style="color:#e67e22">&#34;61cbef&#34;</span> },
   { <span style="color:#9b59b6;font-weight:bold">&#34;ref&#34;</span>: <span style="color:#e67e22">&#34;d74e01&#34;</span> },
   { <span style="color:#9b59b6;font-weight:bold">&#34;ref&#34;</span>: <span style="color:#e67e22">&#34;7154fe&#34;</span> }
 ]
-</pre>
-</div><p>The list may be empty, if there are no versions available at the source. If the given version is already the latest, an array with that version as the sole entry should be listed.</p><p>If your resource is unable to determine which versions are newer then the given version (e.g. if it&#39;s a git commit that was <code>push -f</code>ed over), then the current version of your resource should be returned (i.e. the new <code>HEAD</code>).</p>
+</pre></div><p>The list may be empty, if there are no versions available at the source. If the given version is already the latest, an array with that version as the sole entry should be listed.</p><p>If your resource is unable to determine which versions are newer then the given version (e.g. if it&#39;s a git commit that was <code>push -f</code>ed over), then the current version of your resource should be returned (i.e. the new <code>HEAD</code>).</p>
 
   
     
@@ -448,20 +445,17 @@ git pull &amp;&amp; git log 61cbef..HEAD
   },
   <span style="color:#9b59b6;font-weight:bold">&#34;version&#34;</span>: { <span style="color:#9b59b6;font-weight:bold">&#34;ref&#34;</span>: <span style="color:#e67e22">&#34;61cebf&#34;</span> }
 }
-</pre>
-</div><p>Upon receiving this payload the <code>git</code> resource would probably do something like:</p><div class="highlight"><pre style="">git clone --branch develop git://some-uri <span style="color:#3498db">$1</span>
+</pre></div><p>Upon receiving this payload the <code>git</code> resource would probably do something like:</p><div class="highlight"><pre style="">git clone --branch develop git://some-uri <span style="color:#3498db">$1</span>
 <span style="color:#8f4b2d">cd</span> <span style="color:#3498db">$1</span>
 git checkout 61cebf
-</pre>
-</div><p>And output:</p><div class="highlight"><pre style="">{
+</pre></div><p>And output:</p><div class="highlight"><pre style="">{
   <span style="color:#9b59b6;font-weight:bold">&#34;version&#34;</span>: { <span style="color:#9b59b6;font-weight:bold">&#34;ref&#34;</span>: <span style="color:#e67e22">&#34;61cebf&#34;</span> },
   <span style="color:#9b59b6;font-weight:bold">&#34;metadata&#34;</span>: [
     { <span style="color:#9b59b6;font-weight:bold">&#34;name&#34;</span>: <span style="color:#e67e22">&#34;commit&#34;</span>, <span style="color:#9b59b6;font-weight:bold">&#34;value&#34;</span>: <span style="color:#e67e22">&#34;61cebf&#34;</span> },
     { <span style="color:#9b59b6;font-weight:bold">&#34;name&#34;</span>: <span style="color:#e67e22">&#34;author&#34;</span>, <span style="color:#9b59b6;font-weight:bold">&#34;value&#34;</span>: <span style="color:#e67e22">&#34;Hulk Hogan&#34;</span> }
   ]
 }
-</pre>
-</div>
+</pre></div>
 
   
     
@@ -489,19 +483,16 @@ git checkout 61cebf
     <span style="color:#9b59b6;font-weight:bold">&#34;private_key&#34;</span>: <span style="color:#e67e22">&#34;...&#34;</span>
   }
 }
-</pre>
-</div><p>Upon receiving this payload the <code>git</code> resource would probably do something like:</p><div class="highlight"><pre style=""><span style="color:#8f4b2d">cd</span> <span style="color:#3498db">$1</span>/some-repo
+</pre></div><p>Upon receiving this payload the <code>git</code> resource would probably do something like:</p><div class="highlight"><pre style=""><span style="color:#8f4b2d">cd</span> <span style="color:#3498db">$1</span>/some-repo
 git push origin develop
-</pre>
-</div><p>And output:</p><div class="highlight"><pre style="">{
+</pre></div><p>And output:</p><div class="highlight"><pre style="">{
   <span style="color:#9b59b6;font-weight:bold">&#34;version&#34;</span>: { <span style="color:#9b59b6;font-weight:bold">&#34;ref&#34;</span>: <span style="color:#e67e22">&#34;61cebf&#34;</span> },
   <span style="color:#9b59b6;font-weight:bold">&#34;metadata&#34;</span>: [
     { <span style="color:#9b59b6;font-weight:bold">&#34;name&#34;</span>: <span style="color:#e67e22">&#34;commit&#34;</span>, <span style="color:#9b59b6;font-weight:bold">&#34;value&#34;</span>: <span style="color:#e67e22">&#34;61cebf&#34;</span> },
     { <span style="color:#9b59b6;font-weight:bold">&#34;name&#34;</span>: <span style="color:#e67e22">&#34;author&#34;</span>, <span style="color:#9b59b6;font-weight:bold">&#34;value&#34;</span>: <span style="color:#e67e22">&#34;Mick Foley&#34;</span> }
   ]
 }
-</pre>
-</div>
+</pre></div>
 
   
     

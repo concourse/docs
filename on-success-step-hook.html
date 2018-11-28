@@ -493,15 +493,13 @@
 </span><span style="color:#e6e7e8">  </span>on_success:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>task:<span style="color:#e6e7e8"> </span>alert<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>foo/alert.yml<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div><p>Note that this is semantically equivalent to the following:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre></div><p>Note that this is semantically equivalent to the following:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>foo<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>unit<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>foo/unit.yml<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>alert<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>foo/alert.yml<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div><p>...however it is provided mainly for cases where there is an equivalent <a href="on-failure-step-hook.html"><code>on_failure</code> step hook</a>, and having them next to each other is more clear.</p>
+</span><span style="color:#e6e7e8"></span></pre></div><p>...however it is provided mainly for cases where there is an equivalent <a href="on-failure-step-hook.html"><code>on_failure</code> step hook</a>, and having them next to each other is more clear.</p>
 </div>
         </div>
       </div>

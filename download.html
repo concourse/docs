@@ -246,9 +246,11 @@
   <h1 class="section-header"><a name="download"></a><span class="section-number">2.1 </span>Download</h1>
   
 
-  <div class="warning">
+  <p><div class="warning">
+  <p>If you are currently on <a href="download.html#v360">v3.6.0</a> and looking to upgrade to <a href="download.html#v410">v4.1.0</a> and above, you must first upgrade to any version of concourse between <a href="download.html#v370">v3.7.0</a> and <a href="download.html#v400">v4.0.0</a> (inclusive) before upgrading past it!</p>
+</div> <div class="warning">
   <p>If you are currently on a version older than <a href="download.html#v360">v3.6.0</a>, <strong>you must first upgrade to <a href="download.html#v360">v3.6.0</a> before upgrading past it!</strong></p>
-</div>
+</div></p>
 
   
     
@@ -16426,9 +16428,8 @@
   <div class="note-content">
     <p><a href="get-step.html"><code>get</code> step</a>s can now be pinned to a specific version.</p><p>Example:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>my-repo<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>version:<span style="color:#e6e7e8"> </span>{ref:<span style="color:#e6e7e8"> </span>cb0ed22c4cfc6b7524bcafc1664b2d27035521f<span style="color:#1abc9c;font-weight:bold">9</span>}<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div><p>This will lock the <code>my-repo</code> step to the specified version. Note that the version must be valid, must be collected in the resource&#39;s version history (which means you may want to use <a href="managing-resources.html#fly-check-resource"><code>fly check-resource</code></a>), and must also satisfy any <a href="get-step.html#get-step-passed"><code><strong>passed</strong></code></a> constraints listed on the step.</p><p>See <a href="get-step.html#get-step-version"><code><strong>version</strong></code></a> for more information.</p>
+</span><span style="color:#e6e7e8">  </span>version:<span style="color:#e6e7e8"> </span>{ref:<span style="color:#e6e7e8"> </span>cb0ed22c4cfc6b7524bcafc1664b2d27035521f9}<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre></div><p>This will lock the <code>my-repo</code> step to the specified version. Note that the version must be valid, must be collected in the resource&#39;s version history (which means you may want to use <a href="managing-resources.html#fly-check-resource"><code>fly check-resource</code></a>), and must also satisfy any <a href="get-step.html#get-step-passed"><code><strong>passed</strong></code></a> constraints listed on the step.</p><p>See <a href="get-step.html#get-step-version"><code><strong>version</strong></code></a> for more information.</p>
   </div>
 </div><div class="release-note">
   <div class="note-tags">
@@ -16439,8 +16440,7 @@
     <p><a href="get-step.html"><code>get</code> step</a>s can now be configured to run with every version of its resource, rather than skipping to the latest.</p><p>Example:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>pull-requests<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>version:<span style="color:#e6e7e8"> </span>every<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div><p>This will allow the build to run with every version of the resource, which is probably a bad idea for certain git repos (where folks may push 100 commits at once), but can make a lot of sense for other things (security auditing, handling all pull requests, processing commits across multiple branches, etc.).</p><p>See <a href="get-step.html#get-step-version"><code><strong>version</strong></code></a> for more information.</p>
+</span><span style="color:#e6e7e8"></span></pre></div><p>This will allow the build to run with every version of the resource, which is probably a bad idea for certain git repos (where folks may push 100 commits at once), but can make a lot of sense for other things (security auditing, handling all pull requests, processing commits across multiple branches, etc.).</p><p>See <a href="get-step.html#get-step-version"><code><strong>version</strong></code></a> for more information.</p>
   </div>
 </div><div class="release-note">
   <div class="note-tags">
@@ -18318,17 +18318,15 @@
   <div class="note-content">
     <p>The <a href="managing-pipelines.html#fly-destroy-pipeline"><code>fly destroy-pipeline</code></a> command now runs much quicker. Unfortunately to implement this there&#39;s a massive database migration. Expect anywhere from a few minutes of downtime up to a few hours when you upgrade to this version, depending on how many builds you have and how chatty they are. Sorry about that.</p><p>There is no way of predicting how long this migration may take for your instance. It depends on the chattiness of your builds and the performance of your database. For a rough approximation: running the migration on the Concourse team&#39;s server took 20 minutes to migrate 13 million build events.</p><p>You can find out how many build events you have by running the following query against your Concourse database:</p><div class="highlight"><pre style=""><span style="color:#2ecc71;font-weight:bold">SELECT</span> relname, n_live_tup
 <span style="color:#2ecc71;font-weight:bold">FROM</span> pg_stat_user_tables
-<span style="color:#2ecc71;font-weight:bold">WHERE</span> relname = <span style="color:#e74c3c">&#39;build_events&#39;</span>;
-</pre>
-</div><p>The root of the issue is the amount of data in the <code>build_events</code> table. If you don&#39;t have many build logs then then you can probably just upgrade and not worry about the rest of this. If the upgrade is going to take too long then you&#39;ll need to find some way to reduce the rows in that table.</p><p>Before you delete any data from the system you should make sure to take a <a href="http://www.postgresql.org/docs/9.1/static/backup.html">backup of your database</a> and make doubly sure you can restore it while blind-folded and upside-down in case anything goes wrong.</p><p>If you don&#39;t care about your old build logs then you can simply run <code>TRUNCATE build_events;</code> before upgrading and the migration will be quick and painless.</p><p>Many of you probably do care about your build events but maybe only those which were created in the past X months. If this sounds like a good idea then have I got the SQL query for you! Run this against your Concourse database (change the X to the number of months you&#39;d like to keep):</p><div class="highlight"><pre style=""><span style="color:#2ecc71;font-weight:bold">DELETE</span> <span style="color:#2ecc71;font-weight:bold">FROM</span> build_events
+<span style="color:#2ecc71;font-weight:bold">WHERE</span> relname = <span style="color:#e74c3c">&#39;</span><span style="color:#e74c3c">build_events</span><span style="color:#e74c3c">&#39;</span>;
+</pre></div><p>The root of the issue is the amount of data in the <code>build_events</code> table. If you don&#39;t have many build logs then then you can probably just upgrade and not worry about the rest of this. If the upgrade is going to take too long then you&#39;ll need to find some way to reduce the rows in that table.</p><p>Before you delete any data from the system you should make sure to take a <a href="http://www.postgresql.org/docs/9.1/static/backup.html">backup of your database</a> and make doubly sure you can restore it while blind-folded and upside-down in case anything goes wrong.</p><p>If you don&#39;t care about your old build logs then you can simply run <code>TRUNCATE build_events;</code> before upgrading and the migration will be quick and painless.</p><p>Many of you probably do care about your build events but maybe only those which were created in the past X months. If this sounds like a good idea then have I got the SQL query for you! Run this against your Concourse database (change the X to the number of months you&#39;d like to keep):</p><div class="highlight"><pre style=""><span style="color:#2ecc71;font-weight:bold">DELETE</span> <span style="color:#2ecc71;font-weight:bold">FROM</span> build_events
 <span style="color:#2ecc71;font-weight:bold">WHERE</span> build_id <span style="color:#2ecc71;font-weight:bold">IN</span> (
   <span style="color:#2ecc71;font-weight:bold">SELECT</span> builds.id
   <span style="color:#2ecc71;font-weight:bold">FROM</span> jobs <span style="color:#2ecc71;font-weight:bold">JOIN</span> builds <span style="color:#2ecc71;font-weight:bold">ON</span> jobs.id = builds.job_id
-  <span style="color:#2ecc71;font-weight:bold">WHERE</span> builds.end_time &lt; NOW() - <span style="color:#8f4b2d">INTERVAL</span> <span style="color:#e74c3c">&#39;X month&#39;</span>
+  <span style="color:#2ecc71;font-weight:bold">WHERE</span> builds.end_time &lt; NOW() - <span style="color:#8f4b2d">INTERVAL</span> <span style="color:#e74c3c">&#39;</span><span style="color:#e74c3c">X month</span><span style="color:#e74c3c">&#39;</span>
   <span style="color:#2ecc71;font-weight:bold">ORDER</span> <span style="color:#2ecc71;font-weight:bold">BY</span> builds.id
 );
-</pre>
-</div><p>This query may take a while to execute but your Concourse can be online the entire time that it is running.</p><p>If you want to keep all of your build logs and have a fast migration then I&#39;m sorry, I can&#39;t help you. :( Maybe upgrade over a weekend?</p>
+</pre></div><p>This query may take a while to execute but your Concourse can be online the entire time that it is running.</p><p>If you want to keep all of your build logs and have a fast migration then I&#39;m sorry, I can&#39;t help you. :( Maybe upgrade over a weekend?</p>
   </div>
 </div><div class="release-note">
   <div class="note-tags">
@@ -18853,14 +18851,12 @@
 
   <div class="note-content">
     <p>We&#39;ve added a new way of specifying the image for a task. You can now use <a href="tasks.html#image_resource"><code><strong>image_resource</strong></code></a> which will use Concourse resources to pull the image down.</p><p>For example:</p><div class="highlight"><pre style="">image:<span style="color:#e6e7e8"> </span>docker:///ubuntu<span style="color:#bdc3c7">#14.04</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div><p>would now become:</p><div class="highlight"><pre style="">image_resource:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span></pre></div><p>would now become:</p><div class="highlight"><pre style="">image_resource:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>docker-image<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>repository:<span style="color:#e6e7e8"> </span>ubuntu<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>tag:<span style="color:#e6e7e8"> </span><span style="color:#1abc9c;font-weight:bold">14.04</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre>
-</div><p>If those keys look familiar that&#39;s because they&#39;re the same ones you would specify if you were defining a resource in your pipeline. This means that because the Docker Image resource supports private repositories you can now use private repositories for your task images. There are more details in the <a href="running-tasks.html">Running Tasks</a> section of the documentation.</p><p>Further improvements to this feature are coming soon!</p>
+</span><span style="color:#e6e7e8"></span></pre></div><p>If those keys look familiar that&#39;s because they&#39;re the same ones you would specify if you were defining a resource in your pipeline. This means that because the Docker Image resource supports private repositories you can now use private repositories for your task images. There are more details in the <a href="running-tasks.html">Running Tasks</a> section of the documentation.</p><p>Further improvements to this feature are coming soon!</p>
   </div>
 </div><div class="release-note">
   <div class="note-tags">

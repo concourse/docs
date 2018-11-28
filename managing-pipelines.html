@@ -415,8 +415,7 @@
   
 
   <p>To list the currently-configured pipelines and their paused state, run:</p><div class="highlight"><pre style="">$ fly -t example pipelines
-</pre>
-</div>
+</pre></div>
 
   
     
@@ -431,8 +430,7 @@
   <p>To rename a pipeline, run:</p><div class="highlight"><pre style="">$ fly -t example rename-pipeline <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --old-name my-pipeline <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --new-name my-cool-pipeline
-</pre>
-</div>
+</pre></div>
 
   
     
@@ -445,8 +443,7 @@
   
 
   <p>To pause a pipeline, run:</p><div class="highlight"><pre style="">$ fly -t example pause-pipeline --pipeline my-pipeline
-</pre>
-</div><p>This will prevent jobs from being scheduled and stop the periodic checking for new versions of resources. Builds that are in-flight will still finish.</p>
+</pre></div><p>This will prevent jobs from being scheduled and stop the periodic checking for new versions of resources. Builds that are in-flight will still finish.</p>
 
   
     
@@ -459,8 +456,7 @@
   
 
   <p>To unpause a pipeline, run:</p><div class="highlight"><pre style="">$ fly -t example unpause-pipeline --pipeline my-pipeline
-</pre>
-</div><p>This will resume job scheduling and resource checking.</p>
+</pre></div><p>This will resume job scheduling and resource checking.</p>
 
   
     
@@ -473,8 +469,7 @@
   
 
   <p>By default, newly configured pipelines are only visible to the pipeline&#39;s team. To make a pipeline viewable by other teams and unauthenticated users, run:</p><div class="highlight"><pre style="">$ fly -t example expose-pipeline --pipeline my-pipeline
-</pre>
-</div><p>This feature is useful if you&#39;re using Concourse for an open source project and you&#39;d like your community to be able to see into your build pipeline.</p><p>To undo this change, see <a href="managing-pipelines.html#fly-hide-pipeline"><code>fly hide-pipeline</code></a>.</p><p>Exposing a pipeline reveals basically everything but the output of builds. The pipeline will be publicly viewable, as well as resource versions and metadata, which includes things like commit messages. Build output will remain hidden by default unless the job configures <a href="jobs.html#job-public"><code>public: true</code></a>.</p>
+</pre></div><p>This feature is useful if you&#39;re using Concourse for an open source project and you&#39;d like your community to be able to see into your build pipeline.</p><p>To undo this change, see <a href="managing-pipelines.html#fly-hide-pipeline"><code>fly hide-pipeline</code></a>.</p><p>Exposing a pipeline reveals basically everything but the output of builds. The pipeline will be publicly viewable, as well as resource versions and metadata, which includes things like commit messages. Build output will remain hidden by default unless the job configures <a href="jobs.html#job-public"><code>public: true</code></a>.</p>
 
   
     
@@ -487,8 +482,7 @@
   
 
   <p>If you realize that you&#39;ve made a terrible mistake in <a href="managing-pipelines.html#fly-expose-pipeline">exposing your pipeline</a>, you can run:</p><div class="highlight"><pre style="">$ fly -t example hide-pipeline --pipeline my-pipeline
-</pre>
-</div><p>If you&#39;re panicking you can run the command&#39;s short form, <code>hp</code>, instead.</p>
+</pre></div><p>If you&#39;re panicking you can run the command&#39;s short form, <code>hp</code>, instead.</p>
 
   
     
@@ -501,8 +495,7 @@
   
 
   <p>Fly can be used to fetch and update the configuration for your pipelines. This is achieved by using the <a href="managing-pipelines.html#fly-get-pipeline"><code>fly get-pipeline</code></a> and <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a> commands. For example, to fetch the current configuration of your <code>my-pipeline</code> Concourse pipeline and print it on <code>STDOUT</code> run the following:</p><div class="highlight"><pre style="">$ fly -t example get-pipeline --pipeline my-pipeline
-</pre>
-</div><p>To get JSON instead of YAML you can use the <code>-j</code> or <code>--json</code> argument. This can be useful when inspecting your config with <a href="http://stedolan.github.io/jq/">jq</a>.</p>
+</pre></div><p>To get JSON instead of YAML you can use the <code>-j</code> or <code>--json</code> argument. This can be useful when inspecting your config with <a href="http://stedolan.github.io/jq/">jq</a>.</p>
 
   
     
@@ -515,8 +508,7 @@
   
 
   <p>Every now and then you just don&#39;t want a pipeline to be around anymore. Running <code>fly destroy-pipeline</code> will stop the pipeline activity and remove all data collected by the pipeline, including build history and collected versions.</p><p>For example, to destroy the <code>my-pipeline</code> pipeline, you would run:</p><div class="highlight"><pre style="">$ fly -t example destroy-pipeline --pipeline my-pipeline
-</pre>
-</div>
+</pre></div>
 
   
     
@@ -532,8 +524,7 @@
 </span><span style="color:#3498db"></span>    --pipeline pipeline-1 <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --pipeline pipeline-2 <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --pipeline pipeline-3
-</pre>
-</div><p>Note that this command only ensures that the given pipelines are in the given order. If there are other pipelines that you haven&#39;t included in the command, they may appear in-between, before, or after the given set.</p>
+</pre></div><p>Note that this command only ensures that the given pipelines are in the given order. If there are other pipelines that you haven&#39;t included in the command, they may appear in-between, before, or after the given set.</p>
 
   
     

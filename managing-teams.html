@@ -379,10 +379,8 @@
   
 
   <p>To list all the teams, run:</p><div class="highlight"><pre style="">$ fly -t example teams
-</pre>
-</div><p>This can be useful if you&#39;ve forgotten your team name.</p><p><strong><code>fly teams -d</code>: With Details</strong></p><p>To list all the teams with authentication details and members, run:</p><div class="highlight"><pre style="">$ fly -t example teams -d
-</pre>
-</div><p>This can be helpful when debugging OAuth, OIDC groups or listing all individual members.</p>
+</pre></div><p>This can be useful if you&#39;ve forgotten your team name.</p><p><strong><code>fly teams -d</code>: With Details</strong></p><p>To list all the teams with authentication details and members, run:</p><div class="highlight"><pre style="">$ fly -t example teams -d
+</pre></div><p>This can be helpful when debugging OAuth, OIDC groups or listing all individual members.</p>
 
   
     
@@ -395,8 +393,7 @@
   
 
   <p>To rename a team, run:</p><div class="highlight"><pre style="">$ fly -t example rename-team --old-name my-team --new-name cool-team
-</pre>
-</div><p>This can only be run by the <a href="main-team.html"><code>main</code> team</a>.</p>
+</pre></div><p>This can only be run by the <a href="main-team.html"><code>main</code> team</a>.</p>
 
   
     
@@ -409,8 +406,7 @@
   
 
   <p>To remove a team, including all of its pipelines and one-off builds, first log in as the <a href="main-team.html"><code>main</code> team</a>, and then run:</p><div class="highlight"><pre style="">$ fly -t example destroy-team --team-name my-team
-</pre>
-</div><p>Currently, if there were any workers assigned specifically to this team, they&#39;ll be orphaned, without having their containers or volumes cleaned up.</p>
+</pre></div><p>Currently, if there were any workers assigned specifically to this team, they&#39;ll be orphaned, without having their containers or volumes cleaned up.</p>
 
   
     
