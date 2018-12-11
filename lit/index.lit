@@ -147,7 +147,7 @@
   fetch bits from, and push bits to.
 
   For example, a resource with type \code{git} refers to a git repository,
-  which will be \code{clone}d in a \reference{get-step} and \code{push}ed to in
+  which will be \code{cloned} in a \reference{get-step} and \code{pushed} to in
   a \reference{put-step}. Behind the scenes, Concourse will continuously run
   \code{git fetch} to look for new commits that jobs may want to trigger on.
 
