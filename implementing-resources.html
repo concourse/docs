@@ -429,7 +429,7 @@ git pull &amp;&amp; git log 61cbef..HEAD
   <h2 class="section-header"><a name="in"></a><code>in</code>: Fetch a given resource.</h2>
   
 
-  <p>The <code>in</code> script is passed a destination directory as <code>$1</code>, and is given on stdin the configured source and a precise version of the resource to fetch.</p><p>The script must fetch the resource and place it in the given directory.</p><p>If the desired resource version is unavailable (for example, if it was deleted), the script must error.</p><p>The script must emit the fetched version, and may emit metadata as a list of key-value pairs. This data is intended for public consumption and will make it upstream, intended to be shown on the build&#39;s page.</p><p>The request will contain the following fields:</p><ul>
+  <p>The <code>in</code> script is passed a destination directory as command line argument <code>$1</code>, and is given on stdin the configured source and a precise version of the resource to fetch.</p><p>The script must fetch the resource and place it in the given directory.</p><p>If the desired resource version is unavailable (for example, if it was deleted), the script must error.</p><p>The script must emit the fetched version, and may emit metadata as a list of key-value pairs. This data is intended for public consumption and will make it upstream, intended to be shown on the build&#39;s page.</p><p>The request will contain the following fields:</p><ul>
 
   <li><p><code>source</code> is the same value as passed to <a href="implementing-resources.html#resource-check"><code>check</code></a>.</p></li>
 
