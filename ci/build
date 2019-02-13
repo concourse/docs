@@ -4,9 +4,38 @@ set -e -x
 
 export GOPATH=$PWD/gopath
 export PATH=$PWD/gopath/bin:$PATH
+export PKGPATH=$GOPATH/src/github.com/concourse
 
 git config --global user.email "concourseteam+concourse-github-bot@gmail.com"
 git config --global user.name "Concourse Bot"
+
+build-all-versions () {
+  branches=`git branch -a |grep -P '/v\d'| cut -f3 -d/`
+
+  ./scripts/build
+
+  for branch in $branches; do
+    echo "Compiling $branch..."
+    srcpath="$PKGPATH/$(echo $branch | sed 's/\./\-/g')"
+
+    git branch --track $branch origin/$branch
+    git clone --single-branch --branch $branch . $srcpath
+
+    pushd $srcpath
+      major=`echo $branch | cut -f1 -d. | cut -f2 -dv`
+      if [[ $major < 5 ]]; then
+        export GO111MODULE=off
+        git submodule update --init --recursive
+      else
+        export GO111MODULE=on
+      fi
+
+      ./scripts/build
+    popd
+
+    mv $srcpath .
+  done
+}
 
 pushd docs
   if [ -e .git ] && git remote | grep origin >/dev/null; then
@@ -24,7 +53,7 @@ pushd docs
     git rm search_index.json || true
   fi
 
-  ./scripts/build
+  build-all-versions
 
   if [ -e .git ]; then
     git add -A

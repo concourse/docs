@@ -8,9 +8,6 @@ image_resource:
 inputs:
 - name: docs
 
-caches:
-- path: gopath
-
 outputs:
 - name: built-docs
   path: docs
