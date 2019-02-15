@@ -469,7 +469,7 @@
   
 
   <p>By default, newly configured pipelines are only visible to the pipeline&#39;s team. To make a pipeline viewable by other teams and unauthenticated users, run:</p><div class="highlight"><pre style="">$ fly -t example expose-pipeline --pipeline my-pipeline
-</pre></div><p>This feature is useful if you&#39;re using Concourse for an open source project and you&#39;d like your community to be able to see into your build pipeline.</p><p>To undo this change, see <a href="managing-pipelines.html#fly-hide-pipeline"><code>fly hide-pipeline</code></a>.</p><p>Exposing a pipeline reveals basically everything but the output of builds. The pipeline will be publicly viewable, as well as resource versions and metadata, which includes things like commit messages. Build output will remain hidden by default unless the job configures <a href="jobs.html#job-public"><code>public: true</code></a>.</p>
+</pre></div><p>This feature is useful if you&#39;re using Concourse for an open source project and you&#39;d like your community to be able to see into your build pipeline.</p><p>To undo this change, see <a href="managing-pipelines.html#fly-hide-pipeline"><code>fly hide-pipeline</code></a>.</p><p>Exposing a pipeline reveals basically everything but the output of builds. The pipeline will be publicly viewable, as well as resource versions and metadata, which includes things like commit messages. Build output will remain hidden by default unless the job configures <a href="jobs.html#job-public"><code>public: true</code></a>.</p><p>Currently, step names within a build are visible in the API even without <code>public: true</code>. See <a href="http://github.com/concourse/concourse/issues/2116"><strong>concourse #2116</strong></a> for more info.</p>
 
   
     
