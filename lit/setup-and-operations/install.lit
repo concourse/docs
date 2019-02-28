@@ -341,6 +341,77 @@ page.
   }
 
   \section{
+    \title{Bitbucket Cloud Auth}{bitbucket-cloud-auth-config}
+
+    A Concourse server can authenticate against Bitbucket Cloud to take advantage of
+    their permission model.
+
+    \section{
+      \title{Creating a Bitbucket Cloud application}
+
+      First you need to \link{create an OAuth consumer on
+      Bitbucket Cloud}{https://confluence.atlassian.com/bitbucket/oauth-on-bitbucket-cloud-238027431.html#OAuthonBitbucketCloud-Createaconsumer}.
+      Give this consumer the following permissions:
+      \list{
+        Account:
+        \list{
+          Email
+        }{
+          Read
+        }
+      }{
+        Team membership:
+        \list{
+          Read
+        }
+      }
+
+      The callback URL will be the external URL of your Concourse server with
+      \code{/sky/issuer/callback} appended. For example, Concourse's own CI
+      server's callback URL would be
+      \code{https://ci.concourse-ci.org/sky/issuer/callback}.
+    }
+
+    \section{
+      \title{Configuring the client}
+
+      You will be given a Key and a Secret for your new consumer.
+      These will then be passed as the following flags to
+      \code{concourse web}:
+
+      \list{
+        \code{--bitbucket-cloud-client-id=KEY}
+      }{
+        \code{--bitbucket-cloud-client-secret=SECRET}
+      }
+
+      Here's a full example:
+
+      \codeblock{bash}{{{
+      concourse web \
+        --bitbucket-cloud-client-id KEY \
+        --bitbucket-cloud-client-secret SECRET
+      }}}
+
+    }
+
+    \section{
+      \title{Adding Bitbucket Cloud Users to the \code{main} Team}
+
+      Once you have added the Bitbucket Cloud auth connector, you can
+      specify a Bitbucket Cloud Team, and/or Bitbucket Cloud User to the
+      \reference{main-team}.
+
+      \codeblock{bash}{{{
+        concourse web \
+          ... \
+          --main-team-bitbucket-cloud-team=TEAM_NAME \
+          --main-team-bitbucket-cloud-user=USERNAME
+      }}}
+    }
+  }
+
+  \section{
     \title{Generic OIDC}{generic-oidc-config}
 
     If your auth provider adheres to the OIDC specification then you should use
