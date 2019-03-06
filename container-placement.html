@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60508041-1"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-60508041-1');
+</script>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=775" />
+<title>Container Placement - Concourse CI</title>
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+<link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+<link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+<script src="js/search.js"></script>
+  </head>
+  <body>
+    <div class="top-logo">
+  <a href="/">Concourse</a>
+</div>
+
+<nav class="top-nav">
+  
+  <a href="docs.html" class="active">Docs</a>
+  
+  <a href="download.html">Download</a>
+  
+  <a href="project.html">Project</a>
+  
+  <a href="community.html">Community</a>
+  
+  <a href="learning.html">Learning</a>
+  
+</nav>
+
+<div class="top-search" id="search" onclick="gtag('event', 'search-click');">
+  <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
+</div>
+
+<script type="text/javascript">
+  Elm.Main.embed(document.getElementById("search"));
+</script>
+
+    <div class="page-nav">
+      
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1</span>
+        
+        
+  <a href="docs.html"  class="active">Docs</a>
+
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="install.html" >Install</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="auth.html" >Auth &amp; Teams</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="fly.html" >The <code>fly</code> CLI</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="pipelines.html" >Pipelines</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resources.html" >Resources</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="jobs.html" >Jobs</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tasks.html" >Tasks</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.8&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="builds.html" >Builds</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.9&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html"  class="active">Operation</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1.9</span>
+        
+        
+  <a href="operation.html"  class="active">Operation</a>
+
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.9.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="encryption.html" >Encryption</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.9.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="creds.html" >Credential Management</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.9.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="metrics.html" >Metrics</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.9.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="container-placement.html"  class="self">Container Placement</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.9.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="global-resources.html" >Global Resources (experimental)</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.9.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="administration.html" >Administration</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+
+
+<div class="context">
+  <div class="page-toc">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1.9.4</span>
+        
+        
+  <a href="container-placement.html"  class="self">Container Placement</a>
+
+      </div>
+
+      
+<div class="children">
+  <table>
+    
+      <tr>
+        
+          <td class="number-cell" align="left"></td>
+        
+        <td class="title-cell">
+          <a href="container-placement.html#volume-locality-strategy">The <code>volume-locality</code> strategy</a>
+
+          
+        </td>
+      </tr>
+    
+      <tr>
+        
+          <td class="number-cell" align="left"></td>
+        
+        <td class="title-cell">
+          <a href="container-placement.html#fewest-build-containers-strategy">The <code>fewest-build-containers</code> strategy</a>
+
+          
+        </td>
+      </tr>
+    
+      <tr>
+        
+          <td class="number-cell" align="left"></td>
+        
+        <td class="title-cell">
+          <a href="container-placement.html#random-strategy">The <code>random</code> strategy</a>
+
+          
+        </td>
+      </tr>
+    
+  </table>
+</div>
+
+    </nav>
+  </div>
+</div>
+
+
+
+
+    </div>
+
+    <div class="page-aside"></div>
+
+    <div class="page-content">
+      <div class="section" id="section_container-placement">
+  
+  <h1 class="section-header"><a name="container-placement"></a><span class="section-number">1.9.4 </span>Container Placement</h1>
+  
+
+  <p>Each <a href="steps.html">step</a> in a build is executed inside a container. The <a href="concourse-web.html"><code>web</code> node</a> distributes containers across the worker cluster depending on the configured strategy.</p>
+
+  
+    
+      <div class="section" id="section_volume-locality-strategy">
+  
+  <h2 class="section-header"><a name="volume-locality-strategy"></a>The <code>volume-locality</code> strategy</h2>
+  
+
+  <p>When using <code>volume-locality</code>, the <a href="concourse-web.html"><code>web</code> node</a> places <a href="task-step.html"><code>task</code> step</a> and <a href="put-step.html"><code>put</code> step</a> containers on workers where a majority of their inputs are already present. <strong>This is the default strategy.</strong></p><p>The advantage of this approach is that it reduces the likelihood that large artifacts will have to be streamed from one <a href="concourse-worker.html"><code>worker</code> node</a>, through the <a href="concourse-web.html"><code>web</code> node</a>, and to the target <a href="concourse-worker.html"><code>worker</code> node</a>. For large artifacts, this can result in quite a bit of overhead.</p><p>The disadvantage of this approach is that it can sometimes result in builds &#34;gravitating&#34; to a particular worker and overloading it, at least until the <a href="caching-and-retention.html#resource-retention">resource caches</a> warm across the worker pool.</p><p>If your builds tend to be light on artifacts and heavy on task execution, you may want to try the <a href="container-placement.html#fewest-build-containers-strategy"><code>fewest-build-containers</code> strategy</a> instead.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_fewest-build-containers-strategy">
+  
+  <h2 class="section-header"><a name="fewest-build-containers-strategy"></a>The <code>fewest-build-containers</code> strategy</h2>
+  
+
+  <p>When using the <code>fewest-build-containers</code> strategy, step containers are placed on the worker that has the fewest build containers (i.e. containers for other steps of other builds).</p><p>To use this strategy, set the following env var on the <a href="concourse-web.html"><code>web</code> node</a>:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_CONTAINER_PLACEMENT_STRATEGY</span>=fewest-build-containers
+</pre></div>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_random-strategy">
+  
+  <h2 class="section-header"><a name="random-strategy"></a>The <code>random</code> strategy</h2>
+  
+
+  <p>With the <code>random</code> strategy, the <a href="concourse-web.html"><code>web</code> node</a> places <code>get</code>, <code>put</code> and <code>task</code> containers on any worker, ignoring any affinity.</p><p>As this is truly random, this will be fine until one day it&#39;s not fine.</p><p>To use this strategy, set the following env var on the <a href="concourse-web.html"><code>web</code> node</a>:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_CONTAINER_PLACEMENT_STRATEGY</span>=random
+</pre></div>
+
+  
+    
+  
+</div>
+    
+  
+</div>
+
+      <nav class="prev-next">
+      
+        <div class="prev">
+          prev:
+
+          
+          <span class="section-number">1.9.3</span>
+          
+
+          <a href="metrics.html">Metrics</a>
+        </div>
+      
+
+      
+        <div class="next">
+          next:
+
+          
+          <span class="section-number">1.9.5</span>
+          
+
+          <a href="global-resources.html">Global Resources (experimental)</a>
+        </div>
+      
+      </nav>
+    </div>
+
+    <ul class="improve-docs">
+      <li><img src="images/github.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+      <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+    </ul>
+  </body>
+</html>

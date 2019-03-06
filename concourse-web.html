@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60508041-1"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-60508041-1');
+</script>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=775" />
+<title>Running a web node - Concourse CI</title>
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+<link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+<link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+<script src="js/search.js"></script>
+  </head>
+  <body>
+    <div class="top-logo">
+  <a href="/">Concourse</a>
+</div>
+
+<nav class="top-nav">
+  
+  <a href="docs.html" class="active">Docs</a>
+  
+  <a href="download.html">Download</a>
+  
+  <a href="project.html">Project</a>
+  
+  <a href="community.html">Community</a>
+  
+  <a href="learning.html">Learning</a>
+  
+</nav>
+
+<div class="top-search" id="search" onclick="gtag('event', 'search-click');">
+  <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
+</div>
+
+<script type="text/javascript">
+  Elm.Main.embed(document.getElementById("search"));
+</script>
+
+    <div class="page-nav">
+      
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1</span>
+        
+        
+  <a href="docs.html"  class="active">Docs</a>
+
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="install.html"  class="active">Install</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="auth.html" >Auth &amp; Teams</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="fly.html" >The <code>fly</code> CLI</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="pipelines.html" >Pipelines</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resources.html" >Resources</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="jobs.html" >Jobs</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tasks.html" >Tasks</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.8&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="builds.html" >Builds</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.9&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1.1</span>
+        
+        
+  <a href="install.html"  class="active">Install</a>
+
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.1.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concourse-generate-key.html" >Generating Keys</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.1.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="postgresql-node.html" >Running a PostgreSQL node</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.1.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concourse-web.html"  class="self">Running a <code>web</code> node</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.1.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concourse-worker.html" >Running a <code>worker</code> node</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+
+
+
+
+
+    </div>
+
+    <div class="page-aside"></div>
+
+    <div class="page-content">
+      <div class="section" id="section_concourse-web">
+  
+  <h1 class="section-header"><a name="concourse-web"></a><span class="section-number">1.1.3 </span>Running a <code>web</code> node</h1>
+  
+
+  <p>The <code>web</code> node is responsible for running the web UI, API, and as well as performing all pipeline scheduling. It&#39;s basically the brain of Concourse.</p>
+
+  
+    
+      <div class="section" id="section_web-prerequisites">
+  
+  <h2 class="section-header"><a name="web-prerequisites"></a>Prerequisites</h2>
+  
+
+  <p>Nothing special - the <code>web</code> node is a pretty simple Go application that can be run like a 12-factor app.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_web-running">
+  
+  <h2 class="section-header"><a name="web-running"></a>Running</h2>
+  
+
+  <p>The <code>concourse</code> CLI can run as a <code>web</code> node via the <code>web</code> subcommand.</p><p>Before running it, let&#39;s configure a local user so we can log in:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_ADD_LOCAL_USER</span>=myuser:mypass
+<span style="color:#3498db">CONCOURSE_MAIN_TEAM_LOCAL_USER</span>=myuser
+</pre></div><p>This will configure a single user, <code>myuser</code>, with the password <code>mypass</code>. You&#39;ll probably want to change those to sensible values, and later you may want to configure a proper auth provider - check out <a href="auth.html">Auth &amp; Teams</a> whenever you&#39;re ready.</p><p>Next, you&#39;ll need to configure the session signing key, the SSH key for the worker gateway, and the authorized worker key. Check <a href="concourse-generate-key.html">Generating Keys</a> to learn what these are and how they are created.</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_SESSION_SIGNING_KEY</span>=path/to/session_signing_key
+<span style="color:#3498db">CONCOURSE_TSA_HOST_KEY</span>=path/to/tsa_host_key
+<span style="color:#3498db">CONCOURSE_TSA_AUTHORIZED_KEYS</span>=path/to/authorized_worker_keys
+</pre></div><p>Finally, <code>web</code> needs to know how to reach your Postgres database. This can be set like so:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_POSTGRES_HOST</span>=<span style="color:#1abc9c;font-weight:bold">127</span>.0.0.1 <span style="color:#9b9b9b"># default</span>
+<span style="color:#3498db">CONCOURSE_POSTGRES_PORT</span>=<span style="color:#1abc9c;font-weight:bold">5432</span>      <span style="color:#9b9b9b"># default</span>
+<span style="color:#3498db">CONCOURSE_POSTGRES_DATABASE</span>=atc   <span style="color:#9b9b9b"># default</span>
+<span style="color:#3498db">CONCOURSE_POSTGRES_USER</span>=my-user
+<span style="color:#3498db">CONCOURSE_POSTGRES_PASSWORD</span>=my-password
+</pre></div><p>If you&#39;re running PostgreSQL locally, you can probably just point it to the socket and rely on the <code>peer</code> auth:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_POSTGRES_SOCKET</span>=/var/run/postgresql
+</pre></div><p>Now that everything&#39;s set, run:</p><div class="highlight"><pre style="">concourse web
+</pre></div><p>All logs will be emitted to <code>stdout</code>, with any panics or lower-level errors being emitted to <code>stderr</code>.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_web-properties">
+  
+  <h2 class="section-header"><a name="web-properties"></a>Properties</h2>
+  
+
+  <p>CPU usage: peaks during pipeline scheduling, primarily when scheduling <a href="pipelines.html#pipeline-jobs"><code><strong>jobs</strong></code></a>. Mitigated by adding more <code>web</code> nodes. In this regard, <code>web</code> nodes can be considered compute-heavy more than anything else at large scale.</p><p>Memory usage: not very well classified at the moment as it&#39;s not generally a concern. Give it a few gigabytes and keep an eye on it.</p><p>Disk usage: none</p><p>Bandwidth usage: aside from handling external traffic, the <code>web</code> node will at times have to stream bits out from one worker and into another while executing <a href="steps.html">Steps</a>.</p><p>Highly available: yes; <code>web</code> nodes can all be configured the same (aside from <code>--peer-url</code>) and placed behind a load balancer. Periodic tasks like garbage-collection will not be duplicated for each node.</p><p>Horizontally scalable: yes; they will coordinate workloads using the database, resulting in less work for each node and thus lower CPU usage.</p><p>Outbound traffic:</p><ul>
+
+  <li><p><code>db</code> on its configured port for persistence</p></li>
+
+  <li><p><code>db</code> on its configured port for locking and coordinating in a multi-<code>web</code> node deployment</p></li>
+
+  <li><p>directly-registered <code>worker</code> nodes on ports <code>7777</code>, <code>7788</code>, and <code>7799</code> for checking <a href="pipelines.html#pipeline-resources"><code><strong>resources</strong></code></a>, executing builds, and performing garbage-collection</p></li>
+
+  <li><p>other <code>web</code> nodes (possibly itself) on an ephemeral port when a worker is forwarded through the web node&#39;s TSA</p></li>
+
+</ul><p>Inbound traffic:</p><ul>
+
+  <li><p><code>worker</code> connects to the TSA on port <code>2222</code> for registration</p></li>
+
+  <li><p><code>worker</code> downloads inputs from the ATC during <a href="running-tasks.html#fly-execute"><code>fly execute</code></a> via its external URL</p></li>
+
+  <li><p>external traffic to the ATC API via the web UI and <a href="fly.html"><code>fly</code> CLI</a></p></li>
+
+</ul>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_web-operation">
+  
+  <h2 class="section-header"><a name="web-operation"></a>Operation</h2>
+  
+
+  <p>The <code>web</code> nodes themselves are stateless - they don&#39;t store anything on disk, and coordinate entirely using the database.</p>
+
+  
+    
+      <div class="section" id="section_scaling">
+  
+  <h3 class="section-header"><a name="scaling"></a>Scaling</h3>
+  
+
+  <p>The <a href="concourse-web.html"><code>web</code> node</a> can be scaled up for high availability. They&#39;ll also roughly share their scheduling workloads, using the database to synchronize. This is done by just running more <code>web</code> commands on different machines, and optionally putting them behind a load balancer.</p><p>To run a cluster of <a href="concourse-web.html"><code>web</code> node</a>s, you&#39;ll first need to ensure they&#39;re all pointing to the same PostgreSQL server.</p><p>Next, you&#39;ll need to configure a <em>peer URL</em>. This is a URL that can be used to reach this <code>web</code> node&#39;s web server from other <code>web</code> nodes. Typically this uses a private IP, like so:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_PEER_URL</span>=http://10.10.0.1:8080
+</pre></div><p>Finally, if all of these nodes are going to be accessed through a load balancer, you&#39;ll need to configure the external URL that will be used to reach your Concourse cluster:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_EXTERNAL_URL</span>=https://ci.example.com
+</pre></div><p>Aside from the peer URL, all configuration must be consistent across all <code>web</code> nodes in the cluster to ensure consistent results.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_restarting-and-upgrading">
+  
+  <h3 class="section-header"><a name="restarting-and-upgrading"></a>Restarting &amp; Upgrading</h3>
+  
+
+  <p>The <code>web</code> nodes can be killed and restarted willy-nilly. No draining is necessary; if the <code>web</code> node was orchestrating a build it will just continue where it left off when it comes back or, or the build will be picked up by one of the other <code>web</code> nodes.</p><p>To upgrade a <code>web</code> node, stop its process and start a new one using the newly installed <code>concourse</code>. Any migrations will be run automatically on start. If <code>web</code> nodes are started in parallel, only one will run the migrations.</p><p>Note that we don&#39;t currently guarantee a lack of funny-business if you&#39;re running mixed Concourse versions - database migrations can perform modiciations that confuse other <code>web</code> nodes. So there may be some turbulence during a rolling upgrade, but everything should stabilize once all <code>web</code> nodes are running the latest version.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_downgrading">
+  
+  <h3 class="section-header"><a name="downgrading"></a>Downgrading</h3>
+  
+
+  <p>If you&#39;re stuck in a pinch and need to downgrade from one version of Concourse to another, you can use the <code>concourse migrate</code> command.</p><em><p>Note: support for down migrations is a fairly recent addition to Concourse; it is not supported for downgrading to v3.6.0 and below.</p></em><p>First, grab the desired migration version by running the following:</p><div class="highlight"><pre style=""><span style="color:#9b9b9b"># make sure this is the *old* Concourse binary</span>
+$ concourse migrate --supported-db-version
+<span style="color:#1abc9c;font-weight:bold">1551110547</span>
+</pre></div><p>That number (yours will be different) is the expected migration version for that version of Concourse.</p><p>Next, run the following with the <em>new</em> Concourse binary:</p><div class="highlight"><pre style="">$ concourse migrate --migrate-db-to-version=<span style="color:#1abc9c;font-weight:bold">1551110547</span>
+</pre></div><p>This will need the same <code>CONCOURSE_POSTGRES_*</code> configuration described in <a href="concourse-web.html#web-running">Running</a>.</p><p>Once this completes, switch all <code>web</code> nodes back to the older <code>concourse</code> binary and you should be good to go.</p>
+
+  
+    
+  
+</div>
+    
+  
+</div>
+    
+  
+</div>
+
+      <nav class="prev-next">
+      
+        <div class="prev">
+          prev:
+
+          
+          <span class="section-number">1.1.2</span>
+          
+
+          <a href="postgresql-node.html">Running a PostgreSQL node</a>
+        </div>
+      
+
+      
+        <div class="next">
+          next:
+
+          
+          <span class="section-number">1.1.4</span>
+          
+
+          <a href="concourse-worker.html">Running a <code>worker</code> node</a>
+        </div>
+      
+      </nav>
+    </div>
+
+    <ul class="improve-docs">
+      <li><img src="images/github.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+      <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+    </ul>
+  </body>
+</html>

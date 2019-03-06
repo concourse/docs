@@ -3,50 +3,57 @@
   <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60508041-1"></script>
 
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-      gtag('config', 'UA-60508041-1');
-    </script>
+  gtag('config', 'UA-60508041-1');
+</script>
 
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=775" />
-    <title>Concourse CI - Managing Resource Types</title>
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
-    <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
-    <link rel="stylesheet" type="text/css" href="css/booklit.css" />
-    <link rel="stylesheet" type="text/css" href="css/survey.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
-    <script src="js/search.js"></script>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=775" />
+<title>Managing Resource Types - Concourse CI</title>
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+<link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+<link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+<script src="js/search.js"></script>
   </head>
   <body>
-    <div id="top">
-      <div class="header">
-        <h1><a href="/" class="logo"></a><a href="/">Concourse</a></h1>
+    <div class="top-logo">
+  <a href="/">Concourse</a>
+</div>
 
-        <nav>
-          <a href="tutorials.html">tutorial</a>
-          <a href="reference.html">reference</a>
-          <a href="https://discuss.concourse-ci.org">discuss</a>
-          <a href="download.html">download</a>
+<nav class="top-nav">
+  
+  <a href="docs.html" class="active">Docs</a>
+  
+  <a href="download.html">Download</a>
+  
+  <a href="project.html">Project</a>
+  
+  <a href="community.html">Community</a>
+  
+  <a href="learning.html">Learning</a>
+  
+</nav>
 
-          <div class="search" id="search"  onclick="gtag('event', 'search-click');">
-            <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
-          </div>
-        </nav>
+<div class="top-search" id="search" onclick="gtag('event', 'search-click');">
+  <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
+</div>
 
-        <script type="text/javascript">
-          Elm.Main.embed(document.getElementById("search"));
-        </script>
-      </div>
-    </div>
-    <div id="content">
-      <div class="side">
-        
+<script type="text/javascript">
+  Elm.Main.embed(document.getElementById("search"));
+</script>
+
+    <div class="page-nav">
+      
+
+
+
 
 
 
@@ -55,102 +62,6 @@
   
   
   
-  
-  
-  
-
-  
-  <div class="context">
-    <nav>
-      <div class="top">
-        
-  <a href="index.html" >Docs</a>
-
-      </div>
-
-      <input type="checkbox" class="toggle"  />
-      <span class="arrow"></span>
-      <div class="children">
-        <table>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="about.html" >About</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="setup-and-operations.html" >Setup &amp; Operations</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="concepts.html" >Concepts</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="tutorials.html" >Tutorials</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="reference.html" >Reference</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">6&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="contribute.html" >Contribute</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">7&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="community.html" >Community</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">8&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="trademarks.html" >Trademarks</a>
-</td>
-          </tr>
-        
-        </table>
-      </div>
-    </nav>
-  </div>
-  
-
   
 
   
@@ -158,45 +69,46 @@
     <nav>
       <div class="top">
         
-  <a href="reference.html" >Reference</a>
+        <span class="section-number">1</span>
+        
+        
+  <a href="docs.html"  class="active">Docs</a>
 
       </div>
 
-      <input type="checkbox" class="toggle"  />
-      <span class="arrow"></span>
       <div class="children">
         <table>
         
           <tr>
             
-              <td class="number-cell" align="right">5.1&nbsp;</td>
+              <td class="number-cell" align="right">1.1&nbsp;</td>
             
             <td class="title-cell">
-  <a href="fly.html" ><code>fly</code></a>
+  <a href="install.html" >Install</a>
 </td>
           </tr>
         
           <tr>
             
-              <td class="number-cell" align="right">5.2&nbsp;</td>
+              <td class="number-cell" align="right">1.2&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="auth.html" >Auth &amp; Teams</a>
 </td>
           </tr>
         
           <tr>
             
-              <td class="number-cell" align="right">5.3&nbsp;</td>
+              <td class="number-cell" align="right">1.3&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="fly.html" >The <code>fly</code> CLI</a>
 </td>
           </tr>
         
           <tr>
             
-              <td class="number-cell" align="right">5.4&nbsp;</td>
+              <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
   <a href="pipelines.html" >Pipelines</a>
@@ -205,7 +117,16 @@
         
           <tr>
             
-              <td class="number-cell" align="right">5.5&nbsp;</td>
+              <td class="number-cell" align="right">1.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resources.html"  class="active">Resources</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
   <a href="jobs.html" >Jobs</a>
@@ -214,19 +135,28 @@
         
           <tr>
             
-              <td class="number-cell" align="right">5.6&nbsp;</td>
+              <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resources.html" >Resources</a>
+  <a href="tasks.html" >Tasks</a>
 </td>
           </tr>
         
           <tr>
             
-              <td class="number-cell" align="right">5.7&nbsp;</td>
+              <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
+  <a href="builds.html" >Builds</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.9&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
 </td>
           </tr>
         
@@ -243,48 +173,31 @@
     <nav>
       <div class="top">
         
-  <a href="resource-types.html" >Resource Types</a>
+        <span class="section-number">1.5</span>
+        
+        
+  <a href="resources.html"  class="active">Resources</a>
 
       </div>
 
-      <input type="checkbox" class="toggle" checked />
-      <span class="arrow"></span>
       <div class="children">
         <table>
         
           <tr>
             
-              <td class="number-cell" align="left"></td>
+              <td class="number-cell" align="right">1.5.1&nbsp;</td>
             
             <td class="title-cell">
-  <a href="managing-resource-types.html"  class="self">Managing Resource Types</a>
+  <a href="managing-resources.html" >Managing Resources</a>
 </td>
           </tr>
         
           <tr>
             
-              <td class="number-cell" align="left"></td>
+              <td class="number-cell" align="right">1.5.2&nbsp;</td>
             
             <td class="title-cell">
-  <a href="included-resources.html" >Resources Provided With Concourse</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="left"></td>
-            
-            <td class="title-cell">
-  <a href="community-resources.html" >Community Resources</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="left"></td>
-            
-            <td class="title-cell">
-  <a href="implementing-resources.html" >Implementing a Resource</a>
+  <a href="resource-types.html"  class="active">Resource Types</a>
 </td>
           </tr>
         
@@ -301,21 +214,40 @@
     <nav>
       <div class="top">
         
-  <a href="managing-resource-types.html"  class="self">Managing Resource Types</a>
+        <span class="section-number">1.5.2</span>
+        
+        
+  <a href="resource-types.html"  class="active">Resource Types</a>
 
       </div>
 
-      <input type="checkbox" class="toggle" checked />
-      <span class="arrow"></span>
       <div class="children">
         <table>
         
           <tr>
             
-              <td class="number-cell" align="left"></td>
+              <td class="number-cell" align="right">1.5.2.1&nbsp;</td>
             
             <td class="title-cell">
-  <a href="managing-resource-types.html#fly-check-resource-type" ><code>fly check-resource-type</code></a>
+  <a href="included-resource-types.html" >Resource Types Provided With Concourse</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.5.2.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="managing-resource-types.html"  class="self">Managing Resource Types</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.5.2.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="implementing-resource-types.html" >Implementing a Resource Type</a>
 </td>
           </tr>
         
@@ -329,17 +261,51 @@
 
 
 
+<div class="context">
+  <div class="page-toc">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1.5.2.2</span>
+        
+        
+  <a href="managing-resource-types.html"  class="self">Managing Resource Types</a>
 
-<ul class="improve-docs">
-  <li><img src="images/github.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
-
-  <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
-</ul>
       </div>
-      <div class="page">
-        <div class="section" id="section_managing-resource-types">
+
+      
+<div class="children">
+  <table>
+    
+      <tr>
+        
+          <td class="number-cell" align="left"></td>
+        
+        <td class="title-cell">
+          <a href="managing-resource-types.html#fly-check-resource-type"><code>fly check-resource-type</code></a>
+
+          
+        </td>
+      </tr>
+    
+  </table>
+</div>
+
+    </nav>
+  </div>
+</div>
+
+
+
+
+    </div>
+
+    <div class="page-aside"></div>
+
+    <div class="page-content">
+      <div class="section" id="section_managing-resource-types">
   
-  <h1 class="section-header"><a name="managing-resource-types"></a>Managing Resource Types</h1>
+  <h1 class="section-header"><a name="managing-resource-types"></a><span class="section-number">1.5.2.2 </span>Managing Resource Types</h1>
   
 
   
@@ -361,8 +327,37 @@
     
   
 </div>
-      </div>
+
+      <nav class="prev-next">
       
+        <div class="prev">
+          prev:
+
+          
+          <span class="section-number">1.5.2.1</span>
+          
+
+          <a href="included-resource-types.html">Resource Types Provided With Concourse</a>
+        </div>
+      
+
+      
+        <div class="next">
+          next:
+
+          
+          <span class="section-number">1.5.2.3</span>
+          
+
+          <a href="implementing-resource-types.html">Implementing a Resource Type</a>
+        </div>
+      
+      </nav>
     </div>
+
+    <ul class="improve-docs">
+      <li><img src="images/github.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+      <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+    </ul>
   </body>
 </html>

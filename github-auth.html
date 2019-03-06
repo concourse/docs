@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60508041-1"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-60508041-1');
+</script>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=775" />
+<title>GitHub auth - Concourse CI</title>
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+<link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+<link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+<script src="js/search.js"></script>
+  </head>
+  <body>
+    <div class="top-logo">
+  <a href="/">Concourse</a>
+</div>
+
+<nav class="top-nav">
+  
+  <a href="docs.html" class="active">Docs</a>
+  
+  <a href="download.html">Download</a>
+  
+  <a href="project.html">Project</a>
+  
+  <a href="community.html">Community</a>
+  
+  <a href="learning.html">Learning</a>
+  
+</nav>
+
+<div class="top-search" id="search" onclick="gtag('event', 'search-click');">
+  <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
+</div>
+
+<script type="text/javascript">
+  Elm.Main.embed(document.getElementById("search"));
+</script>
+
+    <div class="page-nav">
+      
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1</span>
+        
+        
+  <a href="docs.html"  class="active">Docs</a>
+
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="install.html" >Install</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="auth.html"  class="active">Auth &amp; Teams</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="fly.html" >The <code>fly</code> CLI</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="pipelines.html" >Pipelines</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resources.html" >Resources</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="jobs.html" >Jobs</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tasks.html" >Tasks</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.8&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="builds.html" >Builds</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.9&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1.2</span>
+        
+        
+  <a href="auth.html"  class="active">Auth &amp; Teams</a>
+
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="main-team.html" >The <code>main</code> team</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="configuring-auth.html"  class="active">Configuring Auth</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="managing-teams.html" >Managing Teams</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="user-roles.html" >User Roles &amp; Permissions</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="exposing.html" >Pipeline &amp; Build Visibility</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="teams-caveats.html" >Security Caveats</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1.2.2</span>
+        
+        
+  <a href="configuring-auth.html"  class="active">Configuring Auth</a>
+
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.2.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="local-auth.html" >Local User auth</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.2.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="github-auth.html"  class="self">GitHub auth</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.2.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="gitlab-auth.html" >GitLab auth</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.2.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="cf-uaa-auth.html" >CF/UAA auth</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.2.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="ldap-auth.html" >LDAP auth</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.2.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="generic-oidc-auth.html" >Generic OIDC auth</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.2.7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="generic-oauth.html" >Generic oAuth</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+
+
+
+
+
+    </div>
+
+    <div class="page-aside"></div>
+
+    <div class="page-content">
+      <div class="section" id="section_github-auth">
+  
+  <h1 class="section-header"><a name="github-auth"></a><span class="section-number">1.2.2.2 </span>GitHub auth</h1>
+  
+
+  <p>A Concourse server can authenticate against GitHub to leverage their permission model and other security improvements in their infrastructure.</p>
+
+  
+    
+      <div class="section" id="section_github-authentication">
+  
+  <h2 class="section-header"><a name="github-authentication"></a>Authentication</h2>
+  
+
+  <p>First, you&#39;ll need to <a href="https://github.com/settings/applications/new">create an OAuth application on GitHub</a>.</p><p>The &#34;Authorization callback URL&#34; must be the URL of your Concourse server with <code>/sky/issuer/callback</code> appended. This address must be reachable by GitHub - it can&#39;t be <code>localhost</code>.</p><p>For example, Concourse&#39;s own CI server&#39;s callback URL would be:</p><div class="highlight"><pre style="">https://ci.concourse-ci.org/sky/issuer/callback
+</pre></div><p>You will be given a Client ID and a Client Secret for your new application. The client ID and secret must then be configured on the <a href="concourse-web.html"><code>web</code> node</a> by setting the following env:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_GITHUB_CLIENT_ID</span>=myclientid
+<span style="color:#3498db">CONCOURSE_GITHUB_CLIENT_SECRET</span>=myclientsecret
+</pre></div><p>Note that the client must be created under an <em>organization</em> if you want to authorize users based on organization/team membership. If the client is created under a personal account, only individual users can be authorized.</p><p>If you&#39;re configuring GitHub Enterprise, you&#39;ll also need to set the following env:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_GITHUB_HOST</span>=github.example.com
+<span style="color:#3498db">CONCOURSE_GITHUB_CA_CERT</span>=/path/to/ca_cert
+</pre></div><p>The GitHub Enterprise host must not contain a scheme, or a trailing slash.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_github-authorization">
+  
+  <h2 class="section-header"><a name="github-authorization"></a>Authorization</h2>
+  
+
+  <p>Users, teams, and entire organizations can be authorized for a team by passing the following flags to <a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a>:</p><dl>
+  
+  <dt><code>--github-user=LOGIN</code></dt>
+    <dd><p>Authorize an individual user.</p></dd>
+  
+  <dt><code>--github-org=ORG_NAME</code></dt>
+    <dd><p>Authorize an entire organization&#39;s members.</p></dd>
+  
+  <dt><code>--github-team=ORG_NAME:TEAM_NAME</code></dt>
+    <dd><p>Authorize a team&#39;s members within an organization.</p></dd>
+  
+</dl><p>For example:</p><div class="highlight"><pre style="">$ fly set-team -n my-team <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --github-user my-github-login <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --github-org my-org <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --github-team my-other-org:my-team
+</pre></div><p>...or via <code>--config</code> for <a href="managing-teams.html#setting-roles">setting user roles</a>:</p><div class="highlight"><pre style="">roles:
+- name: member
+  github:
+    users: [<span style="color:#e67e22">&#34;my-github-login&#34;</span>]
+    orgs: [<span style="color:#e67e22">&#34;my-org&#34;</span>]
+    teams: [<span style="color:#e67e22">&#34;my-other-org:my-team&#34;</span>]
+</pre></div>
+
+  
+    
+      <div class="section" id="section_configuring-main-team-authorization">
+  
+  <h3 class="section-header"><a name="configuring-main-team-authorization"></a>Configuring <code>main</code> Team Authorization</h3>
+  
+
+  <p>GitHub users, teams, and organizations can be added to the <a href="main-team.html"><code>main</code> team</a> authorization config by setting the following env on the <a href="concourse-web.html"><code>web</code> node</a>:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_MAIN_TEAM_GITHUB_ORG</span>=org-name
+<span style="color:#3498db">CONCOURSE_MAIN_TEAM_GITHUB_TEAM</span>=org-name:team-name
+<span style="color:#3498db">CONCOURSE_MAIN_TEAM_GITHUB_USER</span>=some-user
+</pre></div><p>Multiple orgs, teams, and users may be specified by comma-separating them.</p>
+
+  
+    
+  
+</div>
+    
+  
+</div>
+    
+  
+</div>
+
+      <nav class="prev-next">
+      
+        <div class="prev">
+          prev:
+
+          
+          <span class="section-number">1.2.2.1</span>
+          
+
+          <a href="local-auth.html">Local User auth</a>
+        </div>
+      
+
+      
+        <div class="next">
+          next:
+
+          
+          <span class="section-number">1.2.2.3</span>
+          
+
+          <a href="gitlab-auth.html">GitLab auth</a>
+        </div>
+      
+      </nav>
+    </div>
+
+    <ul class="improve-docs">
+      <li><img src="images/github.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+      <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+    </ul>
+  </body>
+</html>

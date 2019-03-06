@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60508041-1"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-60508041-1');
+</script>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=775" />
+<title>Running a PostgreSQL node - Concourse CI</title>
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+<link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+<link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+<script src="js/search.js"></script>
+  </head>
+  <body>
+    <div class="top-logo">
+  <a href="/">Concourse</a>
+</div>
+
+<nav class="top-nav">
+  
+  <a href="docs.html" class="active">Docs</a>
+  
+  <a href="download.html">Download</a>
+  
+  <a href="project.html">Project</a>
+  
+  <a href="community.html">Community</a>
+  
+  <a href="learning.html">Learning</a>
+  
+</nav>
+
+<div class="top-search" id="search" onclick="gtag('event', 'search-click');">
+  <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
+</div>
+
+<script type="text/javascript">
+  Elm.Main.embed(document.getElementById("search"));
+</script>
+
+    <div class="page-nav">
+      
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1</span>
+        
+        
+  <a href="docs.html"  class="active">Docs</a>
+
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="install.html"  class="active">Install</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="auth.html" >Auth &amp; Teams</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="fly.html" >The <code>fly</code> CLI</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="pipelines.html" >Pipelines</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resources.html" >Resources</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="jobs.html" >Jobs</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tasks.html" >Tasks</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.8&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="builds.html" >Builds</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.9&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1.1</span>
+        
+        
+  <a href="install.html"  class="active">Install</a>
+
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.1.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concourse-generate-key.html" >Generating Keys</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.1.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="postgresql-node.html"  class="self">Running a PostgreSQL node</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.1.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concourse-web.html" >Running a <code>web</code> node</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.1.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concourse-worker.html" >Running a <code>worker</code> node</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+
+
+
+
+
+    </div>
+
+    <div class="page-aside"></div>
+
+    <div class="page-content">
+      <div class="section" id="section_postgresql-node">
+  
+  <h1 class="section-header"><a name="postgresql-node"></a><span class="section-number">1.1.2 </span>Running a PostgreSQL node</h1>
+  
+
+  <p>Concourse uses <a href="https://www.postgresql.org">PostgreSQL</a> for storing all data and coordinating work in a multi-<a href="concourse-web.html"><code>web</code> node</a> installation.</p>
+
+  
+    
+      <div class="section" id="section_db-prerequisites">
+  
+  <h2 class="section-header"><a name="db-prerequisites"></a>Prerequisites</h2>
+  
+
+  <p><a href="https://www.postgresql.org">PostgreSQL</a> 9.5 or above is required, though the latest available version is recommended.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_db-running">
+  
+  <h2 class="section-header"><a name="db-running"></a>Running</h2>
+  
+
+  <p>How this node is managed is up to you; Concourse doesn&#39;t actually have much of an opinion on it, it just needs a database.</p><p>How to install PostgreSQL is really dependent on your platform. Please refer to your Linux distribution or operating system&#39;s documentation.</p><p>For the most part, the instruction on Linux should look something like this:</p><div class="highlight"><pre style="">sudo apt install postgresql
+sudo su postgres -c <span style="color:#e67e22">&#34;</span><span style="color:#e67e22">createuser </span><span style="color:#2ecc71;font-weight:bold">$(</span>whoami<span style="color:#2ecc71;font-weight:bold">)</span><span style="color:#e67e22">&#34;</span>
+sudo su postgres -c <span style="color:#e67e22">&#34;</span><span style="color:#e67e22">createdb --owner=</span><span style="color:#2ecc71;font-weight:bold">$(</span>whoami<span style="color:#2ecc71;font-weight:bold">)</span><span style="color:#e67e22"> atc</span><span style="color:#e67e22">&#34;</span>
+</pre></div><p>This will install PostgreSQL (assuming your distro uses <code>apt</code>), create a user, and create a database that the current UNIX user can access, assuming this same user is going to be running the <a href="concourse-web.html"><code>web</code> node</a>. This is a reasonable default for distros like Ubuntu and Debian which default PostgreSQL to <code>peer</code> auth.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_db-properties">
+  
+  <h2 class="section-header"><a name="db-properties"></a>Properties</h2>
+  
+
+  <p>CPU usage: this is one of the most volatile metrics, and one we try pretty hard to keep down. There will be near-constant database queries running, and while we try to keep them very simple, there is always more work to do. Expect to feed your database with at least a couple cores, ideally four to eight. Monitor this closely as the size of your deployment and the amount of traffic it&#39;s handling increases, and scale accordingly.</p><p>Memory usage: similar to CPU usage, but not quite as volatile.</p><p>Disk usage: pipeline configurations and various bookkeeping metadata for keeping track of jobs, builds, resources, containers, and volumes. In addition, <strong>all build logs are stored in the database</strong>. This is the primary source of disk usage. To mitigate this, users can configure <a href="jobs.html#job-build-logs-to-retain"><code><strong>build_logs_to_retain</strong></code></a> on a job, but currently there is no operator control for this setting. As a result, disk usage on the database can grow arbitrarily large.</p><p>Bandwidth usage: well, it&#39;s a database, so it most definitely uses the network (duh). Not much should stand out here, though build logs can result in an arbitrary amount of data being sent over the network to the database. This should be nothing compared to worker bandwidth, though.</p><p>Highly available: up to you. Clustered PostgreSQL is kind of new and probably tricky to deploy, but there are various cloud solutions for this.</p><p>Horizontally scalable: I...don&#39;t think so?</p><p>Outbound traffic:</p><ul>
+
+  <li><p>none</p></li>
+
+</ul><p>Inbound traffic:</p><ul>
+
+  <li><p>only ever from the <code>web</code> node</p></li>
+
+</ul>
+
+  
+    
+  
+</div>
+    
+  
+</div>
+
+      <nav class="prev-next">
+      
+        <div class="prev">
+          prev:
+
+          
+          <span class="section-number">1.1.1</span>
+          
+
+          <a href="concourse-generate-key.html">Generating Keys</a>
+        </div>
+      
+
+      
+        <div class="next">
+          next:
+
+          
+          <span class="section-number">1.1.3</span>
+          
+
+          <a href="concourse-web.html">Running a <code>web</code> node</a>
+        </div>
+      
+      </nav>
+    </div>
+
+    <ul class="improve-docs">
+      <li><img src="images/github.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+      <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+    </ul>
+  </body>
+</html>

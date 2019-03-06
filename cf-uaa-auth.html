@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60508041-1"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-60508041-1');
+</script>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=775" />
+<title>CF/UAA auth - Concourse CI</title>
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+<link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+<link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+<script src="js/search.js"></script>
+  </head>
+  <body>
+    <div class="top-logo">
+  <a href="/">Concourse</a>
+</div>
+
+<nav class="top-nav">
+  
+  <a href="docs.html" class="active">Docs</a>
+  
+  <a href="download.html">Download</a>
+  
+  <a href="project.html">Project</a>
+  
+  <a href="community.html">Community</a>
+  
+  <a href="learning.html">Learning</a>
+  
+</nav>
+
+<div class="top-search" id="search" onclick="gtag('event', 'search-click');">
+  <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
+</div>
+
+<script type="text/javascript">
+  Elm.Main.embed(document.getElementById("search"));
+</script>
+
+    <div class="page-nav">
+      
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1</span>
+        
+        
+  <a href="docs.html"  class="active">Docs</a>
+
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="install.html" >Install</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="auth.html"  class="active">Auth &amp; Teams</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="fly.html" >The <code>fly</code> CLI</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="pipelines.html" >Pipelines</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resources.html" >Resources</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="jobs.html" >Jobs</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tasks.html" >Tasks</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.8&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="builds.html" >Builds</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.9&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1.2</span>
+        
+        
+  <a href="auth.html"  class="active">Auth &amp; Teams</a>
+
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="main-team.html" >The <code>main</code> team</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="configuring-auth.html"  class="active">Configuring Auth</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="managing-teams.html" >Managing Teams</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="user-roles.html" >User Roles &amp; Permissions</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="exposing.html" >Pipeline &amp; Build Visibility</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="teams-caveats.html" >Security Caveats</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1.2.2</span>
+        
+        
+  <a href="configuring-auth.html"  class="active">Configuring Auth</a>
+
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.2.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="local-auth.html" >Local User auth</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.2.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="github-auth.html" >GitHub auth</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.2.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="gitlab-auth.html" >GitLab auth</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.2.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="cf-uaa-auth.html"  class="self">CF/UAA auth</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.2.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="ldap-auth.html" >LDAP auth</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.2.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="generic-oidc-auth.html" >Generic OIDC auth</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.2.7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="generic-oauth.html" >Generic oAuth</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+
+
+
+
+
+    </div>
+
+    <div class="page-aside"></div>
+
+    <div class="page-content">
+      <div class="section" id="section_cf-uaa-auth">
+  
+  <h1 class="section-header"><a name="cf-uaa-auth"></a><span class="section-number">1.2.2.4 </span>CF/UAA auth</h1>
+  
+
+  <p>Cloud Foundry (CF) auth can be used for operators who wish to authenticate their users configured against their Cloud Foundry instance via the UAA auth component.</p>
+
+  
+    
+      <div class="section" id="section_cf-authentication">
+  
+  <h2 class="section-header"><a name="cf-authentication"></a>Authentication</h2>
+  
+
+  <p>You&#39;ll need to configure your UAA with a <code>concourse</code> client by setting the following under <a href="http://bosh.io/jobs/uaa?source=github.com/cloudfoundry/uaa-release#p=uaa.clients"><code>uaa.clients</code></a>:</p><div class="highlight"><pre style="">concourse:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>id:<span style="color:#e6e7e8"> </span>myclientid<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>secret:<span style="color:#e6e7e8"> </span>myclientsecret<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>scope:<span style="color:#e6e7e8"> </span>openid,cloud_controller.read<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>authorized-grant-types:<span style="color:#e6e7e8"> </span><span style="color:#e67e22">&#34;authorization_code,refresh_token&#34;</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>access-token-validity:<span style="color:#e6e7e8"> </span><span style="color:#1abc9c;font-weight:bold">3600</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>refresh-token-validity:<span style="color:#e6e7e8"> </span><span style="color:#1abc9c;font-weight:bold">3600</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>redirect-uri:<span style="color:#e6e7e8"> </span>https://concourse.example.com/sky/issuer/callback<span style="color:#e6e7e8">
+</span></pre></div><p>The value for <code>redirect-uri</code> must be the external URL of your Concourse server with <code>/sky/issuer/callback</code> appended.</p><p>For example, Concourse&#39;s own CI server&#39;s callback URL would be:</p><div class="highlight"><pre style="">https://ci.concourse-ci.org/sky/issuer/callback
+</pre></div><p>Next, you&#39;ll need to take the same client ID and secret and configure it on the <a href="concourse-web.html"><code>web</code> node</a> by setting the following env:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_CF_API_URL</span>=http://mycf.example.com
+<span style="color:#3498db">CONCOURSE_CF_CLIENT_ID</span>=myclientid
+<span style="color:#3498db">CONCOURSE_CF_CLIENT_SECRET</span>=myclientsecret
+</pre></div><p>Note: if you&#39;re integrating with Cloud Foundry, you&#39;re <em>probably</em> also deploying Concourse via BOSH - in which case you&#39;ll want to set the <a href="https://bosh.io/jobs/atc?source=github.com/concourse/concourse-bosh-release#p=cf_auth.client_id"><code>cf_auth.*</code></a> properties in your manifest instead of setting the above env.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_cf-authorization">
+  
+  <h2 class="section-header"><a name="cf-authorization"></a>Authorization</h2>
+  
+
+  <p>CloudFoundry users and org/space members can be authorized for a team by passing the following flags to <a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a>:</p><dl>
+  
+  <dt><code>--cf-user=USERNAME</code></dt>
+    <dd><p>Authorize an individual user.</p></dd>
+  
+  <dt><code>--cf-org=ORG_NAME</code></dt>
+    <dd><p>Authorize an entire organization&#39;s members.</p></dd>
+  
+  <dt><code>--cf-space=ORG_NAME:SPACE_NAME</code></dt>
+    <dd><p>Authorize the members of a space within an organization.</p></dd>
+  
+</dl><p>For example:</p><div class="highlight"><pre style="">$ fly set-team -n my-team <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --cf-user my-username <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --cf-org my-org <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --cf-space my-other-org:my-space
+</pre></div><p>...or via <code>--config</code> for <a href="managing-teams.html#setting-roles">setting user roles</a>:</p><div class="highlight"><pre style="">roles:
+- name: member
+  cf:
+    users: [<span style="color:#e67e22">&#34;my-username&#34;</span>]
+    orgs: [<span style="color:#e67e22">&#34;my-org&#34;</span>]
+    spaces: [<span style="color:#e67e22">&#34;my-other-org:my-space&#34;</span>]
+</pre></div>
+
+  
+    
+      <div class="section" id="section_adding-cf-users-to-the-main-team">
+  
+  <h3 class="section-header"><a name="adding-cf-users-to-the-main-team"></a>Adding CF Users to the <code>main</code> Team</h3>
+  
+
+  <p>CloudFoundry users and org/space members can be added to the <a href="main-team.html"><code>main</code> team</a> authorization config by setting the following env on the <a href="concourse-web.html"><code>web</code> node</a>:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_MAIN_TEAM_CF_USER</span>=username
+<span style="color:#3498db">CONCOURSE_MAIN_TEAM_CF_SPACE</span>=org-name:space-name
+<span style="color:#3498db">CONCOURSE_MAIN_TEAM_CF_SPACE_GUID</span>=SPACE_GUID
+<span style="color:#3498db">CONCOURSE_MAIN_TEAM_CF_ORG</span>=org-name
+</pre></div><p>Multiple users, spaces, etc. may be specified by comma-separating them.</p>
+
+  
+    
+  
+</div>
+    
+  
+</div>
+    
+  
+</div>
+
+      <nav class="prev-next">
+      
+        <div class="prev">
+          prev:
+
+          
+          <span class="section-number">1.2.2.3</span>
+          
+
+          <a href="gitlab-auth.html">GitLab auth</a>
+        </div>
+      
+
+      
+        <div class="next">
+          next:
+
+          
+          <span class="section-number">1.2.2.5</span>
+          
+
+          <a href="ldap-auth.html">LDAP auth</a>
+        </div>
+      
+      </nav>
+    </div>
+
+    <ul class="improve-docs">
+      <li><img src="images/github.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+      <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+    </ul>
+  </body>
+</html>

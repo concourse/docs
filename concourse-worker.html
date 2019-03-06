@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60508041-1"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-60508041-1');
+</script>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=775" />
+<title>Running a worker node - Concourse CI</title>
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+<link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+<link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+<script src="js/search.js"></script>
+  </head>
+  <body>
+    <div class="top-logo">
+  <a href="/">Concourse</a>
+</div>
+
+<nav class="top-nav">
+  
+  <a href="docs.html" class="active">Docs</a>
+  
+  <a href="download.html">Download</a>
+  
+  <a href="project.html">Project</a>
+  
+  <a href="community.html">Community</a>
+  
+  <a href="learning.html">Learning</a>
+  
+</nav>
+
+<div class="top-search" id="search" onclick="gtag('event', 'search-click');">
+  <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
+</div>
+
+<script type="text/javascript">
+  Elm.Main.embed(document.getElementById("search"));
+</script>
+
+    <div class="page-nav">
+      
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1</span>
+        
+        
+  <a href="docs.html"  class="active">Docs</a>
+
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="install.html"  class="active">Install</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="auth.html" >Auth &amp; Teams</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="fly.html" >The <code>fly</code> CLI</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="pipelines.html" >Pipelines</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resources.html" >Resources</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="jobs.html" >Jobs</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tasks.html" >Tasks</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.8&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="builds.html" >Builds</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.9&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1.1</span>
+        
+        
+  <a href="install.html"  class="active">Install</a>
+
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.1.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concourse-generate-key.html" >Generating Keys</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.1.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="postgresql-node.html" >Running a PostgreSQL node</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.1.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concourse-web.html" >Running a <code>web</code> node</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.1.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="concourse-worker.html"  class="self">Running a <code>worker</code> node</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+
+
+
+
+
+    </div>
+
+    <div class="page-aside"></div>
+
+    <div class="page-content">
+      <div class="section" id="section_concourse-worker">
+  
+  <h1 class="section-header"><a name="concourse-worker"></a><span class="section-number">1.1.4 </span>Running a <code>worker</code> node</h1>
+  
+
+  <p>The <code>worker</code> node registers with the <a href="concourse-web.html"><code>web</code> node</a> and is then used for executing builds and performing resource <code>check</code>s. It doesn&#39;t really decide much on its own.</p>
+
+  
+    
+      <div class="section" id="section_worker-prerequisites">
+  
+  <h2 class="section-header"><a name="worker-prerequisites"></a>Prerequisites</h2>
+  
+
+  <ul>
+
+  <li><p>Linux: kernel v3.19 or later with support for user namespaces enabled. (This is off by default in some distributions!)</p><p>To enforce memory limits on tasks, memory &#43; swap accounting must be enabled.</p></li>
+
+  <li><p>Windows/Darwin: no special requirements (that we know of).</p><p>Note that containerization is fairly primitive on these two platforms, so don&#39;t expect great support for multi-tenancy.</p></li>
+
+</ul>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_worker-running">
+  
+  <h2 class="section-header"><a name="worker-running"></a>Running</h2>
+  
+
+  <p>The <code>concourse</code> CLI can run as a <code>worker</code> node via the <code>worker</code> subcommand.</p><p>First, you&#39;ll need to configure a directory for the worker to store data:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_WORK_DIR</span>=/opt/concourse/worker
+</pre></div><p>This is where all the builds run, and where all resources are fetched in to, so make sure it&#39;s backed by enough storage. Then, configure it like so:</p><p>Next, point the worker at your <a href="concourse-web.html"><code>web</code> node</a> like so:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_TSA_HOST</span>=<span style="color:#1abc9c;font-weight:bold">127</span>.0.0.1:2222
+<span style="color:#3498db">CONCOURSE_TSA_PUBLIC_KEY</span>=path/to/tsa_host_key.pub
+<span style="color:#3498db">CONCOURSE_TSA_WORKER_PRIVATE_KEY</span>=path/to/worker_key
+</pre></div><p>Finally, run:</p><div class="highlight"><pre style="">sudo concourse worker
+</pre></div><p>Note that the worker must be run as <code>root</code>, as it orchestrates containers.</p><p>All logs will be emitted to <code>stdout</code>, with any panics or lower-level errors being emitted to <code>stderr</code>.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_worker-properties">
+  
+  <h2 class="section-header"><a name="worker-properties"></a>Properties</h2>
+  
+
+  <p>CPU usage: almost entirely subject to pipeline workloads. More resources configured will result in more checking, and in-flight builds will use as much CPU as they want.</p><p>Memory usage: also subject to pipeline workloads. Expect usage to increase with the number of containers on the worker and spike as builds run.</p><p>Bandwidth usage: again, almost entirely subject to pipeline workloads. Expect spikes from periodic checking, though the intervals should spread out over enough time. Resource fetching and pushing will also use arbitrary bandwidth.</p><p>Disk usage: arbitrary data will be written as builds run, and resource caches will be kept and garbage collected on their own life cycle. We suggest going for a larger disk size if it&#39;s not too much trouble. All state on disk must not outlive the worker itself; it is all ephemeral. If the worker is re-created (i.e. fresh VM/container and all processes were killed), it should be brought back with an empty disk.</p><p>Highly available: not applicable. Workers are inherently singletons, as they&#39;re being used as drivers running entirely different workloads.</p><p>Horizontally scalable: yes; workers directly correlate to your capacity required by however many pipelines, resources, and in-flight builds you want to run. It makes sense to scale them up and down with demand.</p><p>Outbound traffic:</p><ul>
+
+  <li><p>external traffic to arbitrary locations as a result of periodic resource checking and running builds</p></li>
+
+  <li><p>external traffic to the <code>web</code> node&#39;s configured external URL when downloading the inputs for a <a href="running-tasks.html#fly-execute"><code>fly execute</code></a></p></li>
+
+  <li><p>external traffic to the <code>web</code> node&#39;s TSA port (<code>2222</code>) for registering the worker</p></li>
+
+</ul><p>Inbound traffic:</p><ul>
+
+  <li><p>various connections from the <a href="concourse-web.html"><code>web</code> node</a> on port <code>7777</code> (Garden), <code>7788</code> (BaggageClaim), and <code>7799</code> (garbage collection)</p></li>
+
+  <li><p>repeated connections to <code>7788</code> and <code>7788</code> from the <a href="concourse-web.html"><code>web</code> node</a>&#39;s TSA component as it heartbeats to ensure the worker is healthy</p></li>
+
+</ul>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_worker-operation">
+  
+  <h2 class="section-header"><a name="worker-operation"></a>Operation</h2>
+  
+
+  <p>The <code>worker</code> nodes are designed to be stateless and as interchangeable as possible. <a href="tasks.html">Tasks</a> and <a href="resources.html">Resources</a> bring their own Docker images, so you should never have to install dependencies on the worker.</p><p>In Concourse, all important data is represented by <a href="resources.html">Resources</a>, so the workers themselves are dispensible. Any data in the work-dir is ephemeral and should go away when the worker machine is removed - it should not be persisted between worker VM or container re-creates.</p>
+
+  
+    
+      <div class="section" id="section_scaling-workers">
+  
+  <h3 class="section-header"><a name="scaling-workers"></a>Scaling Workers</h3>
+  
+
+  <p>More workers should be added to accomodate more pipelines. To know when this is necessary you should probably set up <a href="metrics.html">Metrics</a> and keep an eye on container counts. If it&#39;s starting to approach 200 or so, you should probably add another worker. Load average is another metric to keep an eye on.</p><p>To add a worker, just create another machine for the worker and follow the <a href="concourse-worker.html#worker-running">Running</a> instructions again.</p><p>Note: it doesn&#39;t really make sense to run multiple workers on one machine, since they&#39;ll both just be contending for the same physical resources. Workers should be given their own VMs or physical machines.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_worker-heartbeating-and-stalling">
+  
+  <h3 class="section-header"><a name="worker-heartbeating-and-stalling"></a>Worker Heartbeating &amp; Stalling</h3>
+  
+
+  <p>Workers will continuously heartbeat to the Concourse cluster in order to remain registered and healthy. If a worker hasn&#39;t checked in in a while, possibly due to a network partition, being overloaded, or having crashed, its state will transition to <code>stalled</code> and new workloads will not be scheduled on it until it recovers.</p><p>If the worker remains in this state and cannot be recovered, it can be removed using the <a href="administration.html#fly-prune-worker"><code>fly prune-worker</code></a> command.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_restarting-a-worker">
+  
+  <h3 class="section-header"><a name="restarting-a-worker"></a>Restarting a Worker</h3>
+  
+
+  <p>Workers can be restarted in-place by sending <code>SIGTERM</code> to the worker process and starting it back up. Containers will remain running and Concourse will reattach to builds that were in flight.</p><p>This is a pretty aggressive way to restart a worker, and may result in errored builds - there are a few moving parts involved and we&#39;re still working on making this airtight.</p><p>A safer way to restart a worker is to <em>land</em> it by sending <code>SIGUSR1</code> to the <code>worker</code> process. This will switch the worker to <code>landing</code> state, and Concourse will stop scheduling new work on it. When all builds running on the worker have finished, the process will exit.</p><p>You may want to enforce a timeout for draining - that way a stuck build won&#39;t prevent your workers from being upgraded. This can be enforced by common tools like <code>start-stop-daemon</code>:</p><div class="highlight"><pre style="">start-stop-daemon <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>  --pidfile worker.pid <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>  --stop <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>  --retry USR1/300/TERM/15/KILL
+</pre></div><p>This will send <code>SIGUSR1</code>, wait up to 5 minutes, and then send <code>SIGTERM</code>. If it&#39;s <em>still</em> running, it will be killed after an additional 15 seconds.</p><p>Once the timeout is enforced, there&#39;s still a chance that builds that were running will continue when the worker comes back.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_gracefully-removing-a-worker">
+  
+  <h3 class="section-header"><a name="gracefully-removing-a-worker"></a>Gracefully Removing a Worker</h3>
+  
+
+  <p>When a worker machine is going away, it should be <em>retired</em>. This is similar to <em>landing</em>, except at the end the worker is completely unregistered, along with its volumes and containers. This should be done when a worker&#39;s VM or container is being destroyed.</p><p>To retire a worker, send <code>SIGUSR2</code> to the <code>worker</code> process. This will switch the worker to <code>retiring</code> state, and Concourse will stop scheduling new work on it. When all builds running on the worker have finished, the worker will be removed and the <code>worker</code> process will exit.</p><p>Just like with landing, you may want to enforce a timeout for draining - that way a stuck build won&#39;t prevent your workers from being upgraded. This can be enforced by common tools like <code>start-stop-daemon</code>:</p><div class="highlight"><pre style="">start-stop-daemon <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>  --pidfile worker.pid <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>  --stop <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>  --retry USR2/300/TERM/15/KILL
+</pre></div><p>This will send <code>SIGUSR2</code>, wait up to 5 minutes, and then send <code>SIGTERM</code>. If it&#39;s <em>still</em> running, it will be killed after an additional 15 seconds.</p>
+
+  
+    
+  
+</div>
+    
+  
+</div>
+    
+      <div class="section" id="section_worker-configuration">
+  
+  <h2 class="section-header"><a name="worker-configuration"></a>Configuration</h2>
+  
+
+  <p>If there&#39;s something special about your worker and you&#39;d like to target builds at it specifically, you can configure tags like so:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_TAG</span>=tag-1,tag-2
+</pre></div><p>A tagged worker is taken out of the default placement logic. To run build steps on it, specify the <a href="tags-step-modifier.html"><code>tags</code> step modifier</a>. Or, to perform resource <code>check</code>s on it, specify <a href="resources.html#resource-tags"><code>tags</code></a> on the resource itself.</p>
+
+  
+    
+  
+</div>
+    
+  
+</div>
+
+      <nav class="prev-next">
+      
+        <div class="prev">
+          prev:
+
+          
+          <span class="section-number">1.1.3</span>
+          
+
+          <a href="concourse-web.html">Running a <code>web</code> node</a>
+        </div>
+      
+
+      
+        <div class="next">
+          next:
+
+          
+          <span class="section-number">1.2</span>
+          
+
+          <a href="auth.html">Auth &amp; Teams</a>
+        </div>
+      
+      </nav>
+    </div>
+
+    <ul class="improve-docs">
+      <li><img src="images/github.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+      <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+    </ul>
+  </body>
+</html>

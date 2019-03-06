@@ -3,151 +3,60 @@
   <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60508041-1"></script>
 
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-      gtag('config', 'UA-60508041-1');
-    </script>
+  gtag('config', 'UA-60508041-1');
+</script>
 
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=775" />
-    <title>Concourse CI - Builds</title>
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
-    <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
-    <link rel="stylesheet" type="text/css" href="css/booklit.css" />
-    <link rel="stylesheet" type="text/css" href="css/survey.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
-    <script src="js/search.js"></script>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=775" />
+<title>Builds - Concourse CI</title>
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+<link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+<link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+<script src="js/search.js"></script>
   </head>
   <body>
-    <div id="top">
-      <div class="header">
-        <h1><a href="/" class="logo"></a><a href="/">Concourse</a></h1>
+    <div class="top-logo">
+  <a href="/">Concourse</a>
+</div>
 
-        <nav>
-          <a href="tutorials.html">tutorial</a>
-          <a href="reference.html">reference</a>
-          <a href="https://discuss.concourse-ci.org">discuss</a>
-          <a href="download.html">download</a>
-
-          <div class="search" id="search"  onclick="gtag('event', 'search-click');">
-            <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
-          </div>
-        </nav>
-
-        <script type="text/javascript">
-          Elm.Main.embed(document.getElementById("search"));
-        </script>
-      </div>
-    </div>
-    <div id="content">
-      <div class="side">
-        
-
-
-
-
+<nav class="top-nav">
   
+  <a href="docs.html" class="active">Docs</a>
   
+  <a href="download.html">Download</a>
   
+  <a href="project.html">Project</a>
   
+  <a href="community.html">Community</a>
   
+  <a href="learning.html">Learning</a>
+  
+</nav>
 
-  
-  <div class="context">
-    <nav>
-      <div class="top">
-        
-  <a href="index.html" >Docs</a>
+<div class="top-search" id="search" onclick="gtag('event', 'search-click');">
+  <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
+</div>
 
-      </div>
+<script type="text/javascript">
+  Elm.Main.embed(document.getElementById("search"));
+</script>
 
-      <input type="checkbox" class="toggle"  />
-      <span class="arrow"></span>
-      <div class="children">
-        <table>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="about.html" >About</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="setup-and-operations.html" >Setup &amp; Operations</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="concepts.html" >Concepts</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="tutorials.html" >Tutorials</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="reference.html" >Reference</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">6&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="contribute.html" >Contribute</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">7&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="community.html" >Community</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">8&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="trademarks.html" >Trademarks</a>
-</td>
-          </tr>
-        
-        </table>
-      </div>
-    </nav>
-  </div>
-  
+    <div class="page-nav">
+      
+
+
+
+
+
+
 
   
 
@@ -156,45 +65,46 @@
     <nav>
       <div class="top">
         
-  <a href="reference.html" >Reference</a>
+        <span class="section-number">1</span>
+        
+        
+  <a href="docs.html"  class="active">Docs</a>
 
       </div>
 
-      <input type="checkbox" class="toggle" checked />
-      <span class="arrow"></span>
       <div class="children">
         <table>
         
           <tr>
             
-              <td class="number-cell" align="right">5.1&nbsp;</td>
+              <td class="number-cell" align="right">1.1&nbsp;</td>
             
             <td class="title-cell">
-  <a href="fly.html" ><code>fly</code></a>
+  <a href="install.html" >Install</a>
 </td>
           </tr>
         
           <tr>
             
-              <td class="number-cell" align="right">5.2&nbsp;</td>
+              <td class="number-cell" align="right">1.2&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="auth.html" >Auth &amp; Teams</a>
 </td>
           </tr>
         
           <tr>
             
-              <td class="number-cell" align="right">5.3&nbsp;</td>
+              <td class="number-cell" align="right">1.3&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html"  class="self">Builds</a>
+  <a href="fly.html" >The <code>fly</code> CLI</a>
 </td>
           </tr>
         
           <tr>
             
-              <td class="number-cell" align="right">5.4&nbsp;</td>
+              <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
   <a href="pipelines.html" >Pipelines</a>
@@ -203,16 +113,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">5.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">5.6&nbsp;</td>
+              <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
   <a href="resources.html" >Resources</a>
@@ -221,10 +122,37 @@
         
           <tr>
             
-              <td class="number-cell" align="right">5.7&nbsp;</td>
+              <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
+  <a href="jobs.html" >Jobs</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tasks.html" >Tasks</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.8&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="builds.html"  class="self">Builds</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.9&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
 </td>
           </tr>
         
@@ -234,79 +162,88 @@
   </div>
   
 
-  
 
-  
-  <div class="context">
+
+
+
+<div class="context">
+  <div class="page-toc">
     <nav>
       <div class="top">
+        
+        <span class="section-number">1.8</span>
+        
         
   <a href="builds.html"  class="self">Builds</a>
 
       </div>
 
-      <input type="checkbox" class="toggle" checked />
-      <span class="arrow"></span>
-      <div class="children">
-        <table>
+      
+<div class="children">
+  <table>
+    
+      <tr>
         
-          <tr>
-            
-              <td class="number-cell" align="left"></td>
-            
-            <td class="title-cell">
-  <a href="builds.html#fly-builds" ><code>fly builds</code></a>
-</td>
-          </tr>
+          <td class="number-cell" align="left"></td>
         
-          <tr>
-            
-              <td class="number-cell" align="left"></td>
-            
-            <td class="title-cell">
-  <a href="builds.html#fly-intercept" ><code>fly intercept</code></a>
-</td>
-          </tr>
+        <td class="title-cell">
+          <a href="builds.html#fly-builds"><code>fly builds</code></a>
+
+          
+        </td>
+      </tr>
+    
+      <tr>
         
-          <tr>
-            
-              <td class="number-cell" align="left"></td>
-            
-            <td class="title-cell">
-  <a href="builds.html#fly-abort-build" ><code>fly abort-build</code></a>
-</td>
-          </tr>
+          <td class="number-cell" align="left"></td>
         
-          <tr>
-            
-              <td class="number-cell" align="left"></td>
-            
-            <td class="title-cell">
-  <a href="builds.html#fly-watch" ><code>fly watch</code></a>
-</td>
-          </tr>
+        <td class="title-cell">
+          <a href="builds.html#fly-intercept"><code>fly intercept</code></a>
+
+          
+        </td>
+      </tr>
+    
+      <tr>
         
-        </table>
-      </div>
+          <td class="number-cell" align="left"></td>
+        
+        <td class="title-cell">
+          <a href="builds.html#fly-abort-build"><code>fly abort-build</code></a>
+
+          
+        </td>
+      </tr>
+    
+      <tr>
+        
+          <td class="number-cell" align="left"></td>
+        
+        <td class="title-cell">
+          <a href="builds.html#fly-watch"><code>fly watch</code></a>
+
+          
+        </td>
+      </tr>
+    
+  </table>
+</div>
+
     </nav>
   </div>
+</div>
+
+
+
+
+    </div>
+
+    <div class="page-aside"></div>
+
+    <div class="page-content">
+      <div class="section" id="section_builds">
   
-
-
-
-
-
-
-<ul class="improve-docs">
-  <li><img src="images/github.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
-
-  <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
-</ul>
-      </div>
-      <div class="page">
-        <div class="section" id="section_builds">
-  
-  <h1 class="section-header"><a name="builds"></a><span class="section-number">5.3 </span>Builds</h1>
+  <h1 class="section-header"><a name="builds"></a><span class="section-number">1.8 </span>Builds</h1>
   
 
   <p>A build is an execution of a <em>build plan</em>, which is either configured as a sequence of <a href="steps.html">steps</a> in a <a href="jobs.html">job</a>, or submitted directly to Concourse as a one-off build via <a href="running-tasks.html#fly-execute"><code>fly execute</code></a>.</p><p>Containers and volumes are created as <a href="get-step.html"><code>get</code> step</a>s, <a href="put-step.html"><code>put</code> step</a>s, and <a href="task-step.html"><code>task</code> step</a>s run. When a build completes successfully, these containers go away.</p><p>A failed build&#39;s containers and volumes are kept around so that you can debug the build via <a href="builds.html#fly-intercept"><code>fly intercept</code></a>. If the build belongs to a <a href="jobs.html">job</a>, the containers will go away when the next build starts. If the build is a one-off, its containers will be removed immediately, so make sure you intercept while it&#39;s running if you want to debug.</p>
@@ -333,11 +270,11 @@
   <h2 class="section-header"><a name="fly-intercept"></a><code>fly intercept</code></h2>
   
 
-  <p>Sometimes it&#39;s helpful to be on the same machine as your tasks so that you can profile or inspect them as they run or see the state the machine at the end of a run. Due to Concourse running tasks in containers on remote machines this would typically be hard to access.</p><p>To this end, there is a <code>fly intercept</code> command that will give you an interactive shell inside the specified container. Containers are identified by a few things, so you may need to specify a few flags to hone down the results. If there are multiple containers that the flags could refer to, an interactive prompt will show up allowing you to disambiguate.</p><blockquote class="aside"><p>The command <code>fly hijack</code> is an alias of <code>fly intercept</code>. Both can be used interchangably.</p></blockquote><p>For example, running the following will run a task and then enter the finished task&#39;s container:</p><div class="highlight"><pre style="">$ fly -t example execute
+  <p>Sometimes it&#39;s helpful to be on the same machine as your tasks so that you can profile or inspect them as they run or see the state the machine at the end of a run. Due to Concourse running tasks in containers on remote machines this would typically be hard to access.</p><p>To this end, there is a <code>fly intercept</code> command that will give you an interactive shell inside the specified container. Containers are identified by a few things, so you may need to specify a few flags to hone down the results. If there are multiple containers that the flags could refer to, an interactive prompt will show up allowing you to disambiguate.</p><p>For example, running the following will run a task and then enter the finished task&#39;s container:</p><div class="highlight"><pre style="">$ fly -t example execute
 $ fly -t example intercept --step build
-</pre></div><blockquote class="aside"><p>When intercepting a job running on a windows worker, you will need to specifically tell fly to target PowerShell as an additional argument: <div class="highlight"><pre style="">$ fly -t example intercept powershell
-</pre></div></p></blockquote><p>Containers are around for a short time after a build finishes in order to allow people to intercept them.</p><p>You can also intercept builds that were run in your pipeline. By using <code>--job</code>, <code>--build</code>, and <code>--step</code> you can intercept a specific step from a build of a job in your pipeline. These flags also have short forms, like so:</p><div class="highlight"><pre style="">$ fly -t example intercept -j some-pipeline/some-job -b some-build -s some-step
-</pre></div><blockquote class="aside"><p>Be warned, if more than one person is using a Concourse server for running one-off builds then you may end up in a build that you did not expect!</p></blockquote><p>Note that <code>--build</code> can be omitted, and will default to the most recent build of the job. One-off builds can be reached by passing in their build ID to <code>--build</code> which can be found on the build list page.</p><p>The <code>--step</code> flag can also be omitted; this will let you pick the step interactively if you don&#39;t know the exact name.</p><p>Resource checking containers can also be intercepted with <code>--check</code> or <code>-c</code>:</p><div class="highlight"><pre style="">$ fly -t example intercept --check some-pipeline/some-resource
+</pre></div><blockquote class="aside"><p>When intercepting a task running on a Windows worker, you will need to specifically tell fly to to run <code>powershell</code>:</p><div class="highlight"><pre style="">$ fly -t example intercept powershell
+</pre></div></blockquote><p>Containers are around for a short time after a build finishes in order to allow people to intercept them.</p><p>You can also intercept builds that were run in your pipeline. By using <code>--job</code>, <code>--build</code>, and <code>--step</code> you can intercept a specific step from a build of a job in your pipeline. These flags also have short forms, like so:</p><div class="highlight"><pre style="">$ fly -t example intercept -j some-pipeline/some-job -b some-build -s some-step
+</pre></div><p>Note that <code>--build</code> can be omitted, and will default to the most recent build of the job. One-off builds can be reached by passing in their build ID to <code>--build</code> which can be found on the build list page.</p><p>The <code>--step</code> flag can also be omitted; this will let you pick the step interactively if you don&#39;t know the exact name.</p><p>Resource checking containers can also be intercepted with <code>--check</code> or <code>-c</code>:</p><div class="highlight"><pre style="">$ fly -t example intercept --check some-pipeline/some-resource
 </pre></div><p>A specific command can also be given, e.g. <code>fly intercept ps auxf</code> or <code>fly intercept htop</code>. This allows for patterns such as <code>watch fly intercept ps auxf</code>, which will continuously show the process tree of the current build&#39;s task, even as the &#34;current build&#34; changes.</p><p>The working directory and any relevant environment variables (e.g. those having come from <a href="tasks.html#task-params"><code><strong>params</strong></code></a>) used by the original process will also be used for the process run by intercept.</p>
 
   
@@ -373,8 +310,37 @@ $ fly -t example intercept --step build
     
   
 </div>
-      </div>
+
+      <nav class="prev-next">
       
+        <div class="prev">
+          prev:
+
+          
+          <span class="section-number">1.7</span>
+          
+
+          <a href="tasks.html">Tasks</a>
+        </div>
+      
+
+      
+        <div class="next">
+          next:
+
+          
+          <span class="section-number">1.9</span>
+          
+
+          <a href="operation.html">Operation</a>
+        </div>
+      
+      </nav>
     </div>
+
+    <ul class="improve-docs">
+      <li><img src="images/github.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+      <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+    </ul>
   </body>
 </html>

@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60508041-1"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-60508041-1');
+</script>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=775" />
+<title>User Roles &amp; Permissions - Concourse CI</title>
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+<link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+<link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+<script src="js/search.js"></script>
+  </head>
+  <body>
+    <div class="top-logo">
+  <a href="/">Concourse</a>
+</div>
+
+<nav class="top-nav">
+  
+  <a href="docs.html" class="active">Docs</a>
+  
+  <a href="download.html">Download</a>
+  
+  <a href="project.html">Project</a>
+  
+  <a href="community.html">Community</a>
+  
+  <a href="learning.html">Learning</a>
+  
+</nav>
+
+<div class="top-search" id="search" onclick="gtag('event', 'search-click');">
+  <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
+</div>
+
+<script type="text/javascript">
+  Elm.Main.embed(document.getElementById("search"));
+</script>
+
+    <div class="page-nav">
+      
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1</span>
+        
+        
+  <a href="docs.html"  class="active">Docs</a>
+
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="install.html" >Install</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="auth.html"  class="active">Auth &amp; Teams</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="fly.html" >The <code>fly</code> CLI</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="pipelines.html" >Pipelines</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resources.html" >Resources</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="jobs.html" >Jobs</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tasks.html" >Tasks</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.8&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="builds.html" >Builds</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.9&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1.2</span>
+        
+        
+  <a href="auth.html"  class="active">Auth &amp; Teams</a>
+
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="main-team.html" >The <code>main</code> team</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="configuring-auth.html" >Configuring Auth</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="managing-teams.html" >Managing Teams</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="user-roles.html"  class="self">User Roles &amp; Permissions</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="exposing.html" >Pipeline &amp; Build Visibility</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="teams-caveats.html" >Security Caveats</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+
+
+<div class="context">
+  <div class="page-toc">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1.2.4</span>
+        
+        
+  <a href="user-roles.html"  class="self">User Roles &amp; Permissions</a>
+
+      </div>
+
+      
+<div class="children">
+  <table>
+    
+      <tr>
+        
+          <td class="number-cell" align="left"></td>
+        
+        <td class="title-cell">
+          <a href="user-roles.html#concourse-admin">Concourse Admin</a>
+
+          
+        </td>
+      </tr>
+    
+      <tr>
+        
+          <td class="number-cell" align="left"></td>
+        
+        <td class="title-cell">
+          <a href="user-roles.html#team-owner-role">Team Owner role</a>
+
+          
+        </td>
+      </tr>
+    
+      <tr>
+        
+          <td class="number-cell" align="left"></td>
+        
+        <td class="title-cell">
+          <a href="user-roles.html#team-member-role">Team Member role</a>
+
+          
+        </td>
+      </tr>
+    
+      <tr>
+        
+          <td class="number-cell" align="left"></td>
+        
+        <td class="title-cell">
+          <a href="user-roles.html#team-viewer-role">Team Viewer role</a>
+
+          
+        </td>
+      </tr>
+    
+      <tr>
+        
+          <td class="number-cell" align="left"></td>
+        
+        <td class="title-cell">
+          <a href="user-roles.html#permission-matrix">Permission Matrix</a>
+
+          
+        </td>
+      </tr>
+    
+  </table>
+</div>
+
+    </nav>
+  </div>
+</div>
+
+
+
+
+    </div>
+
+    <div class="page-aside"></div>
+
+    <div class="page-content">
+      <div class="section" id="section_user-roles">
+  
+  <h1 class="section-header"><a name="user-roles"></a><span class="section-number">1.2.4 </span>User Roles &amp; Permissions</h1>
+  
+
+  <p>Concourse comes with four roles: Concourse Admin, Team Owner, Team Member, Team Viewer.</p>
+
+  
+    
+      <div class="section" id="section_concourse-admin">
+  
+  <h2 class="section-header"><a name="concourse-admin"></a>Concourse Admin</h2>
+  
+
+  <p><em>Admin</em> is a special user attribute granted only to <a href="user-roles.html#team-owner-role">owners</a> of the <a href="main-team.html"><code>main</code> team</a>.</p><p>Admins have the ability to administrate teams using <a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a>, <a href="managing-teams.html#fly-destroy-team"><code>fly destroy-team</code></a>, <a href="managing-teams.html#fly-rename-team"><code>fly rename-team</code></a>, etc.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_team-owner-role">
+  
+  <h2 class="section-header"><a name="team-owner-role"></a>Team Owner role</h2>
+  
+
+  <p>Team Owners have read, write and auth management capabilities within the scope of their team. For those familiar with Concourse today, the scope of allowed actions for a Team Owner is very closely aligned to today’s Concourse team member. The new change is that you can no longer rename your own team or destroy your own team as an owner.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_team-member-role">
+  
+  <h2 class="section-header"><a name="team-member-role"></a>Team Member role</h2>
+  
+
+  <p>Team Member lets users operate within their teams in a read &amp; write fashion; but prevents them from changing the auth configurations of their team.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_team-viewer-role">
+  
+  <h2 class="section-header"><a name="team-viewer-role"></a>Team Viewer role</h2>
+  
+
+  <p>Team Viewer gives users “read-only” access to a team. This locks everything down, preventing users from doing a set-pipeline or hijack.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_permission-matrix">
+  
+  <h2 class="section-header"><a name="permission-matrix"></a>Permission Matrix</h2>
+  
+
+  <p><strong><a href="fly.html"><code>fly</code> CLI</a> commands</strong></p><table>
+  
+  <tr>
+    
+    <td>Command</td>
+    
+    <td>Anon</td>
+    
+    <td>Admin</td>
+    
+    <td>Owner</td>
+    
+    <td>Member</td>
+    
+    <td>Viewer</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>abort-build</td>
+    
+    <td>✘</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>builds</td>
+    
+    <td>✓</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>check-resource</td>
+    
+    <td>✘</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>checklist</td>
+    
+    <td>✘</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>containers</td>
+    
+    <td>✘</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>destroy-pipeline</td>
+    
+    <td>✘</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>destroy-team</td>
+    
+    <td>✘</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+    <td>✘</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>execute</td>
+    
+    <td>✘</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>expose-pipeline</td>
+    
+    <td>✘</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>format-pipeline</td>
+    
+    <td>✘</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>get-pipeline</td>
+    
+    <td>✘</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>help</td>
+    
+    <td>✓</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>hide-pipeline</td>
+    
+    <td>✘</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>hijack</td>
+    
+    <td>✘</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>jobs</td>
+    
+    <td>✓</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>login</td>
+    
+    <td>✓</td>
+    
+    <td></td>
+    
+    <td></td>
+    
+    <td></td>
+    
+    <td></td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>logout</td>
+    
+    <td>✘</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>order-pipelines</td>
+    
+    <td>✘</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>pause-job</td>
+    
+    <td>✘</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>pause-pipeline</td>
+    
+    <td>✘</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>pipelines</td>
+    
+    <td>✓</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>prune-worker</td>
+    
+    <td>✘</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>rename-pipeline</td>
+    
+    <td>✘</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>rename-team</td>
+    
+    <td>✘</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+    <td>✘</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>set-pipeline</td>
+    
+    <td>✘</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>set-team</td>
+    
+    <td>✘</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>status</td>
+    
+    <td>✓</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>sync</td>
+    
+    <td>✓</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>targets</td>
+    
+    <td>✓</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>teams</td>
+    
+    <td>✘</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>trigger-job</td>
+    
+    <td>✘</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>unpause-job</td>
+    
+    <td>✘</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>unpause-pipeline</td>
+    
+    <td>✘</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>validate-pipeline</td>
+    
+    <td>✓</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>volumes</td>
+    
+    <td>✘</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>watch</td>
+    
+    <td>✓*</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>workers</td>
+    
+    <td>✘</td>
+    
+    <td></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+</table><p><strong>Web UI</strong></p><table>
+  
+  <tr>
+    
+    <td>Page</td>
+    
+    <td>Action</td>
+    
+    <td>Owner</td>
+    
+    <td>Member</td>
+    
+    <td>Viewer</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>Home (HD/Dashboard)</td>
+    
+    <td>View</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td></td>
+    
+    <td>Login</td>
+    
+    <td>✘</td>
+    
+    <td>✘</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td></td>
+    
+    <td>Logout</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td></td>
+    
+    <td>Download <a href="fly.html"><code>fly</code> CLI</a></td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td></td>
+    
+    <td>Pause Pipeline</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td></td>
+    
+    <td>Resume Pipeline</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td></td>
+    
+    <td>Reorder Pipeline</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>Pipeline Page</td>
+    
+    <td>View</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td></td>
+    
+    <td>Click to Resource</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td></td>
+    
+    <td>Click to Build</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td></td>
+    
+    <td>Click on Group</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>Resource Page</td>
+    
+    <td>View Resource</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td></td>
+    
+    <td>View Version Details</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td></td>
+    
+    <td>Pin Version</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td></td>
+    
+    <td>Paginate (&lt;- -&gt;)</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>Build Page</td>
+    
+    <td>Trigger new Build</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td></td>
+    
+    <td>View Build</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td></td>
+    
+    <td>Build Details</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>Job Page</td>
+    
+    <td>View Job Page</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td></td>
+    
+    <td>Pause Job</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td></td>
+    
+    <td>Trigger new Build</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td></td>
+    
+    <td>Build History</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td></td>
+    
+    <td>Paginate (&lt;- -&gt;)</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+    <td>✓</td>
+    
+  </tr>
+  
+</table>
+
+  
+    
+  
+</div>
+    
+  
+</div>
+
+      <nav class="prev-next">
+      
+        <div class="prev">
+          prev:
+
+          
+          <span class="section-number">1.2.3</span>
+          
+
+          <a href="managing-teams.html">Managing Teams</a>
+        </div>
+      
+
+      
+        <div class="next">
+          next:
+
+          
+          <span class="section-number">1.2.5</span>
+          
+
+          <a href="exposing.html">Pipeline &amp; Build Visibility</a>
+        </div>
+      
+      </nav>
+    </div>
+
+    <ul class="improve-docs">
+      <li><img src="images/github.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+      <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+    </ul>
+  </body>
+</html>

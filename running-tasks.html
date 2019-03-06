@@ -3,154 +3,63 @@
   <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60508041-1"></script>
 
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-      gtag('config', 'UA-60508041-1');
-    </script>
+  gtag('config', 'UA-60508041-1');
+</script>
 
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=775" />
-    <title>Concourse CI - Running Tasks</title>
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
-    <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
-    <link rel="stylesheet" type="text/css" href="css/booklit.css" />
-    <link rel="stylesheet" type="text/css" href="css/survey.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
-    <script src="js/search.js"></script>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=775" />
+<title>Running Tasks - Concourse CI</title>
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+<link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+<link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+<script src="js/search.js"></script>
   </head>
   <body>
-    <div id="top">
-      <div class="header">
-        <h1><a href="/" class="logo"></a><a href="/">Concourse</a></h1>
+    <div class="top-logo">
+  <a href="/">Concourse</a>
+</div>
 
-        <nav>
-          <a href="tutorials.html">tutorial</a>
-          <a href="reference.html">reference</a>
-          <a href="https://discuss.concourse-ci.org">discuss</a>
-          <a href="download.html">download</a>
+<nav class="top-nav">
+  
+  <a href="docs.html" class="active">Docs</a>
+  
+  <a href="download.html">Download</a>
+  
+  <a href="project.html">Project</a>
+  
+  <a href="community.html">Community</a>
+  
+  <a href="learning.html">Learning</a>
+  
+</nav>
 
-          <div class="search" id="search"  onclick="gtag('event', 'search-click');">
-            <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
-          </div>
-        </nav>
+<div class="top-search" id="search" onclick="gtag('event', 'search-click');">
+  <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
+</div>
 
-        <script type="text/javascript">
-          Elm.Main.embed(document.getElementById("search"));
-        </script>
-      </div>
-    </div>
-    <div id="content">
-      <div class="side">
-        
+<script type="text/javascript">
+  Elm.Main.embed(document.getElementById("search"));
+</script>
+
+    <div class="page-nav">
+      
+
+
+
 
 
 
 
   
   
-  
-  
-  
-  
-  
-
-  
-  <div class="context">
-    <nav>
-      <div class="top">
-        
-  <a href="index.html" >Docs</a>
-
-      </div>
-
-      <input type="checkbox" class="toggle"  />
-      <span class="arrow"></span>
-      <div class="children">
-        <table>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="about.html" >About</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="setup-and-operations.html" >Setup &amp; Operations</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="concepts.html" >Concepts</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="tutorials.html" >Tutorials</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="reference.html" >Reference</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">6&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="contribute.html" >Contribute</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">7&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="community.html" >Community</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">8&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="trademarks.html" >Trademarks</a>
-</td>
-          </tr>
-        
-        </table>
-      </div>
-    </nav>
-  </div>
-  
-
   
 
   
@@ -158,45 +67,46 @@
     <nav>
       <div class="top">
         
-  <a href="reference.html" >Reference</a>
+        <span class="section-number">1</span>
+        
+        
+  <a href="docs.html"  class="active">Docs</a>
 
       </div>
 
-      <input type="checkbox" class="toggle"  />
-      <span class="arrow"></span>
       <div class="children">
         <table>
         
           <tr>
             
-              <td class="number-cell" align="right">5.1&nbsp;</td>
+              <td class="number-cell" align="right">1.1&nbsp;</td>
             
             <td class="title-cell">
-  <a href="fly.html" ><code>fly</code></a>
+  <a href="install.html" >Install</a>
 </td>
           </tr>
         
           <tr>
             
-              <td class="number-cell" align="right">5.2&nbsp;</td>
+              <td class="number-cell" align="right">1.2&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="auth.html" >Auth &amp; Teams</a>
 </td>
           </tr>
         
           <tr>
             
-              <td class="number-cell" align="right">5.3&nbsp;</td>
+              <td class="number-cell" align="right">1.3&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="fly.html" >The <code>fly</code> CLI</a>
 </td>
           </tr>
         
           <tr>
             
-              <td class="number-cell" align="right">5.4&nbsp;</td>
+              <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
   <a href="pipelines.html" >Pipelines</a>
@@ -205,16 +115,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">5.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">5.6&nbsp;</td>
+              <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
   <a href="resources.html" >Resources</a>
@@ -223,10 +124,37 @@
         
           <tr>
             
-              <td class="number-cell" align="right">5.7&nbsp;</td>
+              <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
+  <a href="jobs.html" >Jobs</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tasks.html"  class="active">Tasks</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.8&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="builds.html" >Builds</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.9&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
 </td>
           </tr>
         
@@ -243,18 +171,19 @@
     <nav>
       <div class="top">
         
-  <a href="tasks.html" >Tasks</a>
+        <span class="section-number">1.7</span>
+        
+        
+  <a href="tasks.html"  class="active">Tasks</a>
 
       </div>
 
-      <input type="checkbox" class="toggle" checked />
-      <span class="arrow"></span>
       <div class="children">
         <table>
         
           <tr>
             
-              <td class="number-cell" align="left"></td>
+              <td class="number-cell" align="right">1.7.1&nbsp;</td>
             
             <td class="title-cell">
   <a href="running-tasks.html"  class="self">Running Tasks</a>
@@ -263,7 +192,7 @@
         
           <tr>
             
-              <td class="number-cell" align="left"></td>
+              <td class="number-cell" align="right">1.7.2&nbsp;</td>
             
             <td class="title-cell">
   <a href="task-environment.html" >Task Environment</a>
@@ -276,52 +205,55 @@
   </div>
   
 
-  
 
-  
-  <div class="context">
+
+
+
+<div class="context">
+  <div class="page-toc">
     <nav>
       <div class="top">
+        
+        <span class="section-number">1.7.1</span>
+        
         
   <a href="running-tasks.html"  class="self">Running Tasks</a>
 
       </div>
 
-      <input type="checkbox" class="toggle" checked />
-      <span class="arrow"></span>
-      <div class="children">
-        <table>
+      
+<div class="children">
+  <table>
+    
+      <tr>
         
-          <tr>
-            
-              <td class="number-cell" align="left"></td>
-            
-            <td class="title-cell">
-  <a href="running-tasks.html#fly-execute" ><code>fly execute</code></a>
-</td>
-          </tr>
+          <td class="number-cell" align="left"></td>
         
-        </table>
-      </div>
+        <td class="title-cell">
+          <a href="running-tasks.html#fly-execute"><code>fly execute</code></a>
+
+          
+        </td>
+      </tr>
+    
+  </table>
+</div>
+
     </nav>
   </div>
+</div>
+
+
+
+
+    </div>
+
+    <div class="page-aside"></div>
+
+    <div class="page-content">
+      <div class="section" id="section_running-tasks">
   
-
-
-
-
-
-
-<ul class="improve-docs">
-  <li><img src="images/github.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
-
-  <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
-</ul>
-      </div>
-      <div class="page">
-        <div class="section" id="section_running-tasks">
-  
-  <h1 class="section-header"><a name="running-tasks"></a>Running Tasks</h1>
+  <h1 class="section-header"><a name="running-tasks"></a><span class="section-number">1.7.1 </span>Running Tasks</h1>
   
 
   <p>One of the most common use cases of <code>fly</code> is taking a local project on your computer and submitting it up with a task configuration to be run inside a container in Concourse. This is useful to build Linux projects on OS X or to avoid all of those debugging commits when something is configured differently between your local and remote setup.</p>
@@ -350,7 +282,7 @@
 </pre></div><p>This would work together with a <code>build-stemcell.yml</code> if its <code>inputs:</code> section was as follows:</p><div class="highlight"><pre style="">inputs:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>code<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>stemcells<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre></div><p>If you specify an input then the default input will no longer be added automatically and you will need to explicitly list it (as with the <code>code</code> input above).</p><p>This feature can be used to mimic other resources and try out combinations of input that would normally not be possible in a pipeline.</p>
+</span></pre></div><p>If you specify an input then the default input will no longer be added automatically and you will need to explicitly list it (as with the <code>code</code> input above).</p><p>This feature can be used to mimic other resources and try out combinations of input that would normally not be possible in a pipeline.</p>
 
   
     
@@ -384,7 +316,7 @@
 </span><span style="color:#3498db"></span>    --output <span style="color:#3498db">stemcell</span>=/tmp/stemcell
 </pre></div><p>This would work together with a <code>build-stemcell.yml</code> if its <code>outputs:</code> section was as follows:</p><div class="highlight"><pre style="">outputs:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>stemcell<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre></div><p>This feature is useful to farm work out to your Concourse server to build things in a repeatable manner.</p>
+</span></pre></div><p>This feature is useful to farm work out to your Concourse server to build things in a repeatable manner.</p>
 
   
     
@@ -399,8 +331,24 @@
   <p>Any params listed in the task configuration can be specified by using environment variables.</p><p>So, if you have a task with the following params:</p><div class="highlight"><pre style="">params:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>FOO:<span style="color:#e6e7e8"> </span>fizzbuzz<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>BAR:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span></pre></div><p>...and you run:</p><div class="highlight"><pre style=""><span style="color:#3498db">BAR</span>=hello fly execute
+</span></pre></div><p>...and you run:</p><div class="highlight"><pre style=""><span style="color:#3498db">BAR</span>=hello fly execute
 </pre></div><p>The task would then run with <code>BAR</code> as <code>&#34;hello&#34;</code>, and <code>FOO</code> as <code>&#34;fizzbuzz&#34;</code> (its default value).</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_fly-execute-vars">
+  
+  <h3 class="section-header"><a name="fly-execute-vars"></a>Providing values for <code>((vars))</code></h3>
+  
+
+  <p>Task config files can contain template variables in the form of <code>((foo-bar))</code>, the same as <a href="setting-pipelines.html#pipeline-vars">pipeline <code>((vars))</code></a>.</p><p>These vars can be set during <code>fly execute</code> by using the <code>-v</code>, <code>-y</code> and <code>-l</code> flags, the same as <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a>:</p><div class="highlight"><pre style="">fly -t example execute --config tests.yml <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>  -l vars.yml <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>  -v <span style="color:#3498db">some_string</span>=<span style="color:#e67e22">&#34;Hello World!&#34;</span> <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>  -y <span style="color:#3498db">some_bool</span>=<span style="color:#8f4b2d">true</span>
+</pre></div><p>Any variables not satisfied via the above flags will be deferred to the configured <a href="creds.html">credential manager</a>.</p><p>To satisfy these vars when running the task in a pipeline, see <a href="task-step.html#task-step-vars"><code><strong>vars</strong></code></a>.</p>
 
   
     
@@ -425,8 +373,37 @@
     
   
 </div>
-      </div>
+
+      <nav class="prev-next">
       
+        <div class="prev">
+          prev:
+
+          
+          <span class="section-number">1.7</span>
+          
+
+          <a href="tasks.html">Tasks</a>
+        </div>
+      
+
+      
+        <div class="next">
+          next:
+
+          
+          <span class="section-number">1.7.2</span>
+          
+
+          <a href="task-environment.html">Task Environment</a>
+        </div>
+      
+      </nav>
     </div>
+
+    <ul class="improve-docs">
+      <li><img src="images/github.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+      <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+    </ul>
   </body>
 </html>
