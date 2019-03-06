@@ -1,0 +1,69 @@
+\title{Tasks Passing Artifact}{task-passing-artifact-example}
+
+\use-plugin{concourse-docs}
+
+\section{
+  \title{}{pipeline}
+
+	A task can pass an artifacts to another task in the same job.
+
+	\frame{https://ci.concourse-ci.org/teams/examples/pipelines/task-passing-artifact/jobs/create-and-consume}
+}
+
+\right-side{Why?}{
+  Tasks within a job have the ability to pass artifacts directly inbetween them to allow you to process artifacts in many ways.
+
+  While you are free to create as many jobs as you'd like for your pipeline, you have to use resources to pass artifacts inbetween them.
+
+  These constructs give you the ability to design a pipeline that can process artifacts in many different ways via \reference{tasks}, and then store those processed artifacts externally via \reference{resources}.
+}
+
+\section{
+  \title{Pipeline Configuration}{configuration}
+	\codeblock{yaml}{{{
+---
+jobs:
+  - name: create-and-consume
+    public: true
+    plan:
+      - task: make-a-file
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source: { repository: busybox }
+          run:
+            path: sh
+            args:
+              - -exc
+              - ls -la; echo "Created a file on $(date)" > ./files/created_file
+          outputs:
+            - name: files
+      - task: consume-the-file
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source: { repository: busybox }
+          inputs:
+            - name: files
+          run:
+            path: cat
+            args:
+              - ./files/created_file
+  }}}
+}
+
+\section{
+	\title{References}{references}
+
+	\list{
+		\reference{task-outputs}
+	}{
+		\reference{tasks}
+	}{
+		\reference{steps}
+	}{
+		\reference{jobs}
+	}
+}
