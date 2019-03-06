@@ -789,7 +789,7 @@
   <p>Be sure to recreate your workers after or during the deploy, as the location that the worker stores volumes has changed and the old volume directory will not be cleaned up, effectively leaking disk usage.</p>
 </div><div class="warning">
   <p>The <code>additional_resource_types</code> property can no longer be configured. We plan to add another mechanism for co-located resources in future releases.</p>
-</div><p>The <code>concourse</code> release no no longer needs to be deployed alongside a <code>garden-runc</code> BOSH release, and instead embeds the <code>gdn</code> binary directly.</p><p>Along the way, we have adopted <a href="https://github.com/cloudfoundry-incubator/bpm-release">BPM</a> and now use it for deploying the <a href="concourse-web.html"><code>web</code> node</a>. We also enforce a higher <code>nofile</code> limit which should make large-scale deployments more...scaley.</p>
+</div><p>The <code>concourse</code> release no longer needs to be deployed alongside a <code>garden-runc</code> BOSH release, and instead embeds the <code>gdn</code> binary directly.</p><p>Along the way, we have adopted <a href="https://github.com/cloudfoundry-incubator/bpm-release">BPM</a> and now use it for deploying the <a href="concourse-web.html"><code>web</code> node</a>. We also enforce a higher <code>nofile</code> limit which should make large-scale deployments more...scaley.</p>
   </div>
 </div><div class="release-note">
   <div class="note-tags">
