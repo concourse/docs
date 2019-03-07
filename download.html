@@ -41,12 +41,14 @@
   
 </nav>
 
-<div class="top-search" id="search" onclick="gtag('event', 'search-click');">
-  <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
+<div class="top-search">
+  <div id="search"></div>
 </div>
 
 <script type="text/javascript">
-  Elm.Main.embed(document.getElementById("search"));
+  Elm.Main.init({
+    node: document.getElementById('search')
+  });
 </script>
 
     <div class="page-nav">
@@ -1229,7 +1231,7 @@
   </div>
 
   <div class="note-content">
-    <p>When a resource&#39;s metadata is suuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuper wiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiide, it will remain cordoned off to the side rather than uncomfortably squishing the resource&#39;s <code>get</code> output. Thanks for the fix, <a href="http://github.com/stigtermichiel"><strong>@stigtermichiel</strong></a>!</p>
+    <p>When a resource&#39;s metadata is super wide, it will remain cordoned off to the side rather than uncomfortably squishing the resource&#39;s <code>get</code> output. Thanks for the fix, <a href="http://github.com/stigtermichiel"><strong>@stigtermichiel</strong></a>!</p>
   </div>
 </div><div class="release-note">
   <a class="anchor" name="v500-note-46" href="#v500-note-46"></a>

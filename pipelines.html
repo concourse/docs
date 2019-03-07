@@ -41,12 +41,14 @@
   
 </nav>
 
-<div class="top-search" id="search" onclick="gtag('event', 'search-click');">
-  <input type="search" class="search-input" placeholder="Search the docs&hellip;" required="required" />
+<div class="top-search">
+  <div id="search"></div>
 </div>
 
 <script type="text/javascript">
-  Elm.Main.embed(document.getElementById("search"));
+  Elm.Main.init({
+    node: document.getElementById('search')
+  });
 </script>
 
     <div class="page-nav">
@@ -459,7 +461,7 @@
 </span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>booklit<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>unit<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>run-unit<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>booklit/ci/test.yml<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>build<span style="color:#e6e7e8">
@@ -467,7 +469,7 @@
 </span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>booklit<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>passed:<span style="color:#e6e7e8"> </span>[unit]<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>unit<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>run-build<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>booklit/ci/build.yml<span style="color:#e6e7e8">
 </span></pre></div>
 </div><div class="example">
