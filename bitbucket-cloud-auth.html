@@ -13,7 +13,7 @@
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
-<title>Generic oAuth - Concourse CI</title>
+<title>BitBucket Cloud auth - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
@@ -292,7 +292,7 @@
               <td class="number-cell" align="right">1.2.2.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="bitbucket-cloud-auth.html" >BitBucket Cloud auth</a>
+  <a href="bitbucket-cloud-auth.html"  class="self">BitBucket Cloud auth</a>
 </td>
           </tr>
         
@@ -328,7 +328,7 @@
               <td class="number-cell" align="right">1.2.2.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="generic-oauth.html"  class="self">Generic oAuth</a>
+  <a href="generic-oauth.html" >Generic oAuth</a>
 </td>
           </tr>
         
@@ -350,55 +350,67 @@
     <div class="page-aside"></div>
 
     <div class="page-content">
-      <div class="section" id="section_generic-oauth">
+      <div class="section" id="section_bitbucket-cloud-auth">
   
-  <h1 class="section-header"><a name="generic-oauth"></a><span class="section-number">1.2.2.8 </span>Generic oAuth</h1>
+  <h1 class="section-header"><a name="bitbucket-cloud-auth"></a><span class="section-number">1.2.2.4 </span>BitBucket Cloud auth</h1>
   
 
-  <p>A Concourse server can authenticate against any valid OAuth auth provider, though it&#39;s a bit &#34;closer to the metal&#34; as you&#39;ll need to explicitly configure the auth, token, and user-info URLs. You may want to see if you can use <a href="generic-oidc-auth.html">Generic OIDC auth</a> if your auth provider is compatible with OIDC.</p>
+  <p>A Concourse server can authenticate against BitBucket Cloud to leverage its permission model.</p>
 
   
     
-      <div class="section" id="section_generic-oauth-authentication">
+      <div class="section" id="section_bitbucket-cloud-authentication">
   
-  <h2 class="section-header"><a name="generic-oauth-authentication"></a>Authentication</h2>
+  <h2 class="section-header"><a name="bitbucket-cloud-authentication"></a>Authentication</h2>
   
 
-  <p>First you&#39;ll need to create a client with your oAuth provider.</p><p>The callback URL must be the URL of your Concourse server with <code>/sky/issuer/callback</code> appended. This address must be reachable by your oAuth provider - it can&#39;t be <code>localhost</code>.</p><p>For example, Concourse&#39;s own CI server&#39;s callback URL would be:</p><div class="highlight"><pre style="">https://ci.concourse-ci.org/sky/issuer/callback
-</pre></div><p>The Generic oAuth provider has many values to set - for a full list consult <code>concourse web --help</code>.</p><p>A typical <a href="concourse-web.html"><code>web</code> node</a> env config may look something like this:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_OAUTH_DISPLAY_NAME</span>=Acme
-<span style="color:#3498db">CONCOURSE_OAUTH_CLIENT_ID</span>=myclientid
-<span style="color:#3498db">CONCOURSE_OAUTH_CLIENT_SECRET</span>=myclientsecret
-<span style="color:#3498db">CONCOURSE_OAUTH_AUTH_URL</span>=https://oauth.example.com/oauth2/auth
-<span style="color:#3498db">CONCOURSE_OAUTH_TOKEN_URL</span>=https://oauth.example.com/oauth2/token
-<span style="color:#3498db">CONCOURSE_OAUTH_USERINFO_URL</span>=https://oauth.example.com/oauth2/userinfo
-</pre></div><p>Consult <code>concourse web --help</code> for a full list of flags with descriptions.</p>
+  <p>First, you&#39;ll need to <a href="https://confluence.atlassian.com/display/BITBUCKET/OAuth&#43;on&#43;Bitbucket&#43;Cloud">create an OAuth consumer on Bitbucket Cloud</a>.</p><p>The consumer will need the following permissions:</p><ul>
+
+  <li><p>Account:</p><ul>
+
+  <li><p>Email</p></li>
+
+  <li><p>Read</p></li>
+
+</ul></li>
+
+  <li><p>Team membership:</p><ul>
+
+  <li><p>Read</p></li>
+
+</ul></li>
+
+</ul><p>The &#34;Callback URL&#34; must be the URL of your Concourse server with <code>/sky/issuer/callback</code> appended. This address must be reachable by BitBucket Cloud - it can&#39;t be <code>localhost</code>.</p><p>For example, Concourse&#39;s own CI server&#39;s callback URL would be:</p><div class="highlight"><pre style="">https://ci.concourse-ci.org/sky/issuer/callback
+</pre></div><p>You will be given a Client ID and a Client Secret for your new application. The client ID and secret must then be configured on the <a href="concourse-web.html"><code>web</code> node</a> by setting the following env:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_BITBUCKET_CLOUD_CLIENT_ID</span>=myclientid
+<span style="color:#3498db">CONCOURSE_BITBUCKET_CLOUD_CLIENT_SECRET</span>=myclientsecret
+</pre></div>
 
   
     
   
 </div>
     
-      <div class="section" id="section_generic-oauth-authorization">
+      <div class="section" id="section_bitbucket-cloud-authorization">
   
-  <h2 class="section-header"><a name="generic-oauth-authorization"></a>Authorization</h2>
+  <h2 class="section-header"><a name="bitbucket-cloud-authorization"></a>Authorization</h2>
   
 
-  <p>OAuth users and groups can be authorized for a team by passing the following flags to <a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a>:</p><dl>
+  <p>BitBucket users and teams can be authorized for a team by passing the following flags to <a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a>:</p><dl>
   
-  <dt><code>--oauth-user=USERNAME</code></dt>
+  <dt><code>--bitbucket-cloud-user=LOGIN</code></dt>
     <dd><p>Authorize an individual user.</p></dd>
   
-  <dt><code>--oauth-group=GROUP_NAME</code></dt>
-    <dd><p>Authorize anyone from the group.</p><p>You may only configure groups if the auth provider exposes this information in either the token itself, or in the contents of the userinfo endpoint.</p><p>You can configure which claim points to the groups information by specifying <code>CONCOURSE_OAUTH_GROUPS_KEY</code> on the <a href="concourse-web.html"><code>web</code> node</a>.</p></dd>
+  <dt><code>--bitbucket-cloud-team=TEAM_NAME</code></dt>
+    <dd><p>Authorize an entire organization&#39;s members.</p></dd>
   
 </dl><p>For example:</p><div class="highlight"><pre style="">$ fly set-team -n my-team <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --oauth-user my-username <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --oauth-group my-group
+</span><span style="color:#3498db"></span>    --bitbucket-cloud-user my-bitbucket-login <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --bitbucket-cloud-team my-bitbucket-team
 </pre></div><p>...or via <code>--config</code> for <a href="managing-teams.html#setting-roles">setting user roles</a>:</p><div class="highlight"><pre style="">roles:
 - name: member
-  oauth:
-    users: [<span style="color:#e67e22">&#34;my-username&#34;</span>]
-    groups: [<span style="color:#e67e22">&#34;my-group&#34;</span>]
+  bitbucket:
+    users: [<span style="color:#e67e22">&#34;my-bitbucket-login&#34;</span>]
+    teams: [<span style="color:#e67e22">&#34;my-bitbucket-team&#34;</span>]
 </pre></div>
 
   
@@ -408,9 +420,9 @@
   <h3 class="section-header"><a name="configuring-main-team-authorization"></a>Configuring <code>main</code> Team Authorization</h3>
   
 
-  <p>OAuth users and groups can be added to the <a href="main-team.html"><code>main</code> team</a> authorization config by setting the following env on the <a href="concourse-web.html"><code>web</code> node</a>:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_MAIN_TEAM_OAUTH_USER</span>=my-user
-<span style="color:#3498db">CONCOURSE_MAIN_TEAM_OAUTH_GROUP</span>=my-group
-</pre></div><p>Multiple users and groups may be specified by comma-separating them.</p>
+  <p>GitHub users, teams, and organizations can be added to the <a href="main-team.html"><code>main</code> team</a> authorization config by setting the following env on the <a href="concourse-web.html"><code>web</code> node</a>:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_MAIN_TEAM_BITBUCKET_CLOUD_USER</span>=my-bitbucket-login
+<span style="color:#3498db">CONCOURSE_MAIN_TEAM_BITBUCKET_CLOUD_TEAM</span>=my-bitbucket-team
+</pre></div><p>Multiple teams and users may be specified by comma-separating them.</p>
 
   
     
@@ -429,10 +441,10 @@
           prev:
 
           
-          <span class="section-number">1.2.2.7</span>
+          <span class="section-number">1.2.2.3</span>
           
 
-          <a href="generic-oidc-auth.html">Generic OIDC auth</a>
+          <a href="gitlab-auth.html">GitLab auth</a>
         </div>
       
 
@@ -441,10 +453,10 @@
           next:
 
           
-          <span class="section-number">1.2.3</span>
+          <span class="section-number">1.2.2.5</span>
           
 
-          <a href="managing-teams.html">Managing Teams</a>
+          <a href="cf-uaa-auth.html">CF/UAA auth</a>
         </div>
       
       </nav>

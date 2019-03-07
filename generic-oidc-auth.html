@@ -292,7 +292,7 @@
               <td class="number-cell" align="right">1.2.2.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="cf-uaa-auth.html" >CF/UAA auth</a>
+  <a href="bitbucket-cloud-auth.html" >BitBucket Cloud auth</a>
 </td>
           </tr>
         
@@ -301,7 +301,7 @@
               <td class="number-cell" align="right">1.2.2.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="ldap-auth.html" >LDAP auth</a>
+  <a href="cf-uaa-auth.html" >CF/UAA auth</a>
 </td>
           </tr>
         
@@ -310,13 +310,22 @@
               <td class="number-cell" align="right">1.2.2.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="generic-oidc-auth.html"  class="self">Generic OIDC auth</a>
+  <a href="ldap-auth.html" >LDAP auth</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.2.2.7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="generic-oidc-auth.html"  class="self">Generic OIDC auth</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2.2.8&nbsp;</td>
             
             <td class="title-cell">
   <a href="generic-oauth.html" >Generic oAuth</a>
@@ -343,7 +352,7 @@
     <div class="page-content">
       <div class="section" id="section_generic-oidc-auth">
   
-  <h1 class="section-header"><a name="generic-oidc-auth"></a><span class="section-number">1.2.2.6 </span>Generic OIDC auth</h1>
+  <h1 class="section-header"><a name="generic-oidc-auth"></a><span class="section-number">1.2.2.7 </span>Generic OIDC auth</h1>
   
 
   <p>A Concourse server can authenticate against any valid OIDC auth provider. This provider is similar to <a href="generic-oauth.html">Generic oAuth</a> except it only requires an issuer URL rather than auth/token/userinfo URLs.</p>
@@ -355,7 +364,7 @@
   <h2 class="section-header"><a name="generic-oidc-authentication"></a>Authentication</h2>
   
 
-  <p>First you&#39;ll need to create a client with your oAuth provider.</p><p>The callback URL must be the URL of your Concourse server with <code>/sky/issuer/callback</code> appended. This address must be reachable by GitHub - it can&#39;t be <code>localhost</code>.</p><p>For example, Concourse&#39;s own CI server&#39;s callback URL would be:</p><div class="highlight"><pre style="">https://ci.concourse-ci.org/sky/issuer/callback
+  <p>First you&#39;ll need to create a client with your oAuth provider.</p><p>The callback URL must be the URL of your Concourse server with <code>/sky/issuer/callback</code> appended. This address must be reachable by your OIDC provider - it can&#39;t be <code>localhost</code>.</p><p>For example, Concourse&#39;s own CI server&#39;s callback URL would be:</p><div class="highlight"><pre style="">https://ci.concourse-ci.org/sky/issuer/callback
 </pre></div><p>A typical <a href="concourse-web.html"><code>web</code> node</a> env config may look something like this:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_OIDC_DISPLAY_NAME</span>=Acme
 <span style="color:#3498db">CONCOURSE_OIDC_CLIENT_ID</span>=myclientid
 <span style="color:#3498db">CONCOURSE_OIDC_CLIENT_SECRET</span>=myclientsecret
@@ -418,7 +427,7 @@
           prev:
 
           
-          <span class="section-number">1.2.2.5</span>
+          <span class="section-number">1.2.2.6</span>
           
 
           <a href="ldap-auth.html">LDAP auth</a>
@@ -430,7 +439,7 @@
           next:
 
           
-          <span class="section-number">1.2.2.7</span>
+          <span class="section-number">1.2.2.8</span>
           
 
           <a href="generic-oauth.html">Generic oAuth</a>
