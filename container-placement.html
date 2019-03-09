@@ -313,7 +313,7 @@
     <div class="page-content">
       <div class="section" id="section_container-placement">
   
-  <h1 class="section-header"><a name="container-placement"></a><span class="section-number">1.9.4 </span>Container Placement</h1>
+  <h1 class="section-header"><a class="anchor" name="container-placement" href="#container-placement"></a><span class="section-number">1.9.4 </span>Container Placement</h1>
   
 
   <p>Each <a href="steps.html">step</a> in a build is executed inside a container. The <a href="concourse-web.html"><code>web</code> node</a> distributes containers across the worker cluster depending on the configured strategy.</p>
@@ -322,7 +322,7 @@
     
       <div class="section" id="section_volume-locality-strategy">
   
-  <h2 class="section-header"><a name="volume-locality-strategy"></a>The <code>volume-locality</code> strategy</h2>
+  <h2 class="section-header"><a class="anchor" name="volume-locality-strategy" href="#volume-locality-strategy"></a>The <code>volume-locality</code> strategy</h2>
   
 
   <p>When using <code>volume-locality</code>, the <a href="concourse-web.html"><code>web</code> node</a> places <a href="task-step.html"><code>task</code> step</a> and <a href="put-step.html"><code>put</code> step</a> containers on workers where a majority of their inputs are already present. <strong>This is the default strategy.</strong></p><p>The advantage of this approach is that it reduces the likelihood that large artifacts will have to be streamed from one <a href="concourse-worker.html"><code>worker</code> node</a>, through the <a href="concourse-web.html"><code>web</code> node</a>, and to the target <a href="concourse-worker.html"><code>worker</code> node</a>. For large artifacts, this can result in quite a bit of overhead.</p><p>The disadvantage of this approach is that it can sometimes result in builds &#34;gravitating&#34; to a particular worker and overloading it, at least until the <a href="caching-and-retention.html#resource-retention">resource caches</a> warm across the worker pool.</p><p>If your builds tend to be light on artifacts and heavy on task execution, you may want to try the <a href="container-placement.html#fewest-build-containers-strategy"><code>fewest-build-containers</code> strategy</a> instead.</p>
@@ -334,7 +334,7 @@
     
       <div class="section" id="section_fewest-build-containers-strategy">
   
-  <h2 class="section-header"><a name="fewest-build-containers-strategy"></a>The <code>fewest-build-containers</code> strategy</h2>
+  <h2 class="section-header"><a class="anchor" name="fewest-build-containers-strategy" href="#fewest-build-containers-strategy"></a>The <code>fewest-build-containers</code> strategy</h2>
   
 
   <p>When using the <code>fewest-build-containers</code> strategy, step containers are placed on the worker that has the fewest build containers (i.e. containers for other steps of other builds).</p><p>To use this strategy, set the following env var on the <a href="concourse-web.html"><code>web</code> node</a>:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_CONTAINER_PLACEMENT_STRATEGY</span>=fewest-build-containers
@@ -347,7 +347,7 @@
     
       <div class="section" id="section_random-strategy">
   
-  <h2 class="section-header"><a name="random-strategy"></a>The <code>random</code> strategy</h2>
+  <h2 class="section-header"><a class="anchor" name="random-strategy" href="#random-strategy"></a>The <code>random</code> strategy</h2>
   
 
   <p>With the <code>random</code> strategy, the <a href="concourse-web.html"><code>web</code> node</a> places <code>get</code>, <code>put</code> and <code>task</code> containers on any worker, ignoring any affinity.</p><p>As this is truly random, this will be fine until one day it&#39;s not fine.</p><p>To use this strategy, set the following env var on the <a href="concourse-web.html"><code>web</code> node</a>:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_CONTAINER_PLACEMENT_STRATEGY</span>=random

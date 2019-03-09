@@ -447,7 +447,7 @@
     <div class="page-content">
       <div class="section" id="section_task-step">
   
-  <h1 class="section-header"><a name="task-step"></a><span class="section-number">1.6.1.3 </span><code>task</code> step</h1>
+  <h1 class="section-header"><a class="anchor" name="task-step" href="#task-step"></a><span class="section-number">1.6.1.3 </span><code>task</code> step</h1>
   
 
   <p>Executes a <a href="tasks.html">Task</a>, either from a file fetched via the preceding steps, or with inlined configuration.</p><p>If any task in the build plan fails, the build will complete with failure. By default, any subsequent steps will not be performed. You can perform additional steps after failure by adding a <a href="on-failure-step-hook.html"><code>on_failure</code></a> or <a href="ensure-step-hook.html"><code>ensure</code></a> step hook.</p><p>When a task completes, the files in its declared outputs will be made avaliable to subsequent steps. This allows those subsequent steps to process the result of a task.</p><div class="definition">

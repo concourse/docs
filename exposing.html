@@ -257,7 +257,7 @@
     <div class="page-content">
       <div class="section" id="section_exposing">
   
-  <h1 class="section-header"><a name="exposing"></a><span class="section-number">1.2.5 </span>Pipeline &amp; Build Visibility</h1>
+  <h1 class="section-header"><a class="anchor" name="exposing" href="#exposing"></a><span class="section-number">1.2.5 </span>Pipeline &amp; Build Visibility</h1>
   
 
   <p>Every newly configured pipeline is hidden to anyone but the pipeline&#39;s team. To make a pipeline publicly viewable, both by other teams and unauthenticated users, see <a href="managing-pipelines.html#fly-expose-pipeline"><code>fly expose-pipeline</code></a>.</p><p>Even with a pipeline exposed, all build logs are hidden by default. This is because CI jobs are prone to leaking credentials and other...unsavory information. After you&#39;ve determined that a job&#39;s builds should be safe for public consumption, you can set <a href="jobs.html#job-public"><code>public: true</code></a> on the job in your pipeline.</p>

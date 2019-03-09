@@ -354,7 +354,7 @@
     <div class="page-content">
       <div class="section" id="section_gitlab-auth">
   
-  <h1 class="section-header"><a name="gitlab-auth"></a><span class="section-number">1.2.2.3 </span>GitLab auth</h1>
+  <h1 class="section-header"><a class="anchor" name="gitlab-auth" href="#gitlab-auth"></a><span class="section-number">1.2.2.3 </span>GitLab auth</h1>
   
 
   <p>A Concourse server can authenticate against GitLab to leverage their permission model.</p>
@@ -363,7 +363,7 @@
     
       <div class="section" id="section_gitlab-authentication">
   
-  <h2 class="section-header"><a name="gitlab-authentication"></a>Authentication</h2>
+  <h2 class="section-header"><a class="anchor" name="gitlab-authentication" href="#gitlab-authentication"></a>Authentication</h2>
   
 
   <p>First you need to <a href="https://gitlab.com/profile/applications">create an OAuth application on GitLab</a>.</p><p>The &#34;Authorization callback URL&#34; must be the URL of your Concourse server with <code>/sky/issuer/callback</code> appended. This address must be reachable by GitLab - it can&#39;t be <code>localhost</code>.</p><p>For example, Concourse&#39;s own CI server&#39;s callback URL would be:</p><div class="highlight"><pre style="">https://ci.concourse-ci.org/sky/issuer/callback
@@ -379,7 +379,7 @@
     
       <div class="section" id="section_gitlab-authorization">
   
-  <h2 class="section-header"><a name="gitlab-authorization"></a>Authorization</h2>
+  <h2 class="section-header"><a class="anchor" name="gitlab-authorization" href="#gitlab-authorization"></a>Authorization</h2>
   
 
   <p>Users and groups can be authorized for a team by passing the following flags to <a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a>:</p><dl>
@@ -405,7 +405,7 @@
     
       <div class="section" id="section_configuring-main-team-authorization">
   
-  <h3 class="section-header"><a name="configuring-main-team-authorization"></a>Configuring <code>main</code> Team Authorization</h3>
+  <h3 class="section-header"><a class="anchor" name="configuring-main-team-authorization" href="#configuring-main-team-authorization"></a>Configuring <code>main</code> Team Authorization</h3>
   
 
   <p>GitLab users and groups can be added to the <a href="main-team.html"><code>main</code> team</a> authorization config by setting the following env on the <a href="concourse-web.html"><code>web</code> node</a>:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_MAIN_TEAM_GITLAB_GROUP</span>=group-name

@@ -341,7 +341,7 @@
     <div class="page-content">
       <div class="section" id="section_managing-teams">
   
-  <h1 class="section-header"><a name="managing-teams"></a><span class="section-number">1.2.3 </span>Managing Teams</h1>
+  <h1 class="section-header"><a class="anchor" name="managing-teams" href="#managing-teams"></a><span class="section-number">1.2.3 </span>Managing Teams</h1>
   
 
   
@@ -350,7 +350,7 @@
     
       <div class="section" id="section_fly-set-team">
   
-  <h2 class="section-header"><a name="fly-set-team"></a><code>fly set-team</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-set-team" href="#fly-set-team"></a><code>fly set-team</code></h2>
   
 
   <p>Once you&#39;ve <a href="fly.html#fly-login">logged in as the <code>main</code> team with <code>fly</code></a>, you can run <a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a> to create or update other teams. Users with a <a href="user-roles.html#team-owner-role">Team Owner role</a> can also update their own configuration with the same command.</p><p>For example, to create a new team that authorizes the local <code>foo</code> user, you would run:</p><div class="highlight"><pre style="">fly -t example set-team --team-name my-team <span style="color:#3498db">\
@@ -362,7 +362,7 @@
     
       <div class="section" id="section_setting-roles">
   
-  <h3 class="section-header"><a name="setting-roles"></a>Setting User Roles</h3>
+  <h3 class="section-header"><a class="anchor" name="setting-roles" href="#setting-roles"></a>Setting User Roles</h3>
   
 
   <p>By default, authorization config passed to <code>set-team</code> configures the <a href="user-roles.html#team-member-role">Team Member role</a>.</p><p>More advanced <a href="user-roles.html">roles</a> configuration can be specified can be specified through the <code>--configuration</code> or <code>-c</code> flag.</p><p>The <code>-c</code> flag expects a <code>.yml</code> file with a single field, <code>roles:</code>, pointing to a list of role authorization configs.</p><p>All of the attributes in each config will vary by provider. Consult the appropriate section for your provider under <a href="configuring-auth.html">Configuring Auth</a> for specifics.</p><p>For example, the following config sets three roles with different auth config for each role&#39;s provider:</p><div class="highlight"><pre style="">roles:
@@ -389,7 +389,7 @@
     
       <div class="section" id="section_fly-teams">
   
-  <h2 class="section-header"><a name="fly-teams"></a><code>fly teams</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-teams" href="#fly-teams"></a><code>fly teams</code></h2>
   
 
   <p>To list all the teams, run:</p><div class="highlight"><pre style="">$ fly -t example teams
@@ -403,7 +403,7 @@
     
       <div class="section" id="section_fly-rename-team">
   
-  <h2 class="section-header"><a name="fly-rename-team"></a><code>fly rename-team</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-rename-team" href="#fly-rename-team"></a><code>fly rename-team</code></h2>
   
 
   <p>To rename a team, run:</p><div class="highlight"><pre style="">$ fly -t example rename-team --old-name my-team --new-name cool-team
@@ -416,7 +416,7 @@
     
       <div class="section" id="section_fly-destroy-team">
   
-  <h2 class="section-header"><a name="fly-destroy-team"></a><code>fly destroy-team</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-destroy-team" href="#fly-destroy-team"></a><code>fly destroy-team</code></h2>
   
 
   <p>To remove a team, including all of its pipelines and one-off builds, first log in as the <a href="main-team.html"><code>main</code> team</a>, and then run:</p><div class="highlight"><pre style="">$ fly -t example destroy-team --team-name my-team

@@ -286,7 +286,7 @@
     <div class="page-content">
       <div class="section" id="section_setting-pipelines">
   
-  <h1 class="section-header"><a name="setting-pipelines"></a><span class="section-number">1.4.1 </span>Setting Pipelines</h1>
+  <h1 class="section-header"><a class="anchor" name="setting-pipelines" href="#setting-pipelines"></a><span class="section-number">1.4.1 </span>Setting Pipelines</h1>
   
 
   <p>Pipelines are configured entirely via the <a href="fly.html"><code>fly</code> CLI</a>. There is no GUI.</p>
@@ -295,7 +295,7 @@
     
       <div class="section" id="section_fly-set-pipeline">
   
-  <h2 class="section-header"><a name="fly-set-pipeline"></a><code>fly set-pipeline</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-set-pipeline" href="#fly-set-pipeline"></a><code>fly set-pipeline</code></h2>
   
 
   <p>To submit a pipeline configuration to Concourse from a file on your local disk you can use the <code>-c</code> or <code>--config</code> flag, like so:</p><div class="highlight"><pre style="">$ fly -t example set-pipeline <span style="color:#3498db">\
@@ -307,7 +307,7 @@
     
       <div class="section" id="section_pipeline-vars">
   
-  <h3 class="section-header"><a name="pipeline-vars"></a>Pipeline <code>((vars))</code></h3>
+  <h3 class="section-header"><a class="anchor" name="pipeline-vars" href="#pipeline-vars"></a>Pipeline <code>((vars))</code></h3>
   
 
   <p>The pipeline configuration can contain template variables in the form of <code>((foo-bar))</code>. They will be replaced with values populated by repeated <code>--var</code>, <code>--yaml-var</code>, or <code>--load-vars-from</code> flags, or at runtime via a <a href="creds.html">credential manager</a>.</p><p>This allows for credentials to be extracted from a pipeline config, making it safe to check in to a public repository or pass around.</p><p>For example, if you have a <code>pipeline.yml</code> as follows:</p><div class="highlight"><pre style="">resources:<span style="color:#e6e7e8">
@@ -341,7 +341,7 @@
     
       <div class="section" id="section_fly-validate-pipeline">
   
-  <h2 class="section-header"><a name="fly-validate-pipeline"></a><code>fly validate-pipeline</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-validate-pipeline" href="#fly-validate-pipeline"></a><code>fly validate-pipeline</code></h2>
   
 
   <p>To validate a local pipeline configuration without submitting it to Concourse, run <code>validate-pipeline</code>:</p><div class="highlight"><pre style="">$ fly validate-pipeline --config pipeline.yml
@@ -354,7 +354,7 @@
     
       <div class="section" id="section_fly-format-pipeline">
   
-  <h2 class="section-header"><a name="fly-format-pipeline"></a><code>fly format-pipeline</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-format-pipeline" href="#fly-format-pipeline"></a><code>fly format-pipeline</code></h2>
   
 
   <p>To format a pipeline config in a &#34;canonical&#34; form (i.e. keys are in normal order, with <code>name</code> first for example), run:</p><div class="highlight"><pre style="">$ fly format-pipeline --config pipeline.yml

@@ -387,7 +387,7 @@
     <div class="page-content">
       <div class="section" id="section_steps">
   
-  <h1 class="section-header"><a name="steps"></a><span class="section-number">1.6.1 </span>Steps</h1>
+  <h1 class="section-header"><a class="anchor" name="steps" href="#steps"></a><span class="section-number">1.6.1 </span>Steps</h1>
   
 
   <p>Each <a href="jobs.html">Job</a> has a single build plan. When a build of a job is created, the plan determines what happens.</p><p>A build plan is a sequence of <em>steps</em> to execute. These steps may fetch down or update <a href="resources.html">Resources</a>, or execute <a href="tasks.html">Tasks</a>.</p><p>A new build of the job is scheduled whenever <a href="get-step.html"><code>get</code> step</a>s with <code>trigger: true</code> have new versions available.</p><p>To visualize the job in the pipeline, resources that appear as <code>get</code> steps are drawn as inputs, and resources that appear in <code>put</code> steps appear as outputs.</p>

@@ -489,7 +489,7 @@
     <div class="page-content">
       <div class="section" id="section_auth">
   
-  <h1 class="section-header"><a name="auth"></a><span class="section-number">1.2 </span>Auth &amp; Teams</h1>
+  <h1 class="section-header"><a class="anchor" name="auth" href="#auth"></a><span class="section-number">1.2 </span>Auth &amp; Teams</h1>
   
 
   <p>A single Concourse installation can accomodate many projects and users.</p><p>Pipelines, builds, and all other user data are owned by <em>teams</em>. A team is just a conceptual owner and a separate namespace, tied to an authorization config. For example, a team may authorize all members of the <code>concourse</code> GitHub organization to be a <a href="user-roles.html#team-member-role">member</a>.</p><p>When a user authenticates, each team&#39;s authorization config is checked against the user to determine which <a href="user-roles.html">role</a>, if any, to grant for the team. This information is then stored in the user&#39;s token to determine access control for future requests.</p>

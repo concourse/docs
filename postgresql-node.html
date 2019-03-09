@@ -239,7 +239,7 @@
     <div class="page-content">
       <div class="section" id="section_postgresql-node">
   
-  <h1 class="section-header"><a name="postgresql-node"></a><span class="section-number">1.1.2 </span>Running a PostgreSQL node</h1>
+  <h1 class="section-header"><a class="anchor" name="postgresql-node" href="#postgresql-node"></a><span class="section-number">1.1.2 </span>Running a PostgreSQL node</h1>
   
 
   <p>Concourse uses <a href="https://www.postgresql.org">PostgreSQL</a> for storing all data and coordinating work in a multi-<a href="concourse-web.html"><code>web</code> node</a> installation.</p>
@@ -248,7 +248,7 @@
     
       <div class="section" id="section_db-prerequisites">
   
-  <h2 class="section-header"><a name="db-prerequisites"></a>Prerequisites</h2>
+  <h2 class="section-header"><a class="anchor" name="db-prerequisites" href="#db-prerequisites"></a>Prerequisites</h2>
   
 
   <p><a href="https://www.postgresql.org">PostgreSQL</a> 9.5 or above is required, though the latest available version is recommended.</p>
@@ -260,7 +260,7 @@
     
       <div class="section" id="section_db-running">
   
-  <h2 class="section-header"><a name="db-running"></a>Running</h2>
+  <h2 class="section-header"><a class="anchor" name="db-running" href="#db-running"></a>Running</h2>
   
 
   <p>How this node is managed is up to you; Concourse doesn&#39;t actually have much of an opinion on it, it just needs a database.</p><p>How to install PostgreSQL is really dependent on your platform. Please refer to your Linux distribution or operating system&#39;s documentation.</p><p>For the most part, the instruction on Linux should look something like this:</p><div class="highlight"><pre style="">sudo apt install postgresql
@@ -275,7 +275,7 @@ sudo su postgres -c <span style="color:#e67e22">&#34;</span><span style="color:#
     
       <div class="section" id="section_db-properties">
   
-  <h2 class="section-header"><a name="db-properties"></a>Properties</h2>
+  <h2 class="section-header"><a class="anchor" name="db-properties" href="#db-properties"></a>Properties</h2>
   
 
   <p>CPU usage: this is one of the most volatile metrics, and one we try pretty hard to keep down. There will be near-constant database queries running, and while we try to keep them very simple, there is always more work to do. Expect to feed your database with at least a couple cores, ideally four to eight. Monitor this closely as the size of your deployment and the amount of traffic it&#39;s handling increases, and scale accordingly.</p><p>Memory usage: similar to CPU usage, but not quite as volatile.</p><p>Disk usage: pipeline configurations and various bookkeeping metadata for keeping track of jobs, builds, resources, containers, and volumes. In addition, <strong>all build logs are stored in the database</strong>. This is the primary source of disk usage. To mitigate this, users can configure <a href="jobs.html#job-build-logs-to-retain"><code><strong>build_logs_to_retain</strong></code></a> on a job, but currently there is no operator control for this setting. As a result, disk usage on the database can grow arbitrarily large.</p><p>Bandwidth usage: well, it&#39;s a database, so it most definitely uses the network (duh). Not much should stand out here, though build logs can result in an arbitrary amount of data being sent over the network to the database. This should be nothing compared to worker bandwidth, though.</p><p>Highly available: up to you. Clustered PostgreSQL is kind of new and probably tricky to deploy, but there are various cloud solutions for this.</p><p>Horizontally scalable: I...don&#39;t think so?</p><p>Outbound traffic:</p><ul>

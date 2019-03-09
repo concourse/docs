@@ -352,7 +352,7 @@
     <div class="page-content">
       <div class="section" id="section_managing-pipelines">
   
-  <h1 class="section-header"><a name="managing-pipelines"></a><span class="section-number">1.4.2 </span>Managing Pipelines</h1>
+  <h1 class="section-header"><a class="anchor" name="managing-pipelines" href="#managing-pipelines"></a><span class="section-number">1.4.2 </span>Managing Pipelines</h1>
   
 
   
@@ -361,7 +361,7 @@
     
       <div class="section" id="section_fly-pipelines">
   
-  <h2 class="section-header"><a name="fly-pipelines"></a><code>fly pipelines</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-pipelines" href="#fly-pipelines"></a><code>fly pipelines</code></h2>
   
 
   <p>To list the currently-configured pipelines and their paused state, run:</p><div class="highlight"><pre style="">$ fly -t example pipelines
@@ -374,7 +374,7 @@
     
       <div class="section" id="section_fly-rename-pipeline">
   
-  <h2 class="section-header"><a name="fly-rename-pipeline"></a><code>fly rename-pipeline</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-rename-pipeline" href="#fly-rename-pipeline"></a><code>fly rename-pipeline</code></h2>
   
 
   <p>To rename a pipeline, run:</p><div class="highlight"><pre style="">$ fly -t example rename-pipeline <span style="color:#3498db">\
@@ -389,7 +389,7 @@
     
       <div class="section" id="section_fly-pause-pipeline">
   
-  <h2 class="section-header"><a name="fly-pause-pipeline"></a><code>fly pause-pipeline</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-pause-pipeline" href="#fly-pause-pipeline"></a><code>fly pause-pipeline</code></h2>
   
 
   <p>To pause a pipeline, run:</p><div class="highlight"><pre style="">$ fly -t example pause-pipeline --pipeline my-pipeline
@@ -402,7 +402,7 @@
     
       <div class="section" id="section_fly-unpause-pipeline">
   
-  <h2 class="section-header"><a name="fly-unpause-pipeline"></a><code>fly unpause-pipeline</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-unpause-pipeline" href="#fly-unpause-pipeline"></a><code>fly unpause-pipeline</code></h2>
   
 
   <p>To unpause a pipeline, run:</p><div class="highlight"><pre style="">$ fly -t example unpause-pipeline --pipeline my-pipeline
@@ -415,7 +415,7 @@
     
       <div class="section" id="section_fly-expose-pipeline">
   
-  <h2 class="section-header"><a name="fly-expose-pipeline"></a><code>fly expose-pipeline</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-expose-pipeline" href="#fly-expose-pipeline"></a><code>fly expose-pipeline</code></h2>
   
 
   <p>By default, newly configured pipelines are only visible to the pipeline&#39;s team. To make a pipeline viewable by other teams and unauthenticated users, run:</p><div class="highlight"><pre style="">$ fly -t example expose-pipeline --pipeline my-pipeline
@@ -428,7 +428,7 @@
     
       <div class="section" id="section_fly-hide-pipeline">
   
-  <h2 class="section-header"><a name="fly-hide-pipeline"></a><code>fly hide-pipeline</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-hide-pipeline" href="#fly-hide-pipeline"></a><code>fly hide-pipeline</code></h2>
   
 
   <p>If you realize that you&#39;ve made a terrible mistake in <a href="managing-pipelines.html#fly-expose-pipeline">exposing your pipeline</a>, you can run:</p><div class="highlight"><pre style="">$ fly -t example hide-pipeline --pipeline my-pipeline
@@ -441,7 +441,7 @@
     
       <div class="section" id="section_fly-get-pipeline">
   
-  <h2 class="section-header"><a name="fly-get-pipeline"></a><code>fly get-pipeline</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-get-pipeline" href="#fly-get-pipeline"></a><code>fly get-pipeline</code></h2>
   
 
   <p>Fly can be used to fetch and update the configuration for your pipelines. This is achieved by using the <a href="managing-pipelines.html#fly-get-pipeline"><code>fly get-pipeline</code></a> and <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a> commands. For example, to fetch the current configuration of your <code>my-pipeline</code> Concourse pipeline and print it on <code>STDOUT</code> run the following:</p><div class="highlight"><pre style="">$ fly -t example get-pipeline --pipeline my-pipeline
@@ -454,7 +454,7 @@
     
       <div class="section" id="section_fly-destroy-pipeline">
   
-  <h2 class="section-header"><a name="fly-destroy-pipeline"></a><code>fly destroy-pipeline</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-destroy-pipeline" href="#fly-destroy-pipeline"></a><code>fly destroy-pipeline</code></h2>
   
 
   <p>Every now and then you just don&#39;t want a pipeline to be around anymore. Running <code>fly destroy-pipeline</code> will stop the pipeline activity and remove all data collected by the pipeline, including build history and collected versions.</p><p>For example, to destroy the <code>my-pipeline</code> pipeline, you would run:</p><div class="highlight"><pre style="">$ fly -t example destroy-pipeline --pipeline my-pipeline
@@ -467,7 +467,7 @@
     
       <div class="section" id="section_fly-order-pipelines">
   
-  <h2 class="section-header"><a name="fly-order-pipelines"></a><code>fly order-pipelines</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-order-pipelines" href="#fly-order-pipelines"></a><code>fly order-pipelines</code></h2>
   
 
   <p>To configure the ordering of pipelines, run:</p><div class="highlight"><pre style="">$ fly -t example order-pipelines <span style="color:#3498db">\

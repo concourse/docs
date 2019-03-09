@@ -255,7 +255,7 @@
     <div class="page-content">
       <div class="section" id="section_running-tasks">
   
-  <h1 class="section-header"><a name="running-tasks"></a><span class="section-number">1.7.1 </span>Running Tasks</h1>
+  <h1 class="section-header"><a class="anchor" name="running-tasks" href="#running-tasks"></a><span class="section-number">1.7.1 </span>Running Tasks</h1>
   
 
   <p>One of the most common use cases of <code>fly</code> is taking a local project on your computer and submitting it up with a task configuration to be run inside a container in Concourse. This is useful to build Linux projects on OS X or to avoid all of those debugging commits when something is configured differently between your local and remote setup.</p>
@@ -264,7 +264,7 @@
     
       <div class="section" id="section_fly-execute">
   
-  <h2 class="section-header"><a name="fly-execute"></a><code>fly execute</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-execute" href="#fly-execute"></a><code>fly execute</code></h2>
   
 
   <p>You can execute a task like this:</p><div class="highlight"><pre style="">$ fly -t example execute --config tests.yml
@@ -274,7 +274,7 @@
     
       <div class="section" id="section_providing-multiple-inputs">
   
-  <h3 class="section-header"><a name="providing-multiple-inputs"></a>Providing multiple inputs</h3>
+  <h3 class="section-header"><a class="anchor" name="providing-multiple-inputs" href="#providing-multiple-inputs"></a>Providing multiple inputs</h3>
   
 
   <p>Tasks in Concourse can take multiple inputs. Up until now we&#39;ve just been submitting a single input (our current working directory) that has the same name as the directory.</p><p>Tasks must specify the inputs that they require as <a href="tasks.html#task-inputs"><code><strong>inputs</strong></code></a>. For <code>fly</code> to upload these inputs you can use the <code>-i</code> or <code>--input</code> arguments with name and path pairs. For example:</p><div class="highlight"><pre style="">$ fly -t example execute <span style="color:#3498db">\
@@ -293,7 +293,7 @@
     
       <div class="section" id="section_basing-inputs-on-a-job-in-your-pipeline-with---inputs-from">
   
-  <h3 class="section-header"><a name="basing-inputs-on-a-job-in-your-pipeline-with---inputs-from"></a>Basing inputs on a job in your pipeline with <code>--inputs-from</code></h3>
+  <h3 class="section-header"><a class="anchor" name="basing-inputs-on-a-job-in-your-pipeline-with---inputs-from" href="#basing-inputs-on-a-job-in-your-pipeline-with---inputs-from"></a>Basing inputs on a job in your pipeline with <code>--inputs-from</code></h3>
   
 
   <p>If the <code>--inputs-from</code> flag is given, the specified job will be looked up in the pipeline, and the one-off build will base its inputs on those currently configured for the job.</p><p>If any <code>--input</code> flags are given (see above), they will override the base set of inputs.</p><p>For example:</p><div class="highlight"><pre style="">$ fly -t example execute <span style="color:#3498db">\
@@ -309,7 +309,7 @@
     
       <div class="section" id="section_taking-artifacts-from-the-build-with---output">
   
-  <h3 class="section-header"><a name="taking-artifacts-from-the-build-with---output"></a>Taking artifacts from the build with <code>--output</code></h3>
+  <h3 class="section-header"><a class="anchor" name="taking-artifacts-from-the-build-with---output" href="#taking-artifacts-from-the-build-with---output"></a>Taking artifacts from the build with <code>--output</code></h3>
   
 
   <p>If a task specifies outputs then you&#39;re able to extract these back out of the build and back to your local system. For example:</p><div class="highlight"><pre style="">$ fly -t example execute <span style="color:#3498db">\
@@ -327,7 +327,7 @@
     
       <div class="section" id="section_providing-values-for-params">
   
-  <h3 class="section-header"><a name="providing-values-for-params"></a>Providing values for <code>params</code></h3>
+  <h3 class="section-header"><a class="anchor" name="providing-values-for-params" href="#providing-values-for-params"></a>Providing values for <code>params</code></h3>
   
 
   <p>Any params listed in the task configuration can be specified by using environment variables.</p><p>So, if you have a task with the following params:</p><div class="highlight"><pre style="">params:<span style="color:#e6e7e8">
@@ -343,7 +343,7 @@
     
       <div class="section" id="section_fly-execute-vars">
   
-  <h3 class="section-header"><a name="fly-execute-vars"></a>Providing values for <code>((vars))</code></h3>
+  <h3 class="section-header"><a class="anchor" name="fly-execute-vars" href="#fly-execute-vars"></a>Providing values for <code>((vars))</code></h3>
   
 
   <p>Task config files can contain template variables in the form of <code>((foo-bar))</code>, the same as <a href="setting-pipelines.html#pipeline-vars">pipeline <code>((vars))</code></a>.</p><p>These vars can be set during <code>fly execute</code> by using the <code>-v</code>, <code>-y</code> and <code>-l</code> flags, the same as <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a>:</p><div class="highlight"><pre style="">fly -t example execute --config tests.yml <span style="color:#3498db">\
@@ -359,7 +359,7 @@
     
       <div class="section" id="section_targeting-a-specific-worker-with---tag">
   
-  <h3 class="section-header"><a name="targeting-a-specific-worker-with---tag"></a>Targeting a specific worker with <code>--tag</code></h3>
+  <h3 class="section-header"><a class="anchor" name="targeting-a-specific-worker-with---tag" href="#targeting-a-specific-worker-with---tag"></a>Targeting a specific worker with <code>--tag</code></h3>
   
 
   <p>If you want to execute a task on a worker that has a specific tag, you can do so by passing <code>--tag</code>:</p><div class="highlight"><pre style="">fly -t example execute --config task.yml --tag bar

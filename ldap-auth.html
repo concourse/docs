@@ -354,7 +354,7 @@
     <div class="page-content">
       <div class="section" id="section_ldap-auth">
   
-  <h1 class="section-header"><a name="ldap-auth"></a><span class="section-number">1.2.2.6 </span>LDAP auth</h1>
+  <h1 class="section-header"><a class="anchor" name="ldap-auth" href="#ldap-auth"></a><span class="section-number">1.2.2.6 </span>LDAP auth</h1>
   
 
   <p>The LDAP provider can be used for operators who wish to authenticate their users against an LDAP server.</p>
@@ -363,7 +363,7 @@
     
       <div class="section" id="section_ldap-authentication">
   
-  <h2 class="section-header"><a name="ldap-authentication"></a>Authentication</h2>
+  <h2 class="section-header"><a class="anchor" name="ldap-authentication" href="#ldap-authentication"></a>Authentication</h2>
   
 
   <p>The LDAP provider is configured by pointing it to an LDAP host with a read-only bind DN and password. This bind DN and password is used for authenticating with the LDAP host and querying the users.</p><p>Additionally, the base DN under which users are searched as well as the attribute of the users to associate to &#39;usernames&#39; must also be configured.</p><p>These can be specified via env to the <a href="concourse-web.html"><code>web</code> node</a> like so:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_LDAP_DISPLAY_NAME</span>=Acme <span style="color:#9b9b9b"># optional; default &#34;LDAP&#34;</span>
@@ -384,7 +384,7 @@
     
       <div class="section" id="section_configuring-ldap-group-search">
   
-  <h3 class="section-header"><a name="configuring-ldap-group-search"></a>Configuring LDAP group search</h3>
+  <h3 class="section-header"><a class="anchor" name="configuring-ldap-group-search" href="#configuring-ldap-group-search"></a>Configuring LDAP group search</h3>
   
 
   <p>The LDAP provider can also be configured with group search configuration, so that users can be configured for team authorization by their &#39;group&#39; in LDAP.</p><p>For example, to find groups and identify them by their <code>ou</code> attribute, you would configure:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_LDAP_GROUP_SEARCH_BASE_DN</span>=<span style="color:#e74c3c">&#39;cn=groups,dc=example,dc=com&#39;</span>
@@ -404,7 +404,7 @@
     
       <div class="section" id="section_ldap-authorization">
   
-  <h2 class="section-header"><a name="ldap-authorization"></a>Authorization</h2>
+  <h2 class="section-header"><a class="anchor" name="ldap-authorization" href="#ldap-authorization"></a>Authorization</h2>
   
 
   <p>LDAP users and groups can be authorized for a team by passing the following flags to <a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a>:</p><dl>
@@ -429,7 +429,7 @@
     
       <div class="section" id="section_configuring-main-team-authorization">
   
-  <h3 class="section-header"><a name="configuring-main-team-authorization"></a>Configuring <code>main</code> Team Authorization</h3>
+  <h3 class="section-header"><a class="anchor" name="configuring-main-team-authorization" href="#configuring-main-team-authorization"></a>Configuring <code>main</code> Team Authorization</h3>
   
 
   <p>LDAP users and groups can be added to the <a href="main-team.html"><code>main</code> team</a> authorization config by setting the following env on the <a href="concourse-web.html"><code>web</code> node</a>:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_MAIN_TEAM_LDAP_USER</span>=my-user

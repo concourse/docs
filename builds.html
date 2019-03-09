@@ -245,7 +245,7 @@
     <div class="page-content">
       <div class="section" id="section_builds">
   
-  <h1 class="section-header"><a name="builds"></a><span class="section-number">1.8 </span>Builds</h1>
+  <h1 class="section-header"><a class="anchor" name="builds" href="#builds"></a><span class="section-number">1.8 </span>Builds</h1>
   
 
   <p>A build is an execution of a <em>build plan</em>, which is either configured as a sequence of <a href="steps.html">steps</a> in a <a href="jobs.html">job</a>, or submitted directly to Concourse as a one-off build via <a href="running-tasks.html#fly-execute"><code>fly execute</code></a>.</p><p>Containers and volumes are created as <a href="get-step.html"><code>get</code> step</a>s, <a href="put-step.html"><code>put</code> step</a>s, and <a href="task-step.html"><code>task</code> step</a>s run. When a build completes successfully, these containers go away.</p><p>A failed build&#39;s containers and volumes are kept around so that you can debug the build via <a href="builds.html#fly-intercept"><code>fly intercept</code></a>. If the build belongs to a <a href="jobs.html">job</a>, the containers will go away when the next build starts. If the build is a one-off, its containers will be removed immediately, so make sure you intercept while it&#39;s running if you want to debug.</p>
@@ -254,7 +254,7 @@
     
       <div class="section" id="section_fly-builds">
   
-  <h2 class="section-header"><a name="fly-builds"></a><code>fly builds</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-builds" href="#fly-builds"></a><code>fly builds</code></h2>
   
 
   <p>To list the most recent builds, run:</p><div class="highlight"><pre style="">$ fly -t example builds
@@ -269,7 +269,7 @@
     
       <div class="section" id="section_fly-intercept">
   
-  <h2 class="section-header"><a name="fly-intercept"></a><code>fly intercept</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-intercept" href="#fly-intercept"></a><code>fly intercept</code></h2>
   
 
   <p>Sometimes it&#39;s helpful to be on the same machine as your tasks so that you can profile or inspect them as they run or see the state the machine at the end of a run. Due to Concourse running tasks in containers on remote machines this would typically be hard to access.</p><p>To this end, there is a <code>fly intercept</code> command that will give you an interactive shell inside the specified container. Containers are identified by a few things, so you may need to specify a few flags to hone down the results. If there are multiple containers that the flags could refer to, an interactive prompt will show up allowing you to disambiguate.</p><p>For example, running the following will run a task and then enter the finished task&#39;s container:</p><div class="highlight"><pre style="">$ fly -t example execute
@@ -286,7 +286,7 @@ $ fly -t example intercept --step build
     
       <div class="section" id="section_fly-abort-build">
   
-  <h2 class="section-header"><a name="fly-abort-build"></a><code>fly abort-build</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-abort-build" href="#fly-abort-build"></a><code>fly abort-build</code></h2>
   
 
   <p>To abort a build of a job, run:</p><div class="highlight"><pre style="">$ fly -t example abort-build --job my-pipeline/my-job --build <span style="color:#1abc9c;font-weight:bold">3</span>
@@ -299,7 +299,7 @@ $ fly -t example intercept --step build
     
       <div class="section" id="section_fly-watch">
   
-  <h2 class="section-header"><a name="fly-watch"></a><code>fly watch</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-watch" href="#fly-watch"></a><code>fly watch</code></h2>
   
 
   <p>Concourse emits streaming colored logs on the website but it can be helpful to have the logs availiable to the command line. (e.g. so that they can be processed by other commands).</p><p>The <code>watch</code> command can be used to do just this. You can also view builds that are running in your pipeline, or builds that have already finished.</p><p>Note that unlike <a href="running-tasks.html#fly-execute"><code>fly execute</code></a>, killing <code>fly watch</code> via <code>SIGINT</code> or <code>SIGTERM</code> will <em>not</em> abort the build.</p><p>To watch the most recent one-off build, just run <code>fly watch</code> with no arguments. To watch a specific build (one-off or no), pass <code>--build</code> with the ID of the build to watch. This ID is available at the start of <a href="running-tasks.html#fly-execute"><code>fly execute</code></a>&#39;s output or by browsing to the builds list in the web UI.</p><p>By using the <code>--job</code> and <code>--build</code> flags you can pick out a specific build of a job to watch. For example, the following command will either show the archived logs for an old build if it has finished running or it will stream the current logs if the build is still in progress.</p><div class="highlight"><pre style="">$ fly -t example watch --job my-pipeline/tests --build <span style="color:#1abc9c;font-weight:bold">52</span>

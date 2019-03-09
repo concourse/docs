@@ -454,7 +454,7 @@ npm install
     <div class="page-content">
       <div class="section" id="section_tasks">
   
-  <h1 class="section-header"><a name="tasks"></a><span class="section-number">1.7 </span>Tasks</h1>
+  <h1 class="section-header"><a class="anchor" name="tasks" href="#tasks"></a><span class="section-number">1.7 </span>Tasks</h1>
   
 
   <p>The smallest configurable unit in a Concourse pipeline is a single task. A task can be thought of as a function from <a href="tasks.html#task-inputs"><code><strong>inputs</strong></code></a> to <a href="tasks.html#task-outputs"><code><strong>outputs</strong></code></a> that can either succeed or fail.</p><p>Going a bit further, ideally tasks are <em>pure</em> functions: given the same set of inputs, it should either always succeed with the same outputs or always fail. This is entirely up to your script&#39;s level of discipline, however. Flaky tests or dependencies on the internet are the most common source of impurity.</p><p>Once you have a running Concourse deployment, you can start configuring your tasks and executing them interactively from your terminal with the <a href="fly.html">Fly</a> commandline tool.</p><p>Once you&#39;ve figured out your tasks&#39;s configuration, you can reuse it for a <a href="jobs.html">Job</a> in your <a href="pipelines.html">Pipeline</a>.</p><p>Conventionally a task&#39;s configuration is placed in the same repository as the code it&#39;s testing, possibly under some <code>ci</code> directory.</p><p>A task&#39;s configuration specifies the following:</p><div class="definition">

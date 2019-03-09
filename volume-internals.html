@@ -86,7 +86,7 @@
               <td class="number-cell" align="right">3.1&nbsp;</td>
             
             <td class="title-cell">
-  <a href="why-make-concourse.html" >Why make Concourse?</a>
+  <a href="contribute.html" >Contribute</a>
 </td>
           </tr>
         
@@ -95,7 +95,7 @@
               <td class="number-cell" align="right">3.2&nbsp;</td>
             
             <td class="title-cell">
-  <a href="how-can-i-help.html" >How can I help?</a>
+  <a href="architecture.html"  class="active">Architecture</a>
 </td>
           </tr>
         
@@ -104,31 +104,13 @@
               <td class="number-cell" align="right">3.3&nbsp;</td>
             
             <td class="title-cell">
-  <a href="contribute.html" >Contribute</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">3.4&nbsp;</td>
-            
-            <td class="title-cell">
   <a href="thanks.html" >Thanks!</a>
 </td>
           </tr>
         
           <tr>
             
-              <td class="number-cell" align="right">3.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="architecture.html"  class="active">Architecture</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">3.6&nbsp;</td>
+              <td class="number-cell" align="right">3.4&nbsp;</td>
             
             <td class="title-cell">
   <a href="trademarks.html" >Trademarks</a>
@@ -148,7 +130,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">3.5</span>
+        <span class="section-number">3.2</span>
         
         
   <a href="architecture.html"  class="active">Architecture</a>
@@ -217,7 +199,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">3.5.4.1&nbsp;</td>
+              <td class="number-cell" align="right">3.2.4.1&nbsp;</td>
             
             <td class="title-cell">
   <a href="database-schema.html" >Database Schema</a>
@@ -226,7 +208,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">3.5.4.2&nbsp;</td>
+              <td class="number-cell" align="right">3.2.4.2&nbsp;</td>
             
             <td class="title-cell">
   <a href="garbage-collection.html" >Garbage Collection</a>
@@ -235,7 +217,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">3.5.4.3&nbsp;</td>
+              <td class="number-cell" align="right">3.2.4.3&nbsp;</td>
             
             <td class="title-cell">
   <a href="volume-internals.html"  class="self">Volumes</a>
@@ -244,7 +226,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">3.5.4.4&nbsp;</td>
+              <td class="number-cell" align="right">3.2.4.4&nbsp;</td>
             
             <td class="title-cell">
   <a href="container-internals.html" >Containers</a>
@@ -253,7 +235,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">3.5.4.5&nbsp;</td>
+              <td class="number-cell" align="right">3.2.4.5&nbsp;</td>
             
             <td class="title-cell">
   <a href="worker-internals.html" >Workers</a>
@@ -262,7 +244,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">3.5.4.6&nbsp;</td>
+              <td class="number-cell" align="right">3.2.4.6&nbsp;</td>
             
             <td class="title-cell">
   <a href="caching-and-retention.html" >Caching &amp; Retention</a>
@@ -284,7 +266,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">3.5.4.3</span>
+        <span class="section-number">3.2.4.3</span>
         
         
   <a href="volume-internals.html"  class="self">Volumes</a>
@@ -334,7 +316,7 @@
     <div class="page-content">
       <div class="section" id="section_volume-internals">
   
-  <h1 class="section-header"><a name="volume-internals"></a><span class="section-number">3.5.4.3 </span>Volumes</h1>
+  <h1 class="section-header"><a class="anchor" name="volume-internals" href="#volume-internals"></a><span class="section-number">3.2.4.3 </span>Volumes</h1>
   
 
   
@@ -343,7 +325,7 @@
     
       <div class="section" id="section_volume-lifecycle">
   
-  <h2 class="section-header"><a name="volume-lifecycle"></a>Lifecycle</h2>
+  <h2 class="section-header"><a class="anchor" name="volume-lifecycle" href="#volume-lifecycle"></a>Lifecycle</h2>
   
 
   <p>Volumes can be in one of 3 states; <code>CREATING</code>, <code>CREATED</code>, <code>DESTROYING</code>.</p><p><code>CREATING</code>, volumes are still being initialized in BaggageClaim and are not yet ready to be used. <code>CREATING</code>, volumes can only transition to <code>CREATED</code>.</p><p><code>CREATED</code> volumes are initialized in BaggageClaim and are ready to be used. <code>CREATED</code> volumes can only be transitioned to <code>DESTROYING</code>.</p><p><code>DESTROYING</code> volumes are marked for removal from BaggageClaim, and should no longer be used; they will be removed from the database when they no longer exist in the BaggageClaim server.</p>
@@ -355,7 +337,7 @@
     
       <div class="section" id="section_types-of-volumes">
   
-  <h2 class="section-header"><a name="types-of-volumes"></a>Types of Volumes</h2>
+  <h2 class="section-header"><a class="anchor" name="types-of-volumes" href="#types-of-volumes"></a>Types of Volumes</h2>
   
 
   
@@ -374,7 +356,7 @@
           prev:
 
           
-          <span class="section-number">3.5.4.2</span>
+          <span class="section-number">3.2.4.2</span>
           
 
           <a href="garbage-collection.html">Garbage Collection</a>
@@ -386,7 +368,7 @@
           next:
 
           
-          <span class="section-number">3.5.4.4</span>
+          <span class="section-number">3.2.4.4</span>
           
 
           <a href="container-internals.html">Containers</a>

@@ -351,7 +351,7 @@
     <div class="page-content">
       <div class="section" id="section_implementing-resource-types">
   
-  <h1 class="section-header"><a name="implementing-resource-types"></a><span class="section-number">1.5.2.3 </span>Implementing a Resource Type</h1>
+  <h1 class="section-header"><a class="anchor" name="implementing-resource-types" href="#implementing-resource-types"></a><span class="section-number">1.5.2.3 </span>Implementing a Resource Type</h1>
   
 
   <p>A resource type is implemented by a container image with three scripts:</p><ul>
@@ -368,7 +368,7 @@
     
       <div class="section" id="section_resource-check">
   
-  <h2 class="section-header"><a name="resource-check"></a><code>check</code>: Check for new versions.</h2>
+  <h2 class="section-header"><a class="anchor" name="resource-check" href="#resource-check"></a><code>check</code>: Check for new versions.</h2>
   
 
   <p>A resource type&#39;s <code>check</code> script is invoked to detect new versions of the resource. It is given the configured source and current version on stdin, and must print the array of new versions, in chronological order, to stdout, including the requested version if it&#39;s still valid.</p><p>The request body will have the following fields:</p><ul>
@@ -402,7 +402,7 @@ git pull &amp;&amp; git log 61cbef..HEAD
     
       <div class="section" id="section_in">
   
-  <h2 class="section-header"><a name="in"></a><code>in</code>: Fetch a given resource.</h2>
+  <h2 class="section-header"><a class="anchor" name="in" href="#in"></a><code>in</code>: Fetch a given resource.</h2>
   
 
   <p>The <code>in</code> script is passed a destination directory as command line argument <code>$1</code>, and is given on stdin the configured source and a precise version of the resource to fetch.</p><p>The script must fetch the resource and place it in the given directory.</p><p>If the desired resource version is unavailable (for example, if it was deleted), the script must error.</p><p>The script must emit the fetched version, and may emit metadata as a list of key-value pairs. This data is intended for public consumption and will make it upstream, intended to be shown on the build&#39;s page.</p><p>The request will contain the following fields:</p><ul>
@@ -440,7 +440,7 @@ git checkout 61cebf
     
       <div class="section" id="section_out">
   
-  <h2 class="section-header"><a name="out"></a><code>out</code>: Update a resource.</h2>
+  <h2 class="section-header"><a class="anchor" name="out" href="#out"></a><code>out</code>: Update a resource.</h2>
   
 
   <p>The <code>out</code> script is called with a path to the directory containing the build&#39;s full set of sources as the first argument, and is given on stdin the configured params and the resource&#39;s source configuration.</p><p>The script must emit the resulting version of the resource. For example, the <code>git</code> resource emits the sha of the commit that it just pushed.</p><p>Additionally, the script may emit metadata as a list of key-value pairs. This data is intended for public consumption and will make it upstream, intended to be shown on the build&#39;s page.</p><p>The request will contain the following fields:</p><ul>
@@ -477,7 +477,7 @@ git push origin develop
     
       <div class="section" id="section_resource-metadata">
   
-  <h2 class="section-header"><a name="resource-metadata"></a>Metadata</h2>
+  <h2 class="section-header"><a class="anchor" name="resource-metadata" href="#resource-metadata"></a>Metadata</h2>
   
 
   <p>When used in a <a href="get-step.html"><code>get</code> step</a> or a <a href="put-step.html"><code>put</code> step</a>, metadata about the running build is made available via the following environment variables:</p><dl>
@@ -509,7 +509,7 @@ git push origin develop
     
       <div class="section" id="section_resource-certs">
   
-  <h2 class="section-header"><a name="resource-certs"></a>Certificate Propagation</h2>
+  <h2 class="section-header"><a class="anchor" name="resource-certs" href="#resource-certs"></a>Certificate Propagation</h2>
   
 
   <p>Certificates can be automatically propagated into each resource container, if the worker is configured to do so. The BOSH release configures this automatically, while the <code>concourse</code> binary must be given a <code>--certs-dir</code> flag pointing to the path containing the CA certificate bundle.</p><p>The worker&#39;s certificate directory will then be always mounted at <code>/etc/ssl/certs</code>, read-only, in each resource container created on the worker. There&#39;s no single standard path for this so we picked one that would work out of the box in most cases.</p><p>This approach to certificate configuration is similar in mindset to the propagation of <code>http_proxy</code>/<code>https_proxy</code> - certs are kind of a baseline assumption when deploying software, so Concourse should do its best to respect it out-of-the-box, especially as they&#39;re often used in tandem with a man-in-the-middle corporate SSL proxy. (In this way it doesn&#39;t feel too much like the anti-pattern of hand-tuning workers.)</p>

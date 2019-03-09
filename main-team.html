@@ -257,7 +257,7 @@
     <div class="page-content">
       <div class="section" id="section_main-team">
   
-  <h1 class="section-header"><a name="main-team"></a><span class="section-number">1.2.1 </span>The <code>main</code> team</h1>
+  <h1 class="section-header"><a class="anchor" name="main-team" href="#main-team"></a><span class="section-number">1.2.1 </span>The <code>main</code> team</h1>
   
 
   <p>Out of the box, Concourse comes with a single team called <code>main</code>.</p><p>The <code>main</code> team is an <em>admin team</em>, meaning members (specifically, users with the <a href="user-roles.html#team-owner-role">owner</a> role) can create and update other teams. Currently there is no way to promote a team to become an admin team, so <code>main</code> is a special-case.</p><p>The <code>main</code> team is different in that all flags normally passed to <a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a> are instead passed to the <code>concourse web</code> command, prefixed with <code>--main-team-</code>. The values set in these flags take effect whenever the <code>web</code> node starts up. This is done so that you can&#39;t get locked out.</p><p>To learn how to configure your <code>main</code> team, continue on to the appropriate section for your auth provider of choice under <a href="configuring-auth.html">Configuring Auth</a>.</p>

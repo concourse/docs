@@ -324,7 +324,7 @@
     <div class="page-content">
       <div class="section" id="section_encryption">
   
-  <h1 class="section-header"><a name="encryption"></a><span class="section-number">1.9.1 </span>Encryption</h1>
+  <h1 class="section-header"><a class="anchor" name="encryption" href="#encryption"></a><span class="section-number">1.9.1 </span>Encryption</h1>
   
 
   <p>Automating everything means authorizing something to automate many things. This makes CI systems a high-risk target for security leaks.</p><p>Concourse pipelines are loaded with credentials: resources are configured with private keys, tasks are given credentials to servers they integrate via <a href="creds.html">credential manager variables</a>, <a href="task-step.html#task-step-vars"><code><strong>vars</strong></code></a>, or <a href="task-step.html#task-step-params"><code><strong>params</strong></code></a>, etc. If someone gets their hands on your config, they have access to everything.</p><p>To mitigate this, Concourse supports encrypting sensitive information before it reaches the database. This way the plaintext credentials only exist in memory for as long as they need to, and if someone gains access to your database, they can&#39;t so easily gain the keys to the kingdom.</p><p>We strongly encourage anyone running Concourse to configure encryption. Going further, it&#39;s best to have Concourse not store the credentials in the first place, in which case you may want to configure <a href="creds.html">credential management</a> as well.</p>
@@ -333,7 +333,7 @@
     
       <div class="section" id="section_whats-encrypted">
   
-  <h2 class="section-header"><a name="whats-encrypted"></a>What&#39;s encrypted?</h2>
+  <h2 class="section-header"><a class="anchor" name="whats-encrypted" href="#whats-encrypted"></a>What&#39;s encrypted?</h2>
   
 
   <p>The following values are expected to contain credentials, and so will be encrypted:</p><ul>
@@ -367,7 +367,7 @@
     
       <div class="section" id="section_enabling-encryption">
   
-  <h2 class="section-header"><a name="enabling-encryption"></a>Enabling Encryption</h2>
+  <h2 class="section-header"><a class="anchor" name="enabling-encryption" href="#enabling-encryption"></a>Enabling Encryption</h2>
   
 
   <p>To enable encryption, you&#39;ll just need to come up with a 16 or 32-byte random character sequence and configure it as <code>--encryption-key</code> flag to the <code>web</code> command. For BOSH, this is the <a href="http://bosh.io/jobs/web?source=github.com/concourse/concourse-bosh-release#p=encryption_key"><code>encryption_key</code></a> property.</p><p>On startup, the <a href="architecture.html#component-atc">ATC</a> will encrypt all existing plaintext data, and any new data being written will be encrypted before it&#39;s sent over the network to the database.</p><p>The initial bulk encryption shouldn&#39;t take too long, but it will scale linearly with the amount of data that you have, and if another ATC is running it&#39;ll suddenly not be able to read the data until it&#39;s also given the key. So, expect some downtime.</p>
@@ -379,7 +379,7 @@
     
       <div class="section" id="section_rotating-the-encryption-key">
   
-  <h2 class="section-header"><a name="rotating-the-encryption-key"></a>Rotating the Encryption Key</h2>
+  <h2 class="section-header"><a class="anchor" name="rotating-the-encryption-key" href="#rotating-the-encryption-key"></a>Rotating the Encryption Key</h2>
   
 
   <p>To swap out the encryption key, you&#39;ll need to pass the previous key as <code>--old-encryption-key</code> (or <a href="http://bosh.io/jobs/web?source=github.com/concourse/concourse-bosh-release#p=old_encryption_key"><code>old_encryption_key</code></a>), and the new key as <code>--encryption-key</code> (or <a href="http://bosh.io/jobs/web?source=github.com/concourse/concourse-bosh-release#p=encryption_key"><code>encryption_key</code></a>).</p><p>On startup, the <a href="architecture.html#component-atc">ATC</a> will decrypt all existing data and re-encrypt it with the new key, in one go. If it encounters a row which is already encrypted with the new key, it will continue on (as may be the case when restarting with the flags again, or if the ATC died in the middle of rotating).</p><p>If the ATC encounters a row which cannot be decrypted with neither the old key nor the new one, it will log loudly and fail to start, telling you which row it choked on. This data must be dealt with in some way, either by re-configuring the key the row was encrypted with as the old key, or manually performing database surgery to remove the offending row. Hopefully this doesn&#39;t happen to you!</p>
@@ -391,7 +391,7 @@
     
       <div class="section" id="section_disabling-encryption">
   
-  <h2 class="section-header"><a name="disabling-encryption"></a>Disabling Encryption</h2>
+  <h2 class="section-header"><a class="anchor" name="disabling-encryption" href="#disabling-encryption"></a>Disabling Encryption</h2>
   
 
   <p>To opt out of encryption entirely (I&#39;m sure you have your reasons), simply pass <code>--old-encryption-key</code> (or <a href="http://bosh.io/jobs/web?source=github.com/concourse/concourse-bosh-release#p=old_encryption_key"><code>old_encryption_key</code></a>) alone. With no new encryption key, the <a href="architecture.html#component-atc">ATC</a> will decrypt all existing data on start.</p>

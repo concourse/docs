@@ -354,7 +354,7 @@
     <div class="page-content">
       <div class="section" id="section_github-auth">
   
-  <h1 class="section-header"><a name="github-auth"></a><span class="section-number">1.2.2.2 </span>GitHub auth</h1>
+  <h1 class="section-header"><a class="anchor" name="github-auth" href="#github-auth"></a><span class="section-number">1.2.2.2 </span>GitHub auth</h1>
   
 
   <p>A Concourse server can authenticate against GitHub to leverage their permission model and other security improvements in their infrastructure.</p>
@@ -363,7 +363,7 @@
     
       <div class="section" id="section_github-authentication">
   
-  <h2 class="section-header"><a name="github-authentication"></a>Authentication</h2>
+  <h2 class="section-header"><a class="anchor" name="github-authentication" href="#github-authentication"></a>Authentication</h2>
   
 
   <p>First, you&#39;ll need to <a href="https://github.com/settings/applications/new">create an OAuth application on GitHub</a>.</p><p>The &#34;Authorization callback URL&#34; must be the URL of your Concourse server with <code>/sky/issuer/callback</code> appended. This address must be reachable by GitHub - it can&#39;t be <code>localhost</code>.</p><p>For example, Concourse&#39;s own CI server&#39;s callback URL would be:</p><div class="highlight"><pre style="">https://ci.concourse-ci.org/sky/issuer/callback
@@ -380,7 +380,7 @@
     
       <div class="section" id="section_github-authorization">
   
-  <h2 class="section-header"><a name="github-authorization"></a>Authorization</h2>
+  <h2 class="section-header"><a class="anchor" name="github-authorization" href="#github-authorization"></a>Authorization</h2>
   
 
   <p>Users, teams, and entire organizations can be authorized for a team by passing the following flags to <a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a>:</p><dl>
@@ -410,7 +410,7 @@
     
       <div class="section" id="section_configuring-main-team-authorization">
   
-  <h3 class="section-header"><a name="configuring-main-team-authorization"></a>Configuring <code>main</code> Team Authorization</h3>
+  <h3 class="section-header"><a class="anchor" name="configuring-main-team-authorization" href="#configuring-main-team-authorization"></a>Configuring <code>main</code> Team Authorization</h3>
   
 
   <p>GitHub users, teams, and organizations can be added to the <a href="main-team.html"><code>main</code> team</a> authorization config by setting the following env on the <a href="concourse-web.html"><code>web</code> node</a>:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_MAIN_TEAM_GITHUB_ORG</span>=org-name

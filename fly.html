@@ -267,7 +267,7 @@
     <div class="page-content">
       <div class="section" id="section_fly">
   
-  <h1 class="section-header"><a name="fly"></a><span class="section-number">1.3 </span>The <code>fly</code> CLI</h1>
+  <h1 class="section-header"><a class="anchor" name="fly" href="#fly"></a><span class="section-number">1.3 </span>The <code>fly</code> CLI</h1>
   
 
   <p>Concourse is primarily driven from the command-line; there is no GUI config wizard.</p><p>So, the first step to getting started with Concourse is to install the <code>fly</code> CLI tool. You can download <code>fly</code> from any Concourse installation. There are download links for common platforms in the bottom right hand corner of the main page.</p><p>Throughout the Concourse documentation we&#39;ll stick to the long-form name of every command and flag. Once you&#39;ve learned what the commands do, you may want to consult <code>fly -h</code> to learn the short forms.</p>
@@ -276,7 +276,7 @@
     
       <div class="section" id="section_fly-login">
   
-  <h2 class="section-header"><a name="fly-login"></a><code>fly login</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-login" href="#fly-login"></a><code>fly login</code></h2>
   
 
   <p>The first thing you&#39;ll want to do is authenticate with your target. This is done with the <a href="fly.html#fly-login"><code>fly login</code></a> command. This is also useful to save targets under a more convenient alias, so you don&#39;t have to type out the URL all the time:</p><p>The <code>login</code> command serves double duty: it authenticates with a given endpoint, and saves it under a more convenient name. The name and token are stored in <code>~/.flyrc</code> (though you shouldn&#39;t really edit the file manually).</p><p>Concourse deployments can be occupied by multiple <a href="auth.html">teams</a>. To specify the team to which to log in, specify the <code>--team-name</code> or <code>-n</code> flag. If not specified, this defaults to the <a href="main-team.html"><code>main</code> team</a>.</p><p>So, to log in to a team <code>my-team</code> an endpoint served at <code>https://ci.example.com</code> and save it as the more convenient name <code>example</code>, you would run:</p><div class="highlight"><pre style="">$ fly --target example login --team-name my-team <span style="color:#3498db">\
@@ -291,7 +291,7 @@
     
       <div class="section" id="section_fly-targets">
   
-  <h2 class="section-header"><a name="fly-targets"></a><code>fly targets</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-targets" href="#fly-targets"></a><code>fly targets</code></h2>
   
 
   <p>To see what targets are currently known to <code>fly</code>, run:</p><div class="highlight"><pre style="">$ fly targets
@@ -304,7 +304,7 @@
     
       <div class="section" id="section_fly-status">
   
-  <h2 class="section-header"><a name="fly-status"></a><code>fly status</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-status" href="#fly-status"></a><code>fly status</code></h2>
   
 
   <p>To check your current authentication status with a given target, run:</p><div class="highlight"><pre style="">$ fly -t example status
@@ -317,7 +317,7 @@
     
       <div class="section" id="section_fly-userinfo">
   
-  <h2 class="section-header"><a name="fly-userinfo"></a><code>fly userinfo</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-userinfo" href="#fly-userinfo"></a><code>fly userinfo</code></h2>
   
 
   <p>To check what user you&#39;re logged in as, as well as which teams you are currently authenticated to and which roles within each team you have, run:</p><div class="highlight"><pre style="">$ fly -t example userinfo
@@ -330,7 +330,7 @@
     
       <div class="section" id="section_fly-logout">
   
-  <h2 class="section-header"><a name="fly-logout"></a><code>fly logout</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-logout" href="#fly-logout"></a><code>fly logout</code></h2>
   
 
   <p>There are cases when you would like to remove all evidence of a particular target. This is achieved by the <code>logout</code> command. There are two variants of this command, one to get rid of a specific target, and another to remove all targets from the <code>~/.flyrc</code> file.</p><p>To remove a specific target run:</p><div class="highlight"><pre style="">$ fly -t example <span style="color:#8f4b2d">logout</span>
@@ -344,7 +344,7 @@
     
       <div class="section" id="section_fly-sync">
   
-  <h2 class="section-header"><a name="fly-sync"></a><code>fly sync</code></h2>
+  <h2 class="section-header"><a class="anchor" name="fly-sync" href="#fly-sync"></a><code>fly sync</code></h2>
   
 
   <p>Occasionally we add additional features to <code>fly</code> or make changes to the communiction between it and Concourse&#39;s API server. To make sure you&#39;re running the latest and greatest version that works with the Concourse you are targeting we provide a command called <code>sync</code> that will update your local <code>fly</code>. It can be used like so:</p><div class="highlight"><pre style="">$ fly -t example sync

@@ -86,7 +86,7 @@
               <td class="number-cell" align="right">3.1&nbsp;</td>
             
             <td class="title-cell">
-  <a href="why-make-concourse.html" >Why make Concourse?</a>
+  <a href="contribute.html" >Contribute</a>
 </td>
           </tr>
         
@@ -95,7 +95,7 @@
               <td class="number-cell" align="right">3.2&nbsp;</td>
             
             <td class="title-cell">
-  <a href="how-can-i-help.html" >How can I help?</a>
+  <a href="architecture.html"  class="active">Architecture</a>
 </td>
           </tr>
         
@@ -104,31 +104,13 @@
               <td class="number-cell" align="right">3.3&nbsp;</td>
             
             <td class="title-cell">
-  <a href="contribute.html" >Contribute</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">3.4&nbsp;</td>
-            
-            <td class="title-cell">
   <a href="thanks.html" >Thanks!</a>
 </td>
           </tr>
         
           <tr>
             
-              <td class="number-cell" align="right">3.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="architecture.html"  class="active">Architecture</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">3.6&nbsp;</td>
+              <td class="number-cell" align="right">3.4&nbsp;</td>
             
             <td class="title-cell">
   <a href="trademarks.html" >Trademarks</a>
@@ -148,7 +130,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">3.5</span>
+        <span class="section-number">3.2</span>
         
         
   <a href="architecture.html"  class="active">Architecture</a>
@@ -217,7 +199,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">3.5.4.1&nbsp;</td>
+              <td class="number-cell" align="right">3.2.4.1&nbsp;</td>
             
             <td class="title-cell">
   <a href="database-schema.html" >Database Schema</a>
@@ -226,7 +208,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">3.5.4.2&nbsp;</td>
+              <td class="number-cell" align="right">3.2.4.2&nbsp;</td>
             
             <td class="title-cell">
   <a href="garbage-collection.html"  class="self">Garbage Collection</a>
@@ -235,7 +217,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">3.5.4.3&nbsp;</td>
+              <td class="number-cell" align="right">3.2.4.3&nbsp;</td>
             
             <td class="title-cell">
   <a href="volume-internals.html" >Volumes</a>
@@ -244,7 +226,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">3.5.4.4&nbsp;</td>
+              <td class="number-cell" align="right">3.2.4.4&nbsp;</td>
             
             <td class="title-cell">
   <a href="container-internals.html" >Containers</a>
@@ -253,7 +235,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">3.5.4.5&nbsp;</td>
+              <td class="number-cell" align="right">3.2.4.5&nbsp;</td>
             
             <td class="title-cell">
   <a href="worker-internals.html" >Workers</a>
@@ -262,7 +244,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">3.5.4.6&nbsp;</td>
+              <td class="number-cell" align="right">3.2.4.6&nbsp;</td>
             
             <td class="title-cell">
   <a href="caching-and-retention.html" >Caching &amp; Retention</a>
@@ -284,7 +266,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">3.5.4.2</span>
+        <span class="section-number">3.2.4.2</span>
         
         
   <a href="garbage-collection.html"  class="self">Garbage Collection</a>
@@ -362,7 +344,7 @@
     <div class="page-content">
       <div class="section" id="section_garbage-collection">
   
-  <h1 class="section-header"><a name="garbage-collection"></a><span class="section-number">3.5.4.2 </span>Garbage Collection</h1>
+  <h1 class="section-header"><a class="anchor" name="garbage-collection" href="#garbage-collection"></a><span class="section-number">3.2.4.2 </span>Garbage Collection</h1>
   
 
   <p>One key difference between Concourse and other CI systems is that everything runs in isolated environments. Where some CI systems may just run builds one at a time on a single VM and reusing a working directory, Concourse creates fresh <a href="container-internals.html">Containers</a> and <a href="volume-internals.html">Volumes</a> to ensure things can safely run in a repeatable environment, isolated from other workloads running on the same worker.</p><p>This introduces a new problem of knowing when Concourse should remove these containers and volumes. Safely identifying things for removal and then getting rid of them, releasing their resources, is the process of <em>garbage collection</em>.</p>
@@ -371,7 +353,7 @@
     
       <div class="section" id="section_goals">
   
-  <h2 class="section-header"><a name="goals"></a>Goals</h2>
+  <h2 class="section-header"><a class="anchor" name="goals" href="#goals"></a>Goals</h2>
   
 
   <p>Let&#39;s define our metrics for success:</p><ul>
@@ -391,7 +373,7 @@
     
       <div class="section" id="section_how-it-works">
   
-  <h2 class="section-header"><a name="how-it-works"></a>How it Works</h2>
+  <h2 class="section-header"><a class="anchor" name="how-it-works" href="#how-it-works"></a>How it Works</h2>
   
 
   <p>The garbage collector is a batch operation that runs every 30 seconds. This number was chosen arbitrarily and may be reduced in the future. It&#39;s important to note that the collector must be able to run frequently enough to not be outpaced by the workload producing things, and so the batch operation should be able to complete pretty quickly.</p><p>The batch operation first performs garbage collection within the database alone, removing rows that are no longer needed. The removal of rows from one stage will often result in removals in a later stage.  They are run in the following order:</p><ul>
@@ -416,7 +398,7 @@
     
       <div class="section" id="section_container-collection">
   
-  <h3 class="section-header"><a name="container-collection"></a>Container Collection</h3>
+  <h3 class="section-header"><a class="anchor" name="container-collection" href="#container-collection"></a>Container Collection</h3>
   
 
   <p>First, a fairly simple query is executed to find containers that meet one of the following conditions:</p><ul>
@@ -454,7 +436,7 @@
     
       <div class="section" id="section_volume-collection">
   
-  <h3 class="section-header"><a name="volume-collection"></a>Volume Collection</h3>
+  <h3 class="section-header"><a class="anchor" name="volume-collection" href="#volume-collection"></a>Volume Collection</h3>
   
 
   <p>Volume collection is quite a bit simpler than <a href="garbage-collection.html#container-collection">Container Collection</a>.</p><p>First, volumes are found for deletion. This is just a query for volumes that have <code>NULL</code> references for all four volume owners:</p><ul>
@@ -492,7 +474,7 @@
           prev:
 
           
-          <span class="section-number">3.5.4.1</span>
+          <span class="section-number">3.2.4.1</span>
           
 
           <a href="database-schema.html">Database Schema</a>
@@ -504,7 +486,7 @@
           next:
 
           
-          <span class="section-number">3.5.4.3</span>
+          <span class="section-number">3.2.4.3</span>
           
 
           <a href="volume-internals.html">Volumes</a>

@@ -239,7 +239,7 @@
     <div class="page-content">
       <div class="section" id="section_concourse-web">
   
-  <h1 class="section-header"><a name="concourse-web"></a><span class="section-number">1.1.3 </span>Running a <code>web</code> node</h1>
+  <h1 class="section-header"><a class="anchor" name="concourse-web" href="#concourse-web"></a><span class="section-number">1.1.3 </span>Running a <code>web</code> node</h1>
   
 
   <p>The <code>web</code> node is responsible for running the web UI, API, and as well as performing all pipeline scheduling. It&#39;s basically the brain of Concourse.</p>
@@ -248,7 +248,7 @@
     
       <div class="section" id="section_web-prerequisites">
   
-  <h2 class="section-header"><a name="web-prerequisites"></a>Prerequisites</h2>
+  <h2 class="section-header"><a class="anchor" name="web-prerequisites" href="#web-prerequisites"></a>Prerequisites</h2>
   
 
   <p>Nothing special - the <code>web</code> node is a pretty simple Go application that can be run like a 12-factor app.</p>
@@ -260,7 +260,7 @@
     
       <div class="section" id="section_web-running">
   
-  <h2 class="section-header"><a name="web-running"></a>Running</h2>
+  <h2 class="section-header"><a class="anchor" name="web-running" href="#web-running"></a>Running</h2>
   
 
   <p>The <code>concourse</code> CLI can run as a <code>web</code> node via the <code>web</code> subcommand.</p><p>Before running it, let&#39;s configure a local user so we can log in:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_ADD_LOCAL_USER</span>=myuser:mypass
@@ -284,7 +284,7 @@
     
       <div class="section" id="section_web-properties">
   
-  <h2 class="section-header"><a name="web-properties"></a>Properties</h2>
+  <h2 class="section-header"><a class="anchor" name="web-properties" href="#web-properties"></a>Properties</h2>
   
 
   <p>CPU usage: peaks during pipeline scheduling, primarily when scheduling <a href="pipelines.html#pipeline-jobs"><code><strong>jobs</strong></code></a>. Mitigated by adding more <code>web</code> nodes. In this regard, <code>web</code> nodes can be considered compute-heavy more than anything else at large scale.</p><p>Memory usage: not very well classified at the moment as it&#39;s not generally a concern. Give it a few gigabytes and keep an eye on it.</p><p>Disk usage: none</p><p>Bandwidth usage: aside from handling external traffic, the <code>web</code> node will at times have to stream bits out from one worker and into another while executing <a href="steps.html">Steps</a>.</p><p>Highly available: yes; <code>web</code> nodes can all be configured the same (aside from <code>--peer-url</code>) and placed behind a load balancer. Periodic tasks like garbage-collection will not be duplicated for each node.</p><p>Horizontally scalable: yes; they will coordinate workloads using the database, resulting in less work for each node and thus lower CPU usage.</p><p>Outbound traffic:</p><ul>
@@ -314,7 +314,7 @@
     
       <div class="section" id="section_web-operation">
   
-  <h2 class="section-header"><a name="web-operation"></a>Operation</h2>
+  <h2 class="section-header"><a class="anchor" name="web-operation" href="#web-operation"></a>Operation</h2>
   
 
   <p>The <code>web</code> nodes themselves are stateless - they don&#39;t store anything on disk, and coordinate entirely using the database.</p>
@@ -323,7 +323,7 @@
     
       <div class="section" id="section_scaling">
   
-  <h3 class="section-header"><a name="scaling"></a>Scaling</h3>
+  <h3 class="section-header"><a class="anchor" name="scaling" href="#scaling"></a>Scaling</h3>
   
 
   <p>The <a href="concourse-web.html"><code>web</code> node</a> can be scaled up for high availability. They&#39;ll also roughly share their scheduling workloads, using the database to synchronize. This is done by just running more <code>web</code> commands on different machines, and optionally putting them behind a load balancer.</p><p>To run a cluster of <a href="concourse-web.html"><code>web</code> node</a>s, you&#39;ll first need to ensure they&#39;re all pointing to the same PostgreSQL server.</p><p>Next, you&#39;ll need to configure a <em>peer URL</em>. This is a URL that can be used to reach this <code>web</code> node&#39;s web server from other <code>web</code> nodes. Typically this uses a private IP, like so:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_PEER_URL</span>=http://10.10.0.1:8080
@@ -337,7 +337,7 @@
     
       <div class="section" id="section_restarting-and-upgrading">
   
-  <h3 class="section-header"><a name="restarting-and-upgrading"></a>Restarting &amp; Upgrading</h3>
+  <h3 class="section-header"><a class="anchor" name="restarting-and-upgrading" href="#restarting-and-upgrading"></a>Restarting &amp; Upgrading</h3>
   
 
   <p>The <code>web</code> nodes can be killed and restarted willy-nilly. No draining is necessary; if the <code>web</code> node was orchestrating a build it will just continue where it left off when it comes back or, or the build will be picked up by one of the other <code>web</code> nodes.</p><p>To upgrade a <code>web</code> node, stop its process and start a new one using the newly installed <code>concourse</code>. Any migrations will be run automatically on start. If <code>web</code> nodes are started in parallel, only one will run the migrations.</p><p>Note that we don&#39;t currently guarantee a lack of funny-business if you&#39;re running mixed Concourse versions - database migrations can perform modiciations that confuse other <code>web</code> nodes. So there may be some turbulence during a rolling upgrade, but everything should stabilize once all <code>web</code> nodes are running the latest version.</p>
@@ -349,7 +349,7 @@
     
       <div class="section" id="section_downgrading">
   
-  <h3 class="section-header"><a name="downgrading"></a>Downgrading</h3>
+  <h3 class="section-header"><a class="anchor" name="downgrading" href="#downgrading"></a>Downgrading</h3>
   
 
   <p>If you&#39;re stuck in a pinch and need to downgrade from one version of Concourse to another, you can use the <code>concourse migrate</code> command.</p><em><p>Note: support for down migrations is a fairly recent addition to Concourse; it is not supported for downgrading to v3.6.0 and below.</p></em><p>First, grab the desired migration version by running the following:</p><div class="highlight"><pre style=""><span style="color:#9b9b9b"># make sure this is the *old* Concourse binary</span>
