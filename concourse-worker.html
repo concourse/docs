@@ -273,7 +273,8 @@
 </pre></div><p>This is where all the builds run, and where all resources are fetched in to, so make sure it&#39;s backed by enough storage. Then, configure it like so:</p><p>Next, point the worker at your <a href="concourse-web.html"><code>web</code> node</a> like so:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_TSA_HOST</span>=<span style="color:#1abc9c;font-weight:bold">127</span>.0.0.1:2222
 <span style="color:#3498db">CONCOURSE_TSA_PUBLIC_KEY</span>=path/to/tsa_host_key.pub
 <span style="color:#3498db">CONCOURSE_TSA_WORKER_PRIVATE_KEY</span>=path/to/worker_key
-</pre></div><p>Finally, run:</p><div class="highlight"><pre style="">sudo concourse worker
+</pre></div><p>Finally, run:</p><div class="highlight"><pre style=""><span style="color:#9b9b9b"># run with -E to forward env config, or just set it all as root</span>
+sudo -E concourse worker
 </pre></div><p>Note that the worker must be run as <code>root</code>, as it orchestrates containers.</p><p>All logs will be emitted to <code>stdout</code>, with any panics or lower-level errors being emitted to <code>stderr</code>.</p>
 
   
