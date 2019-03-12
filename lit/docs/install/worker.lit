@@ -50,7 +50,8 @@ decide much on its own.
   Finally, run:
 
   \codeblock{bash}{{{
-  sudo concourse worker
+  # run with -E to forward env config, or just set it all as root
+  sudo -E concourse worker
   }}}
 
   Note that the worker must be run as \code{root}, as it orchestrates

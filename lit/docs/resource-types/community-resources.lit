@@ -177,7 +177,7 @@ before using it!
 }{
   \table-row{\link{Metadata resource}{https://github.com/swce/metadata-resource}}{by \ghuser{swce}}
 }{
-  \table-row{\link{Spinnaker Resource}{https://github.com/burdzwastaken/concourse-spinnaker-resource}}{by \ghuser{burdzwastaken}}
+  \table-row{\link{Spinnaker Resource}{https://github.com/pivotal-cf/spinnaker-resource}}{by \ghuser{pivotal-cf}}
 }{
   \table-row{\link{New Relic Deploy Resource}{https://github.com/crstamps2/newrelic-deploy-resource}}{by \ghuser{crstamps2}}
 }{
@@ -240,6 +240,8 @@ before using it!
   \table-row{\link{RubyGems}{https://github.com/troykinsella/concourse-rubygems-resource}}{by \ghuser{troykinsella}}
 }{
   \table-row{\link{Medium Resource}{https://github.com/cappyzawa/medium-resource}}{by \ghuser{cappyzawa}}
+}{
+  \table-row{\link{GitHub List Repos}{https://github.com/coralogix/eng-concourse-resource-github-list-repos}}{by \ghuser{ari-becker}}
 }
 
 \section{
