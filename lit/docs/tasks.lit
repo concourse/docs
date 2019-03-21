@@ -131,7 +131,7 @@ A task's configuration specifies the following:
 
     Paths are relative to the working directory of the task. Absolute paths are not respected.
 
-    Note that this value \italic{must not overlap} with any other inputs or
+    Note that this value \italic{must not overlap} with any other
     outputs. Each output results in a new empty directory that your task
     should place artifacts in; if the path overlaps it'll clobber whatever
     files used to be there.
