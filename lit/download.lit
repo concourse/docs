@@ -12,6 +12,19 @@
     If you are currently on \reference{v3.6.0} and looking to upgrade to
     \reference{v4.1.0} and above, you must first upgrade to \reference{v4.0.0}.
   }
+
+  \warn{
+    Please configure either the environment variable
+    \code{CONCOURSE_X_FRAME_OPTIONS} or \code{--x-frame-options} command line
+    argument to \code{deny} or \code{sameorigin} for the \code{concourse} binary.
+
+    This prevents the Concourse UI from being embedded as an iframe and prevents
+    clickjacking exploits.
+
+    \bold{Note:} If setting the value to \code{allow-from}, please note that not
+    all browsers support this value and when not supported, the header is ignored
+    by the browser.
+  }
 }
 
 \include-section{./release-notes/v5.0.1.lit}
