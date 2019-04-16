@@ -6,7 +6,7 @@
 
 \warn{
   A migration made it in to this release that slows down scheduling for
-  pipelines with a bunch of version history. \reference{v3.14.1} has been
+  pipelines with a bunch of version history. \ghrelease{v3.14.1} has been
   released with the fix.
 }
 
@@ -93,8 +93,8 @@
 
 \note{feature}{
   The Prometheus metric emitter has seen some spring cleaning, thanks to
-  \ghuser{databus23}! See \ghpr{atc}{274}, \ghpr{atc}{275}, \ghpr{atc}{276},
-  and \ghpr{atc}{278} for more details.
+  \ghuser{databus23}! See \ghpr{274}{atc}, \ghpr{275}{atc}, \ghpr{276}{atc},
+  and \ghpr{278}{atc} for more details.
 }
 
 \note{fix}{
