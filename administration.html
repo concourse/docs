@@ -372,6 +372,7 @@
   
 
   <p>To remove a stalled, landing, landed, or retiring worker, run:</p><div class="highlight"><pre style="">$ fly -t example prune-worker --worker worker-name
+</pre></div><p>To prune <em>all</em> stalled workers, run:</p><div class="highlight"><pre style="">$ fly -t example prune-worker --all-stalled
 </pre></div><p>This is for those cases where you know a worker is not coming back. Note that running workers cannot be pruned, since they&#39;ll just re-register themselves anyway.</p>
 
   

@@ -102,7 +102,7 @@ target saved
 </div>
 
 <div class="segment">
-  <p>You can think of a <a href="pipelines.html">pipeline</a> as a distributed, higher-level, continuously-running <code>Makefile</code>.</p><p>Each entry under <code>resources</code> is a dependency, and each entry under <code>jobs</code> describes a <a href="steps.html"><code>plan</code></a> to run when the job is triggered (either manually or by a <a href="get-step.html"><code>get</code> step</a>).</p><p>Jobs can depend on resources that have <a href="get-step.html#get-step-passed"><code><strong>passed</strong></code></a> through prior jobs. The resulting sequence of jobs and resources is a dependency graph that continuously pushes your project forward, from source code to production.</p>
+  <p>You can think of a <a href="pipelines.html">pipeline</a> as a distributed, higher-level, continuously-running <code>Makefile</code>.</p><p>Each entry under <code>resources</code> is a dependency, and each entry under <code>jobs</code> describes a <a href="steps.html"><code>plan</code></a> to run when the job is triggered (either manually or by a <a href="get-step.html"><code>get</code> step</a>).</p><p>Jobs can depend on resources that have <a href="get-step.html#get-step-passed"><strong><code>passed</code></strong></a> through prior jobs. The resulting sequence of jobs and resources is a dependency graph that continuously pushes your project forward, from source code to production.</p>
 </div><h2 class="splash-title">
   Fancy Visualization
 </h2>

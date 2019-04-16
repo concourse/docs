@@ -329,15 +329,15 @@
 
   <p>Going beyond <a href="encryption.html">Encryption</a>, explicit credential management will provide credentials to your builds for a brief amount of time, without being persisted anywhere. It also allows for credentials to be rotated and managed external to the pipeline or team, and prevents them from being revealed by <a href="managing-pipelines.html#fly-get-pipeline"><code>fly get-pipeline</code></a>.</p><p>Credential management works by replacing the credentials with <code>((vars))</code> in your pipeline or task config. When the Concourse is about to run the step or <code>check</code> that is configured with vars, it will resolve them by fetching the values from the credential manager. If the values are not present, the action will error.</p><p>The following configurations can be parameterized with a credential manager:</p><ul>
 
-  <li><p><a href="resources.html#resource-source"><code><strong>source</strong></code></a> under <a href="resources.html">Resources</a> in a pipeline</p></li>
+  <li><p><a href="resources.html#resource-source"><strong><code>source</code></strong></a> under <a href="resources.html">Resources</a> in a pipeline</p></li>
 
-  <li><p><a href="resource-types.html#resource-type-source"><code><strong>source</strong></code></a> under <a href="resource-types.html">Resource Types</a> in a pipeline</p></li>
+  <li><p><a href="resource-types.html#resource-type-source"><strong><code>source</code></strong></a> under <a href="resource-types.html">Resource Types</a> in a pipeline</p></li>
 
-  <li><p><a href="resources.html#resource-webhook-token"><code><strong>webhook_token</strong></code></a> under <a href="resources.html">Resources</a> in a pipeline</p></li>
+  <li><p><a href="resources.html#resource-webhook-token"><strong><code>webhook_token</code></strong></a> under <a href="resources.html">Resources</a> in a pipeline</p></li>
 
-  <li><p><a href="task-step.html#task-step-params"><code><strong>params</strong></code></a> on a task step in a pipeline</p></li>
+  <li><p><a href="task-step.html#task-step-params"><strong><code>params</code></strong></a> on a task step in a pipeline</p></li>
 
-  <li><p><a href="tasks.html">Tasks</a> in their entirety - whether from <a href="task-step.html#task-step-file"><code><strong>file</strong></code></a> or <a href="task-step.html#task-step-config"><code><strong>config</strong></code></a> in a pipeline, or a config executed with <a href="running-tasks.html#fly-execute"><code>fly execute</code></a></p></li>
+  <li><p><a href="tasks.html">Tasks</a> in their entirety - whether from <a href="task-step.html#task-step-file"><strong><code>file</code></strong></a> or <a href="task-step.html#task-step-config"><strong><code>config</code></strong></a> in a pipeline, or a config executed with <a href="running-tasks.html#fly-execute"><code>fly execute</code></a></p></li>
 
 </ul><p>Where these values are looked up and how the credential manager is configured depends on the backend. Consult the relevant section below for whichever backend you want to use.</p><p>Concourse currently supports the following credential managers:</p>
 <ol class="toc">

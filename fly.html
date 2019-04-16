@@ -244,6 +244,28 @@
           <td class="number-cell" align="left"></td>
         
         <td class="title-cell">
+          <a href="fly.html#fly-edit-target"><code>fly edit-target</code></a>
+
+          
+        </td>
+      </tr>
+    
+      <tr>
+        
+          <td class="number-cell" align="left"></td>
+        
+        <td class="title-cell">
+          <a href="fly.html#fly-delete-target"><code>fly delete-target</code></a>
+
+          
+        </td>
+      </tr>
+    
+      <tr>
+        
+          <td class="number-cell" align="left"></td>
+        
+        <td class="title-cell">
           <a href="fly.html#fly-sync"><code>fly sync</code></a>
 
           
@@ -333,8 +355,38 @@
   <h2 class="section-header"><a class="anchor" name="fly-logout" href="#fly-logout"></a><code>fly logout</code></h2>
   
 
-  <p>There are cases when you would like to remove all evidence of a particular target. This is achieved by the <code>logout</code> command. There are two variants of this command, one to get rid of a specific target, and another to remove all targets from the <code>~/.flyrc</code> file.</p><p>To remove a specific target run:</p><div class="highlight"><pre style="">$ fly -t example <span style="color:#8f4b2d">logout</span>
-</pre></div><p>To remove all targets run:</p><div class="highlight"><pre style="">$ fly <span style="color:#8f4b2d">logout</span> -a
+  <p>To clear out your token for a given target, run:</p><div class="highlight"><pre style="">$ fly -t example <span style="color:#8f4b2d">logout</span>
+</pre></div><p>To clear out your token for <em>all</em> targets, run:</p><div class="highlight"><pre style="">$ fly <span style="color:#8f4b2d">logout</span> -a
+</pre></div><p>Note: These two variations are mutually exclusive. If the target parameter <code>-t</code> and all parameter <code>-a</code> are both specified, an error will occur.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_fly-edit-target">
+  
+  <h2 class="section-header"><a class="anchor" name="fly-edit-target" href="#fly-edit-target"></a><code>fly edit-target</code></h2>
+  
+
+  <p>To modify a target&#39;s name, team, or URL, run:</p><div class="highlight"><pre style="">$ fly -t example edit-target <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --target-name new-name <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --concourse-url https://ci.example.com <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --team-name my-team
+</pre></div><p>Each flag is optional - only the specified flags will be changed.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_fly-delete-target">
+  
+  <h2 class="section-header"><a class="anchor" name="fly-delete-target" href="#fly-delete-target"></a><code>fly delete-target</code></h2>
+  
+
+  <p>When logging out just isn&#39;t enough, a target can be completely removed from <code>~/.flyrc</code> by running:</p><div class="highlight"><pre style="">$ fly -t example delete-target
+</pre></div><p>To delete <em>all</em> targets, run:</p><div class="highlight"><pre style="">$ fly delete-target -a
 </pre></div><p>Note: These two variations are mutually exclusive. If the target parameter <code>-t</code> and all parameter <code>-a</code> are both specified, an error will occur.</p>
 
   

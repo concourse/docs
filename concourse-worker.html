@@ -389,6 +389,101 @@ sudo -E concourse worker
   
 </div>
     
+      <div class="section" id="section_configuring-gdn-server">
+  
+  <h2 class="section-header"><a class="anchor" name="configuring-gdn-server" href="#configuring-gdn-server"></a>Configuring <code>gdn server</code></h2>
+  
+
+  <p>On Linux, the <code>concourse</code> binary is packaged alongside a <code>gdn</code> binary. This binary is used for running <a href="https://github.com/cloudfoundry/guardian">Guardian</a>, which is a <a href="https://github.com/cloudfoundry/garden">Garden</a> backend implementation which runs containers via <a href="https://github.com/opencontainers/runc"><code>runc</code></a> (the same technology underlying tools like Docker).</p><p>The <code>concourse worker</code> command automatically configures and runs <code>gdn</code>, but depending on the environment you&#39;re running Concourse in, you may need to pop open the hood and configure a few things.</p><p>The <code>gdn</code> server can be configured in two ways:</p><ol>
+
+  <li><p>By creating a <code>config.ini</code> file and passing it as <code>--garden-config</code> (or <code>CONCOURSE_GARDEN_CONFIG</code>).</p><p>The <code>.ini</code> file should look something like this:</p><div class="highlight"><pre style=""><span style="color:#2ecc71;font-weight:bold">[server]</span>
+<span style="color:#3498db">flag-name</span> = <span style="color:#2ecc71">flag-value</span>
+</pre></div><p>To learn which flags can be set, consult <code>gdn server --help</code>. Each flag listed can be set under the <code>[server]</code> heading.</p></li>
+
+  <li><p>By setting <code>CONCOURSE_GARDEN_*</code> environment variables.</p><p>This is primarily supported for backwards compatibility, and these variables are not present in <code>concourse web --help</code>. They are translated to flags passed to <code>gdn server</code> by lower-casing the <code>*</code> portion and replacing underscores with hyphens.</p></li>
+
+</ol>
+
+  
+    
+      <div class="section" id="section_troubleshooting-and-fixing-dns-resolution">
+  
+  <h3 class="section-header"><a class="anchor" name="troubleshooting-and-fixing-dns-resolution" href="#troubleshooting-and-fixing-dns-resolution"></a>Troubleshooting and fixing DNS resolution</h3>
+  
+
+  <p>By default, containers created by Guardian will carry over the <code>/etc/resolv.conf</code> from the host into the container. This is often fine, but some Linux distributions configure a special <code>127.x.x.x</code> DNS resolver (e.g. <code>systemd-resolved</code>).</p><p>When Guardian copies the <code>resolv.conf</code> over, it removes these entries, as they won&#39;t be reachable from the container&#39;s network namespace. As a result, your containers may not have any valid nameservers configured.</p><p>To diagnose this problem you can <a href="builds.html#fly-intercept"><code>fly intercept</code></a> into a failing container and check which nameservers are in <code>/etc/resolv.conf</code>:</p><div class="highlight"><pre style="">$ fly -t ci intercept -c concourse/concourse
+bash-5.0# grep nameserver /etc/resolv.conf
+bash-5.0#
+</pre></div><p>In this case it is empty, as the host only listed a single <code>127.0.0.53</code> address which was then stripped out. To fix this, you&#39;ll just need to explicitly configure DNS instead of relying on the <code>gdn</code> default behavior.</p>
+
+  
+    
+      <div class="section" id="section_pointing-to-external-dns-servers">
+  
+  <h4 class="section-header"><a class="anchor" name="pointing-to-external-dns-servers" href="#pointing-to-external-dns-servers"></a>Pointing to external DNS servers</h4>
+  
+
+  <p>If you have no need for special DNS resolution within your Concourse containers, you can just configure your containers to use specific DNS server addresses external to the VM.</p><p>This can be done by listing DNS servers in <code>config.ini</code> like so:</p><div class="highlight"><pre style=""><span style="color:#2ecc71;font-weight:bold">[server]</span>
+<span style="color:#9b9b9b">; configure Google DNS</span>
+<span style="color:#3498db">dns-server</span> = <span style="color:#2ecc71">8.8.8.8</span>
+<span style="color:#3498db">dns-server</span> = <span style="color:#2ecc71">8.8.4.4</span>
+</pre></div><p>To validate whether the changes have taken effect, you can <a href="builds.html#fly-intercept"><code>fly intercept</code></a> into any container and check <code>/etc/resolv.conf</code> once again:</p><div class="highlight"><pre style="">$ fly -t ci intercept -c concourse/concourse
+bash-5.0# cat /etc/resolv.conf
+nameserver <span style="color:#1abc9c;font-weight:bold">8</span>.8.8.8
+nameserver <span style="color:#1abc9c;font-weight:bold">8</span>.8.4.4
+bash-5.0# ping google.com
+PING google.com (<span style="color:#1abc9c;font-weight:bold">108</span>.177.111.139): <span style="color:#1abc9c;font-weight:bold">56</span> data bytes
+<span style="color:#1abc9c;font-weight:bold">64</span> bytes from <span style="color:#1abc9c;font-weight:bold">108</span>.177.111.139: <span style="color:#3498db">seq</span>=<span style="color:#1abc9c;font-weight:bold">0</span> <span style="color:#3498db">ttl</span>=<span style="color:#1abc9c;font-weight:bold">47</span> <span style="color:#3498db">time</span>=<span style="color:#1abc9c;font-weight:bold">2</span>.672 ms
+<span style="color:#1abc9c;font-weight:bold">64</span> bytes from <span style="color:#1abc9c;font-weight:bold">108</span>.177.111.139: <span style="color:#3498db">seq</span>=<span style="color:#1abc9c;font-weight:bold">1</span> <span style="color:#3498db">ttl</span>=<span style="color:#1abc9c;font-weight:bold">47</span> <span style="color:#3498db">time</span>=<span style="color:#1abc9c;font-weight:bold">0</span>.911 ms
+</pre></div>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_using-a-local-dns-server">
+  
+  <h4 class="section-header"><a class="anchor" name="using-a-local-dns-server" href="#using-a-local-dns-server"></a>Using a local DNS server</h4>
+  
+
+  <p>If you would like to use Consul, <code>dnsmasq</code>, or some other DNS server running on the worker VM, you&#39;ll have to configure the internal address of the VM as the DNS server <em>and</em> allow the containers to reach the address, like so:</p><div class="highlight"><pre style=""><span style="color:#2ecc71;font-weight:bold">[server]</span>
+<span style="color:#9b9b9b">; internal IP of the worker machine</span>
+<span style="color:#3498db">dns-server</span> = <span style="color:#2ecc71">10.1.2.3</span>
+
+<span style="color:#9b9b9b">; allow containers to reach the above IP</span>
+<span style="color:#3498db">allow-host-access</span> = <span style="color:#2ecc71">true</span>
+</pre></div><div class="warning">
+  <p>Setting <code>allow-host-access</code> will, well, allow containers to access your host VM&#39;s network. If you don&#39;t trust your container workloads, you may not want to allow this.</p>
+</div><p>To validate whether the changes have taken effect, you can <a href="builds.html#fly-intercept"><code>fly intercept</code></a> into any container and check <code>/etc/resolv.conf</code> once again:</p><div class="highlight"><pre style="">$ fly -t ci intercept -c concourse/concourse
+bash-5.0# cat /etc/resolv.conf
+nameserver <span style="color:#1abc9c;font-weight:bold">10</span>.1.2.3
+bash-5.0# nslookup concourse-ci.org
+Server:         <span style="color:#1abc9c;font-weight:bold">10</span>.1.2.3
+Address:        <span style="color:#1abc9c;font-weight:bold">10</span>.1.2.3#53
+
+Non-authoritative answer:
+Name:   concourse-ci.org
+Address: <span style="color:#1abc9c;font-weight:bold">185</span>.199.108.153
+Name:   concourse-ci.org
+Address: <span style="color:#1abc9c;font-weight:bold">185</span>.199.109.153
+Name:   concourse-ci.org
+Address: <span style="color:#1abc9c;font-weight:bold">185</span>.199.110.153
+Name:   concourse-ci.org
+Address: <span style="color:#1abc9c;font-weight:bold">185</span>.199.111.153
+</pre></div><p>If <code>nslookup</code> times out or fails, you may need to open up firewalls or security group configuration so that the worker VM can send UDP/TCP packets to itself.</p>
+
+  
+    
+  
+</div>
+    
+  
+</div>
+    
+  
+</div>
+    
   
 </div>
 

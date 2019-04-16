@@ -277,7 +277,7 @@
   <h3 class="section-header"><a class="anchor" name="providing-multiple-inputs" href="#providing-multiple-inputs"></a>Providing multiple inputs</h3>
   
 
-  <p>Tasks in Concourse can take multiple inputs. Up until now we&#39;ve just been submitting a single input (our current working directory) that has the same name as the directory.</p><p>Tasks must specify the inputs that they require as <a href="tasks.html#task-inputs"><code><strong>inputs</strong></code></a>. For <code>fly</code> to upload these inputs you can use the <code>-i</code> or <code>--input</code> arguments with name and path pairs. For example:</p><div class="highlight"><pre style="">$ fly -t example execute <span style="color:#3498db">\
+  <p>Tasks in Concourse can take multiple inputs. Up until now we&#39;ve just been submitting a single input (our current working directory) that has the same name as the directory.</p><p>Tasks must specify the inputs that they require as <a href="tasks.html#task-inputs"><strong><code>inputs</code></strong></a>. For <code>fly</code> to upload these inputs you can use the <code>-i</code> or <code>--input</code> arguments with name and path pairs. For example:</p><div class="highlight"><pre style="">$ fly -t example execute <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --config build-stemcell.yml <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --input <span style="color:#3498db">code</span>=. <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --input <span style="color:#3498db">stemcells</span>=../stemcells
@@ -350,7 +350,7 @@
 </span><span style="color:#3498db"></span>  -l vars.yml <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  -v <span style="color:#3498db">some_string</span>=<span style="color:#e67e22">&#34;Hello World!&#34;</span> <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  -y <span style="color:#3498db">some_bool</span>=<span style="color:#8f4b2d">true</span>
-</pre></div><p>Any variables not satisfied via the above flags will be deferred to the configured <a href="creds.html">credential manager</a>.</p><p>To satisfy these vars when running the task in a pipeline, see <a href="task-step.html#task-step-vars"><code><strong>vars</strong></code></a>.</p>
+</pre></div><p>Any variables not satisfied via the above flags will be deferred to the configured <a href="creds.html">credential manager</a>.</p><p>To satisfy these vars when running the task in a pipeline, see <a href="task-step.html#task-step-vars"><strong><code>vars</code></strong></a>.</p>
 
   
     

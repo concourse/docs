@@ -380,19 +380,19 @@
     <table>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="pipelines.html#pipeline-jobs"><code><strong>jobs</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="pipelines.html#pipeline-jobs"><strong><code>jobs</code></strong></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="pipelines.html#pipeline-resources"><code><strong>resources</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="pipelines.html#pipeline-resources"><strong><code>resources</code></strong></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="pipelines.html#pipeline-resource-types"><code><strong>resource_types</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="pipelines.html#pipeline-resource-types"><strong><code>resource_types</code></strong></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="pipelines.html#groups"><code><strong>groups</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="pipelines.html#groups"><strong><code>groups</code></strong></a></td>
       </tr>
       
 
@@ -448,7 +448,7 @@
 </div><div class="example">
   <h3>Chaining Jobs</h3>
 
-  <p>Promoting resources to downstream jobs is done by setting <a href="get-step.html#get-step-passed"><code><strong>passed</strong></code></a> on a <a href="get-step.html"><code>get</code> step</a>.</p><p>Note that nothing in <code>unit</code> says anything about triggering <code>build</code>. Job definitions are self-contained; they describe their dependencies and where they come from, which results in a dependency flow that Concourse pushes forward.</p><div class="highlight"><pre style="">---<span style="color:#e6e7e8">
+  <p>Promoting resources to downstream jobs is done by setting <a href="get-step.html#get-step-passed"><strong><code>passed</code></strong></a> on a <a href="get-step.html"><code>get</code> step</a>.</p><p>Note that nothing in <code>unit</code> says anything about triggering <code>build</code>. Job definitions are self-contained; they describe their dependencies and where they come from, which results in a dependency flow that Concourse pushes forward.</p><div class="highlight"><pre style="">---<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>resources:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>booklit<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>git<span style="color:#e6e7e8">

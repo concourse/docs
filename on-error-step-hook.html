@@ -13,7 +13,7 @@
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
-<title>aggregate step - Concourse CI</title>
+<title>on_error step hook - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
@@ -258,7 +258,7 @@
               <td class="number-cell" align="right">1.6.1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="aggregate-step.html"  class="self"><code>aggregate</code> step</a>
+  <a href="aggregate-step.html" ><code>aggregate</code> step</a>
 </td>
           </tr>
         
@@ -312,7 +312,7 @@
               <td class="number-cell" align="right">1.6.1.10&nbsp;</td>
             
             <td class="title-cell">
-  <a href="on-error-step-hook.html" ><code>on_error</code> step hook</a>
+  <a href="on-error-step-hook.html"  class="self"><code>on_error</code> step hook</a>
 </td>
           </tr>
         
@@ -374,7 +374,7 @@
     <table>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="aggregate-step.html#aggregate"><strong><code>aggregate</code></strong></a></td>
+        <td colspan="2" class="title-cell"><a href="on-error-step-hook.html#on_error"><strong><code>on_error</code></strong></a></td>
       </tr>
       
 
@@ -395,28 +395,15 @@
   <h2>Examples</h2>
 
   <div class="example">
-  <h3>Build Matrix</h3>
+  <h3>Running on Error</h3>
 
-  <p>If any step in the <code>aggregate</code> fails, the build will fail, making it useful for build matrices:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>some-repo<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>aggregate:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>unit-windows<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>some-repo/ci/windows.yml<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>unit-linux<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>some-repo/ci/linux.yml<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>unit-darwin<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>some-repo/ci/darwin.yml<span style="color:#e6e7e8">
-</span></pre></div>
-</div><div class="example">
-  <h3>Parallel Fetching</h3>
-
-  <p>The <code>aggregate</code> step is also useful for performing arbitrary steps in parallel, for the sake of speeding up the build. It is often used to fetch all dependent resources together:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>aggregate:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>component-a<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>component-b<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>integration-suite<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>integration<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>integration-suite/task.yml<span style="color:#e6e7e8">
+  <p>The following will perform the second task only if the first one errors:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>foo<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>unit<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>foo/unit.yml<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>on_error:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>task:<span style="color:#e6e7e8"> </span>alert<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>foo/alert.yml<span style="color:#e6e7e8">
 </span></pre></div>
 </div>
 </div>
@@ -424,19 +411,19 @@
       </div>
 
     <div class="page-content">
-      <div class="section" id="section_aggregate-step">
+      <div class="section" id="section_on-error-step-hook">
   
-  <h1 class="section-header"><a class="anchor" name="aggregate-step" href="#aggregate-step"></a><span class="section-number">1.6.1.4 </span><code>aggregate</code> step</h1>
+  <h1 class="section-header"><a class="anchor" name="on-error-step-hook" href="#on-error-step-hook"></a><span class="section-number">1.6.1.10 </span><code>on_error</code> step hook</h1>
   
 
-  <div class="definition">
+  <p>Any step can have <code>on_error</code> tacked onto it, whose value is a second step to execute only if the parent step errors.</p><div class="definition">
   <div class="definition-thumb">
-    <a name="aggregate"></a>
-    <pre><a href="aggregate-step.html#aggregate"><strong>aggregate</strong></a>: [step]</pre>
+    <a name="on_error"></a>
+    <pre><a href="on-error-step-hook.html#on_error"><strong>on_error</strong></a>: step</pre>
   </div>
 
   <div class="definition-content">
-    <p>Performs the given steps in parallel.</p><p>If any sub-steps in an aggregate result in an error, the aggregate step as a whole is considered to have errored.</p><p>Similarly, when aggregating <a href="task-step.html"><code>task</code></a> steps, if any <em>fail</em>, the aggregate step will fail.</p>
+    <p>The step to execute when the parent step errors. If the attached step fails, the outer step is considered to have failed.</p>
   </div>
 </div>
 
@@ -451,10 +438,10 @@
           prev:
 
           
-          <span class="section-number">1.6.1.3</span>
+          <span class="section-number">1.6.1.9</span>
           
 
-          <a href="task-step.html"><code>task</code> step</a>
+          <a href="on-abort-step-hook.html"><code>on_abort</code> step hook</a>
         </div>
       
 
@@ -463,10 +450,10 @@
           next:
 
           
-          <span class="section-number">1.6.1.5</span>
+          <span class="section-number">1.6.1.11</span>
           
 
-          <a href="do-step.html"><code>do</code> step</a>
+          <a href="ensure-step-hook.html"><code>ensure</code> step hook</a>
         </div>
       
       </nav>

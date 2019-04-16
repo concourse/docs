@@ -312,7 +312,7 @@
               <td class="number-cell" align="right">1.6.1.10&nbsp;</td>
             
             <td class="title-cell">
-  <a href="ensure-step-hook.html" ><code>ensure</code> step hook</a>
+  <a href="on-error-step-hook.html" ><code>on_error</code> step hook</a>
 </td>
           </tr>
         
@@ -321,7 +321,7 @@
               <td class="number-cell" align="right">1.6.1.11&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tags-step-modifier.html" ><code>tags</code> step modifier</a>
+  <a href="ensure-step-hook.html" ><code>ensure</code> step hook</a>
 </td>
           </tr>
         
@@ -330,13 +330,22 @@
               <td class="number-cell" align="right">1.6.1.12&nbsp;</td>
             
             <td class="title-cell">
-  <a href="timeout-step-modifier.html" ><code>timeout</code> step modifier</a>
+  <a href="tags-step-modifier.html" ><code>tags</code> step modifier</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.6.1.13&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="timeout-step-modifier.html" ><code>timeout</code> step modifier</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.6.1.14&nbsp;</td>
             
             <td class="title-cell">
   <a href="attempts-step-modifier.html" ><code>attempts</code> step modifier</a>
@@ -365,39 +374,39 @@
     <table>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="task-step.html#task"><code><strong>task</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="task-step.html#task"><strong><code>task</code></strong></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="task-step.html#task-step-config"><code><strong>config</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="task-step.html#task-step-config"><strong><code>config</code></strong></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="task-step.html#task-step-file"><code><strong>file</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="task-step.html#task-step-file"><strong><code>file</code></strong></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="task-step.html#task-step-privileged"><code><strong>privileged</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="task-step.html#task-step-privileged"><strong><code>privileged</code></strong></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="task-step.html#task-step-vars"><code><strong>vars</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="task-step.html#task-step-vars"><strong><code>vars</code></strong></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="task-step.html#task-step-params"><code><strong>params</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="task-step.html#task-step-params"><strong><code>params</code></strong></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="task-step.html#task-step-image"><code><strong>image</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="task-step.html#task-step-image"><strong><code>image</code></strong></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="task-step.html#input_mapping"><code><strong>input_mapping</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="task-step.html#input_mapping"><strong><code>input_mapping</code></strong></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="task-step.html#output_mapping"><code><strong>output_mapping</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="task-step.html#output_mapping"><strong><code>output_mapping</code></strong></a></td>
       </tr>
       
 
@@ -466,7 +475,7 @@
   </div>
 
   <div class="definition-content">
-    <p><em>Required.</em> The <a href="tasks.html">task config</a> to execute. An alternative to <a href="task-step.html#task-step-file"><code><strong>file</strong></code></a>.</p>
+    <p><em>Required.</em> The <a href="tasks.html">task config</a> to execute. An alternative to <a href="task-step.html#task-step-file"><strong><code>file</code></strong></a>.</p>
   </div>
 </div><div class="definition">
   <div class="definition-thumb">
@@ -475,8 +484,8 @@
   </div>
 
   <div class="definition-content">
-    <p><em>Required.</em> A dynamic alternative to <a href="task-step.html#task-step-config"><code><strong>config</strong></code></a>.</p><p><code>file</code> points at a <code>.yml</code> file containing the <a href="tasks.html">task config</a>, which allows this to be tracked with your resources.</p><p>The first segment in the path should refer to another source from the plan, and the rest of the path is relative to that source.</p><p>For example, if in your plan you have the following <a href="get-step.html"><code>get</code></a> step:</p><div class="highlight"><pre style="">-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>something<span style="color:#e6e7e8">
-</span></pre></div><p>And the <code>something</code> resource provided a <code>unit.yml</code> file, you would set <code>file: something/unit.yml</code>.</p><p>The content of the config file may contain template <code>((vars))</code>, which will be filled in using <a href="task-step.html#task-step-vars"><code><strong>vars</strong></code></a> or a configured <a href="creds.html">credential manager</a>.</p>
+    <p><em>Required.</em> A dynamic alternative to <a href="task-step.html#task-step-config"><strong><code>config</code></strong></a>.</p><p><code>file</code> points at a <code>.yml</code> file containing the <a href="tasks.html">task config</a>, which allows this to be tracked with your resources.</p><p>The first segment in the path should refer to another source from the plan, and the rest of the path is relative to that source.</p><p>For example, if in your plan you have the following <a href="get-step.html"><code>get</code></a> step:</p><div class="highlight"><pre style="">-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>something<span style="color:#e6e7e8">
+</span></pre></div><p>And the <code>something</code> resource provided a <code>unit.yml</code> file, you would set <code>file: something/unit.yml</code>.</p><p>The content of the config file may contain template <code>((vars))</code>, which will be filled in using <a href="task-step.html#task-step-vars"><strong><code>vars</code></strong></a> or a configured <a href="creds.html">credential manager</a>.</p>
   </div>
 </div><div class="definition">
   <div class="definition-thumb">
@@ -494,7 +503,7 @@
   </div>
 
   <div class="definition-content">
-    <p><em>Optional.</em> A map of template variables to pass to an external task. Only works with external tasks defined in <a href="task-step.html#task-step-file"><code><strong>file</strong></code></a>.</p><p>For example:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
+    <p><em>Optional.</em> A map of template variables to pass to an external task. Only works with external tasks defined in <a href="task-step.html#task-step-file"><strong><code>file</code></strong></a>.</p><p>For example:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>my-repo<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>integration<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>my-repo/ci/task.yml<span style="color:#e6e7e8">
@@ -528,7 +537,7 @@
   </div>
 
   <div class="definition-content">
-    <p><em>Optional.</em> A map of task parameters to set, overriding those configured in <code>config</code> or <code>file</code>.</p><p>The difference between <a href="task-step.html#task-step-params"><code><strong>params</strong></code></a> and <a href="task-step.html#task-step-vars"><code><strong>vars</strong></code></a> is that <a href="task-step.html#task-step-vars"><code><strong>vars</strong></code></a> allows you to interpolate any template variable in an external task, while <a href="task-step.html#task-step-params"><code><strong>params</strong></code></a> can be used to overwrite task parameters (i.e. env variables) specifically. Also, <a href="task-step.html#task-step-params"><code><strong>params</strong></code></a> can have default values declared in the task.</p><p>For example:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
+    <p><em>Optional.</em> A map of task parameters to set, overriding those configured in <code>config</code> or <code>file</code>.</p><p>The difference between <a href="task-step.html#task-step-params"><strong><code>params</code></strong></a> and <a href="task-step.html#task-step-vars"><strong><code>vars</code></strong></a> is that <a href="task-step.html#task-step-vars"><strong><code>vars</code></strong></a> allows you to interpolate any template variable in an external task, while <a href="task-step.html#task-step-params"><strong><code>params</code></strong></a> can be used to overwrite task parameters (i.e. env variables) specifically. Also, <a href="task-step.html#task-step-params"><strong><code>params</code></strong></a> can have default values declared in the task.</p><p>For example:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>my-repo<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>integration<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>my-repo/ci/integration.yml<span style="color:#e6e7e8">
@@ -558,7 +567,7 @@
   </div>
 
   <div class="definition-content">
-    <p><em>Optional.</em> Names an artifact source within the plan containing an image to use for the task. This overrides any <a href="tasks.html#image_resource"><code><strong>image_resource</strong></code></a> configuration present in the task configuration.</p><p>This is very useful when part of your pipeline involves building an image, possibly with dependencies pre-baked. You can then propagate that image through the rest of your pipeline, guaranteeing that the correct version (and thus a consistent set of dependencies) is used throughout your pipeline.</p><p>For example, here&#39;s a pipeline building an image in one job and propagating it to the next:</p><div class="highlight"><pre style="">resources:<span style="color:#e6e7e8">
+    <p><em>Optional.</em> Names an artifact source within the plan containing an image to use for the task. This overrides any <a href="tasks.html#image_resource"><strong><code>image_resource</code></strong></a> configuration present in the task configuration.</p><p>This is very useful when part of your pipeline involves building an image, possibly with dependencies pre-baked. You can then propagate that image through the rest of your pipeline, guaranteeing that the correct version (and thus a consistent set of dependencies) is used throughout your pipeline.</p><p>For example, here&#39;s a pipeline building an image in one job and propagating it to the next:</p><div class="highlight"><pre style="">resources:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>my-project<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>git<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8"> </span>{uri:<span style="color:#e6e7e8"> </span>https://github.com/my-user/my-project}<span style="color:#e6e7e8">
@@ -611,7 +620,7 @@
   </div>
 
   <div class="definition-content">
-    <p><em>Optional.</em> A map from task output names to concrete names to register in the build plan. This allows a task with generic output names to be used multiple times in the same plan.</p><p>This is often used together with <a href="task-step.html#input_mapping"><code><strong>input_mapping</strong></code></a>. For example:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
+    <p><em>Optional.</em> A map from task output names to concrete names to register in the build plan. This allows a task with generic output names to be used multiple times in the same plan.</p><p>This is often used together with <a href="task-step.html#input_mapping"><strong><code>input_mapping</code></strong></a>. For example:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>diego-release<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>cf-release<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>ci-scripts<span style="color:#e6e7e8">

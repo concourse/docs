@@ -357,35 +357,35 @@
     <table>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-name"><code><strong>name</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-name"><strong><code>name</code></strong></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-type"><code><strong>type</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-type"><strong><code>type</code></strong></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-source"><code><strong>source</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-source"><strong><code>source</code></strong></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-privileged"><code><strong>privileged</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-privileged"><strong><code>privileged</code></strong></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-params"><code><strong>params</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-params"><strong><code>params</code></strong></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-check-every"><code><strong>check_every</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-check-every"><strong><code>check_every</code></strong></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-tags"><code><strong>tags</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-tags"><strong><code>tags</code></strong></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-unique-version-history"><code><strong>unique_version_history</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-unique-version-history"><strong><code>unique_version_history</code></strong></a></td>
       </tr>
       
 
@@ -437,14 +437,14 @@
   <h1 class="section-header"><a class="anchor" name="resource-types" href="#resource-types"></a><span class="section-number">1.5.2 </span>Resource Types</h1>
   
 
-  <p>Each resource in a pipeline has a <code>type</code>. The resource&#39;s type determines what versions are detected, the bits that are fetched when used for a <a href="get-step.html"><code>get</code> step</a>, and the side effect that occurs when used for a <a href="put-step.html"><code>put</code> step</a>.</p><p>Out of the box, Concourse comes with a few resource types to cover common CI use cases like dealing with Git repositories and S3 buckets.</p><p>Beyond these core types, each pipeline can configure its own resource types by specifying <code>resource_types</code> at the top level. Each resource type is itself defined as a resource that provides the container image for the pipeline resource type (see <a href="implementing-resource-types.html">Implementing a Resource Type</a>). You will almost always be using the <a href="http://github.com/concourse/registry-image-resource"><code>registry-image</code> resource</a> when doing this.</p><p>Pipeline-provided resource types can override the core resource types, and can be defined in terms of each other. Also, a pipeline resource type can use the core type that it&#39;s overriding. This is useful if you want to e.g. provide your own custom <code>docker-image</code> resource, by overriding the core one (and using it one last time for the override itself), and then using it for all other pipeline resource types.</p><p>Similar to <a href="resources.html">Resources</a>, each configured resource type consists of the following attributes:</p><div class="definition">
+  <p>Each resource in a pipeline has a <code>type</code>. The resource&#39;s type determines what versions are detected, the bits that are fetched when used for a <a href="get-step.html"><code>get</code> step</a>, and the side effect that occurs when used for a <a href="put-step.html"><code>put</code> step</a>.</p><p>Out of the box, Concourse comes with a few resource types to cover common CI use cases like dealing with Git repositories and S3 buckets.</p><p>Beyond these core types, each pipeline can configure its own resource types by specifying <code>resource_types</code> at the top level. Each resource type is itself defined as a resource that provides the container image for the pipeline resource type (see <a href="implementing-resource-types.html">Implementing a Resource Type</a>). You will almost always be using the <a href="https://github.com/concourse/registry-image-resource"><code>registry-image</code> resource</a> when doing this.</p><p>Pipeline-provided resource types can override the core resource types, and can be defined in terms of each other. Also, a pipeline resource type can use the core type that it&#39;s overriding. This is useful if you want to e.g. provide your own custom <code>docker-image</code> resource, by overriding the core one (and using it one last time for the override itself), and then using it for all other pipeline resource types.</p><p>Similar to <a href="resources.html">Resources</a>, each configured resource type consists of the following attributes:</p><div class="definition">
   <div class="definition-thumb">
     <a name="resource-type-name"></a>
     <pre><a href="resource-types.html#resource-type-name"><strong>name</strong></a>: string</pre>
   </div>
 
   <div class="definition-content">
-    <p><em>Required.</em> The name of the new resource type. This should be short and simple. This name will be referenced by <a href="pipelines.html#pipeline-resources"><code><strong>resources</strong></code></a> defined within the same pipeline, and <a href="tasks.html#image_resource"><code><strong>image_resource</strong></code></a>s used by tasks running in the pipeline.</p>
+    <p><em>Required.</em> The name of the new resource type. This should be short and simple. This name will be referenced by <a href="pipelines.html#pipeline-resources"><strong><code>resources</code></strong></a> defined within the same pipeline, and <a href="tasks.html#image_resource"><strong><code>image_resource</code></strong></a>s used by tasks running in the pipeline.</p>
   </div>
 </div><div class="definition">
   <div class="definition-thumb">

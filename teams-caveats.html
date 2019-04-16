@@ -262,7 +262,7 @@
 
   <p>At present, teams only provide <em>trusted multi-tenancy</em>. This means it should be used for cases where you know and trust who you&#39;re allowing access into your Concourse cluster.</p><p>There are a few reasons it&#39;d be a bad idea to do otherwise:</p><ul>
 
-  <li><p>Any team can run builds with <a href="task-step.html#task-step-privileged"><code><strong>privileged</strong></code></a> tasks. A bad actor in the mix could easily use this to harm your workers and your cluster.</p><p>In the future, we&#39;ll probably have this as a flag on a team, indicating whether they&#39;re permitted to run privileged builds.</p></li>
+  <li><p>Any team can run builds with <a href="task-step.html#task-step-privileged"><strong><code>privileged</code></strong></a> tasks. A bad actor in the mix could easily use this to harm your workers and your cluster.</p><p>In the future, we&#39;ll probably have this as a flag on a team, indicating whether they&#39;re permitted to run privileged builds.</p></li>
 
   <li><p>There are no networking restrictions in place, and traffic to and from the workers is currently unencrypted and unauthorized. Anyone could run a task that does horrible things to your worker&#39;s containers, possibly stealing sensitive information.</p><p>This can be remedied with configuration specified on Garden to restrict access to the internal network, but this is not detailed in our docs, and we&#39;ll probably want to find a better answer than configuration in the future.</p></li>
 

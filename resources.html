@@ -359,31 +359,39 @@
     <table>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="resources.html#resource-name"><code><strong>name</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="resources.html#resource-name"><strong><code>name</code></strong></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="resources.html#resource-type"><code><strong>type</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="resources.html#resource-type"><strong><code>type</code></strong></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="resources.html#resource-source"><code><strong>source</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="resources.html#resource-icon"><strong><code>icon</code></strong></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="resources.html#resource-version"><code><strong>version</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="resources.html#resource-source"><strong><code>source</code></strong></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="resources.html#resource-check-every"><code><strong>check_every</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="resources.html#resource-version"><strong><code>version</code></strong></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="resources.html#resource-tags"><code><strong>tags</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="resources.html#resource-check-every"><strong><code>check_every</code></strong></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="resources.html#resource-webhook-token"><code><strong>webhook_token</strong></code></a></td>
+        <td colspan="2" class="title-cell"><a href="resources.html#resource-tags"><strong><code>tags</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="resources.html#resource-public"><strong><code>public</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="resources.html#resource-webhook-token"><strong><code>webhook_token</code></strong></a></td>
       </tr>
       
 
@@ -404,7 +412,7 @@
   <div class="example">
   <h3><code>git</code> resource</h3>
 
-  <p>The following resource definition is an example of the <a href="http://github.com/concourse/git-resource"><code>git</code> resource</a>:</p><div class="highlight"><pre style="">name:<span style="color:#e6e7e8"> </span>booklit<span style="color:#e6e7e8">
+  <p>The following resource definition is an example of the <a href="https://github.com/concourse/git-resource"><code>git</code> resource</a>:</p><div class="highlight"><pre style="">name:<span style="color:#e6e7e8"> </span>booklit<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>type:<span style="color:#e6e7e8"> </span>git<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>source:<span style="color:#e6e7e8"> </span>{uri:<span style="color:#e6e7e8"> </span><span style="color:#e67e22">&#34;https://github.com/vito/booklit&#34;</span>}<span style="color:#e6e7e8">
 </span></pre></div><p>This could be passed to a job via a <a href="get-step.html"><code>get</code> step</a> with <a href="get-step.html#get-step-trigger"><code>trigger: true</code></a> to run the tests whenever there&#39;s new code:</p><div class="highlight"><pre style="">resources:<span style="color:#e6e7e8">
@@ -468,11 +476,20 @@
   <div class="definition-content">
     <p><em>Required.</em> The type of the resource.</p><p>Resource types are available from two sources:</p><ul>
 
-  <li><p><a href="resource-types.html">Resource Types</a> defined in the same pipeline. In this case the string value refers to the <a href="resource-types.html#resource-type-name"><code><strong>name</strong></code></a>.</p></li>
+  <li><p><a href="resource-types.html">Resource Types</a> defined in the same pipeline. In this case the string value refers to the <a href="resource-types.html#resource-type-name"><strong><code>name</code></strong></a>.</p></li>
 
   <li><p>Linux workers are pre-loaded with a set of <a href="included-resource-types.html">&#34;base&#34; resource types</a>, available to all pipelines that run on them. This is visible in <a href="administration.html#fly-workers"><code>fly workers -d</code></a>.</p></li>
 
 </ul>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="resource-icon"></a>
+    <pre><a href="resources.html#resource-icon"><strong>icon</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> The name of a <a href="https://materialdesignicons.com/">Material Design icon</a> to show next to the resource name in the web UI. For example, <code>github-circle</code>.</p>
   </div>
 </div><div class="definition">
   <div class="definition-thumb">
@@ -490,7 +507,7 @@
   </div>
 
   <div class="definition-content">
-    <p><em>Optional.</em> A version to pin the resource to across the pipeline. This has the same effect as setting <a href="get-step.html#get-step-version"><code><strong>version</strong></code></a> on every <a href="get-step.html"><code>get</code> step</a> referencing the resource.</p><p>Resources can also be temporarily pinned to a version via the API and web UI. However this functionality is disabled if the resource is pinned via configuration, and if a pipeline is configured to have a version pinned while also pinned in the web UI, the configuration takes precedence and will clear out the temporary pin.</p>
+    <p><em>Optional.</em> A version to pin the resource to across the pipeline. This has the same effect as setting <a href="get-step.html#get-step-version"><strong><code>version</code></strong></a> on every <a href="get-step.html"><code>get</code> step</a> referencing the resource.</p><p>Resources can also be temporarily pinned to a version via the API and web UI. However this functionality is disabled if the resource is pinned via configuration, and if a pipeline is configured to have a version pinned while also pinned in the web UI, the configuration takes precedence and will clear out the temporary pin.</p>
   </div>
 </div><div class="definition">
   <div class="definition-thumb">
@@ -509,6 +526,15 @@
 
   <div class="definition-content">
     <p><em>Optional. Default <code>[]</code>.</em> A list of tags to determine which workers the checks will be performed on. You&#39;ll want to specify this if the source is internal to a worker&#39;s network, for example. See also <a href="tags-step-modifier.html"><code>tags</code> step modifier</a>.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="resource-public"></a>
+    <pre><a href="resources.html#resource-public"><strong>public</strong></a>: boolean</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional. Default <code>false</code>.</em> If set to <code>true</code>, the metadata for each version of the resource will be viewable by unauthenticated users (assuming the pipeline has been <a href="exposing.html">exposed</a>).</p><p>Resource metadata should never contain credentials or secret information, but this is off by default just to be safe in case users don&#39;t want to show things like commit messages and authors to the public.</p><p>Note: even when set to <code>false</code>, the versions identifiers will be visible. In addition, if a resource is fetched in a build whose job is marked <a href="jobs.html#job-public"><strong><code>public</code></strong></a>, metadata will be visible in the build output.</p>
   </div>
 </div><div class="definition">
   <div class="definition-thumb">

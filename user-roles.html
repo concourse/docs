@@ -383,7 +383,7 @@
   <h2 class="section-header"><a class="anchor" name="team-viewer-role" href="#team-viewer-role"></a>Team Viewer role</h2>
   
 
-  <p>Team Viewer gives users “read-only” access to a team. This locks everything down, preventing users from doing a set-pipeline or hijack.</p>
+  <p>Team Viewer gives users &#34;read-only&#34; access to a team. This locks everything down, preventing users from doing a <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a> or <a href="builds.html#fly-intercept"><code>fly intercept</code></a>.</p>
 
   
     
@@ -395,11 +395,11 @@
   <h2 class="section-header"><a class="anchor" name="permission-matrix" href="#permission-matrix"></a>Permission Matrix</h2>
   
 
-  <p><strong><a href="fly.html"><code>fly</code> CLI</a> commands</strong></p><table>
+  <table>
   
   <tr>
     
-    <td>Command</td>
+    <td><a href="fly.html"><code>fly</code> CLI</a> command</td>
     
     <td>Anon</td>
     
@@ -415,7 +415,7 @@
   
   <tr>
     
-    <td>abort-build</td>
+    <td><a href="builds.html#fly-abort-build"><code>fly abort-build</code></a></td>
     
     <td>✘</td>
     
@@ -431,7 +431,7 @@
   
   <tr>
     
-    <td>builds</td>
+    <td><a href="builds.html#fly-builds"><code>fly builds</code></a></td>
     
     <td>✓</td>
     
@@ -447,7 +447,7 @@
   
   <tr>
     
-    <td>check-resource</td>
+    <td><a href="managing-resources.html#fly-check-resource"><code>fly check-resource</code></a></td>
     
     <td>✘</td>
     
@@ -463,7 +463,7 @@
   
   <tr>
     
-    <td>checklist</td>
+    <td><a href="administration.html#fly-containers"><code>fly containers</code></a></td>
     
     <td>✘</td>
     
@@ -479,7 +479,7 @@
   
   <tr>
     
-    <td>containers</td>
+    <td><a href="managing-pipelines.html#fly-destroy-pipeline"><code>fly destroy-pipeline</code></a></td>
     
     <td>✘</td>
     
@@ -495,7 +495,23 @@
   
   <tr>
     
-    <td>destroy-pipeline</td>
+    <td><a href="managing-teams.html#fly-destroy-team"><code>fly destroy-team</code></a></td>
+    
+    <td>✘</td>
+    
+    <td>✓</td>
+    
+    <td>✘</td>
+    
+    <td>✘</td>
+    
+    <td>✘</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td><a href="running-tasks.html#fly-execute"><code>fly execute</code></a></td>
     
     <td>✘</td>
     
@@ -511,23 +527,7 @@
   
   <tr>
     
-    <td>destroy-team</td>
-    
-    <td>✘</td>
-    
-    <td>✓</td>
-    
-    <td>✘</td>
-    
-    <td>✘</td>
-    
-    <td>✘</td>
-    
-  </tr>
-  
-  <tr>
-    
-    <td>execute</td>
+    <td><a href="managing-pipelines.html#fly-expose-pipeline"><code>fly expose-pipeline</code></a></td>
     
     <td>✘</td>
     
@@ -543,7 +543,7 @@
   
   <tr>
     
-    <td>expose-pipeline</td>
+    <td><a href="setting-pipelines.html#fly-format-pipeline"><code>fly format-pipeline</code></a></td>
     
     <td>✘</td>
     
@@ -559,7 +559,7 @@
   
   <tr>
     
-    <td>format-pipeline</td>
+    <td><a href="managing-pipelines.html#fly-get-pipeline"><code>fly get-pipeline</code></a></td>
     
     <td>✘</td>
     
@@ -575,7 +575,7 @@
   
   <tr>
     
-    <td>get-pipeline</td>
+    <td><a href="managing-pipelines.html#fly-hide-pipeline"><code>fly hide-pipeline</code></a></td>
     
     <td>✘</td>
     
@@ -591,23 +591,7 @@
   
   <tr>
     
-    <td>help</td>
-    
-    <td>✓</td>
-    
-    <td></td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-  </tr>
-  
-  <tr>
-    
-    <td>hide-pipeline</td>
+    <td><a href="builds.html#fly-intercept"><code>fly intercept</code></a></td>
     
     <td>✘</td>
     
@@ -623,23 +607,7 @@
   
   <tr>
     
-    <td>hijack</td>
-    
-    <td>✘</td>
-    
-    <td></td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✘</td>
-    
-  </tr>
-  
-  <tr>
-    
-    <td>jobs</td>
+    <td><a href="managing-jobs.html#fly-jobs"><code>fly jobs</code></a></td>
     
     <td>✓</td>
     
@@ -655,7 +623,7 @@
   
   <tr>
     
-    <td>login</td>
+    <td><a href="fly.html#fly-login"><code>fly login</code></a></td>
     
     <td>✓</td>
     
@@ -671,7 +639,7 @@
   
   <tr>
     
-    <td>logout</td>
+    <td><a href="fly.html#fly-logout"><code>fly logout</code></a></td>
     
     <td>✘</td>
     
@@ -687,7 +655,7 @@
   
   <tr>
     
-    <td>order-pipelines</td>
+    <td><a href="managing-pipelines.html#fly-order-pipelines"><code>fly order-pipelines</code></a></td>
     
     <td>✘</td>
     
@@ -703,7 +671,7 @@
   
   <tr>
     
-    <td>pause-job</td>
+    <td><a href="managing-jobs.html#fly-pause-job"><code>fly pause-job</code></a></td>
     
     <td>✘</td>
     
@@ -719,7 +687,7 @@
   
   <tr>
     
-    <td>pause-pipeline</td>
+    <td><a href="managing-pipelines.html#fly-pause-pipeline"><code>fly pause-pipeline</code></a></td>
     
     <td>✘</td>
     
@@ -735,7 +703,7 @@
   
   <tr>
     
-    <td>pipelines</td>
+    <td><a href="managing-pipelines.html#fly-pipelines"><code>fly pipelines</code></a></td>
     
     <td>✓</td>
     
@@ -751,7 +719,7 @@
   
   <tr>
     
-    <td>prune-worker</td>
+    <td><a href="administration.html#fly-prune-worker"><code>fly prune-worker</code></a></td>
     
     <td>✘</td>
     
@@ -767,7 +735,7 @@
   
   <tr>
     
-    <td>rename-pipeline</td>
+    <td><a href="managing-pipelines.html#fly-rename-pipeline"><code>fly rename-pipeline</code></a></td>
     
     <td>✘</td>
     
@@ -783,7 +751,7 @@
   
   <tr>
     
-    <td>rename-team</td>
+    <td><a href="managing-teams.html#fly-rename-team"><code>fly rename-team</code></a></td>
     
     <td>✘</td>
     
@@ -799,7 +767,7 @@
   
   <tr>
     
-    <td>set-pipeline</td>
+    <td><a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a></td>
     
     <td>✘</td>
     
@@ -815,7 +783,7 @@
   
   <tr>
     
-    <td>set-team</td>
+    <td><a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a></td>
     
     <td>✘</td>
     
@@ -831,7 +799,7 @@
   
   <tr>
     
-    <td>status</td>
+    <td><a href="fly.html#fly-status"><code>fly status</code></a></td>
     
     <td>✓</td>
     
@@ -847,7 +815,7 @@
   
   <tr>
     
-    <td>sync</td>
+    <td><a href="fly.html#fly-sync"><code>fly sync</code></a></td>
     
     <td>✓</td>
     
@@ -863,7 +831,7 @@
   
   <tr>
     
-    <td>targets</td>
+    <td><a href="fly.html#fly-targets"><code>fly targets</code></a></td>
     
     <td>✓</td>
     
@@ -879,7 +847,7 @@
   
   <tr>
     
-    <td>teams</td>
+    <td><a href="managing-teams.html#fly-teams"><code>fly teams</code></a></td>
     
     <td>✘</td>
     
@@ -895,7 +863,7 @@
   
   <tr>
     
-    <td>trigger-job</td>
+    <td><a href="managing-jobs.html#fly-trigger-job"><code>fly trigger-job</code></a></td>
     
     <td>✘</td>
     
@@ -911,7 +879,7 @@
   
   <tr>
     
-    <td>unpause-job</td>
+    <td><a href="managing-jobs.html#fly-unpause-job"><code>fly unpause-job</code></a></td>
     
     <td>✘</td>
     
@@ -927,7 +895,7 @@
   
   <tr>
     
-    <td>unpause-pipeline</td>
+    <td><a href="managing-pipelines.html#fly-unpause-pipeline"><code>fly unpause-pipeline</code></a></td>
     
     <td>✘</td>
     
@@ -943,7 +911,7 @@
   
   <tr>
     
-    <td>validate-pipeline</td>
+    <td><a href="setting-pipelines.html#fly-validate-pipeline"><code>fly validate-pipeline</code></a></td>
     
     <td>✓</td>
     
@@ -959,7 +927,7 @@
   
   <tr>
     
-    <td>volumes</td>
+    <td><a href="administration.html#fly-volumes"><code>fly volumes</code></a></td>
     
     <td>✘</td>
     
@@ -975,7 +943,7 @@
   
   <tr>
     
-    <td>watch</td>
+    <td><a href="builds.html#fly-watch"><code>fly watch</code></a></td>
     
     <td>✓*</td>
     
@@ -991,7 +959,7 @@
   
   <tr>
     
-    <td>workers</td>
+    <td><a href="administration.html#fly-workers"><code>fly workers</code></a></td>
     
     <td>✘</td>
     
@@ -1005,11 +973,11 @@
     
   </tr>
   
-</table><p><strong>Web UI</strong></p><table>
+</table><table>
   
   <tr>
     
-    <td>Page</td>
+    <td>Web UI page</td>
     
     <td>Action</td>
     
