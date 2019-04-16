@@ -2,9 +2,9 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 
 	"github.com/vito/booklit"
 )
@@ -23,17 +23,8 @@ type Plugin struct {
 	section *booklit.Section
 }
 
-func (plugin Plugin) BuildResourceTypeList(
-	path string,
-	columns ...string,
-) (booklit.Content, error) {
-	if path == "" {
-		return nil, fmt.Errorf("path cannot be blank")
-	}
-
-	if len(columns) == 0 {
-		return nil, fmt.Errorf("must have at least one columns")
-	}
+func (plugin Plugin) BuildResourceTypeList(relPath string) (booklit.Content, error) {
+	path := filepath.Join(filepath.Dir(plugin.section.Path), relPath)
 
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
@@ -50,7 +41,7 @@ func (plugin Plugin) BuildResourceTypeList(
 	content = append(content, headers)
 
 	for _, f := range files {
-		jsonFile, err := os.Open(path + "/" + f.Name())
+		jsonFile, err := os.Open(filepath.Join(path, f.Name()))
 		if err != nil {
 			return nil, err
 		}
