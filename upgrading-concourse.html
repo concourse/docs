@@ -13,7 +13,7 @@
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
-<title>Resource Types Provided With Concourse - Concourse CI</title>
+<title>Upgrading Concourse - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
@@ -64,8 +64,6 @@
   
   
   
-  
-  
 
   
   <div class="context">
@@ -87,7 +85,7 @@
               <td class="number-cell" align="right">1.1&nbsp;</td>
             
             <td class="title-cell">
-  <a href="install.html" >Install</a>
+  <a href="install.html"  class="active">Install</a>
 </td>
           </tr>
         
@@ -123,7 +121,7 @@
               <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resources.html"  class="active">Resources</a>
+  <a href="resources.html" >Resources</a>
 </td>
           </tr>
         
@@ -176,10 +174,10 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.5</span>
+        <span class="section-number">1.1</span>
         
         
-  <a href="resources.html"  class="active">Resources</a>
+  <a href="install.html"  class="active">Install</a>
 
       </div>
 
@@ -188,69 +186,46 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.5.1&nbsp;</td>
+              <td class="number-cell" align="right">1.1.1&nbsp;</td>
             
             <td class="title-cell">
-  <a href="managing-resources.html" >Managing Resources</a>
+  <a href="concourse-generate-key.html" >Generating Keys</a>
 </td>
           </tr>
         
           <tr>
             
-              <td class="number-cell" align="right">1.5.2&nbsp;</td>
+              <td class="number-cell" align="right">1.1.2&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html"  class="active">Resource Types</a>
-</td>
-          </tr>
-        
-        </table>
-      </div>
-    </nav>
-  </div>
-  
-
-  
-
-  
-  <div class="context">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1.5.2</span>
-        
-        
-  <a href="resource-types.html"  class="active">Resource Types</a>
-
-      </div>
-
-      <div class="children">
-        <table>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.5.2.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="included-resource-types.html"  class="self">Resource Types Provided With Concourse</a>
+  <a href="postgresql-node.html" >Running a PostgreSQL node</a>
 </td>
           </tr>
         
           <tr>
             
-              <td class="number-cell" align="right">1.5.2.2&nbsp;</td>
+              <td class="number-cell" align="right">1.1.3&nbsp;</td>
             
             <td class="title-cell">
-  <a href="managing-resource-types.html" >Managing Resource Types</a>
+  <a href="concourse-web.html" >Running a <code>web</code> node</a>
 </td>
           </tr>
         
           <tr>
             
-              <td class="number-cell" align="right">1.5.2.3&nbsp;</td>
+              <td class="number-cell" align="right">1.1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="implementing-resource-types.html" >Implementing a Resource Type</a>
+  <a href="concourse-worker.html" >Running a <code>worker</code> node</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.1.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="upgrading-concourse.html"  class="self">Upgrading Concourse</a>
 </td>
           </tr>
         
@@ -272,38 +247,38 @@
     <div class="page-aside"></div>
 
     <div class="page-content">
-      <div class="section" id="section_included-resource-types">
+      <div class="section" id="section_upgrading-concourse">
   
-  <h1 class="section-header"><a class="anchor" name="included-resource-types" href="#included-resource-types"></a><span class="section-number">1.5.2.1 </span>Resource Types Provided With Concourse</h1>
+  <h1 class="section-header"><a class="anchor" name="upgrading-concourse" href="#upgrading-concourse"></a><span class="section-number">1.1.5 </span>Upgrading Concourse</h1>
   
 
-  <p>The following resource types come with Concourse out of the box, and are officially supported by the Concourse team:</p><ul>
-
-  <li><p>The <a href="https://github.com/concourse/git-resource"><code>git</code> resource</a> can pull and push to git repositories.</p></li>
-
-  <li><p>The <a href="https://github.com/concourse/hg-resource"><code>hg</code> resource</a> can pull and push to Mercurial repositories.</p></li>
-
-  <li><p>The <a href="https://github.com/concourse/time-resource"><code>time</code> resource</a> can start jobs on a schedule or timestamp outputs.</p></li>
-
-  <li><p>The <a href="https://github.com/concourse/s3-resource"><code>s3</code> resource</a> can fetch from and upload to S3 buckets.</p></li>
-
-  <li><p>The <a href="https://github.com/concourse/semver-resource"><code>semver</code> resource</a> can set or bump version numbers.</p></li>
-
-  <li><p>The <a href="https://github.com/concourse/github-release-resource"><code>github-release</code> resource</a> can fetch and publish versioned GitHub resources.</p></li>
-
-  <li><p>The <a href="https://github.com/concourse/registry-image-resource"><code>registry-image</code> resource</a> can fetch and push Docker images.</p></li>
-
-  <li><p>The <a href="https://github.com/concourse/docker-image-resource"><code>docker-image</code> resource</a> can fetch, build, and push Docker images, though it requires <code>privileged: true</code>.</p></li>
-
-  <li><p>The <a href="https://github.com/concourse/pool-resource"><code>pool</code> resource</a> allows you to configure how to serialize use of an external system. This lets you prevent test interference or overwork on shared systems.</p></li>
-
-  <li><p>The <a href="https://github.com/concourse/cf-resource"><code>cf</code> resource</a> can deploy an application to Cloud Foundry.</p></li>
-
-  <li><p>The <a href="https://github.com/concourse/bosh-io-release-resource"><code>bosh-io-release</code> resource</a> can track and fetch new BOSH releases from bosh.io.</p></li>
-
-  <li><p>The <a href="https://github.com/concourse/bosh-io-stemcell-resource"><code>bosh-io-stemcell</code> resource</a> can track and fetch new BOSH stemcells from bosh.io.</p></li>
-
-</ul>
+  <p>Concourse is upgraded by stopping the Concourse process, swapping out the <code>concourse</code> binary with the new one, and re-starting it. This should be done on each <a href="concourse-web.html"><code>web</code> node</a> and <a href="concourse-worker.html"><code>worker</code> node</a>. Be careful to check the release notes for anything marked &#39;breaking&#39; - in particular, you&#39;ll want to look for any flags that have changed.</p><p>Each <a href="concourse-web.html"><code>web</code> node</a> will automatically run migrations on start and locks via the database to ensure only one of them runs the migrations. We currently do not guarantee zero-downtime upgrades, as migrations may make changes that confuse the older <code>web</code> nodes. This should resolve as each node is upgraded, and shouldn&#39;t result in any inconsistent state.</p><p>Typically, Concourse can be upgraded from any version to any other version, though around 3.x and 4.x we made some changes to how migrations are run, and as a result the following upgrade paths must be followed:</p><table>
+  
+  <tr>
+    
+    <td>Current Version</td>
+    
+    <td>Upgrade Path</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>&lt; <a href="https://github.com/concourse/concourse/releases/tag/v3.6.0">v3.6.0</a></td>
+    
+    <td><a href="https://github.com/concourse/concourse/releases/tag/v3.6.0">v3.6.0</a> -&gt; <a href="https://github.com/concourse/concourse/releases/tag/v4.0.0">v4.0.0</a> -&gt; latest</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>= <a href="https://github.com/concourse/concourse/releases/tag/v3.6.0">v3.6.0</a></td>
+    
+    <td><a href="https://github.com/concourse/concourse/releases/tag/v4.0.0">v4.0.0</a> -&gt; latest</td>
+    
+  </tr>
+  
+</table><p>We&#39;ll try to minimize this kind of thing in the future.</p>
 
   
     
@@ -316,10 +291,10 @@
           prev:
 
           
-          <span class="section-number">1.5.2</span>
+          <span class="section-number">1.1.4</span>
           
 
-          <a href="resource-types.html">Resource Types</a>
+          <a href="concourse-worker.html">Running a <code>worker</code> node</a>
         </div>
       
 
@@ -328,10 +303,10 @@
           next:
 
           
-          <span class="section-number">1.5.2.2</span>
+          <span class="section-number">1.2</span>
           
 
-          <a href="managing-resource-types.html">Managing Resource Types</a>
+          <a href="auth.html">Auth &amp; Teams</a>
         </div>
       
       </nav>

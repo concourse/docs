@@ -31,14 +31,15 @@
   
   <a href="docs.html">Docs</a>
   
-  <a href="download.html">Download</a>
-  
   <a href="project.html" class="active">Project</a>
   
   <a href="community.html">Community</a>
   
   <a href="learning.html">Learning</a>
   
+
+  <a class="icon-link download-link" href="https://github.com/concourse/concourse/releases/latest">download</a>
+  <a class="icon-link github-link" href="https://github.com/concourse/concourse">github</a>
 </nav>
 
 <div class="top-search">
@@ -71,7 +72,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">3</span>
+        <span class="section-number">2</span>
         
         
   <a href="project.html"  class="active">Project</a>
@@ -83,7 +84,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">3.1&nbsp;</td>
+              <td class="number-cell" align="right">2.1&nbsp;</td>
             
             <td class="title-cell">
   <a href="contribute.html" >Contribute</a>
@@ -92,7 +93,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">3.2&nbsp;</td>
+              <td class="number-cell" align="right">2.2&nbsp;</td>
             
             <td class="title-cell">
   <a href="architecture.html"  class="active">Architecture</a>
@@ -101,7 +102,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">3.3&nbsp;</td>
+              <td class="number-cell" align="right">2.3&nbsp;</td>
             
             <td class="title-cell">
   <a href="thanks.html" >Thanks!</a>
@@ -110,7 +111,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">3.4&nbsp;</td>
+              <td class="number-cell" align="right">2.4&nbsp;</td>
             
             <td class="title-cell">
   <a href="trademarks.html" >Trademarks</a>
@@ -130,7 +131,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">3.2</span>
+        <span class="section-number">2.2</span>
         
         
   <a href="architecture.html"  class="active">Architecture</a>
@@ -199,7 +200,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">3.2.4.1&nbsp;</td>
+              <td class="number-cell" align="right">2.2.4.1&nbsp;</td>
             
             <td class="title-cell">
   <a href="database-schema.html" >Database Schema</a>
@@ -208,7 +209,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">3.2.4.2&nbsp;</td>
+              <td class="number-cell" align="right">2.2.4.2&nbsp;</td>
             
             <td class="title-cell">
   <a href="garbage-collection.html"  class="self">Garbage Collection</a>
@@ -217,7 +218,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">3.2.4.3&nbsp;</td>
+              <td class="number-cell" align="right">2.2.4.3&nbsp;</td>
             
             <td class="title-cell">
   <a href="volume-internals.html" >Volumes</a>
@@ -226,7 +227,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">3.2.4.4&nbsp;</td>
+              <td class="number-cell" align="right">2.2.4.4&nbsp;</td>
             
             <td class="title-cell">
   <a href="container-internals.html" >Containers</a>
@@ -235,7 +236,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">3.2.4.5&nbsp;</td>
+              <td class="number-cell" align="right">2.2.4.5&nbsp;</td>
             
             <td class="title-cell">
   <a href="worker-internals.html" >Workers</a>
@@ -244,7 +245,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">3.2.4.6&nbsp;</td>
+              <td class="number-cell" align="right">2.2.4.6&nbsp;</td>
             
             <td class="title-cell">
   <a href="caching-and-retention.html" >Caching &amp; Retention</a>
@@ -266,7 +267,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">3.2.4.2</span>
+        <span class="section-number">2.2.4.2</span>
         
         
   <a href="garbage-collection.html"  class="self">Garbage Collection</a>
@@ -344,7 +345,7 @@
     <div class="page-content">
       <div class="section" id="section_garbage-collection">
   
-  <h1 class="section-header"><a class="anchor" name="garbage-collection" href="#garbage-collection"></a><span class="section-number">3.2.4.2 </span>Garbage Collection</h1>
+  <h1 class="section-header"><a class="anchor" name="garbage-collection" href="#garbage-collection"></a><span class="section-number">2.2.4.2 </span>Garbage Collection</h1>
   
 
   <p>One key difference between Concourse and other CI systems is that everything runs in isolated environments. Where some CI systems may just run builds one at a time on a single VM and reusing a working directory, Concourse creates fresh <a href="container-internals.html">Containers</a> and <a href="volume-internals.html">Volumes</a> to ensure things can safely run in a repeatable environment, isolated from other workloads running on the same worker.</p><p>This introduces a new problem of knowing when Concourse should remove these containers and volumes. Safely identifying things for removal and then getting rid of them, releasing their resources, is the process of <em>garbage collection</em>.</p>
@@ -474,7 +475,7 @@
           prev:
 
           
-          <span class="section-number">3.2.4.1</span>
+          <span class="section-number">2.2.4.1</span>
           
 
           <a href="database-schema.html">Database Schema</a>
@@ -486,7 +487,7 @@
           next:
 
           
-          <span class="section-number">3.2.4.3</span>
+          <span class="section-number">2.2.4.3</span>
           
 
           <a href="volume-internals.html">Volumes</a>
@@ -496,7 +497,7 @@
     </div>
 
     <ul class="improve-docs">
-      <li><img src="images/github.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+      <li><img src="images/github-box.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
       <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
     </ul>
   </body>
