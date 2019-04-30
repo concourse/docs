@@ -9,6 +9,7 @@ import Html.Events as HE
 import Http
 import Json.Decode as JD
 import Json.Decode.Extra as JDE exposing (andMap)
+import Maybe.Extra as ME
 import Query
 
 
@@ -92,9 +93,15 @@ performSearch model =
             { model | result = DE.filterMap (match query) docs }
 
 
-match : String -> String -> BooklitDocument -> Maybe Query.Result
+type DocumentMatch
+    = TitleMatch Query.Result
+    | TextMatch Query.Result
+
+
+match : String -> String -> BooklitDocument -> Maybe DocumentMatch
 match query tag doc =
-    Query.matchWords query doc.title
+    Maybe.map TitleMatch (Query.matchWords query doc.title)
+        |> ME.or (Maybe.map TextMatch (Query.matchWords query doc.text))
 
 
 type alias DocumentResult =

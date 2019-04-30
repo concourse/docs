@@ -5889,9 +5889,20 @@ var author$project$Query$matchWords = F2(
 					author$project$Query$largestMatchFirst,
 					elm$core$List$concat(matches))).a);
 	});
+var elm_community$maybe_extra$Maybe$Extra$or = F2(
+	function (ma, mb) {
+		if (ma.$ === 'Nothing') {
+			return mb;
+		} else {
+			return ma;
+		}
+	});
 var author$project$Main$match = F3(
 	function (query, tag, doc) {
-		return A2(author$project$Query$matchWords, query, doc.title);
+		return A2(
+			elm_community$maybe_extra$Maybe$Extra$or,
+			A2(author$project$Query$matchWords, query, doc.text),
+			A2(author$project$Query$matchWords, query, doc.title));
 	});
 var elm$core$Dict$foldl = F3(
 	function (func, acc, dict) {
