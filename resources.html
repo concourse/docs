@@ -29,17 +29,14 @@
 
 <nav class="top-nav">
   
-  <a href="docs.html" class="active">Docs</a>
+  <a class="top-link active" href="docs.html">Docs</a>
   
-  <a href="project.html">Project</a>
+  <a class="top-link" href="examples.html">Examples</a>
   
-  <a href="community.html">Community</a>
+  <a class="top-link" href="project.html">Project</a>
   
-  <a href="learning.html">Learning</a>
-  
-
-  <a class="icon-link download-link" href="https://github.com/concourse/concourse/releases/latest">download</a>
-  <a class="icon-link github-link" href="https://github.com/concourse/concourse">github</a>
+  <a class="top-link icon-link github-link" href="https://github.com/concourse/concourse/wiki">wiki</a>
+  <a class="top-link icon-link download-link" href="https://github.com/concourse/concourse/releases/latest">download</a>
 </nav>
 
 <div class="top-search">
@@ -128,7 +125,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -137,7 +134,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -146,13 +143,22 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html" >Tasks</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.9&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="builds.html" >Builds</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
   <a href="operation.html" >Operation</a>
@@ -204,134 +210,6 @@
           <a href="managing-resources.html#fly-check-resource"><code>fly check-resource</code></a>
 
           
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.5.2&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="resource-types.html">Resource Types</a>
-
-          
-<div class="children">
-  <table>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.5.2.1&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="included-resource-types.html">Resource Types Provided With Concourse</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.5.2.2&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="managing-resource-types.html">Managing Resource Types</a>
-
-          
-<div class="children">
-  <table>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="managing-resource-types.html#fly-check-resource-type"><code>fly check-resource-type</code></a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.5.2.3&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="implementing-resource-types.html">Implementing a Resource Type</a>
-
-          
-<div class="children">
-  <table>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="implementing-resource-types.html#resource-check"><code>check</code>: Check for new versions.</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="implementing-resource-types.html#in"><code>in</code>: Fetch a given resource.</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="implementing-resource-types.html#out"><code>out</code>: Update a resource.</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="implementing-resource-types.html#resource-metadata">Metadata</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="implementing-resource-types.html#resource-certs">Certificate Propagation</a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
         </td>
       </tr>
     
@@ -475,13 +353,7 @@
   </div>
 
   <div class="definition-content">
-    <p><em>Required.</em> The type of the resource.</p><p>Resource types are available from two sources:</p><ul>
-
-  <li><p><a href="resource-types.html">Resource Types</a> defined in the same pipeline. In this case the string value refers to the <a href="resource-types.html#resource-type-name"><strong><code>name</code></strong></a>.</p></li>
-
-  <li><p>Linux workers are pre-loaded with a set of <a href="included-resource-types.html">&#34;base&#34; resource types</a>, available to all pipelines that run on them. This is visible in <a href="administration.html#fly-workers"><code>fly workers -d</code></a>.</p></li>
-
-</ul>
+    <p><em>Required.</em> The <a href="resource-types.html">resource type</a>.</p>
   </div>
 </div><div class="definition">
   <div class="definition-thumb">
@@ -579,7 +451,7 @@
     </div>
 
     <ul class="improve-docs">
-      <li><img src="images/github-box.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+      <li><img src="images/icons/github-box.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
       <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
     </ul>
   </body>

@@ -13,7 +13,7 @@
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
-<title>Nodejs application testing example - Concourse CI</title>
+<title>Hello World pipeline - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
@@ -80,7 +80,7 @@
               <td class="number-cell" align="right">2.1&nbsp;</td>
             
             <td class="title-cell">
-  <a href="hello-world-example.html" >Hello World pipeline</a>
+  <a href="hello-world-example.html"  class="self">Hello World pipeline</a>
 </td>
           </tr>
         
@@ -170,7 +170,7 @@
               <td class="number-cell" align="right">2.11&nbsp;</td>
             
             <td class="title-cell">
-  <a href="nodejs-example.html"  class="self">Nodejs application testing example</a>
+  <a href="nodejs-example.html" >Nodejs application testing example</a>
 </td>
           </tr>
         
@@ -198,15 +198,23 @@
 
     </div>
 
-    <div class="page-aside"></div>
+    <div class="page-aside">
+      <div class="page-partial">
+        <div class="content">
+  <h2>Why?</h2>
+
+  <p>While this is less of an example pipeline, this is a simple introduction to a critical primitive to form pipelines.</p><p>Also, due to the fact that there are minimal external factors (<a href="resources.html">Resources</a>) for the system to check and resolve. This is often used overall test system health.</p>
+</div>
+      </div>
+      </div>
 
     <div class="page-content">
-      <div class="section" id="section_nodejs-example">
+      <div class="section" id="section_hello-world-example">
   
-  <h1 class="section-header"><a class="anchor" name="nodejs-example" href="#nodejs-example"></a><span class="section-number">2.11 </span>Nodejs application testing example</h1>
+  <h1 class="section-header"><a class="anchor" name="hello-world-example" href="#hello-world-example"></a><span class="section-number">2.1 </span>Hello World pipeline</h1>
   
 
-  <p>You can run the tests for a Nodejs application.</p><p><iframe class="frame" frameborder="0" width="100%" height="300px" src="https://ci.concourse-ci.org/teams/examples/pipelines/nodejs"></iframe></p>
+  <p>A single job is the simplest form of pipeline.</p><p><iframe class="frame" frameborder="0" width="100%" height="300px" src="https://ci.concourse-ci.org/teams/examples/pipelines/job"></iframe></p>
 
   
     
@@ -216,37 +224,19 @@
   
 
   <div class="highlight"><pre style="">---<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>resources:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>nodejs.org-git<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>type:<span style="color:#e6e7e8"> </span>git<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>icon:<span style="color:#e6e7e8"> </span>github-circle<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>source:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>uri:<span style="color:#e6e7e8"> </span>https://github.com/nodejs/nodejs.org.git<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>jobs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>test<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>job<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>public:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>plan:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>nodejs.org-git<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>run-tests<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">      </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>simple-task<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">        </span>config:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">          </span>platform:<span style="color:#e6e7e8"> </span>linux<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">          </span>image_resource:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">            </span>type:<span style="color:#e6e7e8"> </span>registry-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>source:<span style="color:#e6e7e8"> </span>{<span style="color:#e6e7e8"> </span>repository:<span style="color:#e6e7e8"> </span>node,<span style="color:#e6e7e8"> </span>tag:<span style="color:#e6e7e8"> </span><span style="color:#e67e22">&#34;8&#34;</span><span style="color:#e6e7e8"> </span>}<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>inputs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>nodejs.org-git<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">            </span>source:<span style="color:#e6e7e8"> </span>{<span style="color:#e6e7e8"> </span>repository:<span style="color:#e6e7e8"> </span>busybox<span style="color:#e6e7e8"> </span>}<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">          </span>run:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>path:<span style="color:#e6e7e8"> </span>/bin/sh<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>args:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">              </span>-<span style="color:#e6e7e8"> </span>-c<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">              </span>-<span style="color:#e6e7e8"> </span><span style="color:#e67e22">|
-</span><span style="color:#e67e22">               </span><span style="color:#e67e22"> </span><span style="color:#e67e22">echo &#34;Node Version: $(node --version)&#34;</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">                </span>echo<span style="color:#e6e7e8"> </span><span style="color:#e67e22">&#34;NPM Version: $(npm --version)&#34;</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">                </span>cd<span style="color:#e6e7e8"> </span>nodejs.org-git<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">                </span>npm<span style="color:#e6e7e8"> </span>install<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">                </span>npm<span style="color:#e6e7e8"> </span>test<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">            </span>path:<span style="color:#e6e7e8"> </span>echo<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">            </span>args:<span style="color:#e6e7e8"> </span>[<span style="color:#e67e22">&#34;Hello, world!&#34;</span>]<span style="color:#e6e7e8">
 </span></pre></div>
 
   
@@ -283,10 +273,10 @@
           prev:
 
           
-          <span class="section-number">2.10</span>
+          <span class="section-number">2</span>
           
 
-          <a href="rails-example.html">Rails application testing example</a>
+          <a href="examples.html">Examples</a>
         </div>
       
 
@@ -295,10 +285,10 @@
           next:
 
           
-          <span class="section-number">2.12</span>
+          <span class="section-number">2.2</span>
           
 
-          <a href="php-example.html">PHP application testing example</a>
+          <a href="serial-job-example.html">Serial job example</a>
         </div>
       
       </nav>

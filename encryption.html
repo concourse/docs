@@ -29,17 +29,14 @@
 
 <nav class="top-nav">
   
-  <a href="docs.html" class="active">Docs</a>
+  <a class="top-link active" href="docs.html">Docs</a>
   
-  <a href="project.html">Project</a>
+  <a class="top-link" href="examples.html">Examples</a>
   
-  <a href="community.html">Community</a>
+  <a class="top-link" href="project.html">Project</a>
   
-  <a href="learning.html">Learning</a>
-  
-
-  <a class="icon-link download-link" href="https://github.com/concourse/concourse/releases/latest">download</a>
-  <a class="icon-link github-link" href="https://github.com/concourse/concourse">github</a>
+  <a class="top-link icon-link github-link" href="https://github.com/concourse/concourse/wiki">wiki</a>
+  <a class="top-link icon-link download-link" href="https://github.com/concourse/concourse/releases/latest">download</a>
 </nav>
 
 <div class="top-search">
@@ -130,7 +127,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -139,7 +136,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -148,13 +145,22 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html" >Tasks</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.9&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="builds.html" >Builds</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
   <a href="operation.html"  class="active">Operation</a>
@@ -174,7 +180,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.9</span>
+        <span class="section-number">1.10</span>
         
         
   <a href="operation.html"  class="active">Operation</a>
@@ -186,7 +192,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.9.1&nbsp;</td>
+              <td class="number-cell" align="right">1.10.1&nbsp;</td>
             
             <td class="title-cell">
   <a href="encryption.html"  class="self">Encryption</a>
@@ -195,7 +201,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.9.2&nbsp;</td>
+              <td class="number-cell" align="right">1.10.2&nbsp;</td>
             
             <td class="title-cell">
   <a href="creds.html" >Credential Management</a>
@@ -204,7 +210,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.9.3&nbsp;</td>
+              <td class="number-cell" align="right">1.10.3&nbsp;</td>
             
             <td class="title-cell">
   <a href="metrics.html" >Metrics</a>
@@ -213,7 +219,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.9.4&nbsp;</td>
+              <td class="number-cell" align="right">1.10.4&nbsp;</td>
             
             <td class="title-cell">
   <a href="container-placement.html" >Container Placement</a>
@@ -222,7 +228,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.9.5&nbsp;</td>
+              <td class="number-cell" align="right">1.10.5&nbsp;</td>
             
             <td class="title-cell">
   <a href="global-resources.html" >Global Resources (experimental)</a>
@@ -231,7 +237,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.9.6&nbsp;</td>
+              <td class="number-cell" align="right">1.10.6&nbsp;</td>
             
             <td class="title-cell">
   <a href="administration.html" >Administration</a>
@@ -253,7 +259,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.9.1</span>
+        <span class="section-number">1.10.1</span>
         
         
   <a href="encryption.html"  class="self">Encryption</a>
@@ -325,7 +331,7 @@
     <div class="page-content">
       <div class="section" id="section_encryption">
   
-  <h1 class="section-header"><a class="anchor" name="encryption" href="#encryption"></a><span class="section-number">1.9.1 </span>Encryption</h1>
+  <h1 class="section-header"><a class="anchor" name="encryption" href="#encryption"></a><span class="section-number">1.10.1 </span>Encryption</h1>
   
 
   <p>Automating everything means authorizing something to automate many things. This makes CI systems a high-risk target for security leaks.</p><p>Concourse pipelines are loaded with credentials: resources are configured with private keys, tasks are given credentials to servers they integrate via <a href="creds.html">credential manager variables</a>, <a href="task-step.html#task-step-vars"><strong><code>vars</code></strong></a>, or <a href="task-step.html#task-step-params"><strong><code>params</code></strong></a>, etc. If someone gets their hands on your config, they have access to everything.</p><p>To mitigate this, Concourse supports encrypting sensitive information before it reaches the database. This way the plaintext credentials only exist in memory for as long as they need to, and if someone gains access to your database, they can&#39;t so easily gain the keys to the kingdom.</p><p>We strongly encourage anyone running Concourse to configure encryption. Going further, it&#39;s best to have Concourse not store the credentials in the first place, in which case you may want to configure <a href="creds.html">credential management</a> as well.</p>
@@ -371,7 +377,7 @@
   <h2 class="section-header"><a class="anchor" name="enabling-encryption" href="#enabling-encryption"></a>Enabling Encryption</h2>
   
 
-  <p>To enable encryption, you&#39;ll just need to come up with a 16 or 32-byte random character sequence and configure it as <code>--encryption-key</code> flag to the <code>web</code> command. For BOSH, this is the <a href="https://bosh.io/jobs/web?source=github.com/concourse/concourse-bosh-release#p=encryption_key"><code>encryption_key</code></a> property.</p><p>On startup, the <a href="architecture.html#component-atc">ATC</a> will encrypt all existing plaintext data, and any new data being written will be encrypted before it&#39;s sent over the network to the database.</p><p>The initial bulk encryption shouldn&#39;t take too long, but it will scale linearly with the amount of data that you have, and if another ATC is running it&#39;ll suddenly not be able to read the data until it&#39;s also given the key. So, expect some downtime.</p>
+  <p>To enable encryption, you&#39;ll just need to come up with a 16 or 32-byte random character sequence and configure it as <code>--encryption-key</code> flag to the <code>web</code> command. For BOSH, this is the <a href="https://bosh.io/jobs/web?source=github.com/concourse/concourse-bosh-release#p=encryption_key"><code>encryption_key</code></a> property.</p><p>On startup, the <a href="concourse-web.html"><code>web</code> node</a> will encrypt all existing plaintext data, and any new data being written will be encrypted before it&#39;s sent over the network to the database.</p><p>The initial bulk encryption shouldn&#39;t take too long, but it will scale linearly with the amount of data that you have, and if another ATC is running it&#39;ll suddenly not be able to read the data until it&#39;s also given the key. So, expect some downtime.</p>
 
   
     
@@ -383,7 +389,7 @@
   <h2 class="section-header"><a class="anchor" name="rotating-the-encryption-key" href="#rotating-the-encryption-key"></a>Rotating the Encryption Key</h2>
   
 
-  <p>To swap out the encryption key, you&#39;ll need to pass the previous key as <code>--old-encryption-key</code> (or <a href="https://bosh.io/jobs/web?source=github.com/concourse/concourse-bosh-release#p=old_encryption_key"><code>old_encryption_key</code></a>), and the new key as <code>--encryption-key</code> (or <a href="https://bosh.io/jobs/web?source=github.com/concourse/concourse-bosh-release#p=encryption_key"><code>encryption_key</code></a>).</p><p>On startup, the <a href="architecture.html#component-atc">ATC</a> will decrypt all existing data and re-encrypt it with the new key, in one go. If it encounters a row which is already encrypted with the new key, it will continue on (as may be the case when restarting with the flags again, or if the ATC died in the middle of rotating).</p><p>If the ATC encounters a row which cannot be decrypted with neither the old key nor the new one, it will log loudly and fail to start, telling you which row it choked on. This data must be dealt with in some way, either by re-configuring the key the row was encrypted with as the old key, or manually performing database surgery to remove the offending row. Hopefully this doesn&#39;t happen to you!</p>
+  <p>To swap out the encryption key, you&#39;ll need to pass the previous key as <code>--old-encryption-key</code> (or <a href="https://bosh.io/jobs/web?source=github.com/concourse/concourse-bosh-release#p=old_encryption_key"><code>old_encryption_key</code></a>), and the new key as <code>--encryption-key</code> (or <a href="https://bosh.io/jobs/web?source=github.com/concourse/concourse-bosh-release#p=encryption_key"><code>encryption_key</code></a>).</p><p>On startup, the <a href="concourse-web.html"><code>web</code> node</a> will decrypt all existing data and re-encrypt it with the new key, in one go. If it encounters a row which is already encrypted with the new key, it will continue on (as may be the case when restarting with the flags again, or if the ATC died in the middle of rotating).</p><p>If the ATC encounters a row which cannot be decrypted with neither the old key nor the new one, it will log loudly and fail to start, telling you which row it choked on. This data must be dealt with in some way, either by re-configuring the key the row was encrypted with as the old key, or manually performing database surgery to remove the offending row. Hopefully this doesn&#39;t happen to you!</p>
 
   
     
@@ -395,7 +401,7 @@
   <h2 class="section-header"><a class="anchor" name="disabling-encryption" href="#disabling-encryption"></a>Disabling Encryption</h2>
   
 
-  <p>To opt out of encryption entirely (I&#39;m sure you have your reasons), simply pass <code>--old-encryption-key</code> (or <a href="https://bosh.io/jobs/web?source=github.com/concourse/concourse-bosh-release#p=old_encryption_key"><code>old_encryption_key</code></a>) alone. With no new encryption key, the <a href="architecture.html#component-atc">ATC</a> will decrypt all existing data on start.</p>
+  <p>To opt out of encryption entirely (I&#39;m sure you have your reasons), simply pass <code>--old-encryption-key</code> (or <a href="https://bosh.io/jobs/web?source=github.com/concourse/concourse-bosh-release#p=old_encryption_key"><code>old_encryption_key</code></a>) alone. With no new encryption key, the <a href="concourse-web.html"><code>web</code> node</a> will decrypt all existing data on start.</p>
 
   
     
@@ -411,7 +417,7 @@
           prev:
 
           
-          <span class="section-number">1.9</span>
+          <span class="section-number">1.10</span>
           
 
           <a href="operation.html">Operation</a>
@@ -423,7 +429,7 @@
           next:
 
           
-          <span class="section-number">1.9.2</span>
+          <span class="section-number">1.10.2</span>
           
 
           <a href="creds.html">Credential Management</a>
@@ -433,7 +439,7 @@
     </div>
 
     <ul class="improve-docs">
-      <li><img src="images/github-box.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+      <li><img src="images/icons/github-box.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
       <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
     </ul>
   </body>

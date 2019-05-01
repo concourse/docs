@@ -29,17 +29,14 @@
 
 <nav class="top-nav">
   
-  <a href="docs.html" class="active">Docs</a>
+  <a class="top-link active" href="docs.html">Docs</a>
   
-  <a href="project.html">Project</a>
+  <a class="top-link" href="examples.html">Examples</a>
   
-  <a href="community.html">Community</a>
+  <a class="top-link" href="project.html">Project</a>
   
-  <a href="learning.html">Learning</a>
-  
-
-  <a class="icon-link download-link" href="https://github.com/concourse/concourse/releases/latest">download</a>
-  <a class="icon-link github-link" href="https://github.com/concourse/concourse">github</a>
+  <a class="top-link icon-link github-link" href="https://github.com/concourse/concourse/wiki">wiki</a>
+  <a class="top-link icon-link download-link" href="https://github.com/concourse/concourse/releases/latest">download</a>
 </nav>
 
 <div class="top-search">
@@ -130,7 +127,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -139,7 +136,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html"  class="active">Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -148,13 +145,22 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html"  class="active">Tasks</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.9&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="builds.html" >Builds</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
   <a href="operation.html" >Operation</a>
@@ -174,7 +180,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.7</span>
+        <span class="section-number">1.8</span>
         
         
   <a href="tasks.html"  class="active">Tasks</a>
@@ -186,7 +192,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.7.1&nbsp;</td>
+              <td class="number-cell" align="right">1.8.1&nbsp;</td>
             
             <td class="title-cell">
   <a href="running-tasks.html" >Running Tasks</a>
@@ -195,7 +201,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.7.2&nbsp;</td>
+              <td class="number-cell" align="right">1.8.2&nbsp;</td>
             
             <td class="title-cell">
   <a href="task-environment.html"  class="self">Task Environment</a>
@@ -222,7 +228,7 @@
     <div class="page-content">
       <div class="section" id="section_task-environment">
   
-  <h1 class="section-header"><a class="anchor" name="task-environment" href="#task-environment"></a><span class="section-number">1.7.2 </span>Task Environment</h1>
+  <h1 class="section-header"><a class="anchor" name="task-environment" href="#task-environment"></a><span class="section-number">1.8.2 </span>Task Environment</h1>
   
 
   <p>A task runs in a new container every time, using the image provided by <a href="tasks.html#image_resource"><strong><code>image_resource</code></strong></a> as its base filesystem (i.e. <code>/</code>).</p><p>The command specified by <a href="tasks.html#task-run"><strong><code>run</code></strong></a> will be executed in a working directory containing each of the <a href="tasks.html#task-inputs"><strong><code>inputs</code></strong></a>. If any inputs are missing the task will not run (and the container will not even be created).</p><p>The working directory will also contain empty directories for each of the <a href="tasks.html#task-outputs"><strong><code>outputs</code></strong></a>. The task must place artifacts in the output directories for them to be exported. This meshes well with build tools with configurable destination paths.</p><blockquote class="aside"><p>If your build tools don&#39;t support output paths you&#39;ll have to copy bits around. If it&#39;s a <code>git</code> repo that you&#39;re modifying you can do a local <code>git clone ./input ./output</code>, which is much more efficient than <code>cp</code>, and then work out of <code>./output</code>.</p></blockquote><p>Any <a href="tasks.html#task-params"><strong><code>params</code></strong></a> configured will be set in the environment for the task&#39;s command, along with any environment variables provided by the task&#39;s image (i.e. <code>ENV</code> rules from your <code>Dockerfile</code>).</p><p>The user the command runs as is determined by the image. If you&#39;re using the <a href="https://github.com/concourse/docker-image-resource">Docker Image resource</a>, this will be the user set by a <code>USER</code> rule in your <code>Dockerfile</code>, or <code>root</code> if not specified.</p><p>Another relevant bit of configuration is <a href="task-step.html#task-step-privileged"><strong><code>privileged</code></strong></a>, which determines whether the user the task runs as will have full privileges (primarily when running as <code>root</code>). This is intentionally <em>not</em> configurable by the task itself, to prevent privilege escalation by way of pull requests to repositories containing task configs.</p><p>Putting all this together, the following task config:</p><div class="highlight"><pre style="">---<span style="color:#e6e7e8">
@@ -292,7 +298,7 @@ go version go1.6 linux/amd64
           prev:
 
           
-          <span class="section-number">1.7.1</span>
+          <span class="section-number">1.8.1</span>
           
 
           <a href="running-tasks.html">Running Tasks</a>
@@ -304,7 +310,7 @@ go version go1.6 linux/amd64
           next:
 
           
-          <span class="section-number">1.8</span>
+          <span class="section-number">1.9</span>
           
 
           <a href="builds.html">Builds</a>
@@ -314,7 +320,7 @@ go version go1.6 linux/amd64
     </div>
 
     <ul class="improve-docs">
-      <li><img src="images/github-box.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+      <li><img src="images/icons/github-box.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
       <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
     </ul>
   </body>

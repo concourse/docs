@@ -29,17 +29,14 @@
 
 <nav class="top-nav">
   
-  <a href="docs.html" class="active">Docs</a>
+  <a class="top-link active" href="docs.html">Docs</a>
   
-  <a href="project.html">Project</a>
+  <a class="top-link" href="examples.html">Examples</a>
   
-  <a href="community.html">Community</a>
+  <a class="top-link" href="project.html">Project</a>
   
-  <a href="learning.html">Learning</a>
-  
-
-  <a class="icon-link download-link" href="https://github.com/concourse/concourse/releases/latest">download</a>
-  <a class="icon-link github-link" href="https://github.com/concourse/concourse">github</a>
+  <a class="top-link icon-link github-link" href="https://github.com/concourse/concourse/wiki">wiki</a>
+  <a class="top-link icon-link download-link" href="https://github.com/concourse/concourse/releases/latest">download</a>
 </nav>
 
 <div class="top-search">
@@ -61,8 +58,6 @@
 
 
 
-  
-  
   
 
   
@@ -121,7 +116,7 @@
               <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resources.html"  class="active">Resources</a>
+  <a href="resources.html" >Resources</a>
 </td>
           </tr>
         
@@ -130,7 +125,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html"  class="self">Resource Types</a>
 </td>
           </tr>
         
@@ -139,7 +134,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -148,7 +143,7 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html" >Tasks</a>
 </td>
           </tr>
         
@@ -157,48 +152,16 @@
               <td class="number-cell" align="right">1.9&nbsp;</td>
             
             <td class="title-cell">
+  <a href="builds.html" >Builds</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.10&nbsp;</td>
+            
+            <td class="title-cell">
   <a href="operation.html" >Operation</a>
-</td>
-          </tr>
-        
-        </table>
-      </div>
-    </nav>
-  </div>
-  
-
-  
-
-  
-  <div class="context">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1.5</span>
-        
-        
-  <a href="resources.html"  class="active">Resources</a>
-
-      </div>
-
-      <div class="children">
-        <table>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.5.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="managing-resources.html" >Managing Resources</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.5.2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resource-types.html"  class="self">Resource Types</a>
 </td>
           </tr>
         
@@ -217,7 +180,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.5.2</span>
+        <span class="section-number">1.6</span>
         
         
   <a href="resource-types.html"  class="self">Resource Types</a>
@@ -230,18 +193,7 @@
     
       <tr>
         
-          <td class="number-cell" align="right">1.5.2.1&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="included-resource-types.html">Resource Types Provided With Concourse</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.5.2.2&nbsp;</td>
+          <td class="number-cell" align="right">1.6.1&nbsp;</td>
         
         <td class="title-cell">
           <a href="managing-resource-types.html">Managing Resource Types</a>
@@ -269,7 +221,7 @@
     
       <tr>
         
-          <td class="number-cell" align="right">1.5.2.3&nbsp;</td>
+          <td class="number-cell" align="right">1.6.2&nbsp;</td>
         
         <td class="title-cell">
           <a href="implementing-resource-types.html">Implementing a Resource Type</a>
@@ -435,17 +387,17 @@
     <div class="page-content">
       <div class="section" id="section_resource-types">
   
-  <h1 class="section-header"><a class="anchor" name="resource-types" href="#resource-types"></a><span class="section-number">1.5.2 </span>Resource Types</h1>
+  <h1 class="section-header"><a class="anchor" name="resource-types" href="#resource-types"></a><span class="section-number">1.6 </span>Resource Types</h1>
   
 
-  <p>Each resource in a pipeline has a <code>type</code>. The resource&#39;s type determines what versions are detected, the bits that are fetched when used for a <a href="get-step.html"><code>get</code> step</a>, and the side effect that occurs when used for a <a href="put-step.html"><code>put</code> step</a>.</p><p>Out of the box, Concourse comes with a few resource types to cover common CI use cases like dealing with Git repositories and S3 buckets.</p><p>Beyond these core types, each pipeline can configure its own resource types by specifying <code>resource_types</code> at the top level. Each resource type is itself defined as a resource that provides the container image for the pipeline resource type (see <a href="implementing-resource-types.html">Implementing a Resource Type</a>). You will almost always be using the <a href="https://github.com/concourse/registry-image-resource"><code>registry-image</code> resource</a> when doing this.</p><p>Pipeline-provided resource types can override the core resource types, and can be defined in terms of each other. Also, a pipeline resource type can use the core type that it&#39;s overriding. This is useful if you want to e.g. provide your own custom <code>docker-image</code> resource, by overriding the core one (and using it one last time for the override itself), and then using it for all other pipeline resource types.</p><p>Similar to <a href="resources.html">Resources</a>, each configured resource type consists of the following attributes:</p><div class="definition">
+  <p>Each resource in a pipeline has a <code>type</code>. The resource&#39;s type determines what versions are detected, the bits that are fetched when used for a <a href="get-step.html"><code>get</code> step</a>, and the side effect that occurs when used for a <a href="put-step.html"><code>put</code> step</a>.</p><p>Out of the box, Concourse comes with a few resource types to cover common CI use cases like dealing with Git repositories and S3 buckets. These are called the &#34;core&#34; resource types. These are packaged with the worker, and can be listed via <a href="administration.html#fly-workers"><code>fly workers -d</code></a>.</p><p>Beyond these core types, each pipeline can configure its own resource types by specifying <code>resource_types</code> at the top level. Each resource type is itself defined as a resource that provides the container image for the pipeline resource type (see <a href="implementing-resource-types.html">Implementing a Resource Type</a>). You will almost always be using the <a href="https://github.com/concourse/registry-image-resource"><code>registry-image</code> resource</a> when doing this.</p><p>A somewhat exhaustive list of all available resource types - both from the Concourse core project and from external contributors - is available in the <a href="https://github.com/concourse/concourse/wiki/Resource-Types">Resource Types wiki page</a>.</p><p>Similar to <a href="resources.html">Resources</a>, each configured resource type consists of the following attributes:</p><div class="definition">
   <div class="definition-thumb">
     <a name="resource-type-name"></a>
     <pre><a href="resource-types.html#resource-type-name"><strong>name</strong></a>: string</pre>
   </div>
 
   <div class="definition-content">
-    <p><em>Required.</em> The name of the new resource type. This should be short and simple. This name will be referenced by <a href="pipelines.html#pipeline-resources"><strong><code>resources</code></strong></a> defined within the same pipeline, and <a href="tasks.html#image_resource"><strong><code>image_resource</code></strong></a>s used by tasks running in the pipeline.</p>
+    <p><em>Required.</em> The name of the new resource type. This should be short and simple. This name will be referenced by <a href="pipelines.html#pipeline-resources"><strong><code>resources</code></strong></a> defined within the same pipeline, and <a href="tasks.html#image_resource"><strong><code>image_resource</code></strong></a>s used by tasks running in the pipeline.</p><p>Pipeline-provided resource types can override the core resource types by specifying the same name.</p>
   </div>
 </div><div class="definition">
   <div class="definition-thumb">
@@ -454,7 +406,7 @@
   </div>
 
   <div class="definition-content">
-    <p><em>Required.</em> The type of the resource used to provide the resource type&#39;s container image. Yes, this is a bit meta. Usually this will be <code>docker-image</code>, as the resource type must result in a container image, though there may be other image formats (possibly themselves defined as pipeline resource types!).</p>
+    <p><em>Required.</em> The type of the resource used to provide the resource type&#39;s container image. Yes, this is a bit meta. Usually this will be <code>docker-image</code>, as the resource type must result in a container image, though there may be other image formats (possibly themselves defined as pipeline resource types!).</p><p>A resource type&#39;s type can refer to other resource types, and can also use the core type that it&#39;s overriding. This is useful for bringing in a newer or forked <code>registry-image</code> resource.</p>
   </div>
 </div><div class="definition">
   <div class="definition-thumb">
@@ -521,10 +473,10 @@
           prev:
 
           
-          <span class="section-number">1.5.1</span>
+          <span class="section-number">1.5</span>
           
 
-          <a href="managing-resources.html">Managing Resources</a>
+          <a href="resources.html">Resources</a>
         </div>
       
 
@@ -533,17 +485,17 @@
           next:
 
           
-          <span class="section-number">1.5.2.1</span>
+          <span class="section-number">1.6.1</span>
           
 
-          <a href="included-resource-types.html">Resource Types Provided With Concourse</a>
+          <a href="managing-resource-types.html">Managing Resource Types</a>
         </div>
       
       </nav>
     </div>
 
     <ul class="improve-docs">
-      <li><img src="images/github-box.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+      <li><img src="images/icons/github-box.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
       <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
     </ul>
   </body>

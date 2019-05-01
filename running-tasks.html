@@ -29,17 +29,14 @@
 
 <nav class="top-nav">
   
-  <a href="docs.html" class="active">Docs</a>
+  <a class="top-link active" href="docs.html">Docs</a>
   
-  <a href="project.html">Project</a>
+  <a class="top-link" href="examples.html">Examples</a>
   
-  <a href="community.html">Community</a>
+  <a class="top-link" href="project.html">Project</a>
   
-  <a href="learning.html">Learning</a>
-  
-
-  <a class="icon-link download-link" href="https://github.com/concourse/concourse/releases/latest">download</a>
-  <a class="icon-link github-link" href="https://github.com/concourse/concourse">github</a>
+  <a class="top-link icon-link github-link" href="https://github.com/concourse/concourse/wiki">wiki</a>
+  <a class="top-link icon-link download-link" href="https://github.com/concourse/concourse/releases/latest">download</a>
 </nav>
 
 <div class="top-search">
@@ -130,7 +127,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -139,7 +136,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html"  class="active">Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -148,13 +145,22 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html"  class="active">Tasks</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.9&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="builds.html" >Builds</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
   <a href="operation.html" >Operation</a>
@@ -174,7 +180,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.7</span>
+        <span class="section-number">1.8</span>
         
         
   <a href="tasks.html"  class="active">Tasks</a>
@@ -186,7 +192,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.7.1&nbsp;</td>
+              <td class="number-cell" align="right">1.8.1&nbsp;</td>
             
             <td class="title-cell">
   <a href="running-tasks.html"  class="self">Running Tasks</a>
@@ -195,7 +201,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.7.2&nbsp;</td>
+              <td class="number-cell" align="right">1.8.2&nbsp;</td>
             
             <td class="title-cell">
   <a href="task-environment.html" >Task Environment</a>
@@ -217,7 +223,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.7.1</span>
+        <span class="section-number">1.8.1</span>
         
         
   <a href="running-tasks.html"  class="self">Running Tasks</a>
@@ -256,7 +262,7 @@
     <div class="page-content">
       <div class="section" id="section_running-tasks">
   
-  <h1 class="section-header"><a class="anchor" name="running-tasks" href="#running-tasks"></a><span class="section-number">1.7.1 </span>Running Tasks</h1>
+  <h1 class="section-header"><a class="anchor" name="running-tasks" href="#running-tasks"></a><span class="section-number">1.8.1 </span>Running Tasks</h1>
   
 
   <p>One of the most common use cases of <code>fly</code> is taking a local project on your computer and submitting it up with a task configuration to be run inside a container in Concourse. This is useful to build Linux projects on OS X or to avoid all of those debugging commits when something is configured differently between your local and remote setup.</p>
@@ -383,7 +389,7 @@
           prev:
 
           
-          <span class="section-number">1.7</span>
+          <span class="section-number">1.8</span>
           
 
           <a href="tasks.html">Tasks</a>
@@ -395,7 +401,7 @@
           next:
 
           
-          <span class="section-number">1.7.2</span>
+          <span class="section-number">1.8.2</span>
           
 
           <a href="task-environment.html">Task Environment</a>
@@ -405,7 +411,7 @@
     </div>
 
     <ul class="improve-docs">
-      <li><img src="images/github-box.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+      <li><img src="images/icons/github-box.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
       <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
     </ul>
   </body>

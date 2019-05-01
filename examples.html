@@ -13,7 +13,7 @@
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
-<title>Serial job example - Concourse CI</title>
+<title>Examples - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
@@ -68,7 +68,7 @@
         <span class="section-number">2</span>
         
         
-  <a href="examples.html"  class="active">Examples</a>
+  <a href="examples.html"  class="self">Examples</a>
 
       </div>
 
@@ -89,7 +89,7 @@
               <td class="number-cell" align="right">2.2&nbsp;</td>
             
             <td class="title-cell">
-  <a href="serial-job-example.html"  class="self">Serial job example</a>
+  <a href="serial-job-example.html" >Serial job example</a>
 </td>
           </tr>
         
@@ -194,77 +194,82 @@
 
 
 
-
-
     </div>
 
-    <div class="page-aside">
-      <div class="page-partial">
-        <div class="content">
-  <h2>Why?</h2>
-
-  <p>By default, jobs can run in parrallel. For some use cases this might be ideal (ex. testing all incoming commits from a repository). For other use cases this might be less ideal (ex. deploying an application).</p><p>You can also provided a value by specifying the <a href="jobs.html#job-max-in-flight"><strong><code>max_in_flight</code></strong></a> value.</p>
-</div>
-      </div>
-      </div>
+    <div class="page-aside"></div>
 
     <div class="page-content">
-      <div class="section" id="section_serial-job-example">
+      <div class="section" id="section_examples">
   
-  <h1 class="section-header"><a class="anchor" name="serial-job-example" href="#serial-job-example"></a><span class="section-number">2.2 </span>Serial job example</h1>
+  <h1 class="section-header"><a class="anchor" name="examples" href="#examples"></a><span class="section-number">2 </span>Examples</h1>
   
 
-  <p>Setting the <a href="jobs.html#job-serial"><strong><code>serial</code></strong></a> flag restricts a job to run one build at a time.</p><p><iframe class="frame" frameborder="0" width="100%" height="300px" src="https://ci.concourse-ci.org/teams/examples/pipelines/serial-job"></iframe></p>
+  <p>Configuring self-contained Concourse <a href="pipelines.html">pipelines</a> is a great way to try things out before diving into the deeper content.</p><p>Each example contains a pipeline YAML snippet which can be copy-pasted to a local file and configured on your instance via <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a>. From there you may want to poke around and try changing parts of the configuration to learn how things work. All the available knobs to turn are covered in the <a href="docs.html">Docs</a>.</p>
+<ol class="toc">
 
-  
+  <li><span class="section-number">2.1 </span><a href="hello-world-example.html">Hello World pipeline</a>
+
     
-      <div class="section" id="section_configuration">
-  
-  <h2 class="section-header"><a class="anchor" name="configuration" href="#configuration"></a>Pipeline Configuration</h2>
-  
+  </li>
 
-  <div class="highlight"><pre style="">---<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>jobs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>serial-job<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>public:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>serial:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>plan:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>simple-task<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>config:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>platform:<span style="color:#e6e7e8"> </span>linux<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>image_resource:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>type:<span style="color:#e6e7e8"> </span>registry-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>source:<span style="color:#e6e7e8"> </span>{<span style="color:#e6e7e8"> </span>repository:<span style="color:#e6e7e8"> </span>busybox<span style="color:#e6e7e8"> </span>}<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>run:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>path:<span style="color:#e6e7e8"> </span>echo<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>args:<span style="color:#e6e7e8"> </span>[<span style="color:#e67e22">&#34;Hello, world!&#34;</span>]<span style="color:#e6e7e8">
-</span></pre></div>
+  <li><span class="section-number">2.2 </span><a href="serial-job-example.html">Serial job example</a>
 
-  
     
-  
-</div>
+  </li>
+
+  <li><span class="section-number">2.3 </span><a href="pipeline-vars-example.html">Pipeline <code>((vars))</code> example</a>
+
     
-      <div class="section" id="section_references">
-  
-  <h2 class="section-header"><a class="anchor" name="references" href="#references"></a>References</h2>
-  
+  </li>
 
-  <ul>
+  <li><span class="section-number">2.4 </span><a href="task-inputs-outputs-example.html">Task inputs and outputs example</a>
 
-  <li><p><a href="jobs.html">Jobs</a></p></li>
-
-  <li><p><a href="steps.html">Steps</a></p></li>
-
-  <li><p><a href="tasks.html">Tasks</a></p></li>
-
-</ul>
-
-  
     
-  
-</div>
+  </li>
+
+  <li><span class="section-number">2.5 </span><a href="time-trigger-example.html"><code>time</code>-triggered job example</a>
+
     
+  </li>
+
+  <li><span class="section-number">2.6 </span><a href="git-trigger-example.html"><code>git</code>-triggered job example</a>
+
+    
+  </li>
+
+  <li><span class="section-number">2.7 </span><a href="manual-trigger-example.html">Manually triggered job example</a>
+
+    
+  </li>
+
+  <li><span class="section-number">2.8 </span><a href="hooks-example.html">Job &amp; task hooks example</a>
+
+    
+  </li>
+
+  <li><span class="section-number">2.9 </span><a href="golang-library-example.html">Golang library testing example</a>
+
+    
+  </li>
+
+  <li><span class="section-number">2.10 </span><a href="rails-example.html">Rails application testing example</a>
+
+    
+  </li>
+
+  <li><span class="section-number">2.11 </span><a href="nodejs-example.html">Nodejs application testing example</a>
+
+    
+  </li>
+
+  <li><span class="section-number">2.12 </span><a href="php-example.html">PHP application testing example</a>
+
+    
+  </li>
+
+</ol>
+<p>For a real-world example, check out <a href="https://ci.concourse-ci.org/teams/main/pipelines/concourse">Concourse&#39;s own pipeline</a> (and its <a href="https://github.com/concourse/concourse/blob/master/ci/pipelines/concourse.yml">config</a>):</p><p><iframe class="frame" frameborder="0" width="100%" height="600px" src="https://ci.concourse-ci.org/teams/main/pipelines/concourse"></iframe></p>
+
   
 </div>
 
@@ -274,10 +279,10 @@
           prev:
 
           
-          <span class="section-number">2.1</span>
+          <span class="section-number">1</span>
           
 
-          <a href="hello-world-example.html">Hello World pipeline</a>
+          <a href="docs.html">Docs</a>
         </div>
       
 
@@ -286,10 +291,10 @@
           next:
 
           
-          <span class="section-number">2.3</span>
+          <span class="section-number">2.1</span>
           
 
-          <a href="pipeline-vars-example.html">Pipeline <code>((vars))</code> example</a>
+          <a href="hello-world-example.html">Hello World pipeline</a>
         </div>
       
       </nav>
