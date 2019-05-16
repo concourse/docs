@@ -1,7 +1,6 @@
 .envrc
 
 .DS_Store
-search_index.json
 
 ### Node ###
 node_modules
