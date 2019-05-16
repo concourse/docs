@@ -167,6 +167,15 @@
 </td>
           </tr>
         
+          <tr>
+            
+              <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="observation.html" >Observation</a>
+</td>
+          </tr>
+        
         </table>
       </div>
     </nav>
@@ -372,7 +381,9 @@
 </ol>
 <p><h2>Common Configuration Parameters</h2></p><p>When a request to the credential manager fails due to an intermittent error (e.g. a timeout or <code>connection refused</code>), Concourse will automatically try the request again up to 5 times before giving up. After all attempts fail, the error will be surfaced in the UI for the resource check or build step that initiated the request.</p><p>The retry logic can be configured by specifying the following env on the <a href="concourse-web.html"><code>web</code> node</a>:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_SECRET_RETRY_ATTEMPTS</span>=<span style="color:#1abc9c;font-weight:bold">5</span>   <span style="color:#9b9b9b"># how many times to try</span>
 <span style="color:#3498db">CONCOURSE_SECRET_RETRY_INTERVAL</span>=10s <span style="color:#9b9b9b"># how long to wait between attempts</span>
-</pre></div>
+</pre></div><p>By default, credentials are fetched each time they&#39;re used. This can add up when many pipelines are configured, resulting in a ton of requests to the credential manager.</p><p>To reduce load on your credential server you may want to enable caching by setting the following env on the <a href="concourse-web.html"><code>web</code> node</a>:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_SECRET_CACHE_ENABLED</span>=<span style="color:#8f4b2d">true</span>
+</pre></div><p>By default, credentials will be cached for one minute at a time. This value can be increased to further reduce load on the server like so:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_SECRET_CACHE_DURATION</span>=5m <span style="color:#9b9b9b"># increase from 1m default</span>
+</pre></div><p>Credential cache duration can also determined by the credential manager itself - for example, if Vault returns a lease duration for a credential, the shorter value between the configured cache duration and the credential&#39;s lease duration will be used.</p>
 
   
 </div>

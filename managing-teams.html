@@ -167,6 +167,15 @@
 </td>
           </tr>
         
+          <tr>
+            
+              <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="observation.html" >Observation</a>
+</td>
+          </tr>
+        
         </table>
       </div>
     </nav>
@@ -314,6 +323,17 @@
           <td class="number-cell" align="left"></td>
         
         <td class="title-cell">
+          <a href="managing-teams.html#fly-get-team"><code>fly get-team</code></a>
+
+          
+        </td>
+      </tr>
+    
+      <tr>
+        
+          <td class="number-cell" align="left"></td>
+        
+        <td class="title-cell">
           <a href="managing-teams.html#fly-rename-team"><code>fly rename-team</code></a>
 
           
@@ -360,7 +380,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-set-team" href="#fly-set-team"></a><code>fly set-team</code></h2>
   
 
-  <p>Once you&#39;ve <a href="fly.html#fly-login">logged in as the <code>main</code> team with <code>fly</code></a>, you can run <a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a> to create or update other teams. Users with a <a href="user-roles.html#team-owner-role">Team Owner role</a> can also update their own configuration with the same command.</p><p>For example, to create a new team that authorizes the local <code>foo</code> user, you would run:</p><div class="highlight"><pre style="">fly -t example set-team --team-name my-team <span style="color:#3498db">\
+  <p>Once you&#39;ve <a href="fly.html#fly-login">logged in as the <code>main</code> team with <code>fly</code></a>, you can run <a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a> to create or update other teams. Users with a <a href="user-roles.html#team-owner-role"><code>owner</code> role</a> can also update their own configuration with the same command.</p><p>For example, to create a new team that authorizes the local <code>foo</code> user, you would run:</p><div class="highlight"><pre style="">fly -t example set-team --team-name my-team <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>  --local-user foo
 </pre></div><p>Note that each time <code>set-team</code> is run, the team&#39;s authorization config is set <em>as a whole</em> - it is not a stateful operation.</p><p>There are many different ways to configure team auth; see <a href="configuring-auth.html">Configuring Auth</a> for more information.</p><p>Once the team has been created, you can use <a href="fly.html#fly-login"><code>fly login</code></a> to log in:</p><div class="highlight"><pre style="">$ fly login -n my-team
 </pre></div><p>Any newly configured pipelines (via <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a>) and one-off builds (via <a href="running-tasks.html#fly-execute"><code>fly execute</code></a>) will be owned by the authorized team. Commands that list content will be scoped to the current team by default, such as <a href="managing-pipelines.html#fly-pipelines"><code>fly pipelines</code></a> and <a href="builds.html#fly-builds"><code>fly builds</code></a>. The web UI will reflect the same state.</p><p>Newly configured pipelines are hidden by default, meaning other teams and unauthorized visitors cannot view them. To make them publicly viewable, see <a href="exposing.html">Pipeline &amp; Build Visibility</a>.</p>
@@ -372,7 +392,7 @@
   <h3 class="section-header"><a class="anchor" name="setting-roles" href="#setting-roles"></a>Setting User Roles</h3>
   
 
-  <p>By default, authorization config passed to <code>set-team</code> configures the <a href="user-roles.html#team-member-role">Team Member role</a>.</p><p>More advanced <a href="user-roles.html">roles</a> configuration can be specified can be specified through the <code>--configuration</code> or <code>-c</code> flag.</p><p>The <code>-c</code> flag expects a <code>.yml</code> file with a single field, <code>roles:</code>, pointing to a list of role authorization configs.</p><p>All of the attributes in each config will vary by provider. Consult the appropriate section for your provider under <a href="configuring-auth.html">Configuring Auth</a> for specifics.</p><p>For example, the following config sets three roles with different auth config for each role&#39;s provider:</p><div class="highlight"><pre style="">roles:
+  <p>By default, authorization config passed to <code>set-team</code> configures the <a href="user-roles.html#team-member-role"><code>member</code> role</a>.</p><p>More advanced <a href="user-roles.html">roles</a> configuration can be specified can be specified through the <code>--configuration</code> or <code>-c</code> flag.</p><p>The <code>-c</code> flag expects a <code>.yml</code> file with a single field, <code>roles:</code>, pointing to a list of role authorization configs.</p><p>All of the attributes in each config will vary by provider. Consult the appropriate section for your provider under <a href="configuring-auth.html">Configuring Auth</a> for specifics.</p><p>For example, the following config sets three roles with different auth config for each role&#39;s provider:</p><div class="highlight"><pre style="">roles:
 - name: owner
   github:
     users: [<span style="color:#e67e22">&#34;admin&#34;</span>]
@@ -402,6 +422,19 @@
   <p>To list all the teams, run:</p><div class="highlight"><pre style="">$ fly -t example teams
 </pre></div><p>This can be useful if you&#39;ve forgotten your team name.</p><p><strong><code>fly teams -d</code>: With Details</strong></p><p>To list all the teams with authentication details and members, run:</p><div class="highlight"><pre style="">$ fly -t example teams -d
 </pre></div><p>This can be helpful when debugging OAuth, OIDC groups or listing all individual members.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_fly-get-team">
+  
+  <h2 class="section-header"><a class="anchor" name="fly-get-team" href="#fly-get-team"></a><code>fly get-team</code></h2>
+  
+
+  <p>To show a team&#39;s configuration, run: <div class="highlight"><pre style="">$ fly -t example get-team -n some-team
+</pre></div></p>
 
   
     

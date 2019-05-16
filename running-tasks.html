@@ -167,6 +167,15 @@
 </td>
           </tr>
         
+          <tr>
+            
+              <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="observation.html" >Observation</a>
+</td>
+          </tr>
+        
         </table>
       </div>
     </nav>
@@ -308,6 +317,39 @@
 </span><span style="color:#3498db"></span>    --inputs-from main/integration <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --input <span style="color:#3498db">foo</span>=./foo
 </pre></div><p>This will trigger a one-off-build using the <code>task.yml</code> task config, basing its inputs on the latest candidates for the <code>integration</code> job in the <code>main</code> pipeline, with the <code>foo</code> input overridden to specify local code to run.</p><p>This can be used to more closely replicate the state in CI when weeding out flakiness, or as a shortcut for local development so that you don&#39;t have to upload every single resource from your local machine.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_using-an-image-from-a-job-in-your-pipeline-with---image">
+  
+  <h3 class="section-header"><a class="anchor" name="using-an-image-from-a-job-in-your-pipeline-with---image" href="#using-an-image-from-a-job-in-your-pipeline-with---image"></a>Using an image from a job in your pipeline with <code>--image</code></h3>
+  
+
+  <p>When using <code>--inputs-from</code> as above, you can additionally specify which input to use as the task&#39;s image by passing <code>--image input-name</code>.</p><p>For example, the following pipeline fetches an image via a <a href="get-step.html"><code>get</code> step</a> and uses it for <a href="task-step.html#task-step-image"><strong><code>image</code></strong></a>:</p><div class="highlight"><pre style="">resources:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>my-repo<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>git<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8"> </span>{uri:<span style="color:#e6e7e8"> </span>https://example.com}<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>some-image<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>registry-image<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8"> </span>{repository:<span style="color:#e6e7e8"> </span>ubuntu}<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>jobs:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>integration<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>my-repo<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>some-image<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>my-task<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>my-repo/task.yml<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>image:<span style="color:#e6e7e8"> </span>some-image<span style="color:#e6e7e8">
+</span></pre></div><p>...so to run the same task with the same image in a one-off build, you would run:</p><div class="highlight"><pre style="">$ fly -t example execute <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --config task.yml <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --inputs-from main/integration <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --image some-image
+</pre></div>
 
   
     

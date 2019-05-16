@@ -167,6 +167,15 @@
 </td>
           </tr>
         
+          <tr>
+            
+              <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="observation.html" >Observation</a>
+</td>
+          </tr>
+        
         </table>
       </div>
     </nav>
@@ -286,7 +295,7 @@
           <td class="number-cell" align="left"></td>
         
         <td class="title-cell">
-          <a href="user-roles.html#team-owner-role">Team Owner role</a>
+          <a href="user-roles.html#team-owner-role"><code>owner</code> role</a>
 
           
         </td>
@@ -297,7 +306,7 @@
           <td class="number-cell" align="left"></td>
         
         <td class="title-cell">
-          <a href="user-roles.html#team-member-role">Team Member role</a>
+          <a href="user-roles.html#team-member-role"><code>member</code> role</a>
 
           
         </td>
@@ -308,7 +317,18 @@
           <td class="number-cell" align="left"></td>
         
         <td class="title-cell">
-          <a href="user-roles.html#team-viewer-role">Team Viewer role</a>
+          <a href="user-roles.html#team-pipeline-operator-role"><code>pipeline-operator</code> role</a>
+
+          
+        </td>
+      </tr>
+    
+      <tr>
+        
+          <td class="number-cell" align="left"></td>
+        
+        <td class="title-cell">
+          <a href="user-roles.html#team-viewer-role"><code>viewer</code> role</a>
 
           
         </td>
@@ -363,10 +383,10 @@
     
       <div class="section" id="section_team-owner-role">
   
-  <h2 class="section-header"><a class="anchor" name="team-owner-role" href="#team-owner-role"></a>Team Owner role</h2>
+  <h2 class="section-header"><a class="anchor" name="team-owner-role" href="#team-owner-role"></a><code>owner</code> role</h2>
   
 
-  <p>Team Owners have read, write and auth management capabilities within the scope of their team. For those familiar with Concourse today, the scope of allowed actions for a Team Owner is very closely aligned to today’s Concourse team member. The new change is that you can no longer rename your own team or destroy your own team as an owner.</p>
+  <p>Team owners have read, write and auth management capabilities within the scope of their team, but they cannot rename or destroy the team.</p>
 
   
     
@@ -375,10 +395,22 @@
     
       <div class="section" id="section_team-member-role">
   
-  <h2 class="section-header"><a class="anchor" name="team-member-role" href="#team-member-role"></a>Team Member role</h2>
+  <h2 class="section-header"><a class="anchor" name="team-member-role" href="#team-member-role"></a><code>member</code> role</h2>
   
 
-  <p>Team Member lets users operate within their teams in a read &amp; write fashion; but prevents them from changing the auth configurations of their team.</p>
+  <p>Team members can operate within their team in a read &amp; write fashion, but they can not change the configuration of their team.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_team-pipeline-operator-role">
+  
+  <h2 class="section-header"><a class="anchor" name="team-pipeline-operator-role" href="#team-pipeline-operator-role"></a><code>pipeline-operator</code> role</h2>
+  
+
+  <p>Team pipeline operators can perform pipeline operations such as triggering builds and pinning resources, however they cannot update pipeline configurations.</p>
 
   
     
@@ -387,10 +419,10 @@
     
       <div class="section" id="section_team-viewer-role">
   
-  <h2 class="section-header"><a class="anchor" name="team-viewer-role" href="#team-viewer-role"></a>Team Viewer role</h2>
+  <h2 class="section-header"><a class="anchor" name="team-viewer-role" href="#team-viewer-role"></a><code>viewer</code> role</h2>
   
 
-  <p>Team Viewer gives users &#34;read-only&#34; access to a team. This locks everything down, preventing users from doing a <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a> or <a href="builds.html#fly-intercept"><code>fly intercept</code></a>.</p>
+  <p>Team viewers have &#34;read-only&#34; access to a team and its pipelines. This locks everything down, preventing users from doing a <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a> or <a href="builds.html#fly-intercept"><code>fly intercept</code></a>.</p>
 
   
     
@@ -406,513 +438,595 @@
   
   <tr>
     
-    <td><a href="fly.html"><code>fly</code> CLI</a> command</td>
+    <td><a href="fly.html"><code>fly</code> CLI</a> command      </td>
     
     <td>Anon</td>
     
     <td>Admin</td>
     
-    <td>Owner</td>
+    <td><code>owner</code></td>
     
-    <td>Member</td>
+    <td><code>member</code></td>
     
-    <td>Viewer</td>
+    <td><code>pipeline-operator</code></td>
     
-  </tr>
-  
-  <tr>
-    
-    <td><a href="builds.html#fly-abort-build"><code>fly abort-build</code></a></td>
-    
-    <td>✘</td>
-    
-    <td></td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✘</td>
+    <td><code>viewer</code></td>
     
   </tr>
   
   <tr>
     
-    <td><a href="builds.html#fly-builds"><code>fly builds</code></a></td>
+    <td><a href="builds.html#fly-abort-build"><code>fly abort-build</code></a>      </td>
     
-    <td>✓</td>
+    <td>✘   </td>
     
-    <td></td>
+    <td>     </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✓</td>
+    <td>✓                       </td>
     
-  </tr>
-  
-  <tr>
-    
-    <td><a href="managing-resources.html#fly-check-resource"><code>fly check-resource</code></a></td>
-    
-    <td>✘</td>
-    
-    <td></td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✘</td>
+    <td>✘            </td>
     
   </tr>
   
   <tr>
     
-    <td><a href="administration.html#fly-containers"><code>fly containers</code></a></td>
+    <td><a href="builds.html#fly-builds"><code>fly builds</code></a>           </td>
     
-    <td>✘</td>
+    <td>✓   </td>
     
-    <td></td>
+    <td>     </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✘</td>
+    <td>✓                       </td>
     
-  </tr>
-  
-  <tr>
-    
-    <td><a href="managing-pipelines.html#fly-destroy-pipeline"><code>fly destroy-pipeline</code></a></td>
-    
-    <td>✘</td>
-    
-    <td></td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✘</td>
+    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td><a href="managing-teams.html#fly-destroy-team"><code>fly destroy-team</code></a></td>
+    <td><a href="managing-resources.html#fly-check-resource"><code>fly check-resource</code></a>   </td>
     
-    <td>✘</td>
+    <td>✘   </td>
     
-    <td>✓</td>
+    <td>     </td>
     
-    <td>✘</td>
+    <td>✓           </td>
     
-    <td>✘</td>
+    <td>✓            </td>
     
-    <td>✘</td>
+    <td>✓                       </td>
     
-  </tr>
-  
-  <tr>
-    
-    <td><a href="running-tasks.html#fly-execute"><code>fly execute</code></a></td>
-    
-    <td>✘</td>
-    
-    <td></td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✘</td>
+    <td>✘            </td>
     
   </tr>
   
   <tr>
     
-    <td><a href="managing-pipelines.html#fly-expose-pipeline"><code>fly expose-pipeline</code></a></td>
+    <td><a href="administration.html#fly-containers"><code>fly containers</code></a>       </td>
     
-    <td>✘</td>
+    <td>✘   </td>
     
-    <td></td>
+    <td>     </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✘</td>
+    <td>✓                       </td>
     
-  </tr>
-  
-  <tr>
-    
-    <td><a href="setting-pipelines.html#fly-format-pipeline"><code>fly format-pipeline</code></a></td>
-    
-    <td>✘</td>
-    
-    <td></td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✘</td>
+    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td><a href="managing-pipelines.html#fly-get-pipeline"><code>fly get-pipeline</code></a></td>
+    <td><a href="managing-pipelines.html#fly-destroy-pipeline"><code>fly destroy-pipeline</code></a> </td>
     
-    <td>✘</td>
+    <td>✘   </td>
     
-    <td></td>
+    <td>     </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✘</td>
+    <td>✘                       </td>
     
-  </tr>
-  
-  <tr>
-    
-    <td><a href="managing-pipelines.html#fly-hide-pipeline"><code>fly hide-pipeline</code></a></td>
-    
-    <td>✘</td>
-    
-    <td></td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✘</td>
+    <td>✘            </td>
     
   </tr>
   
   <tr>
     
-    <td><a href="builds.html#fly-intercept"><code>fly intercept</code></a></td>
+    <td><a href="managing-teams.html#fly-destroy-team"><code>fly destroy-team</code></a>     </td>
     
-    <td>✘</td>
+    <td>✘   </td>
     
-    <td></td>
+    <td>✓    </td>
     
-    <td>✓</td>
+    <td>✘           </td>
     
-    <td>✓</td>
+    <td>✘            </td>
     
-    <td>✘</td>
+    <td>✘                       </td>
     
-  </tr>
-  
-  <tr>
-    
-    <td><a href="managing-jobs.html#fly-jobs"><code>fly jobs</code></a></td>
-    
-    <td>✓</td>
-    
-    <td></td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
+    <td>✘            </td>
     
   </tr>
   
   <tr>
     
-    <td><a href="fly.html#fly-login"><code>fly login</code></a></td>
+    <td><a href="running-tasks.html#fly-execute"><code>fly execute</code></a>          </td>
     
-    <td>✓</td>
+    <td>✘   </td>
     
-    <td></td>
+    <td>     </td>
     
-    <td></td>
+    <td>✓           </td>
     
-    <td></td>
+    <td>✓            </td>
     
-    <td></td>
+    <td>✘                       </td>
     
-  </tr>
-  
-  <tr>
-    
-    <td><a href="fly.html#fly-logout"><code>fly logout</code></a></td>
-    
-    <td>✘</td>
-    
-    <td></td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
+    <td>✘            </td>
     
   </tr>
   
   <tr>
     
-    <td><a href="managing-pipelines.html#fly-order-pipelines"><code>fly order-pipelines</code></a></td>
+    <td><a href="managing-pipelines.html#fly-expose-pipeline"><code>fly expose-pipeline</code></a>  </td>
     
-    <td>✘</td>
+    <td>✘   </td>
     
-    <td></td>
+    <td>     </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✘</td>
+    <td>✘                       </td>
     
-  </tr>
-  
-  <tr>
-    
-    <td><a href="managing-jobs.html#fly-pause-job"><code>fly pause-job</code></a></td>
-    
-    <td>✘</td>
-    
-    <td></td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✘</td>
+    <td>✘            </td>
     
   </tr>
   
   <tr>
     
-    <td><a href="managing-pipelines.html#fly-pause-pipeline"><code>fly pause-pipeline</code></a></td>
+    <td><a href="setting-pipelines.html#fly-format-pipeline"><code>fly format-pipeline</code></a>  </td>
     
-    <td>✘</td>
+    <td>✘   </td>
     
-    <td></td>
+    <td>     </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✘</td>
+    <td>✓                       </td>
     
-  </tr>
-  
-  <tr>
-    
-    <td><a href="managing-pipelines.html#fly-pipelines"><code>fly pipelines</code></a></td>
-    
-    <td>✓</td>
-    
-    <td></td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
+    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td><a href="administration.html#fly-prune-worker"><code>fly prune-worker</code></a></td>
+    <td><a href="managing-pipelines.html#fly-get-pipeline"><code>fly get-pipeline</code></a>     </td>
     
-    <td>✘</td>
+    <td>✘   </td>
     
-    <td></td>
+    <td>     </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✘</td>
+    <td>✓                       </td>
     
-  </tr>
-  
-  <tr>
-    
-    <td><a href="managing-pipelines.html#fly-rename-pipeline"><code>fly rename-pipeline</code></a></td>
-    
-    <td>✘</td>
-    
-    <td></td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✘</td>
+    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td><a href="managing-teams.html#fly-rename-team"><code>fly rename-team</code></a></td>
+    <td><a href="managing-pipelines.html#fly-hide-pipeline"><code>fly hide-pipeline</code></a>    </td>
     
-    <td>✘</td>
+    <td>✘   </td>
     
-    <td>✓</td>
+    <td>     </td>
     
-    <td>✘</td>
+    <td>✓           </td>
     
-    <td>✘</td>
+    <td>✓            </td>
     
-    <td>✘</td>
+    <td>✘                       </td>
     
-  </tr>
-  
-  <tr>
-    
-    <td><a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a></td>
-    
-    <td>✘</td>
-    
-    <td></td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✘</td>
+    <td>✘            </td>
     
   </tr>
   
   <tr>
     
-    <td><a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a></td>
+    <td><a href="builds.html#fly-intercept"><code>fly intercept</code></a>        </td>
     
-    <td>✘</td>
+    <td>✘   </td>
     
-    <td>✓</td>
+    <td>     </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✘</td>
+    <td>✓            </td>
     
-    <td>✘</td>
+    <td>✘                       </td>
     
-  </tr>
-  
-  <tr>
-    
-    <td><a href="fly.html#fly-status"><code>fly status</code></a></td>
-    
-    <td>✓</td>
-    
-    <td></td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
+    <td>✘            </td>
     
   </tr>
   
   <tr>
     
-    <td><a href="fly.html#fly-sync"><code>fly sync</code></a></td>
+    <td><a href="managing-jobs.html#fly-jobs"><code>fly jobs</code></a>             </td>
     
-    <td>✓</td>
+    <td>✓   </td>
     
-    <td></td>
+    <td>     </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✓</td>
+    <td>✓                       </td>
     
-  </tr>
-  
-  <tr>
-    
-    <td><a href="fly.html#fly-targets"><code>fly targets</code></a></td>
-    
-    <td>✓</td>
-    
-    <td></td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
+    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td><a href="managing-teams.html#fly-teams"><code>fly teams</code></a></td>
+    <td><a href="fly.html#fly-login"><code>fly login</code></a>            </td>
     
-    <td>✘</td>
+    <td>✓   </td>
     
-    <td>✓</td>
+    <td>     </td>
     
-    <td>✓</td>
+    <td>            </td>
     
-    <td>✓</td>
+    <td>             </td>
     
-    <td>✓</td>
+    <td>                        </td>
     
-  </tr>
-  
-  <tr>
-    
-    <td><a href="managing-jobs.html#fly-trigger-job"><code>fly trigger-job</code></a></td>
-    
-    <td>✘</td>
-    
-    <td></td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✘</td>
+    <td>             </td>
     
   </tr>
   
   <tr>
     
-    <td><a href="managing-jobs.html#fly-unpause-job"><code>fly unpause-job</code></a></td>
+    <td><a href="fly.html#fly-logout"><code>fly logout</code></a>           </td>
     
-    <td>✘</td>
+    <td>✘   </td>
     
-    <td></td>
+    <td>     </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✘</td>
+    <td>✓                       </td>
+    
+    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td><a href="managing-pipelines.html#fly-unpause-pipeline"><code>fly unpause-pipeline</code></a></td>
+    <td><a href="managing-pipelines.html#fly-order-pipelines"><code>fly order-pipelines</code></a>  </td>
     
-    <td>✘</td>
+    <td>✘   </td>
     
-    <td></td>
+    <td>     </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✘</td>
+    <td>✘                       </td>
+    
+    <td>✘            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td><a href="managing-jobs.html#fly-pause-job"><code>fly pause-job</code></a>        </td>
+    
+    <td>✘   </td>
+    
+    <td>     </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✓                       </td>
+    
+    <td>✘            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td><a href="managing-pipelines.html#fly-pause-pipeline"><code>fly pause-pipeline</code></a>   </td>
+    
+    <td>✘   </td>
+    
+    <td>     </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✓                       </td>
+    
+    <td>✘            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td><a href="managing-pipelines.html#fly-pipelines"><code>fly pipelines</code></a>        </td>
+    
+    <td>✓   </td>
+    
+    <td>     </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✓                       </td>
+    
+    <td>✓            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td><a href="administration.html#fly-prune-worker"><code>fly prune-worker</code></a>     </td>
+    
+    <td>✘   </td>
+    
+    <td>     </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✘                       </td>
+    
+    <td>✘            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td><a href="managing-pipelines.html#fly-rename-pipeline"><code>fly rename-pipeline</code></a>  </td>
+    
+    <td>✘   </td>
+    
+    <td>     </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✘                       </td>
+    
+    <td>✘            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td><a href="managing-teams.html#fly-rename-team"><code>fly rename-team</code></a>      </td>
+    
+    <td>✘   </td>
+    
+    <td>✓    </td>
+    
+    <td>✘           </td>
+    
+    <td>✘            </td>
+    
+    <td>✘                       </td>
+    
+    <td>✘            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td><a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a>     </td>
+    
+    <td>✘   </td>
+    
+    <td>     </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✘                       </td>
+    
+    <td>✘            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td><a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a>         </td>
+    
+    <td>✘   </td>
+    
+    <td>✓    </td>
+    
+    <td>✓           </td>
+    
+    <td>✘            </td>
+    
+    <td>✘                       </td>
+    
+    <td>✘            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td><a href="fly.html#fly-status"><code>fly status</code></a>           </td>
+    
+    <td>✓   </td>
+    
+    <td>     </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✓                       </td>
+    
+    <td>✓            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td><a href="fly.html#fly-sync"><code>fly sync</code></a>             </td>
+    
+    <td>✓   </td>
+    
+    <td>     </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✓                       </td>
+    
+    <td>✓            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td><a href="fly.html#fly-targets"><code>fly targets</code></a>          </td>
+    
+    <td>✓   </td>
+    
+    <td>     </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✓                       </td>
+    
+    <td>✓            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td><a href="managing-teams.html#fly-teams"><code>fly teams</code></a>            </td>
+    
+    <td>✘   </td>
+    
+    <td>✓    </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✓                       </td>
+    
+    <td>✓            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td><a href="managing-teams.html#fly-get-team"><code>fly get-team</code></a>         </td>
+    
+    <td>✘   </td>
+    
+    <td>✓    </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✓                       </td>
+    
+    <td>✓            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td><a href="managing-jobs.html#fly-trigger-job"><code>fly trigger-job</code></a>      </td>
+    
+    <td>✘   </td>
+    
+    <td>     </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✓                       </td>
+    
+    <td>✘            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td><a href="managing-jobs.html#fly-unpause-job"><code>fly unpause-job</code></a>      </td>
+    
+    <td>✘   </td>
+    
+    <td>     </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✓                       </td>
+    
+    <td>✘            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td><a href="managing-pipelines.html#fly-unpause-pipeline"><code>fly unpause-pipeline</code></a> </td>
+    
+    <td>✘   </td>
+    
+    <td>     </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✓                       </td>
+    
+    <td>✘            </td>
     
   </tr>
   
@@ -920,63 +1034,71 @@
     
     <td><a href="setting-pipelines.html#fly-validate-pipeline"><code>fly validate-pipeline</code></a></td>
     
-    <td>✓</td>
+    <td>✓   </td>
     
-    <td></td>
+    <td>     </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✓</td>
+    <td>✓                       </td>
     
-  </tr>
-  
-  <tr>
-    
-    <td><a href="administration.html#fly-volumes"><code>fly volumes</code></a></td>
-    
-    <td>✘</td>
-    
-    <td></td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✘</td>
+    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td><a href="builds.html#fly-watch"><code>fly watch</code></a></td>
+    <td><a href="administration.html#fly-volumes"><code>fly volumes</code></a>          </td>
     
-    <td>✓*</td>
+    <td>✘   </td>
     
-    <td></td>
+    <td>     </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✓</td>
+    <td>✓                       </td>
+    
+    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td><a href="administration.html#fly-workers"><code>fly workers</code></a></td>
+    <td><a href="builds.html#fly-watch"><code>fly watch</code></a>            </td>
     
-    <td>✘</td>
+    <td>✓*  </td>
     
-    <td></td>
+    <td>     </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✘</td>
+    <td>✓                       </td>
+    
+    <td>✓            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td><a href="administration.html#fly-workers"><code>fly workers</code></a>          </td>
+    
+    <td>✘   </td>
+    
+    <td>     </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✓                       </td>
+    
+    <td>✓            </td>
     
   </tr>
   
@@ -984,15 +1106,17 @@
   
   <tr>
     
-    <td>Web UI page</td>
+    <td>Web UI page        </td>
     
-    <td>Action</td>
+    <td>Action                  </td>
     
-    <td>Owner</td>
+    <td><code>owner</code></td>
     
-    <td>Member</td>
+    <td><code>member</code></td>
     
-    <td>Viewer</td>
+    <td><code>pipeline-operator</code></td>
+    
+    <td><code>viewer</code></td>
     
   </tr>
   
@@ -1000,321 +1124,383 @@
     
     <td>Home (HD/Dashboard)</td>
     
-    <td>View</td>
+    <td>View                    </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✓</td>
+    <td>✓                       </td>
     
-  </tr>
-  
-  <tr>
-    
-    <td></td>
-    
-    <td>Login</td>
-    
-    <td>✘</td>
-    
-    <td>✘</td>
-    
-    <td>✘</td>
+    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td></td>
+    <td>                   </td>
     
-    <td>Logout</td>
+    <td>Login                   </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✓</td>
+    <td>✓                       </td>
+    
+    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td></td>
+    <td>                   </td>
+    
+    <td>Logout                  </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✓                       </td>
+    
+    <td>✓            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>                   </td>
     
     <td>Download <a href="fly.html"><code>fly</code> CLI</a></td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✓</td>
+    <td>✓                       </td>
     
-  </tr>
-  
-  <tr>
-    
-    <td></td>
-    
-    <td>Pause Pipeline</td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✘</td>
+    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td></td>
+    <td>                   </td>
     
-    <td>Resume Pipeline</td>
+    <td>Pause Pipeline          </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✘</td>
+    <td>✓                       </td>
     
-  </tr>
-  
-  <tr>
-    
-    <td></td>
-    
-    <td>Reorder Pipeline</td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✘</td>
+    <td>✘            </td>
     
   </tr>
   
   <tr>
     
-    <td>Pipeline Page</td>
+    <td>                   </td>
     
-    <td>View</td>
+    <td>Resume Pipeline         </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✓</td>
+    <td>✓                       </td>
     
-  </tr>
-  
-  <tr>
-    
-    <td></td>
-    
-    <td>Click to Resource</td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
+    <td>✘            </td>
     
   </tr>
   
   <tr>
     
-    <td></td>
+    <td>                   </td>
     
-    <td>Click to Build</td>
+    <td>Reorder Pipeline        </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✓</td>
+    <td>✘                       </td>
     
-  </tr>
-  
-  <tr>
-    
-    <td></td>
-    
-    <td>Click on Group</td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
+    <td>✘            </td>
     
   </tr>
   
   <tr>
     
-    <td>Resource Page</td>
+    <td>Pipeline Page      </td>
     
-    <td>View Resource</td>
+    <td>View                    </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✓</td>
+    <td>✓                       </td>
     
-  </tr>
-  
-  <tr>
-    
-    <td></td>
-    
-    <td>View Version Details</td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
+    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td></td>
+    <td>                   </td>
     
-    <td>Pin Version</td>
+    <td>Click to Resource       </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✘</td>
+    <td>✓                       </td>
     
-  </tr>
-  
-  <tr>
-    
-    <td></td>
-    
-    <td>Paginate (&lt;- -&gt;)</td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
+    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td>Build Page</td>
+    <td>                   </td>
     
-    <td>Trigger new Build</td>
+    <td>Click to Build          </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✘</td>
+    <td>✓                       </td>
     
-  </tr>
-  
-  <tr>
-    
-    <td></td>
-    
-    <td>View Build</td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
+    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td></td>
+    <td>                   </td>
     
-    <td>Build Details</td>
+    <td>Click on Group          </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✓</td>
+    <td>✓                       </td>
     
-  </tr>
-  
-  <tr>
-    
-    <td>Job Page</td>
-    
-    <td>View Job Page</td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
+    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td></td>
+    <td>Resource Page      </td>
     
-    <td>Pause Job</td>
+    <td>View Resource           </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✘</td>
+    <td>✓                       </td>
     
-  </tr>
-  
-  <tr>
-    
-    <td></td>
-    
-    <td>Trigger new Build</td>
-    
-    <td>✓</td>
-    
-    <td>✓</td>
-    
-    <td>✘</td>
+    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td></td>
+    <td>                   </td>
     
-    <td>Build History</td>
+    <td>View Version Details    </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✓</td>
+    <td>✓                       </td>
+    
+    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td></td>
+    <td>                   </td>
     
-    <td>Paginate (&lt;- -&gt;)</td>
+    <td>Pin Version             </td>
     
-    <td>✓</td>
+    <td>✓           </td>
     
-    <td>✓</td>
+    <td>✓            </td>
     
-    <td>✓</td>
+    <td>✓                       </td>
+    
+    <td>✘            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>                   </td>
+    
+    <td>Paginate (&lt;- -&gt;)        </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✓                       </td>
+    
+    <td>✓            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>Build Page         </td>
+    
+    <td>Trigger new Build       </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✓                       </td>
+    
+    <td>✘            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>                   </td>
+    
+    <td>View Build              </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✓                       </td>
+    
+    <td>✓            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>                   </td>
+    
+    <td>Build Details           </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✓                       </td>
+    
+    <td>✓            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>                   </td>
+    
+    <td>Abort Build             </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✓                       </td>
+    
+    <td>✘            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>Job Page           </td>
+    
+    <td>View Job Page           </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✓                       </td>
+    
+    <td>✓            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>                   </td>
+    
+    <td>Pause Job               </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✓                       </td>
+    
+    <td>✘            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>                   </td>
+    
+    <td>Trigger new Build       </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✓                       </td>
+    
+    <td>✘            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>                   </td>
+    
+    <td>Build History           </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✓                       </td>
+    
+    <td>✓            </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>                   </td>
+    
+    <td>Paginate (&lt;- -&gt;)        </td>
+    
+    <td>✓           </td>
+    
+    <td>✓            </td>
+    
+    <td>✓                       </td>
+    
+    <td>✓            </td>
     
   </tr>
   

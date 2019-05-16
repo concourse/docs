@@ -169,6 +169,15 @@
 </td>
           </tr>
         
+          <tr>
+            
+              <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="observation.html" >Observation</a>
+</td>
+          </tr>
+        
         </table>
       </div>
     </nav>
@@ -274,7 +283,7 @@
               <td class="number-cell" align="right">1.7.1.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="do-step.html" ><code>do</code> step</a>
+  <a href="in-parallel-step.html" ><code>in_parallel</code> step</a>
 </td>
           </tr>
         
@@ -283,7 +292,7 @@
               <td class="number-cell" align="right">1.7.1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="try-step.html" ><code>try</code> step</a>
+  <a href="do-step.html" ><code>do</code> step</a>
 </td>
           </tr>
         
@@ -292,7 +301,7 @@
               <td class="number-cell" align="right">1.7.1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="on-success-step-hook.html" ><code>on_success</code> step hook</a>
+  <a href="try-step.html" ><code>try</code> step</a>
 </td>
           </tr>
         
@@ -301,7 +310,7 @@
               <td class="number-cell" align="right">1.7.1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="on-failure-step-hook.html" ><code>on_failure</code> step hook</a>
+  <a href="on-success-step-hook.html" ><code>on_success</code> step hook</a>
 </td>
           </tr>
         
@@ -310,7 +319,7 @@
               <td class="number-cell" align="right">1.7.1.9&nbsp;</td>
             
             <td class="title-cell">
-  <a href="on-abort-step-hook.html" ><code>on_abort</code> step hook</a>
+  <a href="on-failure-step-hook.html" ><code>on_failure</code> step hook</a>
 </td>
           </tr>
         
@@ -319,7 +328,7 @@
               <td class="number-cell" align="right">1.7.1.10&nbsp;</td>
             
             <td class="title-cell">
-  <a href="on-error-step-hook.html" ><code>on_error</code> step hook</a>
+  <a href="on-abort-step-hook.html" ><code>on_abort</code> step hook</a>
 </td>
           </tr>
         
@@ -328,7 +337,7 @@
               <td class="number-cell" align="right">1.7.1.11&nbsp;</td>
             
             <td class="title-cell">
-  <a href="ensure-step-hook.html" ><code>ensure</code> step hook</a>
+  <a href="on-error-step-hook.html" ><code>on_error</code> step hook</a>
 </td>
           </tr>
         
@@ -337,7 +346,7 @@
               <td class="number-cell" align="right">1.7.1.12&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tags-step-modifier.html" ><code>tags</code> step modifier</a>
+  <a href="ensure-step-hook.html" ><code>ensure</code> step hook</a>
 </td>
           </tr>
         
@@ -346,13 +355,22 @@
               <td class="number-cell" align="right">1.7.1.13&nbsp;</td>
             
             <td class="title-cell">
-  <a href="timeout-step-modifier.html" ><code>timeout</code> step modifier</a>
+  <a href="tags-step-modifier.html" ><code>tags</code> step modifier</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.7.1.14&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="timeout-step-modifier.html" ><code>timeout</code> step modifier</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.7.1.15&nbsp;</td>
             
             <td class="title-cell">
   <a href="attempts-step-modifier.html" ><code>attempts</code> step modifier</a>
@@ -445,16 +463,16 @@
 </span><span style="color:#e6e7e8">    </span>repository:<span style="color:#e6e7e8"> </span>repo-with-commit<span style="color:#e6e7e8">
 </span></pre></div>
 </div><div class="example">
-  <h3>Build Matrix with <code>aggregate</code></h3>
+  <h3>Build Matrix with <code>in_parallel</code></h3>
 
-  <p>The following plan fetches a single repository and executes multiple tasks, using the <a href="aggregate-step.html"><code>aggregate</code></a> step, in a build matrix style configuration:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
+  <p>The following plan fetches a single repository and executes multiple tasks, using the <a href="in-parallel-step.html"><code>in_parallel</code></a> step, in a build matrix style configuration:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>my-repo<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>aggregate:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>in_parallel:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>go-<span style="color:#1abc9c;font-weight:bold">1.3</span><span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>my-repo/go-<span style="color:#1abc9c;font-weight:bold">1.3</span>.yml<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>go-<span style="color:#1abc9c;font-weight:bold">1.4</span><span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>my-repo/ci/go-<span style="color:#1abc9c;font-weight:bold">1.4</span>.yml<span style="color:#e6e7e8">
-</span></pre></div><p>Only if both tasks succeed will the build go green. See also <a href="aggregate-step.html"><code>aggregate</code> step</a>.</p>
+</span></pre></div><p>Only if both tasks succeed will the build go green. See also <a href="in-parallel-step.html"><code>in_parallel</code> step</a>.</p>
 </div>
 </div>
       </div>

@@ -167,6 +167,15 @@
 </td>
           </tr>
         
+          <tr>
+            
+              <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="observation.html" >Observation</a>
+</td>
+          </tr>
+        
         </table>
       </div>
     </nav>
@@ -385,6 +394,71 @@ $ concourse migrate --supported-db-version
 <span style="color:#1abc9c;font-weight:bold">1551110547</span>
 </pre></div><p>That number (yours will be different) is the expected migration version for that version of Concourse.</p><p>Next, run the following with the <em>new</em> Concourse binary:</p><div class="highlight"><pre style="">$ concourse migrate --migrate-db-to-version=<span style="color:#1abc9c;font-weight:bold">1551110547</span>
 </pre></div><p>This will need the same <code>CONCOURSE_POSTGRES_*</code> configuration described in <a href="concourse-web.html#web-running">Running</a>.</p><p>Once this completes, switch all <code>web</code> nodes back to the older <code>concourse</code> binary and you should be good to go.</p>
+
+  
+    
+  
+</div>
+    
+  
+</div>
+    
+      <div class="section" id="section_web-configuration">
+  
+  <h2 class="section-header"><a class="anchor" name="web-configuration" href="#web-configuration"></a>Configuration</h2>
+  
+
+  
+
+  
+    
+      <div class="section" id="section_giving-your-cluster-a-name">
+  
+  <h3 class="section-header"><a class="anchor" name="giving-your-cluster-a-name" href="#giving-your-cluster-a-name"></a>Giving your cluster a name</h3>
+  
+
+  <p>If you&#39;ve got many Concourse clusters that you switch between, you can make it slightly easier to notice which one you&#39;re on by giving each cluster a name:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_CLUSTER_NAME</span>=production
+</pre></div><p>When set, this name will be shown in the top bar when viewing the dashboard.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_audit-logs">
+  
+  <h3 class="section-header"><a class="anchor" name="audit-logs" href="#audit-logs"></a>Enabling audit logs</h3>
+  
+
+  <p>A very simplistic form of audit logging can be enabled with the following vars:</p><div class="highlight"><pre style=""><span style="color:#9b9b9b"># Enable auditing for all api requests connected to builds.</span>
+<span style="color:#3498db">CONCOURSE_ENABLE_BUILD_AUDITING</span>=<span style="color:#8f4b2d">true</span>
+
+<span style="color:#9b9b9b"># Enable auditing for all api requests connected to containers.</span>
+<span style="color:#3498db">CONCOURSE_ENABLE_CONTAINER_AUDITING</span>=<span style="color:#8f4b2d">true</span>
+
+<span style="color:#9b9b9b"># Enable auditing for all api requests connected to jobs.</span>
+<span style="color:#3498db">CONCOURSE_ENABLE_JOB_AUDITING</span>=<span style="color:#8f4b2d">true</span>
+
+<span style="color:#9b9b9b"># Enable auditing for all api requests connected to pipelines.</span>
+<span style="color:#3498db">CONCOURSE_ENABLE_PIPELINE_AUDITING</span>=<span style="color:#8f4b2d">true</span>
+
+<span style="color:#9b9b9b"># Enable auditing for all api requests connected to resources.</span>
+<span style="color:#3498db">CONCOURSE_ENABLE_RESOURCE_AUDITING</span>=<span style="color:#8f4b2d">true</span>
+
+<span style="color:#9b9b9b"># Enable auditing for all api requests connected to system transactions.</span>
+<span style="color:#3498db">CONCOURSE_ENABLE_SYSTEM_AUDITING</span>=<span style="color:#8f4b2d">true</span>
+
+<span style="color:#9b9b9b"># Enable auditing for all api requests connected to teams.</span>
+<span style="color:#3498db">CONCOURSE_ENABLE_TEAM_AUDITING</span>=<span style="color:#8f4b2d">true</span>
+
+<span style="color:#9b9b9b"># Enable auditing for all api requests connected to workers.</span>
+<span style="color:#3498db">CONCOURSE_ENABLE_WORKER_AUDITING</span>=<span style="color:#8f4b2d">true</span>
+
+<span style="color:#9b9b9b"># Enable auditing for all api requests connected to volumes.</span>
+<span style="color:#3498db">CONCOURSE_ENABLE_VOLUME_AUDITING</span>=<span style="color:#8f4b2d">true</span>
+</pre></div><p>When enabled, API requests will result in an info-level log line like so:</p><div class="highlight"><pre style="">{<span style="color:#9b59b6;font-weight:bold">&#34;timestamp&#34;</span>:<span style="color:#e67e22">&#34;2019-05-09T14:41:54.880381537Z&#34;</span>,<span style="color:#9b59b6;font-weight:bold">&#34;level&#34;</span>:<span style="color:#e67e22">&#34;info&#34;</span>,<span style="color:#9b59b6;font-weight:bold">&#34;source&#34;</span>:<span style="color:#e67e22">&#34;atc&#34;</span>,<span style="color:#9b59b6;font-weight:bold">&#34;message&#34;</span>:<span style="color:#e67e22">&#34;atc.audit&#34;</span>,<span style="color:#9b59b6;font-weight:bold">&#34;data&#34;</span>:{<span style="color:#9b59b6;font-weight:bold">&#34;action&#34;</span>:<span style="color:#e67e22">&#34;Info&#34;</span>,<span style="color:#9b59b6;font-weight:bold">&#34;parameters&#34;</span>:{},<span style="color:#9b59b6;font-weight:bold">&#34;user&#34;</span>:<span style="color:#e67e22">&#34;test&#34;</span>}}
+{<span style="color:#9b59b6;font-weight:bold">&#34;timestamp&#34;</span>:<span style="color:#e67e22">&#34;2019-05-09T14:42:36.704864093Z&#34;</span>,<span style="color:#9b59b6;font-weight:bold">&#34;level&#34;</span>:<span style="color:#e67e22">&#34;info&#34;</span>,<span style="color:#9b59b6;font-weight:bold">&#34;source&#34;</span>:<span style="color:#e67e22">&#34;atc&#34;</span>,<span style="color:#9b59b6;font-weight:bold">&#34;message&#34;</span>:<span style="color:#e67e22">&#34;atc.audit&#34;</span>,<span style="color:#9b59b6;font-weight:bold">&#34;data&#34;</span>:{<span style="color:#9b59b6;font-weight:bold">&#34;action&#34;</span>:<span style="color:#e67e22">&#34;GetPipeline&#34;</span>,<span style="color:#9b59b6;font-weight:bold">&#34;parameters&#34;</span>:{<span style="color:#9b59b6;font-weight:bold">&#34;:pipeline_name&#34;</span>:[<span style="color:#e67e22">&#34;booklit&#34;</span>],<span style="color:#9b59b6;font-weight:bold">&#34;:team_name&#34;</span>:[<span style="color:#e67e22">&#34;main&#34;</span>]},<span style="color:#9b59b6;font-weight:bold">&#34;user&#34;</span>:<span style="color:#e67e22">&#34;test&#34;</span>}}
+</pre></div>
 
   
     

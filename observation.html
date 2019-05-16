@@ -13,7 +13,7 @@
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
-<title>Generating Keys - Concourse CI</title>
+<title>Observation - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
@@ -59,8 +59,6 @@
 
 
   
-  
-  
 
   
   <div class="context">
@@ -82,7 +80,7 @@
               <td class="number-cell" align="right">1.1&nbsp;</td>
             
             <td class="title-cell">
-  <a href="install.html"  class="active">Install</a>
+  <a href="install.html" >Install</a>
 </td>
           </tr>
         
@@ -172,7 +170,7 @@
               <td class="number-cell" align="right">1.11&nbsp;</td>
             
             <td class="title-cell">
-  <a href="observation.html" >Observation</a>
+  <a href="observation.html"  class="self">Observation</a>
 </td>
           </tr>
         
@@ -182,77 +180,76 @@
   </div>
   
 
-  
 
-  
-  <div class="context">
+
+
+
+<div class="context">
+  <div class="page-toc">
     <nav>
       <div class="top">
         
-        <span class="section-number">1.1</span>
+        <span class="section-number">1.11</span>
         
         
-  <a href="install.html"  class="active">Install</a>
+  <a href="observation.html"  class="self">Observation</a>
 
       </div>
 
-      <div class="children">
-        <table>
+      
+<div class="children">
+  <table>
+    
+      <tr>
         
-          <tr>
-            
-              <td class="number-cell" align="right">1.1.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="concourse-generate-key.html"  class="self">Generating Keys</a>
-</td>
-          </tr>
+          <td class="number-cell" align="left"></td>
         
-          <tr>
-            
-              <td class="number-cell" align="right">1.1.2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="postgresql-node.html" >Running a PostgreSQL node</a>
-</td>
-          </tr>
+        <td class="title-cell">
+          <a href="observation.html#dashboard">The Dashboard</a>
+
+          
+        </td>
+      </tr>
+    
+      <tr>
         
-          <tr>
-            
-              <td class="number-cell" align="right">1.1.3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="concourse-web.html" >Running a <code>web</code> node</a>
-</td>
-          </tr>
+          <td class="number-cell" align="left"></td>
         
-          <tr>
-            
-              <td class="number-cell" align="right">1.1.4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="concourse-worker.html" >Running a <code>worker</code> node</a>
-</td>
-          </tr>
+        <td class="title-cell">
+          <a href="observation.html#ccxml"><code>cc.xml</code></a>
+
+          
+        </td>
+      </tr>
+    
+      <tr>
         
-          <tr>
-            
-              <td class="number-cell" align="right">1.1.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="upgrading-concourse.html" >Upgrading Concourse</a>
-</td>
-          </tr>
+          <td class="number-cell" align="left"></td>
         
-        </table>
-      </div>
+        <td class="title-cell">
+          <a href="observation.html#badges">Badges</a>
+
+          
+        </td>
+      </tr>
+    
+      <tr>
+        
+          <td class="number-cell" align="left"></td>
+        
+        <td class="title-cell">
+          <a href="observation.html#pipeline-visibility">Pipeline Visibility</a>
+
+          
+        </td>
+      </tr>
+    
+  </table>
+</div>
+
     </nav>
   </div>
-  
-
-
-
-
+</div>
 
 
 
@@ -262,29 +259,63 @@
     <div class="page-aside"></div>
 
     <div class="page-content">
-      <div class="section" id="section_concourse-generate-key">
+      <div class="section" id="section_observation">
   
-  <h1 class="section-header"><a class="anchor" name="concourse-generate-key" href="#concourse-generate-key"></a><span class="section-number">1.1.1 </span>Generating Keys</h1>
+  <h1 class="section-header"><a class="anchor" name="observation" href="#observation"></a><span class="section-number">1.11 </span>Observation</h1>
   
 
-  <p>Concourse&#39;s various components use RSA keys to verify tokens and worker registration requests.</p><p>A minimal deployment will require the following keys:</p><dl>
-  
-  <dt><code>session_signing_key</code></dt>
-    <dd><p>Used by the <a href="concourse-web.html"><code>web</code> node</a> for signing and verifying user session tokens.</p></dd>
-  
-  <dt><code>tsa_host_key</code></dt>
-    <dd><p>Used by the <a href="concourse-web.html"><code>web</code> node</a> for the SSH worker registration gateway server (&#34;TSA&#34;).</p><p>The public key is given to each <a href="concourse-worker.html"><code>worker</code> node</a> to verify the remote host when connecting via SSH.</p></dd>
-  
-  <dt><code>worker_key</code> (one per worker)</dt>
-    <dd><p>Each <a href="concourse-worker.html"><code>worker</code> node</a> verifies its registration with the <a href="concourse-web.html"><code>web</code> node</a> via a SSH key.</p><p>The public key must be listed in the <a href="concourse-web.html"><code>web</code> node</a>&#39;s <em>authorized keys</em> configuration in order for the worker to register.</p></dd>
-  
-</dl><p>To generate these keys, run:</p><div class="highlight"><pre style="">concourse generate-key -t rsa -f ./session_signing_key
-concourse generate-key -t ssh -f ./tsa_host_key
-concourse generate-key -t ssh -f ./worker_key
-</pre></div><p>...and we&#39;ll also start on an <code>authorized_keys</code> file, currently listing this initial worker key:</p><div class="highlight"><pre style="">cp worker_key.pub authorized_worker_keys
-</pre></div>
+  <p>This section outlines everything you need to know for observing the state of your pipelines.</p>
 
   
+    
+      <div class="section" id="section_dashboard">
+  
+  <h2 class="section-header"><a class="anchor" name="dashboard" href="#dashboard"></a>The Dashboard</h2>
+  
+
+  <p>The dashboard, available at the default route (<code>/</code>), provides a bird&#39;s-eye view of the Concourse cluster. All visible pipelines across all teams are listed here. A &#34;HD view&#34; is available at <code>/hd</code>.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_ccxml">
+  
+  <h2 class="section-header"><a class="anchor" name="ccxml" href="#ccxml"></a><code>cc.xml</code></h2>
+  
+
+  <p>The Concourse API can return the status of a team&#39;s pipelines in a format compatible with tools like <a href="http://ccmenu.org/">CCMenu</a>. This endpoint is available at the following route:</p><pre>/api/v1/teams/{team}/cc.xml</pre><p>For example: <a href="http://ci.concourse-ci.org/api/v1/teams/main/cc.xml">the <code>main</code> team <code>cc.xml</code></a>.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_badges">
+  
+  <h2 class="section-header"><a class="anchor" name="badges" href="#badges"></a>Badges</h2>
+  
+
+  <p>The Concourse API supports returning SVG badges indicating the status of a job:</p><pre>/api/v1/teams/{team}/pipelines/{pipeline}/jobs/{job}/badge</pre><p>...and for an entire pipeline:</p><pre>/api/v1/teams/{team}/pipelines/{pipeline}/badge</pre><p>This can be used to annotate your READMEs with a build status badge like so:</p><div class="highlight"><pre style="">![<span style="color:#9b59b6;font-weight:bold">CI</span>](<span style="color:#3498db">https://wings.pivotal.io/api/v1/teams/vito/pipelines/booklit/jobs/unit/badge</span>)]<span style="color:#e74c3c">
+</span></pre></div><p>...which should render the following:</p><p><img src="https://wings.pivotal.io/api/v1/teams/vito/pipelines/booklit/jobs/unit/badge" alt="" /></p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_pipeline-visibility">
+  
+  <h2 class="section-header"><a class="anchor" name="pipeline-visibility" href="#pipeline-visibility"></a>Pipeline Visibility</h2>
+  
+
+  <p>Pipelines may be exposed so that they can be monitored without having to authenticate. For more information, see <a href="exposing.html">Pipeline &amp; Build Visibility</a>.</p>
+
+  
+    
+  
+</div>
     
   
 </div>
@@ -295,10 +326,10 @@ concourse generate-key -t ssh -f ./worker_key
           prev:
 
           
-          <span class="section-number">1.1</span>
+          <span class="section-number">1.10</span>
           
 
-          <a href="install.html">Install</a>
+          <a href="operation.html">Operation</a>
         </div>
       
 
@@ -307,10 +338,10 @@ concourse generate-key -t ssh -f ./worker_key
           next:
 
           
-          <span class="section-number">1.1.2</span>
+          <span class="section-number">2</span>
           
 
-          <a href="postgresql-node.html">Running a PostgreSQL node</a>
+          <a href="examples.html">Examples</a>
         </div>
       
       </nav>

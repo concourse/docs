@@ -165,6 +165,15 @@
 </td>
           </tr>
         
+          <tr>
+            
+              <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="observation.html" >Observation</a>
+</td>
+          </tr>
+        
         </table>
       </div>
     </nav>
@@ -251,7 +260,7 @@
           <td class="number-cell" align="right">1.7.1.5&nbsp;</td>
         
         <td class="title-cell">
-          <a href="do-step.html"><code>do</code> step</a>
+          <a href="in-parallel-step.html"><code>in_parallel</code> step</a>
 
           
         </td>
@@ -262,7 +271,7 @@
           <td class="number-cell" align="right">1.7.1.6&nbsp;</td>
         
         <td class="title-cell">
-          <a href="try-step.html"><code>try</code> step</a>
+          <a href="do-step.html"><code>do</code> step</a>
 
           
         </td>
@@ -273,7 +282,7 @@
           <td class="number-cell" align="right">1.7.1.7&nbsp;</td>
         
         <td class="title-cell">
-          <a href="on-success-step-hook.html"><code>on_success</code> step hook</a>
+          <a href="try-step.html"><code>try</code> step</a>
 
           
         </td>
@@ -284,7 +293,7 @@
           <td class="number-cell" align="right">1.7.1.8&nbsp;</td>
         
         <td class="title-cell">
-          <a href="on-failure-step-hook.html"><code>on_failure</code> step hook</a>
+          <a href="on-success-step-hook.html"><code>on_success</code> step hook</a>
 
           
         </td>
@@ -295,7 +304,7 @@
           <td class="number-cell" align="right">1.7.1.9&nbsp;</td>
         
         <td class="title-cell">
-          <a href="on-abort-step-hook.html"><code>on_abort</code> step hook</a>
+          <a href="on-failure-step-hook.html"><code>on_failure</code> step hook</a>
 
           
         </td>
@@ -306,7 +315,7 @@
           <td class="number-cell" align="right">1.7.1.10&nbsp;</td>
         
         <td class="title-cell">
-          <a href="on-error-step-hook.html"><code>on_error</code> step hook</a>
+          <a href="on-abort-step-hook.html"><code>on_abort</code> step hook</a>
 
           
         </td>
@@ -317,7 +326,7 @@
           <td class="number-cell" align="right">1.7.1.11&nbsp;</td>
         
         <td class="title-cell">
-          <a href="ensure-step-hook.html"><code>ensure</code> step hook</a>
+          <a href="on-error-step-hook.html"><code>on_error</code> step hook</a>
 
           
         </td>
@@ -328,7 +337,7 @@
           <td class="number-cell" align="right">1.7.1.12&nbsp;</td>
         
         <td class="title-cell">
-          <a href="tags-step-modifier.html"><code>tags</code> step modifier</a>
+          <a href="ensure-step-hook.html"><code>ensure</code> step hook</a>
 
           
         </td>
@@ -339,7 +348,7 @@
           <td class="number-cell" align="right">1.7.1.13&nbsp;</td>
         
         <td class="title-cell">
-          <a href="timeout-step-modifier.html"><code>timeout</code> step modifier</a>
+          <a href="tags-step-modifier.html"><code>tags</code> step modifier</a>
 
           
         </td>
@@ -348,6 +357,17 @@
       <tr>
         
           <td class="number-cell" align="right">1.7.1.14&nbsp;</td>
+        
+        <td class="title-cell">
+          <a href="timeout-step-modifier.html"><code>timeout</code> step modifier</a>
+
+          
+        </td>
+      </tr>
+    
+      <tr>
+        
+          <td class="number-cell" align="right">1.7.1.15&nbsp;</td>
         
         <td class="title-cell">
           <a href="attempts-step-modifier.html"><code>attempts</code> step modifier</a>
@@ -457,11 +477,27 @@
       </tr>
       
       <tr>
+        <td colspan="2" class="title-cell"><a href="jobs.html#job-old-name"><strong><code>old_name</code></strong></a></td>
+      </tr>
+      
+      <tr>
         <td colspan="2" class="title-cell"><a href="jobs.html#job-plan"><strong><code>plan</code></strong></a></td>
       </tr>
       
       <tr>
         <td colspan="2" class="title-cell"><a href="jobs.html#job-serial"><strong><code>serial</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="jobs.html#job-build-log-retention-days"><strong><code>build_log_retention.days</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="jobs.html#job-build-log-retention-builds"><strong><code>build_log_retention.builds</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="jobs.html#job-build-log-retention"><strong><code>build_log_retention</code></strong></a></td>
       </tr>
       
       <tr>
@@ -533,6 +569,22 @@
   </div>
 </div><div class="definition">
   <div class="definition-thumb">
+    <a name="job-old-name"></a>
+    <pre><a href="jobs.html#job-old-name"><strong>old_name</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> The old name of the job. If configured, the history of old job will be inherited to the new one. Once the pipeline is set, this field can be removed as the builds have been transfered.</p><p>This can be used to rename a job without losing its history, like so:</p><div class="highlight"><pre style="">jobs:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>new-name<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>old_name:<span style="color:#e6e7e8"> </span>current-name<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8"> </span>[get:<span style="color:#e6e7e8"> </span>10m]<span style="color:#e6e7e8">
+</span></pre></div><p>After the pipeline is set, because the builds have been inherited, the job can have the field removed:</p><div class="highlight"><pre style="">jobs:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>new-name<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8"> </span>[get:<span style="color:#e6e7e8"> </span>10m]<span style="color:#e6e7e8">
+</span></pre></div>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
     <a name="job-plan"></a>
     <pre><a href="jobs.html#job-plan"><strong>plan</strong></a>: [step]</pre>
   </div>
@@ -551,18 +603,49 @@
   </div>
 </div><div class="definition">
   <div class="definition-thumb">
+    <a name="job-build-log-retention"></a>
+    <pre><a href="jobs.html#job-build-log-retention"><strong>build_log_retention</strong></a>: retention_config</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> Configures the retention policy for build logs. This is useful if you have a job that runs often but after some amount of time the logs aren&#39;t worth keeping around.</p><p>The following fields may be specified in <code>retention_config</code>:</p><div class="definition">
+  <div class="definition-thumb">
+    <a name="job-build-log-retention-days"></a>
+    <pre><a href="jobs.html#job-build-log-retention-days"><strong>days</strong></a>: number</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> Keep logs for builds which have finished within the specified number of days.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="job-build-log-retention-builds"></a>
+    <pre><a href="jobs.html#job-build-log-retention-builds"><strong>builds</strong></a>: number</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> Keep logs for the last specified number of builds.</p>
+  </div>
+</div><p>Builds which are not retained by one of the above configurations will have their logs reaped.</p><p>The following example will keep logs for any builds that have completed in the last 2 days, while also keeping the last 1000 builds.</p><div class="highlight"><pre style="">jobs:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>smoke-tests<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>build_log_retention:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>days:<span style="color:#e6e7e8"> </span><span style="color:#1abc9c;font-weight:bold">2</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>builds:<span style="color:#e6e7e8"> </span><span style="color:#1abc9c;font-weight:bold">1000</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>10m<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>smoke-tests<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span><span style="color:#9b9b9b"># ...</span><span style="color:#e6e7e8">
+</span></pre></div><p>Note: if more than 1000 builds finish in the past 2 days, <em>all</em> of them will be retained thanks to the <a href="jobs.html#job-build-log-retention-days"><strong><code>build_log_retention.days</code></strong></a> configuration. Similarly, if there are 1000 builds spanning more than 2 days, they will also be kept thanks to the <a href="jobs.html#job-build-log-retention-builds"><strong><code>build_log_retention.builds</code></strong></a> configuration. Both policies operate independently.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
     <a name="job-build-logs-to-retain"></a>
     <pre><a href="jobs.html#job-build-logs-to-retain"><strong>build_logs_to_retain</strong></a>: number</pre>
   </div>
 
   <div class="definition-content">
-    <p><em>Optional.</em> If configured, only the last specified number of builds will have their build logs persisted. This is useful if you have a job that runs periodically but after some amount of time the logs aren&#39;t worth keeping around.</p><p>Example:</p><div class="highlight"><pre style="">jobs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>smoke-tests<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>build_logs_to_retain:<span style="color:#e6e7e8"> </span><span style="color:#1abc9c;font-weight:bold">100</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>10m<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>smoke-tests<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span><span style="color:#9b9b9b"># ...</span><span style="color:#e6e7e8">
+    <p><em>Optional.</em> Deprecated in favor of <a href="jobs.html#job-build-log-retention"><strong><code>build_log_retention</code></strong></a>.</p><p>Equivalent to the following:</p><div class="highlight"><pre style="">build_log_retention:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>builds:<span style="color:#e6e7e8"> </span>number<span style="color:#e6e7e8">
 </span></pre></div>
   </div>
 </div><div class="definition">
