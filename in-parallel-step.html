@@ -461,15 +461,15 @@
   <p>Using <code>limit</code> is useful for performing parallel execution of a growing number of tasks without overloading your workers. In the example below, two tasks will be run in parallel and in order until all steps have been executed:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>some-repo<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>in_parallel:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>limit:<span style="color:#e6e7e8"> </span><span style="color:#1abc9c;font-weight:bold">2</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>fail_fast:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">false</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>steps:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>unit-windows<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>file:<span style="color:#e6e7e8"> </span>some-repo/ci/windows.yml<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>unit-linux<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>file:<span style="color:#e6e7e8"> </span>some-repo/ci/linux.yml<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>unit-darwin<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>file:<span style="color:#e6e7e8"> </span>some-repo/ci/darwin.yml<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>limit:<span style="color:#e6e7e8"> </span><span style="color:#1abc9c;font-weight:bold">2</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>fail_fast:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">false</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>steps:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">      </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>unit-windows<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">        </span>file:<span style="color:#e6e7e8"> </span>some-repo/ci/windows.yml<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">      </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>unit-linux<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">        </span>file:<span style="color:#e6e7e8"> </span>some-repo/ci/linux.yml<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">      </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>unit-darwin<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">        </span>file:<span style="color:#e6e7e8"> </span>some-repo/ci/darwin.yml<span style="color:#e6e7e8">
 </span></pre></div>
 </div>
 </div>
