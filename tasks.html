@@ -290,6 +290,18 @@
       </tr>
       
       <tr>
+        <td colspan="2" class="title-cell"><a href="tasks.html#task-container-limits-cpu"><strong><code>container_limits.cpu</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="tasks.html#task-container-limits-memory"><strong><code>container_limits.memory</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="tasks.html#task-container-limits"><strong><code>container_limits</code></strong></a></td>
+      </tr>
+      
+      <tr>
         <td colspan="2" class="title-cell"><a href="tasks.html#input-name"><strong><code>inputs.name</code></strong></a></td>
       </tr>
       
@@ -535,6 +547,33 @@ npm install
 
   <div class="definition-content">
     <p><em>Optional.</em> A string specifying the rootfs uri of the container, as interpreted by your worker&#39;s Garden backend.</p><p><a href="tasks.html#image_resource"><strong><code>image_resource</code></strong></a> is a preferred way to specify base image and <code>rootfs_uri</code> is not recommended. With <code>rootfs_uri</code> image fetching is delegated to backend which does not guarantee image caching and might result in some permission errors. You should only use this if you cannot use <a href="tasks.html#image_resource"><strong><code>image_resource</code></strong></a> for some reason, and you know what you&#39;re doing.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="task-container-limits"></a>
+    <pre><a href="tasks.html#task-container-limits"><strong>container_limits</strong></a>: container-limits</pre>
+  </div>
+
+  <div class="definition-content">
+    <p>Where <em><code>container-limits</code></em> is:</p><div class="definition">
+  <div class="definition-thumb">
+    <a name="task-container-limits-cpu"></a>
+    <pre><a href="tasks.html#task-container-limits-cpu"><strong>cpu</strong></a>: integer</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> The maximum amount of CPU available to the task container, measured in shares. 0 means unlimited.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="task-container-limits-memory"></a>
+    <pre><a href="tasks.html#task-container-limits-memory"><strong>memory</strong></a>: integer</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> The maximum amount of memory available to the task container, measured in bytes. 0 means unlimited.</p>
+  </div>
+</div><p><em>Optional.</em> CPU and memory limits to enforce on the task container.</p><p>Note that these values, when specified, will override any limits set by passing the <code>--default-task-cpu-limit</code> or <code>--default-task-memory-limit</code> flags to the <code>concourse web</code> command.</p>
   </div>
 </div><div class="definition">
   <div class="definition-thumb">
