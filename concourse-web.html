@@ -363,8 +363,8 @@
   <h3 class="section-header"><a class="anchor" name="scaling" href="#scaling"></a>Scaling</h3>
   
 
-  <p>The <a href="concourse-web.html"><code>web</code> node</a> can be scaled up for high availability. They&#39;ll also roughly share their scheduling workloads, using the database to synchronize. This is done by just running more <code>web</code> commands on different machines, and optionally putting them behind a load balancer.</p><p>To run a cluster of <a href="concourse-web.html"><code>web</code> node</a>s, you&#39;ll first need to ensure they&#39;re all pointing to the same PostgreSQL server.</p><p>Next, you&#39;ll need to configure a <em>peer URL</em>. This is a URL that can be used to reach this <code>web</code> node&#39;s web server from other <code>web</code> nodes. Typically this uses a private IP, like so:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_PEER_URL</span>=http://10.10.0.1:8080
-</pre></div><p>Finally, if all of these nodes are going to be accessed through a load balancer, you&#39;ll need to configure the external URL that will be used to reach your Concourse cluster:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_EXTERNAL_URL</span>=https://ci.example.com
+  <p>The <a href="concourse-web.html"><code>web</code> node</a> can be scaled up for high availability. They&#39;ll also roughly share their scheduling workloads, using the database to synchronize. This is done by just running more <code>web</code> commands on different machines, and optionally putting them behind a load balancer.</p><p>To run a cluster of <a href="concourse-web.html"><code>web</code> node</a>s, you&#39;ll first need to ensure they&#39;re all pointing to the same PostgreSQL server.</p><p>Next, you&#39;ll need to configure a <em>peer address</em>. This is a DNS or IP address that can be used to reach this <code>web</code> node from other <code>web</code> nodes. Typically this uses a private IP, like so:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_PEER_ADDRESS</span>=<span style="color:#1abc9c;font-weight:bold">10</span>.10.0.1
+</pre></div><p>This address will be used for forwarded worker connections, which listen on the ephemeral port range.</p><p>Finally, if all of these nodes are going to be accessed through a load balancer, you&#39;ll need to configure the external URL that will be used to reach your Concourse cluster:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_EXTERNAL_URL</span>=https://ci.example.com
 </pre></div><p>Aside from the peer URL, all configuration must be consistent across all <code>web</code> nodes in the cluster to ensure consistent results.</p>
 
   
@@ -419,6 +419,26 @@ $ concourse migrate --supported-db-version
 
   <p>If you&#39;ve got many Concourse clusters that you switch between, you can make it slightly easier to notice which one you&#39;re on by giving each cluster a name:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_CLUSTER_NAME</span>=production
 </pre></div><p>When set, this name will be shown in the top bar when viewing the dashboard.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_lets-encrypt">
+  
+  <h3 class="section-header"><a class="anchor" name="lets-encrypt" href="#lets-encrypt"></a>TLS via Let&#39;s Encrypt</h3>
+  
+
+  <p>Concourse can be configured to automatically acquire a TLS certificate via <a href="https://letsencrypt.org">Let&#39;s Encrypt</a>:</p><div class="highlight"><pre style=""><span style="color:#9b9b9b"># Enable TLS</span>
+<span style="color:#3498db">CONCOURSE_TLS_BIND_PORT</span>=<span style="color:#1abc9c;font-weight:bold">443</span>
+
+<span style="color:#9b9b9b"># Enable Let&#39;s Encrypt</span>
+<span style="color:#3498db">CONCOURSE_ENABLE_LETS_ENCRYPT</span>=<span style="color:#8f4b2d">true</span>
+</pre></div><div class="warning">
+  <p>Concourse&#39;s Let&#39;s Encrypt integration works by storing the TLS certificate and key in the database, so it is imperative that you enable <a href="encryption.html">database encryption</a> as well.</p>
+</div><p>By default, Concourse will reach out to <a href="https://acme-v01.api.letsencrypt.org/directory">Let&#39;s Encrypt&#39;s ACME CA directory</a>. An alernative URL can be configured like so:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_LETS_ENCRYPT_ACME_URL</span>=https://acme.example.com/directory
+</pre></div><p>In order to negotiate the certificate, your <code>web</code> node must be reachable by the ACME server. There are intentionally <a href="https://letsencrypt.org/docs/faq/">no publicly listed IP addresses to whitelist</a>, so this typically means just making your <code>web</code> node publicly reachable.</p>
 
   
     

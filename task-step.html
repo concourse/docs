@@ -528,19 +528,19 @@
   </div>
 
   <div class="definition-content">
-    <p><em>Optional.</em> A map of template variables to pass to an external task. Only works with external tasks defined in <a href="task-step.html#task-step-file"><strong><code>file</code></strong></a>.</p><p>For example:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
+    <p><em>Optional.</em> A map of template variables to pass to an external task. Not to be confused with <a href="task-step.html#task-step-params"><strong><code>params</code></strong></a>, which provides <em>environment variables</em> to the task.</p><p>This is to be used with external tasks defined in <a href="task-step.html#task-step-file"><strong><code>file</code></strong></a>.</p><p>For example, a var may be statically passed like so:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>my-repo<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>integration<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>my-repo/ci/task.yml<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>vars:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>text:<span style="color:#e6e7e8"> </span><span style="color:#e67e22">&#34;Hello World!&#34;</span><span style="color:#e6e7e8">
-</span></pre></div><p>This is often used in combination with <a href="setting-pipelines.html#pipeline-vars"><code>((vars))</code></a> in the pipeline.</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
+</span></pre></div><p>This is often used in combination with <a href="setting-pipelines.html#pipeline-vars"><code>((vars))</code></a> in the pipeline (note the replacement of the string literal with the <code>((text))</code> pipeline var):</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>my-repo<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>integration<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>my-repo/ci/task.yml<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>vars:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>text:<span style="color:#e6e7e8"> </span>((text))<span style="color:#e6e7e8">
-</span></pre></div><p>And <code>task.yml</code>:</p><div class="highlight"><pre style="">---<span style="color:#e6e7e8">
+</span></pre></div><p>When run with the following <code>task.yml</code>:</p><div class="highlight"><pre style="">---<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>platform:<span style="color:#e6e7e8"> </span>linux<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>image_resource:<span style="color:#e6e7e8">
@@ -553,7 +553,7 @@
 </span><span style="color:#e6e7e8"></span>run:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>path:<span style="color:#e6e7e8"> </span>echo<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>args:<span style="color:#e6e7e8"> </span>[<span style="color:#e67e22">&#34;((text))&#34;</span>]<span style="color:#e6e7e8">
-</span></pre></div><p>This will resolve <code>&#34;((text))&#34;</code> to <code>&#34;Hello World!&#34;</code>, while <code>((myuser))</code> and <code>((mypass))</code>  will be resolved in runtime via a <a href="creds.html">credential manager</a>, if it has been configured.</p>
+</span></pre></div><p>...this will resolve <code>&#34;((text))&#34;</code> to <code>&#34;Hello World!&#34;</code>, while <code>((myuser))</code> and <code>((mypass))</code>  will be resolved in runtime via a <a href="creds.html">credential manager</a>, if it has been configured.</p>
   </div>
 </div><div class="definition">
   <div class="definition-thumb">
@@ -562,7 +562,7 @@
   </div>
 
   <div class="definition-content">
-    <p><em>Optional.</em> A map of task parameters to set, overriding those configured in <code>config</code> or <code>file</code>.</p><p>The difference between <a href="task-step.html#task-step-params"><strong><code>params</code></strong></a> and <a href="task-step.html#task-step-vars"><strong><code>vars</code></strong></a> is that <a href="task-step.html#task-step-vars"><strong><code>vars</code></strong></a> allows you to interpolate any template variable in an external task, while <a href="task-step.html#task-step-params"><strong><code>params</code></strong></a> can be used to overwrite task parameters (i.e. env variables) specifically. Also, <a href="task-step.html#task-step-params"><strong><code>params</code></strong></a> can have default values declared in the task.</p><p>For example:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
+    <p><em>Optional.</em> A map of task environment variable parameters to set, overriding those configured in the task&#39;s <code>config</code> or <code>file</code>.</p><p>The difference between <a href="task-step.html#task-step-params"><strong><code>params</code></strong></a> and <a href="task-step.html#task-step-vars"><strong><code>vars</code></strong></a> is that <a href="task-step.html#task-step-vars"><strong><code>vars</code></strong></a> allows you to interpolate any template variable in an external task, while <a href="task-step.html#task-step-params"><strong><code>params</code></strong></a> can be used to overwrite task parameters (i.e. env variables) specifically. Also, <a href="task-step.html#task-step-params"><strong><code>params</code></strong></a> can have default values declared in the task.</p><p>For example:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>my-repo<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>integration<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>my-repo/ci/integration.yml<span style="color:#e6e7e8">

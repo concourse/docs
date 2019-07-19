@@ -438,7 +438,7 @@
   <h3 class="section-header"><a class="anchor" name="configuring-main-team-authorization" href="#configuring-main-team-authorization"></a>Configuring <code>main</code> Team Authorization</h3>
   
 
-  <p>GitHub users, teams, and organizations can be added to the <a href="main-team.html"><code>main</code> team</a> authorization config by setting the following env on the <a href="concourse-web.html"><code>web</code> node</a>:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_MAIN_TEAM_BITBUCKET_CLOUD_USER</span>=my-bitbucket-login
+  <p>BitBucket users and teams can be added to the <a href="main-team.html"><code>main</code> team</a> authorization config by setting the following env on the <a href="concourse-web.html"><code>web</code> node</a>:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_MAIN_TEAM_BITBUCKET_CLOUD_USER</span>=my-bitbucket-login
 <span style="color:#3498db">CONCOURSE_MAIN_TEAM_BITBUCKET_CLOUD_TEAM</span>=my-bitbucket-team
 </pre></div><p>Multiple teams and users may be specified by comma-separating them.</p>
 
