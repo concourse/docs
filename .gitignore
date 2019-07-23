@@ -2,6 +2,12 @@
 
 .DS_Store
 
+blog/concourse.zip
+blog/assets/css/*
+!blog/assets/css/*.gitkeep
+blog/assets/images/*
+!blog/assets/images/.gitkeep
+
 ### Node ###
 node_modules
 yarn-error.log
