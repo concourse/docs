@@ -312,6 +312,17 @@
         </td>
       </tr>
     
+      <tr>
+        
+          <td class="number-cell" align="left"></td>
+        
+        <td class="title-cell">
+          <a href="container-placement.html#limit-active-tasks-strategy">The <code>limit-active-tasks</code> strategy</a>
+
+          
+        </td>
+      </tr>
+    
   </table>
 </div>
 
@@ -368,6 +379,24 @@
 
   <p>With the <code>random</code> strategy, the <a href="concourse-web.html"><code>web</code> node</a> places <code>get</code>, <code>put</code> and <code>task</code> containers on any worker, ignoring any affinity.</p><p>As this is truly random, this will be fine until one day it&#39;s not fine.</p><p>To use this strategy, set the following env var on the <a href="concourse-web.html"><code>web</code> node</a>:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_CONTAINER_PLACEMENT_STRATEGY</span>=random
 </pre></div>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_limit-active-tasks-strategy">
+  
+  <h2 class="section-header"><a class="anchor" name="limit-active-tasks-strategy" href="#limit-active-tasks-strategy"></a>The <code>limit-active-tasks</code> strategy</h2>
+  
+
+  <p><div class="warning">
+  <code>limit-active-tasks</code> is an <strong>experimental</strong> feature.
+</div></p><p>When selecting the <code>limit-active-tasks</code> placement strategy, each <code>task</code> executed on a worker will increase the number of &#34;active tasks&#34; on that worker by one. When the task completes the number is decreased by one. The <a href="concourse-web.html"><code>web</code> node</a> then places <code>get</code>, <code>put</code> and <code>task</code> containers on the worker that currently has the <em>least amount of active tasks</em>.</p><p>Additionally <code>max-active-tasks-per-worker</code> can be set to be an integer of 1 or more, in which case a worker will not execute more than that amount of <strong>tasks</strong>. A value of 0 means that there is no limit on the maximum number of active tasks on the workers. If no worker can be selected because all of them already have <code>max-active-tasks-per-worker</code> active tasks, then the task will wait for a free worker, periodically polling the pool. Note that the parameter does not apply to <code>get</code> and <code>put</code> steps which will always be scheduled on the worker with the fewest active tasks.</p><div class="warning">
+  <p>In the event where the <a href="concourse-web.html"><code>web</code> node</a> restarts and a task completes while the restart is ongoing, then the counter on the worker <strong>will not be decreased</strong>. If that happens the worker must be retired and re-registered to reset the counter.</p>
+</div><p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_CONTAINER_PLACEMENT_STRATEGY</span>=limit-active-tasks
+</pre></div> and, optionally <div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_MAX_ACTIVE_TASKS_PER_WORKER</span>=<span style="color:#1abc9c;font-weight:bold">1</span>
+</pre></div></p>
 
   
     
