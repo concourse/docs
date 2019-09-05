@@ -312,6 +312,17 @@
           <td class="number-cell" align="left"></td>
         
         <td class="title-cell">
+          <a href="managing-teams.html#fly-active-users"><code>fly active-users</code></a>
+
+          
+        </td>
+      </tr>
+    
+      <tr>
+        
+          <td class="number-cell" align="left"></td>
+        
+        <td class="title-cell">
           <a href="managing-teams.html#fly-teams"><code>fly teams</code></a>
 
           
@@ -410,6 +421,20 @@
     
   
 </div>
+    
+  
+</div>
+    
+      <div class="section" id="section_fly-active-users">
+  
+  <h2 class="section-header"><a class="anchor" name="fly-active-users" href="#fly-active-users"></a><code>fly active-users</code></h2>
+  
+
+  <p>To list all users that have logged into your instance in the last two months, run:</p><div class="highlight"><pre style="">$ fly -t example active-users
+</pre></div><p>The output will include the username, connector (which method they used to authenticate) and the date of their last login.</p><p>You can list users whose last login was within a different range by using:</p><div class="highlight"><pre style="">$ fly -t example active-users --since yyyy-MM-dd
+</pre></div><p>This can be helpful to get a sense of how active your cluster is. </p>
+
+  
     
   
 </div>

@@ -378,6 +378,11 @@
             <td class="title-cell"><a href="metrics.html#http%20response%20time">http response time</a></td>
           </tr>
         
+          <tr>
+            <td class="number-cell"></td>
+            <td class="title-cell"><a href="metrics.html#worker%20tasks">worker tasks</a></td>
+          </tr>
+        
       
       
   
@@ -410,7 +415,7 @@
   <h2 class="section-header"><a class="anchor" name="configuring-metrics" href="#configuring-metrics"></a>Configuring Metrics</h2>
   
 
-  <p>The <a href="concourse-web.html"><code>web</code> node</a> can be configured to emit metrics on start.</p><p>Currently supported metrics emitters are InfluxDB, NewRelic, Prometheus, Datadog, and Riemann. There is also a dummy emitter that will just spit the metrics out in to the logs at <code>DEBUG</code> level, which can be enabled with the <code>--emit-to-logs</code> flag.</p><p>There are various flags for different emitters; run <code>concourse web --help</code> and look for &#34;Metric Emitter&#34; to see what&#39;s available.</p>
+  <p>The <a href="concourse-web.html"><code>web</code> node</a> can be configured to emit metrics on start.</p><p>Currently supported metrics emitters are InfluxDB, NewRelic, Prometheus, Datadog, and Riemann. There is also a dummy emitter that will just spit the metrics out in to the logs at <code>DEBUG</code> level, which can be enabled with the <code>--emit-to-logs</code> flag.</p><p>Regardless of your metrics emitter, you can set <code>CONCOURSE_METRICS_BUFFER_SIZE</code> to determine how many metrics emissions are sent at a time. Increasing this number can be helpful if sending metrics is regularly failing (due to rate limiting or network failures) or if latency is particularly high.</p><p>There are various flags for different emitters; run <code>concourse web --help</code> and look for &#34;Metric Emitter&#34; to see what&#39;s available.</p>
 
   
     
@@ -558,6 +563,23 @@
   
   <dt><p><code>path</code></p></dt>
     <dd><p>The literal path of the HTTP request. i.e. /builds/1234</p></dd>
+  
+</dl></p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="worker tasks"></a>
+    <pre>worker tasks</pre>
+  </div>
+
+  <div class="definition-content">
+    <p>This metric is emitted each time a worker registers or heartbeats. It contains the number of active task containers on the worker in question. Particularly if <code>max-active-tasks-per-worker</code> is set, this can be useful for debugging containers stuck in a pending state.</p><p><span style="font-size: 120%">Attributes</span> <dl>
+  
+  <dt><p><code>worker</code></p></dt>
+    <dd><p>The name of the worker registering/heartbeating.</p></dd>
+  
+  <dt><p><code>platform</code></p></dt>
+    <dd><p>The OS platform of the worker in question (i.e. windows/linux/darwin).</p></dd>
   
 </dl></p>
   </div>
