@@ -1,0 +1,30 @@
+
+Resource checking
+
+
+Resources represent external state. A git repository, an s3 bucket, or anything else that changes over time. By modelling these as resources, it allows you to use this external state as inputs (or triggers) to your workloads.
+
+In order to ensure that it's always up to date, concourse will poll these external sources for changes. We call this `resource checking`, and the rate at which these checks happen is called the `check interval`. There's an obvious tradeoff, whereby the more frequently you poll, the bigger the strain on concourse (as well as the external source), however if you want to pick up those new commits as quickly as possible, then you need to poll as often as possible.
+
+The default polling frequency for each resource is 1 minute. If that seems like a lot, it is, but it's how concourse keeps everything snappy. You can [configure this value](link-to-check-every) independently for each resource, or if your external source supports it, you can use [webhooks](link-to-webhooks) to basically eliminate the need for polling altogether.
+
+The whole point of running checks is to produce versions. Everything that happens in concourse is centered around the idea of `resource versions`. It's how concourse determines that something is *new* and a new build needs to be triggered. The versions produce by each resource all vary to a large degree. The git resource, for example, uses commits hashes, the registry image resource uses the digest sha, and the time resource uses timestamps. Every resource is different, but the end result is the same, a new input for your workload.
+
+
+As of concourse v.5.6.0, resource checking has been redesigned to be asynchronous. There are now two processes that dictate how resource checking happens. The `scanner`, which determines if new checks need to run, and the `checker` which runs them.
+
+The `scanner` will run every `CONCOURSE_LIDAR_SCANNER_INTERVAL`. It's job is to determine if new checks need to run. It will loop over every resource (and resource type) and if the `check interval` has elapsed since it last ran, it will add a new record to the `checks` table in the database.
+
+The `checker` will run every `CONCOURSE_LIDAR_CHECKER_INTERVAL`. It's job is to loop over everything in the checks table, and run them. Each record in the checks table has a `plan` that describes the behaviour of how the check should run (similar to builds). The checker will extract the plan from database and pass it to the concourse `engine` for execution.
+
+
+## Troubleshooting
+
+Resource checking can fail for a few different reasons. Either the resource is misconfigure, a network failure occurs, or the resource's parent type doesn't have a version. The first two are pretty self explanatory so we'll try and focus on that third case.
+
+Every resource has a type. You can think of the type as the image used to run each of the resources operations (check, get, and put). Most of the time that type is one of the `core` or `base` resource types that come preconfigured with concourse. These are things like git, s3, registry-image, etc. When using these base types you don't need to worry about a missing parent version, because these base types are static. However, when depending on a resource type specified under `resource_types` in your pipeline yaml, since these types are checked periodically, there's a chance that it won't yet have a version.
+
+
+
+
+
