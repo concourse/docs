@@ -1,6 +1,8 @@
-module Main exposing (main)
+port module Main exposing (main)
 
 import Browser
+import Browser.Dom as BD
+import Browser.Events as BE
 import Dict exposing (Dict)
 import Dict.Extra as DE
 import Html exposing (Html, div, text)
@@ -11,6 +13,11 @@ import Json.Decode as JD
 import Json.Decode.Extra as JDE exposing (andMap)
 import Maybe.Extra as ME
 import Query
+import Task
+import Time
+
+
+port emitSearchTerm : String -> Cmd msg
 
 
 type alias Doc =
@@ -25,6 +32,7 @@ type alias Model =
     { query : String
     , docs : BooklitIndex
     , result : Dict String DocumentResult
+    , queryEventEmitted : Bool
     }
 
 
@@ -44,6 +52,15 @@ type alias BooklitDocument =
 type Msg
     = DocumentsFetched (Result Http.Error BooklitIndex)
     | SetQuery String
+    | EmitQueryEvent
+    | KeyDown String
+    | SearchInputFocused (Result BD.Error ())
+    | SearchInputBlurred (Result BD.Error ())
+
+
+searchEmitInterval : Float
+searchEmitInterval =
+    500
 
 
 main : Program () Model Msg
@@ -52,7 +69,7 @@ main =
         { init = always init
         , update = update
         , view = view
-        , subscriptions = always Sub.none
+        , subscriptions = subscriptions
         }
 
 
@@ -61,6 +78,7 @@ init =
     ( { docs = Dict.empty
       , query = ""
       , result = Dict.empty
+      , queryEventEmitted = False
       }
     , Cmd.batch
         [ Http.send DocumentsFetched <|
@@ -80,7 +98,50 @@ update msg model =
                 ( model, Cmd.none )
 
         SetQuery query ->
-            ( performSearch { model | query = String.toLower query }, Cmd.none )
+            let
+                updatedQuery =
+                    { model
+                        | query = String.toLower query
+                        , queryEventEmitted = False
+                    }
+            in
+            ( performSearch updatedQuery, Cmd.none )
+
+        EmitQueryEvent ->
+            if model.queryEventEmitted || String.length model.query < 2 then
+                ( model, Cmd.none )
+
+            else
+                ( { model | queryEventEmitted = True }, emitSearchTerm model.query )
+
+        KeyDown s ->
+            case s of
+                "/" ->
+                    ( model
+                    , Task.attempt SearchInputFocused <| BD.focus "search-input"
+                    )
+
+                "Escape" ->
+                    ( model
+                    , Task.attempt SearchInputBlurred <| BD.blur "search-input"
+                    )
+
+                _ ->
+                    ( model, Cmd.none )
+
+        SearchInputFocused _ ->
+            ( model, Cmd.none )
+
+        SearchInputBlurred _ ->
+            ( model, Cmd.none )
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    Sub.batch
+        [ Time.every searchEmitInterval (always EmitQueryEvent)
+        , BE.onKeyDown <| JD.map KeyDown <| JD.field "key" JD.string
+        ]
 
 
 performSearch : Model -> Model
@@ -118,6 +179,7 @@ view model =
         [ Html.input
             [ HA.type_ "search"
             , HA.class "search-input"
+            , HA.id "search-input"
             , HE.onInput SetQuery
             , HA.placeholder "Search the docs…"
             , HA.required True
@@ -157,7 +219,7 @@ suggestedOrder a b =
 
 
 viewDocumentResult : Model -> DocumentResult -> Html Msg
-viewDocumentResult model { tag, result, doc } =
+viewDocumentResult model ({ tag, result, doc } as dr) =
     Html.li []
         [ Html.a [ HA.href doc.location ]
             [ Html.article []
