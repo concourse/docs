@@ -13,7 +13,7 @@
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
-<title>Credential Management - Concourse CI</title>
+<title>Redacting credentials - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
@@ -62,6 +62,8 @@
 
 
 
+  
+  
   
   
   
@@ -217,7 +219,7 @@
               <td class="number-cell" align="right">1.10.2&nbsp;</td>
             
             <td class="title-cell">
-  <a href="creds.html"  class="self">Credential Management</a>
+  <a href="creds.html"  class="active">Credential Management</a>
 </td>
           </tr>
         
@@ -263,120 +265,104 @@
   </div>
   
 
+  
 
-
-
-
-<div class="context">
-  <div class="page-toc">
+  
+  <div class="context">
     <nav>
       <div class="top">
         
         <span class="section-number">1.10.2</span>
         
         
-  <a href="creds.html"  class="self">Credential Management</a>
+  <a href="creds.html"  class="active">Credential Management</a>
 
       </div>
 
-      
-<div class="children">
-  <table>
-    
-      <tr>
+      <div class="children">
+        <table>
         
-          <td class="number-cell" align="right">1.10.2.1&nbsp;</td>
+          <tr>
+            
+              <td class="number-cell" align="right">1.10.2.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="vault-credential-manager.html" >The Vault credential manager</a>
+</td>
+          </tr>
         
-        <td class="title-cell">
-          <a href="vault-credential-manager.html">The Vault credential manager</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
+          <tr>
+            
+              <td class="number-cell" align="right">1.10.2.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="credhub-credential-manager.html" >The CredHub credential manager</a>
+</td>
+          </tr>
         
-          <td class="number-cell" align="right">1.10.2.2&nbsp;</td>
+          <tr>
+            
+              <td class="number-cell" align="right">1.10.2.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="aws-ssm-credential-manager.html" >The AWS SSM credential manager</a>
+</td>
+          </tr>
         
-        <td class="title-cell">
-          <a href="credhub-credential-manager.html">The CredHub credential manager</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
+          <tr>
+            
+              <td class="number-cell" align="right">1.10.2.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="aws-asm-credential-manager.html" >The AWS Secrets Manager credential manager</a>
+</td>
+          </tr>
         
-          <td class="number-cell" align="right">1.10.2.3&nbsp;</td>
+          <tr>
+            
+              <td class="number-cell" align="right">1.10.2.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="kubernetes-credential-manager.html" >Kubernetes Credential Manager</a>
+</td>
+          </tr>
         
-        <td class="title-cell">
-          <a href="aws-ssm-credential-manager.html">The AWS SSM credential manager</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
+          <tr>
+            
+              <td class="number-cell" align="right">1.10.2.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="creds-caching.html" >Caching credentials</a>
+</td>
+          </tr>
         
-          <td class="number-cell" align="right">1.10.2.4&nbsp;</td>
+          <tr>
+            
+              <td class="number-cell" align="right">1.10.2.7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="creds-redacting.html"  class="self">Redacting credentials</a>
+</td>
+          </tr>
         
-        <td class="title-cell">
-          <a href="aws-asm-credential-manager.html">The AWS Secrets Manager credential manager</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
+          <tr>
+            
+              <td class="number-cell" align="right">1.10.2.8&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="creds-retry-logic.html" >Retrying failed fetches</a>
+</td>
+          </tr>
         
-          <td class="number-cell" align="right">1.10.2.5&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="kubernetes-credential-manager.html">Kubernetes Credential Manager</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.10.2.6&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="creds-caching.html">Caching credentials</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.10.2.7&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="creds-redacting.html">Redacting credentials</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.10.2.8&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="creds-retry-logic.html">Retrying failed fetches</a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
+        </table>
+      </div>
     </nav>
   </div>
-</div>
+  
+
+
+
+
 
 
 
@@ -386,69 +372,30 @@
     <div class="page-aside"></div>
 
     <div class="page-content">
-      <div class="section" id="section_creds">
+      <div class="section" id="section_creds-redacting">
   
-  <h1 class="section-header"><a class="anchor" name="creds" href="#creds"></a><span class="section-number">1.10.2 </span>Credential Management</h1>
+  <h1 class="section-header"><a class="anchor" name="creds-redacting" href="#creds-redacting"></a><span class="section-number">1.10.2.7 </span>Redacting credentials</h1>
   
 
-  <p>Going beyond <a href="encryption.html">Encryption</a>, explicit credential management will provide credentials to your builds for a brief amount of time, without being persisted anywhere. It also allows for credentials to be rotated and managed external to the pipeline or team, and prevents them from being revealed by <a href="managing-pipelines.html#fly-get-pipeline"><code>fly get-pipeline</code></a>.</p><p>Credential management works by replacing the credentials with <code>((vars))</code> in your pipeline or task config. When the Concourse is about to run the step or <code>check</code> that is configured with vars, it will resolve them by fetching the values from the credential manager. If the values are not present, the action will error.</p><p>The following configurations can be parameterized with a credential manager:</p><ul>
+  <p>Concourse can be configured to automatically redact credentials from build output like so:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_ENABLE_REDACT_SECRETS</span>=<span style="color:#8f4b2d">true</span>
+</pre></div><p>This behavior is off by default as there is likely a CPU performance overhead on the <a href="concourse-web.html"><code>web</code> node</a>s involved with enabling it. It will be on by default once we&#39;ve confirmed that it performs well enough at large scale.</p><p>When enabled, Concourse will keep track of the credential values which were used in a build. When writing build logs to the database, it will replace any occurrence of these values with the text <code>((redacted))</code>.</p><p>Say you&#39;re running a task which runs the following script:</p><div class="highlight"><pre style=""><span style="color:#8f4b2d">set</span> -e -u -x
 
-  <li><p><a href="resources.html#resource-source"><strong><code>source</code></strong></a> under <a href="resources.html">Resources</a> in a pipeline</p></li>
+<span style="color:#8f4b2d">echo</span> <span style="color:#3498db">$SECRET</span> &gt; some-file
+sha1sum some-file
+</pre></div><p>(Note the <code>set -x</code> - the root cause of many accidental credential leaks.)</p><p>Let&#39;s say you have a job which runs this task, providing the <code>$SECRET</code> parameter using a credential manager <code>((var))</code>:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>use-secret<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span><span style="color:#9b9b9b"># ...</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>params:<span style="color:#e6e7e8"> </span>{SECRET:<span style="color:#e6e7e8"> </span>((some-var))}<span style="color:#e6e7e8">
+</span></pre></div><p>With <code>hello</code> in <code>some-var</code>, this will result in the following build output:</p><div class="highlight"><pre style="">+ <span style="color:#8f4b2d">echo</span> ((redacted))
++ sha1sum some-file
+f572d396fae9206628714fb2ce00f72e94f2258f  some-file
+</pre></div><p>Going a step further, what happens when that var has multiple lines of output, like <code>&#34;hello\ngoodbye&#34;</code>?</p><div class="highlight"><pre style="">+ <span style="color:#8f4b2d">echo</span> ((redacted)) ((redacted))
++ sha1sum some-file
+638e5ebcd06a5208906960aa5fbe1d4ebd022771  some-file
+</pre></div><p>What happened here? Well, because we didn&#39;t quote the <code>$SECRET</code> var arg to <code>echo</code>, it squashed the lines together into arguments. This <em>could</em> have confused our redacting logic and resulted in leaking the credential, but because Concourse redacts secret values line-by-line, we&#39;re still OK. This will also help with JSON marshalled credential values, which get interspersed with <code>\n</code> in a string literal.</p><p>Although Concourse tries to be thorough in its redacting of credentials, the best way to prevent credential leakage is to not accidentally print them in the first place. Think of this as an airbag, not a seatbelt!</p>
 
-  <li><p><a href="resource-types.html#resource-type-source"><strong><code>source</code></strong></a> under <a href="resource-types.html">Resource Types</a> in a pipeline</p></li>
-
-  <li><p><a href="resources.html#resource-webhook-token"><strong><code>webhook_token</code></strong></a> under <a href="resources.html">Resources</a> in a pipeline</p></li>
-
-  <li><p><a href="task-step.html#task-step-params"><strong><code>params</code></strong></a> on a task step in a pipeline</p></li>
-
-  <li><p><a href="tasks.html">Tasks</a> in their entirety - whether from <a href="task-step.html#task-step-file"><strong><code>file</code></strong></a> or <a href="task-step.html#task-step-config"><strong><code>config</code></strong></a> in a pipeline, or a config executed with <a href="running-tasks.html#fly-execute"><code>fly execute</code></a></p></li>
-
-</ul><p>Where these values are looked up and how the credential manager is configured depends on the backend. Consult the relevant section below for whichever backend you want to use.</p>
-<ol class="toc">
-
-  <li><span class="section-number">1.10.2.1 </span><a href="vault-credential-manager.html">The Vault credential manager</a>
-
+  
     
-  </li>
-
-  <li><span class="section-number">1.10.2.2 </span><a href="credhub-credential-manager.html">The CredHub credential manager</a>
-
-    
-  </li>
-
-  <li><span class="section-number">1.10.2.3 </span><a href="aws-ssm-credential-manager.html">The AWS SSM credential manager</a>
-
-    
-  </li>
-
-  <li><span class="section-number">1.10.2.4 </span><a href="aws-asm-credential-manager.html">The AWS Secrets Manager credential manager</a>
-
-    
-  </li>
-
-  <li><span class="section-number">1.10.2.5 </span><a href="kubernetes-credential-manager.html">Kubernetes Credential Manager</a>
-
-    
-  </li>
-
-  <li><span class="section-number">1.10.2.6 </span><a href="creds-caching.html">Caching credentials</a>
-
-    
-  </li>
-
-  <li><span class="section-number">1.10.2.7 </span><a href="creds-redacting.html">Redacting credentials</a>
-
-    
-  </li>
-
-  <li><span class="section-number">1.10.2.8 </span><a href="creds-retry-logic.html">Retrying failed fetches</a>
-
-    
-  </li>
-
-</ol>
-
-
   
 </div>
 
@@ -458,10 +405,10 @@
           prev:
 
           
-          <span class="section-number">1.10.1</span>
+          <span class="section-number">1.10.2.6</span>
           
 
-          <a href="encryption.html">Encryption</a>
+          <a href="creds-caching.html">Caching credentials</a>
         </div>
       
 
@@ -470,10 +417,10 @@
           next:
 
           
-          <span class="section-number">1.10.2.1</span>
+          <span class="section-number">1.10.2.8</span>
           
 
-          <a href="vault-credential-manager.html">The Vault credential manager</a>
+          <a href="creds-retry-logic.html">Retrying failed fetches</a>
         </div>
       
       </nav>

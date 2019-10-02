@@ -44,8 +44,12 @@
 </div>
 
 <script type="text/javascript">
-  Elm.Main.init({
+  var app = Elm.Main.init({
     node: document.getElementById('search')
+  });
+
+  app.ports.emitSearchTerm.subscribe(function(term) {
+    gtag('event', 'search', {search_term: term});
   });
 </script>
 
@@ -322,6 +326,39 @@
         
         <td class="title-cell">
           <a href="kubernetes-credential-manager.html">Kubernetes Credential Manager</a>
+
+          
+        </td>
+      </tr>
+    
+      <tr>
+        
+          <td class="number-cell" align="right">1.10.2.6&nbsp;</td>
+        
+        <td class="title-cell">
+          <a href="creds-caching.html">Caching credentials</a>
+
+          
+        </td>
+      </tr>
+    
+      <tr>
+        
+          <td class="number-cell" align="right">1.10.2.7&nbsp;</td>
+        
+        <td class="title-cell">
+          <a href="creds-redacting.html">Redacting credentials</a>
+
+          
+        </td>
+      </tr>
+    
+      <tr>
+        
+          <td class="number-cell" align="right">1.10.2.8&nbsp;</td>
+        
+        <td class="title-cell">
+          <a href="creds-retry-logic.html">Retrying failed fetches</a>
 
           
         </td>
