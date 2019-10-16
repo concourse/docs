@@ -30,7 +30,7 @@ UI, so you should make your output pretty.
   and must print the array of new versions, in chronological order, to stdout,
   including the requested version if it's still valid.
 
-  The request body will have the following fields:
+  The stdin payload will have the following fields:
 
   \list{
     \code{source} is an arbitrary JSON object which specifies the location of
@@ -111,7 +111,7 @@ UI, so you should make your output pretty.
   key-value pairs. This data is intended for public consumption and will make it
   upstream, intended to be shown on the build's page.
 
-  The request will contain the following fields:
+  The stdin payload will contain the following fields:
 
   \list{
     \code{source} is the same value as passed to \reference{resource-check}.
@@ -123,7 +123,7 @@ UI, so you should make your output pretty.
     \reference{get-step-params} on a \reference{get-step}.
   }
 
-  Example request, in this case for the \code{git} resource:
+  Example stdin payload, in this case for the \code{git} resource:
 
   \codeblock{json}{{{
   {
@@ -172,7 +172,7 @@ UI, so you should make your output pretty.
   data is intended for public consumption and will make it upstream, intended to
   be shown on the build's page.
 
-  The request will contain the following fields:
+  The stdin payload will contain the following fields:
 
   \list{
     \code{source} is the same value as passed to \reference{resource-check}.
@@ -181,7 +181,7 @@ UI, so you should make your output pretty.
     \reference{get-step-params} on a \reference{put-step}.
   }
 
-  Example request, in this case for the \code{git} resource:
+  Example stdin payload, in this case for the \code{git} resource:
 
   \codeblock{json}{{{
   {
