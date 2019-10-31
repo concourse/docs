@@ -263,7 +263,7 @@
           <td class="number-cell" align="left"></td>
         
         <td class="title-cell">
-          <a href="implementing-resource-types.html#in"><code>in</code>: Fetch a given resource.</a>
+          <a href="implementing-resource-types.html#resource-in"><code>in</code>: Fetch a given resource.</a>
 
           
         </td>
@@ -274,7 +274,7 @@
           <td class="number-cell" align="left"></td>
         
         <td class="title-cell">
-          <a href="implementing-resource-types.html#out"><code>out</code>: Update a resource.</a>
+          <a href="implementing-resource-types.html#resource-out"><code>out</code>: Update a resource.</a>
 
           
         </td>
@@ -368,9 +368,9 @@ git pull &amp;&amp; git log 61cbef..HEAD
   
 </div>
     
-      <div class="section" id="section_in">
+      <div class="section" id="section_resource-in">
   
-  <h2 class="section-header"><a class="anchor" name="in" href="#in"></a><code>in</code>: Fetch a given resource.</h2>
+  <h2 class="section-header"><a class="anchor" name="resource-in" href="#resource-in"></a><code>in</code>: Fetch a given resource.</h2>
   
 
   <p>The <code>in</code> script is passed a destination directory as command line argument <code>$1</code>, and is given on stdin the configured source and a precise version of the resource to fetch.</p><p>The script must fetch the resource and place it in the given directory.</p><p>If the desired resource version is unavailable (for example, if it was deleted), the script must error.</p><p>The script must emit the fetched version, and may emit metadata as a list of key-value pairs. This data is intended for public consumption and will make it upstream, intended to be shown on the build&#39;s page.</p><p>The request will contain the following fields:</p><ul>
@@ -406,9 +406,9 @@ git checkout 61cebf
   
 </div>
     
-      <div class="section" id="section_out">
+      <div class="section" id="section_resource-out">
   
-  <h2 class="section-header"><a class="anchor" name="out" href="#out"></a><code>out</code>: Update a resource.</h2>
+  <h2 class="section-header"><a class="anchor" name="resource-out" href="#resource-out"></a><code>out</code>: Update a resource.</h2>
   
 
   <p>The <code>out</code> script is called with a path to the directory containing the build&#39;s full set of sources as the first argument, and is given on stdin the configured params and the resource&#39;s source configuration.</p><p>The script must emit the resulting version of the resource. For example, the <code>git</code> resource emits the sha of the commit that it just pushed.</p><p>Additionally, the script may emit metadata as a list of key-value pairs. This data is intended for public consumption and will make it upstream, intended to be shown on the build&#39;s page.</p><p>The request will contain the following fields:</p><ul>

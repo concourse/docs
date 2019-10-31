@@ -445,7 +445,7 @@
   <h1 class="section-header"><a class="anchor" name="on-failure-step-hook" href="#on-failure-step-hook"></a><span class="section-number">1.7.1.9 </span><code>on_failure</code> step hook</h1>
   
 
-  <p>Any step can have <code>on_failure</code> tacked onto it, whose value is a second step to execute only if the parent step fails.</p><div class="definition">
+  <p>Any step can have <code>on_failure</code> tacked onto it, whose value is a second step to execute only if the parent step completes its execution, but its process (the script specified via <a href="tasks.html#task-run"><strong><code>run</code></strong></a> in the case of a <a href="task-step.html"><code>task</code> step</a>, or the <a href="implementing-resource-types.html#resource-in"><code>in</code></a> script for a <a href="get-step.html"><code>get</code> step</a>, or the <a href="implementing-resource-types.html#resource-out"><code>out</code></a> script for a <a href="put-step.html"><code>put</code> step</a>) exits with a non-zero status code.</p><div class="definition">
   <div class="definition-thumb">
     <a name="on_failure"></a>
     <pre><a href="on-failure-step-hook.html#on_failure"><strong>on_failure</strong></a>: step</pre>

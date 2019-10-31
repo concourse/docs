@@ -445,7 +445,7 @@
   <h1 class="section-header"><a class="anchor" name="on-error-step-hook" href="#on-error-step-hook"></a><span class="section-number">1.7.1.11 </span><code>on_error</code> step hook</h1>
   
 
-  <p>Any step can have <code>on_error</code> tacked onto it, whose value is a second step to execute only if the parent step errors.</p><div class="definition">
+  <p>Any step can have <code>on_error</code> tacked onto it, whose value is a second step to execute only if the parent step terminates abnormally in any way other than those handled by the <a href="on-abort-step-hook.html"><code>on_abort</code> step hook</a> or <a href="on-failure-step-hook.html"><code>on_failure</code> step hook</a> -- this covers scenarios as broad as configuration mistakes, temporary network issues or running longer than a <a href="timeout-step-modifier.html"><code>timeout</code> step modifier</a>.</p><div class="definition">
   <div class="definition-thumb">
     <a name="on_error"></a>
     <pre><a href="on-error-step-hook.html#on_error"><strong>on_error</strong></a>: step</pre>
