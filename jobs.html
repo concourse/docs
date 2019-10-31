@@ -501,6 +501,10 @@
       </tr>
       
       <tr>
+        <td colspan="2" class="title-cell"><a href="jobs.html#job-build-log-retention-minimum-succeeded-builds"><strong><code>build_log_retention.minimum_succeeded_builds</code></strong></a></td>
+      </tr>
+      
+      <tr>
         <td colspan="2" class="title-cell"><a href="jobs.html#job-build-log-retention"><strong><code>build_log_retention</code></strong></a></td>
       </tr>
       
@@ -634,16 +638,26 @@
   <div class="definition-content">
     <p><em>Optional.</em> Keep logs for the last specified number of builds.</p>
   </div>
-</div><p>Builds which are not retained by one of the above configurations will have their logs reaped.</p><p>The following example will keep logs for any builds that have completed in the last 2 days, while also keeping the last 1000 builds.</p><div class="highlight"><pre style="">jobs:<span style="color:#e6e7e8">
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="job-build-log-retention-minimum-succeeded-builds"></a>
+    <pre><a href="jobs.html#job-build-log-retention-minimum-succeeded-builds"><strong>minimum_succeeded_builds</strong></a>: number</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> Keep logs for at least N successful builds.</p>
+  </div>
+</div><p>Builds which are not retained by one of the above configurations will have their logs reaped.</p><p>The following example will keep logs for any builds that have completed in the last 2 days, while also keeping the last 1000 builds, with at least one successful build.</p><div class="highlight"><pre style="">jobs:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>smoke-tests<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>build_log_retention:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>days:<span style="color:#e6e7e8"> </span><span style="color:#1abc9c;font-weight:bold">2</span><span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span>builds:<span style="color:#e6e7e8"> </span><span style="color:#1abc9c;font-weight:bold">1000</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>minimum_succeeded_builds:<span style="color:#e6e7e8"> </span><span style="color:#1abc9c;font-weight:bold">1</span><span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>10m<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>smoke-tests<span style="color:#e6e7e8">
 </span><span style="color:#e6e7e8">    </span><span style="color:#9b9b9b"># ...</span><span style="color:#e6e7e8">
-</span></pre></div><p>Note: if more than 1000 builds finish in the past 2 days, <em>all</em> of them will be retained thanks to the <a href="jobs.html#job-build-log-retention-days"><strong><code>build_log_retention.days</code></strong></a> configuration. Similarly, if there are 1000 builds spanning more than 2 days, they will also be kept thanks to the <a href="jobs.html#job-build-log-retention-builds"><strong><code>build_log_retention.builds</code></strong></a> configuration. Both policies operate independently.</p>
+</span></pre></div><p>Note: if more than 1000 builds finish in the past 2 days, <em>all</em> of them will be retained thanks to the <a href="jobs.html#job-build-log-retention-days"><strong><code>build_log_retention.days</code></strong></a> configuration. Similarly, if there are 1000 builds spanning more than 2 days, they will also be kept thanks to the <a href="jobs.html#job-build-log-retention-builds"><strong><code>build_log_retention.builds</code></strong></a> configuration. And if they all happened to have failed, the <a href="jobs.html#job-build-log-retention-minimum-succeeded-builds"><strong><code>build_log_retention.minimum_succeeded_builds</code></strong></a> will keep around at least one successful build. All policies operate independently.</p>
   </div>
 </div><div class="definition">
   <div class="definition-thumb">
