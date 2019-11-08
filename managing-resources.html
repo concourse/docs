@@ -249,6 +249,17 @@
         </td>
       </tr>
     
+      <tr>
+        
+          <td class="number-cell" align="left"></td>
+        
+        <td class="title-cell">
+          <a href="managing-resources.html#fly-pin-resource"><code>fly pin-resource</code></a>
+
+          
+        </td>
+      </tr>
+    
   </table>
 </div>
 
@@ -282,6 +293,24 @@
 </pre></div><p>To check from a particular version, including the given version, append the <code>--from</code> flag like so:</p><div class="highlight"><pre style="">$ fly -t example check-resource --resource my-pipeline/my-resource <span style="color:#3498db">\
 </span><span style="color:#3498db"></span>    --from ref:abcdef
 </pre></div><p>This can be useful for collecting versions that are older than the current ones, given that a newly configured resource will only start from the latest version.</p><p>Note the <code>ref:</code> prefix is resource-dependent. For example, the <em>bosh-io-release</em> resource might use <code>version:11.2</code> in place of <code>ref:abcdef</code>.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_fly-pin-resource">
+  
+  <h2 class="section-header"><a class="anchor" name="fly-pin-resource" href="#fly-pin-resource"></a><code>fly pin-resource</code></h2>
+  
+
+  <p>To pin a resource to a specific version of that resource, run:</p><div class="highlight"><pre style="">$ fly -t example pin-resource --resource my-pipeline/my-resource <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --version ref:bceaf
+</pre></div><p>Note that the version needs to be provided as a key-value pair. For the git resource the <code>ref:</code> prefix is used while the <em>registry</em>  resource might use <code>digest</code> as a prefix like <code>digest:sha256:94be7d7b</code>.</p><p>A comment can be provided using the <code>--comment</code> flag, which is then also visible in the UI :</p><div class="highlight"><pre style="">$ fly -t example pin-resource --resource my-pipeline/my-resource <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --version ref:abcdef <span style="color:#3498db">\
+</span><span style="color:#3498db"></span>    --comment <span style="color:#e67e22">&#34;Some reason&#34;</span>
+</pre></div><p>This can, for example, be used to pull in a fixed version of an external dependency which might break your build in a new release. After the problem has been resolved, the pin can be removed. Another example could be running a build with a set of older inputs when needed.</p><p>To remove the pin on a resource use:</p><div class="highlight"><pre style="">$ fly -t example unpin-resource --resource my-pipeline/my-resource
+</pre></div><p>You can also pin a resource via the UI by clicking on the pin button next to the desired version on the resource page. A default comment is automatically generated containing your username and a timestamp. This comment can be edited.</p>
 
   
     

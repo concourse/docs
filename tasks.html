@@ -674,7 +674,7 @@ npm install
   </div>
 
   <div class="definition-content">
-    <p><em>Required.</em> The command to execute.</p><p>This is commonly a path to a script provided by one of the task&#39;s inputs, e.g. <code>my-resource/scripts/test</code>. It could also be a command like <code>bash</code> (respecting standard <code>$PATH</code> lookup rules), or an absolute path to a file to execute, e.g. <code>/bin/bash</code>.</p>
+    <p><em>Required.</em> The command to execute.</p><p><code>path</code> is relative to the working directory. If <code>dir</code> is specified to set the working directory, then <code>path</code> is relative to it.</p><p>This is commonly a path to a script provided by one of the task&#39;s inputs, e.g. <code>my-resource/scripts/test</code>. It could also be a command like <code>bash</code> (respecting standard <code>$PATH</code> lookup rules), or an absolute path to a file to execute, e.g. <code>/bin/bash</code>.</p>
   </div>
 </div><div class="definition">
   <div class="definition-thumb">
