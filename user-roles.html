@@ -343,7 +343,18 @@
           <td class="number-cell" align="left"></td>
         
         <td class="title-cell">
-          <a href="user-roles.html#permission-matrix">Permission Matrix</a>
+          <a href="user-roles.html#action-matrix">Action Matrix</a>
+
+          
+        </td>
+      </tr>
+    
+      <tr>
+        
+          <td class="number-cell" align="left"></td>
+        
+        <td class="title-cell">
+          <a href="user-roles.html#configuring-rbac">Configuring RBAC</a>
 
           
         </td>
@@ -369,7 +380,19 @@
   <h1 class="section-header"><a class="anchor" name="user-roles" href="#user-roles"></a><span class="section-number">1.2.4 </span>User Roles &amp; Permissions</h1>
   
 
-  <p>Concourse comes with five roles: Concourse Admin, Team Owner, Team Member, Pipeline Operator, Team Viewer.</p>
+  <p>Concourse comes with five roles:</p><ol>
+
+  <li><p>Concourse Admin</p></li>
+
+  <li><p>Team Owner</p></li>
+
+  <li><p>Team Member</p></li>
+
+  <li><p>Pipeline Operator</p></li>
+
+  <li><p>Team Viewer</p></li>
+
+</ol><p>These roles are strictly ordered, so that each role always has all the permissions of any other role lower on the list. This means that a Team Viewer can always do anything a Pipeline Operator can, and so on.</p><p>In this document we say an action is <em>assigned</em> to a role if that role is capable of performing the action, but any less-privileged role is not. For example, the <code>SaveConfig</code> action is <em>assigned</em> to the <code>member</code> role, so owners and members can set a pipeline config, but pipeline operators and viewers cannot.</p>
 
   
     
@@ -378,7 +401,7 @@
   <h2 class="section-header"><a class="anchor" name="concourse-admin" href="#concourse-admin"></a>Concourse Admin</h2>
   
 
-  <p><em>Admin</em> is a special user attribute granted only to <a href="user-roles.html#team-owner-role">owners</a> of the <a href="main-team.html"><code>main</code> team</a>.</p><p>Admins have the ability to administrate teams using <a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a>, <a href="managing-teams.html#fly-destroy-team"><code>fly destroy-team</code></a>, <a href="managing-teams.html#fly-rename-team"><code>fly rename-team</code></a>, etc.</p>
+  <p><em>Admin</em> is a special user attribute granted only to <a href="user-roles.html#team-owner-role">owners</a> of the <a href="main-team.html"><code>main</code> team</a>.</p><p>Admins have the ability to administrate teams using <a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a>, <a href="managing-teams.html#fly-destroy-team"><code>fly destroy-team</code></a>, <a href="managing-teams.html#fly-rename-team"><code>fly rename-team</code></a>, etc.</p><p>Admins always have permission to perform any action on any team. You cannot assign actions to the admin role using the <code>--config-rbac</code> flag.</p>
 
   
     
@@ -390,7 +413,11 @@
   <h2 class="section-header"><a class="anchor" name="team-owner-role" href="#team-owner-role"></a><code>owner</code> role</h2>
   
 
-  <p>Team owners have read, write and auth management capabilities within the scope of their team, but they cannot rename or destroy the team.</p>
+  <p>Team owners have read, write and auth management capabilities within the scope of their team, but they cannot rename or destroy the team.</p><p>Actions assigned to the <code>owner</code> role by default:</p><div class="highlight"><pre style="">owner:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>SetTeam<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>RenameTeam<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>DestroyTeam<span style="color:#e6e7e8">
+</span></pre></div>
 
   
     
@@ -402,7 +429,28 @@
   <h2 class="section-header"><a class="anchor" name="team-member-role" href="#team-member-role"></a><code>member</code> role</h2>
   
 
-  <p>Team members can operate within their team in a read &amp; write fashion, but they can not change the configuration of their team.</p>
+  <p>Team members can operate within their team in a read &amp; write fashion, but they can not change the configuration of their team.</p><p>Actions assigned to the <code>member</code> role by default:</p><div class="highlight"><pre style="">member:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>SaveConfig<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>CreateBuild<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>DeletePipeline<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>OrderPipelines<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ExposePipeline<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>HidePipeline<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>RenamePipeline<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>CreatePipelineBuild<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>RegisterWorker<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>LandWorker<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>RetireWorker<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>PruneWorker<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>HeartbeatWorker<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>DeleteWorker<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>SetLogLevel<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>HijackContainer<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ReportWorkerContainers<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ReportWorkerVolumes<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>CreateArtifact<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>GetArtifact<span style="color:#e6e7e8">
+</span></pre></div>
 
   
     
@@ -414,7 +462,23 @@
   <h2 class="section-header"><a class="anchor" name="team-pipeline-operator-role" href="#team-pipeline-operator-role"></a><code>pipeline-operator</code> role</h2>
   
 
-  <p>Team pipeline operators can perform pipeline operations such as triggering builds and pinning resources, however they cannot update pipeline configurations.</p>
+  <p>Team pipeline operators can perform pipeline operations such as triggering builds and pinning resources, however they cannot update pipeline configurations.</p><p>Actions assigned to the <code>pipeline-operator</code> role by default:</p><div class="highlight"><pre style="">pipeline-operator:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>AbortBuild<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>CreateJobBuild<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>PauseJob<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>UnpauseJob<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ClearTaskCache<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>UnpinResource<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>SetPinCommentOnResource<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>CheckResource<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>CheckResourceWebHook<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>CheckResourceType<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>EnableResourceVersion<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>DisableResourceVersion<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>PinResourceVersion<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>PausePipeline<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>UnpausePipeline<span style="color:#e6e7e8">
+</span></pre></div>
 
   
     
@@ -426,1157 +490,1277 @@
   <h2 class="section-header"><a class="anchor" name="team-viewer-role" href="#team-viewer-role"></a><code>viewer</code> role</h2>
   
 
-  <p>Team viewers have &#34;read-only&#34; access to a team and its pipelines. This locks everything down, preventing users from doing a <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a> or <a href="builds.html#fly-intercept"><code>fly intercept</code></a>.</p>
+  <p>Team viewers have &#34;read-only&#34; access to a team and its pipelines. This locks everything down, preventing users from doing a <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a> or <a href="builds.html#fly-intercept"><code>fly intercept</code></a>.</p><p>Actions assigned to the <code>viewer</code> role by default:</p><div class="highlight"><pre style="">viewer:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>GetConfig<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>GetCC<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>GetBuild<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>GetCheck<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>GetBuildPlan<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ListBuilds<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>BuildEvents<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>BuildResources<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>GetBuildPreparation<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>GetJob<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ListAllJobs<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ListJobs<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ListJobBuilds<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ListJobInputs<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>GetJobBuild<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>GetVersionsDB<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>JobBadge<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>MainJobBadge<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ListAllResources<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ListResources<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ListResourceTypes<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>GetResource<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ListResourceVersions<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>GetResourceVersion<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ListBuildsWithVersionAsInput<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ListBuildsWithVersionAsOutput<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>GetResourceCausality<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ListAllPipelines<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ListPipelines<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>GetPipeline<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ListPipelineBuilds<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>PipelineBadge<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ListWorkers<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>GetLogLevel<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>DownloadCLI<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>GetInfo<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>GetInfoCreds<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ListContainers<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>GetContainer<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ListDestroyingContainers<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ListVolumes<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ListDestroyingVolumes<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ListTeams<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>GetTeam<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ListTeamBuilds<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>ListBuildArtifacts<span style="color:#e6e7e8">
+</span></pre></div>
 
   
     
   
 </div>
     
-      <div class="section" id="section_permission-matrix">
+      <div class="section" id="section_action-matrix">
   
-  <h2 class="section-header"><a class="anchor" name="permission-matrix" href="#permission-matrix"></a>Permission Matrix</h2>
+  <h2 class="section-header"><a class="anchor" name="action-matrix" href="#action-matrix"></a>Action Matrix</h2>
   
 
-  <table>
+  <p>In this table, an action is marked as <em>customizable</em> if it is possible to change its permissions by providing the <code>--config-rbac</code> flag, documented below. Assigning an action to a role that is not customizable will have no effect on its permissions.</p><table>
   
   <tr>
     
-    <td><a href="fly.html"><code>fly</code> CLI</a> command      </td>
+    <td>Action                       </td>
     
-    <td>Anon</td>
+    <td><code>fly</code> commands affected                                      </td>
     
-    <td>Admin</td>
+    <td>UI actions affected                    </td>
     
-    <td><code>owner</code></td>
+    <td>can be performed unauthenticated?</td>
     
-    <td><code>member</code></td>
-    
-    <td><code>pipeline-operator</code></td>
-    
-    <td><code>viewer</code></td>
+    <td>customizable</td>
     
   </tr>
   
   <tr>
     
-    <td><a href="builds.html#fly-abort-build"><code>fly abort-build</code></a>      </td>
+    <td>GetBuild                     </td>
     
-    <td>✘   </td>
+    <td>n/a                                                               </td>
     
-    <td>✓    </td>
+    <td>view one-off build page                </td>
+    
+    <td>✓                                </td>
     
     <td>✓           </td>
     
-    <td>✓            </td>
+  </tr>
+  
+  <tr>
     
-    <td>✓                       </td>
+    <td>BuildResources               </td>
     
-    <td>✘            </td>
+    <td>n/a                                                               </td>
+    
+    <td>view build page                        </td>
+    
+    <td>✓                                </td>
+    
+    <td>✓           </td>
     
   </tr>
   
   <tr>
     
-    <td><a href="managing-teams.html#fly-active-users"><code>fly active-users</code></a>     </td>
+    <td>GetBuildPreparation          </td>
     
-    <td>✘   </td>
+    <td>n/a                                                               </td>
     
-    <td>✓    </td>
+    <td>view build page                        </td>
+    
+    <td>✓                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>BuildEvents                  </td>
+    
+    <td>n/a                                                               </td>
+    
+    <td>view build page                        </td>
+    
+    <td>✓                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>GetBuildPlan                 </td>
+    
+    <td>n/a                                                               </td>
+    
+    <td>view build page                        </td>
+    
+    <td>✓                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>ListBuildArtifacts           </td>
+    
+    <td>n/a                                                               </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✓                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>AbortBuild                   </td>
+    
+    <td><a href="builds.html#fly-abort-build"><code>fly abort-build</code></a>                                       </td>
+    
+    <td>abort button on build page             </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>PruneWorker                  </td>
+    
+    <td><a href="administration.html#fly-prune-worker"><code>fly prune-worker</code></a>                                      </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>LandWorker                   </td>
+    
+    <td><a href="administration.html#fly-land-worker"><code>fly land-worker</code></a>                                       </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>RetireWorker                 </td>
+    
+    <td>n/a                                                               </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
     
     <td>✘           </td>
     
-    <td>✘            </td>
-    
-    <td>✘                       </td>
-    
-    <td>✘            </td>
-    
   </tr>
   
   <tr>
     
-    <td><a href="builds.html#fly-builds"><code>fly builds</code></a>           </td>
+    <td>ListDestroyingVolumes        </td>
     
-    <td>✓   </td>
+    <td>n/a                                                               </td>
     
-    <td>✓    </td>
+    <td>n/a                                    </td>
     
-    <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
-    
-  </tr>
-  
-  <tr>
-    
-    <td><a href="managing-resources.html#fly-check-resource"><code>fly check-resource</code></a>   </td>
-    
-    <td>✘   </td>
-    
-    <td>✓    </td>
-    
-    <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✘            </td>
-    
-  </tr>
-  
-  <tr>
-    
-    <td><a href="administration.html#fly-containers"><code>fly containers</code></a>       </td>
-    
-    <td>✘   </td>
-    
-    <td>✓    </td>
-    
-    <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
-    
-  </tr>
-  
-  <tr>
-    
-    <td><a href="managing-pipelines.html#fly-destroy-pipeline"><code>fly destroy-pipeline</code></a> </td>
-    
-    <td>✘   </td>
-    
-    <td>✓    </td>
-    
-    <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✘                       </td>
-    
-    <td>✘            </td>
-    
-  </tr>
-  
-  <tr>
-    
-    <td><a href="managing-teams.html#fly-destroy-team"><code>fly destroy-team</code></a>     </td>
-    
-    <td>✘   </td>
-    
-    <td>✓    </td>
+    <td>✘                                </td>
     
     <td>✘           </td>
     
-    <td>✘            </td>
-    
-    <td>✘                       </td>
-    
-    <td>✘            </td>
-    
   </tr>
   
   <tr>
     
-    <td><a href="running-tasks.html#fly-execute"><code>fly execute</code></a>          </td>
+    <td>ListDestroyingContainers     </td>
     
-    <td>✘   </td>
+    <td>n/a                                                               </td>
     
-    <td>✓    </td>
+    <td>n/a                                    </td>
     
-    <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✘                       </td>
-    
-    <td>✘            </td>
-    
-  </tr>
-  
-  <tr>
-    
-    <td><a href="managing-pipelines.html#fly-expose-pipeline"><code>fly expose-pipeline</code></a>  </td>
-    
-    <td>✘   </td>
-    
-    <td>✓    </td>
-    
-    <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✘                       </td>
-    
-    <td>✘            </td>
-    
-  </tr>
-  
-  <tr>
-    
-    <td><a href="setting-pipelines.html#fly-format-pipeline"><code>fly format-pipeline</code></a>  </td>
-    
-    <td>✘   </td>
-    
-    <td>✓    </td>
-    
-    <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
-    
-  </tr>
-  
-  <tr>
-    
-    <td><a href="managing-pipelines.html#fly-get-pipeline"><code>fly get-pipeline</code></a>     </td>
-    
-    <td>✘   </td>
-    
-    <td>✓    </td>
-    
-    <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
-    
-  </tr>
-  
-  <tr>
-    
-    <td><a href="managing-teams.html#fly-get-team"><code>fly get-team</code></a>         </td>
-    
-    <td>✘   </td>
-    
-    <td>✓    </td>
-    
-    <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
-    
-  </tr>
-  
-  <tr>
-    
-    <td><a href="managing-pipelines.html#fly-hide-pipeline"><code>fly hide-pipeline</code></a>    </td>
-    
-    <td>✘   </td>
-    
-    <td>✓    </td>
-    
-    <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✘                       </td>
-    
-    <td>✘            </td>
-    
-  </tr>
-  
-  <tr>
-    
-    <td><a href="builds.html#fly-intercept"><code>fly intercept</code></a>        </td>
-    
-    <td>✘   </td>
-    
-    <td>✓    </td>
-    
-    <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✘                       </td>
-    
-    <td>✘            </td>
-    
-  </tr>
-  
-  <tr>
-    
-    <td><a href="managing-jobs.html#fly-jobs"><code>fly jobs</code></a>             </td>
-    
-    <td>✓   </td>
-    
-    <td>✓    </td>
-    
-    <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
-    
-  </tr>
-  
-  <tr>
-    
-    <td><a href="fly.html#fly-login"><code>fly login</code></a>            </td>
-    
-    <td>✓   </td>
-    
-    <td>✓    </td>
-    
-    <td>            </td>
-    
-    <td>             </td>
-    
-    <td>                        </td>
-    
-    <td>             </td>
-    
-  </tr>
-  
-  <tr>
-    
-    <td><a href="fly.html#fly-logout"><code>fly logout</code></a>           </td>
-    
-    <td>✘   </td>
-    
-    <td>✓    </td>
-    
-    <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
-    
-  </tr>
-  
-  <tr>
-    
-    <td><a href="managing-pipelines.html#fly-order-pipelines"><code>fly order-pipelines</code></a>  </td>
-    
-    <td>✘   </td>
-    
-    <td>✓    </td>
-    
-    <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✘                       </td>
-    
-    <td>✘            </td>
-    
-  </tr>
-  
-  <tr>
-    
-    <td><a href="managing-jobs.html#fly-pause-job"><code>fly pause-job</code></a>        </td>
-    
-    <td>✘   </td>
-    
-    <td>✓    </td>
-    
-    <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✘            </td>
-    
-  </tr>
-  
-  <tr>
-    
-    <td><a href="managing-pipelines.html#fly-pause-pipeline"><code>fly pause-pipeline</code></a>   </td>
-    
-    <td>✘   </td>
-    
-    <td>✓    </td>
-    
-    <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✘            </td>
-    
-  </tr>
-  
-  <tr>
-    
-    <td><a href="managing-pipelines.html#fly-pipelines"><code>fly pipelines</code></a>        </td>
-    
-    <td>✓   </td>
-    
-    <td>✓    </td>
-    
-    <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
-    
-  </tr>
-  
-  <tr>
-    
-    <td><a href="administration.html#fly-prune-worker"><code>fly prune-worker</code></a>     </td>
-    
-    <td>✘   </td>
-    
-    <td>✓    </td>
-    
-    <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✘                       </td>
-    
-    <td>✘            </td>
-    
-  </tr>
-  
-  <tr>
-    
-    <td><a href="managing-pipelines.html#fly-rename-pipeline"><code>fly rename-pipeline</code></a>  </td>
-    
-    <td>✘   </td>
-    
-    <td>✓    </td>
-    
-    <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✘                       </td>
-    
-    <td>✘            </td>
-    
-  </tr>
-  
-  <tr>
-    
-    <td><a href="managing-teams.html#fly-rename-team"><code>fly rename-team</code></a>      </td>
-    
-    <td>✘   </td>
-    
-    <td>✓    </td>
+    <td>✘                                </td>
     
     <td>✘           </td>
     
-    <td>✘            </td>
+  </tr>
+  
+  <tr>
     
-    <td>✘                       </td>
+    <td>ReportWorkerContainers       </td>
     
-    <td>✘            </td>
+    <td>n/a                                                               </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
+    
+    <td>✘           </td>
     
   </tr>
   
   <tr>
     
-    <td><a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a>     </td>
+    <td>ReportWorkerVolumes          </td>
     
-    <td>✘   </td>
+    <td>n/a                                                               </td>
     
-    <td>✓    </td>
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
+    
+    <td>✘           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>GetPipeline                  </td>
+    
+    <td>n/a                                                               </td>
+    
+    <td>view pipeline page                     </td>
+    
+    <td>✓                                </td>
     
     <td>✓           </td>
     
-    <td>✓            </td>
-    
-    <td>✘                       </td>
-    
-    <td>✘            </td>
-    
   </tr>
   
   <tr>
     
-    <td><a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a>         </td>
+    <td>GetJobBuild                  </td>
     
-    <td>✘   </td>
+    <td>n/a                                                               </td>
     
-    <td>✓    </td>
+    <td>view build page                        </td>
+    
+    <td>✓                                </td>
     
     <td>✓           </td>
     
-    <td>✘            </td>
-    
-    <td>✘                       </td>
-    
-    <td>✘            </td>
-    
   </tr>
   
   <tr>
     
-    <td><a href="fly.html#fly-status"><code>fly status</code></a>           </td>
+    <td>PipelineBadge                </td>
     
-    <td>✓   </td>
+    <td>n/a                                                               </td>
     
-    <td>✓    </td>
+    <td>n/a                                    </td>
+    
+    <td>✓                                </td>
     
     <td>✓           </td>
     
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
-    
   </tr>
   
   <tr>
     
-    <td><a href="fly.html#fly-sync"><code>fly sync</code></a>             </td>
+    <td>JobBadge                     </td>
     
-    <td>✓   </td>
+    <td>n/a                                                               </td>
     
-    <td>✓    </td>
+    <td>n/a                                    </td>
+    
+    <td>✓                                </td>
     
     <td>✓           </td>
     
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
-    
   </tr>
   
   <tr>
     
-    <td><a href="fly.html#fly-targets"><code>fly targets</code></a>          </td>
+    <td>ListJobs                     </td>
     
-    <td>✓   </td>
+    <td><a href="managing-jobs.html#fly-jobs"><code>fly jobs</code></a>                                              </td>
     
-    <td>✓    </td>
+    <td>view pipeline page                     </td>
+    
+    <td>✓                                </td>
     
     <td>✓           </td>
     
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
-    
   </tr>
   
   <tr>
     
-    <td><a href="managing-teams.html#fly-teams"><code>fly teams</code></a>            </td>
+    <td>GetJob                       </td>
     
-    <td>✘   </td>
+    <td>n/a                                                               </td>
     
-    <td>✓    </td>
+    <td>view job page                          </td>
+    
+    <td>✓                                </td>
     
     <td>✓           </td>
     
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
-    
   </tr>
   
   <tr>
     
-    <td><a href="managing-jobs.html#fly-trigger-job"><code>fly trigger-job</code></a>      </td>
+    <td>ListJobBuilds                </td>
     
-    <td>✘   </td>
+    <td><a href="builds.html#fly-builds"><code>fly builds</code></a>                                            </td>
     
-    <td>✓    </td>
+    <td>view job page                          </td>
+    
+    <td>✓                                </td>
     
     <td>✓           </td>
     
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✘            </td>
-    
   </tr>
   
   <tr>
     
-    <td><a href="managing-jobs.html#fly-unpause-job"><code>fly unpause-job</code></a>      </td>
+    <td>ListPipelineBuilds           </td>
     
-    <td>✘   </td>
+    <td><a href="builds.html#fly-builds"><code>fly builds</code></a>                                            </td>
     
-    <td>✓    </td>
+    <td>n/a                                    </td>
+    
+    <td>✓                                </td>
     
     <td>✓           </td>
     
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✘            </td>
-    
   </tr>
   
   <tr>
     
-    <td><a href="managing-pipelines.html#fly-unpause-pipeline"><code>fly unpause-pipeline</code></a> </td>
+    <td>GetResource                  </td>
     
-    <td>✘   </td>
+    <td>n/a                                                               </td>
     
-    <td>✓    </td>
+    <td>view resource page                     </td>
+    
+    <td>✓                                </td>
     
     <td>✓           </td>
     
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✘            </td>
-    
   </tr>
   
   <tr>
     
-    <td><a href="setting-pipelines.html#fly-validate-pipeline"><code>fly validate-pipeline</code></a></td>
+    <td>ListBuildsWithVersionAsInput </td>
     
-    <td>✓   </td>
+    <td>n/a                                                               </td>
     
-    <td>✓    </td>
+    <td>expand version on resource page        </td>
+    
+    <td>✓                                </td>
     
     <td>✓           </td>
     
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
-    
   </tr>
   
   <tr>
     
-    <td><a href="administration.html#fly-volumes"><code>fly volumes</code></a>          </td>
+    <td>ListBuildsWithVersionAsOutput</td>
     
-    <td>✘   </td>
+    <td>n/a                                                               </td>
     
-    <td>✓    </td>
+    <td>expand version on resource page        </td>
+    
+    <td>✓                                </td>
     
     <td>✓           </td>
     
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
-    
   </tr>
   
   <tr>
     
-    <td><a href="builds.html#fly-watch"><code>fly watch</code></a>            </td>
+    <td>GetResourceCausality         </td>
     
-    <td>✓*  </td>
+    <td>n/a                                                               </td>
     
-    <td>✓    </td>
+    <td>n/a                                    </td>
+    
+    <td>✓                                </td>
     
     <td>✓           </td>
     
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
-    
   </tr>
   
   <tr>
     
-    <td><a href="administration.html#fly-workers"><code>fly workers</code></a>          </td>
+    <td>GetResourceVersion           </td>
     
-    <td>✘   </td>
+    <td>n/a                                                               </td>
     
-    <td>✓    </td>
+    <td>n/a                                    </td>
+    
+    <td>✓                                </td>
     
     <td>✓           </td>
     
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
-    
-  </tr>
-  
-</table><table>
-  
-  <tr>
-    
-    <td>Web UI page        </td>
-    
-    <td>Action                  </td>
-    
-    <td>Admin</td>
-    
-    <td><code>owner</code></td>
-    
-    <td><code>member</code></td>
-    
-    <td><code>pipeline-operator</code></td>
-    
-    <td><code>viewer</code></td>
-    
   </tr>
   
   <tr>
     
-    <td>Home (HD/Dashboard)</td>
+    <td>ListResources                </td>
     
-    <td>View                    </td>
+    <td><code>fly resources</code>                                              </td>
     
-    <td>✓    </td>
+    <td>view pipeline page                     </td>
+    
+    <td>✓                                </td>
     
     <td>✓           </td>
     
-    <td>✓            </td>
+  </tr>
+  
+  <tr>
     
-    <td>✓                       </td>
+    <td>ListResourceTypes            </td>
     
-    <td>✓            </td>
+    <td>n/a                                                               </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✓                                </td>
+    
+    <td>✓           </td>
     
   </tr>
   
   <tr>
     
-    <td>                   </td>
+    <td>ListResourceVersions         </td>
     
-    <td>Login                   </td>
+    <td><code>fly resource-versions</code>,<a href="managing-resources.html#fly-pin-resource"><code>fly pin-resource</code></a>         </td>
     
-    <td>✓    </td>
+    <td>view resource page                     </td>
+    
+    <td>✓                                </td>
     
     <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td>                   </td>
+    <td>CreateBuild                  </td>
     
-    <td>Logout                  </td>
+    <td><a href="running-tasks.html#fly-execute"><code>fly execute</code></a>                                           </td>
     
-    <td>✓    </td>
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
     
     <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td>                   </td>
+    <td>GetContainer                 </td>
     
-    <td>Download <a href="fly.html"><code>fly</code> CLI</a></td>
+    <td>n/a                                                               </td>
     
-    <td>✓    </td>
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
     
     <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td>                   </td>
+    <td>HijackContainer              </td>
     
-    <td>Pause Pipeline          </td>
+    <td><a href="builds.html#fly-intercept"><code>fly intercept</code></a>                                         </td>
     
-    <td>✓    </td>
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
     
     <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✘            </td>
     
   </tr>
   
   <tr>
     
-    <td>                   </td>
+    <td>ListContainers               </td>
     
-    <td>Resume Pipeline         </td>
+    <td><a href="administration.html#fly-containers"><code>fly containers</code></a>                                        </td>
     
-    <td>✓    </td>
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
     
     <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✘            </td>
     
   </tr>
   
   <tr>
     
-    <td>                   </td>
+    <td>ListWorkers                  </td>
     
-    <td>Reorder Pipeline        </td>
+    <td><a href="administration.html#fly-workers"><code>fly workers</code></a>                                           </td>
     
-    <td>✓    </td>
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
     
     <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✘                       </td>
-    
-    <td>✘            </td>
     
   </tr>
   
   <tr>
     
-    <td>Pipeline Page      </td>
+    <td>RegisterWorker               </td>
     
-    <td>View                    </td>
+    <td>n/a                                                               </td>
     
-    <td>✓    </td>
+    <td>n/a                                    </td>
     
-    <td>✓           </td>
+    <td>✘                                </td>
     
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
+    <td>✘           </td>
     
   </tr>
   
   <tr>
     
-    <td>                   </td>
+    <td>HeartbeatWorker              </td>
     
-    <td>Click to Resource       </td>
+    <td>n/a                                                               </td>
     
-    <td>✓    </td>
+    <td>n/a                                    </td>
     
-    <td>✓           </td>
+    <td>✘                                </td>
     
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
+    <td>✘           </td>
     
   </tr>
   
   <tr>
     
-    <td>                   </td>
+    <td>DeleteWorker                 </td>
     
-    <td>Click to Build          </td>
+    <td>n/a                                                               </td>
     
-    <td>✓    </td>
+    <td>n/a                                    </td>
     
-    <td>✓           </td>
+    <td>✘                                </td>
     
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
+    <td>✘           </td>
     
   </tr>
   
   <tr>
     
-    <td>                   </td>
+    <td>GetTeam                      </td>
     
-    <td>Click on Group          </td>
+    <td><a href="managing-teams.html#fly-get-team"><code>fly get-team</code></a>                                          </td>
     
-    <td>✓    </td>
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
     
     <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td>Resource Page      </td>
+    <td>SetTeam                      </td>
     
-    <td>View Resource           </td>
+    <td><a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a>                                          </td>
     
-    <td>✓    </td>
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
     
     <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td>                   </td>
+    <td>ListTeamBuilds               </td>
     
-    <td>View Version Details    </td>
+    <td><a href="builds.html#fly-builds"><code>fly builds</code></a>                                            </td>
     
-    <td>✓    </td>
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
     
     <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td>                   </td>
+    <td>RenameTeam                   </td>
     
-    <td>Pin Version             </td>
+    <td><a href="managing-teams.html#fly-rename-team"><code>fly rename-team</code></a>                                       </td>
     
-    <td>✓    </td>
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
     
     <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✘            </td>
     
   </tr>
   
   <tr>
     
-    <td>                   </td>
+    <td>DestroyTeam                  </td>
     
-    <td>Paginate (&lt;- -&gt;)        </td>
+    <td><a href="managing-teams.html#fly-destroy-team"><code>fly destroy-team</code></a>                                      </td>
     
-    <td>✓    </td>
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
     
     <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td>Build Page         </td>
+    <td>ListVolumes                  </td>
     
-    <td>Trigger new Build       </td>
+    <td><a href="administration.html#fly-volumes"><code>fly volumes</code></a>                                           </td>
     
-    <td>✓    </td>
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
     
     <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✘            </td>
     
   </tr>
   
   <tr>
     
-    <td>                   </td>
+    <td>DownloadCLI                  </td>
     
-    <td>View Build              </td>
+    <td><a href="fly.html#fly-sync"><code>fly sync</code></a>                                              </td>
     
-    <td>✓    </td>
+    <td>icons on dashboard and pipeline pages  </td>
     
-    <td>✓           </td>
+    <td>✓                                </td>
     
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
+    <td>✘           </td>
     
   </tr>
   
   <tr>
     
-    <td>                   </td>
+    <td>CheckResourceWebHook         </td>
     
-    <td>Build Details           </td>
+    <td>n/a                                                               </td>
     
-    <td>✓    </td>
+    <td>n/a                                    </td>
     
-    <td>✓           </td>
+    <td>✓                                </td>
     
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
+    <td>✘           </td>
     
   </tr>
   
   <tr>
     
-    <td>                   </td>
+    <td>GetInfo                      </td>
     
-    <td>Abort Build             </td>
+    <td>n/a                                                               </td>
     
-    <td>✓    </td>
+    <td>n/a                                    </td>
     
-    <td>✓           </td>
+    <td>✓                                </td>
     
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✘            </td>
+    <td>✘           </td>
     
   </tr>
   
   <tr>
     
-    <td>Job Page           </td>
+    <td>GetCheck                     </td>
     
-    <td>View Job Page           </td>
+    <td><a href="managing-resources.html#fly-check-resource"><code>fly check-resource</code></a>,<a href="managing-resource-types.html#fly-check-resource-type"><code>fly check-resource-type</code></a></td>
     
-    <td>✓    </td>
+    <td>check button on resource page          </td>
+    
+    <td>✘                                </td>
     
     <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td>                   </td>
+    <td>ListTeams                    </td>
     
-    <td>Pause Job               </td>
+    <td><a href="managing-teams.html#fly-teams"><code>fly teams</code></a>                                             </td>
     
-    <td>✓    </td>
+    <td>view dashboard page                    </td>
     
-    <td>✓           </td>
+    <td>✓                                </td>
     
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✘            </td>
+    <td>✘           </td>
     
   </tr>
   
   <tr>
     
-    <td>                   </td>
+    <td>ListAllPipelines             </td>
     
-    <td>Trigger new Build       </td>
+    <td>n/a                                                               </td>
     
-    <td>✓    </td>
+    <td>view dashboard page                    </td>
     
-    <td>✓           </td>
+    <td>✓                                </td>
     
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✘            </td>
+    <td>✘           </td>
     
   </tr>
   
   <tr>
     
-    <td>                   </td>
+    <td>ListPipelines                </td>
     
-    <td>Build History           </td>
+    <td><a href="managing-pipelines.html#fly-pipelines"><code>fly pipelines</code></a>                                         </td>
     
-    <td>✓    </td>
+    <td>n/a                                    </td>
+    
+    <td>✓                                </td>
     
     <td>✓           </td>
-    
-    <td>✓            </td>
-    
-    <td>✓                       </td>
-    
-    <td>✓            </td>
     
   </tr>
   
   <tr>
     
-    <td>                   </td>
+    <td>ListAllJobs                  </td>
     
-    <td>Paginate (&lt;- -&gt;)        </td>
+    <td><a href="managing-teams.html#fly-teams"><code>fly teams</code></a>                                             </td>
     
-    <td>✓    </td>
+    <td>view dashboard page                    </td>
+    
+    <td>✓                                </td>
+    
+    <td>✘           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>ListAllResources             </td>
+    
+    <td>n/a                                                               </td>
+    
+    <td>view dashboard page                    </td>
+    
+    <td>✓                                </td>
+    
+    <td>✘           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>ListBuilds                   </td>
+    
+    <td><a href="builds.html#fly-builds"><code>fly builds</code></a>                                            </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✓                                </td>
+    
+    <td>✘           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>MainJobBadge                 </td>
+    
+    <td>n/a                                                               </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✓                                </td>
+    
+    <td>✘           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>GetLogLevel                  </td>
+    
+    <td>n/a                                                               </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
+    
+    <td>✘           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>ListActiveUsersSince         </td>
+    
+    <td><a href="managing-teams.html#fly-active-users"><code>fly active-users</code></a>                                      </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
+    
+    <td>✘           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>GetInfoCreds                 </td>
+    
+    <td>n/a                                                               </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
+    
+    <td>✘           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>CheckResource                </td>
+    
+    <td><a href="managing-resources.html#fly-check-resource"><code>fly check-resource</code></a>                                    </td>
+    
+    <td>check button on resource page          </td>
+    
+    <td>✘                                </td>
     
     <td>✓           </td>
     
-    <td>✓            </td>
+  </tr>
+  
+  <tr>
     
-    <td>✓                       </td>
+    <td>CheckResourceType            </td>
     
-    <td>✓            </td>
+    <td><a href="managing-resource-types.html#fly-check-resource-type"><code>fly check-resource-type</code></a>                               </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>CreateJobBuild               </td>
+    
+    <td><a href="managing-jobs.html#fly-trigger-job"><code>fly trigger-job</code></a>                                       </td>
+    
+    <td>trigger button on job and build pages  </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>CreatePipelineBuild          </td>
+    
+    <td><a href="running-tasks.html#fly-execute"><code>fly execute</code></a>                                           </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>DeletePipeline               </td>
+    
+    <td><a href="managing-pipelines.html#fly-destroy-pipeline"><code>fly destroy-pipeline</code></a>                                  </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>DisableResourceVersion       </td>
+    
+    <td>n/a                                                               </td>
+    
+    <td>version disable widget on resource page</td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>EnableResourceVersion        </td>
+    
+    <td>n/a                                                               </td>
+    
+    <td>version enable widget on resource page </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>PinResourceVersion           </td>
+    
+    <td><a href="managing-resources.html#fly-pin-resource"><code>fly pin-resource</code></a>                                      </td>
+    
+    <td>pin buttons on resource page           </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>UnpinResource                </td>
+    
+    <td><code>fly unpin-resource</code>                                         </td>
+    
+    <td>pin buttons on resource page           </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>SetPinCommentOnResource      </td>
+    
+    <td><a href="managing-resources.html#fly-pin-resource"><code>fly pin-resource</code></a>                                      </td>
+    
+    <td>comment overlay on resource page       </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>GetConfig                    </td>
+    
+    <td><a href="managing-pipelines.html#fly-get-pipeline"><code>fly get-pipeline</code></a>                                      </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>GetCC                        </td>
+    
+    <td>n/a                                                               </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>GetVersionsDB                </td>
+    
+    <td>n/a                                                               </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>ListJobInputs                </td>
+    
+    <td>n/a                                                               </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>OrderPipelines               </td>
+    
+    <td><a href="managing-pipelines.html#fly-order-pipelines"><code>fly order-pipelines</code></a>                                   </td>
+    
+    <td>drag and drop on dashboard             </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>PauseJob                     </td>
+    
+    <td><a href="managing-jobs.html#fly-pause-job"><code>fly pause-job</code></a>                                         </td>
+    
+    <td>pause button on job page               </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>PausePipeline                </td>
+    
+    <td><a href="managing-pipelines.html#fly-pause-pipeline"><code>fly pause-pipeline</code></a>                                    </td>
+    
+    <td>pause button on pipeline or dashboard  </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>RenamePipeline               </td>
+    
+    <td><a href="managing-pipelines.html#fly-rename-pipeline"><code>fly rename-pipeline</code></a>                                   </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>UnpauseJob                   </td>
+    
+    <td><a href="managing-jobs.html#fly-unpause-job"><code>fly unpause-job</code></a>                                       </td>
+    
+    <td>play button on job page                </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>UnpausePipeline              </td>
+    
+    <td><a href="managing-pipelines.html#fly-unpause-pipeline"><code>fly unpause-pipeline</code></a>                                  </td>
+    
+    <td>play button on pipeline or dashboard   </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>ExposePipeline               </td>
+    
+    <td><a href="managing-pipelines.html#fly-expose-pipeline"><code>fly expose-pipeline</code></a>                                   </td>
+    
+    <td>eyeball button on dashboard            </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>HidePipeline                 </td>
+    
+    <td><a href="managing-pipelines.html#fly-hide-pipeline"><code>fly hide-pipeline</code></a>                                     </td>
+    
+    <td>slashed eyeball button on dashboard    </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>SaveConfig                   </td>
+    
+    <td><a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a>                                      </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>ClearTaskCache               </td>
+    
+    <td><a href="managing-jobs.html#fly-clear-task-cache"><code>fly clear-task-cache</code></a>                                  </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>CreateArtifact               </td>
+    
+    <td><a href="running-tasks.html#fly-execute"><code>fly execute</code></a>                                           </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>GetArtifact                  </td>
+    
+    <td><a href="running-tasks.html#fly-execute"><code>fly execute</code></a>                                           </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
     
   </tr>
   
 </table>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_configuring-rbac">
+  
+  <h2 class="section-header"><a class="anchor" name="configuring-rbac" href="#configuring-rbac"></a>Configuring RBAC</h2>
+  
+
+  <p><div class="warning">
+  Configuring RBAC is <strong>experimental</strong>, and this may change in the future.
+</div></p><p>It is possible to promote or demote the roles to which actions are assigned by passing the <code>--config-rbac</code> to the <code>concourse web</code> command with a path to a <code>.yml</code> file, like the following:</p><div class="highlight"><pre style="">concourse web --config-rbac=/path/to/rbac/config.yml
+</pre></div><p>This file should be a YAML map where the keys are role names (<code>owner</code>, <code>member</code>, <code>pipeline-operator</code>, and <code>viewer</code> are valid). For each role, the value should be a list of actions. On startup, Concourse will assign each role to its associated list of actions.</p><p>For example, in the default configuration only pipeline-operators and above can abort builds. To restrict aborting builds to only members and above, you could pass this as a <code>--config-rbac</code> file:</p><div class="highlight"><pre style="">member:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>AbortBuild<span style="color:#e6e7e8">
+</span></pre></div><p>On the other hand, only members and above can order pipelines by default. To extend this privilege down to pipeline-operators, you can use a <code>--config-rbac</code> file like the following:</p><div class="highlight"><pre style="">pipeline-operator:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>OrderPipelines<span style="color:#e6e7e8">
+</span></pre></div><p>You do not need to specify a role for every possible action; if an action does not appear in the file, then the default role (as described in the sections above) will be assigned to that action. Also, please avoid specifying the same action under multiple roles in this file - it can have unpredictable results.</p>
 
   
     

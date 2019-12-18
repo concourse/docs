@@ -13,7 +13,7 @@
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
-<title>tags step modifier - Concourse CI</title>
+<title>set_pipeline step - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
@@ -278,7 +278,7 @@
               <td class="number-cell" align="right">1.7.1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="set-pipeline-step.html" ><code>set_pipeline</code> step</a>
+  <a href="set-pipeline-step.html"  class="self"><code>set_pipeline</code> step</a>
 </td>
           </tr>
         
@@ -368,7 +368,7 @@
               <td class="number-cell" align="right">1.7.1.14&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tags-step-modifier.html"  class="self"><code>tags</code> step modifier</a>
+  <a href="tags-step-modifier.html" ><code>tags</code> step modifier</a>
 </td>
           </tr>
         
@@ -412,7 +412,19 @@
     <table>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tags-step-modifier.html#tags"><strong><code>tags</code></strong></a></td>
+        <td colspan="2" class="title-cell"><a href="set-pipeline-step.html#set-pipeline-step-set-pipeline"><strong><code>set_pipeline</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="set-pipeline-step.html#set-pipeline-step-file"><strong><code>file</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="set-pipeline-step.html#set-pipeline-step-vars"><strong><code>vars</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="set-pipeline-step.html#set-pipeline-step-var-files"><strong><code>var_files</code></strong></a></td>
       </tr>
       
 
@@ -433,16 +445,19 @@
   <h2>Examples</h2>
 
   <div class="example">
-  <h3>Running in a Private Network</h3>
+  <h3>One pipeline reconfiguring another</h3>
 
-  <p>You may have a private cluster only reachable by special workers running on-premises. To run a step against those workers, just provide a matching tag:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>my-repo<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>put:<span style="color:#e6e7e8"> </span>my-site<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>tags:<span style="color:#e6e7e8"> </span>[private]<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>params:<span style="color:#e6e7e8"> </span>path:<span style="color:#e6e7e8"> </span>my-repo<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>acceptance-tests<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>tags:<span style="color:#e6e7e8"> </span>[private]<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>my-repo/ci/atteptance.yml<span style="color:#e6e7e8">
+  <p>This is a way to ensure a pipeline stays up to date with its definition in a source code repository, eliminating the need to manually run <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a>.</p><div class="highlight"><pre style="">resources:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>booklit<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>git<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8"> </span>uri:<span style="color:#e6e7e8"> </span>https://github.com/vito/booklit<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>jobs:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>reconfigure<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>booklit<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>set_pipeline:<span style="color:#e6e7e8"> </span>booklit<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>booklit/ci/pipeline.yml<span style="color:#e6e7e8">
 </span></pre></div>
 </div>
 </div>
@@ -450,19 +465,73 @@
       </div>
 
     <div class="page-content">
-      <div class="section" id="section_tags-step-modifier">
+      <div class="section" id="section_set-pipeline-step">
   
-  <h1 class="section-header"><a class="anchor" name="tags-step-modifier" href="#tags-step-modifier"></a><span class="section-number">1.7.1.14 </span><code>tags</code> step modifier</h1>
+  <h1 class="section-header"><a class="anchor" name="set-pipeline-step" href="#set-pipeline-step"></a><span class="section-number">1.7.1.4 </span><code>set_pipeline</code> step</h1>
   
 
-  <p>Any step can be directed at a pool of workers for a given set of tags, by adding the <code>tags</code> attribute to it.</p><div class="definition">
+  <p><div class="warning">
+  The <code>set_pipeline</code> step was introduced in Concourse v5.8.0. It is considered an <strong>experimental</strong> feature, until its associated <a href="https://github.com/concourse/rfcs/pull/31">RFC</a> is resolved.
+</div></p><p>Configures a Concourse pipeline.</p><div class="definition">
   <div class="definition-thumb">
-    <a name="tags"></a>
-    <pre><a href="tags-step-modifier.html#tags"><strong>tags</strong></a>: [string]</pre>
+    <a name="set-pipeline-step-set-pipeline"></a>
+    <pre><a href="set-pipeline-step.html#set-pipeline-step-set-pipeline"><strong>set_pipeline</strong></a>: string</pre>
   </div>
 
   <div class="definition-content">
-    <p><em>Optional. Default <code>[]</code>.</em> The tags by which to match workers.</p><p>For example, if <code>[a, b]</code> is specified, only workers advertising the <code>a</code> and <code>b</code> tags (or any others) will be used for running the step.</p>
+    <p><em>Required.</em> The name of the pipeline to configure.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="set-pipeline-step-file"></a>
+    <pre><a href="set-pipeline-step.html#set-pipeline-step-file"><strong>file</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Required.</em> The path to the pipeline&#39;s configuration file.</p><p><code>file</code> points at a <code>.yml</code> file containing the pipeline configuration, which allows this to be tracked with your resources.</p><p>The first segment in the path should refer to another source from the plan, and the rest of the path is relative to that source.</p><p>For example, if in your plan you have the following <a href="get-step.html"><code>get</code></a> step:</p><div class="highlight"><pre style="">-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>something<span style="color:#e6e7e8">
+</span></pre></div><p>And the <code>something</code> resource provided a <code>pipeline.yml</code> file, you would set <code>file: something/pipeline.yml</code>.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="set-pipeline-step-vars"></a>
+    <pre><a href="set-pipeline-step.html#set-pipeline-step-vars"><strong>vars</strong></a>: object</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> A map of template variables to pass to the pipeline config.</p><p>For example, a var may be statically passed like so:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>my-repo<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>set_pipeline:<span style="color:#e6e7e8"> </span>configure-the-pipeline<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>my-repo/ci/pipeline.yml<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>vars:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>text:<span style="color:#e6e7e8"> </span><span style="color:#e67e22">&#34;Hello World!&#34;</span><span style="color:#e6e7e8">
+</span></pre></div><p>This means that any <a href="setting-pipelines.html#pipeline-vars"><code>((vars))</code></a> in the pipeline will be resolved using this field. For example, if <code>my-repo/ci/pipeline.yml</code> looks like</p><div class="highlight"><pre style="">resources:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>task-image<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>type:<span style="color:#e6e7e8"> </span>docker-image<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>source:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">      </span>repository:<span style="color:#e6e7e8"> </span>my.local.registry:<span style="color:#1abc9c;font-weight:bold">8080</span>/my/image<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">      </span>username:<span style="color:#e6e7e8"> </span>((myuser))<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">      </span>password:<span style="color:#e6e7e8"> </span>((mypass))<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>jobs:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>job<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>task-image<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>do-stuff<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>image:<span style="color:#e6e7e8"> </span>task-image<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">    </span>config:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">      </span>platform:<span style="color:#e6e7e8"> </span>linux<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">      </span>run:<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">        </span>path:<span style="color:#e6e7e8"> </span>echo<span style="color:#e6e7e8">
+</span><span style="color:#e6e7e8">        </span>args:<span style="color:#e6e7e8"> </span>[<span style="color:#e67e22">&#34;((text))&#34;</span>]<span style="color:#e6e7e8">
+</span></pre></div><p>...this will resolve <code>&#34;((text))&#34;</code> to <code>&#34;Hello World!&#34;</code>, while <code>((myuser))</code> and <code>((mypass))</code>  will be resolved in runtime via a <a href="creds.html">credential manager</a>, if it has been configured.</p><p>Note that variables set with this field will not propagate to tasks configured via <a href="task-step.html#task-step-file"><strong><code>file</code></strong></a>. If you want those variables to be determined at the time the pipeline is set, use <a href="task-step.html#task-step-vars"><strong><code>vars</code></strong></a> as well.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="set-pipeline-step-var-files"></a>
+    <pre><a href="set-pipeline-step.html#set-pipeline-step-var-files"><strong>var_files</strong></a>: [string]</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> A list of paths to <code>.yml</code> files that will be passed to the pipeline config in the same manner as the <code>--load-vars-from</code> flag to <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a> -- this means that if a variable appears in multiple files, the value from a file that is passed later in the list will override the values from files earlier in the list.</p>
   </div>
 </div>
 
@@ -477,10 +546,10 @@
           prev:
 
           
-          <span class="section-number">1.7.1.13</span>
+          <span class="section-number">1.7.1.3</span>
           
 
-          <a href="ensure-step-hook.html"><code>ensure</code> step hook</a>
+          <a href="task-step.html"><code>task</code> step</a>
         </div>
       
 
@@ -489,10 +558,10 @@
           next:
 
           
-          <span class="section-number">1.7.1.15</span>
+          <span class="section-number">1.7.1.5</span>
           
 
-          <a href="timeout-step-modifier.html"><code>timeout</code> step modifier</a>
+          <a href="aggregate-step.html"><code>aggregate</code> step</a>
         </div>
       
       </nav>

@@ -442,7 +442,7 @@ $ concourse migrate --supported-db-version
 <span style="color:#3498db">CONCOURSE_ENABLE_LETS_ENCRYPT</span>=<span style="color:#8f4b2d">true</span>
 </pre></div><div class="warning">
   <p>Concourse&#39;s Let&#39;s Encrypt integration works by storing the TLS certificate and key in the database, so it is imperative that you enable <a href="encryption.html">database encryption</a> as well.</p>
-</div><p>By default, Concourse will reach out to <a href="https://acme-v01.api.letsencrypt.org/directory">Let&#39;s Encrypt&#39;s ACME CA directory</a>. An alernative URL can be configured like so:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_LETS_ENCRYPT_ACME_URL</span>=https://acme.example.com/directory
+</div><p>By default, Concourse will reach out to <a href="https://acme-v02.api.letsencrypt.org/directory">Let&#39;s Encrypt&#39;s ACME CA directory</a>. An alernative URL can be configured like so:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_LETS_ENCRYPT_ACME_URL</span>=https://acme.example.com/directory
 </pre></div><p>In order to negotiate the certificate, your <code>web</code> node must be reachable by the ACME server. There are intentionally <a href="https://letsencrypt.org/docs/faq/">no publicly listed IP addresses to whitelist</a>, so this typically means just making your <code>web</code> node publicly reachable.</p>
 
   
