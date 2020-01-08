@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -113,7 +115,7 @@
               <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
+  <a href="config-basics.html" >Config Basics</a>
 </td>
           </tr>
         
@@ -122,7 +124,7 @@
               <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resources.html" >Resources</a>
+  <a href="pipelines.html" >Pipelines</a>
 </td>
           </tr>
         
@@ -131,7 +133,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
+  <a href="resources.html" >Resources</a>
 </td>
           </tr>
         
@@ -140,7 +142,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -149,7 +151,7 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -158,7 +160,7 @@
               <td class="number-cell" align="right">1.9&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html" >Tasks</a>
 </td>
           </tr>
         
@@ -167,13 +169,22 @@
               <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
-  <a href="operation.html" >Operation</a>
+  <a href="builds.html" >Builds</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.12&nbsp;</td>
             
             <td class="title-cell">
   <a href="observation.html" >Observation</a>
@@ -282,11 +293,9 @@
   <dt><code>worker_key</code> (one per worker)</dt>
     <dd><p>Each <a href="concourse-worker.html"><code>worker</code> node</a> verifies its registration with the <a href="concourse-web.html"><code>web</code> node</a> via a SSH key.</p><p>The public key must be listed in the <a href="concourse-web.html"><code>web</code> node</a>&#39;s <em>authorized keys</em> configuration in order for the worker to register.</p></dd>
   
-</dl><p>To generate these keys, run:</p><div class="highlight"><pre style="">concourse generate-key -t rsa -f ./session_signing_key
+</dl><p>To generate these keys, run:</p><pre><code class="language-bash">concourse generate-key -t rsa -f ./session_signing_key
 concourse generate-key -t ssh -f ./tsa_host_key
-concourse generate-key -t ssh -f ./worker_key
-</pre></div><p>...and we&#39;ll also start on an <code>authorized_keys</code> file, currently listing this initial worker key:</p><div class="highlight"><pre style="">cp worker_key.pub authorized_worker_keys
-</pre></div>
+concourse generate-key -t ssh -f ./worker_key</code></pre><p>...and we&#39;ll also start on an <code>authorized_keys</code> file, currently listing this initial worker key:</p><pre><code class="language-bash">cp worker_key.pub authorized_worker_keys</code></pre>
 
   
     

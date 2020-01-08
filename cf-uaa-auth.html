@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -115,7 +117,7 @@
               <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
+  <a href="config-basics.html" >Config Basics</a>
 </td>
           </tr>
         
@@ -124,7 +126,7 @@
               <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resources.html" >Resources</a>
+  <a href="pipelines.html" >Pipelines</a>
 </td>
           </tr>
         
@@ -133,7 +135,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
+  <a href="resources.html" >Resources</a>
 </td>
           </tr>
         
@@ -142,7 +144,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -151,7 +153,7 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -160,7 +162,7 @@
               <td class="number-cell" align="right">1.9&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html" >Tasks</a>
 </td>
           </tr>
         
@@ -169,13 +171,22 @@
               <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
-  <a href="operation.html" >Operation</a>
+  <a href="builds.html" >Builds</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.12&nbsp;</td>
             
             <td class="title-cell">
   <a href="observation.html" >Observation</a>
@@ -386,19 +397,16 @@
   <h2 class="section-header"><a class="anchor" name="cf-authentication" href="#cf-authentication"></a>Authentication</h2>
   
 
-  <p>You&#39;ll need to configure your UAA with a <code>concourse</code> client by setting the following under <a href="http://bosh.io/jobs/uaa?source=github.com/cloudfoundry/uaa-release#p=uaa.clients"><code>uaa.clients</code></a>:</p><div class="highlight"><pre style="">concourse:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>id:<span style="color:#e6e7e8"> </span>myclientid<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>secret:<span style="color:#e6e7e8"> </span>myclientsecret<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>scope:<span style="color:#e6e7e8"> </span>openid,cloud_controller.read<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>authorized-grant-types:<span style="color:#e6e7e8"> </span><span style="color:#e67e22">&#34;authorization_code,refresh_token&#34;</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>access-token-validity:<span style="color:#e6e7e8"> </span><span style="color:#1abc9c;font-weight:bold">3600</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>refresh-token-validity:<span style="color:#e6e7e8"> </span><span style="color:#1abc9c;font-weight:bold">3600</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>redirect-uri:<span style="color:#e6e7e8"> </span>https://concourse.example.com/sky/issuer/callback<span style="color:#e6e7e8">
-</span></pre></div><p>The value for <code>redirect-uri</code> must be the external URL of your Concourse server with <code>/sky/issuer/callback</code> appended.</p><p>For example, Concourse&#39;s own CI server&#39;s callback URL would be:</p><div class="highlight"><pre style="">https://ci.concourse-ci.org/sky/issuer/callback
-</pre></div><p>Next, you&#39;ll need to take the same client ID and secret and configure it on the <a href="concourse-web.html"><code>web</code> node</a> by setting the following env:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_CF_API_URL</span>=http://mycf.example.com
-<span style="color:#3498db">CONCOURSE_CF_CLIENT_ID</span>=myclientid
-<span style="color:#3498db">CONCOURSE_CF_CLIENT_SECRET</span>=myclientsecret
-</pre></div><p>Note: if you&#39;re integrating with Cloud Foundry, you&#39;re <em>probably</em> also deploying Concourse via BOSH - in which case you&#39;ll want to set the <a href="https://bosh.io/jobs/atc?source=github.com/concourse/concourse-bosh-release#p=cf_auth.client_id"><code>cf_auth.*</code></a> properties in your manifest instead of setting the above env.</p>
+  <p>You&#39;ll need to configure your UAA with a <code>concourse</code> client by setting the following under <a href="http://bosh.io/jobs/uaa?source=github.com/cloudfoundry/uaa-release#p=uaa.clients"><code>uaa.clients</code></a>:</p><pre><code class="language-yaml">concourse:
+  id: myclientid
+  secret: myclientsecret
+  scope: openid,cloud_controller.read
+  authorized-grant-types: &#34;authorization_code,refresh_token&#34;
+  access-token-validity: 3600
+  refresh-token-validity: 3600
+  redirect-uri: https://concourse.example.com/sky/issuer/callback</code></pre><p>The value for <code>redirect-uri</code> must be the external URL of your Concourse server with <code>/sky/issuer/callback</code> appended.</p><p>For example, Concourse&#39;s own CI server&#39;s callback URL would be:</p><pre><code class="language-bash">https://ci.concourse-ci.org/sky/issuer/callback</code></pre><p>Next, you&#39;ll need to take the same client ID and secret and configure it on the <a href="concourse-web.html"><code>web</code> node</a> by setting the following env:</p><pre><code class="language-bash">CONCOURSE_CF_API_URL=http://mycf.example.com
+CONCOURSE_CF_CLIENT_ID=myclientid
+CONCOURSE_CF_CLIENT_SECRET=myclientsecret</code></pre><p>Note: if you&#39;re integrating with Cloud Foundry, you&#39;re <em>probably</em> also deploying Concourse via BOSH - in which case you&#39;ll want to set the <a href="https://bosh.io/jobs/atc?source=github.com/concourse/concourse-bosh-release#p=cf_auth.client_id"><code>cf_auth.*</code></a> properties in your manifest instead of setting the above env.</p>
 
   
     
@@ -436,17 +444,15 @@
   <dt><code>--cf-space-guid=SPACE_GUID</code></dt>
     <dd><p>Authorize the members with any role of a space within an organization by space GUID.</p></dd>
   
-</dl><p>For example:</p><div class="highlight"><pre style="">$ fly set-team -n my-team <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --cf-user my-username <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --cf-org my-org <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --cf-space my-other-org:my-space
-</pre></div><p>...or via <code>--config</code> for <a href="managing-teams.html#setting-roles">setting user roles</a>:</p><div class="highlight"><pre style="">roles:
+</dl><p>For example:</p><pre><code class="language-bash">$ fly set-team -n my-team \
+    --cf-user my-username \
+    --cf-org my-org \
+    --cf-space my-other-org:my-space</code></pre><p>...or via <code>--config</code> for <a href="managing-teams.html#setting-roles">setting user roles</a>:</p><pre><code class="language-bash">roles:
 - name: member
   cf:
-    users: [<span style="color:#e67e22">&#34;my-username&#34;</span>]
-    orgs: [<span style="color:#e67e22">&#34;my-org&#34;</span>]
-    spaces: [<span style="color:#e67e22">&#34;my-other-org:my-space&#34;</span>]
-</pre></div>
+    users: [&#34;my-username&#34;]
+    orgs: [&#34;my-org&#34;]
+    spaces: [&#34;my-other-org:my-space&#34;]</code></pre>
 
   
     
@@ -455,15 +461,14 @@
   <h3 class="section-header"><a class="anchor" name="adding-cf-users-to-the-main-team" href="#adding-cf-users-to-the-main-team"></a>Adding CF Users to the <code>main</code> Team</h3>
   
 
-  <p>CloudFoundry users and org/space members can be added to the <a href="main-team.html"><code>main</code> team</a> authorization config by setting the following env on the <a href="concourse-web.html"><code>web</code> node</a>:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_MAIN_TEAM_CF_USER</span>=username
-<span style="color:#3498db">CONCOURSE_MAIN_TEAM_CF_ORG</span>=org-name
-<span style="color:#3498db">CONCOURSE_MAIN_TEAM_CF_SPACE</span>=org-name:space-name
-<span style="color:#3498db">CONCOURSE_MAIN_TEAM_CF_SPACE_WITH_ANY_ROLE</span>=org-name:space-name
-<span style="color:#3498db">CONCOURSE_MAIN_TEAM_CF_SPACE_WITH_DEVELOPER_ROLE</span>=org-name:space-name
-<span style="color:#3498db">CONCOURSE_MAIN_TEAM_CF_SPACE_WITH_AUDITOR_ROLE</span>=org-name:space-name
-<span style="color:#3498db">CONCOURSE_MAIN_TEAM_CF_SPACE_WITH_MANAGER_ROLE</span>=org-name:space-name
-<span style="color:#3498db">CONCOURSE_MAIN_TEAM_CF_SPACE_GUID</span>=SPACE_GUID
-</pre></div><p>Multiple users, spaces, etc. may be specified by comma-separating them.</p>
+  <p>CloudFoundry users and org/space members can be added to the <a href="main-team.html"><code>main</code> team</a> authorization config by setting the following env on the <a href="concourse-web.html"><code>web</code> node</a>:</p><pre><code class="language-bash">CONCOURSE_MAIN_TEAM_CF_USER=username
+CONCOURSE_MAIN_TEAM_CF_ORG=org-name
+CONCOURSE_MAIN_TEAM_CF_SPACE=org-name:space-name
+CONCOURSE_MAIN_TEAM_CF_SPACE_WITH_ANY_ROLE=org-name:space-name
+CONCOURSE_MAIN_TEAM_CF_SPACE_WITH_DEVELOPER_ROLE=org-name:space-name
+CONCOURSE_MAIN_TEAM_CF_SPACE_WITH_AUDITOR_ROLE=org-name:space-name
+CONCOURSE_MAIN_TEAM_CF_SPACE_WITH_MANAGER_ROLE=org-name:space-name
+CONCOURSE_MAIN_TEAM_CF_SPACE_GUID=SPACE_GUID</code></pre><p>Multiple users, spaces, etc. may be specified by comma-separating them.</p>
 
   
     

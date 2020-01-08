@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -227,86 +229,85 @@
   <h2 class="section-header"><a class="anchor" name="configuration" href="#configuration"></a>Pipeline Configuration</h2>
   
 
-  <div class="highlight"><pre style="">---<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>resources:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>golang-mock-git<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>type:<span style="color:#e6e7e8"> </span>git<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>icon:<span style="color:#e6e7e8"> </span>github-circle<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>source:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>uri:<span style="color:#e6e7e8"> </span>https://github.com/golang/mock.git<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>golang-<span style="color:#1abc9c;font-weight:bold">1.11</span>.x-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>type:<span style="color:#e6e7e8"> </span>registry-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>icon:<span style="color:#e6e7e8"> </span>docker<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>source:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>repository:<span style="color:#e6e7e8"> </span>golang<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>tag:<span style="color:#e6e7e8"> </span><span style="color:#1abc9c;font-weight:bold">1.11</span>-stretch<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>golang-<span style="color:#1abc9c;font-weight:bold">1.10</span>.x-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>type:<span style="color:#e6e7e8"> </span>registry-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>icon:<span style="color:#e6e7e8"> </span>docker<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>source:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>repository:<span style="color:#e6e7e8"> </span>golang<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>tag:<span style="color:#e6e7e8"> </span><span style="color:#1abc9c;font-weight:bold">1.10</span>-stretch<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>golang-<span style="color:#1abc9c;font-weight:bold">1.9</span>.x-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>type:<span style="color:#e6e7e8"> </span>registry-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>icon:<span style="color:#e6e7e8"> </span>docker<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>source:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>repository:<span style="color:#e6e7e8"> </span>golang<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>tag:<span style="color:#e6e7e8"> </span><span style="color:#1abc9c;font-weight:bold">1.9</span>-stretch<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>task-config:<span style="color:#e6e7e8"> </span><span style="color:#e74c3c;font-weight:bold">&amp;task-config</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>platform:<span style="color:#e6e7e8"> </span>linux<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>inputs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>golang-mock-git<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>path:<span style="color:#e6e7e8"> </span>/go/src/github.com/golang/mock<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>run:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>path:<span style="color:#e6e7e8"> </span>/bin/sh<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>args:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>-<span style="color:#e6e7e8"> </span>-c<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>-<span style="color:#e6e7e8"> </span><span style="color:#e67e22">|
-</span><span style="color:#e67e22">       </span><span style="color:#e67e22"> </span><span style="color:#e67e22">SRCPATH=$PWD/go/src/github.com/golang/mock</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>GOPATH=$PWD/go<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>cd<span style="color:#e6e7e8"> </span>$SRCPATH<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>go<span style="color:#e6e7e8"> </span>get<span style="color:#e6e7e8"> </span>-t<span style="color:#e6e7e8"> </span>-v<span style="color:#e6e7e8"> </span>./...<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>go<span style="color:#e6e7e8"> </span>test<span style="color:#e6e7e8"> </span>-v<span style="color:#e6e7e8"> </span>./...<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>jobs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>golang-<span style="color:#1abc9c;font-weight:bold">1.11</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>public:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>plan:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>golang-mock-git<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>golang-<span style="color:#1abc9c;font-weight:bold">1.11</span>.x-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>run-tests<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>image:<span style="color:#e6e7e8"> </span>golang-<span style="color:#1abc9c;font-weight:bold">1.11</span>.x-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>config:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>&lt;&lt;<span style="color:#e6e7e8"> </span>:<span style="color:#e6e7e8"> </span><span style="color:#e74c3c;font-weight:bold">*task-config</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>golang-<span style="color:#1abc9c;font-weight:bold">1.10</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>public:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>plan:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>golang-mock-git<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>golang-<span style="color:#1abc9c;font-weight:bold">1.10</span>.x-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>run-tests<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>image:<span style="color:#e6e7e8"> </span>golang-<span style="color:#1abc9c;font-weight:bold">1.10</span>.x-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>config:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>&lt;&lt;<span style="color:#e6e7e8"> </span>:<span style="color:#e6e7e8"> </span><span style="color:#e74c3c;font-weight:bold">*task-config</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>golang-<span style="color:#1abc9c;font-weight:bold">1.9</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>public:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>plan:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>golang-mock-git<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>golang-<span style="color:#1abc9c;font-weight:bold">1.9</span>.x-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>run-tests<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>image:<span style="color:#e6e7e8"> </span>golang-<span style="color:#1abc9c;font-weight:bold">1.9</span>.x-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>config:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>&lt;&lt;<span style="color:#e6e7e8"> </span>:<span style="color:#e6e7e8"> </span><span style="color:#e74c3c;font-weight:bold">*task-config</span><span style="color:#e6e7e8">
-</span></pre></div>
+  <pre><code class="language-yaml">---
+resources:
+  - name: golang-mock-git
+    type: git
+    icon: github-circle
+    source:
+      uri: https://github.com/golang/mock.git
+
+  - name: golang-1.11.x-image
+    type: registry-image
+    icon: docker
+    source:
+      repository: golang
+      tag: 1.11-stretch
+
+  - name: golang-1.10.x-image
+    type: registry-image
+    icon: docker
+    source:
+      repository: golang
+      tag: 1.10-stretch
+
+  - name: golang-1.9.x-image
+    type: registry-image
+    icon: docker
+    source:
+      repository: golang
+      tag: 1.9-stretch
+
+task-config: &amp;task-config
+  platform: linux
+  inputs:
+    - name: golang-mock-git
+      path: /go/src/github.com/golang/mock
+  run:
+    path: /bin/sh
+    args:
+      - -c
+      - |
+        SRCPATH=$PWD/go/src/github.com/golang/mock
+        GOPATH=$PWD/go
+        cd $SRCPATH
+        go get -t -v ./...
+        go test -v ./...
+
+jobs:
+  - name: golang-1.11
+    public: true
+    plan:
+      - get: golang-mock-git
+        trigger: true
+      - get: golang-1.11.x-image
+        trigger: true
+      - task: run-tests
+        image: golang-1.11.x-image
+        config:
+          &lt;&lt; : *task-config
+  - name: golang-1.10
+    public: true
+    plan:
+      - get: golang-mock-git
+        trigger: true
+      - get: golang-1.10.x-image
+        trigger: true
+      - task: run-tests
+        image: golang-1.10.x-image
+        config:
+          &lt;&lt; : *task-config
+  - name: golang-1.9
+    public: true
+    plan:
+      - get: golang-mock-git
+        trigger: true
+      - get: golang-1.9.x-image
+        trigger: true
+      - task: run-tests
+        image: golang-1.9.x-image
+        config:
+          &lt;&lt; : *task-config</code></pre>
 
   
     

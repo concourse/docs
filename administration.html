@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -113,7 +115,7 @@
               <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
+  <a href="config-basics.html" >Config Basics</a>
 </td>
           </tr>
         
@@ -122,7 +124,7 @@
               <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resources.html" >Resources</a>
+  <a href="pipelines.html" >Pipelines</a>
 </td>
           </tr>
         
@@ -131,7 +133,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
+  <a href="resources.html" >Resources</a>
 </td>
           </tr>
         
@@ -140,7 +142,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -149,7 +151,7 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -158,7 +160,7 @@
               <td class="number-cell" align="right">1.9&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html" >Tasks</a>
 </td>
           </tr>
         
@@ -167,13 +169,22 @@
               <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
-  <a href="operation.html"  class="active">Operation</a>
+  <a href="builds.html" >Builds</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html"  class="active">Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.12&nbsp;</td>
             
             <td class="title-cell">
   <a href="observation.html" >Observation</a>
@@ -193,7 +204,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.10</span>
+        <span class="section-number">1.11</span>
         
         
   <a href="operation.html"  class="active">Operation</a>
@@ -205,7 +216,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.10.1&nbsp;</td>
+              <td class="number-cell" align="right">1.11.1&nbsp;</td>
             
             <td class="title-cell">
   <a href="encryption.html" >Encryption</a>
@@ -214,7 +225,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.10.2&nbsp;</td>
+              <td class="number-cell" align="right">1.11.2&nbsp;</td>
             
             <td class="title-cell">
   <a href="creds.html" >Credential Management</a>
@@ -223,7 +234,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.10.3&nbsp;</td>
+              <td class="number-cell" align="right">1.11.3&nbsp;</td>
             
             <td class="title-cell">
   <a href="metrics.html" >Metrics</a>
@@ -232,7 +243,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.10.4&nbsp;</td>
+              <td class="number-cell" align="right">1.11.4&nbsp;</td>
             
             <td class="title-cell">
   <a href="container-placement.html" >Container Placement</a>
@@ -241,7 +252,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.10.5&nbsp;</td>
+              <td class="number-cell" align="right">1.11.5&nbsp;</td>
             
             <td class="title-cell">
   <a href="global-resources.html" >Global Resources (experimental)</a>
@@ -250,7 +261,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.10.6&nbsp;</td>
+              <td class="number-cell" align="right">1.11.6&nbsp;</td>
             
             <td class="title-cell">
   <a href="administration.html"  class="self">Administration</a>
@@ -272,7 +283,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.10.6</span>
+        <span class="section-number">1.11.6</span>
         
         
   <a href="administration.html"  class="self">Administration</a>
@@ -366,7 +377,7 @@
     <div class="page-content">
       <div class="section" id="section_administration">
   
-  <h1 class="section-header"><a class="anchor" name="administration" href="#administration"></a><span class="section-number">1.10.6 </span>Administration</h1>
+  <h1 class="section-header"><a class="anchor" name="administration" href="#administration"></a><span class="section-number">1.11.6 </span>Administration</h1>
   
 
   
@@ -378,8 +389,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-workers" href="#fly-workers"></a><code>fly workers</code></h2>
   
 
-  <p>To list the currently registered workers, including additional metadata, run:</p><div class="highlight"><pre style="">$ fly -t example workers
-</pre></div><p>This can be useful for monitoring the status of your workers, if you suspect that one keeps dropping out of the pool or getting tasked with too many containers, etc.</p>
+  <p>To list the currently registered workers, including additional metadata, run:</p><pre><code class="language-bash">$ fly -t example workers</code></pre><p>This can be useful for monitoring the status of your workers, if you suspect that one keeps dropping out of the pool or getting tasked with too many containers, etc.</p>
 
   
     
@@ -391,9 +401,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-prune-worker" href="#fly-prune-worker"></a><code>fly prune-worker</code></h2>
   
 
-  <p>To remove a stalled, landing, landed, or retiring worker, run:</p><div class="highlight"><pre style="">$ fly -t example prune-worker --worker worker-name
-</pre></div><p>To prune <em>all</em> stalled workers, run:</p><div class="highlight"><pre style="">$ fly -t example prune-worker --all-stalled
-</pre></div><p>This is for those cases where you know a worker is not coming back. Note that running workers cannot be pruned, since they&#39;ll just re-register themselves anyway.</p>
+  <p>To remove a stalled, landing, landed, or retiring worker, run:</p><pre><code class="language-bash">$ fly -t example prune-worker --worker worker-name</code></pre><p>To prune <em>all</em> stalled workers, run:</p><pre><code class="language-bash">$ fly -t example prune-worker --all-stalled</code></pre><p>This is for those cases where you know a worker is not coming back. Note that running workers cannot be pruned, since they&#39;ll just re-register themselves anyway.</p>
 
   
     
@@ -405,8 +413,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-land-worker" href="#fly-land-worker"></a><code>fly land-worker</code></h2>
   
 
-  <p>To initiate landing of a worker and eventually (after draining) cause it to exit, run:</p><div class="highlight"><pre style="">$ fly -t example land-worker --worker worker-name
-</pre></div>
+  <p>To initiate landing of a worker and eventually (after draining) cause it to exit, run:</p><pre><code class="language-bash">$ fly -t example land-worker --worker worker-name</code></pre>
 
   
     
@@ -418,8 +425,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-containers" href="#fly-containers"></a><code>fly containers</code></h2>
   
 
-  <p>To list the active containers across all your workers, run:</p><div class="highlight"><pre style="">$ fly -t example containers
-</pre></div><p>This can be useful when discovering the containers available for <a href="builds.html#fly-intercept"><code>fly intercept</code></a>ing.</p>
+  <p>To list the active containers across all your workers, run:</p><pre><code class="language-bash">$ fly -t example containers</code></pre><p>This can be useful when discovering the containers available for <a href="builds.html#fly-intercept"><code>fly intercept</code></a>ing.</p>
 
   
     
@@ -431,8 +437,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-volumes" href="#fly-volumes"></a><code>fly volumes</code></h2>
   
 
-  <p>To list the active volumes across all your workers, run:</p><div class="highlight"><pre style="">$ fly -t example volumes
-</pre></div><p>This can be useful to observe the caches warming across your cluster, and could be a good indicator of disk use.</p>
+  <p>To list the active volumes across all your workers, run:</p><pre><code class="language-bash">$ fly -t example volumes</code></pre><p>This can be useful to observe the caches warming across your cluster, and could be a good indicator of disk use.</p>
 
   
     
@@ -444,12 +449,10 @@
   <h2 class="section-header"><a class="anchor" name="fly-curl" href="#fly-curl"></a><code>fly curl</code></h2>
   
 
-  <p>To execute an arbirary API request, you can run something like the following:</p><div class="highlight"><pre style="">$ fly -t example curl /api/v1/info
-</pre></div><p>This command is just a shim that runs <code>curl</code> under the hood. To pass flags to <code>curl</code>, pass a <code>--</code> argument after the path so that <code>fly</code> can distinguish them from its own flags:</p><div class="highlight"><pre style="">$ fly -t example curl /api/v1/builds -- <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    -X PUT <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    -H <span style="color:#e67e22">&#34;Content-type: application/json&#34;</span> <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    -d @plan.json
-</pre></div><p>Note: if you use this command the assumption is that you know what you&#39;re doing. If you find yourself using this command often, let us know - perhaps there&#39;s a missing command!</p>
+  <p>To execute an arbirary API request, you can run something like the following:</p><pre><code class="language-bash">$ fly -t example curl /api/v1/info</code></pre><p>This command is just a shim that runs <code>curl</code> under the hood. To pass flags to <code>curl</code>, pass a <code>--</code> argument after the path so that <code>fly</code> can distinguish them from its own flags:</p><pre><code class="language-bash">$ fly -t example curl /api/v1/builds -- \
+    -X PUT \
+    -H &#34;Content-type: application/json&#34; \
+    -d @plan.json</code></pre><p>Note: if you use this command the assumption is that you know what you&#39;re doing. If you find yourself using this command often, let us know - perhaps there&#39;s a missing command!</p>
 
   
     
@@ -465,7 +468,7 @@
           prev:
 
           
-          <span class="section-number">1.10.5</span>
+          <span class="section-number">1.11.5</span>
           
 
           <a href="global-resources.html">Global Resources (experimental)</a>
@@ -477,7 +480,7 @@
           next:
 
           
-          <span class="section-number">1.11</span>
+          <span class="section-number">1.12</span>
           
 
           <a href="observation.html">Observation</a>

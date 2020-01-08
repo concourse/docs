@@ -13,7 +13,7 @@
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
-<title>Managing Resource Types - Concourse CI</title>
+<title>The Dummy ((var)) source - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
@@ -67,6 +67,10 @@
   
   
   
+  
+  
+  
+  
 
   
   <div class="context">
@@ -115,7 +119,7 @@
               <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="config-basics.html" >Config Basics</a>
+  <a href="config-basics.html"  class="active">Config Basics</a>
 </td>
           </tr>
         
@@ -142,7 +146,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html"  class="active">Resource Types</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -204,10 +208,10 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.7</span>
+        <span class="section-number">1.4</span>
         
         
-  <a href="resource-types.html"  class="active">Resource Types</a>
+  <a href="config-basics.html"  class="active">Config Basics</a>
 
       </div>
 
@@ -216,19 +220,108 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.7.1&nbsp;</td>
+              <td class="number-cell" align="right">1.4.1&nbsp;</td>
             
             <td class="title-cell">
-  <a href="managing-resource-types.html"  class="self">Managing Resource Types</a>
+  <a href="intro-to-yaml.html" >Intro to YAML</a>
 </td>
           </tr>
         
           <tr>
             
-              <td class="number-cell" align="right">1.7.2&nbsp;</td>
+              <td class="number-cell" align="right">1.4.2&nbsp;</td>
             
             <td class="title-cell">
-  <a href="implementing-resource-types.html" >Implementing a Resource Type</a>
+  <a href="vars.html" >Intro to <code>((vars))</code></a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.4.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="runtime-vars.html"  class="active">Fetching <code>((vars))</code> at Runtime</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1.4.3</span>
+        
+        
+  <a href="runtime-vars.html"  class="active">Fetching <code>((vars))</code> at Runtime</a>
+
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="runtime-vars.html#cluster-wide-credential-manager" >The Cluster-wide Credential Manager</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="runtime-vars.html#var-sources"  class="active"><code>((var))</code> Sources</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+        
+  <a href="runtime-vars.html#var-sources"  class="active"><code>((var))</code> Sources</a>
+
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.4.3.2.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="vault-var-source.html" >The Vault <code>((var))</code> source</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.4.3.2.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="dummy-var-source.html"  class="self">The Dummy <code>((var))</code> source</a>
 </td>
           </tr>
         
@@ -242,68 +335,53 @@
 
 
 
-<div class="context">
-  <div class="page-toc">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1.7.1</span>
-        
-        
-  <a href="managing-resource-types.html"  class="self">Managing Resource Types</a>
 
-      </div>
+
+
+<div class="context">
+  <div class="Top">
+    On this page:
+  </div>
+
+  <div class="children anchors">
+    <table>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="dummy-var-source.html#dummy-var-source-vars"><strong><code>vars</code></strong></a></td>
+      </tr>
+      
 
       
-<div class="children">
-  <table>
+  
     
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="managing-resource-types.html#fly-check-resource-type"><code>fly check-resource-type</code></a>
+  
 
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-    </nav>
+    </table>
   </div>
 </div>
-
-
-
 
     </div>
 
     <div class="page-aside"></div>
 
     <div class="page-content">
-      <div class="section" id="section_managing-resource-types">
+      <div class="section" id="section_dummy-var-source">
   
-  <h1 class="section-header"><a class="anchor" name="managing-resource-types" href="#managing-resource-types"></a><span class="section-number">1.7.1 </span>Managing Resource Types</h1>
-  
-
+  <h1 class="section-header"><a class="anchor" name="dummy-var-source" href="#dummy-var-source"></a><span class="section-number">1.4.3.2.2 </span>The Dummy <code>((var))</code> source</h1>
   
 
-  
-    
-      <div class="section" id="section_fly-check-resource-type">
-  
-  <h2 class="section-header"><a class="anchor" name="fly-check-resource-type" href="#fly-check-resource-type"></a><code>fly check-resource-type</code></h2>
-  
+  <p>The <code>dummy</code> type supports configuring a static map of vars to values.</p><p>This is really only useful if you have no better alternative for credential management but still have sensitive values that you would like to <a href="creds-redacting.html">redact</a> them from build output.</p><p>The following fields can be set under <a href="runtime-vars.html#var-source-config"><strong><code>config</code></strong></a>:</p><div class="definition">
+  <div class="definition-thumb">
+    <a name="dummy-var-source-vars"></a>
+    <pre><a href="dummy-var-source.html#dummy-var-source-vars"><strong>vars</strong></a>: object</pre>
+  </div>
 
-  <p>To force immediate checking for new versions of a resource type, rather than waiting for the periodic checking, run:</p><pre><code class="language-bash">$ fly -t example check-resource-type --resource-type my-pipeline/my-resource-type</code></pre><p>This can be useful for forcing an update if you&#39;re iterating on your own resource type implementation.</p>
-
-  
-    
-  
+  <div class="definition-content">
+    <p><em>Required.</em> A mapping of var name to var value.</p>
+  </div>
 </div>
+
+  
     
   
 </div>
@@ -314,10 +392,10 @@
           prev:
 
           
-          <span class="section-number">1.7</span>
+          <span class="section-number">1.4.3.2.1</span>
           
 
-          <a href="resource-types.html">Resource Types</a>
+          <a href="vault-var-source.html">The Vault <code>((var))</code> source</a>
         </div>
       
 
@@ -326,10 +404,10 @@
           next:
 
           
-          <span class="section-number">1.7.2</span>
+          <span class="section-number">1.5</span>
           
 
-          <a href="implementing-resource-types.html">Implementing a Resource Type</a>
+          <a href="pipelines.html">Pipelines</a>
         </div>
       
       </nav>

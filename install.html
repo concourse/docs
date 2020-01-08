@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -111,7 +113,7 @@
               <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
+  <a href="config-basics.html" >Config Basics</a>
 </td>
           </tr>
         
@@ -120,7 +122,7 @@
               <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resources.html" >Resources</a>
+  <a href="pipelines.html" >Pipelines</a>
 </td>
           </tr>
         
@@ -129,7 +131,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
+  <a href="resources.html" >Resources</a>
 </td>
           </tr>
         
@@ -138,7 +140,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -147,7 +149,7 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -156,7 +158,7 @@
               <td class="number-cell" align="right">1.9&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html" >Tasks</a>
 </td>
           </tr>
         
@@ -165,13 +167,22 @@
               <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
-  <a href="operation.html" >Operation</a>
+  <a href="builds.html" >Builds</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.12&nbsp;</td>
             
             <td class="title-cell">
   <a href="observation.html" >Observation</a>
@@ -276,13 +287,12 @@
         <div class="content">
   <h2>Quick Start</h2>
 
-  <p>Alternatively, if you&#39;d just like to get a Concourse running and don&#39;t really care how, you can use <a href="https://docs.docker.com/compose/"><code>docker-compose</code></a> to run a quick-and-dirty Concourse cluster:</p><div class="highlight"><pre style="">$ wget https://concourse-ci.org/docker-compose.yml
+  <p>Alternatively, if you&#39;d just like to get a Concourse running and don&#39;t really care how, you can use <a href="https://docs.docker.com/compose/"><code>docker-compose</code></a> to run a quick-and-dirty Concourse cluster:</p><pre><code class="language-bash">$ wget https://concourse-ci.org/docker-compose.yml
 $ docker-compose up -d
 Creating docs_concourse-db_1 ...
-Creating docs_concourse-db_1 ... <span style="color:#2ecc71;font-weight:bold">done</span>
+Creating docs_concourse-db_1 ... done
 Creating docs_concourse_1 ...
-Creating docs_concourse_1 ... <span style="color:#2ecc71;font-weight:bold">done</span>
-</pre></div><p>Concourse will be running at <a href="http://localhost:8080">localhost:8080</a>.</p><p>This instance is configured with a single user with the username and password as <code>test</code>. If you&#39;d like to change these credentials you can edit the <code>docker-compose.yml</code> - check out <a href="configuring-auth.html">Configuring Auth</a> to learn how.</p><p>From here you can continue on to <a href="fly.html"><code>fly</code> CLI</a> to get started.</p>
+Creating docs_concourse_1 ... done</code></pre><p>Concourse will be running at <a href="http://localhost:8080">localhost:8080</a>.</p><p>This instance is configured with a single user with the username and password as <code>test</code>. If you&#39;d like to change these credentials you can edit the <code>docker-compose.yml</code> - check out <a href="configuring-auth.html">Configuring Auth</a> to learn how.</p><p>From here you can continue on to <a href="fly.html"><code>fly</code> CLI</a> to get started.</p>
 </div>
       </div>
       </div>
@@ -293,12 +303,10 @@ Creating docs_concourse_1 ... <span style="color:#2ecc71;font-weight:bold">done<
   <h1 class="section-header"><a class="anchor" name="install" href="#install"></a><span class="section-number">1.1 </span>Install</h1>
   
 
-  <p>A Concourse installation is composed of a <a href="concourse-web.html"><code>web</code> node</a>, a <a href="concourse-worker.html"><code>worker</code> node</a>, and a <a href="postgresql-node.html">PostgreSQL node</a>.</p><p>The <code>web</code> and <code>worker</code> nodes both run via a single <code>concourse</code> CLI, which can be downloaded from the <a href="https://github.com/concourse/concourse/releases/latest">latest GitHub release</a> - be sure to grab the appropriate archive for your platform of choice.</p><p>Each archive contains the following:</p><div class="highlight"><pre style="">concourse/bin/concourse
-concourse/bin/gdn            <span style="color:#9b9b9b"># on Linux</span>
+  <p>A Concourse installation is composed of a <a href="concourse-web.html"><code>web</code> node</a>, a <a href="concourse-worker.html"><code>worker</code> node</a>, and a <a href="postgresql-node.html">PostgreSQL node</a>.</p><p>The <code>web</code> and <code>worker</code> nodes both run via a single <code>concourse</code> CLI, which can be downloaded from the <a href="https://github.com/concourse/concourse/releases/latest">latest GitHub release</a> - be sure to grab the appropriate archive for your platform of choice.</p><p>Each archive contains the following:</p><pre><code class="language-sh">concourse/bin/concourse
+concourse/bin/gdn            # on Linux
 concourse/fly-assets/...
-concourse/resource-types/... <span style="color:#9b9b9b"># on Linux</span>
-</pre></div><p>When extracted, the <code>concourse</code> binary will auto-discover its sibling assets based on its file location, so you may extract it anywhere.</p><p>On Linux a typical install location is <code>/usr/local/concourse</code>:</p><div class="highlight"><pre style="">tar -zxf concourse-*.tgz -C /usr/local
-</pre></div><p>From there, you can either add <code>/usr/local/concourse/bin</code> to your <code>$PATH</code>, or just execute <code>/usr/local/concourse/bin/concourse</code> directly.</p><p><h2>Configuration basics</h2></p><p>All Concourse node configuration is defined statically via flags. For a full list of flags, you can pass <code>--help</code> to any command.</p><p>Each flag can also be set via an environment variable. The env var for each flag is based on the flag name, preceded with <code>CONCOURSE_</code>. These are also shown in <code>--help</code>.</p><p>Various sections in documentation may refer to configuration via env vars rather than flags, but they are both equivalent and interchangeable. Env vars are just easier to reference in isolation and are more useful to copy-paste.</p>
+concourse/resource-types/... # on Linux</code></pre><p>When extracted, the <code>concourse</code> binary will auto-discover its sibling assets based on its file location, so you may extract it anywhere.</p><p>On Linux a typical install location is <code>/usr/local/concourse</code>:</p><pre><code class="language-sh">tar -zxf concourse-*.tgz -C /usr/local</code></pre><p>From there, you can either add <code>/usr/local/concourse/bin</code> to your <code>$PATH</code>, or just execute <code>/usr/local/concourse/bin/concourse</code> directly.</p><p><h2>Configuration basics</h2></p><p>All Concourse node configuration is defined statically via flags. For a full list of flags, you can pass <code>--help</code> to any command.</p><p>Each flag can also be set via an environment variable. The env var for each flag is based on the flag name, preceded with <code>CONCOURSE_</code>. These are also shown in <code>--help</code>.</p><p>Various sections in documentation may refer to configuration via env vars rather than flags, but they are both equivalent and interchangeable. Env vars are just easier to reference in isolation and are more useful to copy-paste.</p>
 
   
 </div>

@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -115,7 +117,7 @@
               <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
+  <a href="config-basics.html" >Config Basics</a>
 </td>
           </tr>
         
@@ -124,7 +126,7 @@
               <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resources.html" >Resources</a>
+  <a href="pipelines.html" >Pipelines</a>
 </td>
           </tr>
         
@@ -133,7 +135,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
+  <a href="resources.html" >Resources</a>
 </td>
           </tr>
         
@@ -142,7 +144,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -151,7 +153,7 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -160,7 +162,7 @@
               <td class="number-cell" align="right">1.9&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html" >Tasks</a>
 </td>
           </tr>
         
@@ -169,13 +171,22 @@
               <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
-  <a href="operation.html" >Operation</a>
+  <a href="builds.html" >Builds</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.12&nbsp;</td>
             
             <td class="title-cell">
   <a href="observation.html" >Observation</a>
@@ -402,10 +413,8 @@
 
 </ul></li>
 
-</ul><p>The &#34;Callback URL&#34; must be the URL of your Concourse server with <code>/sky/issuer/callback</code> appended. This address must be reachable by BitBucket Cloud - it can&#39;t be <code>localhost</code>.</p><p>For example, Concourse&#39;s own CI server&#39;s callback URL would be:</p><div class="highlight"><pre style="">https://ci.concourse-ci.org/sky/issuer/callback
-</pre></div><p>You will be given a Client ID and a Client Secret for your new application. The client ID and secret must then be configured on the <a href="concourse-web.html"><code>web</code> node</a> by setting the following env:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_BITBUCKET_CLOUD_CLIENT_ID</span>=myclientid
-<span style="color:#3498db">CONCOURSE_BITBUCKET_CLOUD_CLIENT_SECRET</span>=myclientsecret
-</pre></div>
+</ul><p>The &#34;Callback URL&#34; must be the URL of your Concourse server with <code>/sky/issuer/callback</code> appended. This address must be reachable by BitBucket Cloud - it can&#39;t be <code>localhost</code>.</p><p>For example, Concourse&#39;s own CI server&#39;s callback URL would be:</p><pre><code class="language-bash">https://ci.concourse-ci.org/sky/issuer/callback</code></pre><p>You will be given a Client ID and a Client Secret for your new application. The client ID and secret must then be configured on the <a href="concourse-web.html"><code>web</code> node</a> by setting the following env:</p><pre><code class="language-bash">CONCOURSE_BITBUCKET_CLOUD_CLIENT_ID=myclientid
+CONCOURSE_BITBUCKET_CLOUD_CLIENT_SECRET=myclientsecret</code></pre>
 
   
     
@@ -425,15 +434,13 @@
   <dt><code>--bitbucket-cloud-team=TEAM_NAME</code></dt>
     <dd><p>Authorize an entire organization&#39;s members.</p></dd>
   
-</dl><p>For example:</p><div class="highlight"><pre style="">$ fly set-team -n my-team <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --bitbucket-cloud-user my-bitbucket-login <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --bitbucket-cloud-team my-bitbucket-team
-</pre></div><p>...or via <code>--config</code> for <a href="managing-teams.html#setting-roles">setting user roles</a>:</p><div class="highlight"><pre style="">roles:
+</dl><p>For example:</p><pre><code class="language-bash">$ fly set-team -n my-team \
+    --bitbucket-cloud-user my-bitbucket-login \
+    --bitbucket-cloud-team my-bitbucket-team</code></pre><p>...or via <code>--config</code> for <a href="managing-teams.html#setting-roles">setting user roles</a>:</p><pre><code class="language-bash">roles:
 - name: member
   bitbucket-cloud:
-    users: [<span style="color:#e67e22">&#34;my-bitbucket-login&#34;</span>]
-    teams: [<span style="color:#e67e22">&#34;my-bitbucket-team&#34;</span>]
-</pre></div>
+    users: [&#34;my-bitbucket-login&#34;]
+    teams: [&#34;my-bitbucket-team&#34;]</code></pre>
 
   
     
@@ -442,9 +449,8 @@
   <h3 class="section-header"><a class="anchor" name="configuring-main-team-authorization" href="#configuring-main-team-authorization"></a>Configuring <code>main</code> Team Authorization</h3>
   
 
-  <p>BitBucket users and teams can be added to the <a href="main-team.html"><code>main</code> team</a> authorization config by setting the following env on the <a href="concourse-web.html"><code>web</code> node</a>:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_MAIN_TEAM_BITBUCKET_CLOUD_USER</span>=my-bitbucket-login
-<span style="color:#3498db">CONCOURSE_MAIN_TEAM_BITBUCKET_CLOUD_TEAM</span>=my-bitbucket-team
-</pre></div><p>Multiple teams and users may be specified by comma-separating them.</p>
+  <p>BitBucket users and teams can be added to the <a href="main-team.html"><code>main</code> team</a> authorization config by setting the following env on the <a href="concourse-web.html"><code>web</code> node</a>:</p><pre><code class="language-bash">CONCOURSE_MAIN_TEAM_BITBUCKET_CLOUD_USER=my-bitbucket-login
+CONCOURSE_MAIN_TEAM_BITBUCKET_CLOUD_TEAM=my-bitbucket-team</code></pre><p>Multiple teams and users may be specified by comma-separating them.</p>
 
   
     

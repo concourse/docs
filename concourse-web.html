@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -113,7 +115,7 @@
               <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
+  <a href="config-basics.html" >Config Basics</a>
 </td>
           </tr>
         
@@ -122,7 +124,7 @@
               <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resources.html" >Resources</a>
+  <a href="pipelines.html" >Pipelines</a>
 </td>
           </tr>
         
@@ -131,7 +133,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
+  <a href="resources.html" >Resources</a>
 </td>
           </tr>
         
@@ -140,7 +142,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -149,7 +151,7 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -158,7 +160,7 @@
               <td class="number-cell" align="right">1.9&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html" >Tasks</a>
 </td>
           </tr>
         
@@ -167,13 +169,22 @@
               <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
-  <a href="operation.html" >Operation</a>
+  <a href="builds.html" >Builds</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.12&nbsp;</td>
             
             <td class="title-cell">
   <a href="observation.html" >Observation</a>
@@ -292,19 +303,14 @@
   <h2 class="section-header"><a class="anchor" name="web-running" href="#web-running"></a>Running</h2>
   
 
-  <p>The <code>concourse</code> CLI can run as a <code>web</code> node via the <code>web</code> subcommand.</p><p>Before running it, let&#39;s configure a local user so we can log in:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_ADD_LOCAL_USER</span>=myuser:mypass
-<span style="color:#3498db">CONCOURSE_MAIN_TEAM_LOCAL_USER</span>=myuser
-</pre></div><p>This will configure a single user, <code>myuser</code>, with the password <code>mypass</code>. You&#39;ll probably want to change those to sensible values, and later you may want to configure a proper auth provider - check out <a href="auth.html">Auth &amp; Teams</a> whenever you&#39;re ready.</p><p>Next, you&#39;ll need to configure the session signing key, the SSH key for the worker gateway, and the authorized worker key. Check <a href="concourse-generate-key.html">Generating Keys</a> to learn what these are and how they are created.</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_SESSION_SIGNING_KEY</span>=path/to/session_signing_key
-<span style="color:#3498db">CONCOURSE_TSA_HOST_KEY</span>=path/to/tsa_host_key
-<span style="color:#3498db">CONCOURSE_TSA_AUTHORIZED_KEYS</span>=path/to/authorized_worker_keys
-</pre></div><p>Finally, <code>web</code> needs to know how to reach your Postgres database. This can be set like so:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_POSTGRES_HOST</span>=<span style="color:#1abc9c;font-weight:bold">127</span>.0.0.1 <span style="color:#9b9b9b"># default</span>
-<span style="color:#3498db">CONCOURSE_POSTGRES_PORT</span>=<span style="color:#1abc9c;font-weight:bold">5432</span>      <span style="color:#9b9b9b"># default</span>
-<span style="color:#3498db">CONCOURSE_POSTGRES_DATABASE</span>=atc   <span style="color:#9b9b9b"># default</span>
-<span style="color:#3498db">CONCOURSE_POSTGRES_USER</span>=my-user
-<span style="color:#3498db">CONCOURSE_POSTGRES_PASSWORD</span>=my-password
-</pre></div><p>If you&#39;re running PostgreSQL locally, you can probably just point it to the socket and rely on the <code>peer</code> auth:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_POSTGRES_SOCKET</span>=/var/run/postgresql
-</pre></div><p>Now that everything&#39;s set, run:</p><div class="highlight"><pre style="">concourse web
-</pre></div><p>All logs will be emitted to <code>stdout</code>, with any panics or lower-level errors being emitted to <code>stderr</code>.</p>
+  <p>The <code>concourse</code> CLI can run as a <code>web</code> node via the <code>web</code> subcommand.</p><p>Before running it, let&#39;s configure a local user so we can log in:</p><pre><code class="language-bash">CONCOURSE_ADD_LOCAL_USER=myuser:mypass
+CONCOURSE_MAIN_TEAM_LOCAL_USER=myuser</code></pre><p>This will configure a single user, <code>myuser</code>, with the password <code>mypass</code>. You&#39;ll probably want to change those to sensible values, and later you may want to configure a proper auth provider - check out <a href="auth.html">Auth &amp; Teams</a> whenever you&#39;re ready.</p><p>Next, you&#39;ll need to configure the session signing key, the SSH key for the worker gateway, and the authorized worker key. Check <a href="concourse-generate-key.html">Generating Keys</a> to learn what these are and how they are created.</p><pre><code class="language-bash">CONCOURSE_SESSION_SIGNING_KEY=path/to/session_signing_key
+CONCOURSE_TSA_HOST_KEY=path/to/tsa_host_key
+CONCOURSE_TSA_AUTHORIZED_KEYS=path/to/authorized_worker_keys</code></pre><p>Finally, <code>web</code> needs to know how to reach your Postgres database. This can be set like so:</p><pre><code class="language-bash">CONCOURSE_POSTGRES_HOST=127.0.0.1 # default
+CONCOURSE_POSTGRES_PORT=5432      # default
+CONCOURSE_POSTGRES_DATABASE=atc   # default
+CONCOURSE_POSTGRES_USER=my-user
+CONCOURSE_POSTGRES_PASSWORD=my-password</code></pre><p>If you&#39;re running PostgreSQL locally, you can probably just point it to the socket and rely on the <code>peer</code> auth:</p><pre><code class="language-bash">CONCOURSE_POSTGRES_SOCKET=/var/run/postgresql</code></pre><p>Now that everything&#39;s set, run:</p><pre><code class="language-bash">concourse web</code></pre><p>All logs will be emitted to <code>stdout</code>, with any panics or lower-level errors being emitted to <code>stderr</code>.</p>
 
   
     
@@ -367,10 +373,7 @@
   <h3 class="section-header"><a class="anchor" name="scaling" href="#scaling"></a>Scaling</h3>
   
 
-  <p>The <a href="concourse-web.html"><code>web</code> node</a> can be scaled up for high availability. They&#39;ll also roughly share their scheduling workloads, using the database to synchronize. This is done by just running more <code>web</code> commands on different machines, and optionally putting them behind a load balancer.</p><p>To run a cluster of <a href="concourse-web.html"><code>web</code> node</a>s, you&#39;ll first need to ensure they&#39;re all pointing to the same PostgreSQL server.</p><p>Furthermore, you may wish to configure the max number of parallel database connections that each node makes. The number you choose should not be greater than the maximum number of simultaneous connections your Postgres server will allow. For example:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_MAX_OPEN_CONNECTIONS</span>=<span style="color:#1abc9c;font-weight:bold">32</span>
-</pre></div><p>Next, you&#39;ll need to configure a <em>peer address</em>. This is a DNS or IP address that can be used to reach this <code>web</code> node from other <code>web</code> nodes. Typically this uses a private IP, like so:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_PEER_ADDRESS</span>=<span style="color:#1abc9c;font-weight:bold">10</span>.10.0.1
-</pre></div><p>This address will be used for forwarded worker connections, which listen on the ephemeral port range.</p><p>Finally, if all of these nodes are going to be accessed through a load balancer, you&#39;ll need to configure the external URL that will be used to reach your Concourse cluster:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_EXTERNAL_URL</span>=https://ci.example.com
-</pre></div><p>Aside from the peer URL, all configuration must be consistent across all <code>web</code> nodes in the cluster to ensure consistent results.</p>
+  <p>The <a href="concourse-web.html"><code>web</code> node</a> can be scaled up for high availability. They&#39;ll also roughly share their scheduling workloads, using the database to synchronize. This is done by just running more <code>web</code> commands on different machines, and optionally putting them behind a load balancer.</p><p>To run a cluster of <a href="concourse-web.html"><code>web</code> node</a>s, you&#39;ll first need to ensure they&#39;re all pointing to the same PostgreSQL server.</p><p>Furthermore, you may wish to configure the max number of parallel database connections that each node makes. The number you choose should not be greater than the maximum number of simultaneous connections your Postgres server will allow. For example:</p><pre><code class="language-bash">CONCOURSE_MAX_OPEN_CONNECTIONS=32</code></pre><p>Next, you&#39;ll need to configure a <em>peer address</em>. This is a DNS or IP address that can be used to reach this <code>web</code> node from other <code>web</code> nodes. Typically this uses a private IP, like so:</p><pre><code class="language-bash">CONCOURSE_PEER_ADDRESS=10.10.0.1</code></pre><p>This address will be used for forwarded worker connections, which listen on the ephemeral port range.</p><p>Finally, if all of these nodes are going to be accessed through a load balancer, you&#39;ll need to configure the external URL that will be used to reach your Concourse cluster:</p><pre><code class="language-bash">CONCOURSE_EXTERNAL_URL=https://ci.example.com</code></pre><p>Aside from the peer URL, all configuration must be consistent across all <code>web</code> nodes in the cluster to ensure consistent results.</p>
 
   
     
@@ -394,11 +397,9 @@
   <h3 class="section-header"><a class="anchor" name="downgrading" href="#downgrading"></a>Downgrading</h3>
   
 
-  <p>If you&#39;re stuck in a pinch and need to downgrade from one version of Concourse to another, you can use the <code>concourse migrate</code> command.</p><em><p>Note: support for down migrations is a fairly recent addition to Concourse; it is not supported for downgrading to v3.6.0 and below.</p></em><p>First, grab the desired migration version by running the following:</p><div class="highlight"><pre style=""><span style="color:#9b9b9b"># make sure this is the *old* Concourse binary</span>
+  <p>If you&#39;re stuck in a pinch and need to downgrade from one version of Concourse to another, you can use the <code>concourse migrate</code> command.</p><em><p>Note: support for down migrations is a fairly recent addition to Concourse; it is not supported for downgrading to v3.6.0 and below.</p></em><p>First, grab the desired migration version by running the following:</p><pre><code class="language-bash"># make sure this is the *old* Concourse binary
 $ concourse migrate --supported-db-version
-<span style="color:#1abc9c;font-weight:bold">1551110547</span>
-</pre></div><p>That number (yours will be different) is the expected migration version for that version of Concourse.</p><p>Next, run the following with the <em>new</em> Concourse binary:</p><div class="highlight"><pre style="">$ concourse migrate --migrate-db-to-version=<span style="color:#1abc9c;font-weight:bold">1551110547</span>
-</pre></div><p>This will need the same <code>CONCOURSE_POSTGRES_*</code> configuration described in <a href="concourse-web.html#web-running">Running</a>.</p><p>Once this completes, switch all <code>web</code> nodes back to the older <code>concourse</code> binary and you should be good to go.</p>
+1551110547</code></pre><p>That number (yours will be different) is the expected migration version for that version of Concourse.</p><p>Next, run the following with the <em>new</em> Concourse binary:</p><pre><code class="language-bash">$ concourse migrate --migrate-db-to-version=1551110547</code></pre><p>This will need the same <code>CONCOURSE_POSTGRES_*</code> configuration described in <a href="concourse-web.html#web-running">Running</a>.</p><p>Once this completes, switch all <code>web</code> nodes back to the older <code>concourse</code> binary and you should be good to go.</p>
 
   
     
@@ -422,8 +423,7 @@ $ concourse migrate --supported-db-version
   <h3 class="section-header"><a class="anchor" name="giving-your-cluster-a-name" href="#giving-your-cluster-a-name"></a>Giving your cluster a name</h3>
   
 
-  <p>If you&#39;ve got many Concourse clusters that you switch between, you can make it slightly easier to notice which one you&#39;re on by giving each cluster a name:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_CLUSTER_NAME</span>=production
-</pre></div><p>When set, this name will be shown in the top bar when viewing the dashboard.</p>
+  <p>If you&#39;ve got many Concourse clusters that you switch between, you can make it slightly easier to notice which one you&#39;re on by giving each cluster a name:</p><pre><code class="language-bash">CONCOURSE_CLUSTER_NAME=production</code></pre><p>When set, this name will be shown in the top bar when viewing the dashboard.</p>
 
   
     
@@ -435,15 +435,13 @@ $ concourse migrate --supported-db-version
   <h3 class="section-header"><a class="anchor" name="lets-encrypt" href="#lets-encrypt"></a>TLS via Let&#39;s Encrypt</h3>
   
 
-  <p>Concourse can be configured to automatically acquire a TLS certificate via <a href="https://letsencrypt.org">Let&#39;s Encrypt</a>:</p><div class="highlight"><pre style=""><span style="color:#9b9b9b"># Enable TLS</span>
-<span style="color:#3498db">CONCOURSE_TLS_BIND_PORT</span>=<span style="color:#1abc9c;font-weight:bold">443</span>
+  <p>Concourse can be configured to automatically acquire a TLS certificate via <a href="https://letsencrypt.org">Let&#39;s Encrypt</a>:</p><pre><code class="language-bash"># Enable TLS
+CONCOURSE_TLS_BIND_PORT=443
 
-<span style="color:#9b9b9b"># Enable Let&#39;s Encrypt</span>
-<span style="color:#3498db">CONCOURSE_ENABLE_LETS_ENCRYPT</span>=<span style="color:#8f4b2d">true</span>
-</pre></div><div class="warning">
+# Enable Let&#39;s Encrypt
+CONCOURSE_ENABLE_LETS_ENCRYPT=true</code></pre><div class="warning">
   <p>Concourse&#39;s Let&#39;s Encrypt integration works by storing the TLS certificate and key in the database, so it is imperative that you enable <a href="encryption.html">database encryption</a> as well.</p>
-</div><p>By default, Concourse will reach out to <a href="https://acme-v02.api.letsencrypt.org/directory">Let&#39;s Encrypt&#39;s ACME CA directory</a>. An alernative URL can be configured like so:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_LETS_ENCRYPT_ACME_URL</span>=https://acme.example.com/directory
-</pre></div><p>In order to negotiate the certificate, your <code>web</code> node must be reachable by the ACME server. There are intentionally <a href="https://letsencrypt.org/docs/faq/">no publicly listed IP addresses to whitelist</a>, so this typically means just making your <code>web</code> node publicly reachable.</p>
+</div><p>By default, Concourse will reach out to <a href="https://acme-v02.api.letsencrypt.org/directory">Let&#39;s Encrypt&#39;s ACME CA directory</a>. An alernative URL can be configured like so:</p><pre><code class="language-bash">CONCOURSE_LETS_ENCRYPT_ACME_URL=https://acme.example.com/directory</code></pre><p>In order to negotiate the certificate, your <code>web</code> node must be reachable by the ACME server. There are intentionally <a href="https://letsencrypt.org/docs/faq/">no publicly listed IP addresses to whitelist</a>, so this typically means just making your <code>web</code> node publicly reachable.</p>
 
   
     
@@ -455,35 +453,33 @@ $ concourse migrate --supported-db-version
   <h3 class="section-header"><a class="anchor" name="audit-logs" href="#audit-logs"></a>Enabling audit logs</h3>
   
 
-  <p>A very simplistic form of audit logging can be enabled with the following vars:</p><div class="highlight"><pre style=""><span style="color:#9b9b9b"># Enable auditing for all api requests connected to builds.</span>
-<span style="color:#3498db">CONCOURSE_ENABLE_BUILD_AUDITING</span>=<span style="color:#8f4b2d">true</span>
+  <p>A very simplistic form of audit logging can be enabled with the following vars:</p><pre><code class="language-bash"># Enable auditing for all api requests connected to builds.
+CONCOURSE_ENABLE_BUILD_AUDITING=true
 
-<span style="color:#9b9b9b"># Enable auditing for all api requests connected to containers.</span>
-<span style="color:#3498db">CONCOURSE_ENABLE_CONTAINER_AUDITING</span>=<span style="color:#8f4b2d">true</span>
+# Enable auditing for all api requests connected to containers.
+CONCOURSE_ENABLE_CONTAINER_AUDITING=true
 
-<span style="color:#9b9b9b"># Enable auditing for all api requests connected to jobs.</span>
-<span style="color:#3498db">CONCOURSE_ENABLE_JOB_AUDITING</span>=<span style="color:#8f4b2d">true</span>
+# Enable auditing for all api requests connected to jobs.
+CONCOURSE_ENABLE_JOB_AUDITING=true
 
-<span style="color:#9b9b9b"># Enable auditing for all api requests connected to pipelines.</span>
-<span style="color:#3498db">CONCOURSE_ENABLE_PIPELINE_AUDITING</span>=<span style="color:#8f4b2d">true</span>
+# Enable auditing for all api requests connected to pipelines.
+CONCOURSE_ENABLE_PIPELINE_AUDITING=true
 
-<span style="color:#9b9b9b"># Enable auditing for all api requests connected to resources.</span>
-<span style="color:#3498db">CONCOURSE_ENABLE_RESOURCE_AUDITING</span>=<span style="color:#8f4b2d">true</span>
+# Enable auditing for all api requests connected to resources.
+CONCOURSE_ENABLE_RESOURCE_AUDITING=true
 
-<span style="color:#9b9b9b"># Enable auditing for all api requests connected to system transactions.</span>
-<span style="color:#3498db">CONCOURSE_ENABLE_SYSTEM_AUDITING</span>=<span style="color:#8f4b2d">true</span>
+# Enable auditing for all api requests connected to system transactions.
+CONCOURSE_ENABLE_SYSTEM_AUDITING=true
 
-<span style="color:#9b9b9b"># Enable auditing for all api requests connected to teams.</span>
-<span style="color:#3498db">CONCOURSE_ENABLE_TEAM_AUDITING</span>=<span style="color:#8f4b2d">true</span>
+# Enable auditing for all api requests connected to teams.
+CONCOURSE_ENABLE_TEAM_AUDITING=true
 
-<span style="color:#9b9b9b"># Enable auditing for all api requests connected to workers.</span>
-<span style="color:#3498db">CONCOURSE_ENABLE_WORKER_AUDITING</span>=<span style="color:#8f4b2d">true</span>
+# Enable auditing for all api requests connected to workers.
+CONCOURSE_ENABLE_WORKER_AUDITING=true
 
-<span style="color:#9b9b9b"># Enable auditing for all api requests connected to volumes.</span>
-<span style="color:#3498db">CONCOURSE_ENABLE_VOLUME_AUDITING</span>=<span style="color:#8f4b2d">true</span>
-</pre></div><p>When enabled, API requests will result in an info-level log line like so:</p><div class="highlight"><pre style="">{<span style="color:#9b59b6;font-weight:bold">&#34;timestamp&#34;</span>:<span style="color:#e67e22">&#34;2019-05-09T14:41:54.880381537Z&#34;</span>,<span style="color:#9b59b6;font-weight:bold">&#34;level&#34;</span>:<span style="color:#e67e22">&#34;info&#34;</span>,<span style="color:#9b59b6;font-weight:bold">&#34;source&#34;</span>:<span style="color:#e67e22">&#34;atc&#34;</span>,<span style="color:#9b59b6;font-weight:bold">&#34;message&#34;</span>:<span style="color:#e67e22">&#34;atc.audit&#34;</span>,<span style="color:#9b59b6;font-weight:bold">&#34;data&#34;</span>:{<span style="color:#9b59b6;font-weight:bold">&#34;action&#34;</span>:<span style="color:#e67e22">&#34;Info&#34;</span>,<span style="color:#9b59b6;font-weight:bold">&#34;parameters&#34;</span>:{},<span style="color:#9b59b6;font-weight:bold">&#34;user&#34;</span>:<span style="color:#e67e22">&#34;test&#34;</span>}}
-{<span style="color:#9b59b6;font-weight:bold">&#34;timestamp&#34;</span>:<span style="color:#e67e22">&#34;2019-05-09T14:42:36.704864093Z&#34;</span>,<span style="color:#9b59b6;font-weight:bold">&#34;level&#34;</span>:<span style="color:#e67e22">&#34;info&#34;</span>,<span style="color:#9b59b6;font-weight:bold">&#34;source&#34;</span>:<span style="color:#e67e22">&#34;atc&#34;</span>,<span style="color:#9b59b6;font-weight:bold">&#34;message&#34;</span>:<span style="color:#e67e22">&#34;atc.audit&#34;</span>,<span style="color:#9b59b6;font-weight:bold">&#34;data&#34;</span>:{<span style="color:#9b59b6;font-weight:bold">&#34;action&#34;</span>:<span style="color:#e67e22">&#34;GetPipeline&#34;</span>,<span style="color:#9b59b6;font-weight:bold">&#34;parameters&#34;</span>:{<span style="color:#9b59b6;font-weight:bold">&#34;:pipeline_name&#34;</span>:[<span style="color:#e67e22">&#34;booklit&#34;</span>],<span style="color:#9b59b6;font-weight:bold">&#34;:team_name&#34;</span>:[<span style="color:#e67e22">&#34;main&#34;</span>]},<span style="color:#9b59b6;font-weight:bold">&#34;user&#34;</span>:<span style="color:#e67e22">&#34;test&#34;</span>}}
-</pre></div>
+# Enable auditing for all api requests connected to volumes.
+CONCOURSE_ENABLE_VOLUME_AUDITING=true</code></pre><p>When enabled, API requests will result in an info-level log line like so:</p><pre><code class="language-json">{&#34;timestamp&#34;:&#34;2019-05-09T14:41:54.880381537Z&#34;,&#34;level&#34;:&#34;info&#34;,&#34;source&#34;:&#34;atc&#34;,&#34;message&#34;:&#34;atc.audit&#34;,&#34;data&#34;:{&#34;action&#34;:&#34;Info&#34;,&#34;parameters&#34;:{},&#34;user&#34;:&#34;test&#34;}}
+{&#34;timestamp&#34;:&#34;2019-05-09T14:42:36.704864093Z&#34;,&#34;level&#34;:&#34;info&#34;,&#34;source&#34;:&#34;atc&#34;,&#34;message&#34;:&#34;atc.audit&#34;,&#34;data&#34;:{&#34;action&#34;:&#34;GetPipeline&#34;,&#34;parameters&#34;:{&#34;:pipeline_name&#34;:[&#34;booklit&#34;],&#34;:team_name&#34;:[&#34;main&#34;]},&#34;user&#34;:&#34;test&#34;}}</code></pre>
 
   
     

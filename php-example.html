@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -219,46 +221,45 @@
   <h2 class="section-header"><a class="anchor" name="configuration" href="#configuration"></a>Pipeline Configuration</h2>
   
 
-  <div class="highlight"><pre style="">---<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>resources:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>larvel-websockets-git<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>type:<span style="color:#e6e7e8"> </span>git<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>icon:<span style="color:#e6e7e8"> </span>github-circle<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>source:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>uri:<span style="color:#e6e7e8"> </span>https://github.com/beyondcode/laravel-websockets.git<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>jobs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>test<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>public:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>plan:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>larvel-websockets-git<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>run-tests<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>config:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>platform:<span style="color:#e6e7e8"> </span>linux<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>image_resource:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>type:<span style="color:#e6e7e8"> </span>registry-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>source:<span style="color:#e6e7e8"> </span>{<span style="color:#e6e7e8"> </span>repository:<span style="color:#e6e7e8"> </span>php,<span style="color:#e6e7e8"> </span>tag:<span style="color:#e6e7e8"> </span><span style="color:#1abc9c;font-weight:bold">7.2</span>-cli<span style="color:#e6e7e8"> </span>}<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>inputs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>larvel-websockets-git<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>run:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>path:<span style="color:#e6e7e8"> </span>/bin/sh<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>args:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">              </span>-<span style="color:#e6e7e8"> </span>-c<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">              </span>-<span style="color:#e6e7e8"> </span><span style="color:#e67e22">|
-</span><span style="color:#e67e22">               </span><span style="color:#e67e22"> </span><span style="color:#e67e22">apt-get update</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">                </span>apt-get<span style="color:#e6e7e8"> </span>install<span style="color:#e6e7e8"> </span>-y<span style="color:#e6e7e8"> </span>git<span style="color:#e6e7e8"> </span>unzip<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">                </span>php<span style="color:#e6e7e8"> </span>-r<span style="color:#e6e7e8"> </span><span style="color:#e67e22">&#34;copy(&#39;https://getcomposer.org/installer&#39;, &#39;composer-setup.php&#39;);&#34;</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">                </span>php<span style="color:#e6e7e8"> </span>-r<span style="color:#e6e7e8"> </span><span style="color:#e67e22">&#34;if (hash_file(&#39;sha384&#39;, &#39;composer-setup.php&#39;) === &#39;a5c698ffe4b8e849a443b120cd5ba38043260d5c4023dbf93e1558871f1f07f58274fc6f4c93bcfd858c6bd0775cd8d1&#39;) { echo &#39;Installer verified&#39;; } else { echo &#39;Installer corrupt&#39;; unlink(&#39;composer-setup.php&#39;); } echo PHP_EOL;&#34;</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">                </span>php<span style="color:#e6e7e8"> </span>composer-setup.php<span style="color:#e6e7e8"> </span>--filename=composer<span style="color:#e6e7e8"> </span>--install-dir=/usr/bin<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">                </span>php<span style="color:#e6e7e8"> </span>-r<span style="color:#e6e7e8"> </span><span style="color:#e67e22">&#34;unlink(&#39;composer-setup.php&#39;);&#34;</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">                </span>cd<span style="color:#e6e7e8"> </span>larvel-websockets-git<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">                </span>composer<span style="color:#e6e7e8"> </span>install<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">                </span>vendor/bin/phpunit<span style="color:#e6e7e8"> </span>--coverage-text<span style="color:#e6e7e8"> </span>--coverage-clover=coverage.clover<span style="color:#e6e7e8">
-</span></pre></div>
+  <pre><code class="language-yaml">---
+resources:
+  - name: larvel-websockets-git
+    type: git
+    icon: github-circle
+    source:
+      uri: https://github.com/beyondcode/laravel-websockets.git
+
+jobs:
+  - name: test
+    public: true
+    plan:
+      - get: larvel-websockets-git
+        trigger: true
+      - task: run-tests
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source: { repository: php, tag: 7.2-cli }
+          inputs:
+            - name: larvel-websockets-git
+          run:
+            path: /bin/sh
+            args:
+              - -c
+              - |
+                apt-get update
+                apt-get install -y git unzip
+
+                php -r &#34;copy(&#39;https://getcomposer.org/installer&#39;, &#39;composer-setup.php&#39;);&#34;
+                php -r &#34;if (hash_file(&#39;sha384&#39;, &#39;composer-setup.php&#39;) === &#39;a5c698ffe4b8e849a443b120cd5ba38043260d5c4023dbf93e1558871f1f07f58274fc6f4c93bcfd858c6bd0775cd8d1&#39;) { echo &#39;Installer verified&#39;; } else { echo &#39;Installer corrupt&#39;; unlink(&#39;composer-setup.php&#39;); } echo PHP_EOL;&#34;
+                php composer-setup.php --filename=composer --install-dir=/usr/bin
+                php -r &#34;unlink(&#39;composer-setup.php&#39;);&#34;
+
+                cd larvel-websockets-git
+
+                composer install
+                vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover</code></pre>
 
   
     

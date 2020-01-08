@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -113,7 +115,7 @@
               <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
+  <a href="config-basics.html" >Config Basics</a>
 </td>
           </tr>
         
@@ -122,7 +124,7 @@
               <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resources.html" >Resources</a>
+  <a href="pipelines.html" >Pipelines</a>
 </td>
           </tr>
         
@@ -131,7 +133,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html"  class="active">Resource Types</a>
+  <a href="resources.html" >Resources</a>
 </td>
           </tr>
         
@@ -140,7 +142,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html"  class="active">Resource Types</a>
 </td>
           </tr>
         
@@ -149,7 +151,7 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -158,7 +160,7 @@
               <td class="number-cell" align="right">1.9&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html" >Tasks</a>
 </td>
           </tr>
         
@@ -167,13 +169,22 @@
               <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
-  <a href="operation.html" >Operation</a>
+  <a href="builds.html" >Builds</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.12&nbsp;</td>
             
             <td class="title-cell">
   <a href="observation.html" >Observation</a>
@@ -193,7 +204,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.6</span>
+        <span class="section-number">1.7</span>
         
         
   <a href="resource-types.html"  class="active">Resource Types</a>
@@ -205,7 +216,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.6.1&nbsp;</td>
+              <td class="number-cell" align="right">1.7.1&nbsp;</td>
             
             <td class="title-cell">
   <a href="managing-resource-types.html" >Managing Resource Types</a>
@@ -214,7 +225,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.6.2&nbsp;</td>
+              <td class="number-cell" align="right">1.7.2&nbsp;</td>
             
             <td class="title-cell">
   <a href="implementing-resource-types.html"  class="self">Implementing a Resource Type</a>
@@ -236,7 +247,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.6.2</span>
+        <span class="section-number">1.7.2</span>
         
         
   <a href="implementing-resource-types.html"  class="self">Implementing a Resource Type</a>
@@ -319,7 +330,7 @@
     <div class="page-content">
       <div class="section" id="section_implementing-resource-types">
   
-  <h1 class="section-header"><a class="anchor" name="implementing-resource-types" href="#implementing-resource-types"></a><span class="section-number">1.6.2 </span>Implementing a Resource Type</h1>
+  <h1 class="section-header"><a class="anchor" name="implementing-resource-types" href="#implementing-resource-types"></a><span class="section-number">1.7.2 </span>Implementing a Resource Type</h1>
   
 
   <p>A resource type is implemented by a container image with three scripts:</p><ul>
@@ -345,23 +356,20 @@
 
   <li><p><code>version</code> is a JSON object with <code>string</code> fields, used to uniquely identify an instance of the resource. For <code>git</code> this would be a commit SHA.</p><p>This will be omitted from the first request, in which case the resource should return the current version (<em>not</em> every version since the resource&#39;s inception).</p></li>
 
-</ul><p>For example, here&#39;s what the input for a <code>git</code> resource may look like:</p><div class="highlight"><pre style="">{
-  <span style="color:#9b59b6;font-weight:bold">&#34;source&#34;</span>: {
-    <span style="color:#9b59b6;font-weight:bold">&#34;uri&#34;</span>: <span style="color:#e67e22">&#34;git://some-uri&#34;</span>,
-    <span style="color:#9b59b6;font-weight:bold">&#34;branch&#34;</span>: <span style="color:#e67e22">&#34;develop&#34;</span>,
-    <span style="color:#9b59b6;font-weight:bold">&#34;private_key&#34;</span>: <span style="color:#e67e22">&#34;...&#34;</span>
+</ul><p>For example, here&#39;s what the input for a <code>git</code> resource may look like:</p><pre><code class="language-json">{
+  &#34;source&#34;: {
+    &#34;uri&#34;: &#34;git://some-uri&#34;,
+    &#34;branch&#34;: &#34;develop&#34;,
+    &#34;private_key&#34;: &#34;...&#34;
   },
-  <span style="color:#9b59b6;font-weight:bold">&#34;version&#34;</span>: { <span style="color:#9b59b6;font-weight:bold">&#34;ref&#34;</span>: <span style="color:#e67e22">&#34;61cebf&#34;</span> }
-}
-</pre></div><p>Upon receiving this payload the <code>git</code> resource would probably do something like:</p><div class="highlight"><pre style="">[ -d /tmp/repo ] || git clone git://some-uri /tmp/repo
-<span style="color:#8f4b2d">cd</span> /tmp/repo
-git pull &amp;&amp; git log 61cbef..HEAD
-</pre></div><p>Note that it conditionally clones; the container for checking versions is reused between checks, so that it can efficiently pull rather than cloning every time.</p><p>And the output, assuming <code>d74e01</code> is the commit immediately after <code>61cbef</code>:</p><div class="highlight"><pre style="">[
-  { <span style="color:#9b59b6;font-weight:bold">&#34;ref&#34;</span>: <span style="color:#e67e22">&#34;61cbef&#34;</span> },
-  { <span style="color:#9b59b6;font-weight:bold">&#34;ref&#34;</span>: <span style="color:#e67e22">&#34;d74e01&#34;</span> },
-  { <span style="color:#9b59b6;font-weight:bold">&#34;ref&#34;</span>: <span style="color:#e67e22">&#34;7154fe&#34;</span> }
-]
-</pre></div><p>The list may be empty, if there are no versions available at the source. If the given version is already the latest, an array with that version as the sole entry should be listed.</p><p>If your resource is unable to determine which versions are newer than the given version (e.g. if it&#39;s a git commit that was <code>push -f</code>ed over), then the current version of your resource should be returned (i.e. the new <code>HEAD</code>).</p>
+  &#34;version&#34;: { &#34;ref&#34;: &#34;61cebf&#34; }
+}</code></pre><p>Upon receiving this payload the <code>git</code> resource would probably do something like:</p><pre><code class="language-bash">[ -d /tmp/repo ] || git clone git://some-uri /tmp/repo
+cd /tmp/repo
+git pull &amp;&amp; git log 61cbef..HEAD</code></pre><p>Note that it conditionally clones; the container for checking versions is reused between checks, so that it can efficiently pull rather than cloning every time.</p><p>And the output, assuming <code>d74e01</code> is the commit immediately after <code>61cbef</code>:</p><pre><code class="language-json">[
+  { &#34;ref&#34;: &#34;61cbef&#34; },
+  { &#34;ref&#34;: &#34;d74e01&#34; },
+  { &#34;ref&#34;: &#34;7154fe&#34; }
+]</code></pre><p>The list may be empty, if there are no versions available at the source. If the given version is already the latest, an array with that version as the sole entry should be listed.</p><p>If your resource is unable to determine which versions are newer than the given version (e.g. if it&#39;s a git commit that was <code>push -f</code>ed over), then the current version of your resource should be returned (i.e. the new <code>HEAD</code>).</p>
 
   
     
@@ -381,25 +389,22 @@ git pull &amp;&amp; git log 61cbef..HEAD
 
   <li><p><code>params</code> is an arbitrary JSON object passed along verbatim from <a href="get-step.html#get-step-params"><strong><code>params</code></strong></a> on a <a href="get-step.html"><code>get</code> step</a>.</p></li>
 
-</ul><p>Example request, in this case for the <code>git</code> resource:</p><div class="highlight"><pre style="">{
-  <span style="color:#9b59b6;font-weight:bold">&#34;source&#34;</span>: {
-    <span style="color:#9b59b6;font-weight:bold">&#34;uri&#34;</span>: <span style="color:#e67e22">&#34;git://some-uri&#34;</span>,
-    <span style="color:#9b59b6;font-weight:bold">&#34;branch&#34;</span>: <span style="color:#e67e22">&#34;develop&#34;</span>,
-    <span style="color:#9b59b6;font-weight:bold">&#34;private_key&#34;</span>: <span style="color:#e67e22">&#34;...&#34;</span>
+</ul><p>Example request, in this case for the <code>git</code> resource:</p><pre><code class="language-json">{
+  &#34;source&#34;: {
+    &#34;uri&#34;: &#34;git://some-uri&#34;,
+    &#34;branch&#34;: &#34;develop&#34;,
+    &#34;private_key&#34;: &#34;...&#34;
   },
-  <span style="color:#9b59b6;font-weight:bold">&#34;version&#34;</span>: { <span style="color:#9b59b6;font-weight:bold">&#34;ref&#34;</span>: <span style="color:#e67e22">&#34;61cebf&#34;</span> }
-}
-</pre></div><p>Upon receiving this payload the <code>git</code> resource would probably do something like:</p><div class="highlight"><pre style="">git clone --branch develop git://some-uri <span style="color:#3498db">$1</span>
-<span style="color:#8f4b2d">cd</span> <span style="color:#3498db">$1</span>
-git checkout 61cebf
-</pre></div><p>And output:</p><div class="highlight"><pre style="">{
-  <span style="color:#9b59b6;font-weight:bold">&#34;version&#34;</span>: { <span style="color:#9b59b6;font-weight:bold">&#34;ref&#34;</span>: <span style="color:#e67e22">&#34;61cebf&#34;</span> },
-  <span style="color:#9b59b6;font-weight:bold">&#34;metadata&#34;</span>: [
-    { <span style="color:#9b59b6;font-weight:bold">&#34;name&#34;</span>: <span style="color:#e67e22">&#34;commit&#34;</span>, <span style="color:#9b59b6;font-weight:bold">&#34;value&#34;</span>: <span style="color:#e67e22">&#34;61cebf&#34;</span> },
-    { <span style="color:#9b59b6;font-weight:bold">&#34;name&#34;</span>: <span style="color:#e67e22">&#34;author&#34;</span>, <span style="color:#9b59b6;font-weight:bold">&#34;value&#34;</span>: <span style="color:#e67e22">&#34;Hulk Hogan&#34;</span> }
+  &#34;version&#34;: { &#34;ref&#34;: &#34;61cebf&#34; }
+}</code></pre><p>Upon receiving this payload the <code>git</code> resource would probably do something like:</p><pre><code class="language-bash">git clone --branch develop git://some-uri $1
+cd $1
+git checkout 61cebf</code></pre><p>And output:</p><pre><code class="language-json">{
+  &#34;version&#34;: { &#34;ref&#34;: &#34;61cebf&#34; },
+  &#34;metadata&#34;: [
+    { &#34;name&#34;: &#34;commit&#34;, &#34;value&#34;: &#34;61cebf&#34; },
+    { &#34;name&#34;: &#34;author&#34;, &#34;value&#34;: &#34;Hulk Hogan&#34; }
   ]
-}
-</pre></div>
+}</code></pre>
 
   
     
@@ -417,26 +422,23 @@ git checkout 61cebf
 
   <li><p><code>params</code> is an arbitrary JSON object passed along verbatim from <a href="get-step.html#get-step-params"><strong><code>params</code></strong></a> on a <a href="put-step.html"><code>put</code> step</a>.</p></li>
 
-</ul><p>Example request, in this case for the <code>git</code> resource:</p><div class="highlight"><pre style="">{
-  <span style="color:#9b59b6;font-weight:bold">&#34;params&#34;</span>: {
-    <span style="color:#9b59b6;font-weight:bold">&#34;branch&#34;</span>: <span style="color:#e67e22">&#34;develop&#34;</span>,
-    <span style="color:#9b59b6;font-weight:bold">&#34;repo&#34;</span>: <span style="color:#e67e22">&#34;some-repo&#34;</span>
+</ul><p>Example request, in this case for the <code>git</code> resource:</p><pre><code class="language-json">{
+  &#34;params&#34;: {
+    &#34;branch&#34;: &#34;develop&#34;,
+    &#34;repo&#34;: &#34;some-repo&#34;
   },
-  <span style="color:#9b59b6;font-weight:bold">&#34;source&#34;</span>: {
-    <span style="color:#9b59b6;font-weight:bold">&#34;uri&#34;</span>: <span style="color:#e67e22">&#34;git@...&#34;</span>,
-    <span style="color:#9b59b6;font-weight:bold">&#34;private_key&#34;</span>: <span style="color:#e67e22">&#34;...&#34;</span>
+  &#34;source&#34;: {
+    &#34;uri&#34;: &#34;git@...&#34;,
+    &#34;private_key&#34;: &#34;...&#34;
   }
-}
-</pre></div><p>Upon receiving this payload the <code>git</code> resource would probably do something like:</p><div class="highlight"><pre style=""><span style="color:#8f4b2d">cd</span> <span style="color:#3498db">$1</span>/some-repo
-git push origin develop
-</pre></div><p>And output:</p><div class="highlight"><pre style="">{
-  <span style="color:#9b59b6;font-weight:bold">&#34;version&#34;</span>: { <span style="color:#9b59b6;font-weight:bold">&#34;ref&#34;</span>: <span style="color:#e67e22">&#34;61cebf&#34;</span> },
-  <span style="color:#9b59b6;font-weight:bold">&#34;metadata&#34;</span>: [
-    { <span style="color:#9b59b6;font-weight:bold">&#34;name&#34;</span>: <span style="color:#e67e22">&#34;commit&#34;</span>, <span style="color:#9b59b6;font-weight:bold">&#34;value&#34;</span>: <span style="color:#e67e22">&#34;61cebf&#34;</span> },
-    { <span style="color:#9b59b6;font-weight:bold">&#34;name&#34;</span>: <span style="color:#e67e22">&#34;author&#34;</span>, <span style="color:#9b59b6;font-weight:bold">&#34;value&#34;</span>: <span style="color:#e67e22">&#34;Mick Foley&#34;</span> }
+}</code></pre><p>Upon receiving this payload the <code>git</code> resource would probably do something like:</p><pre><code class="language-bash">cd $1/some-repo
+git push origin develop</code></pre><p>And output:</p><pre><code class="language-json">{
+  &#34;version&#34;: { &#34;ref&#34;: &#34;61cebf&#34; },
+  &#34;metadata&#34;: [
+    { &#34;name&#34;: &#34;commit&#34;, &#34;value&#34;: &#34;61cebf&#34; },
+    { &#34;name&#34;: &#34;author&#34;, &#34;value&#34;: &#34;Mick Foley&#34; }
   ]
-}
-</pre></div>
+}</code></pre>
 
   
     
@@ -496,7 +498,7 @@ git push origin develop
           prev:
 
           
-          <span class="section-number">1.6.1</span>
+          <span class="section-number">1.7.1</span>
           
 
           <a href="managing-resource-types.html">Managing Resource Types</a>
@@ -508,7 +510,7 @@ git push origin develop
           next:
 
           
-          <span class="section-number">1.7</span>
+          <span class="section-number">1.8</span>
           
 
           <a href="jobs.html">Jobs</a>

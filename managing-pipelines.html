@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -113,7 +115,7 @@
               <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="pipelines.html"  class="active">Pipelines</a>
+  <a href="config-basics.html" >Config Basics</a>
 </td>
           </tr>
         
@@ -122,7 +124,7 @@
               <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resources.html" >Resources</a>
+  <a href="pipelines.html"  class="active">Pipelines</a>
 </td>
           </tr>
         
@@ -131,7 +133,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
+  <a href="resources.html" >Resources</a>
 </td>
           </tr>
         
@@ -140,7 +142,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -149,7 +151,7 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -158,7 +160,7 @@
               <td class="number-cell" align="right">1.9&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html" >Tasks</a>
 </td>
           </tr>
         
@@ -167,13 +169,22 @@
               <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
-  <a href="operation.html" >Operation</a>
+  <a href="builds.html" >Builds</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.12&nbsp;</td>
             
             <td class="title-cell">
   <a href="observation.html" >Observation</a>
@@ -193,7 +204,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.4</span>
+        <span class="section-number">1.5</span>
         
         
   <a href="pipelines.html"  class="active">Pipelines</a>
@@ -205,7 +216,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.4.1&nbsp;</td>
+              <td class="number-cell" align="right">1.5.1&nbsp;</td>
             
             <td class="title-cell">
   <a href="setting-pipelines.html" >Setting Pipelines</a>
@@ -214,7 +225,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.4.2&nbsp;</td>
+              <td class="number-cell" align="right">1.5.2&nbsp;</td>
             
             <td class="title-cell">
   <a href="managing-pipelines.html"  class="self">Managing Pipelines</a>
@@ -223,7 +234,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.4.3&nbsp;</td>
+              <td class="number-cell" align="right">1.5.3&nbsp;</td>
             
             <td class="title-cell">
   <a href="pipeline-groups.html" >Grouping Jobs</a>
@@ -245,7 +256,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.4.2</span>
+        <span class="section-number">1.5.2</span>
         
         
   <a href="managing-pipelines.html"  class="self">Managing Pipelines</a>
@@ -372,7 +383,7 @@
     <div class="page-content">
       <div class="section" id="section_managing-pipelines">
   
-  <h1 class="section-header"><a class="anchor" name="managing-pipelines" href="#managing-pipelines"></a><span class="section-number">1.4.2 </span>Managing Pipelines</h1>
+  <h1 class="section-header"><a class="anchor" name="managing-pipelines" href="#managing-pipelines"></a><span class="section-number">1.5.2 </span>Managing Pipelines</h1>
   
 
   
@@ -384,8 +395,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-pipelines" href="#fly-pipelines"></a><code>fly pipelines</code></h2>
   
 
-  <p>To list the currently-configured pipelines and their paused state, run:</p><div class="highlight"><pre style="">$ fly -t example pipelines
-</pre></div>
+  <p>To list the currently-configured pipelines and their paused state, run:</p><pre><code class="language-bash">$ fly -t example pipelines</code></pre>
 
   
     
@@ -397,10 +407,9 @@
   <h2 class="section-header"><a class="anchor" name="fly-rename-pipeline" href="#fly-rename-pipeline"></a><code>fly rename-pipeline</code></h2>
   
 
-  <p>To rename a pipeline, run:</p><div class="highlight"><pre style="">$ fly -t example rename-pipeline <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --old-name my-pipeline <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --new-name my-cool-pipeline
-</pre></div>
+  <p>To rename a pipeline, run:</p><pre><code class="language-bash">$ fly -t example rename-pipeline \
+    --old-name my-pipeline \
+    --new-name my-cool-pipeline</code></pre>
 
   
     
@@ -412,8 +421,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-pause-pipeline" href="#fly-pause-pipeline"></a><code>fly pause-pipeline</code></h2>
   
 
-  <p>To pause a pipeline, run:</p><div class="highlight"><pre style="">$ fly -t example pause-pipeline --pipeline my-pipeline
-</pre></div><p>This will prevent jobs from being scheduled and stop the periodic checking for new versions of resources. Builds that are in-flight will still finish.</p>
+  <p>To pause a pipeline, run:</p><pre><code class="language-bash">$ fly -t example pause-pipeline --pipeline my-pipeline</code></pre><p>This will prevent jobs from being scheduled and stop the periodic checking for new versions of resources. Builds that are in-flight will still finish.</p>
 
   
     
@@ -425,8 +433,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-unpause-pipeline" href="#fly-unpause-pipeline"></a><code>fly unpause-pipeline</code></h2>
   
 
-  <p>To unpause a pipeline, run:</p><div class="highlight"><pre style="">$ fly -t example unpause-pipeline --pipeline my-pipeline
-</pre></div><p>This will resume job scheduling and resource checking.</p>
+  <p>To unpause a pipeline, run:</p><pre><code class="language-bash">$ fly -t example unpause-pipeline --pipeline my-pipeline</code></pre><p>This will resume job scheduling and resource checking.</p>
 
   
     
@@ -438,8 +445,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-expose-pipeline" href="#fly-expose-pipeline"></a><code>fly expose-pipeline</code></h2>
   
 
-  <p>By default, newly configured pipelines are only visible to the pipeline&#39;s team. To make a pipeline viewable by other teams and unauthenticated users, run:</p><div class="highlight"><pre style="">$ fly -t example expose-pipeline --pipeline my-pipeline
-</pre></div><p>This feature is useful if you&#39;re using Concourse for an open source project and you&#39;d like your community to be able to see into your build pipeline.</p><p>To undo this change, see <a href="managing-pipelines.html#fly-hide-pipeline"><code>fly hide-pipeline</code></a>.</p><p>Exposing a pipeline reveals basically everything except for build output and resource metadata.</p><p>To expose a resource&#39;s metadata, <a href="resources.html#resource-public"><strong><code>public</code></strong></a> must be set to <code>true</code>.</p><p>To expose a job&#39;s build output, <a href="jobs.html#job-public"><strong><code>public</code></strong></a> must be set to <code>true</code>. This will also reveal resource metadata for any <a href="get-step.html"><code>get</code> step</a> or <a href="put-step.html"><code>put</code> step</a>s in the build output.</p>
+  <p>By default, newly configured pipelines are only visible to the pipeline&#39;s team. To make a pipeline viewable by other teams and unauthenticated users, run:</p><pre><code class="language-bash">$ fly -t example expose-pipeline --pipeline my-pipeline</code></pre><p>This feature is useful if you&#39;re using Concourse for an open source project and you&#39;d like your community to be able to see into your build pipeline.</p><p>To undo this change, see <a href="managing-pipelines.html#fly-hide-pipeline"><code>fly hide-pipeline</code></a>.</p><p>Exposing a pipeline reveals basically everything except for build output and resource metadata.</p><p>To expose a resource&#39;s metadata, <a href="resources.html#resource-public"><strong><code>public</code></strong></a> must be set to <code>true</code>.</p><p>To expose a job&#39;s build output, <a href="jobs.html#job-public"><strong><code>public</code></strong></a> must be set to <code>true</code>. This will also reveal resource metadata for any <a href="get-step.html"><code>get</code> step</a> or <a href="put-step.html"><code>put</code> step</a>s in the build output.</p>
 
   
     
@@ -451,8 +457,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-hide-pipeline" href="#fly-hide-pipeline"></a><code>fly hide-pipeline</code></h2>
   
 
-  <p>If you realize that you&#39;ve made a terrible mistake in <a href="managing-pipelines.html#fly-expose-pipeline">exposing your pipeline</a>, you can run:</p><div class="highlight"><pre style="">$ fly -t example hide-pipeline --pipeline my-pipeline
-</pre></div><p>If you&#39;re panicking you can run the command&#39;s short form, <code>hp</code>, instead.</p>
+  <p>If you realize that you&#39;ve made a terrible mistake in <a href="managing-pipelines.html#fly-expose-pipeline">exposing your pipeline</a>, you can run:</p><pre><code class="language-bash">$ fly -t example hide-pipeline --pipeline my-pipeline</code></pre><p>If you&#39;re panicking you can run the command&#39;s short form, <code>hp</code>, instead.</p>
 
   
     
@@ -464,8 +469,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-get-pipeline" href="#fly-get-pipeline"></a><code>fly get-pipeline</code></h2>
   
 
-  <p>Fly can be used to fetch and update the configuration for your pipelines. This is achieved by using the <a href="managing-pipelines.html#fly-get-pipeline"><code>fly get-pipeline</code></a> and <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a> commands. For example, to fetch the current configuration of your <code>my-pipeline</code> Concourse pipeline and print it on <code>STDOUT</code> run the following:</p><div class="highlight"><pre style="">$ fly -t example get-pipeline --pipeline my-pipeline
-</pre></div><p>To get JSON instead of YAML you can use the <code>-j</code> or <code>--json</code> argument. This can be useful when inspecting your config with <a href="http://stedolan.github.io/jq/">jq</a>.</p>
+  <p>Fly can be used to fetch and update the configuration for your pipelines. This is achieved by using the <a href="managing-pipelines.html#fly-get-pipeline"><code>fly get-pipeline</code></a> and <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a> commands. For example, to fetch the current configuration of your <code>my-pipeline</code> Concourse pipeline and print it on <code>STDOUT</code> run the following:</p><pre><code class="language-bash">$ fly -t example get-pipeline --pipeline my-pipeline</code></pre><p>To get JSON instead of YAML you can use the <code>-j</code> or <code>--json</code> argument. This can be useful when inspecting your config with <a href="http://stedolan.github.io/jq/">jq</a>.</p>
 
   
     
@@ -477,8 +481,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-destroy-pipeline" href="#fly-destroy-pipeline"></a><code>fly destroy-pipeline</code></h2>
   
 
-  <p>Every now and then you just don&#39;t want a pipeline to be around anymore. Running <code>fly destroy-pipeline</code> will stop the pipeline activity and remove all data collected by the pipeline, including build history and collected versions.</p><p>For example, to destroy the <code>my-pipeline</code> pipeline, you would run:</p><div class="highlight"><pre style="">$ fly -t example destroy-pipeline --pipeline my-pipeline
-</pre></div>
+  <p>Every now and then you just don&#39;t want a pipeline to be around anymore. Running <code>fly destroy-pipeline</code> will stop the pipeline activity and remove all data collected by the pipeline, including build history and collected versions.</p><p>For example, to destroy the <code>my-pipeline</code> pipeline, you would run:</p><pre><code class="language-bash">$ fly -t example destroy-pipeline --pipeline my-pipeline</code></pre>
 
   
     
@@ -490,11 +493,10 @@
   <h2 class="section-header"><a class="anchor" name="fly-order-pipelines" href="#fly-order-pipelines"></a><code>fly order-pipelines</code></h2>
   
 
-  <p>To configure the ordering of pipelines, run:</p><div class="highlight"><pre style="">$ fly -t example order-pipelines <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --pipeline pipeline-1 <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --pipeline pipeline-2 <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --pipeline pipeline-3
-</pre></div><p>Note that this command only ensures that the given pipelines are in the given order. If there are other pipelines that you haven&#39;t included in the command, they may appear in-between, before, or after the given set.</p>
+  <p>To configure the ordering of pipelines, run:</p><pre><code class="language-bash">$ fly -t example order-pipelines \
+    --pipeline pipeline-1 \
+    --pipeline pipeline-2 \
+    --pipeline pipeline-3</code></pre><p>Note that this command only ensures that the given pipelines are in the given order. If there are other pipelines that you haven&#39;t included in the command, they may appear in-between, before, or after the given set.</p>
 
   
     
@@ -510,7 +512,7 @@
           prev:
 
           
-          <span class="section-number">1.4.1</span>
+          <span class="section-number">1.5.1</span>
           
 
           <a href="setting-pipelines.html">Setting Pipelines</a>
@@ -522,7 +524,7 @@
           next:
 
           
-          <span class="section-number">1.4.3</span>
+          <span class="section-number">1.5.3</span>
           
 
           <a href="pipeline-groups.html">Grouping Jobs</a>

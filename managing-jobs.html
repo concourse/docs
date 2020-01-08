@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -113,7 +115,7 @@
               <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
+  <a href="config-basics.html" >Config Basics</a>
 </td>
           </tr>
         
@@ -122,7 +124,7 @@
               <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resources.html" >Resources</a>
+  <a href="pipelines.html" >Pipelines</a>
 </td>
           </tr>
         
@@ -131,7 +133,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
+  <a href="resources.html" >Resources</a>
 </td>
           </tr>
         
@@ -140,7 +142,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html"  class="active">Jobs</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -149,7 +151,7 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="jobs.html"  class="active">Jobs</a>
 </td>
           </tr>
         
@@ -158,7 +160,7 @@
               <td class="number-cell" align="right">1.9&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html" >Tasks</a>
 </td>
           </tr>
         
@@ -167,13 +169,22 @@
               <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
-  <a href="operation.html" >Operation</a>
+  <a href="builds.html" >Builds</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.12&nbsp;</td>
             
             <td class="title-cell">
   <a href="observation.html" >Observation</a>
@@ -193,7 +204,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.7</span>
+        <span class="section-number">1.8</span>
         
         
   <a href="jobs.html"  class="active">Jobs</a>
@@ -205,7 +216,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.7.1&nbsp;</td>
+              <td class="number-cell" align="right">1.8.1&nbsp;</td>
             
             <td class="title-cell">
   <a href="steps.html" >Steps</a>
@@ -214,7 +225,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.7.2&nbsp;</td>
+              <td class="number-cell" align="right">1.8.2&nbsp;</td>
             
             <td class="title-cell">
   <a href="managing-jobs.html"  class="self">Managing Jobs</a>
@@ -236,7 +247,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.7.2</span>
+        <span class="section-number">1.8.2</span>
         
         
   <a href="managing-jobs.html"  class="self">Managing Jobs</a>
@@ -319,7 +330,7 @@
     <div class="page-content">
       <div class="section" id="section_managing-jobs">
   
-  <h1 class="section-header"><a class="anchor" name="managing-jobs" href="#managing-jobs"></a><span class="section-number">1.7.2 </span>Managing Jobs</h1>
+  <h1 class="section-header"><a class="anchor" name="managing-jobs" href="#managing-jobs"></a><span class="section-number">1.8.2 </span>Managing Jobs</h1>
   
 
   
@@ -331,8 +342,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-jobs" href="#fly-jobs"></a><code>fly jobs</code></h2>
   
 
-  <p>To list the jobs configured in a pipeline, run:</p><div class="highlight"><pre style="">$ fly -t example <span style="color:#8f4b2d">jobs</span> -p my-pipeline
-</pre></div>
+  <p>To list the jobs configured in a pipeline, run:</p><pre><code class="language-bash">$ fly -t example jobs -p my-pipeline</code></pre>
 
   
     
@@ -344,9 +354,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-trigger-job" href="#fly-trigger-job"></a><code>fly trigger-job</code></h2>
   
 
-  <p>To immediately queue a new build of a job, run:</p><div class="highlight"><pre style="">$ fly -t example trigger-job --job my-pipeline/my-job
-</pre></div><p>This will enqueue a new build of the <code>my-job</code> job in the <code>my-pipeline</code> pipeline.</p><p>To start watching the newly created build, append the <code>--watch</code> flag like so:</p><div class="highlight"><pre style="">$ fly -t example trigger-job --job my-pipeline/my-job --watch
-</pre></div>
+  <p>To immediately queue a new build of a job, run:</p><pre><code class="language-bash">$ fly -t example trigger-job --job my-pipeline/my-job</code></pre><p>This will enqueue a new build of the <code>my-job</code> job in the <code>my-pipeline</code> pipeline.</p><p>To start watching the newly created build, append the <code>--watch</code> flag like so:</p><pre><code class="language-bash">$ fly -t example trigger-job --job my-pipeline/my-job --watch</code></pre>
 
   
     
@@ -358,8 +366,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-pause-job" href="#fly-pause-job"></a><code>fly pause-job</code></h2>
   
 
-  <p>To prevent scheduling and running builds of a job, run:</p><div class="highlight"><pre style="">$ fly -t example pause-job --job my-pipeline/my-job
-</pre></div><p>This will prevent pending builds of the job from being scheduled, though builds that are in-flight will still run, and pending builds will still be created as normal.</p>
+  <p>To prevent scheduling and running builds of a job, run:</p><pre><code class="language-bash">$ fly -t example pause-job --job my-pipeline/my-job</code></pre><p>This will prevent pending builds of the job from being scheduled, though builds that are in-flight will still run, and pending builds will still be created as normal.</p>
 
   
     
@@ -371,8 +378,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-unpause-job" href="#fly-unpause-job"></a><code>fly unpause-job</code></h2>
   
 
-  <p>To resume scheduling of a job, run:</p><div class="highlight"><pre style="">$ fly -t example unpause-job --job my-pipeline/my-job
-</pre></div><p>This will resume scheduling of builds queued for the job.</p>
+  <p>To resume scheduling of a job, run:</p><pre><code class="language-bash">$ fly -t example unpause-job --job my-pipeline/my-job</code></pre><p>This will resume scheduling of builds queued for the job.</p>
 
   
     
@@ -384,12 +390,10 @@
   <h2 class="section-header"><a class="anchor" name="fly-clear-task-cache" href="#fly-clear-task-cache"></a><code>fly clear-task-cache</code></h2>
   
 
-  <p>If you&#39;ve got a <a href="tasks.html#task-caches">task cache</a> that you need to clear out for whatever reason, this can be done like so:</p><div class="highlight"><pre style="">$ fly -t example clear-task-cache --job my-pipeline/my-job --step my-step-name
-</pre></div><p>This will immediately invalidate the caches - they&#39;ll be garbage collected asynchronously and subsequent builds will run with empty caches.</p><p>You can also clear out a particular path for the given step&#39;s cache, using <code>--cache-path</code>:</p><div class="highlight"><pre style="">$ fly -t example clear-task-cache <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --job my-pipeline/my-job <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --step my-step-name <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --cache-path go/pkg
-</pre></div><p>If <code>--cache-path</code> is not specified, all caches for the given step will be cleared.</p>
+  <p>If you&#39;ve got a <a href="tasks.html#task-caches">task cache</a> that you need to clear out for whatever reason, this can be done like so:</p><pre><code class="language-bash">$ fly -t example clear-task-cache --job my-pipeline/my-job --step my-step-name</code></pre><p>This will immediately invalidate the caches - they&#39;ll be garbage collected asynchronously and subsequent builds will run with empty caches.</p><p>You can also clear out a particular path for the given step&#39;s cache, using <code>--cache-path</code>:</p><pre><code class="language-bash">$ fly -t example clear-task-cache \
+    --job my-pipeline/my-job \
+    --step my-step-name \
+    --cache-path go/pkg</code></pre><p>If <code>--cache-path</code> is not specified, all caches for the given step will be cleared.</p>
 
   
     
@@ -405,7 +409,7 @@
           prev:
 
           
-          <span class="section-number">1.7.1</span>
+          <span class="section-number">1.8.1</span>
           
 
           <a href="steps.html">Steps</a>
@@ -417,7 +421,7 @@
           next:
 
           
-          <span class="section-number">1.8</span>
+          <span class="section-number">1.9</span>
           
 
           <a href="tasks.html">Tasks</a>

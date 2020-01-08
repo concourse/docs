@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -115,7 +117,7 @@
               <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
+  <a href="config-basics.html" >Config Basics</a>
 </td>
           </tr>
         
@@ -124,7 +126,7 @@
               <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resources.html" >Resources</a>
+  <a href="pipelines.html" >Pipelines</a>
 </td>
           </tr>
         
@@ -133,7 +135,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
+  <a href="resources.html" >Resources</a>
 </td>
           </tr>
         
@@ -142,7 +144,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -151,7 +153,7 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -160,7 +162,7 @@
               <td class="number-cell" align="right">1.9&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html" >Tasks</a>
 </td>
           </tr>
         
@@ -169,13 +171,22 @@
               <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
-  <a href="operation.html" >Operation</a>
+  <a href="builds.html" >Builds</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.12&nbsp;</td>
             
             <td class="title-cell">
   <a href="observation.html" >Observation</a>
@@ -386,19 +397,14 @@
   <h2 class="section-header"><a class="anchor" name="ldap-authentication" href="#ldap-authentication"></a>Authentication</h2>
   
 
-  <p>The LDAP provider is configured by pointing it to an LDAP host with a read-only bind DN and password. This bind DN and password is used for authenticating with the LDAP host and querying the users.</p><p>Additionally, the base DN under which users are searched as well as the attribute of the users to associate to &#39;usernames&#39; must also be configured.</p><p>These can be specified via env to the <a href="concourse-web.html"><code>web</code> node</a> like so:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_LDAP_DISPLAY_NAME</span>=Acme <span style="color:#9b9b9b"># optional; default &#34;LDAP&#34;</span>
-<span style="color:#3498db">CONCOURSE_LDAP_HOST</span>=ldap.example.com <span style="color:#9b9b9b"># port defaults to 389 or 636</span>
-<span style="color:#3498db">CONCOURSE_LDAP_BIND_DN</span>=<span style="color:#e74c3c">&#39;cn=read-only-admin,dc=example,dc=com&#39;</span>
-<span style="color:#3498db">CONCOURSE_LDAP_BIND_PW</span>=read-only-admin-password
-<span style="color:#3498db">CONCOURSE_LDAP_USER_SEARCH_BASE_DN</span>=<span style="color:#e74c3c">&#39;cn=users,dc=example,dc=com&#39;</span>
-<span style="color:#3498db">CONCOURSE_LDAP_USER_SEARCH_USERNAME</span>=uid
-</pre></div><p>To configure TLS, you may need to set a CA cert:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_LDAP_CA_CERT</span>=/path/to/ca_cert
-</pre></div><p>If your LDAP host does not use TLS, you must set:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_LDAP_INSECURE_NO_SSL</span>=<span style="color:#8f4b2d">true</span>
-</pre></div><p>To fine-tune which users are queried, you can specify a user search filter like so:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_LDAP_USER_SEARCH_FILTER</span>=<span style="color:#e74c3c">&#39;(objectClass=person)&#39;</span>
-</pre></div><p>To set which user attributes map to the token claims, you can set the following:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_LDAP_USER_SEARCH_ID_ATTR</span>=uid         <span style="color:#9b9b9b"># default</span>
-<span style="color:#3498db">CONCOURSE_LDAP_USER_SEARCH_EMAIL_ATTR</span>=mail     <span style="color:#9b9b9b"># default</span>
-<span style="color:#3498db">CONCOURSE_LDAP_USER_SEARCH_NAME_ATTR</span>=some-attr <span style="color:#9b9b9b"># no default</span>
-</pre></div>
+  <p>The LDAP provider is configured by pointing it to an LDAP host with a read-only bind DN and password. This bind DN and password is used for authenticating with the LDAP host and querying the users.</p><p>Additionally, the base DN under which users are searched as well as the attribute of the users to associate to &#39;usernames&#39; must also be configured.</p><p>These can be specified via env to the <a href="concourse-web.html"><code>web</code> node</a> like so:</p><pre><code class="language-bash">CONCOURSE_LDAP_DISPLAY_NAME=Acme # optional; default &#34;LDAP&#34;
+CONCOURSE_LDAP_HOST=ldap.example.com # port defaults to 389 or 636
+CONCOURSE_LDAP_BIND_DN=&#39;cn=read-only-admin,dc=example,dc=com&#39;
+CONCOURSE_LDAP_BIND_PW=read-only-admin-password
+CONCOURSE_LDAP_USER_SEARCH_BASE_DN=&#39;cn=users,dc=example,dc=com&#39;
+CONCOURSE_LDAP_USER_SEARCH_USERNAME=uid</code></pre><p>To configure TLS, you may need to set a CA cert:</p><pre><code class="language-bash">CONCOURSE_LDAP_CA_CERT=/path/to/ca_cert</code></pre><p>If your LDAP host does not use TLS, you must set:</p><pre><code class="language-bash">CONCOURSE_LDAP_INSECURE_NO_SSL=true</code></pre><p>To fine-tune which users are queried, you can specify a user search filter like so:</p><pre><code class="language-bash">CONCOURSE_LDAP_USER_SEARCH_FILTER=&#39;(objectClass=person)&#39;</code></pre><p>To set which user attributes map to the token claims, you can set the following:</p><pre><code class="language-bash">CONCOURSE_LDAP_USER_SEARCH_ID_ATTR=uid         # default
+CONCOURSE_LDAP_USER_SEARCH_EMAIL_ATTR=mail     # default
+CONCOURSE_LDAP_USER_SEARCH_NAME_ATTR=some-attr # no default</code></pre>
 
   
     
@@ -407,12 +413,9 @@
   <h3 class="section-header"><a class="anchor" name="configuring-ldap-group-search" href="#configuring-ldap-group-search"></a>Configuring LDAP group search</h3>
   
 
-  <p>The LDAP provider can also be configured with group search configuration, so that users can be configured for team authorization by their &#39;group&#39; in LDAP.</p><p>For example, to find groups and identify them by their <code>ou</code> attribute, you would configure:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_LDAP_GROUP_SEARCH_BASE_DN</span>=<span style="color:#e74c3c">&#39;cn=groups,dc=example,dc=com&#39;</span>
-<span style="color:#3498db">CONCOURSE_LDAP_GROUP_SEARCH_NAME_ATTR</span>=ou
-</pre></div><p>The attributes correlating a user to a group must be specified like so:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_LDAP_GROUP_SEARCH_USER_ATTR</span>=uid
-<span style="color:#3498db">CONCOURSE_LDAP_GROUP_SEARCH_GROUP_ATTR</span>=members
-</pre></div><p>This specifies that the <code>uid</code> attribute of the user must be present in the <code>members</code> attribute of the group.</p><p>An additional filter may be specified, just like with users:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_LDAP_GROUP_SEARCH_FILTER</span>=<span style="color:#e74c3c">&#39;(objectClass=posixGroup)&#39;</span>
-</pre></div>
+  <p>The LDAP provider can also be configured with group search configuration, so that users can be configured for team authorization by their &#39;group&#39; in LDAP.</p><p>For example, to find groups and identify them by their <code>ou</code> attribute, you would configure:</p><pre><code class="language-bash">CONCOURSE_LDAP_GROUP_SEARCH_BASE_DN=&#39;cn=groups,dc=example,dc=com&#39;
+CONCOURSE_LDAP_GROUP_SEARCH_NAME_ATTR=ou</code></pre><p>The attributes correlating a user to a group must be specified like so:</p><pre><code class="language-bash">CONCOURSE_LDAP_GROUP_SEARCH_USER_ATTR=uid
+CONCOURSE_LDAP_GROUP_SEARCH_GROUP_ATTR=members</code></pre><p>This specifies that the <code>uid</code> attribute of the user must be present in the <code>members</code> attribute of the group.</p><p>An additional filter may be specified, just like with users:</p><pre><code class="language-bash">CONCOURSE_LDAP_GROUP_SEARCH_FILTER=&#39;(objectClass=posixGroup)&#39;</code></pre>
 
   
     
@@ -435,15 +438,13 @@
   <dt><code>--ldap-group=GROUP_NAME</code></dt>
     <dd><p>Authorize anyone from the group.</p></dd>
   
-</dl><p>For example:</p><div class="highlight"><pre style="">$ fly set-team -n my-team <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --ldap-user my-username <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --ldap-group my-group
-</pre></div><p>...or via <code>--config</code> for <a href="managing-teams.html#setting-roles">setting user roles</a>:</p><div class="highlight"><pre style="">roles:
+</dl><p>For example:</p><pre><code class="language-bash">$ fly set-team -n my-team \
+    --ldap-user my-username \
+    --ldap-group my-group</code></pre><p>...or via <code>--config</code> for <a href="managing-teams.html#setting-roles">setting user roles</a>:</p><pre><code class="language-bash">roles:
 - name: member
   ldap:
-    users: [<span style="color:#e67e22">&#34;my-username&#34;</span>]
-    groups: [<span style="color:#e67e22">&#34;my-groups&#34;</span>]
-</pre></div>
+    users: [&#34;my-username&#34;]
+    groups: [&#34;my-groups&#34;]</code></pre>
 
   
     
@@ -452,9 +453,8 @@
   <h3 class="section-header"><a class="anchor" name="configuring-main-team-authorization" href="#configuring-main-team-authorization"></a>Configuring <code>main</code> Team Authorization</h3>
   
 
-  <p>LDAP users and groups can be added to the <a href="main-team.html"><code>main</code> team</a> authorization config by setting the following env on the <a href="concourse-web.html"><code>web</code> node</a>:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_MAIN_TEAM_LDAP_USER</span>=my-user
-<span style="color:#3498db">CONCOURSE_MAIN_TEAM_LDAP_GROUP</span>=my-group
-</pre></div><p>Multiple users and groups may be specified by comma-separating them.</p>
+  <p>LDAP users and groups can be added to the <a href="main-team.html"><code>main</code> team</a> authorization config by setting the following env on the <a href="concourse-web.html"><code>web</code> node</a>:</p><pre><code class="language-bash">CONCOURSE_MAIN_TEAM_LDAP_USER=my-user
+CONCOURSE_MAIN_TEAM_LDAP_GROUP=my-group</code></pre><p>Multiple users and groups may be specified by comma-separating them.</p>
 
   
     

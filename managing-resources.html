@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -113,7 +115,7 @@
               <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
+  <a href="config-basics.html" >Config Basics</a>
 </td>
           </tr>
         
@@ -122,7 +124,7 @@
               <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resources.html"  class="active">Resources</a>
+  <a href="pipelines.html" >Pipelines</a>
 </td>
           </tr>
         
@@ -131,7 +133,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
+  <a href="resources.html"  class="active">Resources</a>
 </td>
           </tr>
         
@@ -140,7 +142,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -149,7 +151,7 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -158,7 +160,7 @@
               <td class="number-cell" align="right">1.9&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html" >Tasks</a>
 </td>
           </tr>
         
@@ -167,13 +169,22 @@
               <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
-  <a href="operation.html" >Operation</a>
+  <a href="builds.html" >Builds</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.12&nbsp;</td>
             
             <td class="title-cell">
   <a href="observation.html" >Observation</a>
@@ -193,7 +204,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.5</span>
+        <span class="section-number">1.6</span>
         
         
   <a href="resources.html"  class="active">Resources</a>
@@ -205,7 +216,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.5.1&nbsp;</td>
+              <td class="number-cell" align="right">1.6.1&nbsp;</td>
             
             <td class="title-cell">
   <a href="managing-resources.html"  class="self">Managing Resources</a>
@@ -227,7 +238,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.5.1</span>
+        <span class="section-number">1.6.1</span>
         
         
   <a href="managing-resources.html"  class="self">Managing Resources</a>
@@ -277,7 +288,7 @@
     <div class="page-content">
       <div class="section" id="section_managing-resources">
   
-  <h1 class="section-header"><a class="anchor" name="managing-resources" href="#managing-resources"></a><span class="section-number">1.5.1 </span>Managing Resources</h1>
+  <h1 class="section-header"><a class="anchor" name="managing-resources" href="#managing-resources"></a><span class="section-number">1.6.1 </span>Managing Resources</h1>
   
 
   
@@ -289,10 +300,8 @@
   <h2 class="section-header"><a class="anchor" name="fly-check-resource" href="#fly-check-resource"></a><code>fly check-resource</code></h2>
   
 
-  <p>To force immediate checking for new versions of a resource, rather than waiting for the periodic checking, run:</p><div class="highlight"><pre style="">$ fly -t example check-resource --resource my-pipeline/my-resource
-</pre></div><p>To check from a particular version, including the given version, append the <code>--from</code> flag like so:</p><div class="highlight"><pre style="">$ fly -t example check-resource --resource my-pipeline/my-resource <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --from ref:abcdef
-</pre></div><p>This can be useful for collecting versions that are older than the current ones, given that a newly configured resource will only start from the latest version.</p><p>Note the <code>ref:</code> prefix is resource-dependent. For example, the <em>bosh-io-release</em> resource might use <code>version:11.2</code> in place of <code>ref:abcdef</code>.</p>
+  <p>To force immediate checking for new versions of a resource, rather than waiting for the periodic checking, run:</p><pre><code class="language-bash">$ fly -t example check-resource --resource my-pipeline/my-resource</code></pre><p>To check from a particular version, including the given version, append the <code>--from</code> flag like so:</p><pre><code class="language-bash">$ fly -t example check-resource --resource my-pipeline/my-resource \
+    --from ref:abcdef</code></pre><p>This can be useful for collecting versions that are older than the current ones, given that a newly configured resource will only start from the latest version.</p><p>Note the <code>ref:</code> prefix is resource-dependent. For example, the <em>bosh-io-release</em> resource might use <code>version:11.2</code> in place of <code>ref:abcdef</code>.</p>
 
   
     
@@ -304,13 +313,10 @@
   <h2 class="section-header"><a class="anchor" name="fly-pin-resource" href="#fly-pin-resource"></a><code>fly pin-resource</code></h2>
   
 
-  <p>To pin a resource to a specific version of that resource, run:</p><div class="highlight"><pre style="">$ fly -t example pin-resource --resource my-pipeline/my-resource <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --version ref:bceaf
-</pre></div><p>Note that the version needs to be provided as a key-value pair. For the git resource the <code>ref:</code> prefix is used while the <em>registry</em>  resource might use <code>digest</code> as a prefix like <code>digest:sha256:94be7d7b</code>.</p><p>A comment can be provided using the <code>--comment</code> flag, which is then also visible in the UI :</p><div class="highlight"><pre style="">$ fly -t example pin-resource --resource my-pipeline/my-resource <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --version ref:abcdef <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --comment <span style="color:#e67e22">&#34;Some reason&#34;</span>
-</pre></div><p>This can, for example, be used to pull in a fixed version of an external dependency which might break your build in a new release. After the problem has been resolved, the pin can be removed. Another example could be running a build with a set of older inputs when needed.</p><p>To remove the pin on a resource use:</p><div class="highlight"><pre style="">$ fly -t example unpin-resource --resource my-pipeline/my-resource
-</pre></div><p>You can also pin a resource via the UI by clicking on the pin button next to the desired version on the resource page. A default comment is automatically generated containing your username and a timestamp. This comment can be edited.</p>
+  <p>To pin a resource to a specific version of that resource, run:</p><pre><code class="language-bash">$ fly -t example pin-resource --resource my-pipeline/my-resource \
+    --version ref:bceaf</code></pre><p>Note that the version needs to be provided as a key-value pair. For the git resource the <code>ref:</code> prefix is used while the <em>registry</em>  resource might use <code>digest</code> as a prefix like <code>digest:sha256:94be7d7b</code>.</p><p>A comment can be provided using the <code>--comment</code> flag, which is then also visible in the UI :</p><pre><code class="language-bash">$ fly -t example pin-resource --resource my-pipeline/my-resource \
+    --version ref:abcdef \
+    --comment &#34;Some reason&#34;</code></pre><p>This can, for example, be used to pull in a fixed version of an external dependency which might break your build in a new release. After the problem has been resolved, the pin can be removed. Another example could be running a build with a set of older inputs when needed.</p><p>To remove the pin on a resource use:</p><pre><code class="language-bash">$ fly -t example unpin-resource --resource my-pipeline/my-resource</code></pre><p>You can also pin a resource via the UI by clicking on the pin button next to the desired version on the resource page. A default comment is automatically generated containing your username and a timestamp. This comment can be edited.</p>
 
   
     
@@ -326,7 +332,7 @@
           prev:
 
           
-          <span class="section-number">1.5</span>
+          <span class="section-number">1.6</span>
           
 
           <a href="resources.html">Resources</a>
@@ -338,7 +344,7 @@
           next:
 
           
-          <span class="section-number">1.6</span>
+          <span class="section-number">1.7</span>
           
 
           <a href="resource-types.html">Resource Types</a>

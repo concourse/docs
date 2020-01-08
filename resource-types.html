@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -111,7 +113,7 @@
               <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
+  <a href="config-basics.html" >Config Basics</a>
 </td>
           </tr>
         
@@ -120,7 +122,7 @@
               <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resources.html" >Resources</a>
+  <a href="pipelines.html" >Pipelines</a>
 </td>
           </tr>
         
@@ -129,7 +131,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html"  class="self">Resource Types</a>
+  <a href="resources.html" >Resources</a>
 </td>
           </tr>
         
@@ -138,7 +140,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html"  class="self">Resource Types</a>
 </td>
           </tr>
         
@@ -147,7 +149,7 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -156,7 +158,7 @@
               <td class="number-cell" align="right">1.9&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html" >Tasks</a>
 </td>
           </tr>
         
@@ -165,13 +167,22 @@
               <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
-  <a href="operation.html" >Operation</a>
+  <a href="builds.html" >Builds</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.12&nbsp;</td>
             
             <td class="title-cell">
   <a href="observation.html" >Observation</a>
@@ -193,7 +204,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.6</span>
+        <span class="section-number">1.7</span>
         
         
   <a href="resource-types.html"  class="self">Resource Types</a>
@@ -206,7 +217,7 @@
     
       <tr>
         
-          <td class="number-cell" align="right">1.6.1&nbsp;</td>
+          <td class="number-cell" align="right">1.7.1&nbsp;</td>
         
         <td class="title-cell">
           <a href="managing-resource-types.html">Managing Resource Types</a>
@@ -234,7 +245,7 @@
     
       <tr>
         
-          <td class="number-cell" align="right">1.6.2&nbsp;</td>
+          <td class="number-cell" align="right">1.7.2&nbsp;</td>
         
         <td class="title-cell">
           <a href="implementing-resource-types.html">Implementing a Resource Type</a>
@@ -372,26 +383,25 @@
   <div class="example">
   <h3>Using Resource Types</h3>
 
-  <p><a href="resource-types.html">Resource Types</a> can be used to extend the functionality of your pipeline and provide deeper integrations. This example uses one to trigger a job whenever a new <a href="http://www.qwantz.com">Dinosaur Comic</a> is out.</p><div class="highlight"><pre style="">---<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>resource_types:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>rss<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>docker-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>repository:<span style="color:#e6e7e8"> </span>suhlig/concourse-rss-resource<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>tag:<span style="color:#e6e7e8"> </span>latest<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>resources:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>booklit-releases<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>rss<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>url:<span style="color:#e6e7e8"> </span>http://www.qwantz.com/rssfeed.php<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>jobs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>announce<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>booklit-releases<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span></pre></div>
+  <p><a href="resource-types.html">Resource Types</a> can be used to extend the functionality of your pipeline and provide deeper integrations. This example uses one to trigger a job whenever a new <a href="http://www.qwantz.com">Dinosaur Comic</a> is out.</p><pre><code class="language-yaml">---
+resource_types:
+- name: rss
+  type: docker-image
+  source:
+    repository: suhlig/concourse-rss-resource
+    tag: latest
+
+resources:
+- name: booklit-releases
+  type: rss
+  source:
+    url: http://www.qwantz.com/rssfeed.php
+
+jobs:
+- name: announce
+  plan:
+  - get: booklit-releases
+    trigger: true</code></pre>
 </div>
 </div>
       </div>
@@ -400,7 +410,7 @@
     <div class="page-content">
       <div class="section" id="section_resource-types">
   
-  <h1 class="section-header"><a class="anchor" name="resource-types" href="#resource-types"></a><span class="section-number">1.6 </span>Resource Types</h1>
+  <h1 class="section-header"><a class="anchor" name="resource-types" href="#resource-types"></a><span class="section-number">1.7 </span>Resource Types</h1>
   
 
   <p>Each resource in a pipeline has a <code>type</code>. The resource&#39;s type determines what versions are detected, the bits that are fetched when used for a <a href="get-step.html"><code>get</code> step</a>, and the side effect that occurs when used for a <a href="put-step.html"><code>put</code> step</a>.</p><p>Out of the box, Concourse comes with a few resource types to cover common CI use cases like dealing with Git repositories and S3 buckets. These are called the &#34;core&#34; resource types. These are packaged with the worker, and can be listed via <a href="administration.html#fly-workers"><code>fly workers -d</code></a>.</p><p>Beyond these core types, each pipeline can configure its own resource types by specifying <code>resource_types</code> at the top level. Each resource type is itself defined as a resource that provides the container image for the pipeline resource type (see <a href="implementing-resource-types.html">Implementing a Resource Type</a>). You will almost always be using the <a href="https://github.com/concourse/registry-image-resource"><code>registry-image</code> resource</a> when doing this.</p><p>A somewhat exhaustive list of all available resource types - both from the Concourse core project and from external contributors - is available in the <a href="https://github.com/concourse/concourse/wiki/Resource-Types">Resource Types wiki page</a>.</p><p>Similar to <a href="resources.html">Resources</a>, each configured resource type consists of the following attributes:</p><div class="definition">
@@ -486,7 +496,7 @@
           prev:
 
           
-          <span class="section-number">1.5</span>
+          <span class="section-number">1.6</span>
           
 
           <a href="resources.html">Resources</a>
@@ -498,7 +508,7 @@
           next:
 
           
-          <span class="section-number">1.6.1</span>
+          <span class="section-number">1.7.1</span>
           
 
           <a href="managing-resource-types.html">Managing Resource Types</a>

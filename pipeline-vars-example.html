@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -219,33 +221,32 @@
   <h2 class="section-header"><a class="anchor" name="configuration" href="#configuration"></a>Pipeline Configuration</h2>
   
 
-  <div class="highlight"><pre style="">---<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>jobs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>((first))-job<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>public:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>plan:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>simple-task<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>config:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>platform:<span style="color:#e6e7e8"> </span>linux<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>image_resource:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>type:<span style="color:#e6e7e8"> </span>registry-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>source:<span style="color:#e6e7e8"> </span>{<span style="color:#e6e7e8"> </span>repository:<span style="color:#e6e7e8"> </span>busybox<span style="color:#e6e7e8"> </span>}<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>run:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>path:<span style="color:#e6e7e8"> </span>echo<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>args:<span style="color:#e6e7e8"> </span>[<span style="color:#e67e22">&#34;Hello, ((hello))!&#34;</span>]<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>level-((number))-job<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>public:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>plan:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>simple-task<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>config:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>platform:<span style="color:#e6e7e8"> </span>linux<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>image_resource:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>type:<span style="color:#e6e7e8"> </span>registry-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>source:<span style="color:#e6e7e8"> </span>{<span style="color:#e6e7e8"> </span>repository:<span style="color:#e6e7e8"> </span>busybox<span style="color:#e6e7e8"> </span>}<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>run:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>path:<span style="color:#e6e7e8"> </span>echo<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>args:<span style="color:#e6e7e8"> </span>[<span style="color:#e67e22">&#34;Hello, ((hello))!&#34;</span>]<span style="color:#e6e7e8">
-</span></pre></div>
+  <pre><code class="language-yaml">---
+jobs:
+  - name: ((first))-job
+    public: true
+    plan:
+      - task: simple-task
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source: { repository: busybox }
+          run:
+            path: echo
+            args: [&#34;Hello, ((hello))!&#34;]
+  - name: level-((number))-job
+    public: true
+    plan:
+      - task: simple-task
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source: { repository: busybox }
+          run:
+            path: echo
+            args: [&#34;Hello, ((hello))!&#34;]</code></pre>
 
   
     
@@ -257,11 +258,10 @@
   <h2 class="section-header"><a class="anchor" name="variables" href="#variables"></a>Variables</h2>
   
 
-  <div class="highlight"><pre style="">---<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>first:<span style="color:#e6e7e8"> </span>initial<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>number:<span style="color:#e6e7e8"> </span><span style="color:#e67e22">&#34;9000&#34;</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>hello:<span style="color:#e6e7e8"> </span>HAL<span style="color:#e6e7e8">
-</span></pre></div>
+  <pre><code class="language-yaml">---
+first: initial
+number: &#34;9000&#34;
+hello: HAL</code></pre>
 
   
     

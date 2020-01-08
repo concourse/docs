@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -113,7 +115,7 @@
               <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
+  <a href="config-basics.html" >Config Basics</a>
 </td>
           </tr>
         
@@ -122,7 +124,7 @@
               <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resources.html" >Resources</a>
+  <a href="pipelines.html" >Pipelines</a>
 </td>
           </tr>
         
@@ -131,7 +133,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
+  <a href="resources.html" >Resources</a>
 </td>
           </tr>
         
@@ -140,7 +142,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -149,7 +151,7 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html"  class="active">Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -158,7 +160,7 @@
               <td class="number-cell" align="right">1.9&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html"  class="active">Tasks</a>
 </td>
           </tr>
         
@@ -167,13 +169,22 @@
               <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
-  <a href="operation.html" >Operation</a>
+  <a href="builds.html" >Builds</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.12&nbsp;</td>
             
             <td class="title-cell">
   <a href="observation.html" >Observation</a>
@@ -193,7 +204,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.8</span>
+        <span class="section-number">1.9</span>
         
         
   <a href="tasks.html"  class="active">Tasks</a>
@@ -205,7 +216,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.8.1&nbsp;</td>
+              <td class="number-cell" align="right">1.9.1&nbsp;</td>
             
             <td class="title-cell">
   <a href="running-tasks.html"  class="self">Running Tasks</a>
@@ -214,7 +225,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.8.2&nbsp;</td>
+              <td class="number-cell" align="right">1.9.2&nbsp;</td>
             
             <td class="title-cell">
   <a href="task-environment.html" >Task Environment</a>
@@ -236,7 +247,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.8.1</span>
+        <span class="section-number">1.9.1</span>
         
         
   <a href="running-tasks.html"  class="self">Running Tasks</a>
@@ -275,7 +286,7 @@
     <div class="page-content">
       <div class="section" id="section_running-tasks">
   
-  <h1 class="section-header"><a class="anchor" name="running-tasks" href="#running-tasks"></a><span class="section-number">1.8.1 </span>Running Tasks</h1>
+  <h1 class="section-header"><a class="anchor" name="running-tasks" href="#running-tasks"></a><span class="section-number">1.9.1 </span>Running Tasks</h1>
   
 
   <p>One of the most common use cases of <code>fly</code> is taking a local project on your computer and submitting it up with a task configuration to be run inside a container in Concourse. This is useful to build Linux projects on OS X or to avoid all of those debugging commits when something is configured differently between your local and remote setup.</p>
@@ -287,8 +298,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-execute" href="#fly-execute"></a><code>fly execute</code></h2>
   
 
-  <p>You can execute a task like this:</p><div class="highlight"><pre style="">$ fly -t example execute --config tests.yml
-</pre></div><p>Your files will be uploaded and the task will be executed with them. The working directory name will be used as the input name. If they do not match, you must specify <code>-i name=.</code> instead, where <code>name</code> is the input name from the task configuration.</p><p>Fly will automatically capture <code>SIGINT</code> and <code>SIGTERM</code> and abort the build when received. This allows it to be transparently composed with other toolchains.</p><p>By default, Fly will not send extra files or large files in your current directory that would normally be ignored by your version control system. You can use the <code>--include-ignored</code> flags in order to send ignored files to Concourse along with those that are not ignored.</p><p>If your task needs to run as <code>root</code> then you can specify the <code>-p</code> or <code>--privileged</code> flag.</p>
+  <p>You can execute a task like this:</p><pre><code class="language-bash">$ fly -t example execute --config tests.yml</code></pre><p>Your files will be uploaded and the task will be executed with them. The working directory name will be used as the input name. If they do not match, you must specify <code>-i name=.</code> instead, where <code>name</code> is the input name from the task configuration.</p><p>Fly will automatically capture <code>SIGINT</code> and <code>SIGTERM</code> and abort the build when received. This allows it to be transparently composed with other toolchains.</p><p>By default, Fly will not send extra files or large files in your current directory that would normally be ignored by your version control system. You can use the <code>--include-ignored</code> flags in order to send ignored files to Concourse along with those that are not ignored.</p><p>If your task needs to run as <code>root</code> then you can specify the <code>-p</code> or <code>--privileged</code> flag.</p>
 
   
     
@@ -297,14 +307,12 @@
   <h3 class="section-header"><a class="anchor" name="providing-multiple-inputs" href="#providing-multiple-inputs"></a>Providing multiple inputs</h3>
   
 
-  <p>Tasks in Concourse can take multiple inputs. Up until now we&#39;ve just been submitting a single input (our current working directory) that has the same name as the directory.</p><p>Tasks must specify the inputs that they require as <a href="tasks.html#task-inputs"><strong><code>inputs</code></strong></a>. For <code>fly</code> to upload these inputs you can use the <code>-i</code> or <code>--input</code> arguments with name and path pairs. For example:</p><div class="highlight"><pre style="">$ fly -t example execute <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --config build-stemcell.yml <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --input <span style="color:#3498db">code</span>=. <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --input <span style="color:#3498db">stemcells</span>=../stemcells
-</pre></div><p>This would work together with a <code>build-stemcell.yml</code> if its <code>inputs:</code> section was as follows:</p><div class="highlight"><pre style="">inputs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>code<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>stemcells<span style="color:#e6e7e8">
-</span></pre></div><p>If you specify an input then the default input will no longer be added automatically and you will need to explicitly list it (as with the <code>code</code> input above).</p><p>This feature can be used to mimic other resources and try out combinations of input that would normally not be possible in a pipeline.</p>
+  <p>Tasks in Concourse can take multiple inputs. Up until now we&#39;ve just been submitting a single input (our current working directory) that has the same name as the directory.</p><p>Tasks must specify the inputs that they require as <a href="tasks.html#task-inputs"><strong><code>inputs</code></strong></a>. For <code>fly</code> to upload these inputs you can use the <code>-i</code> or <code>--input</code> arguments with name and path pairs. For example:</p><pre><code class="language-bash">$ fly -t example execute \
+    --config build-stemcell.yml \
+    --input code=. \
+    --input stemcells=../stemcells</code></pre><p>This would work together with a <code>build-stemcell.yml</code> if its <code>inputs:</code> section was as follows:</p><pre><code class="language-yaml">inputs:
+- name: code
+- name: stemcells</code></pre><p>If you specify an input then the default input will no longer be added automatically and you will need to explicitly list it (as with the <code>code</code> input above).</p><p>This feature can be used to mimic other resources and try out combinations of input that would normally not be possible in a pipeline.</p>
 
   
     
@@ -316,11 +324,10 @@
   <h3 class="section-header"><a class="anchor" name="basing-inputs-on-a-job-in-your-pipeline-with---inputs-from" href="#basing-inputs-on-a-job-in-your-pipeline-with---inputs-from"></a>Basing inputs on a job in your pipeline with <code>--inputs-from</code></h3>
   
 
-  <p>If the <code>--inputs-from</code> flag is given, the specified job will be looked up in the pipeline, and the one-off build will base its inputs on those currently configured for the job.</p><p>If any <code>--input</code> flags are given (see above), they will override the base set of inputs.</p><p>For example:</p><div class="highlight"><pre style="">$ fly -t example execute <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --config task.yml <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --inputs-from main/integration <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --input <span style="color:#3498db">foo</span>=./foo
-</pre></div><p>This will trigger a one-off-build using the <code>task.yml</code> task config, basing its inputs on the latest candidates for the <code>integration</code> job in the <code>main</code> pipeline, with the <code>foo</code> input overridden to specify local code to run.</p><p>This can be used to more closely replicate the state in CI when weeding out flakiness, or as a shortcut for local development so that you don&#39;t have to upload every single resource from your local machine.</p>
+  <p>If the <code>--inputs-from</code> flag is given, the specified job will be looked up in the pipeline, and the one-off build will base its inputs on those currently configured for the job.</p><p>If any <code>--input</code> flags are given (see above), they will override the base set of inputs.</p><p>For example:</p><pre><code class="language-bash">$ fly -t example execute \
+    --config task.yml \
+    --inputs-from main/integration \
+    --input foo=./foo</code></pre><p>This will trigger a one-off-build using the <code>task.yml</code> task config, basing its inputs on the latest candidates for the <code>integration</code> job in the <code>main</code> pipeline, with the <code>foo</code> input overridden to specify local code to run.</p><p>This can be used to more closely replicate the state in CI when weeding out flakiness, or as a shortcut for local development so that you don&#39;t have to upload every single resource from your local machine.</p>
 
   
     
@@ -332,28 +339,26 @@
   <h3 class="section-header"><a class="anchor" name="using-an-image-from-a-job-in-your-pipeline-with---image" href="#using-an-image-from-a-job-in-your-pipeline-with---image"></a>Using an image from a job in your pipeline with <code>--image</code></h3>
   
 
-  <p>When using <code>--inputs-from</code> as above, you can additionally specify which input to use as the task&#39;s image by passing <code>--image input-name</code>.</p><p>For example, the following pipeline fetches an image via a <a href="get-step.html"><code>get</code> step</a> and uses it for <a href="task-step.html#task-step-image"><strong><code>image</code></strong></a>:</p><div class="highlight"><pre style="">resources:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>my-repo<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>git<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8"> </span>{uri:<span style="color:#e6e7e8"> </span>https://example.com}<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>some-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>registry-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8"> </span>{repository:<span style="color:#e6e7e8"> </span>ubuntu}<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>jobs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>integration<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>my-repo<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>some-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>my-task<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>my-repo/task.yml<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>image:<span style="color:#e6e7e8"> </span>some-image<span style="color:#e6e7e8">
-</span></pre></div><p>...so to run the same task with the same image in a one-off build, you would run:</p><div class="highlight"><pre style="">$ fly -t example execute <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --config task.yml <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --inputs-from main/integration <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --image some-image
-</pre></div>
+  <p>When using <code>--inputs-from</code> as above, you can additionally specify which input to use as the task&#39;s image by passing <code>--image input-name</code>.</p><p>For example, the following pipeline fetches an image via a <a href="get-step.html"><code>get</code> step</a> and uses it for <a href="task-step.html#task-step-image"><strong><code>image</code></strong></a>:</p><pre><code class="language-yaml">resources:
+- name: my-repo
+  type: git
+  source: {uri: https://example.com}
+
+- name: some-image
+  type: registry-image
+  source: {repository: ubuntu}
+
+jobs:
+- name: integration
+  plan:
+  - get: my-repo
+  - get: some-image
+  - task: my-task
+    file: my-repo/task.yml
+    image: some-image</code></pre><p>...so to run the same task with the same image in a one-off build, you would run:</p><pre><code class="language-bash">$ fly -t example execute \
+    --config task.yml \
+    --inputs-from main/integration \
+    --image some-image</code></pre>
 
   
     
@@ -365,13 +370,11 @@
   <h3 class="section-header"><a class="anchor" name="taking-artifacts-from-the-build-with---output" href="#taking-artifacts-from-the-build-with---output"></a>Taking artifacts from the build with <code>--output</code></h3>
   
 
-  <p>If a task specifies outputs then you&#39;re able to extract these back out of the build and back to your local system. For example:</p><div class="highlight"><pre style="">$ fly -t example execute <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --config build-stemcell.yml <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --input <span style="color:#3498db">code</span>=. <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --output <span style="color:#3498db">stemcell</span>=/tmp/stemcell
-</pre></div><p>This would work together with a <code>build-stemcell.yml</code> if its <code>outputs:</code> section was as follows:</p><div class="highlight"><pre style="">outputs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>stemcell<span style="color:#e6e7e8">
-</span></pre></div><p>This feature is useful to farm work out to your Concourse server to build things in a repeatable manner.</p>
+  <p>If a task specifies outputs then you&#39;re able to extract these back out of the build and back to your local system. For example:</p><pre><code class="language-bash">$ fly -t example execute \
+    --config build-stemcell.yml \
+    --input code=. \
+    --output stemcell=/tmp/stemcell</code></pre><p>This would work together with a <code>build-stemcell.yml</code> if its <code>outputs:</code> section was as follows:</p><pre><code class="language-yaml">outputs:
+- name: stemcell</code></pre><p>This feature is useful to farm work out to your Concourse server to build things in a repeatable manner.</p>
 
   
     
@@ -383,11 +386,9 @@
   <h3 class="section-header"><a class="anchor" name="providing-values-for-params" href="#providing-values-for-params"></a>Providing values for <code>params</code></h3>
   
 
-  <p>Any params listed in the task configuration can be specified by using environment variables.</p><p>So, if you have a task with the following params:</p><div class="highlight"><pre style="">params:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>FOO:<span style="color:#e6e7e8"> </span>fizzbuzz<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>BAR:<span style="color:#e6e7e8">
-</span></pre></div><p>...and you run:</p><div class="highlight"><pre style=""><span style="color:#3498db">BAR</span>=hello fly execute
-</pre></div><p>The task would then run with <code>BAR</code> as <code>&#34;hello&#34;</code>, and <code>FOO</code> as <code>&#34;fizzbuzz&#34;</code> (its default value).</p>
+  <p>Any params listed in the task configuration can be specified by using environment variables.</p><p>So, if you have a task with the following params:</p><pre><code class="language-yaml">params:
+  FOO: fizzbuzz
+  BAR:</code></pre><p>...and you run:</p><pre><code class="language-bash">BAR=hello fly execute</code></pre><p>The task would then run with <code>BAR</code> as <code>&#34;hello&#34;</code>, and <code>FOO</code> as <code>&#34;fizzbuzz&#34;</code> (its default value).</p>
 
   
     
@@ -399,11 +400,10 @@
   <h3 class="section-header"><a class="anchor" name="fly-execute-vars" href="#fly-execute-vars"></a>Providing values for <code>((vars))</code></h3>
   
 
-  <p>Task config files can contain template variables in the form of <code>((foo-bar))</code>, the same as <a href="setting-pipelines.html#pipeline-vars">pipeline <code>((vars))</code></a>.</p><p>These vars can be set during <code>fly execute</code> by using the <code>-v</code>, <code>-y</code> and <code>-l</code> flags, the same as <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a>:</p><div class="highlight"><pre style="">fly -t example execute --config tests.yml <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>  -l vars.yml <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>  -v <span style="color:#3498db">some_string</span>=<span style="color:#e67e22">&#34;Hello World!&#34;</span> <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>  -y <span style="color:#3498db">some_bool</span>=<span style="color:#8f4b2d">true</span>
-</pre></div><p>Any variables not satisfied via the above flags will be deferred to the configured <a href="creds.html">credential manager</a>.</p><p>To satisfy these vars when running the task in a pipeline, see <a href="task-step.html#task-step-vars"><strong><code>vars</code></strong></a>.</p>
+  <p>Task config files can contain template variables in the form of <code>((foo-bar))</code>, the same as <a href="setting-pipelines.html#pipeline-vars">pipeline <code>((vars))</code></a>.</p><p>These vars can be set during <code>fly execute</code> by using the <code>-v</code>, <code>-y</code> and <code>-l</code> flags, the same as <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a>:</p><pre><code class="language-bash">fly -t example execute --config tests.yml \
+  -l vars.yml \
+  -v some_string=&#34;Hello World!&#34; \
+  -y some_bool=true</code></pre><p>Any variables not satisfied via the above flags will be deferred to the configured <a href="creds.html">credential manager</a>.</p><p>To satisfy these vars when running the task in a pipeline, see <a href="task-step.html#task-step-vars"><strong><code>vars</code></strong></a>.</p>
 
   
     
@@ -415,8 +415,7 @@
   <h3 class="section-header"><a class="anchor" name="targeting-a-specific-worker-with---tag" href="#targeting-a-specific-worker-with---tag"></a>Targeting a specific worker with <code>--tag</code></h3>
   
 
-  <p>If you want to execute a task on a worker that has a specific tag, you can do so by passing <code>--tag</code>:</p><div class="highlight"><pre style="">fly -t example execute --config task.yml --tag bar
-</pre></div><p>This will execute the task specified by <code>task.yml</code> on a worker that has been tagged <code>bar</code>.</p>
+  <p>If you want to execute a task on a worker that has a specific tag, you can do so by passing <code>--tag</code>:</p><pre><code class="language-bash">fly -t example execute --config task.yml --tag bar</code></pre><p>This will execute the task specified by <code>task.yml</code> on a worker that has been tagged <code>bar</code>.</p>
 
   
     
@@ -435,7 +434,7 @@
           prev:
 
           
-          <span class="section-number">1.8</span>
+          <span class="section-number">1.9</span>
           
 
           <a href="tasks.html">Tasks</a>
@@ -447,7 +446,7 @@
           next:
 
           
-          <span class="section-number">1.8.2</span>
+          <span class="section-number">1.9.2</span>
           
 
           <a href="task-environment.html">Task Environment</a>

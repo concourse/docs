@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body class="index">
     <div class="top-logo">
@@ -58,17 +60,15 @@
         <div class="content">
   <h2>Quick Start</h2>
 
-  <p>Concourse is distributed as a single <code>concourse</code> binary, making it easy to run just about anywhere, especially with Docker.</p><div class="highlight"><pre style="">$ wget https://concourse-ci.org/docker-compose.yml
+  <p>Concourse is distributed as a single <code>concourse</code> binary, making it easy to run just about anywhere, especially with Docker.</p><pre><code class="language-bash">$ wget https://concourse-ci.org/docker-compose.yml
 $ docker-compose up -d
 Creating docs_concourse-db_1 ...
-Creating docs_concourse-db_1 ... <span style="color:#2ecc71;font-weight:bold">done</span>
+Creating docs_concourse-db_1 ... done
 Creating docs_concourse_1 ...
-Creating docs_concourse_1 ... <span style="color:#2ecc71;font-weight:bold">done</span>
-</pre></div><p>Concourse will be running at <a href="http://localhost:8080">localhost:8080</a>. You can log in with the username/password as <code>test</code>/<code>test</code>.</p><p>Next, install <a href="fly.html"><code>fly</code> CLI</a> by downloading it from the web UI and target your local Concourse as the <code>test</code> user:</p><div class="highlight"><pre style="">$ fly -t tutorial login -c http://localhost:8080 -u <span style="color:#8f4b2d">test</span> -p <span style="color:#8f4b2d">test</span>
-logging in to team <span style="color:#e74c3c">&#39;main&#39;</span>
+Creating docs_concourse_1 ... done</code></pre><p>Concourse will be running at <a href="http://localhost:8080">localhost:8080</a>. You can log in with the username/password as <code>test</code>/<code>test</code>.</p><p>Next, install <a href="fly.html"><code>fly</code> CLI</a> by downloading it from the web UI and target your local Concourse as the <code>test</code> user:</p><pre><code class="language-bash">$ fly -t tutorial login -c http://localhost:8080 -u test -p test
+logging in to team &#39;main&#39;
 
-target saved
-</pre></div><p>Then, head to <a href="https://concoursetutorial.com/basics/task-hello-world/">Hello World</a> to kick the tires!</p>
+target saved</code></pre><p>Then, head to <a href="https://concoursetutorial.com/basics/task-hello-world/">Hello World</a> to kick the tires!</p>
 </div>
       </div>
       </div>
@@ -83,7 +83,7 @@ target saved
 
 <div class="segment">
   <p>Built on the simple mechanics of <a href="resources.html">resources</a>, <a href="tasks.html">tasks</a>, and <a href="jobs.html">jobs</a>, Concourse presents a general approach to automation that makes it great for <a href="https://en.wikipedia.org/wiki/Continuous_integration">CI</a>/<a href="https://en.wikipedia.org/wiki/Continuous_delivery">CD</a>.</p>
-</div><a class="hero-pill" href="https://github.com/concourse/concourse/releases/tag/v5.7.2">v5.7.2 <span class="small">release notes</span></a>
+</div><a class="hero-pill" href="https://github.com/concourse/concourse/releases/tag/v5.8.0">v5.8.0 <span class="small">release notes</span></a>
 
 <ul class="download-info">
   <li>
@@ -92,7 +92,7 @@ target saved
     </span>
 
     <ul class="download-links">
-      <li><a href="https://github.com/concourse/concourse/releases/download/v5.7.2/concourse-5.7.2-linux-amd64.tgz"><svg class="icon" width="25px" height="30px" viewBox="0 0 25 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <li><a href="https://github.com/concourse/concourse/releases/download/v5.8.0/concourse-5.8.0-linux-amd64.tgz"><svg class="icon" width="25px" height="30px" viewBox="0 0 25 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     
     <title>linux_logo</title>
     <desc>Created with Sketch Beta.</desc>
@@ -108,7 +108,7 @@ target saved
         </g>
     </g>
 </svg> Linux</a></li>
-      <li><a href="https://github.com/concourse/concourse/releases/download/v5.7.2/concourse-5.7.2-darwin-amd64.tgz"><svg class="icon" width="21px" height="24px" viewBox="0 0 21 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <li><a href="https://github.com/concourse/concourse/releases/download/v5.8.0/concourse-5.8.0-darwin-amd64.tgz"><svg class="icon" width="21px" height="24px" viewBox="0 0 21 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     
     <title>apple_logo_legend_d_ic</title>
     <desc>Created with Sketch Beta.</desc>
@@ -124,7 +124,7 @@ target saved
         </g>
     </g>
 </svg> OS X</a></li>
-      <li><a href="https://github.com/concourse/concourse/releases/download/v5.7.2/concourse-5.7.2-windows-amd64.zip"><svg class="icon" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <li><a href="https://github.com/concourse/concourse/releases/download/v5.8.0/concourse-5.8.0-windows-amd64.zip"><svg class="icon" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     
     <title>windows_logo</title>
     <desc>Created with Sketch Beta.</desc>
@@ -147,7 +147,7 @@ target saved
     </span>
 
     <ul class="download-links">
-      <li><a href="https://github.com/concourse/concourse/releases/download/v5.7.2/fly-5.7.2-linux-amd64.tgz"><svg class="icon" width="25px" height="30px" viewBox="0 0 25 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <li><a href="https://github.com/concourse/concourse/releases/download/v5.8.0/fly-5.8.0-linux-amd64.tgz"><svg class="icon" width="25px" height="30px" viewBox="0 0 25 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     
     <title>linux_logo</title>
     <desc>Created with Sketch Beta.</desc>
@@ -163,7 +163,7 @@ target saved
         </g>
     </g>
 </svg> Linux</a></li>
-      <li><a href="https://github.com/concourse/concourse/releases/download/v5.7.2/fly-5.7.2-darwin-amd64.tgz"><svg class="icon" width="21px" height="24px" viewBox="0 0 21 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <li><a href="https://github.com/concourse/concourse/releases/download/v5.8.0/fly-5.8.0-darwin-amd64.tgz"><svg class="icon" width="21px" height="24px" viewBox="0 0 21 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     
     <title>apple_logo_legend_d_ic</title>
     <desc>Created with Sketch Beta.</desc>
@@ -179,7 +179,7 @@ target saved
         </g>
     </g>
 </svg> OS X</a></li>
-      <li><a href="https://github.com/concourse/concourse/releases/download/v5.7.2/fly-5.7.2-windows-amd64.zip"><svg class="icon" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <li><a href="https://github.com/concourse/concourse/releases/download/v5.8.0/fly-5.8.0-windows-amd64.zip"><svg class="icon" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     
     <title>windows_logo</title>
     <desc>Created with Sketch Beta.</desc>
@@ -200,19 +200,18 @@ target saved
 </h2>
 
 <div class="segment example">
-  <div class="highlight"><pre style="">resources:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>booklit<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>git<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8"> </span>{uri:<span style="color:#e6e7e8"> </span><span style="color:#e67e22">&#34;https://github.com/vito/booklit&#34;</span>}<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>jobs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>unit<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>booklit<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>test<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>booklit/ci/test.yml<span style="color:#e6e7e8">
-</span></pre></div>
+  <pre><code class="language-yaml">resources:
+- name: booklit
+  type: git
+  source: {uri: &#34;https://github.com/vito/booklit&#34;}
+
+jobs:
+- name: unit
+  plan:
+  - get: booklit
+    trigger: true
+  - task: test
+    file: booklit/ci/test.yml</code></pre>
 </div>
 
 <div class="segment">
@@ -232,12 +231,11 @@ target saved
 </h2>
 
 <div class="segment example">
-  <div class="highlight"><pre style="">$ fly -t ci set-pipeline -p booklit -c pipeline.yml
+  <pre><code class="language-sh">$ fly -t ci set-pipeline -p booklit -c pipeline.yml
 $ vim pipeline.yml
 $ fly -t ci set-pipeline -p booklit -c pipeline.yml
 $ git add pipeline.yml
-$ git commit -m <span style="color:#e67e22">&#34;initial pipeline&#34;</span>
-</pre></div>
+$ git commit -m &#34;initial pipeline&#34;</code></pre>
 </div>
 
 <div class="segment">
@@ -247,15 +245,14 @@ $ git commit -m <span style="color:#e67e22">&#34;initial pipeline&#34;</span>
 </h2>
 
 <div class="segment example">
-  <div class="highlight"><pre style="">$ fly -t ci intercept -j booklit/unit -s unit
+  <pre><code class="language-sh">$ fly -t ci intercept -j booklit/unit -s unit
 root@2c15ff11:/tmp/build/0df9eea0# ps
     PID TTY          TIME CMD
-    <span style="color:#1abc9c;font-weight:bold">171</span> pts/1    <span style="color:#1abc9c;font-weight:bold">00</span>:00:00 bash
-   <span style="color:#1abc9c;font-weight:bold">1876</span> pts/1    <span style="color:#1abc9c;font-weight:bold">00</span>:00:00 ps
+    171 pts/1    00:00:00 bash
+   1876 pts/1    00:00:00 ps
 root@2c15ff11:/tmp/build/0df9eea0# ls
 depspath  gopath
-root@2c15ff11:/tmp/build/0df9eea0# █
-</pre></div>
+root@2c15ff11:/tmp/build/0df9eea0# █</code></pre>
 </div>
 
 <div class="segment">
@@ -265,16 +262,15 @@ root@2c15ff11:/tmp/build/0df9eea0# █
 </h2>
 
 <div class="segment example">
-  <div class="highlight"><pre style="">~/booklit $ fly -t ci execute -c ci/test.yml
-executing build <span style="color:#1abc9c;font-weight:bold">1</span> at http://localhost:8080/builds/1
+  <pre><code class="language-sh">~/booklit $ fly -t ci execute -c ci/test.yml
+executing build 1 at http://localhost:8080/builds/1
 initializing
-booklit: <span style="color:#1abc9c;font-weight:bold">4</span>.74 MiB/s 0s
+booklit: 4.74 MiB/s 0s
 running gopath/src/github.com/vito/booklit/ci/test
 fetching dependencies...
 installing ginkgo...
 running tests...
-█
-</pre></div>
+█</code></pre>
 </div>
 
 <div class="segment">
@@ -284,28 +280,27 @@ running tests...
 </h2>
 
 <div class="segment example">
-  <div class="highlight"><pre style="">resource_types:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>slack<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>docker-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>repository:<span style="color:#e6e7e8"> </span>quay.io/ahelal/bender<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>tag:<span style="color:#e6e7e8"> </span>latest<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>resources:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>slack-deploy<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>slack<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>slack_token:<span style="color:#e6e7e8"> </span>((slack_token))<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>channel:<span style="color:#e6e7e8"> </span><span style="color:#e67e22">&#34;admin&#34;</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>grammar:<span style="color:#e6e7e8"> </span><span style="color:#e67e22">&#34;dang! deploy it now!&#34;</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>jobs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>prod-deploy<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>slack-deploy<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span><span style="color:#9b9b9b"># ...</span><span style="color:#e6e7e8">
-</span></pre></div>
+  <pre><code class="language-yaml">resource_types:
+- name: slack
+  type: docker-image
+  source:
+    repository: quay.io/ahelal/bender
+    tag: latest
+
+resources:
+- name: slack-deploy
+  type: slack
+  source:
+    slack_token: ((slack_token))
+    channel: &#34;admin&#34;
+    grammar: &#34;dang! deploy it now!&#34;
+
+jobs:
+- name: prod-deploy
+  plan:
+  - get: slack-deploy
+    trigger: true
+  - # ...</code></pre>
 </div>
 
 <div class="segment">

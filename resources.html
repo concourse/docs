@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -111,7 +113,7 @@
               <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
+  <a href="config-basics.html" >Config Basics</a>
 </td>
           </tr>
         
@@ -120,7 +122,7 @@
               <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resources.html"  class="self">Resources</a>
+  <a href="pipelines.html" >Pipelines</a>
 </td>
           </tr>
         
@@ -129,7 +131,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
+  <a href="resources.html"  class="self">Resources</a>
 </td>
           </tr>
         
@@ -138,7 +140,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -147,7 +149,7 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -156,7 +158,7 @@
               <td class="number-cell" align="right">1.9&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html" >Tasks</a>
 </td>
           </tr>
         
@@ -165,13 +167,22 @@
               <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
-  <a href="operation.html" >Operation</a>
+  <a href="builds.html" >Builds</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.12&nbsp;</td>
             
             <td class="title-cell">
   <a href="observation.html" >Observation</a>
@@ -193,7 +204,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.5</span>
+        <span class="section-number">1.6</span>
         
         
   <a href="resources.html"  class="self">Resources</a>
@@ -206,7 +217,7 @@
     
       <tr>
         
-          <td class="number-cell" align="right">1.5.1&nbsp;</td>
+          <td class="number-cell" align="right">1.6.1&nbsp;</td>
         
         <td class="title-cell">
           <a href="managing-resources.html">Managing Resources</a>
@@ -315,41 +326,37 @@
   <div class="example">
   <h3><code>git</code> resource</h3>
 
-  <p>The following resource definition is an example of the <a href="https://github.com/concourse/git-resource"><code>git</code> resource</a>:</p><div class="highlight"><pre style="">name:<span style="color:#e6e7e8"> </span>booklit<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>type:<span style="color:#e6e7e8"> </span>git<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>source:<span style="color:#e6e7e8"> </span>{uri:<span style="color:#e6e7e8"> </span><span style="color:#e67e22">&#34;https://github.com/vito/booklit&#34;</span>}<span style="color:#e6e7e8">
-</span></pre></div><p>This could be passed to a job via a <a href="get-step.html"><code>get</code> step</a> with <a href="get-step.html#get-step-trigger"><code>trigger: true</code></a> to run the tests whenever there&#39;s new code:</p><div class="highlight"><pre style="">resources:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>booklit<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>git<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8"> </span>{uri:<span style="color:#e6e7e8"> </span><span style="color:#e67e22">&#34;https://github.com/vito/booklit&#34;</span>}<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>jobs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>unit<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>booklit<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>test<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>booklit/ci/test.yml<span style="color:#e6e7e8">
-</span></pre></div>
+  <p>The following resource definition is an example of the <a href="https://github.com/concourse/git-resource"><code>git</code> resource</a>:</p><pre><code class="language-yaml">name: booklit
+type: git
+source: {uri: &#34;https://github.com/vito/booklit&#34;}</code></pre><p>This could be passed to a job via a <a href="get-step.html"><code>get</code> step</a> with <a href="get-step.html#get-step-trigger"><code>trigger: true</code></a> to run the tests whenever there&#39;s new code:</p><pre><code class="language-yaml">resources:
+- name: booklit
+  type: git
+  source: {uri: &#34;https://github.com/vito/booklit&#34;}
+
+jobs:
+- name: unit
+  plan:
+  - get: booklit
+    trigger: true
+  - task: test
+    file: booklit/ci/test.yml</code></pre>
 </div><div class="example">
   <h3><code>time</code> resource</h3>
 
-  <p>The following resource emits a new version every hour:</p><div class="highlight"><pre style="">name:<span style="color:#e6e7e8"> </span>1h<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>type:<span style="color:#e6e7e8"> </span>time<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>source:<span style="color:#e6e7e8"> </span>{interval:<span style="color:#e6e7e8"> </span>1h}<span style="color:#e6e7e8">
-</span></pre></div><p>This could be passed to a job via a <a href="get-step.html"><code>get</code> step</a> with <a href="get-step.html#get-step-trigger"><code>trigger: true</code></a> to run the job periodically:</p><div class="highlight"><pre style="">resources:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>1h<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>time<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8"> </span>{interval:<span style="color:#e6e7e8"> </span>1h}<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>jobs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>nag<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>1h<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>nag<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>config:<span style="color:#e6e7e8"> </span><span style="color:#9b9b9b"># ...</span><span style="color:#e6e7e8">
-</span></pre></div>
+  <p>The following resource emits a new version every hour:</p><pre><code class="language-yaml">name: 1h
+type: time
+source: {interval: 1h}</code></pre><p>This could be passed to a job via a <a href="get-step.html"><code>get</code> step</a> with <a href="get-step.html#get-step-trigger"><code>trigger: true</code></a> to run the job periodically:</p><pre><code class="language-yaml">resources:
+- name: 1h
+  type: time
+  source: {interval: 1h}
+
+jobs:
+- name: nag
+  plan:
+  - get: 1h
+    trigger: true
+  - task: nag
+    config: # ...</code></pre>
 </div>
 </div>
       </div>
@@ -358,7 +365,7 @@
     <div class="page-content">
       <div class="section" id="section_resources">
   
-  <h1 class="section-header"><a class="anchor" name="resources" href="#resources"></a><span class="section-number">1.5 </span>Resources</h1>
+  <h1 class="section-header"><a class="anchor" name="resources" href="#resources"></a><span class="section-number">1.6 </span>Resources</h1>
   
 
   <p><a href="resources.html">Resources</a> are the heart and soul of Concourse. They represent all external inputs to and outputs of <a href="jobs.html">jobs</a> in the pipeline.</p><p>Resources are listed under the <code>resources:</code> key in the pipeline configuration. Each configured resource consists of the following fields:</p><div class="definition">
@@ -453,7 +460,7 @@
           prev:
 
           
-          <span class="section-number">1.4</span>
+          <span class="section-number">1.5</span>
           
 
           <a href="pipelines.html">Pipelines</a>
@@ -465,7 +472,7 @@
           next:
 
           
-          <span class="section-number">1.5.1</span>
+          <span class="section-number">1.6.1</span>
           
 
           <a href="managing-resources.html">Managing Resources</a>

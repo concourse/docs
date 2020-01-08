@@ -13,7 +13,7 @@
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
-<title>Managing Resource Types - Concourse CI</title>
+<title>Intro to YAML - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
@@ -115,7 +115,7 @@
               <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="config-basics.html" >Config Basics</a>
+  <a href="config-basics.html"  class="active">Config Basics</a>
 </td>
           </tr>
         
@@ -142,7 +142,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html"  class="active">Resource Types</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -204,10 +204,10 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.7</span>
+        <span class="section-number">1.4</span>
         
         
-  <a href="resource-types.html"  class="active">Resource Types</a>
+  <a href="config-basics.html"  class="active">Config Basics</a>
 
       </div>
 
@@ -216,19 +216,28 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.7.1&nbsp;</td>
+              <td class="number-cell" align="right">1.4.1&nbsp;</td>
             
             <td class="title-cell">
-  <a href="managing-resource-types.html"  class="self">Managing Resource Types</a>
+  <a href="intro-to-yaml.html"  class="self">Intro to YAML</a>
 </td>
           </tr>
         
           <tr>
             
-              <td class="number-cell" align="right">1.7.2&nbsp;</td>
+              <td class="number-cell" align="right">1.4.2&nbsp;</td>
             
             <td class="title-cell">
-  <a href="implementing-resource-types.html" >Implementing a Resource Type</a>
+  <a href="vars.html" >Intro to <code>((vars))</code></a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.4.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="runtime-vars.html" >Fetching <code>((vars))</code> at Runtime</a>
 </td>
           </tr>
         
@@ -247,10 +256,10 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.7.1</span>
+        <span class="section-number">1.4.1</span>
         
         
-  <a href="managing-resource-types.html"  class="self">Managing Resource Types</a>
+  <a href="intro-to-yaml.html"  class="self">Intro to YAML</a>
 
       </div>
 
@@ -263,7 +272,18 @@
           <td class="number-cell" align="left"></td>
         
         <td class="title-cell">
-          <a href="managing-resource-types.html#fly-check-resource-type"><code>fly check-resource-type</code></a>
+          <a href="intro-to-yaml.html#yaml-tips-and-tricks">YAML Tips &amp; Tricks</a>
+
+          
+        </td>
+      </tr>
+    
+      <tr>
+        
+          <td class="number-cell" align="left"></td>
+        
+        <td class="title-cell">
+          <a href="intro-to-yaml.html#yaml-quirks">YAML Quirks</a>
 
           
         </td>
@@ -284,21 +304,68 @@
     <div class="page-aside"></div>
 
     <div class="page-content">
-      <div class="section" id="section_managing-resource-types">
+      <div class="section" id="section_intro-to-yaml">
   
-  <h1 class="section-header"><a class="anchor" name="managing-resource-types" href="#managing-resource-types"></a><span class="section-number">1.7.1 </span>Managing Resource Types</h1>
+  <h1 class="section-header"><a class="anchor" name="intro-to-yaml" href="#intro-to-yaml"></a><span class="section-number">1.4.1 </span>Intro to YAML</h1>
   
 
-  
+  <p><a href="https://yaml.org">YAML</a> is a human-friendly syntax for writing structured documents. You can think of it as JSON without the sharp edges.</p><p>Here&#39;s a quick example demonstrating common YAML syntax:</p><pre><code class="language-yaml"># commented lines are prefixed with the &#39;#&#39; character
+
+# strings
+quoted_string: &#34;bar&#34;
+unquoted_string: hello world!
+multiline_string: |
+  hello, world!
+  this is one big string with a trailing linebreak!
+
+# arrays
+array: [hello, world]
+multiline_array:
+- hello
+- world
+
+# objects
+object: {one: uno, two: dos}
+multiline_object:
+  one: uno
+  two: dos
+
+# boolean values
+booleans: [true, false]
+
+# numeric values
+numeric: [1234, 12.34]</code></pre>
 
   
     
-      <div class="section" id="section_fly-check-resource-type">
+      <div class="section" id="section_yaml-tips-and-tricks">
   
-  <h2 class="section-header"><a class="anchor" name="fly-check-resource-type" href="#fly-check-resource-type"></a><code>fly check-resource-type</code></h2>
+  <h2 class="section-header"><a class="anchor" name="yaml-tips-and-tricks" href="#yaml-tips-and-tricks"></a>YAML Tips &amp; Tricks</h2>
   
 
-  <p>To force immediate checking for new versions of a resource type, rather than waiting for the periodic checking, run:</p><pre><code class="language-bash">$ fly -t example check-resource-type --resource-type my-pipeline/my-resource-type</code></pre><p>This can be useful for forcing an update if you&#39;re iterating on your own resource type implementation.</p>
+  <p>YAML anchor syntax can be used to avoid repetition within configuration.</p><p>For example, the following YAML document...:</p><pre><code class="language-yaml">large_value: &amp;my_anchor
+  do_the_thing: true
+  with_these_values: [1, 2, 3]
+
+duplicate_value: *my_anchor</code></pre><p>...is exactly equivalent to:</p><pre><code class="language-yaml">large_value:
+  do_the_thing: true
+  with_these_values: [1, 2, 3]
+
+duplicate_value:
+  do_the_thing: true
+  with_these_values: [1, 2, 3]</code></pre><p>If you find yourself repeating configuration throughout your pipeline, it may be a sign that Concourse is missing some kind of abstraction to make your pipeline less verbose. If you have the time and are interested in helping out with Concourse&#39;s design, feedback of this sort is welcome in the <a href="https://discuss.concourse-ci.org">forums</a>!</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_yaml-quirks">
+  
+  <h2 class="section-header"><a class="anchor" name="yaml-quirks" href="#yaml-quirks"></a>YAML Quirks</h2>
+  
+
+  <p>YAML has some weird parts. For example, all of the following terms are acceptable boolean values: <code>true</code>, <code>false</code>, <code>yes</code>, <code>no</code>, <code>on</code>, <code>off</code>.</p><p>YAML is also whitespace-sensitive. For the most part, this is really handy because it keeps you from having to count curly-braces in deeply nested parts of configuration such as <a href="jobs.html#job-plan"><strong><code>plan</code></strong></a>. Sometimes, though, it can be hard to keep track of the correct indentation level.</p>
 
   
     
@@ -314,10 +381,10 @@
           prev:
 
           
-          <span class="section-number">1.7</span>
+          <span class="section-number">1.4</span>
           
 
-          <a href="resource-types.html">Resource Types</a>
+          <a href="config-basics.html">Config Basics</a>
         </div>
       
 
@@ -326,10 +393,10 @@
           next:
 
           
-          <span class="section-number">1.7.2</span>
+          <span class="section-number">1.4.2</span>
           
 
-          <a href="implementing-resource-types.html">Implementing a Resource Type</a>
+          <a href="vars.html">Intro to <code>((vars))</code></a>
         </div>
       
       </nav>

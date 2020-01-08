@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60508041-1"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-60508041-1');
+</script>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=775" />
+<title>Intro to ((vars)) - Concourse CI</title>
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+<link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+<link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+<script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
+  </head>
+  <body>
+    <div class="top-logo">
+  <a href="/"><img src="images/logo-white.svg" />Concourse</a>
+</div>
+
+<nav class="top-nav">
+  
+  <a class="top-link active" href="docs.html">Docs</a>
+  
+  <a class="top-link" href="examples.html">Examples</a>
+  
+  <a class="top-link" href="project.html">Project</a>
+  
+  <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
+  <a class="top-link" href="https://discuss.concourse-ci.org">discuss</a>
+</nav>
+
+<div class="top-search">
+  <div id="search"></div>
+</div>
+
+<script type="text/javascript">
+  var app = Elm.Main.init({
+    node: document.getElementById('search')
+  });
+
+  app.ports.emitSearchTerm.subscribe(function(term) {
+    gtag('event', 'search', {search_term: term});
+  });
+</script>
+
+    <div class="page-nav">
+      
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1</span>
+        
+        
+  <a href="docs.html"  class="active">Docs</a>
+
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="install.html" >Install</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="auth.html" >Auth &amp; Teams</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="fly.html" >The <code>fly</code> CLI</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="config-basics.html"  class="active">Config Basics</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="pipelines.html" >Pipelines</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resources.html" >Resources</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resource-types.html" >Resource Types</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.8&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="jobs.html" >Jobs</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.9&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tasks.html" >Tasks</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.10&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="builds.html" >Builds</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.12&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="observation.html" >Observation</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1.4</span>
+        
+        
+  <a href="config-basics.html"  class="active">Config Basics</a>
+
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.4.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="intro-to-yaml.html" >Intro to YAML</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.4.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="vars.html"  class="self">Intro to <code>((vars))</code></a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.4.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="runtime-vars.html" >Fetching <code>((vars))</code> at Runtime</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+
+
+<div class="context">
+  <div class="page-toc">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1.4.2</span>
+        
+        
+  <a href="vars.html"  class="self">Intro to <code>((vars))</code></a>
+
+      </div>
+
+      
+<div class="children">
+  <table>
+    
+      <tr>
+        
+          <td class="number-cell" align="left"></td>
+        
+        <td class="title-cell">
+          <a href="vars.html#var-syntax"><code>((var))</code> syntax</a>
+
+          
+        </td>
+      </tr>
+    
+      <tr>
+        
+          <td class="number-cell" align="left"></td>
+        
+        <td class="title-cell">
+          <a href="vars.html#var-interpolation">Interpolation</a>
+
+          
+        </td>
+      </tr>
+    
+      <tr>
+        
+          <td class="number-cell" align="left"></td>
+        
+        <td class="title-cell">
+          <a href="vars.html#static-vars">Providing <code>((vars))</code> with <code>fly</code></a>
+
+          
+        </td>
+      </tr>
+    
+  </table>
+</div>
+
+    </nav>
+  </div>
+</div>
+
+
+
+
+    </div>
+
+    <div class="page-aside"></div>
+
+    <div class="page-content">
+      <div class="section" id="section_vars">
+  
+  <h1 class="section-header"><a class="anchor" name="vars" href="#vars"></a><span class="section-number">1.4.2 </span>Intro to <code>((vars))</code></h1>
+  
+
+  <p>Concourse supports value substitution in YAML configuration by way of <code>((vars))</code>.</p><p>Automation entails the use of all kinds of credentials. It&#39;s important to keep these values separate from the rest of your configuration by using <code>((vars))</code> instead of hardcoding values. This allows your configuration to be placed under source control and allows credentials to be tucked safely away into a secure credential manager like Vault instead of the Concourse database.</p><p>Aside from credentials, <code>((vars))</code> may also be used for generic parameterization of pipeline configuration templates, allowing a single pipeline config file to be configured multiple times with different parameters - e.g. <code>((branch_name))</code>.</p>
+
+  
+    
+      <div class="section" id="section_var-syntax">
+  
+  <h2 class="section-header"><a class="anchor" name="var-syntax" href="#var-syntax"></a><code>((var))</code> syntax</h2>
+  
+
+  <p>The full syntax for <code>((vars))</code> is <code>((<em>source-name</em>:<em>secret-path</em>.<em>secret-field</em>))</code>.</p><p>The optional <em>source-name</em> identifies the <a href="runtime-vars.html#var-sources"><code>((var))</code> source</a> from which the value will be read. If omitted (along with the <code>:</code> delimiter), the <a href="runtime-vars.html#cluster-wide-credential-manager">cluster-wide credential manager</a> will be used, or the value may be provided <a href="vars.html#static-vars">statically</a>.</p><p>The required <em>secret-path</em> identifies the location of the credential. The interpretation of this value depends on the var source type. For example, with Vault this may be a path like <code>path/to/cred</code>. For the Kubernetes secret manager this may just be the name of a secret. For credential managers which support path-based lookup, a <em>secret-path</em> without a leading / may be queried relative to a predefined set of path prefixes. This is how the Vault credential manager currently works; <code>foo</code> will be queried under <code>/concourse/(team name)/(pipeline name)/foo</code>.</p><p>The optional <em>secret-field</em> specifies a field on the fetched secret to read. If omitted, the credential manager may choose to read a &#39;default field&#39; from the fetched credential if the field exists. For example, the Vault credential manager will return the value of the <code>value</code> field if present. This is useful for simple single-value credentials where typing <code>((foo.value))</code> would feel verbose.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_var-interpolation">
+  
+  <h2 class="section-header"><a class="anchor" name="var-interpolation" href="#var-interpolation"></a>Interpolation</h2>
+  
+
+  <p>Values for <code>((vars))</code> are substituted structurally. That is, if you have <code>foo: ((bar))</code>, whatever value <code>((bar))</code> resolves to will become the value of the <code>foo</code> field in the object. This can be a value of any type and structure: a boolean, a simple string, a multiline credential like a certificate, or a complicated data structure like an array of objects.</p><p>This differs from text-based substitution in that it&#39;s impossible for a value to result in broken YAML syntax, and it relieves the template author from having to worry about things like whitespace alignment.</p><p>When a <code>((var))</code> appears adjacent to additional string content, e.g. <code>foo: hello-((bar))-goodbye</code>, its value will be concatenated with the surrounding content. If the <code>((var))</code> resolves to a non-string value, an error will be raised.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_static-vars">
+  
+  <h2 class="section-header"><a class="anchor" name="static-vars" href="#static-vars"></a>Providing <code>((vars))</code> with <code>fly</code></h2>
+  
+
+  <p>Various commands in the <a href="fly.html"><code>fly</code> CLI</a> support the following three flags for providing values for <code>((vars))</code>:</p><ul>
+
+  <li><p><code>-v</code> or <code>--var</code> <code>NAME=VALUE</code> sets the string <code>VALUE</code> as the value for the var <code>NAME</code>.</p></li>
+
+  <li><p><code>-y</code> or <code>--yaml-var</code> <code>NAME=VALUE</code> parses <code>VALUE</code> as YAML and sets it as the value for the var <code>NAME</code>.</p></li>
+
+  <li><p><code>-l</code> or <code>--load-vars-from</code> <code>FILE</code> loads <code>FILE</code>, a YAML document containing mapping var names to values, and sets them all.</p></li>
+
+</ul><p>When used in combination with <code>-l</code>, the <code>-y</code> and <code>-v</code> flags take precedence. This way a vars file may be re-used, overriding individual values by hand.</p><p>For example, with a pipeline template like so:</p><pre><code class="language-yaml">resources:
+- name: booklit
+  type: booklit
+  source:
+    uri: https://github.com/vito/booklit
+    branch: ((branch))
+    private_key: ((private_key))
+
+jobs:
+- name: unit
+  plan:
+  - get: booklit
+    trigger: ((trigger))
+  - task: unit
+    file: booklit/ci/unit.yml</code></pre><p>And let&#39;s say I&#39;ve put the <code>private_key</code> var in a file called <code>vars.yml</code>, since it&#39;s quite large and hard to pass through flags:</p><pre><code class="language-yaml">private_key: |
+  -----BEGIN RSA PRIVATE KEY-----
+  # ... snipped ...
+  -----END RSA PRIVATE KEY-----</code></pre><p>The <a href="setting-pipelines.html#fly-validate-pipeline"><code>fly validate-pipeline</code></a> command may be used to test how interpolation is applied, by passing the <code>--output</code> flag.</p><pre><code class="language-sh">$ fly validate-pipeline \
+  -c pipeline.yml \
+  -l vars.yml \
+  -y trigger=true \
+  -v branch=master \
+  --output</code></pre><p>The above incantation should print the following:</p><pre><code class="language-yaml">jobs:
+- name: unit
+  plan:
+  - get: booklit
+    trigger: true
+  - file: booklit/ci/unit.yml
+    task: unit
+resources:
+- name: booklit
+  type: booklit
+  source:
+    branch: master
+    private_key: |
+      -----BEGIN RSA PRIVATE KEY-----
+      # ... snipped ...
+      -----END RSA PRIVATE KEY-----
+    uri: https://github.com/vito/booklit</code></pre><p>Note that we had to use <code>-y</code> so that the <code>trigger: true</code> ends up with a boolean value instead of the string <code>&#34;true&#34;</code>.</p>
+
+  
+    
+  
+</div>
+    
+  
+</div>
+
+      <nav class="prev-next">
+      
+        <div class="prev">
+          prev:
+
+          
+          <span class="section-number">1.4.1</span>
+          
+
+          <a href="intro-to-yaml.html">Intro to YAML</a>
+        </div>
+      
+
+      
+        <div class="next">
+          next:
+
+          
+          <span class="section-number">1.4.3</span>
+          
+
+          <a href="runtime-vars.html">Fetching <code>((vars))</code> at Runtime</a>
+        </div>
+      
+      </nav>
+    </div>
+
+    <ul class="improve-docs">
+      <li><img src="images/icons/github-box.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+      <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+    </ul>
+  </body>
+</html>

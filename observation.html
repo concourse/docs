@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -111,7 +113,7 @@
               <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
+  <a href="config-basics.html" >Config Basics</a>
 </td>
           </tr>
         
@@ -120,7 +122,7 @@
               <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resources.html" >Resources</a>
+  <a href="pipelines.html" >Pipelines</a>
 </td>
           </tr>
         
@@ -129,7 +131,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
+  <a href="resources.html" >Resources</a>
 </td>
           </tr>
         
@@ -138,7 +140,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -147,7 +149,7 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -156,7 +158,7 @@
               <td class="number-cell" align="right">1.9&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html" >Tasks</a>
 </td>
           </tr>
         
@@ -165,13 +167,22 @@
               <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
-  <a href="operation.html" >Operation</a>
+  <a href="builds.html" >Builds</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.12&nbsp;</td>
             
             <td class="title-cell">
   <a href="observation.html"  class="self">Observation</a>
@@ -193,7 +204,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.11</span>
+        <span class="section-number">1.12</span>
         
         
   <a href="observation.html"  class="self">Observation</a>
@@ -265,7 +276,7 @@
     <div class="page-content">
       <div class="section" id="section_observation">
   
-  <h1 class="section-header"><a class="anchor" name="observation" href="#observation"></a><span class="section-number">1.11 </span>Observation</h1>
+  <h1 class="section-header"><a class="anchor" name="observation" href="#observation"></a><span class="section-number">1.12 </span>Observation</h1>
   
 
   <p>This section outlines everything you need to know for observing the state of your pipelines.</p>
@@ -301,8 +312,7 @@
   <h2 class="section-header"><a class="anchor" name="badges" href="#badges"></a>Badges</h2>
   
 
-  <p>The Concourse API supports returning SVG badges indicating the status of a job:</p><pre>/api/v1/teams/{team}/pipelines/{pipeline}/jobs/{job}/badge</pre><p>...and for an entire pipeline:</p><pre>/api/v1/teams/{team}/pipelines/{pipeline}/badge</pre><p>This can be used to annotate your READMEs with a build status badge like so:</p><div class="highlight"><pre style="">![<span style="color:#9b59b6;font-weight:bold">CI</span>](<span style="color:#3498db">https://wings.pivotal.io/api/v1/teams/vito/pipelines/booklit/jobs/unit/badge</span>)]<span style="color:#e74c3c">
-</span></pre></div><p>...which should render the following:</p><p><img src="https://wings.pivotal.io/api/v1/teams/vito/pipelines/booklit/jobs/unit/badge" alt="" /></p>
+  <p>The Concourse API supports returning SVG badges indicating the status of a job:</p><pre>/api/v1/teams/{team}/pipelines/{pipeline}/jobs/{job}/badge</pre><p>...and for an entire pipeline:</p><pre>/api/v1/teams/{team}/pipelines/{pipeline}/badge</pre><p>This can be used to annotate your READMEs with a build status badge like so:</p><pre><code class="language-md">![CI](https://wings.pivotal.io/api/v1/teams/vito/pipelines/booklit/jobs/unit/badge)]</code></pre><p>...which should render the following:</p><p><img src="https://wings.pivotal.io/api/v1/teams/vito/pipelines/booklit/jobs/unit/badge" alt="" /></p>
 
   
     
@@ -330,7 +340,7 @@
           prev:
 
           
-          <span class="section-number">1.10</span>
+          <span class="section-number">1.11</span>
           
 
           <a href="operation.html">Operation</a>

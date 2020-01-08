@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -115,7 +117,7 @@
               <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
+  <a href="config-basics.html" >Config Basics</a>
 </td>
           </tr>
         
@@ -124,7 +126,7 @@
               <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resources.html" >Resources</a>
+  <a href="pipelines.html" >Pipelines</a>
 </td>
           </tr>
         
@@ -133,7 +135,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
+  <a href="resources.html" >Resources</a>
 </td>
           </tr>
         
@@ -142,7 +144,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -151,7 +153,7 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -160,7 +162,7 @@
               <td class="number-cell" align="right">1.9&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html" >Tasks</a>
 </td>
           </tr>
         
@@ -169,13 +171,22 @@
               <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
-  <a href="operation.html" >Operation</a>
+  <a href="builds.html" >Builds</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.12&nbsp;</td>
             
             <td class="title-cell">
   <a href="observation.html" >Observation</a>
@@ -386,14 +397,12 @@
   <h2 class="section-header"><a class="anchor" name="generic-oauth-authentication" href="#generic-oauth-authentication"></a>Authentication</h2>
   
 
-  <p>First you&#39;ll need to create a client with your oAuth provider.</p><p>The callback URL must be the URL of your Concourse server with <code>/sky/issuer/callback</code> appended. This address must be reachable by your oAuth provider - it can&#39;t be <code>localhost</code>.</p><p>For example, Concourse&#39;s own CI server&#39;s callback URL would be:</p><div class="highlight"><pre style="">https://ci.concourse-ci.org/sky/issuer/callback
-</pre></div><p>The Generic oAuth provider has many values to set - for a full list consult <code>concourse web --help</code>.</p><p>A typical <a href="concourse-web.html"><code>web</code> node</a> env config may look something like this:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_OAUTH_DISPLAY_NAME</span>=Acme
-<span style="color:#3498db">CONCOURSE_OAUTH_CLIENT_ID</span>=myclientid
-<span style="color:#3498db">CONCOURSE_OAUTH_CLIENT_SECRET</span>=myclientsecret
-<span style="color:#3498db">CONCOURSE_OAUTH_AUTH_URL</span>=https://oauth.example.com/oauth2/auth
-<span style="color:#3498db">CONCOURSE_OAUTH_TOKEN_URL</span>=https://oauth.example.com/oauth2/token
-<span style="color:#3498db">CONCOURSE_OAUTH_USERINFO_URL</span>=https://oauth.example.com/oauth2/userinfo
-</pre></div><p>Consult <code>concourse web --help</code> for a full list of flags with descriptions.</p>
+  <p>First you&#39;ll need to create a client with your oAuth provider.</p><p>The callback URL must be the URL of your Concourse server with <code>/sky/issuer/callback</code> appended. This address must be reachable by your oAuth provider - it can&#39;t be <code>localhost</code>.</p><p>For example, Concourse&#39;s own CI server&#39;s callback URL would be:</p><pre><code class="language-bash">https://ci.concourse-ci.org/sky/issuer/callback</code></pre><p>The Generic oAuth provider has many values to set - for a full list consult <code>concourse web --help</code>.</p><p>A typical <a href="concourse-web.html"><code>web</code> node</a> env config may look something like this:</p><pre><code class="language-bash">CONCOURSE_OAUTH_DISPLAY_NAME=Acme
+CONCOURSE_OAUTH_CLIENT_ID=myclientid
+CONCOURSE_OAUTH_CLIENT_SECRET=myclientsecret
+CONCOURSE_OAUTH_AUTH_URL=https://oauth.example.com/oauth2/auth
+CONCOURSE_OAUTH_TOKEN_URL=https://oauth.example.com/oauth2/token
+CONCOURSE_OAUTH_USERINFO_URL=https://oauth.example.com/oauth2/userinfo</code></pre><p>Consult <code>concourse web --help</code> for a full list of flags with descriptions.</p>
 
   
     
@@ -413,15 +422,13 @@
   <dt><code>--oauth-group=GROUP_NAME</code></dt>
     <dd><p>Authorize anyone from the group.</p><p>You may only configure groups if the auth provider exposes this information in either the token itself, or in the contents of the userinfo endpoint.</p><p>You can configure which claim points to the groups information by specifying <code>CONCOURSE_OAUTH_GROUPS_KEY</code> on the <a href="concourse-web.html"><code>web</code> node</a>.</p></dd>
   
-</dl><p>For example:</p><div class="highlight"><pre style="">$ fly set-team -n my-team <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --oauth-user my-username <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --oauth-group my-group
-</pre></div><p>...or via <code>--config</code> for <a href="managing-teams.html#setting-roles">setting user roles</a>:</p><div class="highlight"><pre style="">roles:
+</dl><p>For example:</p><pre><code class="language-bash">$ fly set-team -n my-team \
+    --oauth-user my-username \
+    --oauth-group my-group</code></pre><p>...or via <code>--config</code> for <a href="managing-teams.html#setting-roles">setting user roles</a>:</p><pre><code class="language-bash">roles:
 - name: member
   oauth:
-    users: [<span style="color:#e67e22">&#34;my-username&#34;</span>]
-    groups: [<span style="color:#e67e22">&#34;my-group&#34;</span>]
-</pre></div>
+    users: [&#34;my-username&#34;]
+    groups: [&#34;my-group&#34;]</code></pre>
 
   
     
@@ -430,9 +437,8 @@
   <h3 class="section-header"><a class="anchor" name="configuring-main-team-authorization" href="#configuring-main-team-authorization"></a>Configuring <code>main</code> Team Authorization</h3>
   
 
-  <p>OAuth users and groups can be added to the <a href="main-team.html"><code>main</code> team</a> authorization config by setting the following env on the <a href="concourse-web.html"><code>web</code> node</a>:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_MAIN_TEAM_OAUTH_USER</span>=my-user
-<span style="color:#3498db">CONCOURSE_MAIN_TEAM_OAUTH_GROUP</span>=my-group
-</pre></div><p>Multiple users and groups may be specified by comma-separating them.</p>
+  <p>OAuth users and groups can be added to the <a href="main-team.html"><code>main</code> team</a> authorization config by setting the following env on the <a href="concourse-web.html"><code>web</code> node</a>:</p><pre><code class="language-bash">CONCOURSE_MAIN_TEAM_OAUTH_USER=my-user
+CONCOURSE_MAIN_TEAM_OAUTH_GROUP=my-group</code></pre><p>Multiple users and groups may be specified by comma-separating them.</p>
 
   
     

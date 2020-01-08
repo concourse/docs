@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -111,7 +113,7 @@
               <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
+  <a href="config-basics.html" >Config Basics</a>
 </td>
           </tr>
         
@@ -120,7 +122,7 @@
               <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resources.html" >Resources</a>
+  <a href="pipelines.html" >Pipelines</a>
 </td>
           </tr>
         
@@ -129,7 +131,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
+  <a href="resources.html" >Resources</a>
 </td>
           </tr>
         
@@ -138,7 +140,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -147,7 +149,7 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -156,7 +158,7 @@
               <td class="number-cell" align="right">1.9&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html" >Tasks</a>
 </td>
           </tr>
         
@@ -165,13 +167,22 @@
               <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
-  <a href="operation.html" >Operation</a>
+  <a href="builds.html" >Builds</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.12&nbsp;</td>
             
             <td class="title-cell">
   <a href="observation.html" >Observation</a>
@@ -323,7 +334,7 @@
   <h1 class="section-header"><a class="anchor" name="fly" href="#fly"></a><span class="section-number">1.3 </span>The <code>fly</code> CLI</h1>
   
 
-  <p>Concourse is primarily driven from the command-line; there is no GUI config wizard.</p><p>So, the first step to getting started with Concourse is to install the <code>fly</code> CLI tool. You can download <code>fly</code> from any Concourse installation. There are download links for common platforms in the bottom right hand corner of the main page.</p><p>Throughout the Concourse documentation we&#39;ll stick to the long-form name of every command and flag. Once you&#39;ve learned what the commands do, you may want to consult <code>fly -h</code> to learn the short forms.</p>
+  <p>The first step to getting started with Concourse is to install the <code>fly</code> CLI tool. You can download <code>fly</code> from any Concourse installation. There are download links for common platforms in the bottom right hand corner of the main page.</p><p>Throughout the Concourse documentation we&#39;ll stick to the long-form name of every command and flag. Once you&#39;ve learned what the commands do, you may want to consult <code>fly -h</code> to learn the short forms.</p>
 
   
     
@@ -332,10 +343,8 @@
   <h2 class="section-header"><a class="anchor" name="fly-login" href="#fly-login"></a><code>fly login</code></h2>
   
 
-  <p>The first thing you&#39;ll want to do is authenticate with your target. This is done with the <a href="fly.html#fly-login"><code>fly login</code></a> command. This is also useful to save targets under a more convenient alias, so you don&#39;t have to type out the URL all the time:</p><p>The <code>login</code> command serves double duty: it authenticates with a given endpoint, and saves it under a more convenient name. The name and token are stored in <code>~/.flyrc</code> (though you shouldn&#39;t really edit the file manually).</p><p>Concourse deployments can be occupied by multiple <a href="auth.html">teams</a>. To specify the team to which to log in, specify the <code>--team-name</code> or <code>-n</code> flag. If not specified, this defaults to the <a href="main-team.html"><code>main</code> team</a>.</p><p>So, to log in to a team <code>my-team</code> an endpoint served at <code>https://ci.example.com</code> and save it as the more convenient name <code>example</code>, you would run:</p><div class="highlight"><pre style="">$ fly --target example login --team-name my-team <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --concourse-url https://ci.example.com
-</pre></div><p>The <code>login</code> command will see which authentication methods are available for the specified team and prompt you to choose one. For basic auth, it will ask your username and password and use them to acquire a token. For OAuth, it will give you a link to click, and after you&#39;ve gone through the OAuth flow it will print an OAuth token on the page that you can then copy and paste into the prompt.</p><p>Note that if no authentication methods are configured, <code>fly</code> will acquire a token without any prompting. You can then use the alias like normal.</p><p>In any case, a token is saved in your <code>~/.flyrc</code>, which will expire after one day.</p><p>If your Concourse uses SSL but does not have a certificate signed by a trusted CA, you can use the <code>--ca-cert</code> flag so that <code>fly</code> can trust the connection, like so:</p><div class="highlight"><pre style="">$ fly -t example login -c https://ci.example.com --ca-cert ./ca.crt
-</pre></div><p>This will read the value out of the file <code>./ca.crt</code> and save it into <code>~/.flyrc</code> so you don&#39;t have to pass it on every <code>login</code> invocation.</p><p>After you&#39;ve logged in you can use <code>--target example</code> (or <code>-t example</code> for short) to run a command against the saved target <code>example</code>. For example, <code>fly -t example builds</code> will list the last few builds on the <code>example</code> Concourse instance.</p><p>The <code>-t</code> flag is intentionally stateless and must be explicitly added to each command. This reduces the risk of accidentally running a command against the wrong environment when you have multiple targets defined.</p>
+  <p>The first thing you&#39;ll want to do is authenticate with your target. This is done with the <a href="fly.html#fly-login"><code>fly login</code></a> command. This is also useful to save targets under a more convenient alias, so you don&#39;t have to type out the URL all the time:</p><p>The <code>login</code> command serves double duty: it authenticates with a given endpoint, and saves it under a more convenient name. The name and token are stored in <code>~/.flyrc</code> (though you shouldn&#39;t really edit the file manually).</p><p>Concourse deployments can be occupied by multiple <a href="auth.html">teams</a>. To specify the team to which to log in, specify the <code>--team-name</code> or <code>-n</code> flag. If not specified, this defaults to the <a href="main-team.html"><code>main</code> team</a>.</p><p>So, to log in to a team <code>my-team</code> an endpoint served at <code>https://ci.example.com</code> and save it as the more convenient name <code>example</code>, you would run:</p><pre><code class="language-bash">$ fly --target example login --team-name my-team \
+    --concourse-url https://ci.example.com</code></pre><p>The <code>login</code> command will see which authentication methods are available for the specified team and prompt you to choose one. For basic auth, it will ask your username and password and use them to acquire a token. For OAuth, it will give you a link to click, and after you&#39;ve gone through the OAuth flow it will print an OAuth token on the page that you can then copy and paste into the prompt.</p><p>Note that if no authentication methods are configured, <code>fly</code> will acquire a token without any prompting. You can then use the alias like normal.</p><p>In any case, a token is saved in your <code>~/.flyrc</code>, which will expire after one day.</p><p>If your Concourse uses SSL but does not have a certificate signed by a trusted CA, you can use the <code>--ca-cert</code> flag so that <code>fly</code> can trust the connection, like so:</p><pre><code class="language-bash">$ fly -t example login -c https://ci.example.com --ca-cert ./ca.crt</code></pre><p>This will read the value out of the file <code>./ca.crt</code> and save it into <code>~/.flyrc</code> so you don&#39;t have to pass it on every <code>login</code> invocation.</p><p>After you&#39;ve logged in you can use <code>--target example</code> (or <code>-t example</code> for short) to run a command against the saved target <code>example</code>. For example, <code>fly -t example builds</code> will list the last few builds on the <code>example</code> Concourse instance.</p><p>The <code>-t</code> flag is intentionally stateless and must be explicitly added to each command. This reduces the risk of accidentally running a command against the wrong environment when you have multiple targets defined.</p>
 
   
     
@@ -347,8 +356,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-targets" href="#fly-targets"></a><code>fly targets</code></h2>
   
 
-  <p>To see what targets are currently known to <code>fly</code>, run:</p><div class="highlight"><pre style="">$ fly targets
-</pre></div><p>This will show each target&#39;s name, URL, and when its token expires.</p>
+  <p>To see what targets are currently known to <code>fly</code>, run:</p><pre><code class="language-bash">$ fly targets</code></pre><p>This will show each target&#39;s name, URL, and when its token expires.</p>
 
   
     
@@ -360,8 +368,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-status" href="#fly-status"></a><code>fly status</code></h2>
   
 
-  <p>To check your current authentication status with a given target, run:</p><div class="highlight"><pre style="">$ fly -t example status
-</pre></div><p>This will let you know if the token has expired.</p>
+  <p>To check your current authentication status with a given target, run:</p><pre><code class="language-bash">$ fly -t example status</code></pre><p>This will let you know if the token has expired.</p>
 
   
     
@@ -373,8 +380,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-userinfo" href="#fly-userinfo"></a><code>fly userinfo</code></h2>
   
 
-  <p>To check what user you&#39;re logged in as, as well as which teams you are currently authenticated to and which roles within each team you have, run:</p><div class="highlight"><pre style="">$ fly -t example userinfo
-</pre></div>
+  <p>To check what user you&#39;re logged in as, as well as which teams you are currently authenticated to and which roles within each team you have, run:</p><pre><code class="language-bash">$ fly -t example userinfo</code></pre>
 
   
     
@@ -386,9 +392,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-logout" href="#fly-logout"></a><code>fly logout</code></h2>
   
 
-  <p>To clear out your token for a given target, run:</p><div class="highlight"><pre style="">$ fly -t example <span style="color:#8f4b2d">logout</span>
-</pre></div><p>To clear out your token for <em>all</em> targets, run:</p><div class="highlight"><pre style="">$ fly <span style="color:#8f4b2d">logout</span> -a
-</pre></div><p>Note: These two variations are mutually exclusive. If the target parameter <code>-t</code> and all parameter <code>-a</code> are both specified, an error will occur.</p>
+  <p>To clear out your token for a given target, run:</p><pre><code class="language-bash">$ fly -t example logout</code></pre><p>To clear out your token for <em>all</em> targets, run:</p><pre><code class="language-bash">$ fly logout -a</code></pre><p>Note: These two variations are mutually exclusive. If the target parameter <code>-t</code> and all parameter <code>-a</code> are both specified, an error will occur.</p>
 
   
     
@@ -400,11 +404,10 @@
   <h2 class="section-header"><a class="anchor" name="fly-edit-target" href="#fly-edit-target"></a><code>fly edit-target</code></h2>
   
 
-  <p>To modify a target&#39;s name, team, or URL, run:</p><div class="highlight"><pre style="">$ fly -t example edit-target <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --target-name new-name <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --concourse-url https://ci.example.com <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --team-name my-team
-</pre></div><p>Each flag is optional - only the specified flags will be changed.</p>
+  <p>To modify a target&#39;s name, team, or URL, run:</p><pre><code class="language-bash">$ fly -t example edit-target \
+    --target-name new-name \
+    --concourse-url https://ci.example.com \
+    --team-name my-team</code></pre><p>Each flag is optional - only the specified flags will be changed.</p>
 
   
     
@@ -416,9 +419,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-delete-target" href="#fly-delete-target"></a><code>fly delete-target</code></h2>
   
 
-  <p>When logging out just isn&#39;t enough, a target can be completely removed from <code>~/.flyrc</code> by running:</p><div class="highlight"><pre style="">$ fly -t example delete-target
-</pre></div><p>To delete <em>all</em> targets, run:</p><div class="highlight"><pre style="">$ fly delete-target -a
-</pre></div><p>Note: These two variations are mutually exclusive. If the target parameter <code>-t</code> and all parameter <code>-a</code> are both specified, an error will occur.</p>
+  <p>When logging out just isn&#39;t enough, a target can be completely removed from <code>~/.flyrc</code> by running:</p><pre><code class="language-bash">$ fly -t example delete-target</code></pre><p>To delete <em>all</em> targets, run:</p><pre><code class="language-bash">$ fly delete-target -a</code></pre><p>Note: These two variations are mutually exclusive. If the target parameter <code>-t</code> and all parameter <code>-a</code> are both specified, an error will occur.</p>
 
   
     
@@ -430,8 +431,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-sync" href="#fly-sync"></a><code>fly sync</code></h2>
   
 
-  <p>Occasionally we add additional features to <code>fly</code> or make changes to the communication between it and Concourse&#39;s API server. To make sure you&#39;re running the latest and greatest version that works with the Concourse you are targeting we provide a command called <code>sync</code> that will update your local <code>fly</code>. It can be used like so:</p><div class="highlight"><pre style="">$ fly -t example sync
-</pre></div><p>The <code>fly</code> command will also warn you if it notices that your CLI version is out of sync with the server.</p>
+  <p>Occasionally we add additional features to <code>fly</code> or make changes to the communication between it and Concourse&#39;s API server. To make sure you&#39;re running the latest and greatest version that works with the Concourse you are targeting we provide a command called <code>sync</code> that will update your local <code>fly</code>. It can be used like so:</p><pre><code class="language-bash">$ fly -t example sync</code></pre><p>The <code>fly</code> command will also warn you if it notices that your CLI version is out of sync with the server.</p>
 
   
     
@@ -443,9 +443,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-completion" href="#fly-completion"></a><code>fly completion</code></h2>
   
 
-  <p>Fly can output autocomplete configuration for some shells. For example, you can add an entry to your <code>.bashrc</code> like this:</p><div class="highlight"><pre style=""><span style="color:#8f4b2d">source</span> &lt;(fly completion --shell bash)
-</pre></div><p>or, using the <code>/etc/bash_completion.d</code> directory:</p><div class="highlight"><pre style="">$ fly completion --shell bash &gt; /etc/bash_completion.d/fly
-</pre></div><p>Note that, unlike other fly commands, this command does not interact with a remote server so you do not need to provide the <code>-t</code> or <code>--target</code> flag.</p>
+  <p>Fly can output autocomplete configuration for some shells. For example, you can add an entry to your <code>.bashrc</code> like this:</p><pre><code class="language-bash">source &lt;(fly completion --shell bash)</code></pre><p>or, using the <code>/etc/bash_completion.d</code> directory:</p><pre><code class="language-bash">$ fly completion --shell bash &gt; /etc/bash_completion.d/fly</code></pre><p>Note that, unlike other fly commands, this command does not interact with a remote server so you do not need to provide the <code>-t</code> or <code>--target</code> flag.</p>
 
   
     
@@ -476,7 +474,7 @@
           <span class="section-number">1.4</span>
           
 
-          <a href="pipelines.html">Pipelines</a>
+          <a href="config-basics.html">Config Basics</a>
         </div>
       
       </nav>

@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -113,7 +115,7 @@
               <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="pipelines.html"  class="active">Pipelines</a>
+  <a href="config-basics.html" >Config Basics</a>
 </td>
           </tr>
         
@@ -122,7 +124,7 @@
               <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resources.html" >Resources</a>
+  <a href="pipelines.html"  class="active">Pipelines</a>
 </td>
           </tr>
         
@@ -131,7 +133,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
+  <a href="resources.html" >Resources</a>
 </td>
           </tr>
         
@@ -140,7 +142,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -149,7 +151,7 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -158,7 +160,7 @@
               <td class="number-cell" align="right">1.9&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html" >Tasks</a>
 </td>
           </tr>
         
@@ -167,13 +169,22 @@
               <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
-  <a href="operation.html" >Operation</a>
+  <a href="builds.html" >Builds</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.12&nbsp;</td>
             
             <td class="title-cell">
   <a href="observation.html" >Observation</a>
@@ -193,7 +204,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.4</span>
+        <span class="section-number">1.5</span>
         
         
   <a href="pipelines.html"  class="active">Pipelines</a>
@@ -205,7 +216,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.4.1&nbsp;</td>
+              <td class="number-cell" align="right">1.5.1&nbsp;</td>
             
             <td class="title-cell">
   <a href="setting-pipelines.html"  class="self">Setting Pipelines</a>
@@ -214,7 +225,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.4.2&nbsp;</td>
+              <td class="number-cell" align="right">1.5.2&nbsp;</td>
             
             <td class="title-cell">
   <a href="managing-pipelines.html" >Managing Pipelines</a>
@@ -223,7 +234,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.4.3&nbsp;</td>
+              <td class="number-cell" align="right">1.5.3&nbsp;</td>
             
             <td class="title-cell">
   <a href="pipeline-groups.html" >Grouping Jobs</a>
@@ -245,7 +256,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.4.1</span>
+        <span class="section-number">1.5.1</span>
         
         
   <a href="setting-pipelines.html"  class="self">Setting Pipelines</a>
@@ -306,7 +317,7 @@
     <div class="page-content">
       <div class="section" id="section_setting-pipelines">
   
-  <h1 class="section-header"><a class="anchor" name="setting-pipelines" href="#setting-pipelines"></a><span class="section-number">1.4.1 </span>Setting Pipelines</h1>
+  <h1 class="section-header"><a class="anchor" name="setting-pipelines" href="#setting-pipelines"></a><span class="section-number">1.5.1 </span>Setting Pipelines</h1>
   
 
   <p>Pipelines are configured entirely via the <a href="fly.html"><code>fly</code> CLI</a>. There is no GUI.</p>
@@ -318,38 +329,33 @@
   <h2 class="section-header"><a class="anchor" name="fly-set-pipeline" href="#fly-set-pipeline"></a><code>fly set-pipeline</code></h2>
   
 
-  <p>To submit a pipeline configuration to Concourse from a file on your local disk you can use the <code>-c</code> or <code>--config</code> flag, like so:</p><div class="highlight"><pre style="">$ fly -t example set-pipeline <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --pipeline my-pipeline <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --config pipeline.yml
-</pre></div><p>This will present a diff of the changes and ask you to confirm the changes. If you accept then Concourse&#39;s pipeline configuration will switch to the pipeline definition in the YAML file specified.</p>
+  <p>To submit a pipeline configuration to Concourse from a file on your local disk you can use the <code>-c</code> or <code>--config</code> flag, like so:</p><pre><code class="language-bash">$ fly -t example set-pipeline \
+    --pipeline my-pipeline \
+    --config pipeline.yml</code></pre><p>This will present a diff of the changes and ask you to confirm the changes. If you accept then Concourse&#39;s pipeline configuration will switch to the pipeline definition in the YAML file specified.</p>
 
   
     
       <div class="section" id="section_pipeline-vars">
   
-  <h3 class="section-header"><a class="anchor" name="pipeline-vars" href="#pipeline-vars"></a>Pipeline <code>((vars))</code></h3>
+  <h3 class="section-header"><a class="anchor" name="pipeline-vars" href="#pipeline-vars"></a>Static <code>((vars))</code></h3>
   
 
-  <p>The pipeline configuration can contain template variables in the form of <code>((foo-bar))</code>. They will be replaced with values populated by repeated <code>--var</code>, <code>--yaml-var</code>, or <code>--load-vars-from</code> flags, or at runtime via a <a href="creds.html">credential manager</a>.</p><p>This allows for credentials to be extracted from a pipeline config, making it safe to check in to a public repository or pass around.</p><p>For example, if you have a <code>pipeline.yml</code> as follows:</p><div class="highlight"><pre style="">resources:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>private-repo<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>git<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>uri:<span style="color:#e6e7e8"> </span>git@...<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>branch:<span style="color:#e6e7e8"> </span>master<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>private_key:<span style="color:#e6e7e8"> </span>((private-repo-key))<span style="color:#e6e7e8">
-</span></pre></div><p>...you could then configure this pipeline like so:</p><div class="highlight"><pre style="">$ fly -t example set-pipeline <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --pipeline my-pipeline <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --config pipeline.yml <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --var <span style="color:#e67e22">&#34;</span><span style="color:#e67e22">private-repo-key=</span><span style="color:#2ecc71;font-weight:bold">$(</span>cat id_rsa<span style="color:#2ecc71;font-weight:bold">)</span><span style="color:#e67e22">&#34;</span>
-</pre></div><p>Or, if you had a <code>credentials.yml</code> as follows:</p><div class="highlight"><pre style="">private-repo-key:<span style="color:#e6e7e8"> </span><span style="color:#e67e22">|
-</span><span style="color:#e67e22"> </span><span style="color:#e67e22"> </span><span style="color:#e67e22">-----BEGIN RSA PRIVATE KEY-----</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>...<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-----END<span style="color:#e6e7e8"> </span>RSA<span style="color:#e6e7e8"> </span>PRIVATE<span style="color:#e6e7e8"> </span>KEY-----<span style="color:#e6e7e8">
-</span></pre></div><p>...you could configure it like so:</p><div class="highlight"><pre style="">$ fly -t example set-pipeline <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --pipeline my-pipeline <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --config pipeline.yml <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --load-vars-from credentials.yml
-</pre></div><p>Concatenation is supported for string values - <code>foo-((var))</code> with <code>var: bar</code> will resolve to <code>foo-bar</code>.</p><p>If both <code>--var</code>/<code>--yaml-var</code> and <code>--load-vars-from</code> are specified, the <code>--var</code> and <code>--yaml-var</code> flags take precedence.</p><p>Values other than strings (e.g. bools, arrays) may also be specified by using either <code>--yaml-var</code> or <code>--load-vars-from</code>.</p>
+  <p>The pipeline configuration can contain template variables in the form of <code>((foo-bar))</code>. They will be replaced with values populated by repeated <code>--var</code>, <code>--yaml-var</code>, or <code>--load-vars-from</code> flags, or at runtime via a <a href="creds.html">credential manager</a>.</p><p>This allows for credentials to be extracted from a pipeline config, making it safe to check in to a public repository or pass around.</p><p>For example, if you have a <code>pipeline.yml</code> as follows:</p><pre><code class="language-yaml">resources:
+- name: private-repo
+  type: git
+  source:
+    uri: git@...
+    branch: master
+    private_key: ((private-repo-key))</code></pre><p>...you could then configure this pipeline like so:</p><pre><code class="language-bash">$ fly -t example set-pipeline \
+    --pipeline my-pipeline \
+    --config pipeline.yml \
+    --var &#34;private-repo-key=$(cat id_rsa)&#34;</code></pre><p>Or, if you had a <code>credentials.yml</code> as follows:</p><pre><code class="language-yaml">private-repo-key: |
+  -----BEGIN RSA PRIVATE KEY-----
+  ...
+  -----END RSA PRIVATE KEY-----</code></pre><p>...you could configure it like so:</p><pre><code class="language-bash">$ fly -t example set-pipeline \
+    --pipeline my-pipeline \
+    --config pipeline.yml \
+    --load-vars-from credentials.yml</code></pre><p>Concatenation is supported for string values - <code>foo-((var))</code> with <code>var: bar</code> will resolve to <code>foo-bar</code>.</p><p>If both <code>--var</code>/<code>--yaml-var</code> and <code>--load-vars-from</code> are specified, the <code>--var</code> and <code>--yaml-var</code> flags take precedence.</p><p>Values other than strings (e.g. bools, arrays) may also be specified by using either <code>--yaml-var</code> or <code>--load-vars-from</code>.</p>
 
   
     
@@ -364,8 +370,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-validate-pipeline" href="#fly-validate-pipeline"></a><code>fly validate-pipeline</code></h2>
   
 
-  <p>To validate a local pipeline configuration without submitting it to Concourse, run <code>validate-pipeline</code>:</p><div class="highlight"><pre style="">$ fly validate-pipeline --config pipeline.yml
-</pre></div><p>By default, pipeline errors will cause <code>validate-pipeline</code> to fail, but warnings won&#39;t. To fail on both errors and warnings, pass the `--strict` flag.</p>
+  <p>To validate a local pipeline configuration without submitting it to Concourse, run <code>validate-pipeline</code>:</p><pre><code class="language-bash">$ fly validate-pipeline --config pipeline.yml</code></pre><p>By default, pipeline errors will cause <code>validate-pipeline</code> to fail, but warnings won&#39;t. To fail on both errors and warnings, pass the `--strict` flag.</p>
 
   
     
@@ -377,8 +382,7 @@
   <h2 class="section-header"><a class="anchor" name="fly-format-pipeline" href="#fly-format-pipeline"></a><code>fly format-pipeline</code></h2>
   
 
-  <p>To format a pipeline config in a &#34;canonical&#34; form (i.e. keys are in normal order, with <code>name</code> first for example), run:</p><div class="highlight"><pre style="">$ fly format-pipeline --config pipeline.yml
-</pre></div><p>This will print the formatted pipeline config to <code>stdout</code>. To update the file in-place, pass <code>--write/-w</code>.</p>
+  <p>To format a pipeline config in a &#34;canonical&#34; form (i.e. keys are in normal order, with <code>name</code> first for example), run:</p><pre><code class="language-bash">$ fly format-pipeline --config pipeline.yml</code></pre><p>This will print the formatted pipeline config to <code>stdout</code>. To update the file in-place, pass <code>--write/-w</code>.</p>
 
   
     
@@ -394,7 +398,7 @@
           prev:
 
           
-          <span class="section-number">1.4</span>
+          <span class="section-number">1.5</span>
           
 
           <a href="pipelines.html">Pipelines</a>
@@ -406,7 +410,7 @@
           next:
 
           
-          <span class="section-number">1.4.2</span>
+          <span class="section-number">1.5.2</span>
           
 
           <a href="managing-pipelines.html">Managing Pipelines</a>

@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -115,7 +117,7 @@
               <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
+  <a href="config-basics.html" >Config Basics</a>
 </td>
           </tr>
         
@@ -124,7 +126,7 @@
               <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resources.html" >Resources</a>
+  <a href="pipelines.html" >Pipelines</a>
 </td>
           </tr>
         
@@ -133,7 +135,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
+  <a href="resources.html" >Resources</a>
 </td>
           </tr>
         
@@ -142,7 +144,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -151,7 +153,7 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -160,7 +162,7 @@
               <td class="number-cell" align="right">1.9&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html" >Tasks</a>
 </td>
           </tr>
         
@@ -169,13 +171,22 @@
               <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
-  <a href="operation.html" >Operation</a>
+  <a href="builds.html" >Builds</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.12&nbsp;</td>
             
             <td class="title-cell">
   <a href="observation.html" >Observation</a>
@@ -386,12 +397,9 @@
   <h2 class="section-header"><a class="anchor" name="github-authentication" href="#github-authentication"></a>Authentication</h2>
   
 
-  <p>First, you&#39;ll need to <a href="https://github.com/settings/applications/new">create an OAuth application on GitHub</a>.</p><p>The &#34;Authorization callback URL&#34; must be the URL of your Concourse server with <code>/sky/issuer/callback</code> appended. This address must be reachable by GitHub - it can&#39;t be <code>localhost</code>.</p><p>For example, Concourse&#39;s own CI server&#39;s callback URL would be:</p><div class="highlight"><pre style="">https://ci.concourse-ci.org/sky/issuer/callback
-</pre></div><p>You will be given a Client ID and a Client Secret for your new application. The client ID and secret must then be configured on the <a href="concourse-web.html"><code>web</code> node</a> by setting the following env:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_GITHUB_CLIENT_ID</span>=myclientid
-<span style="color:#3498db">CONCOURSE_GITHUB_CLIENT_SECRET</span>=myclientsecret
-</pre></div><p>Note that the client must be created under an <em>organization</em> if you want to authorize users based on organization/team membership. If the client is created under a personal account, only individual users can be authorized.</p><p>If you&#39;re configuring GitHub Enterprise, you&#39;ll also need to set the following env:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_GITHUB_HOST</span>=github.example.com
-<span style="color:#3498db">CONCOURSE_GITHUB_CA_CERT</span>=/path/to/ca_cert
-</pre></div><p>The GitHub Enterprise host must not contain a scheme, or a trailing slash.</p>
+  <p>First, you&#39;ll need to <a href="https://github.com/settings/applications/new">create an OAuth application on GitHub</a>.</p><p>The &#34;Authorization callback URL&#34; must be the URL of your Concourse server with <code>/sky/issuer/callback</code> appended. This address must be reachable by GitHub - it can&#39;t be <code>localhost</code>.</p><p>For example, Concourse&#39;s own CI server&#39;s callback URL would be:</p><pre><code class="language-bash">https://ci.concourse-ci.org/sky/issuer/callback</code></pre><p>You will be given a Client ID and a Client Secret for your new application. The client ID and secret must then be configured on the <a href="concourse-web.html"><code>web</code> node</a> by setting the following env:</p><pre><code class="language-bash">CONCOURSE_GITHUB_CLIENT_ID=myclientid
+CONCOURSE_GITHUB_CLIENT_SECRET=myclientsecret</code></pre><p>Note that the client must be created under an <em>organization</em> if you want to authorize users based on organization/team membership. If the client is created under a personal account, only individual users can be authorized.</p><p>If you&#39;re configuring GitHub Enterprise, you&#39;ll also need to set the following env:</p><pre><code class="language-bash">CONCOURSE_GITHUB_HOST=github.example.com
+CONCOURSE_GITHUB_CA_CERT=/path/to/ca_cert</code></pre><p>The GitHub Enterprise host must not contain a scheme, or a trailing slash.</p>
 
   
     
@@ -414,17 +422,15 @@
   <dt><code>--github-team=ORG_NAME:TEAM_NAME</code></dt>
     <dd><p>Authorize a team&#39;s members within an organization.</p></dd>
   
-</dl><p>For example:</p><div class="highlight"><pre style="">$ fly set-team -n my-team <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --github-user my-github-login <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --github-org my-org <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>    --github-team my-other-org:my-team
-</pre></div><p>...or via <code>--config</code> for <a href="managing-teams.html#setting-roles">setting user roles</a>:</p><div class="highlight"><pre style="">roles:
+</dl><p>For example:</p><pre><code class="language-bash">$ fly set-team -n my-team \
+    --github-user my-github-login \
+    --github-org my-org \
+    --github-team my-other-org:my-team</code></pre><p>...or via <code>--config</code> for <a href="managing-teams.html#setting-roles">setting user roles</a>:</p><pre><code class="language-bash">roles:
 - name: member
   github:
-    users: [<span style="color:#e67e22">&#34;my-github-login&#34;</span>]
-    orgs: [<span style="color:#e67e22">&#34;my-org&#34;</span>]
-    teams: [<span style="color:#e67e22">&#34;my-other-org:my-team&#34;</span>]
-</pre></div>
+    users: [&#34;my-github-login&#34;]
+    orgs: [&#34;my-org&#34;]
+    teams: [&#34;my-other-org:my-team&#34;]</code></pre>
 
   
     
@@ -433,10 +439,9 @@
   <h3 class="section-header"><a class="anchor" name="configuring-main-team-authorization" href="#configuring-main-team-authorization"></a>Configuring <code>main</code> Team Authorization</h3>
   
 
-  <p>GitHub users, teams, and organizations can be added to the <a href="main-team.html"><code>main</code> team</a> authorization config by setting the following env on the <a href="concourse-web.html"><code>web</code> node</a>:</p><div class="highlight"><pre style=""><span style="color:#3498db">CONCOURSE_MAIN_TEAM_GITHUB_ORG</span>=org-name
-<span style="color:#3498db">CONCOURSE_MAIN_TEAM_GITHUB_TEAM</span>=org-name:team-name
-<span style="color:#3498db">CONCOURSE_MAIN_TEAM_GITHUB_USER</span>=some-user
-</pre></div><p>Multiple orgs, teams, and users may be specified by comma-separating them.</p>
+  <p>GitHub users, teams, and organizations can be added to the <a href="main-team.html"><code>main</code> team</a> authorization config by setting the following env on the <a href="concourse-web.html"><code>web</code> node</a>:</p><pre><code class="language-bash">CONCOURSE_MAIN_TEAM_GITHUB_ORG=org-name
+CONCOURSE_MAIN_TEAM_GITHUB_TEAM=org-name:team-name
+CONCOURSE_MAIN_TEAM_GITHUB_USER=some-user</code></pre><p>Multiple orgs, teams, and users may be specified by comma-separating them.</p>
 
   
     

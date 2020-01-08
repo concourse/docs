@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -111,7 +113,7 @@
               <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
+  <a href="config-basics.html" >Config Basics</a>
 </td>
           </tr>
         
@@ -120,7 +122,7 @@
               <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resources.html" >Resources</a>
+  <a href="pipelines.html" >Pipelines</a>
 </td>
           </tr>
         
@@ -129,7 +131,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
+  <a href="resources.html" >Resources</a>
 </td>
           </tr>
         
@@ -138,7 +140,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -147,7 +149,7 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html"  class="self">Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -156,7 +158,7 @@
               <td class="number-cell" align="right">1.9&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html"  class="self">Tasks</a>
 </td>
           </tr>
         
@@ -165,13 +167,22 @@
               <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
-  <a href="operation.html" >Operation</a>
+  <a href="builds.html" >Builds</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.12&nbsp;</td>
             
             <td class="title-cell">
   <a href="observation.html" >Observation</a>
@@ -193,7 +204,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.8</span>
+        <span class="section-number">1.9</span>
         
         
   <a href="tasks.html"  class="self">Tasks</a>
@@ -206,7 +217,7 @@
     
       <tr>
         
-          <td class="number-cell" align="right">1.8.1&nbsp;</td>
+          <td class="number-cell" align="right">1.9.1&nbsp;</td>
         
         <td class="title-cell">
           <a href="running-tasks.html">Running Tasks</a>
@@ -234,7 +245,7 @@
     
       <tr>
         
-          <td class="number-cell" align="right">1.8.2&nbsp;</td>
+          <td class="number-cell" align="right">1.9.2&nbsp;</td>
         
         <td class="title-cell">
           <a href="task-environment.html">Task Environment</a>
@@ -387,97 +398,90 @@
   <div class="example">
   <h3>Ruby App</h3>
 
-  <p>This configuration specifies that the task must run with the <code>ruby:2.1</code> Docker image with a <code>my-app</code> input, and when the task is executed it will run the <code>scripts/test</code> script in the same repo.</p><div class="highlight"><pre style="">---<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>platform:<span style="color:#e6e7e8"> </span>linux<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>image_resource:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>docker-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>repository:<span style="color:#e6e7e8"> </span>ruby<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>tag:<span style="color:#e6e7e8"> </span><span style="color:#e74c3c">&#39;2.1&#39;</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>inputs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>my-app<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>run:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>path:<span style="color:#e6e7e8"> </span>my-app/scripts/test<span style="color:#e6e7e8">
-</span></pre></div>
+  <p>This configuration specifies that the task must run with the <code>ruby:2.1</code> Docker image with a <code>my-app</code> input, and when the task is executed it will run the <code>scripts/test</code> script in the same repo.</p><pre><code class="language-yaml">---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: ruby
+    tag: &#39;2.1&#39;
+
+inputs:
+- name: my-app
+
+run:
+  path: my-app/scripts/test</code></pre>
 </div><div class="example">
   <h3>Producing Outputs</h3>
 
-  <p>A task can configure <a href="tasks.html#task-outputs"><strong><code>outputs</code></strong></a> to produce artifacts that can then be propagated to a <a href="put-step.html"><code>put</code> step</a> or another <a href="task-step.html"><code>task</code> step</a> in the same plan. They can also be downloaded with <a href="running-tasks.html#fly-execute"><code>fly execute</code></a> by passing <code>-o</code>.</p><div class="highlight"><pre style="">---<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>platform:<span style="color:#e6e7e8"> </span>linux<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>image_resource:<span style="color:#e6e7e8"> </span><span style="color:#9b9b9b"># ...</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>inputs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>project-src<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>outputs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>built-project<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>run:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>path:<span style="color:#e6e7e8"> </span>project-src/ci/build<span style="color:#e6e7e8">
-</span></pre></div><p>...assuming <code>project-src/ci/build</code> looks something like:</p><div class="highlight"><pre style=""><span style="color:#e74c3c;font-weight:bold">#!/bin/bash
-</span><span style="color:#e74c3c;font-weight:bold"></span>
-<span style="color:#8f4b2d">set</span> -e -u -x
+  <p>A task can configure <a href="tasks.html#task-outputs"><strong><code>outputs</code></strong></a> to produce artifacts that can then be propagated to a <a href="put-step.html"><code>put</code> step</a> or another <a href="task-step.html"><code>task</code> step</a> in the same plan. They can also be downloaded with <a href="running-tasks.html#fly-execute"><code>fly execute</code></a> by passing <code>-o</code>.</p><pre><code class="language-yaml">---
+platform: linux
 
-<span style="color:#8f4b2d">export</span> <span style="color:#3498db">GOPATH</span>=<span style="color:#3498db">$PWD</span>/project-src
+image_resource: # ...
 
-go build -o built-project/my-project <span style="color:#3498db">\
-</span><span style="color:#3498db"></span>  github.com/concourse/my-project
-</pre></div><p>...this task could then be used in a <a href="steps.html">build plan</a> like so:</p><div class="highlight"><pre style="">plan:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>project-src<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>build-bin<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>file:<span style="color:#e6e7e8"> </span>project-src/ci/build.yml<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>put:<span style="color:#e6e7e8"> </span>project-bin<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>params:<span style="color:#e6e7e8"> </span>file:<span style="color:#e6e7e8"> </span>built-project/my-project<span style="color:#e6e7e8">
-</span></pre></div>
+inputs:
+- name: project-src
+
+outputs:
+- name: built-project
+
+run:
+  path: project-src/ci/build</code></pre><p>...assuming <code>project-src/ci/build</code> looks something like:</p><pre><code class="language-bash">#!/bin/bash
+
+set -e -u -x
+
+export GOPATH=$PWD/project-src
+
+go build -o built-project/my-project \
+  github.com/concourse/my-project</code></pre><p>...this task could then be used in a <a href="steps.html">build plan</a> like so:</p><pre><code class="language-yaml">plan:
+- get: project-src
+- task: build-bin
+  file: project-src/ci/build.yml
+- put: project-bin
+  params: file: built-project/my-project</code></pre>
 </div><div class="example">
   <h3>Caching Ephemeral State</h3>
 
-  <p>The following task and script could be used by a Node project to cache the <code>node_modules</code> directory:</p><div class="highlight"><pre style="">---<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>platform:<span style="color:#e6e7e8"> </span>linux<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>image_resource:<span style="color:#e6e7e8"> </span><span style="color:#9b9b9b"># ...</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>inputs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>project-src<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>caches:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>path:<span style="color:#e6e7e8"> </span>project-src/node_modules<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>run:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>path:<span style="color:#e6e7e8"> </span>project-src/ci/build<span style="color:#e6e7e8">
-</span></pre></div><p>...assuming <code>project-src/ci/build</code> looks something like:</p><div class="highlight"><pre style=""><span style="color:#e74c3c;font-weight:bold">#!/bin/bash
-</span><span style="color:#e74c3c;font-weight:bold"></span>
-<span style="color:#8f4b2d">set</span> -e -u -x
+  <p>The following task and script could be used by a Node project to cache the <code>node_modules</code> directory:</p><pre><code class="language-yaml">---
+platform: linux
 
-<span style="color:#8f4b2d">cd</span> project-src
+image_resource: # ...
+
+inputs:
+- name: project-src
+
+caches:
+- path: project-src/node_modules
+
+run:
+  path: project-src/ci/build</code></pre><p>...assuming <code>project-src/ci/build</code> looks something like:</p><pre><code class="language-bash">#!/bin/bash
+
+set -e -u -x
+
+cd project-src
 npm install
 
-<span style="color:#9b9b9b"># ...</span>
-</pre></div><p>...this task would cache the contents of <code>project-src/node_modules</code> between runs of this task on the same worker.</p>
+# ...</code></pre><p>...this task would cache the contents of <code>project-src/node_modules</code> between runs of this task on the same worker.</p>
 </div><div class="example">
   <h3>Private Docker Registry</h3>
 
-  <p>The following external task uses an image from a private registry. Assuming the CA is configured properly on the workers, SSL should Just Work™.</p><p>External tasks are now fully interpolated using <a href="creds.html">credential manager variables</a> and <a href="task-step.html#task-step-vars"><strong><code>vars</code></strong></a>, so you can use template variables in an external task:</p><div class="highlight"><pre style="">---<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>platform:<span style="color:#e6e7e8"> </span>linux<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>image_resource:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>docker-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>repository:<span style="color:#e6e7e8"> </span>my.local.registry:<span style="color:#1abc9c;font-weight:bold">8080</span>/my/image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>username:<span style="color:#e6e7e8"> </span>((myuser))<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>password:<span style="color:#e6e7e8"> </span>((mypass))<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>inputs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>my-app<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>run:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>path:<span style="color:#e6e7e8"> </span>my-app/scripts/test<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>args:<span style="color:#e6e7e8"> </span>[<span style="color:#e67e22">&#34;Hello, world!&#34;</span>,<span style="color:#e6e7e8"> </span><span style="color:#e67e22">&#34;((myparam))&#34;</span>]<span style="color:#e6e7e8">
-</span></pre></div>
+  <p>The following external task uses an image from a private registry. Assuming the CA is configured properly on the workers, SSL should Just Work™.</p><p>External tasks are now fully interpolated using <a href="creds.html">credential manager variables</a> and <a href="task-step.html#task-step-vars"><strong><code>vars</code></strong></a>, so you can use template variables in an external task:</p><pre><code class="language-yaml">---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: my.local.registry:8080/my/image
+    username: ((myuser))
+    password: ((mypass))
+
+inputs:
+- name: my-app
+
+run:
+  path: my-app/scripts/test
+  args: [&#34;Hello, world!&#34;, &#34;((myparam))&#34;]</code></pre>
 </div>
 </div>
       </div>
@@ -486,7 +490,7 @@ npm install
     <div class="page-content">
       <div class="section" id="section_tasks">
   
-  <h1 class="section-header"><a class="anchor" name="tasks" href="#tasks"></a><span class="section-number">1.8 </span>Tasks</h1>
+  <h1 class="section-header"><a class="anchor" name="tasks" href="#tasks"></a><span class="section-number">1.9 </span>Tasks</h1>
   
 
   <p>The smallest configurable unit in a Concourse pipeline is a single task. A task can be thought of as a function from <a href="tasks.html#task-inputs"><strong><code>inputs</code></strong></a> to <a href="tasks.html#task-outputs"><strong><code>outputs</code></strong></a> that can either succeed or fail.</p><p>Going a bit further, ideally tasks are <em>pure</em> functions: given the same set of inputs, it should either always succeed with the same outputs or always fail. This is entirely up to your script&#39;s level of discipline, however. Flaky tests or dependencies on the internet are the most common source of impurity.</p><p>Once you have a running Concourse deployment, you can start configuring your tasks and executing them interactively from your terminal with the <a href="fly.html">Fly</a> commandline tool.</p><p>Once you&#39;ve figured out your tasks&#39;s configuration, you can reuse it for a <a href="jobs.html">Job</a> in your <a href="pipelines.html">Pipeline</a>.</p><p>Conventionally a task&#39;s configuration is placed in the same repository as the code it&#39;s testing, possibly under some <code>ci</code> directory.</p><p>A task&#39;s configuration specifies the following:</p><div class="definition">
@@ -725,7 +729,7 @@ npm install
           prev:
 
           
-          <span class="section-number">1.7</span>
+          <span class="section-number">1.8</span>
           
 
           <a href="jobs.html">Jobs</a>
@@ -737,7 +741,7 @@ npm install
           next:
 
           
-          <span class="section-number">1.8.1</span>
+          <span class="section-number">1.9.1</span>
           
 
           <a href="running-tasks.html">Running Tasks</a>

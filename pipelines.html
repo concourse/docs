@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -111,7 +113,7 @@
               <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="pipelines.html"  class="self">Pipelines</a>
+  <a href="config-basics.html" >Config Basics</a>
 </td>
           </tr>
         
@@ -120,7 +122,7 @@
               <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resources.html" >Resources</a>
+  <a href="pipelines.html"  class="self">Pipelines</a>
 </td>
           </tr>
         
@@ -129,7 +131,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
+  <a href="resources.html" >Resources</a>
 </td>
           </tr>
         
@@ -138,7 +140,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -147,7 +149,7 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -156,7 +158,7 @@
               <td class="number-cell" align="right">1.9&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html" >Tasks</a>
 </td>
           </tr>
         
@@ -165,13 +167,22 @@
               <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
-  <a href="operation.html" >Operation</a>
+  <a href="builds.html" >Builds</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.12&nbsp;</td>
             
             <td class="title-cell">
   <a href="observation.html" >Observation</a>
@@ -193,7 +204,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.4</span>
+        <span class="section-number">1.5</span>
         
         
   <a href="pipelines.html"  class="self">Pipelines</a>
@@ -206,7 +217,7 @@
     
       <tr>
         
-          <td class="number-cell" align="right">1.4.1&nbsp;</td>
+          <td class="number-cell" align="right">1.5.1&nbsp;</td>
         
         <td class="title-cell">
           <a href="setting-pipelines.html">Setting Pipelines</a>
@@ -256,7 +267,7 @@
     
       <tr>
         
-          <td class="number-cell" align="right">1.4.2&nbsp;</td>
+          <td class="number-cell" align="right">1.5.2&nbsp;</td>
         
         <td class="title-cell">
           <a href="managing-pipelines.html">Managing Pipelines</a>
@@ -372,7 +383,7 @@
     
       <tr>
         
-          <td class="number-cell" align="right">1.4.3&nbsp;</td>
+          <td class="number-cell" align="right">1.5.3&nbsp;</td>
         
         <td class="title-cell">
           <a href="pipeline-groups.html">Grouping Jobs</a>
@@ -412,7 +423,11 @@
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="pipelines.html#groups"><strong><code>groups</code></strong></a></td>
+        <td colspan="2" class="title-cell"><a href="pipelines.html#pipeline-var-sources"><strong><code>var_sources</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="pipelines.html#pipeline-config-groups"><strong><code>groups</code></strong></a></td>
       </tr>
       
 
@@ -433,88 +448,84 @@
   <div class="example">
   <h3>Hello, world!</h3>
 
-  <p>The following example makes use of an embedded <a href="tasks.html">task config</a> to define the smallest possible pipeline.</p><div class="highlight"><pre style="">jobs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>hello-world<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>say-hello<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>config:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>platform:<span style="color:#e6e7e8"> </span>linux<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>image_resource:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>type:<span style="color:#e6e7e8"> </span>docker-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>source:<span style="color:#e6e7e8"> </span>{repository:<span style="color:#e6e7e8"> </span>alpine}<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>run:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>path:<span style="color:#e6e7e8"> </span>echo<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>args:<span style="color:#e6e7e8"> </span>[<span style="color:#e67e22">&#34;Hello, world!&#34;</span>]<span style="color:#e6e7e8">
-</span></pre></div>
+  <p>The following example makes use of an embedded <a href="tasks.html">task config</a> to define the smallest possible pipeline.</p><pre><code class="language-yaml">jobs:
+- name: hello-world
+  plan:
+  - task: say-hello
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source: {repository: alpine}
+      run:
+        path: echo
+        args: [&#34;Hello, world!&#34;]</code></pre>
 </div><div class="example">
   <h3>Small Go Project</h3>
 
-  <p>When it comes to real-world projects, task configs are usually stored alongside the code that it&#39;s testing. This makes the pipeline a bit smaller and makes the config able to change without needing to reconfigure the pipeline.</p><div class="highlight"><pre style="">---<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>resources:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>booklit<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>git<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>uri:<span style="color:#e6e7e8"> </span>https://github.com/vito/booklit<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>branch:<span style="color:#e6e7e8"> </span>master<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>jobs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>unit<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>booklit<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>unit<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>booklit/ci/test.yml<span style="color:#e6e7e8">
-</span></pre></div>
+  <p>When it comes to real-world projects, task configs are usually stored alongside the code that it&#39;s testing. This makes the pipeline a bit smaller and makes the config able to change without needing to reconfigure the pipeline.</p><pre><code class="language-yaml">---
+resources:
+- name: booklit
+  type: git
+  source:
+    uri: https://github.com/vito/booklit
+    branch: master
+
+jobs:
+- name: unit
+  plan:
+  - get: booklit
+    trigger: true
+  - task: unit
+    file: booklit/ci/test.yml</code></pre>
 </div><div class="example">
   <h3>Chaining Jobs</h3>
 
-  <p>Promoting resources to downstream jobs is done by setting <a href="get-step.html#get-step-passed"><strong><code>passed</code></strong></a> on a <a href="get-step.html"><code>get</code> step</a>.</p><p>Note that nothing in <code>unit</code> says anything about triggering <code>build</code>. Job definitions are self-contained; they describe their dependencies and where they come from, which results in a dependency flow that Concourse pushes forward.</p><div class="highlight"><pre style="">---<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>resources:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>booklit<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>git<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>uri:<span style="color:#e6e7e8"> </span>https://github.com/vito/booklit<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>branch:<span style="color:#e6e7e8"> </span>master<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>jobs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>unit<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>booklit<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>run-unit<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>booklit/ci/test.yml<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>build<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>booklit<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>passed:<span style="color:#e6e7e8"> </span>[unit]<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>run-build<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>file:<span style="color:#e6e7e8"> </span>booklit/ci/build.yml<span style="color:#e6e7e8">
-</span></pre></div>
+  <p>Promoting resources to downstream jobs is done by setting <a href="get-step.html#get-step-passed"><strong><code>passed</code></strong></a> on a <a href="get-step.html"><code>get</code> step</a>.</p><p>Note that nothing in <code>unit</code> says anything about triggering <code>build</code>. Job definitions are self-contained; they describe their dependencies and where they come from, which results in a dependency flow that Concourse pushes forward.</p><pre><code class="language-yaml">---
+resources:
+- name: booklit
+  type: git
+  source:
+    uri: https://github.com/vito/booklit
+    branch: master
+
+jobs:
+- name: unit
+  plan:
+  - get: booklit
+    trigger: true
+  - task: run-unit
+    file: booklit/ci/test.yml
+
+- name: build
+  plan:
+  - get: booklit
+    passed: [unit]
+    trigger: true
+  - task: run-build
+    file: booklit/ci/build.yml</code></pre>
 </div><div class="example">
   <h3>Using Resource Types</h3>
 
-  <p><a href="resource-types.html">Resource Types</a> can be used to extend the functionality of your pipeline and provide deeper integrations. This example uses one to trigger a job whenever a new <a href="http://www.qwantz.com">Dinosaur Comic</a> is out.</p><div class="highlight"><pre style="">---<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>resource_types:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>rss<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>docker-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>repository:<span style="color:#e6e7e8"> </span>suhlig/concourse-rss-resource<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>tag:<span style="color:#e6e7e8"> </span>latest<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>resources:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>booklit-releases<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>type:<span style="color:#e6e7e8"> </span>rss<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>source:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>url:<span style="color:#e6e7e8"> </span>http://www.qwantz.com/rssfeed.php<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>jobs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>announce<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>plan:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>get:<span style="color:#e6e7e8"> </span>booklit-releases<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>trigger:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span></pre></div>
+  <p><a href="resource-types.html">Resource Types</a> can be used to extend the functionality of your pipeline and provide deeper integrations. This example uses one to trigger a job whenever a new <a href="http://www.qwantz.com">Dinosaur Comic</a> is out.</p><pre><code class="language-yaml">---
+resource_types:
+- name: rss
+  type: docker-image
+  source:
+    repository: suhlig/concourse-rss-resource
+    tag: latest
+
+resources:
+- name: booklit-releases
+  type: rss
+  source:
+    url: http://www.qwantz.com/rssfeed.php
+
+jobs:
+- name: announce
+  plan:
+  - get: booklit-releases
+    trigger: true</code></pre>
 </div>
 </div>
       </div>
@@ -523,7 +534,7 @@
     <div class="page-content">
       <div class="section" id="section_pipelines">
   
-  <h1 class="section-header"><a class="anchor" name="pipelines" href="#pipelines"></a><span class="section-number">1.4 </span>Pipelines</h1>
+  <h1 class="section-header"><a class="anchor" name="pipelines" href="#pipelines"></a><span class="section-number">1.5 </span>Pipelines</h1>
   
 
   <p>A pipeline is the result of configuring <a href="jobs.html">Jobs</a> and <a href="resources.html">Resources</a> together. When you configure a pipeline, it takes on a life of its own, to continuously detect resource versions and automatically queue new builds for jobs as they have new available inputs.</p><p>Pipelines are configured as declarative YAML files, fitting the following schema:</p><div class="definition">
@@ -533,7 +544,7 @@
   </div>
 
   <div class="definition-content">
-    <p>A set of <a href="jobs.html">job</a>s for the pipeline to continuously check.</p>
+    <p>A set of <a href="jobs.html">jobs</a> for the pipeline to continuously schedule.</p>
   </div>
 </div><div class="definition">
   <div class="definition-thumb">
@@ -542,7 +553,7 @@
   </div>
 
   <div class="definition-content">
-    <p>A set of <a href="resources.html">resource</a>s for the pipeline to continuously check.</p>
+    <p>A set of <a href="resources.html">resources</a> for the pipeline to continuously check.</p>
   </div>
 </div><div class="definition">
   <div class="definition-thumb">
@@ -551,12 +562,21 @@
   </div>
 
   <div class="definition-content">
-    <p>A set of <a href="resource-types.html">resource type</a>s for resources within the pipeline to use.</p>
+    <p>A set of <a href="resource-types.html">resource types</a> for resources within the pipeline to use.</p>
   </div>
 </div><div class="definition">
   <div class="definition-thumb">
-    <a name="groups"></a>
-    <pre><a href="pipelines.html#groups"><strong>groups</strong></a>: [group]</pre>
+    <a name="pipeline-var-sources"></a>
+    <pre><a href="pipelines.html#pipeline-var-sources"><strong>var_sources</strong></a>: [var_source]</pre>
+  </div>
+
+  <div class="definition-content">
+    <p>A set of <a href="runtime-vars.html#var-sources"><code>((var))</code> Sources</a> for the pipeline to use.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="pipeline-config-groups"></a>
+    <pre><a href="pipelines.html#pipeline-config-groups"><strong>groups</strong></a>: [group]</pre>
   </div>
 
   <div class="definition-content">
@@ -573,10 +593,10 @@
           prev:
 
           
-          <span class="section-number">1.3</span>
+          <span class="section-number">1.4</span>
           
 
-          <a href="fly.html">The <code>fly</code> CLI</a>
+          <a href="config-basics.html">Config Basics</a>
         </div>
       
 
@@ -585,7 +605,7 @@
           next:
 
           
-          <span class="section-number">1.4.1</span>
+          <span class="section-number">1.5.1</span>
           
 
           <a href="setting-pipelines.html">Setting Pipelines</a>

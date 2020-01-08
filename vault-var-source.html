@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60508041-1"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-60508041-1');
+</script>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=775" />
+<title>The Vault ((var)) source - Concourse CI</title>
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+<link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+<link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+<script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
+  </head>
+  <body>
+    <div class="top-logo">
+  <a href="/"><img src="images/logo-white.svg" />Concourse</a>
+</div>
+
+<nav class="top-nav">
+  
+  <a class="top-link active" href="docs.html">Docs</a>
+  
+  <a class="top-link" href="examples.html">Examples</a>
+  
+  <a class="top-link" href="project.html">Project</a>
+  
+  <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
+  <a class="top-link" href="https://discuss.concourse-ci.org">discuss</a>
+</nav>
+
+<div class="top-search">
+  <div id="search"></div>
+</div>
+
+<script type="text/javascript">
+  var app = Elm.Main.init({
+    node: document.getElementById('search')
+  });
+
+  app.ports.emitSearchTerm.subscribe(function(term) {
+    gtag('event', 'search', {search_term: term});
+  });
+</script>
+
+    <div class="page-nav">
+      
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1</span>
+        
+        
+  <a href="docs.html"  class="active">Docs</a>
+
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="install.html" >Install</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="auth.html" >Auth &amp; Teams</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="fly.html" >The <code>fly</code> CLI</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.4&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="config-basics.html"  class="active">Config Basics</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.5&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="pipelines.html" >Pipelines</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.6&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resources.html" >Resources</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.7&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="resource-types.html" >Resource Types</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.8&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="jobs.html" >Jobs</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.9&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="tasks.html" >Tasks</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.10&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="builds.html" >Builds</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html" >Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.12&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="observation.html" >Observation</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1.4</span>
+        
+        
+  <a href="config-basics.html"  class="active">Config Basics</a>
+
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.4.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="intro-to-yaml.html" >Intro to YAML</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.4.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="vars.html" >Intro to <code>((vars))</code></a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.4.3&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="runtime-vars.html"  class="active">Fetching <code>((vars))</code> at Runtime</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+        <span class="section-number">1.4.3</span>
+        
+        
+  <a href="runtime-vars.html"  class="active">Fetching <code>((vars))</code> at Runtime</a>
+
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="runtime-vars.html#cluster-wide-credential-manager" >The Cluster-wide Credential Manager</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="left"></td>
+            
+            <td class="title-cell">
+  <a href="runtime-vars.html#var-sources"  class="active"><code>((var))</code> Sources</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        
+        
+  <a href="runtime-vars.html#var-sources"  class="active"><code>((var))</code> Sources</a>
+
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.4.3.2.1&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="vault-var-source.html"  class="self">The Vault <code>((var))</code> source</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.4.3.2.2&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="dummy-var-source.html" >The Dummy <code>((var))</code> source</a>
+</td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+
+
+
+
+
+<div class="context">
+  <div class="Top">
+    On this page:
+  </div>
+
+  <div class="children anchors">
+    <table>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="vault-var-source.html#vault-var-source-url"><strong><code>url</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="vault-var-source.html#vault-var-source-ca-cert"><strong><code>ca_cert</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="vault-var-source.html#vault-var-source-path-prefix"><strong><code>path_prefix</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="vault-var-source.html#vault-var-source-shared-path"><strong><code>shared_path</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="vault-var-source.html#vault-var-source-namespace"><strong><code>namespace</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="vault-var-source.html#vault-var-source-client-cert"><strong><code>client_cert</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="vault-var-source.html#vault-var-source-client-key"><strong><code>client_key</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="vault-var-source.html#vault-var-source-server-name"><strong><code>server_name</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="vault-var-source.html#vault-var-source-insecure-skip-verify"><strong><code>insecure_skip_verify</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="vault-var-source.html#vault-var-source-client-token"><strong><code>client_token</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="vault-var-source.html#vault-var-source-auth-backend"><strong><code>auth_backend</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="vault-var-source.html#vault-var-source-auth-params"><strong><code>auth_params</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="vault-var-source.html#vault-var-source-auth-max-ttl"><strong><code>auth_max_ttl</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="vault-var-source.html#vault-var-source-auth-retry-max"><strong><code>auth_retry_max</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="title-cell"><a href="vault-var-source.html#vault-var-source-auth-retry-interval"><strong><code>auth_retry_initial</code></strong></a></td>
+      </tr>
+      
+
+      
+  
+    
+  
+
+    </table>
+  </div>
+</div>
+
+    </div>
+
+    <div class="page-aside"></div>
+
+    <div class="page-content">
+      <div class="section" id="section_vault-var-source">
+  
+  <h1 class="section-header"><a class="anchor" name="vault-var-source" href="#vault-var-source"></a><span class="section-number">1.4.3.2.1 </span>The Vault <code>((var))</code> source</h1>
+  
+
+  <p>The <code>vault</code> type supports configuring a <a href="https://www.vaultproject.io">Vault</a> server as a <code>((var))</code> source.</p><div class="warning">
+  <p>For a more complete explanation on how to set up Vault, check out the docs for the <a href="vault-credential-manager.html">Vault credential manager</a>. The documentation here is going to be pretty sparse until <code>var_sources</code> is more complete so as to avoid duplication.</p><p>Consider this &#34;early access&#34; - we don&#39;t expect the following configuration schema to change, but until we fully commit to this direction and have cluster-wide var sources we don&#39;t want to shuffle around the docs too much.</p>
+</div><p>The following fields can be set under <a href="runtime-vars.html#var-source-config"><strong><code>config</code></strong></a>:</p><div class="definition">
+  <div class="definition-thumb">
+    <a name="vault-var-source-url"></a>
+    <pre><a href="vault-var-source.html#vault-var-source-url"><strong>url</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Required.</em> The URL of the Vault API.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="vault-var-source-ca-cert"></a>
+    <pre><a href="vault-var-source.html#vault-var-source-ca-cert"><strong>ca_cert</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> The PEM encoded contents of a CA certificate to use when connecting to the API.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="vault-var-source-path-prefix"></a>
+    <pre><a href="vault-var-source.html#vault-var-source-path-prefix"><strong>path_prefix</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional. Default <code>/concourse</code>.</em> A prefix under which to look for all credential values.</p><p>See <a href="vault-credential-manager.html#vault-credential-lookup-rules">Credential lookup rules</a> for more information.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="vault-var-source-shared-path"></a>
+    <pre><a href="vault-var-source.html#vault-var-source-shared-path"><strong>shared_path</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> An additional path under which credentials will be looked up.</p><p>See <a href="vault-credential-manager.html#vault-shared-path">Configuring a shared path</a> for more information.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="vault-var-source-namespace"></a>
+    <pre><a href="vault-var-source.html#vault-var-source-namespace"><strong>namespace</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> A <a href="https://www.vaultproject.io/docs/enterprise/namespaces/index.html">Vault namespace</a> to operate under.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="vault-var-source-client-cert"></a>
+    <pre><a href="vault-var-source.html#vault-var-source-client-cert"><strong>client_cert</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> A PEM encoded client certificate, for use with TLS based auth.</p><p>See <a href="vault-credential-manager.html#vault-cert-auth">Using the <code>cert</code> auth backend</a> for more information.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="vault-var-source-client-key"></a>
+    <pre><a href="vault-var-source.html#vault-var-source-client-key"><strong>client_key</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> A PEM encoded client key, for use with TLS based auth.</p><p>See <a href="vault-credential-manager.html#vault-cert-auth">Using the <code>cert</code> auth backend</a> for more information.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="vault-var-source-server-name"></a>
+    <pre><a href="vault-var-source.html#vault-var-source-server-name"><strong>server_name</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> The expected name of the server when connecting through TLS.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="vault-var-source-insecure-skip-verify"></a>
+    <pre><a href="vault-var-source.html#vault-var-source-insecure-skip-verify"><strong>insecure_skip_verify</strong></a>: boolean</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> Skip TLS validation. Not recommended. Don&#39;t do it. No really, don&#39;t.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="vault-var-source-client-token"></a>
+    <pre><a href="vault-var-source.html#vault-var-source-client-token"><strong>client_token</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> Authenticate via a periodic client token.</p><p>See <a href="vault-credential-manager.html#vault-periodic-token">Using a periodic token</a> for more information.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="vault-var-source-auth-backend"></a>
+    <pre><a href="vault-var-source.html#vault-var-source-auth-backend"><strong>auth_backend</strong></a>: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> Authenticate using an auth backend, e.g. <code>cert</code> or <code>approle</code>.</p><p>See <a href="vault-credential-manager.html#vault-approle-auth">Using the <code>approle</code> auth backend</a> or <a href="vault-credential-manager.html#vault-cert-auth">Using the <code>cert</code> auth backend</a> for more information.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="vault-var-source-auth-params"></a>
+    <pre><a href="vault-var-source.html#vault-var-source-auth-params"><strong>auth_params</strong></a>: string: string</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional.</em> A key-value map of parameters to pass during authentication.</p><p>See <a href="vault-credential-manager.html#vault-approle-auth">Using the <code>approle</code> auth backend</a> for more information.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="vault-var-source-auth-max-ttl"></a>
+    <pre><a href="vault-var-source.html#vault-var-source-auth-max-ttl"><strong>auth_max_ttl</strong></a>: duration</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional. Go duration format.</em> Maximum duration to elapse before forcing the client to log in again.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="vault-var-source-auth-retry-max"></a>
+    <pre><a href="vault-var-source.html#vault-var-source-auth-retry-max"><strong>auth_retry_max</strong></a>: duration</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional. Go duration format, default <code>5m</code>.</em> When failing to authenticate, give up after this amount of time.</p>
+  </div>
+</div><div class="definition">
+  <div class="definition-thumb">
+    <a name="vault-var-source-auth-retry-interval"></a>
+    <pre><a href="vault-var-source.html#vault-var-source-auth-retry-interval"><strong>auth_retry_initial</strong></a>: duration</pre>
+  </div>
+
+  <div class="definition-content">
+    <p><em>Optional. Go duration format, default <code>1s</code>.</em> When retrying during authentication, start with this retry interval. The interval will increase exponentially until <code>auth_retry_max</code> is reached.</p>
+  </div>
+</div>
+
+  
+    
+  
+</div>
+
+      <nav class="prev-next">
+      
+        <div class="prev">
+          prev:
+
+          
+
+          <a href="runtime-vars.html#var-sources"><code>((var))</code> Sources</a>
+        </div>
+      
+
+      
+        <div class="next">
+          next:
+
+          
+          <span class="section-number">1.4.3.2.2</span>
+          
+
+          <a href="dummy-var-source.html">The Dummy <code>((var))</code> source</a>
+        </div>
+      
+      </nav>
+    </div>
+
+    <ul class="improve-docs">
+      <li><img src="images/icons/github-box.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+      <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+    </ul>
+  </body>
+</html>

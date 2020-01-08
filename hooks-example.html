@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -219,72 +221,71 @@
   <h2 class="section-header"><a class="anchor" name="configuration" href="#configuration"></a>Pipeline Configuration</h2>
   
 
-  <div class="highlight"><pre style="">---<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>task-config:<span style="color:#e6e7e8"> </span><span style="color:#e74c3c;font-weight:bold">&amp;task-config</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>platform:<span style="color:#e6e7e8"> </span>linux<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>image_resource:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>type:<span style="color:#e6e7e8"> </span>registry-image<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>source:<span style="color:#e6e7e8"> </span>{<span style="color:#e6e7e8"> </span>repository:<span style="color:#e6e7e8"> </span>busybox<span style="color:#e6e7e8"> </span>}<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8"></span>jobs:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">  </span>-<span style="color:#e6e7e8"> </span>name:<span style="color:#e6e7e8"> </span>job<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>public:<span style="color:#e6e7e8"> </span><span style="color:#2ecc71;font-weight:bold">true</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>plan:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>successful-task<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>config:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>&lt;&lt;<span style="color:#e6e7e8"> </span>:<span style="color:#e6e7e8"> </span><span style="color:#e74c3c;font-weight:bold">*task-config</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>run:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>path:<span style="color:#e6e7e8"> </span>sh<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>args:<span style="color:#e6e7e8"> </span>[<span style="color:#e67e22">&#34;-lc&#34;</span>,<span style="color:#e6e7e8"> </span><span style="color:#e67e22">&#34;exit 0&#34;</span>]<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>on_success:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>task:<span style="color:#e6e7e8"> </span>task-success<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>config:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>&lt;&lt;<span style="color:#e6e7e8"> </span>:<span style="color:#e6e7e8"> </span><span style="color:#e74c3c;font-weight:bold">*task-config</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>run:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">              </span>path:<span style="color:#e6e7e8"> </span>echo<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">              </span>args:<span style="color:#e6e7e8"> </span>[<span style="color:#e67e22">&#34;This task succeeded!&#34;</span>]<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>on_abort:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>task:<span style="color:#e6e7e8"> </span>task-aborted<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>config:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>&lt;&lt;<span style="color:#e6e7e8"> </span>:<span style="color:#e6e7e8"> </span><span style="color:#e74c3c;font-weight:bold">*task-config</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>run:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">              </span>path:<span style="color:#e6e7e8"> </span>echo<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">              </span>args:<span style="color:#e6e7e8"> </span>[<span style="color:#e67e22">&#34;This task was aborted!&#34;</span>]<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>-<span style="color:#e6e7e8"> </span>task:<span style="color:#e6e7e8"> </span>failing-task<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>config:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>&lt;&lt;<span style="color:#e6e7e8"> </span>:<span style="color:#e6e7e8"> </span><span style="color:#e74c3c;font-weight:bold">*task-config</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>run:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>path:<span style="color:#e6e7e8"> </span>sh<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>args:<span style="color:#e6e7e8"> </span>[<span style="color:#e67e22">&#34;-lc&#34;</span>,<span style="color:#e6e7e8"> </span><span style="color:#e67e22">&#34;exit 1&#34;</span>]<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>on_failure:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>task:<span style="color:#e6e7e8"> </span>task-failure<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>config:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>&lt;&lt;<span style="color:#e6e7e8"> </span>:<span style="color:#e6e7e8"> </span><span style="color:#e74c3c;font-weight:bold">*task-config</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">            </span>run:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">              </span>path:<span style="color:#e6e7e8"> </span>echo<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">              </span>args:<span style="color:#e6e7e8"> </span>[<span style="color:#e67e22">&#34;This task failed!&#34;</span>]<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>on_success:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>task:<span style="color:#e6e7e8"> </span>job-success<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>config:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>&lt;&lt;<span style="color:#e6e7e8"> </span>:<span style="color:#e6e7e8"> </span><span style="color:#e74c3c;font-weight:bold">*task-config</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>run:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>path:<span style="color:#e6e7e8"> </span>echo<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>args:<span style="color:#e6e7e8"> </span>[<span style="color:#e67e22">&#34;This job succeeded!&#34;</span>]<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>on_failure:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>task:<span style="color:#e6e7e8"> </span>job-failure<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>config:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>&lt;&lt;<span style="color:#e6e7e8"> </span>:<span style="color:#e6e7e8"> </span><span style="color:#e74c3c;font-weight:bold">*task-config</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>run:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>path:<span style="color:#e6e7e8"> </span>echo<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>args:<span style="color:#e6e7e8"> </span>[<span style="color:#e67e22">&#34;This job failed!&#34;</span>]<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">    </span>on_abort:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>task:<span style="color:#e6e7e8"> </span>job-aborted<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">      </span>config:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>&lt;&lt;<span style="color:#e6e7e8"> </span>:<span style="color:#e6e7e8"> </span><span style="color:#e74c3c;font-weight:bold">*task-config</span><span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">        </span>run:<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>path:<span style="color:#e6e7e8"> </span>echo<span style="color:#e6e7e8">
-</span><span style="color:#e6e7e8">          </span>args:<span style="color:#e6e7e8"> </span>[<span style="color:#e67e22">&#34;This job was aborted!&#34;</span>]<span style="color:#e6e7e8">
-</span></pre></div>
+  <pre><code class="language-yaml">---
+task-config: &amp;task-config
+  platform: linux
+  image_resource:
+    type: registry-image
+    source: { repository: busybox }
+
+jobs:
+  - name: job
+    public: true
+    plan:
+      - task: successful-task
+        config:
+          &lt;&lt; : *task-config
+          run:
+            path: sh
+            args: [&#34;-lc&#34;, &#34;exit 0&#34;]
+        on_success:
+          task: task-success
+          config:
+            &lt;&lt; : *task-config
+            run:
+              path: echo
+              args: [&#34;This task succeeded!&#34;]
+        on_abort:
+          task: task-aborted
+          config:
+            &lt;&lt; : *task-config
+            run:
+              path: echo
+              args: [&#34;This task was aborted!&#34;]
+      - task: failing-task
+        config:
+          &lt;&lt; : *task-config
+          run:
+            path: sh
+            args: [&#34;-lc&#34;, &#34;exit 1&#34;]
+        on_failure:
+          task: task-failure
+          config:
+            &lt;&lt; : *task-config
+            run:
+              path: echo
+              args: [&#34;This task failed!&#34;]
+    on_success:
+      task: job-success
+      config:
+        &lt;&lt; : *task-config
+        run:
+          path: echo
+          args: [&#34;This job succeeded!&#34;]
+    on_failure:
+      task: job-failure
+      config:
+        &lt;&lt; : *task-config
+        run:
+          path: echo
+          args: [&#34;This job failed!&#34;]
+    on_abort:
+      task: job-aborted
+      config:
+        &lt;&lt; : *task-config
+        run:
+          path: echo
+          args: [&#34;This job was aborted!&#34;]</code></pre>
 
   
     

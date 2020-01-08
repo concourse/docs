@@ -18,9 +18,11 @@
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
 <link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
     <div class="top-logo">
@@ -113,7 +115,7 @@
               <td class="number-cell" align="right">1.4&nbsp;</td>
             
             <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
+  <a href="config-basics.html" >Config Basics</a>
 </td>
           </tr>
         
@@ -122,7 +124,7 @@
               <td class="number-cell" align="right">1.5&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resources.html" >Resources</a>
+  <a href="pipelines.html" >Pipelines</a>
 </td>
           </tr>
         
@@ -131,7 +133,7 @@
               <td class="number-cell" align="right">1.6&nbsp;</td>
             
             <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
+  <a href="resources.html" >Resources</a>
 </td>
           </tr>
         
@@ -140,7 +142,7 @@
               <td class="number-cell" align="right">1.7&nbsp;</td>
             
             <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
+  <a href="resource-types.html" >Resource Types</a>
 </td>
           </tr>
         
@@ -149,7 +151,7 @@
               <td class="number-cell" align="right">1.8&nbsp;</td>
             
             <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
+  <a href="jobs.html" >Jobs</a>
 </td>
           </tr>
         
@@ -158,7 +160,7 @@
               <td class="number-cell" align="right">1.9&nbsp;</td>
             
             <td class="title-cell">
-  <a href="builds.html" >Builds</a>
+  <a href="tasks.html" >Tasks</a>
 </td>
           </tr>
         
@@ -167,13 +169,22 @@
               <td class="number-cell" align="right">1.10&nbsp;</td>
             
             <td class="title-cell">
-  <a href="operation.html"  class="active">Operation</a>
+  <a href="builds.html" >Builds</a>
 </td>
           </tr>
         
           <tr>
             
               <td class="number-cell" align="right">1.11&nbsp;</td>
+            
+            <td class="title-cell">
+  <a href="operation.html"  class="active">Operation</a>
+</td>
+          </tr>
+        
+          <tr>
+            
+              <td class="number-cell" align="right">1.12&nbsp;</td>
             
             <td class="title-cell">
   <a href="observation.html" >Observation</a>
@@ -193,7 +204,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.10</span>
+        <span class="section-number">1.11</span>
         
         
   <a href="operation.html"  class="active">Operation</a>
@@ -205,7 +216,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.10.1&nbsp;</td>
+              <td class="number-cell" align="right">1.11.1&nbsp;</td>
             
             <td class="title-cell">
   <a href="encryption.html" >Encryption</a>
@@ -214,7 +225,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.10.2&nbsp;</td>
+              <td class="number-cell" align="right">1.11.2&nbsp;</td>
             
             <td class="title-cell">
   <a href="creds.html" >Credential Management</a>
@@ -223,7 +234,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.10.3&nbsp;</td>
+              <td class="number-cell" align="right">1.11.3&nbsp;</td>
             
             <td class="title-cell">
   <a href="metrics.html" >Metrics</a>
@@ -232,7 +243,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.10.4&nbsp;</td>
+              <td class="number-cell" align="right">1.11.4&nbsp;</td>
             
             <td class="title-cell">
   <a href="container-placement.html" >Container Placement</a>
@@ -241,7 +252,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.10.5&nbsp;</td>
+              <td class="number-cell" align="right">1.11.5&nbsp;</td>
             
             <td class="title-cell">
   <a href="global-resources.html"  class="self">Global Resources (experimental)</a>
@@ -250,7 +261,7 @@
         
           <tr>
             
-              <td class="number-cell" align="right">1.10.6&nbsp;</td>
+              <td class="number-cell" align="right">1.11.6&nbsp;</td>
             
             <td class="title-cell">
   <a href="administration.html" >Administration</a>
@@ -272,7 +283,7 @@
     <nav>
       <div class="top">
         
-        <span class="section-number">1.10.5</span>
+        <span class="section-number">1.11.5</span>
         
         
   <a href="global-resources.html"  class="self">Global Resources (experimental)</a>
@@ -322,7 +333,7 @@
     <div class="page-content">
       <div class="section" id="section_global-resources">
   
-  <h1 class="section-header"><a class="anchor" name="global-resources" href="#global-resources"></a><span class="section-number">1.10.5 </span>Global Resources (experimental)</h1>
+  <h1 class="section-header"><a class="anchor" name="global-resources" href="#global-resources"></a><span class="section-number">1.11.5 </span>Global Resources (experimental)</h1>
   
 
   <p>Concourse v5.0 contains an experimental feature known as &#34;global resources&#34;. It is enabled by passing the <code>--enable-global-resources</code> flag to the <code>concourse web</code> command.</p><p>The basic concept of global resources is to share detected resource versions between all resources that have the same <a href="resources.html#resource-type"><strong><code>type</code></strong></a> and <a href="resources.html#resource-source"><strong><code>source</code></strong></a> configuration.</p><p>Before v5.0.0, each pipeline resource had its own version history, associated to the resource by name. This meant that multiple pipelines with the same resource configs would redundantly collect the same version and metadata information.</p><p>With v5.0.0&#39;s experimental &#39;global resources&#39; feature, resource versions are instead associated to an anonymous &#39;resource config&#39; i.e. its <a href="resources.html#resource-type"><strong><code>type</code></strong></a> and <a href="resources.html#resource-source"><strong><code>source</code></strong></a>.</p>
@@ -434,7 +445,7 @@
           prev:
 
           
-          <span class="section-number">1.10.4</span>
+          <span class="section-number">1.11.4</span>
           
 
           <a href="container-placement.html">Container Placement</a>
@@ -446,7 +457,7 @@
           next:
 
           
-          <span class="section-number">1.10.6</span>
+          <span class="section-number">1.11.6</span>
           
 
           <a href="administration.html">Administration</a>
