@@ -484,10 +484,9 @@ A task's configuration specifies the following:
   configurable destination paths.
 
   \aside{
-    If your build tools don't support output paths you'll have to copy bits
-    around. If it's a \code{git} repo that you're modifying you can do a local
-    \code{git clone ./input ./output}, which is much more efficient than
-    \code{cp}, and then work out of \code{./output}.
+    If your build tools don't support output paths you should define an input and
+    output with the same name. This has the effect of updating the files in
+    place and modifications will pass to all downstream tasks using the directory.
   }
 
   Any \reference{task-params} configured will be set in the environment for the
