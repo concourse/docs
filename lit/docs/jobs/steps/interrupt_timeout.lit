@@ -1,0 +1,42 @@
+\use-plugin{concourse-docs}
+
+\title{\code{interrupt_timeout} step modifier}{interrupt-step-modifier}
+
+When a step is cancelled or timed out, it may need time to gracefully shut down. This is done by
+attaching \code{interrupt_timeout} and the duration to limit it to.
+
+\define-attribute{interrupt_timeout: duration}{
+  The amount of time to limit the step's termination to, e.g. \code{30m} for 30
+  minutes.
+
+  When exceeded, the step will be stopped immediately.
+}
+
+\right-side{Examples}{
+  \example{Graceful Timeouts}{
+    The following will run the \code{unit} task. When the timeout occurs (after 5m), the running process will
+    have 1m to clean up.
+
+    \codeblock{yaml}{{
+    plan:
+    - get: foo
+    - task: unit
+      file: foo/unit.yml
+      timeout: 5m
+      interrupt_timeout: 1m
+    }}
+  }
+
+    \example{Graceful Aborts}{
+    The following will run the \code{unit} task and when aborted, the running process will
+    have 1m to clean up.
+
+    \codeblock{yaml}{{
+    plan:
+    - get: foo
+    - task: unit
+      file: foo/unit.yml
+      interrupt_timeout: 1m
+    }}
+  }
+}
