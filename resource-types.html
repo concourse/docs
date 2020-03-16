@@ -46,6 +46,10 @@
   <div id="search"></div>
 </div>
 
+<div class="top-banner">
+  ✨ The 2020 Concourse CI Community Survey is now live! ✨ <a href="https://airtable.com/shr4tyAb5ApbX3VV1">Click here to learn more and share your experience</a>.
+</div>
+
 <script type="text/javascript">
   var app = Elm.Main.init({
     node: document.getElementById('search')
@@ -414,7 +418,7 @@ jobs:
   <h1 class="section-header"><a class="anchor" name="resource-types" href="#resource-types"></a><span class="section-number">1.7 </span>Resource Types</h1>
   
 
-  <p>Each resource in a pipeline has a <code>type</code>. The resource&#39;s type determines what versions are detected, the bits that are fetched when used for a <a href="get-step.html"><code>get</code> step</a>, and the side effect that occurs when used for a <a href="put-step.html"><code>put</code> step</a>.</p><p>Out of the box, Concourse comes with a few resource types to cover common CI use cases like dealing with Git repositories and S3 buckets. These are called the &#34;core&#34; resource types. These are packaged with the worker, and can be listed via <a href="administration.html#fly-workers"><code>fly workers -d</code></a>.</p><p>Beyond these core types, each pipeline can configure its own resource types by specifying <code>resource_types</code> at the top level. Each resource type is itself defined as a resource that provides the container image for the pipeline resource type (see <a href="implementing-resource-types.html">Implementing a Resource Type</a>). You will almost always be using the <a href="https://github.com/concourse/registry-image-resource"><code>registry-image</code> resource</a> when doing this.</p><p>A somewhat exhaustive list of all available resource types - both from the Concourse core project and from external contributors - is available in the <a href="https://github.com/concourse/concourse/wiki/Resource-Types">Resource Types wiki page</a>.</p><p>Similar to <a href="resources.html">Resources</a>, each configured resource type consists of the following attributes:</p><div class="definition">
+  <p>Each resource in a pipeline has a <code>type</code>. The resource&#39;s type determines what versions are detected, the bits that are fetched when used for a <a href="get-step.html"><code>get</code> step</a>, and the side effect that occurs when used for a <a href="put-step.html"><code>put</code> step</a>.</p><p>Out of the box, Concourse comes with a few resource types to cover common CI use cases like dealing with Git repositories and S3 buckets. These are called the &#34;core&#34; resource types. These are packaged with the worker, and can be listed via <a href="administration.html#fly-workers"><code>fly workers -d</code></a>.</p><p>Beyond these core types, each pipeline can configure its own resource types by specifying <code>resource_types</code> at the top level. Each resource type is itself defined as a resource that provides the container image for the pipeline resource type (see <a href="implementing-resource-types.html">Implementing a Resource Type</a>). You will almost always be using the <a href="https://github.com/concourse/registry-image-resource"><code>registry-image</code> resource</a> when doing this.</p><p>A somewhat exhaustive list of all available resource types - both from the Concourse core project and from external contributors - is available in the <a href="https://resource-types.concourse-ci.org">resource types</a> section of the site.</p><p>Similar to <a href="resources.html">Resources</a>, each configured resource type consists of the following attributes:</p><div class="definition">
   <div class="definition-thumb">
     <a name="resource-type-name"></a>
     <pre><a href="resource-types.html#resource-type-name"><strong>name</strong></a>: string</pre>
