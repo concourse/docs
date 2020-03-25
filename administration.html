@@ -25,11 +25,15 @@
 <script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
-    <div class="top-logo">
-  <a href="/"><img src="images/logo-white.svg" />Concourse</a>
-</div>
+    <div class="top-banner">
+      <p class="banner-text">
+        ✨ The <a href="https://airtable.com/shr4tyAb5ApbX3VV1">2020 Concourse CI Community Survey</a> is now live! ✨
+      </p>
+    </div>
 
-<nav class="top-nav">
+    <div class="page-top">
+      <nav class="top-nav">
+  <a class="top-link logo-link" href="/"><img src="images/logo-white.svg" />Concourse</a>
   
   <a class="top-link active" href="docs.html">Docs</a>
   
@@ -37,352 +41,235 @@
   
   <a class="top-link" href="project.html">Project</a>
   
+  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
   <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
   <a class="top-link" href="https://discuss.concourse-ci.org">discuss</a>
-  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
-</nav>
 
-<div class="top-search">
   <div id="search"></div>
-</div>
 
-<div class="top-banner">
-  ✨ The 2020 Concourse CI Community Survey is now live! ✨ <a href="https://airtable.com/shr4tyAb5ApbX3VV1">Click here to learn more and share your experience</a>.
-</div>
+  <script type="text/javascript">
+    var app = Elm.Main.init({
+      node: document.getElementById('search')
+    });
 
-<script type="text/javascript">
-  var app = Elm.Main.init({
-    node: document.getElementById('search')
-  });
-
-  app.ports.emitSearchTerm.subscribe(function(term) {
-    gtag('event', 'search', {search_term: term});
-  });
-</script>
-
-    <div class="page-nav">
-      
-
-
-
-
-
-
-
-  
-  
-  
-
-  
-  <div class="context">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1</span>
-        
-        
-  <a href="docs.html"  class="active">Docs</a>
-
-      </div>
-
-      <div class="children">
-        <table>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="install.html" >Install</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="auth.html" >Auth &amp; Teams</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="fly.html" >The <code>fly</code> CLI</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="config-basics.html" >Config Basics</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.6&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resources.html" >Resources</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.7&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.8&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.9&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.10&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="builds.html" >Builds</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="operation.html"  class="active">Operation</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.12&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="observation.html" >Observation</a>
-</td>
-          </tr>
-        
-        </table>
-      </div>
-    </nav>
-  </div>
-  
-
-  
-
-  
-  <div class="context">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1.11</span>
-        
-        
-  <a href="operation.html"  class="active">Operation</a>
-
-      </div>
-
-      <div class="children">
-        <table>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="encryption.html" >Encryption</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11.2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="creds.html" >Credential Management</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11.3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="metrics.html" >Metrics</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11.4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="container-placement.html" >Container Placement</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="global-resources.html" >Global Resources (experimental)</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11.6&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="administration.html"  class="self">Administration</a>
-</td>
-          </tr>
-        
-        </table>
-      </div>
-    </nav>
-  </div>
-  
-
-
-
-
-
-<div class="context">
-  <div class="page-toc">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1.11.6</span>
-        
-        
-  <a href="administration.html"  class="self">Administration</a>
-
-      </div>
-
-      
-<div class="children">
-  <table>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="administration.html#fly-workers"><code>fly workers</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="administration.html#fly-prune-worker"><code>fly prune-worker</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="administration.html#fly-land-worker"><code>fly land-worker</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="administration.html#fly-containers"><code>fly containers</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="administration.html#fly-volumes"><code>fly volumes</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="administration.html#fly-curl"><code>fly curl</code></a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-    </nav>
-  </div>
-</div>
-
-
-
-
+    app.ports.emitSearchTerm.subscribe(function(term) {
+      gtag('event', 'search', {search_term: term});
+    });
+  </script>
+</nav>
     </div>
 
-    <div class="page-aside"></div>
+    <div class="page-body">
+      <div class="page-nav">
+        
 
-    <div class="page-content">
-      <div class="section" id="section_administration">
+
+
+
+
+
   
-  <h1 class="section-header"><a class="anchor" name="administration" href="#administration"></a><span class="section-number">1.11.6 </span>Administration</h1>
+  
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1</span><a href="docs.html"  class="active">Docs</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.1</td>
+            <td class="title-cell"><a href="install.html" >Install</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2</td>
+            <td class="title-cell"><a href="auth.html" >Auth &amp; Teams</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.3</td>
+            <td class="title-cell"><a href="fly.html" >The <code>fly</code> CLI</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.4</td>
+            <td class="title-cell"><a href="config-basics.html" >Config Basics</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.5</td>
+            <td class="title-cell"><a href="pipelines.html" >Pipelines</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.6</td>
+            <td class="title-cell"><a href="vars.html" >Vars</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.7</td>
+            <td class="title-cell"><a href="resources.html" >Resources</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.8</td>
+            <td class="title-cell"><a href="resource-types.html" >Resource Types</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.9</td>
+            <td class="title-cell"><a href="jobs.html" >Jobs</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.10</td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11</td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12</td>
+            <td class="title-cell"><a href="operation.html"  class="active">Operation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.13</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14</td>
+            <td class="title-cell"><a href="internals.html" >Internals</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.12</span><a href="operation.html"  class="active">Operation</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.12.1</td>
+            <td class="title-cell"><a href="metrics.html" >Metrics</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.2</td>
+            <td class="title-cell"><a href="tracing.html" >Tracing</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.3</td>
+            <td class="title-cell"><a href="encryption.html" >Encryption</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.4</td>
+            <td class="title-cell"><a href="creds.html" >Credential Management</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.5</td>
+            <td class="title-cell"><a href="container-placement.html" >Container Placement</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.6</td>
+            <td class="title-cell"><a href="global-resources.html" >Global Resources (experimental)</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.7</td>
+            <td class="title-cell"><a href="administration.html"  class="self">Administration</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.12.7</span><a href="administration.html"  class="self">Administration</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.12.7.1</td>
+            <td class="title-cell"><a href="administration.html#fly-workers" ><code>fly workers</code></a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.7.2</td>
+            <td class="title-cell"><a href="administration.html#fly-prune-worker" ><code>fly prune-worker</code></a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.7.3</td>
+            <td class="title-cell"><a href="administration.html#fly-land-worker" ><code>fly land-worker</code></a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.7.4</td>
+            <td class="title-cell"><a href="administration.html#fly-containers" ><code>fly containers</code></a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.7.5</td>
+            <td class="title-cell"><a href="administration.html#fly-volumes" ><code>fly volumes</code></a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.7.6</td>
+            <td class="title-cell"><a href="administration.html#fly-curl" ><code>fly curl</code></a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+      </div>
+
+      <div class="body-content">
+        <div class="page-content">
+          <div class="section" id="section_administration">
+  
+  <h1 class="section-header"><a class="anchor-target" name="administration" href="#administration"></a><span class="section-number">1.12.7 </span>Administration</h1>
   
 
   
@@ -391,7 +278,7 @@
     
       <div class="section" id="section_fly-workers">
   
-  <h2 class="section-header"><a class="anchor" name="fly-workers" href="#fly-workers"></a><code>fly workers</code></h2>
+  <h2 class="section-header"><a class="anchor-target" name="fly-workers" href="#fly-workers"></a><code>fly workers</code></h2>
   
 
   <p>To list the currently registered workers, including additional metadata, run:</p><pre><code class="language-bash">$ fly -t example workers</code></pre><p>This can be useful for monitoring the status of your workers, if you suspect that one keeps dropping out of the pool or getting tasked with too many containers, etc.</p>
@@ -403,7 +290,7 @@
     
       <div class="section" id="section_fly-prune-worker">
   
-  <h2 class="section-header"><a class="anchor" name="fly-prune-worker" href="#fly-prune-worker"></a><code>fly prune-worker</code></h2>
+  <h2 class="section-header"><a class="anchor-target" name="fly-prune-worker" href="#fly-prune-worker"></a><code>fly prune-worker</code></h2>
   
 
   <p>To remove a stalled, landing, landed, or retiring worker, run:</p><pre><code class="language-bash">$ fly -t example prune-worker --worker worker-name</code></pre><p>To prune <em>all</em> stalled workers, run:</p><pre><code class="language-bash">$ fly -t example prune-worker --all-stalled</code></pre><p>This is for those cases where you know a worker is not coming back. Note that running workers cannot be pruned, since they&#39;ll just re-register themselves anyway.</p>
@@ -415,7 +302,7 @@
     
       <div class="section" id="section_fly-land-worker">
   
-  <h2 class="section-header"><a class="anchor" name="fly-land-worker" href="#fly-land-worker"></a><code>fly land-worker</code></h2>
+  <h2 class="section-header"><a class="anchor-target" name="fly-land-worker" href="#fly-land-worker"></a><code>fly land-worker</code></h2>
   
 
   <p>To initiate landing of a worker and eventually (after draining) cause it to exit, run:</p><pre><code class="language-bash">$ fly -t example land-worker --worker worker-name</code></pre>
@@ -427,7 +314,7 @@
     
       <div class="section" id="section_fly-containers">
   
-  <h2 class="section-header"><a class="anchor" name="fly-containers" href="#fly-containers"></a><code>fly containers</code></h2>
+  <h2 class="section-header"><a class="anchor-target" name="fly-containers" href="#fly-containers"></a><code>fly containers</code></h2>
   
 
   <p>To list the active containers across all your workers, run:</p><pre><code class="language-bash">$ fly -t example containers</code></pre><p>This can be useful when discovering the containers available for <a href="builds.html#fly-intercept"><code>fly intercept</code></a>ing.</p>
@@ -439,7 +326,7 @@
     
       <div class="section" id="section_fly-volumes">
   
-  <h2 class="section-header"><a class="anchor" name="fly-volumes" href="#fly-volumes"></a><code>fly volumes</code></h2>
+  <h2 class="section-header"><a class="anchor-target" name="fly-volumes" href="#fly-volumes"></a><code>fly volumes</code></h2>
   
 
   <p>To list the active volumes across all your workers, run:</p><pre><code class="language-bash">$ fly -t example volumes</code></pre><p>This can be useful to observe the caches warming across your cluster, and could be a good indicator of disk use.</p>
@@ -451,7 +338,7 @@
     
       <div class="section" id="section_fly-curl">
   
-  <h2 class="section-header"><a class="anchor" name="fly-curl" href="#fly-curl"></a><code>fly curl</code></h2>
+  <h2 class="section-header"><a class="anchor-target" name="fly-curl" href="#fly-curl"></a><code>fly curl</code></h2>
   
 
   <p>To execute an arbirary API request, you can run something like the following:</p><pre><code class="language-bash">$ fly -t example curl /api/v1/info</code></pre><p>This command is just a shim that runs <code>curl</code> under the hood. To pass flags to <code>curl</code>, pass a <code>--</code> argument after the path so that <code>fly</code> can distinguish them from its own flags:</p><pre><code class="language-bash">$ fly -t example curl /api/v1/builds -- \
@@ -467,31 +354,35 @@
   
 </div>
 
-      <nav class="prev-next">
-      
-        <div class="prev">
-          prev:
+          <nav class="prev-next">
+          
+            <div class="prev">
+              prev:
+
+              
+              <span class="section-number">1.12.6</span>
+              
+
+              <a href="global-resources.html">Global Resources (experimental)</a>
+            </div>
+          
 
           
-          <span class="section-number">1.11.5</span>
-          
+            <div class="next">
+              next:
 
-          <a href="global-resources.html">Global Resources (experimental)</a>
+              
+              <span class="section-number">1.13</span>
+              
+
+              <a href="observation.html">Observation</a>
+            </div>
+          
+          </nav>
         </div>
-      
 
-      
-        <div class="next">
-          next:
-
-          
-          <span class="section-number">1.12</span>
-          
-
-          <a href="observation.html">Observation</a>
-        </div>
-      
-      </nav>
+        <div class="page-aside"></div>
+      </div>
     </div>
 
     <ul class="improve-docs">

@@ -25,11 +25,15 @@
 <script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
-    <div class="top-logo">
-  <a href="/"><img src="images/logo-white.svg" />Concourse</a>
-</div>
+    <div class="top-banner">
+      <p class="banner-text">
+        ✨ The <a href="https://airtable.com/shr4tyAb5ApbX3VV1">2020 Concourse CI Community Survey</a> is now live! ✨
+      </p>
+    </div>
 
-<nav class="top-nav">
+    <div class="page-top">
+      <nav class="top-nav">
+  <a class="top-link logo-link" href="/"><img src="images/logo-white.svg" />Concourse</a>
   
   <a class="top-link active" href="docs.html">Docs</a>
   
@@ -37,263 +41,381 @@
   
   <a class="top-link" href="project.html">Project</a>
   
+  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
   <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
   <a class="top-link" href="https://discuss.concourse-ci.org">discuss</a>
-  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
-</nav>
 
-<div class="top-search">
   <div id="search"></div>
-</div>
 
-<div class="top-banner">
-  ✨ The 2020 Concourse CI Community Survey is now live! ✨ <a href="https://airtable.com/shr4tyAb5ApbX3VV1">Click here to learn more and share your experience</a>.
-</div>
+  <script type="text/javascript">
+    var app = Elm.Main.init({
+      node: document.getElementById('search')
+    });
 
-<script type="text/javascript">
-  var app = Elm.Main.init({
-    node: document.getElementById('search')
-  });
-
-  app.ports.emitSearchTerm.subscribe(function(term) {
-    gtag('event', 'search', {search_term: term});
-  });
-</script>
-
-    <div class="page-nav">
-      
-
-
-
-
-
-
-
-  
-  
-  
-
-  
-  <div class="context">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1</span>
-        
-        
-  <a href="docs.html"  class="active">Docs</a>
-
-      </div>
-
-      <div class="children">
-        <table>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="install.html"  class="active">Install</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="auth.html" >Auth &amp; Teams</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="fly.html" >The <code>fly</code> CLI</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="config-basics.html" >Config Basics</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.6&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resources.html" >Resources</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.7&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.8&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.9&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.10&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="builds.html" >Builds</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="operation.html" >Operation</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.12&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="observation.html" >Observation</a>
-</td>
-          </tr>
-        
-        </table>
-      </div>
-    </nav>
-  </div>
-  
-
-  
-
-  
-  <div class="context">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1.1</span>
-        
-        
-  <a href="install.html"  class="active">Install</a>
-
-      </div>
-
-      <div class="children">
-        <table>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.1.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="concourse-generate-key.html" >Generating Keys</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.1.2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="postgresql-node.html" >Running a PostgreSQL node</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.1.3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="concourse-web.html" >Running a <code>web</code> node</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.1.4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="concourse-worker.html"  class="self">Running a <code>worker</code> node</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.1.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="upgrading-concourse.html" >Upgrading Concourse</a>
-</td>
-          </tr>
-        
-        </table>
-      </div>
-    </nav>
-  </div>
-  
-
-
-
-
-
-
-
-
+    app.ports.emitSearchTerm.subscribe(function(term) {
+      gtag('event', 'search', {search_term: term});
+    });
+  </script>
+</nav>
     </div>
 
-    <div class="page-aside"></div>
+    <div class="page-body">
+      <div class="page-nav">
+        
 
-    <div class="page-content">
-      <div class="section" id="section_concourse-worker">
+
+
+
+
+
   
-  <h1 class="section-header"><a class="anchor" name="concourse-worker" href="#concourse-worker"></a><span class="section-number">1.1.4 </span>Running a <code>worker</code> node</h1>
+  
+  
+  
   
 
-  <p>The <code>worker</code> node registers with the <a href="concourse-web.html"><code>web</code> node</a> and is then used for executing builds and performing resource <code>check</code>s. It doesn&#39;t really decide much on its own.</p>
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1</span><a href="docs.html"  class="active">Docs</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.1</td>
+            <td class="title-cell"><a href="install.html"  class="active">Install</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2</td>
+            <td class="title-cell"><a href="auth.html" >Auth &amp; Teams</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.3</td>
+            <td class="title-cell"><a href="fly.html" >The <code>fly</code> CLI</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.4</td>
+            <td class="title-cell"><a href="config-basics.html" >Config Basics</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.5</td>
+            <td class="title-cell"><a href="pipelines.html" >Pipelines</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.6</td>
+            <td class="title-cell"><a href="vars.html" >Vars</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.7</td>
+            <td class="title-cell"><a href="resources.html" >Resources</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.8</td>
+            <td class="title-cell"><a href="resource-types.html" >Resource Types</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.9</td>
+            <td class="title-cell"><a href="jobs.html" >Jobs</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.10</td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11</td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12</td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.13</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14</td>
+            <td class="title-cell"><a href="internals.html" >Internals</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.1</span><a href="install.html"  class="active">Install</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.1.1</td>
+            <td class="title-cell"><a href="quick-start.html" >Quick Start</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.1.2</td>
+            <td class="title-cell"><a href="postgresql-node.html" >Running a PostgreSQL node</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.1.3</td>
+            <td class="title-cell"><a href="concourse-cli.html" >The <code>concourse</code> CLI</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.1.4</td>
+            <td class="title-cell"><a href="concourse-generate-key.html" >Generating Keys</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.1.5</td>
+            <td class="title-cell"><a href="concourse-web.html" >Running a <code>web</code> node</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.1.6</td>
+            <td class="title-cell"><a href="concourse-worker.html"  class="self">Running a <code>worker</code> node</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.1.7</td>
+            <td class="title-cell"><a href="upgrading-concourse.html" >Upgrading Concourse</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.1.6</span><a href="concourse-worker.html"  class="self">Running a <code>worker</code> node</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.1.6.1</td>
+            <td class="title-cell"><a href="concourse-worker.html#worker-prerequisites" >Prerequisites</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.1.6.2</td>
+            <td class="title-cell"><a href="concourse-worker.html#worker-running" >Running <code>concourse worker</code></a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.1.6.3</td>
+            <td class="title-cell"><a href="concourse-worker.html#worker-operation" >Operating a <code>worker</code> node</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.1.6.4</td>
+            <td class="title-cell"><a href="concourse-worker.html#worker-configuration" >Configuring the <code>worker</code> node</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+      </div>
+
+      <div class="body-content">
+        <div class="page-content">
+          <div class="section" id="section_concourse-worker">
+  
+  <h1 class="section-header"><a class="anchor-target" name="concourse-worker" href="#concourse-worker"></a><span class="section-number">1.1.6 </span>Running a <code>worker</code> node</h1>
+  
+
+  <p>The <code>worker</code> node registers with the <a href="concourse-web.html"><code>web</code> node</a> and is then used for executing builds and performing resource <code>check</code>s. It doesn&#39;t really decide much on its own.</p><div class="table-of-contents">
+  <span class="toc-header">Table of contents:</span>
+
+  
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.1.6.1</span>
+      <a href="concourse-worker.html#worker-prerequisites">Prerequisites</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.6.2</span>
+      <a href="concourse-worker.html#worker-running">Running <code>concourse worker</code></a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.1.6.2.1</span>
+      <a href="concourse-worker.html#worker-resource-utilization">Resource utilization</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.6.3</span>
+      <a href="concourse-worker.html#worker-operation">Operating a <code>worker</code> node</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.1.6.3.1</span>
+      <a href="concourse-worker.html#scaling-workers">Scaling Workers</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.6.3.2</span>
+      <a href="concourse-worker.html#worker-heartbeating-and-stalling">Worker Heartbeating &amp; Stalling</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.6.3.3</span>
+      <a href="concourse-worker.html#restarting-a-worker">Restarting a Worker</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.6.3.4</span>
+      <a href="concourse-worker.html#gracefully-removing-a-worker">Gracefully Removing a Worker</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.6.4</span>
+      <a href="concourse-worker.html#worker-configuration">Configuring the <code>worker</code> node</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.1.6.4.1</span>
+      <a href="concourse-worker.html#configuring-gdn-server">Configuring <code>gdn server</code></a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.1.6.4.1.1</span>
+      <a href="concourse-worker.html#troubleshooting-and-fixing-dns-resolution">Troubleshooting and fixing DNS resolution</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.1.6.4.1.1.1</span>
+      <a href="concourse-worker.html#pointing-to-external-dns-servers">Pointing to external DNS servers</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.6.4.1.1.2</span>
+      <a href="concourse-worker.html#using-a-local-dns-server">Using a local DNS server</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+</div>
 
   
     
       <div class="section" id="section_worker-prerequisites">
   
-  <h2 class="section-header"><a class="anchor" name="worker-prerequisites" href="#worker-prerequisites"></a>Prerequisites</h2>
+  <h2 class="section-header"><a class="anchor-target" name="worker-prerequisites" href="#worker-prerequisites"></a>Prerequisites</h2>
   
 
   <ul>
@@ -311,7 +433,7 @@
     
       <div class="section" id="section_worker-running">
   
-  <h2 class="section-header"><a class="anchor" name="worker-running" href="#worker-running"></a>Running</h2>
+  <h2 class="section-header"><a class="anchor-target" name="worker-running" href="#worker-running"></a>Running <code>concourse worker</code></h2>
   
 
   <p>The <code>concourse</code> CLI can run as a <code>worker</code> node via the <code>worker</code> subcommand.</p><p>First, you&#39;ll need to configure a directory for the worker to store data:</p><pre><code class="language-bash">CONCOURSE_WORK_DIR=/opt/concourse/worker</code></pre><p>This is where all the builds run, and where all resources are fetched in to, so make sure it&#39;s backed by enough storage. Then, configure it like so:</p><p>Next, point the worker at your <a href="concourse-web.html"><code>web</code> node</a> like so:</p><pre><code class="language-bash">CONCOURSE_TSA_HOST=127.0.0.1:2222
@@ -321,19 +443,16 @@ sudo -E concourse worker</code></pre><p>Note that the worker must be run as <cod
 
   
     
+      <div class="section" id="section_worker-resource-utilization">
   
-</div>
-    
-      <div class="section" id="section_worker-properties">
-  
-  <h2 class="section-header"><a class="anchor" name="worker-properties" href="#worker-properties"></a>Properties</h2>
+  <h3 class="section-header"><a class="anchor-target" name="worker-resource-utilization" href="#worker-resource-utilization"></a>Resource utilization</h3>
   
 
   <p>CPU usage: almost entirely subject to pipeline workloads. More resources configured will result in more checking, and in-flight builds will use as much CPU as they want.</p><p>Memory usage: also subject to pipeline workloads. Expect usage to increase with the number of containers on the worker and spike as builds run.</p><p>Bandwidth usage: again, almost entirely subject to pipeline workloads. Expect spikes from periodic checking, though the intervals should spread out over enough time. Resource fetching and pushing will also use arbitrary bandwidth.</p><p>Disk usage: arbitrary data will be written as builds run, and resource caches will be kept and garbage collected on their own life cycle. We suggest going for a larger disk size if it&#39;s not too much trouble. All state on disk must not outlive the worker itself; it is all ephemeral. If the worker is re-created (i.e. fresh VM/container and all processes were killed), it should be brought back with an empty disk.</p><p>Highly available: not applicable. Workers are inherently singletons, as they&#39;re being used as drivers running entirely different workloads.</p><p>Horizontally scalable: yes; workers directly correlate to your capacity required by however many pipelines, resources, and in-flight builds you want to run. It makes sense to scale them up and down with demand.</p><p>Outbound traffic:</p><ul>
 
   <li><p>external traffic to arbitrary locations as a result of periodic resource checking and running builds</p></li>
 
-  <li><p>external traffic to the <code>web</code> node&#39;s configured external URL when downloading the inputs for a <a href="running-tasks.html#fly-execute"><code>fly execute</code></a></p></li>
+  <li><p>external traffic to the <code>web</code> node&#39;s configured external URL when downloading the inputs for a <a href="tasks.html#running-tasks"><code>fly execute</code></a></p></li>
 
   <li><p>external traffic to the <code>web</code> node&#39;s TSA port (<code>2222</code>) for registering the worker</p></li>
 
@@ -350,9 +469,12 @@ sudo -E concourse worker</code></pre><p>Note that the worker must be run as <cod
   
 </div>
     
+  
+</div>
+    
       <div class="section" id="section_worker-operation">
   
-  <h2 class="section-header"><a class="anchor" name="worker-operation" href="#worker-operation"></a>Operation</h2>
+  <h2 class="section-header"><a class="anchor-target" name="worker-operation" href="#worker-operation"></a>Operating a <code>worker</code> node</h2>
   
 
   <p>The <code>worker</code> nodes are designed to be stateless and as interchangeable as possible. <a href="tasks.html">Tasks</a> and <a href="resources.html">Resources</a> bring their own Docker images, so you should never have to install dependencies on the worker.</p><p>In Concourse, all important data is represented by <a href="resources.html">Resources</a>, so the workers themselves are dispensible. Any data in the work-dir is ephemeral and should go away when the worker machine is removed - it should not be persisted between worker VM or container re-creates.</p>
@@ -361,10 +483,10 @@ sudo -E concourse worker</code></pre><p>Note that the worker must be run as <cod
     
       <div class="section" id="section_scaling-workers">
   
-  <h3 class="section-header"><a class="anchor" name="scaling-workers" href="#scaling-workers"></a>Scaling Workers</h3>
+  <h3 class="section-header"><a class="anchor-target" name="scaling-workers" href="#scaling-workers"></a>Scaling Workers</h3>
   
 
-  <p>More workers should be added to accomodate more pipelines. To know when this is necessary you should probably set up <a href="metrics.html">Metrics</a> and keep an eye on container counts. If it&#39;s starting to approach 200 or so, you should probably add another worker. Load average is another metric to keep an eye on.</p><p>To add a worker, just create another machine for the worker and follow the <a href="concourse-worker.html#worker-running">Running</a> instructions again.</p><p>Note: it doesn&#39;t really make sense to run multiple workers on one machine, since they&#39;ll both just be contending for the same physical resources. Workers should be given their own VMs or physical machines.</p>
+  <p>More workers should be added to accomodate more pipelines. To know when this is necessary you should probably set up <a href="metrics.html">Metrics</a> and keep an eye on container counts. If it&#39;s starting to approach 200 or so, you should probably add another worker. Load average is another metric to keep an eye on.</p><p>To add a worker, just create another machine for the worker and follow the <a href="concourse-worker.html#worker-running">Running <code>concourse worker</code></a> instructions again.</p><p>Note: it doesn&#39;t really make sense to run multiple workers on one machine, since they&#39;ll both just be contending for the same physical resources. Workers should be given their own VMs or physical machines.</p>
 
   
     
@@ -373,7 +495,7 @@ sudo -E concourse worker</code></pre><p>Note that the worker must be run as <cod
     
       <div class="section" id="section_worker-heartbeating-and-stalling">
   
-  <h3 class="section-header"><a class="anchor" name="worker-heartbeating-and-stalling" href="#worker-heartbeating-and-stalling"></a>Worker Heartbeating &amp; Stalling</h3>
+  <h3 class="section-header"><a class="anchor-target" name="worker-heartbeating-and-stalling" href="#worker-heartbeating-and-stalling"></a>Worker Heartbeating &amp; Stalling</h3>
   
 
   <p>Workers will continuously heartbeat to the Concourse cluster in order to remain registered and healthy. If a worker hasn&#39;t checked in in a while, possibly due to a network partition, being overloaded, or having crashed, its state will transition to <code>stalled</code> and new workloads will not be scheduled on it until it recovers.</p><p>If the worker remains in this state and cannot be recovered, it can be removed using the <a href="administration.html#fly-prune-worker"><code>fly prune-worker</code></a> command.</p>
@@ -385,7 +507,7 @@ sudo -E concourse worker</code></pre><p>Note that the worker must be run as <cod
     
       <div class="section" id="section_restarting-a-worker">
   
-  <h3 class="section-header"><a class="anchor" name="restarting-a-worker" href="#restarting-a-worker"></a>Restarting a Worker</h3>
+  <h3 class="section-header"><a class="anchor-target" name="restarting-a-worker" href="#restarting-a-worker"></a>Restarting a Worker</h3>
   
 
   <p>Workers can be restarted in-place by sending <code>SIGTERM</code> to the worker process and starting it back up. Containers will remain running and Concourse will reattach to builds that were in flight.</p><p>This is a pretty aggressive way to restart a worker, and may result in errored builds - there are a few moving parts involved and we&#39;re still working on making this airtight.</p><p>A safer way to restart a worker is to <em>land</em> it by sending <code>SIGUSR1</code> to the <code>worker</code> process. This will switch the worker to <code>landing</code> state, and Concourse will stop scheduling new work on it. When all builds running on the worker have finished, the process will exit.</p><p>You may want to enforce a timeout for draining - that way a stuck build won&#39;t prevent your workers from being upgraded. This can be enforced by common tools like <code>start-stop-daemon</code>:</p><pre><code class="language-bash">start-stop-daemon \
@@ -400,7 +522,7 @@ sudo -E concourse worker</code></pre><p>Note that the worker must be run as <cod
     
       <div class="section" id="section_gracefully-removing-a-worker">
   
-  <h3 class="section-header"><a class="anchor" name="gracefully-removing-a-worker" href="#gracefully-removing-a-worker"></a>Gracefully Removing a Worker</h3>
+  <h3 class="section-header"><a class="anchor-target" name="gracefully-removing-a-worker" href="#gracefully-removing-a-worker"></a>Gracefully Removing a Worker</h3>
   
 
   <p>When a worker machine is going away, it should be <em>retired</em>. This is similar to <em>landing</em>, except at the end the worker is completely unregistered, along with its volumes and containers. This should be done when a worker&#39;s VM or container is being destroyed.</p><p>To retire a worker, send <code>SIGUSR2</code> to the <code>worker</code> process. This will switch the worker to <code>retiring</code> state, and Concourse will stop scheduling new work on it. When all builds running on the worker have finished, the worker will be removed and the <code>worker</code> process will exit.</p><p>Just like with landing, you may want to enforce a timeout for draining - that way a stuck build won&#39;t prevent your workers from being upgraded. This can be enforced by common tools like <code>start-stop-daemon</code>:</p><pre><code class="language-bash">start-stop-daemon \
@@ -418,19 +540,16 @@ sudo -E concourse worker</code></pre><p>Note that the worker must be run as <cod
     
       <div class="section" id="section_worker-configuration">
   
-  <h2 class="section-header"><a class="anchor" name="worker-configuration" href="#worker-configuration"></a>Configuration</h2>
+  <h2 class="section-header"><a class="anchor-target" name="worker-configuration" href="#worker-configuration"></a>Configuring the <code>worker</code> node</h2>
   
 
-  <p>If there&#39;s something special about your worker and you&#39;d like to target builds at it specifically, you can configure tags like so:</p><pre><code class="language-bash">CONCOURSE_TAG=tag-1,tag-2</code></pre><p>A tagged worker is taken out of the default placement logic. To run build steps on it, specify the <a href="tags-step-modifier.html"><code>tags</code> step modifier</a>. Or, to perform resource <code>check</code>s on it, specify <a href="resources.html#resource-tags"><code>tags</code></a> on the resource itself.</p>
+  <p>If there&#39;s something special about your worker and you&#39;d like to target builds at it specifically, you can configure tags like so:</p><pre><code class="language-bash">CONCOURSE_TAG=tag-1,tag-2</code></pre><p>A tagged worker is taken out of the default placement logic. To run build steps on it, specify the <a href="jobs.html#schema.step.tags"><code class="schema-attribute-name"><bold>step<wbr />.tags</bold></code></a>. Or, to perform resource <code>check</code>s on it, specify <a href="resources.html#schema.resource.tags"><code>tags</code></a> on the resource itself.</p>
 
   
-    
-  
-</div>
     
       <div class="section" id="section_configuring-gdn-server">
   
-  <h2 class="section-header"><a class="anchor" name="configuring-gdn-server" href="#configuring-gdn-server"></a>Configuring <code>gdn server</code></h2>
+  <h3 class="section-header"><a class="anchor-target" name="configuring-gdn-server" href="#configuring-gdn-server"></a>Configuring <code>gdn server</code></h3>
   
 
   <p>On Linux, the <code>concourse</code> binary is packaged alongside a <code>gdn</code> binary. This binary is used for running <a href="https://github.com/cloudfoundry/guardian">Guardian</a>, which is a <a href="https://github.com/cloudfoundry/garden">Garden</a> backend implementation which runs containers via <a href="https://github.com/opencontainers/runc"><code>runc</code></a> (the same technology underlying tools like Docker).</p><p>The <code>concourse worker</code> command automatically configures and runs <code>gdn</code>, but depending on the environment you&#39;re running Concourse in, you may need to pop open the hood and configure a few things.</p><p>The <code>gdn</code> server can be configured in two ways:</p><ol>
@@ -446,7 +565,7 @@ flag-name = flag-value</code></pre><p>To learn which flags can be set, consult <
     
       <div class="section" id="section_troubleshooting-and-fixing-dns-resolution">
   
-  <h3 class="section-header"><a class="anchor" name="troubleshooting-and-fixing-dns-resolution" href="#troubleshooting-and-fixing-dns-resolution"></a>Troubleshooting and fixing DNS resolution</h3>
+  <h4 class="section-header"><a class="anchor-target" name="troubleshooting-and-fixing-dns-resolution" href="#troubleshooting-and-fixing-dns-resolution"></a>Troubleshooting and fixing DNS resolution</h4>
   
 
   <p>By default, containers created by Guardian will carry over the <code>/etc/resolv.conf</code> from the host into the container. This is often fine, but some Linux distributions configure a special <code>127.x.x.x</code> DNS resolver (e.g. <code>systemd-resolved</code>).</p><p>When Guardian copies the <code>resolv.conf</code> over, it removes these entries, as they won&#39;t be reachable from the container&#39;s network namespace. As a result, your containers may not have any valid nameservers configured.</p><p>To diagnose this problem you can <a href="builds.html#fly-intercept"><code>fly intercept</code></a> into a failing container and check which nameservers are in <code>/etc/resolv.conf</code>:</p><pre><code class="language-bash">$ fly -t ci intercept -c concourse/concourse
@@ -457,7 +576,7 @@ bash-5.0#</code></pre><p>In this case it is empty, as the host only listed a sin
     
       <div class="section" id="section_pointing-to-external-dns-servers">
   
-  <h4 class="section-header"><a class="anchor" name="pointing-to-external-dns-servers" href="#pointing-to-external-dns-servers"></a>Pointing to external DNS servers</h4>
+  <h5 class="section-header"><a class="anchor-target" name="pointing-to-external-dns-servers" href="#pointing-to-external-dns-servers"></a>Pointing to external DNS servers</h5>
   
 
   <p>If you have no need for special DNS resolution within your Concourse containers, you can just configure your containers to use specific DNS server addresses external to the VM.</p><p>This can be done by listing DNS servers in <code>config.ini</code> like so:</p><pre><code class="language-ini">[server]
@@ -479,7 +598,7 @@ PING google.com (108.177.111.139): 56 data bytes
     
       <div class="section" id="section_using-a-local-dns-server">
   
-  <h4 class="section-header"><a class="anchor" name="using-a-local-dns-server" href="#using-a-local-dns-server"></a>Using a local DNS server</h4>
+  <h5 class="section-header"><a class="anchor-target" name="using-a-local-dns-server" href="#using-a-local-dns-server"></a>Using a local DNS server</h5>
   
 
   <p>If you would like to use Consul, <code>dnsmasq</code>, or some other DNS server running on the worker VM, you&#39;ll have to configure the internal address of the VM as the DNS server <em>and</em> allow the containers to reach the address, like so:</p><pre><code class="language-ini">[server]
@@ -519,32 +638,39 @@ Address: 185.199.111.153</code></pre><p>If <code>nslookup</code> times out or fa
     
   
 </div>
+    
+  
+</div>
 
-      <nav class="prev-next">
-      
-        <div class="prev">
-          prev:
+          <nav class="prev-next">
+          
+            <div class="prev">
+              prev:
+
+              
+              <span class="section-number">1.1.5</span>
+              
+
+              <a href="concourse-web.html">Running a <code>web</code> node</a>
+            </div>
+          
 
           
-          <span class="section-number">1.1.3</span>
-          
+            <div class="next">
+              next:
 
-          <a href="concourse-web.html">Running a <code>web</code> node</a>
+              
+              <span class="section-number">1.1.7</span>
+              
+
+              <a href="upgrading-concourse.html">Upgrading Concourse</a>
+            </div>
+          
+          </nav>
         </div>
-      
 
-      
-        <div class="next">
-          next:
-
-          
-          <span class="section-number">1.1.5</span>
-          
-
-          <a href="upgrading-concourse.html">Upgrading Concourse</a>
-        </div>
-      
-      </nav>
+        <div class="page-aside"></div>
+      </div>
     </div>
 
     <ul class="improve-docs">

@@ -25,11 +25,15 @@
 <script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
-    <div class="top-logo">
-  <a href="/"><img src="images/logo-white.svg" />Concourse</a>
-</div>
+    <div class="top-banner">
+      <p class="banner-text">
+        ✨ The <a href="https://airtable.com/shr4tyAb5ApbX3VV1">2020 Concourse CI Community Survey</a> is now live! ✨
+      </p>
+    </div>
 
-<nav class="top-nav">
+    <div class="page-top">
+      <nav class="top-nav">
+  <a class="top-link logo-link" href="/"><img src="images/logo-white.svg" />Concourse</a>
   
   <a class="top-link active" href="docs.html">Docs</a>
   
@@ -37,374 +41,240 @@
   
   <a class="top-link" href="project.html">Project</a>
   
+  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
   <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
   <a class="top-link" href="https://discuss.concourse-ci.org">discuss</a>
-  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
-</nav>
 
-<div class="top-search">
   <div id="search"></div>
-</div>
 
-<div class="top-banner">
-  ✨ The 2020 Concourse CI Community Survey is now live! ✨ <a href="https://airtable.com/shr4tyAb5ApbX3VV1">Click here to learn more and share your experience</a>.
-</div>
+  <script type="text/javascript">
+    var app = Elm.Main.init({
+      node: document.getElementById('search')
+    });
 
-<script type="text/javascript">
-  var app = Elm.Main.init({
-    node: document.getElementById('search')
-  });
-
-  app.ports.emitSearchTerm.subscribe(function(term) {
-    gtag('event', 'search', {search_term: term});
-  });
-</script>
-
-    <div class="page-nav">
-      
-
-
-
-
-
-
-
-  
-  
-  
-
-  
-  <div class="context">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1</span>
-        
-        
-  <a href="docs.html"  class="active">Docs</a>
-
-      </div>
-
-      <div class="children">
-        <table>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="install.html" >Install</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="auth.html"  class="active">Auth &amp; Teams</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="fly.html" >The <code>fly</code> CLI</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="config-basics.html" >Config Basics</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.6&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resources.html" >Resources</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.7&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.8&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.9&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.10&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="builds.html" >Builds</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="operation.html" >Operation</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.12&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="observation.html" >Observation</a>
-</td>
-          </tr>
-        
-        </table>
-      </div>
-    </nav>
-  </div>
-  
-
-  
-
-  
-  <div class="context">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1.2</span>
-        
-        
-  <a href="auth.html"  class="active">Auth &amp; Teams</a>
-
-      </div>
-
-      <div class="children">
-        <table>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.2.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="main-team.html" >The <code>main</code> team</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.2.2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="configuring-auth.html"  class="self">Configuring Auth</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.2.3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="managing-teams.html" >Managing Teams</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.2.4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="user-roles.html" >User Roles &amp; Permissions</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.2.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="exposing.html" >Pipeline &amp; Build Visibility</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.2.6&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="teams-caveats.html" >Security Caveats</a>
-</td>
-          </tr>
-        
-        </table>
-      </div>
-    </nav>
-  </div>
-  
-
-
-
-
-
-<div class="context">
-  <div class="page-toc">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1.2.2</span>
-        
-        
-  <a href="configuring-auth.html"  class="self">Configuring Auth</a>
-
-      </div>
-
-      
-<div class="children">
-  <table>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.2.2.1&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="local-auth.html">Local User auth</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.2.2.2&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="github-auth.html">GitHub auth</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.2.2.3&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="gitlab-auth.html">GitLab auth</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.2.2.4&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="bitbucket-cloud-auth.html">BitBucket Cloud auth</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.2.2.5&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="cf-uaa-auth.html">CF/UAA auth</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.2.2.6&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="ldap-auth.html">LDAP auth</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.2.2.7&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="generic-oidc-auth.html">Generic OIDC auth</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.2.2.8&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="generic-oauth.html">Generic oAuth</a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-    </nav>
-  </div>
-</div>
-
-
-
-
+    app.ports.emitSearchTerm.subscribe(function(term) {
+      gtag('event', 'search', {search_term: term});
+    });
+  </script>
+</nav>
     </div>
 
-    <div class="page-aside"></div>
+    <div class="page-body">
+      <div class="page-nav">
+        
 
-    <div class="page-content">
-      <div class="section" id="section_configuring-auth">
+
+
+
+
+
   
-  <h1 class="section-header"><a class="anchor" name="configuring-auth" href="#configuring-auth"></a><span class="section-number">1.2.2 </span>Configuring Auth</h1>
+  
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1</span><a href="docs.html"  class="active">Docs</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.1</td>
+            <td class="title-cell"><a href="install.html" >Install</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2</td>
+            <td class="title-cell"><a href="auth.html"  class="active">Auth &amp; Teams</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.3</td>
+            <td class="title-cell"><a href="fly.html" >The <code>fly</code> CLI</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.4</td>
+            <td class="title-cell"><a href="config-basics.html" >Config Basics</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.5</td>
+            <td class="title-cell"><a href="pipelines.html" >Pipelines</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.6</td>
+            <td class="title-cell"><a href="vars.html" >Vars</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.7</td>
+            <td class="title-cell"><a href="resources.html" >Resources</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.8</td>
+            <td class="title-cell"><a href="resource-types.html" >Resource Types</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.9</td>
+            <td class="title-cell"><a href="jobs.html" >Jobs</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.10</td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11</td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12</td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.13</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14</td>
+            <td class="title-cell"><a href="internals.html" >Internals</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.2</span><a href="auth.html"  class="active">Auth &amp; Teams</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.2.1</td>
+            <td class="title-cell"><a href="main-team.html" >The <code>main</code> team</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2.2</td>
+            <td class="title-cell"><a href="configuring-auth.html"  class="self">Configuring Auth</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2.3</td>
+            <td class="title-cell"><a href="managing-teams.html" >Managing Teams</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2.4</td>
+            <td class="title-cell"><a href="user-roles.html" >User Roles &amp; Permissions</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2.5</td>
+            <td class="title-cell"><a href="exposing.html" >Pipeline &amp; Build Visibility</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2.6</td>
+            <td class="title-cell"><a href="teams-caveats.html" >Security Caveats</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.2.2</span><a href="configuring-auth.html"  class="self">Configuring Auth</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.2.2.1</td>
+            <td class="title-cell"><a href="local-auth.html" >Local User auth</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2.2.2</td>
+            <td class="title-cell"><a href="github-auth.html" >GitHub auth</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2.2.3</td>
+            <td class="title-cell"><a href="gitlab-auth.html" >GitLab auth</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2.2.4</td>
+            <td class="title-cell"><a href="bitbucket-cloud-auth.html" >BitBucket Cloud auth</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2.2.5</td>
+            <td class="title-cell"><a href="cf-uaa-auth.html" >CF/UAA auth</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2.2.6</td>
+            <td class="title-cell"><a href="ldap-auth.html" >LDAP auth</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2.2.7</td>
+            <td class="title-cell"><a href="generic-oidc-auth.html" >Generic OIDC auth</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2.2.8</td>
+            <td class="title-cell"><a href="generic-oauth.html" >Generic oAuth</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+      </div>
+
+      <div class="body-content">
+        <div class="page-content">
+          <div class="section" id="section_configuring-auth">
+  
+  <h1 class="section-header"><a class="anchor-target" name="configuring-auth" href="#configuring-auth"></a><span class="section-number">1.2.2 </span>Configuring Auth</h1>
   
 
   <p>The very first thing to configure with Concourse is how users will log in, and what those users should be able to do.</p><p>This is configured in two separate tiers:</p><ul>
@@ -413,80 +283,122 @@
 
   <li><p><strong>Authorization</strong>, how user access is determined, is configured on each team.</p></li>
 
-</ul><p>Concourse currently supports the following auth methods:</p>
-<ol class="toc">
+</ul><p>Concourse currently supports the following auth methods:</p><div class="table-of-contents">
+  <span class="toc-header">Table of contents:</span>
 
-  <li><span class="section-number">1.2.2.1 </span><a href="local-auth.html">Local User auth</a>
+  
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.2.2.1</span>
+      <a href="local-auth.html">Local User auth</a>
 
-    
-  </li>
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.2.2.2</span>
+      <a href="github-auth.html">GitHub auth</a>
 
-  <li><span class="section-number">1.2.2.2 </span><a href="github-auth.html">GitHub auth</a>
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.2.2.3</span>
+      <a href="gitlab-auth.html">GitLab auth</a>
 
-    
-  </li>
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.2.2.4</span>
+      <a href="bitbucket-cloud-auth.html">BitBucket Cloud auth</a>
 
-  <li><span class="section-number">1.2.2.3 </span><a href="gitlab-auth.html">GitLab auth</a>
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.2.2.5</span>
+      <a href="cf-uaa-auth.html">CF/UAA auth</a>
 
-    
-  </li>
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.2.2.6</span>
+      <a href="ldap-auth.html">LDAP auth</a>
 
-  <li><span class="section-number">1.2.2.4 </span><a href="bitbucket-cloud-auth.html">BitBucket Cloud auth</a>
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.2.2.7</span>
+      <a href="generic-oidc-auth.html">Generic OIDC auth</a>
 
-    
-  </li>
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.2.2.8</span>
+      <a href="generic-oauth.html">Generic oAuth</a>
 
-  <li><span class="section-number">1.2.2.5 </span><a href="cf-uaa-auth.html">CF/UAA auth</a>
-
-    
-  </li>
-
-  <li><span class="section-number">1.2.2.6 </span><a href="ldap-auth.html">LDAP auth</a>
-
-    
-  </li>
-
-  <li><span class="section-number">1.2.2.7 </span><a href="generic-oidc-auth.html">Generic OIDC auth</a>
-
-    
-  </li>
-
-  <li><span class="section-number">1.2.2.8 </span><a href="generic-oauth.html">Generic oAuth</a>
-
-    
-  </li>
-
-</ol>
-<p>Any number of providers can be enabled at any one time. Users will be given a choice when logging in as to which one they would like to use.</p><p>Concourse uses a fork of <a href="https://github.com/dexidp/dex">Dex</a> for its authentication. You can find additional documentation on the supported auth providers in the <a href="https://github.com/dexidp/dex/tree/master/Documentation/connectors">Dex connectors documentation</a>.</p><p>Adding a new auth provider to Concourse is as simple as submitting a pull request to our <a href="https://github.com/concourse/dex">fork of Dex</a> and then adding a bit of configuration to the <a href="https://github.com/concourse/concourse/tree/master/skymarshal"><code>skymarshal</code> component</a>.</p>
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+</div><p>Any number of providers can be enabled at any one time. Users will be given a choice when logging in as to which one they would like to use.</p><p>Concourse uses a fork of <a href="https://github.com/dexidp/dex">Dex</a> for its authentication. You can find additional documentation on the supported auth providers in the <a href="https://github.com/dexidp/dex/tree/master/Documentation/connectors">Dex connectors documentation</a>.</p><p>Adding a new auth provider to Concourse is as simple as submitting a pull request to our <a href="https://github.com/concourse/dex">fork of Dex</a> and then adding a bit of configuration to the <a href="https://github.com/concourse/concourse/tree/master/skymarshal"><code>skymarshal</code> component</a>.</p>
 
   
 </div>
 
-      <nav class="prev-next">
-      
-        <div class="prev">
-          prev:
+          <nav class="prev-next">
+          
+            <div class="prev">
+              prev:
+
+              
+              <span class="section-number">1.2.1</span>
+              
+
+              <a href="main-team.html">The <code>main</code> team</a>
+            </div>
+          
 
           
-          <span class="section-number">1.2.1</span>
-          
+            <div class="next">
+              next:
 
-          <a href="main-team.html">The <code>main</code> team</a>
+              
+              <span class="section-number">1.2.2.1</span>
+              
+
+              <a href="local-auth.html">Local User auth</a>
+            </div>
+          
+          </nav>
         </div>
-      
 
-      
-        <div class="next">
-          next:
-
-          
-          <span class="section-number">1.2.2.1</span>
-          
-
-          <a href="local-auth.html">Local User auth</a>
-        </div>
-      
-      </nav>
+        <div class="page-aside"></div>
+      </div>
     </div>
 
     <ul class="improve-docs">

@@ -25,11 +25,15 @@
 <script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
-    <div class="top-logo">
-  <a href="/"><img src="images/logo-white.svg" />Concourse</a>
-</div>
+    <div class="top-banner">
+      <p class="banner-text">
+        ✨ The <a href="https://airtable.com/shr4tyAb5ApbX3VV1">2020 Concourse CI Community Survey</a> is now live! ✨
+      </p>
+    </div>
 
-<nav class="top-nav">
+    <div class="page-top">
+      <nav class="top-nav">
+  <a class="top-link logo-link" href="/"><img src="images/logo-white.svg" />Concourse</a>
   
   <a class="top-link active" href="docs.html">Docs</a>
   
@@ -37,350 +41,245 @@
   
   <a class="top-link" href="project.html">Project</a>
   
+  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
   <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
   <a class="top-link" href="https://discuss.concourse-ci.org">discuss</a>
-  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
-</nav>
 
-<div class="top-search">
   <div id="search"></div>
-</div>
 
-<div class="top-banner">
-  ✨ The 2020 Concourse CI Community Survey is now live! ✨ <a href="https://airtable.com/shr4tyAb5ApbX3VV1">Click here to learn more and share your experience</a>.
-</div>
+  <script type="text/javascript">
+    var app = Elm.Main.init({
+      node: document.getElementById('search')
+    });
 
-<script type="text/javascript">
-  var app = Elm.Main.init({
-    node: document.getElementById('search')
-  });
-
-  app.ports.emitSearchTerm.subscribe(function(term) {
-    gtag('event', 'search', {search_term: term});
-  });
-</script>
-
-    <div class="page-nav">
-      
-
-
-
-
-
-
-
-  
-  
-  
-
-  
-  <div class="context">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1</span>
-        
-        
-  <a href="docs.html"  class="active">Docs</a>
-
-      </div>
-
-      <div class="children">
-        <table>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="install.html" >Install</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="auth.html" >Auth &amp; Teams</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="fly.html" >The <code>fly</code> CLI</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="config-basics.html" >Config Basics</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.6&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resources.html" >Resources</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.7&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.8&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.9&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.10&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="builds.html" >Builds</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="operation.html"  class="active">Operation</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.12&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="observation.html" >Observation</a>
-</td>
-          </tr>
-        
-        </table>
-      </div>
-    </nav>
-  </div>
-  
-
-  
-
-  
-  <div class="context">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1.11</span>
-        
-        
-  <a href="operation.html"  class="active">Operation</a>
-
-      </div>
-
-      <div class="children">
-        <table>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="encryption.html"  class="self">Encryption</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11.2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="creds.html" >Credential Management</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11.3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="metrics.html" >Metrics</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11.4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="container-placement.html" >Container Placement</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="global-resources.html" >Global Resources (experimental)</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11.6&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="administration.html" >Administration</a>
-</td>
-          </tr>
-        
-        </table>
-      </div>
-    </nav>
-  </div>
-  
-
-
-
-
-
-<div class="context">
-  <div class="page-toc">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1.11.1</span>
-        
-        
-  <a href="encryption.html"  class="self">Encryption</a>
-
-      </div>
-
-      
-<div class="children">
-  <table>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="encryption.html#whats-encrypted">What&#39;s encrypted?</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="encryption.html#enabling-encryption">Enabling Encryption</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="encryption.html#rotating-the-encryption-key">Rotating the Encryption Key</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="encryption.html#disabling-encryption">Disabling Encryption</a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-    </nav>
-  </div>
-</div>
-
-
-
-
+    app.ports.emitSearchTerm.subscribe(function(term) {
+      gtag('event', 'search', {search_term: term});
+    });
+  </script>
+</nav>
     </div>
 
-    <div class="page-aside"></div>
+    <div class="page-body">
+      <div class="page-nav">
+        
 
-    <div class="page-content">
-      <div class="section" id="section_encryption">
+
+
+
+
+
   
-  <h1 class="section-header"><a class="anchor" name="encryption" href="#encryption"></a><span class="section-number">1.11.1 </span>Encryption</h1>
+  
+  
+  
   
 
-  <p>Automating everything means authorizing something to automate many things. This makes CI systems a high-risk target for security leaks.</p><p>Concourse pipelines are loaded with credentials: resources are configured with private keys, tasks are given credentials to servers they integrate via <a href="creds.html">credential manager variables</a>, <a href="task-step.html#task-step-vars"><strong><code>vars</code></strong></a>, or <a href="task-step.html#task-step-params"><strong><code>params</code></strong></a>, etc. If someone gets their hands on your config, they have access to everything.</p><p>To mitigate this, Concourse supports encrypting sensitive information before it reaches the database. This way the plaintext credentials only exist in memory for as long as they need to, and if someone gains access to your database, they can&#39;t so easily gain the keys to the kingdom.</p><p>We strongly encourage anyone running Concourse to configure encryption. Going further, it&#39;s best to have Concourse not store the credentials in the first place, in which case you may want to configure <a href="creds.html">credential management</a> as well.</p>
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1</span><a href="docs.html"  class="active">Docs</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.1</td>
+            <td class="title-cell"><a href="install.html" >Install</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2</td>
+            <td class="title-cell"><a href="auth.html" >Auth &amp; Teams</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.3</td>
+            <td class="title-cell"><a href="fly.html" >The <code>fly</code> CLI</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.4</td>
+            <td class="title-cell"><a href="config-basics.html" >Config Basics</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.5</td>
+            <td class="title-cell"><a href="pipelines.html" >Pipelines</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.6</td>
+            <td class="title-cell"><a href="vars.html" >Vars</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.7</td>
+            <td class="title-cell"><a href="resources.html" >Resources</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.8</td>
+            <td class="title-cell"><a href="resource-types.html" >Resource Types</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.9</td>
+            <td class="title-cell"><a href="jobs.html" >Jobs</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.10</td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11</td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12</td>
+            <td class="title-cell"><a href="operation.html"  class="active">Operation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.13</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14</td>
+            <td class="title-cell"><a href="internals.html" >Internals</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.12</span><a href="operation.html"  class="active">Operation</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.12.1</td>
+            <td class="title-cell"><a href="metrics.html" >Metrics</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.2</td>
+            <td class="title-cell"><a href="tracing.html" >Tracing</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.3</td>
+            <td class="title-cell"><a href="encryption.html"  class="self">Encryption</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.4</td>
+            <td class="title-cell"><a href="creds.html" >Credential Management</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.5</td>
+            <td class="title-cell"><a href="container-placement.html" >Container Placement</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.6</td>
+            <td class="title-cell"><a href="global-resources.html" >Global Resources (experimental)</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.7</td>
+            <td class="title-cell"><a href="administration.html" >Administration</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.12.3</span><a href="encryption.html"  class="self">Encryption</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.12.3.1</td>
+            <td class="title-cell"><a href="encryption.html#whats-encrypted" >What&#39;s encrypted?</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.3.2</td>
+            <td class="title-cell"><a href="encryption.html#enabling-encryption" >Enabling Encryption</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.3.3</td>
+            <td class="title-cell"><a href="encryption.html#rotating-the-encryption-key" >Rotating the Encryption Key</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.3.4</td>
+            <td class="title-cell"><a href="encryption.html#disabling-encryption" >Disabling Encryption</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+      </div>
+
+      <div class="body-content">
+        <div class="page-content">
+          <div class="section" id="section_encryption">
+  
+  <h1 class="section-header"><a class="anchor-target" name="encryption" href="#encryption"></a><span class="section-number">1.12.3 </span>Encryption</h1>
+  
+
+  <p>Automating everything means authorizing something to automate many things. This makes CI systems a high-risk target for security leaks.</p><p>Concourse pipelines are loaded with credentials: resources are configured with private keys, tasks are given credentials to servers they integrate via <a href="creds.html">credential manager variables</a>, <a href="jobs.html#schema.step.task-step.vars"><code>task</code> step <strong><code>vars</code></strong></a>, or <a href="jobs.html#schema.step.task-step.params"><code>task</code> step <strong><code>params</code></strong></a>, etc. If someone gets their hands on your config, they have access to everything.</p><p>To mitigate this, Concourse supports encrypting sensitive information before it reaches the database. This way the plaintext credentials only exist in memory for as long as they need to, and if someone gains access to your database, they can&#39;t so easily gain the keys to the kingdom.</p><p>We strongly encourage anyone running Concourse to configure encryption. Going further, it&#39;s best to have Concourse not store the credentials in the first place, in which case you may want to configure <a href="creds.html">credential management</a> as well.</p>
 
   
     
       <div class="section" id="section_whats-encrypted">
   
-  <h2 class="section-header"><a class="anchor" name="whats-encrypted" href="#whats-encrypted"></a>What&#39;s encrypted?</h2>
+  <h2 class="section-header"><a class="anchor-target" name="whats-encrypted" href="#whats-encrypted"></a>What&#39;s encrypted?</h2>
   
 
   <p>The following values are expected to contain credentials, and so will be encrypted:</p><ul>
 
-  <li><p>Resource <a href="resources.html#resource-source"><strong><code>source</code></strong></a>s, as they often contain private keys and other credentials for writing to (or simply granting access to) the resource.</p></li>
+  <li><p>Resource <a href="resources.html#schema.resource.source"><code class="schema-attribute-name"><bold>resource<wbr />.source</bold></code></a>s, as they often contain private keys and other credentials for writing to (or simply granting access to) the resource.</p></li>
 
-  <li><p>Resource type <a href="resource-types.html#resource-type-source"><strong><code>source</code></strong></a>s, for the same reason as above, though this is probably a less common use case.</p></li>
+  <li><p>Resource type <a href="resource-types.html#schema.resource_type.source"><code class="schema-attribute-name"><bold>resource_type<wbr />.source</bold></code></a>s, for the same reason as above, though this is probably a less common use case.</p></li>
 
-  <li><p>Pipeline <a href="task-step.html#task-step-vars"><strong><code>vars</code></strong></a> and <a href="task-step.html#task-step-params"><strong><code>params</code></strong></a>, in case they contain sensitive information such as usernames and/or passwords.</p></li>
+  <li><p>Pipeline <a href="jobs.html#schema.step.task-step.vars"><code>task</code> step <strong><code>vars</code></strong></a> and <a href="jobs.html#schema.step.task-step.params"><code>task</code> step <strong><code>params</code></strong></a>, in case they contain sensitive information such as usernames and/or passwords.</p></li>
 
-  <li><p>Put step <a href="put-step.html#put-step-params"><strong><code>params</code></strong></a> and get step <a href="get-step.html#get-step-params"><strong><code>params</code></strong></a> are also encrypted, even though they rarely should contain credentials (they&#39;re usually in <a href="resources.html#resource-source"><strong><code>source</code></strong></a>).</p></li>
+  <li><p>Put step <a href="jobs.html#schema.step.put-step.params"><code>put</code> step <strong><code>params</code></strong></a> and get step <a href="jobs.html#schema.step.get-step.params"><code>get</code> step <strong><code>params</code></strong></a> are also encrypted, even though they rarely should contain credentials (they&#39;re usually in <a href="resources.html#schema.resource.source"><code class="schema-attribute-name"><bold>resource<wbr />.source</bold></code></a>).</p></li>
 
   <li><p>Team auth configurations, as they often contain things like GitHub or other oAuth client secrets.</p></li>
 
@@ -403,7 +302,7 @@
     
       <div class="section" id="section_enabling-encryption">
   
-  <h2 class="section-header"><a class="anchor" name="enabling-encryption" href="#enabling-encryption"></a>Enabling Encryption</h2>
+  <h2 class="section-header"><a class="anchor-target" name="enabling-encryption" href="#enabling-encryption"></a>Enabling Encryption</h2>
   
 
   <p>To enable encryption, you&#39;ll just need to come up with a 16 or 32-byte random character sequence and configure it as <code>--encryption-key</code> flag to the <code>web</code> command. For BOSH, this is the <a href="https://bosh.io/jobs/web?source=github.com/concourse/concourse-bosh-release#p=encryption_key"><code>encryption_key</code></a> property.</p><p>On startup, the <a href="concourse-web.html"><code>web</code> node</a> will encrypt all existing plaintext data, and any new data being written will be encrypted before it&#39;s sent over the network to the database.</p><p>The initial bulk encryption shouldn&#39;t take too long, but it will scale linearly with the amount of data that you have, and if another ATC is running it&#39;ll suddenly not be able to read the data until it&#39;s also given the key. So, expect some downtime.</p>
@@ -415,7 +314,7 @@
     
       <div class="section" id="section_rotating-the-encryption-key">
   
-  <h2 class="section-header"><a class="anchor" name="rotating-the-encryption-key" href="#rotating-the-encryption-key"></a>Rotating the Encryption Key</h2>
+  <h2 class="section-header"><a class="anchor-target" name="rotating-the-encryption-key" href="#rotating-the-encryption-key"></a>Rotating the Encryption Key</h2>
   
 
   <p>To swap out the encryption key, you&#39;ll need to pass the previous key as <code>--old-encryption-key</code> (or <a href="https://bosh.io/jobs/web?source=github.com/concourse/concourse-bosh-release#p=old_encryption_key"><code>old_encryption_key</code></a>), and the new key as <code>--encryption-key</code> (or <a href="https://bosh.io/jobs/web?source=github.com/concourse/concourse-bosh-release#p=encryption_key"><code>encryption_key</code></a>).</p><p>On startup, the <a href="concourse-web.html"><code>web</code> node</a> will decrypt all existing data and re-encrypt it with the new key, in one go. If it encounters a row which is already encrypted with the new key, it will continue on (as may be the case when restarting with the flags again, or if the ATC died in the middle of rotating).</p><p>If the ATC encounters a row which cannot be decrypted with neither the old key nor the new one, it will log loudly and fail to start, telling you which row it choked on. This data must be dealt with in some way, either by re-configuring the key the row was encrypted with as the old key, or manually performing database surgery to remove the offending row. Hopefully this doesn&#39;t happen to you!</p>
@@ -427,7 +326,7 @@
     
       <div class="section" id="section_disabling-encryption">
   
-  <h2 class="section-header"><a class="anchor" name="disabling-encryption" href="#disabling-encryption"></a>Disabling Encryption</h2>
+  <h2 class="section-header"><a class="anchor-target" name="disabling-encryption" href="#disabling-encryption"></a>Disabling Encryption</h2>
   
 
   <p>To opt out of encryption entirely (I&#39;m sure you have your reasons), simply pass <code>--old-encryption-key</code> (or <a href="https://bosh.io/jobs/web?source=github.com/concourse/concourse-bosh-release#p=old_encryption_key"><code>old_encryption_key</code></a>) alone. With no new encryption key, the <a href="concourse-web.html"><code>web</code> node</a> will decrypt all existing data on start.</p>
@@ -440,31 +339,35 @@
   
 </div>
 
-      <nav class="prev-next">
-      
-        <div class="prev">
-          prev:
+          <nav class="prev-next">
+          
+            <div class="prev">
+              prev:
+
+              
+              <span class="section-number">1.12.2</span>
+              
+
+              <a href="tracing.html">Tracing</a>
+            </div>
+          
 
           
-          <span class="section-number">1.11</span>
-          
+            <div class="next">
+              next:
 
-          <a href="operation.html">Operation</a>
+              
+              <span class="section-number">1.12.4</span>
+              
+
+              <a href="creds.html">Credential Management</a>
+            </div>
+          
+          </nav>
         </div>
-      
 
-      
-        <div class="next">
-          next:
-
-          
-          <span class="section-number">1.11.2</span>
-          
-
-          <a href="creds.html">Credential Management</a>
-        </div>
-      
-      </nav>
+        <div class="page-aside"></div>
+      </div>
     </div>
 
     <ul class="improve-docs">

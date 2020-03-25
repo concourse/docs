@@ -25,11 +25,15 @@
 <script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
-    <div class="top-logo">
-  <a href="/"><img src="images/logo-white.svg" />Concourse</a>
-</div>
+    <div class="top-banner">
+      <p class="banner-text">
+        ✨ The <a href="https://airtable.com/shr4tyAb5ApbX3VV1">2020 Concourse CI Community Survey</a> is now live! ✨
+      </p>
+    </div>
 
-<nav class="top-nav">
+    <div class="page-top">
+      <nav class="top-nav">
+  <a class="top-link logo-link" href="/"><img src="images/logo-white.svg" />Concourse</a>
   
   <a class="top-link active" href="docs.html">Docs</a>
   
@@ -37,37 +41,122 @@
   
   <a class="top-link" href="project.html">Project</a>
   
+  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
   <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
   <a class="top-link" href="https://discuss.concourse-ci.org">discuss</a>
-  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
-</nav>
 
-<div class="top-search">
   <div id="search"></div>
-</div>
 
-<div class="top-banner">
-  ✨ The 2020 Concourse CI Community Survey is now live! ✨ <a href="https://airtable.com/shr4tyAb5ApbX3VV1">Click here to learn more and share your experience</a>.
-</div>
+  <script type="text/javascript">
+    var app = Elm.Main.init({
+      node: document.getElementById('search')
+    });
 
-<script type="text/javascript">
-  var app = Elm.Main.init({
-    node: document.getElementById('search')
-  });
+    app.ports.emitSearchTerm.subscribe(function(term) {
+      gtag('event', 'search', {search_term: term});
+    });
+  </script>
+</nav>
+    </div>
 
-  app.ports.emitSearchTerm.subscribe(function(term) {
-    gtag('event', 'search', {search_term: term});
-  });
-</script>
-
-    <div class="page-nav">
-      
+    <div class="page-body">
+      <div class="page-nav">
+        
 
 
 
 
 
 
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1</span><a href="docs.html"  class="active">Docs</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.1</td>
+            <td class="title-cell"><a href="install.html" >Install</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2</td>
+            <td class="title-cell"><a href="auth.html" >Auth &amp; Teams</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.3</td>
+            <td class="title-cell"><a href="fly.html" >The <code>fly</code> CLI</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.4</td>
+            <td class="title-cell"><a href="config-basics.html"  class="self">Config Basics</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.5</td>
+            <td class="title-cell"><a href="pipelines.html" >Pipelines</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.6</td>
+            <td class="title-cell"><a href="vars.html" >Vars</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.7</td>
+            <td class="title-cell"><a href="resources.html" >Resources</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.8</td>
+            <td class="title-cell"><a href="resource-types.html" >Resource Types</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.9</td>
+            <td class="title-cell"><a href="jobs.html" >Jobs</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.10</td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11</td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12</td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.13</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14</td>
+            <td class="title-cell"><a href="internals.html" >Internals</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
 
   
 
@@ -75,123 +164,20 @@
   <div class="context">
     <nav>
       <div class="top">
-        
-        <span class="section-number">1</span>
-        
-        
-  <a href="docs.html"  class="active">Docs</a>
-
+        <span class="section-number">1.4</span><a href="config-basics.html"  class="self">Config Basics</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="install.html" >Install</a>
-</td>
+            <td class="number-cell">1.4.1</td>
+            <td class="title-cell"><a href="config-basics.html#intro-to-yaml" >Intro to YAML</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="auth.html" >Auth &amp; Teams</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="fly.html" >The <code>fly</code> CLI</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="config-basics.html"  class="self">Config Basics</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.6&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resources.html" >Resources</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.7&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.8&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.9&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.10&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="builds.html" >Builds</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="operation.html" >Operation</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.12&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="observation.html" >Observation</a>
-</td>
+            <td class="number-cell">1.4.2</td>
+            <td class="title-cell"><a href="config-basics.html#basic-schemas" >Basic Schemas</a></td>
           </tr>
         
         </table>
@@ -202,310 +188,353 @@
 
 
 
-
-
 <div class="context">
-  <div class="page-toc">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1.4</span>
-        
-        
-  <a href="config-basics.html"  class="self">Config Basics</a>
+  <div class="Top">
+    On this page:
+  </div>
 
-      </div>
+  <div class="children anchors">
+    <table>
+      
 
       
-<div class="children">
-  <table>
+  
     
       <tr>
-        
-          <td class="number-cell" align="right">1.4.1&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="intro-to-yaml.html">Intro to YAML</a>
-
-          
-<div class="children">
-  <table>
+        <td class="number-cell">1.4.1</td>
+        <td class="title-cell"><a href="config-basics.html#intro-to-yaml" >Intro to YAML</a></td>
+      </tr>
+      
+      
+  
     
       <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="intro-to-yaml.html#yaml-tips-and-tricks">YAML Tips &amp; Tricks</a>
-
-          
-        </td>
+        <td class="number-cell">1.4.1.1</td>
+        <td class="title-cell"><a href="config-basics.html#yaml-tips-and-tricks" >YAML Tips &amp; Tricks</a></td>
       </tr>
+      
+      
+  
+    
+  
+
     
       <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="intro-to-yaml.html#yaml-quirks">YAML Quirks</a>
-
-          
-        </td>
+        <td class="number-cell">1.4.1.2</td>
+        <td class="title-cell"><a href="config-basics.html#yaml-quirks" >YAML Quirks</a></td>
       </tr>
+      
+      
+  
     
-  </table>
-</div>
+  
 
-        </td>
-      </tr>
+    
+  
+
     
       <tr>
-        
-          <td class="number-cell" align="right">1.4.2&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="vars.html">Intro to <code>((vars))</code></a>
-
-          
-<div class="children">
-  <table>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="vars.html#var-syntax"><code>((var))</code> syntax</a>
-
-          
-        </td>
+        <td class="number-cell">1.4.2</td>
+        <td class="title-cell"><a href="config-basics.html#basic-schemas" >Basic Schemas</a></td>
       </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="config-basics.html#schema.number"><strong><code>number</code></strong> schema</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="config-basics.html#schema.string"><strong><code>string</code></strong> schema</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="config-basics.html#schema.config"><strong><code>config</code></strong> schema</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="config-basics.html#schema.vars"><strong><code>vars</code></strong> schema</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="config-basics.html#schema.env-vars"><strong><code>env-vars</code></strong> schema</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="config-basics.html#schema.boolean"><strong><code>boolean</code></strong> schema</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="config-basics.html#schema.identifier"><strong><code>identifier</code></strong> schema</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="config-basics.html#schema.dir-path"><strong><code>dir-path</code></strong> schema</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="config-basics.html#schema.file-path"><strong><code>file-path</code></strong> schema</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="config-basics.html#schema.duration"><strong><code>duration</code></strong> schema</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="config-basics.html#schema.version"><strong><code>version</code></strong> schema</a></td>
+        </tr>
+      
+      
+  
     
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="vars.html#var-interpolation">Interpolation</a>
+  
 
-          
-        </td>
-      </tr>
     
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="vars.html#static-vars">Providing <code>((vars))</code> with <code>fly</code></a>
+  
 
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.4.3&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="runtime-vars.html">Fetching <code>((vars))</code> at Runtime</a>
-
-          
-<div class="children">
-  <table>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="runtime-vars.html#cluster-wide-credential-manager">The Cluster-wide Credential Manager</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="runtime-vars.html#var-sources"><code>((var))</code> Sources</a>
-
-          
-<div class="children">
-  <table>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.4.3.2.1&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="vault-var-source.html">The Vault <code>((var))</code> source</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.4.3.2.2&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="dummy-var-source.html">The Dummy <code>((var))</code> source</a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-    </nav>
+    </table>
   </div>
 </div>
 
+      </div>
 
-
-
-    </div>
-
-    <div class="page-aside"></div>
-
-    <div class="page-content">
-      <div class="section" id="section_config-basics">
+      <div class="body-content">
+        <div class="page-content">
+          <div class="section" id="section_config-basics">
   
-  <h1 class="section-header"><a class="anchor" name="config-basics" href="#config-basics"></a><span class="section-number">1.4 </span>Config Basics</h1>
+  <h1 class="section-header"><a class="anchor-target" name="config-basics" href="#config-basics"></a><span class="section-number">1.4 </span>Config Basics</h1>
   
 
-  <p>Concourse configuration for things like <a href="pipelines.html">Pipelines</a> and <a href="tasks.html">Tasks</a> is done through declarative <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> files.</p><p>Concourse configuration supports basic variable substitution by way of <a href="vars.html"><code>((vars))</code></a>. There is no built-in support for fancier templating constructs, e.g. loops and conditionals; users are free to use whatever templating system they like.</p>
-<ol class="toc">
+  <p>Concourse configuration for things like <a href="pipelines.html">Pipelines</a> and <a href="tasks.html">Tasks</a> is done through declarative <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> files.</p><p>Concourse configuration supports basic variable substitution by way of <a href="vars.html"><code>((vars))</code></a>. There is no built-in support for fancier templating constructs, e.g. loops and conditionals; users are free to use whatever templating system they like.</p><div class="table-of-contents">
+  <span class="toc-header">Table of contents:</span>
 
-  <li><span class="section-number">1.4.1 </span><a href="intro-to-yaml.html">Intro to YAML</a>
+  
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.4.1</span>
+      <a href="config-basics.html#intro-to-yaml">Intro to YAML</a>
 
-    
-<ol class="toc">
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.4.1.1</span>
+      <a href="config-basics.html#yaml-tips-and-tricks">YAML Tips &amp; Tricks</a>
 
-  <li><a href="intro-to-yaml.html#yaml-tips-and-tricks">YAML Tips &amp; Tricks</a>
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.4.1.2</span>
+      <a href="config-basics.html#yaml-quirks">YAML Quirks</a>
 
-    
-  </li>
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.4.2</span>
+      <a href="config-basics.html#basic-schemas">Basic Schemas</a>
 
-  <li><a href="intro-to-yaml.html#yaml-quirks">YAML Quirks</a>
-
-    
-  </li>
-
-</ol>
-
-  </li>
-
-  <li><span class="section-number">1.4.2 </span><a href="vars.html">Intro to <code>((vars))</code></a>
-
-    
-<ol class="toc">
-
-  <li><a href="vars.html#var-syntax"><code>((var))</code> syntax</a>
-
-    
-  </li>
-
-  <li><a href="vars.html#var-interpolation">Interpolation</a>
-
-    
-  </li>
-
-  <li><a href="vars.html#static-vars">Providing <code>((vars))</code> with <code>fly</code></a>
-
-    
-  </li>
-
-</ol>
-
-  </li>
-
-  <li><span class="section-number">1.4.3 </span><a href="runtime-vars.html">Fetching <code>((vars))</code> at Runtime</a>
-
-    
-<ol class="toc">
-
-  <li><a href="runtime-vars.html#cluster-wide-credential-manager">The Cluster-wide Credential Manager</a>
-
-    
-  </li>
-
-  <li><a href="runtime-vars.html#var-sources"><code>((var))</code> Sources</a>
-
-    
-<ol class="toc">
-
-  <li><span class="section-number">1.4.3.2.1 </span><a href="vault-var-source.html">The Vault <code>((var))</code> source</a>
-
-    
-  </li>
-
-  <li><span class="section-number">1.4.3.2.2 </span><a href="dummy-var-source.html">The Dummy <code>((var))</code> source</a>
-
-    
-  </li>
-
-</ol>
-
-  </li>
-
-</ol>
-
-  </li>
-
-</ol>
-
-
+      
+  
+  
+    </li>
+  
+  </ol>
+  
   
 </div>
 
-      <nav class="prev-next">
-      
-        <div class="prev">
-          prev:
+  
+    
+      <div class="section" id="section_intro-to-yaml">
+  
+  <h2 class="section-header"><a class="anchor-target" name="intro-to-yaml" href="#intro-to-yaml"></a>Intro to YAML</h2>
+  
+
+  <p><a href="https://yaml.org">YAML</a> is a human-friendly syntax for writing structured documents. You can think of it as JSON without the sharp edges.</p><p>Here&#39;s a quick example demonstrating common YAML syntax:</p><pre><code class="language-yaml"># commented lines are prefixed with the &#39;#&#39; character
+
+# strings
+quoted_string: &#34;bar&#34;
+unquoted_string: hello world!
+multiline_string: |
+  hello, world!
+  this is one big string with a trailing linebreak!
+
+# arrays
+array: [hello, world]
+multiline_array:
+- hello
+- world
+
+# objects
+object: {one: uno, two: dos}
+multiline_object:
+  one: uno
+  two: dos
+
+# boolean values
+booleans: [true, false]
+
+# numeric values
+numeric: [1234, 12.34]</code></pre>
+
+  
+    
+      <div class="section" id="section_yaml-tips-and-tricks">
+  
+  <h3 class="section-header"><a class="anchor-target" name="yaml-tips-and-tricks" href="#yaml-tips-and-tricks"></a>YAML Tips &amp; Tricks</h3>
+  
+
+  <p>YAML anchor syntax can be used to avoid repetition within configuration.</p><p>For example, the following YAML document...:</p><pre><code class="language-yaml">large_value: &amp;my_anchor
+  do_the_thing: true
+  with_these_values: [1, 2, 3]
+
+duplicate_value: *my_anchor</code></pre><p>...is exactly equivalent to:</p><pre><code class="language-yaml">large_value:
+  do_the_thing: true
+  with_these_values: [1, 2, 3]
+
+duplicate_value:
+  do_the_thing: true
+  with_these_values: [1, 2, 3]</code></pre><p>If you find yourself repeating configuration throughout your pipeline, it may be a sign that Concourse is missing some kind of abstraction to make your pipeline less verbose. If you have the time and are interested in helping out with Concourse&#39;s design, feedback of this sort is welcome in the <a href="https://discuss.concourse-ci.org">forums</a>!</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_yaml-quirks">
+  
+  <h3 class="section-header"><a class="anchor-target" name="yaml-quirks" href="#yaml-quirks"></a>YAML Quirks</h3>
+  
+
+  <p>YAML has some weird parts. For example, all of the following terms are acceptable boolean values: <code>true</code>, <code>false</code>, <code>yes</code>, <code>no</code>, <code>on</code>, <code>off</code>.</p><p>YAML is also whitespace-sensitive. For the most part, this is really handy because it keeps you from having to count curly-braces in deeply nested parts of configuration such as <a href="jobs.html#schema.job.plan"><code class="schema-attribute-name"><bold>job<wbr />.plan</bold></code></a>. Sometimes, though, it can be hard to keep track of the correct indentation level.</p>
+
+  
+    
+  
+</div>
+    
+  
+</div>
+    
+      <div class="section" id="section_basic-schemas">
+  
+  <h2 class="section-header"><a class="anchor-target" name="basic-schemas" href="#basic-schemas"></a>Basic Schemas</h2>
+  
+
+  <p>Throughout the Concourse documentation you will find come across schema definitions for each API.</p><p>The following are basic schema definitions that the other schemas refer to. You can probably skip past this and just make assumptions along the way; this is just here for completeness!</p><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.number" href="#schema.number"></a><code>number</code> schema</h2>
+
+  <p>Any integer, i.e. <code>1000</code>.</p>
+</div><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.string" href="#schema.string"></a><code>string</code> schema</h2>
+
+  <p>An arbitrary string value with no content restrictions.</p>
+</div><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.config" href="#schema.config"></a><code>config</code> schema</h2>
+
+  <p>An arbitrary object representing configuration that is not directly interpreted by Concourse - typically given to a <a href="resource-types.html">resource type</a>.</p><pre><code class="language-yaml">uri: https://github.com/vito/booklit
+branch: master</code></pre><p>All object keys must be strings, preferably <code>snake_cased</code>.</p>
+</div><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.vars" href="#schema.vars"></a><code>vars</code> schema</h2>
+
+  <p>An arbitrary object representing key-value definitions for <a href="vars.html"><code>((vars))</code></a>.</p><p>As with <a href="config-basics.html#schema.config"><strong><code>config</code></strong> schema</a>, all object keys must be strings, preferably <code>snake_cased</code>.</p>
+</div><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.env-vars" href="#schema.env-vars"></a><code>env-vars</code> schema</h2>
+
+  <p>An object containing string keys and string values. Each pair represents an environment variable to set to the given value.</p><pre><code class="language-yaml">SOME_SIMPLE_VAR: simple-var
+SOME_LONG_VAR: |
+  This is an example of using YAML multi-line string syntax to set a very
+  long environment variable value.
+SOME_NUMERIC_VALUE: &#34;1&#34;</code></pre><p>Note that in the last example we took special care to quote the number.</p>
+</div><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.boolean" href="#schema.boolean"></a><code>boolean</code> schema</h2>
+
+  <p><code>true</code> or <code>false</code>.</p><p>YAML also supports the alias <code>yes</code>, <code>no</code>, <code>on</code>, or <code>off</code>, but...please don&#39;t.</p>
+</div><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.identifier" href="#schema.identifier"></a><code>identifier</code> schema</h2>
+
+  <p>An <em>identifier</em> is string value. Currently, there are no validations for what makes a string a valid identifier.</p><p><a href="https://github.com/concourse/rfcs/pull/40">RFC #40</a> proposes a much more limited character set, so for the sake of future-proofing you may want to conform to it.</p><p>The proposed valid character set is as follows:</p><pre><code class="language-regex">^\p{L}[\p{L}\d\-.]*$</code></pre><p>(Don&#39;t worry - if you currently have pipelines that do <em>not</em> conform to the above regexp validation, they will be permitted to function; this validation will only be peformed for newly configured pipelines.)</p>
+</div><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.dir-path" href="#schema.dir-path"></a><code>dir-path</code> schema</h2>
+
+  <p>A string value specifying a (typically relative) path of a directory.</p>
+</div><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.file-path" href="#schema.file-path"></a><code>file-path</code> schema</h2>
+
+  <p>A string value specifying a (typically relative) path of a file.</p>
+</div><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.duration" href="#schema.duration"></a><code>duration</code> schema</h2>
+
+  <p>A string value in <a href="https://golang.org/pkg/time/#ParseDuration">Go <code>time.ParseDuration</code> format</a>. <code>1h</code> for one hour, <code>5m</code> for 5 minutes.</p>
+</div><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.version" href="#schema.version"></a><code>version</code> schema</h2>
+
+  <p>An object with string keys and string values.</p><p>The following is an array of versions:</p><pre><code class="language-yaml">- {&#34;ref&#34;: &#34;33042e15e930b6786fc9b0a9ea5dec78689c5e4b&#34;}
+- ref: v1.2.0,
+  sha: 33042e15e930b6786fc9b0a9ea5dec78689c5e4b
+- foo: &#34;0&#34;</code></pre><p>Note that in the last example we took special care to quote the number.</p><p>In many scenarios where a version can be specified, e.g. <a href="jobs.html#schema.step.get-step.version"><code>get</code> step <strong><code>version</code></strong></a>, only a subset of the full set of fields is necessary. The latest version matching the fields specified will be chosen.</p>
+</div>
+
+  
+    
+  
+</div>
+    
+  
+</div>
+
+          <nav class="prev-next">
+          
+            <div class="prev">
+              prev:
+
+              
+              <span class="section-number">1.3</span>
+              
+
+              <a href="fly.html">The <code>fly</code> CLI</a>
+            </div>
+          
 
           
-          <span class="section-number">1.3</span>
-          
+            <div class="next">
+              next:
 
-          <a href="fly.html">The <code>fly</code> CLI</a>
+              
+              <span class="section-number">1.5</span>
+              
+
+              <a href="pipelines.html">Pipelines</a>
+            </div>
+          
+          </nav>
         </div>
-      
 
-      
-        <div class="next">
-          next:
-
-          
-          <span class="section-number">1.4.1</span>
-          
-
-          <a href="intro-to-yaml.html">Intro to YAML</a>
-        </div>
-      
-      </nav>
+        <div class="page-aside"></div>
+      </div>
     </div>
 
     <ul class="improve-docs">

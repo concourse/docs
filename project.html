@@ -25,11 +25,15 @@
 <script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
-    <div class="top-logo">
-  <a href="/"><img src="images/logo-white.svg" />Concourse</a>
-</div>
+    <div class="top-banner">
+      <p class="banner-text">
+        ✨ The <a href="https://airtable.com/shr4tyAb5ApbX3VV1">2020 Concourse CI Community Survey</a> is now live! ✨
+      </p>
+    </div>
 
-<nav class="top-nav">
+    <div class="page-top">
+      <nav class="top-nav">
+  <a class="top-link logo-link" href="/"><img src="images/logo-white.svg" />Concourse</a>
   
   <a class="top-link" href="docs.html">Docs</a>
   
@@ -37,32 +41,27 @@
   
   <a class="top-link active" href="project.html">Project</a>
   
+  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
   <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
   <a class="top-link" href="https://discuss.concourse-ci.org">discuss</a>
-  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
-</nav>
 
-<div class="top-search">
   <div id="search"></div>
-</div>
 
-<div class="top-banner">
-  ✨ The 2020 Concourse CI Community Survey is now live! ✨ <a href="https://airtable.com/shr4tyAb5ApbX3VV1">Click here to learn more and share your experience</a>.
-</div>
+  <script type="text/javascript">
+    var app = Elm.Main.init({
+      node: document.getElementById('search')
+    });
 
-<script type="text/javascript">
-  var app = Elm.Main.init({
-    node: document.getElementById('search')
-  });
+    app.ports.emitSearchTerm.subscribe(function(term) {
+      gtag('event', 'search', {search_term: term});
+    });
+  </script>
+</nav>
+    </div>
 
-  app.ports.emitSearchTerm.subscribe(function(term) {
-    gtag('event', 'search', {search_term: term});
-  });
-</script>
-
-    <div class="page-nav">
-      
-
+    <div class="page-body">
+      <div class="page-nav">
+        
 
 
 
@@ -75,60 +74,25 @@
   <div class="context">
     <nav>
       <div class="top">
-        
-        <span class="section-number">3</span>
-        
-        
-  <a href="project.html"  class="self">Project</a>
-
+        <span class="section-number">3</span><a href="project.html"  class="self">Project</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            
-              <td class="number-cell" align="right">3.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="contribute.html" >Contribute</a>
-</td>
+            <td class="number-cell">3.1</td>
+            <td class="title-cell"><a href="contribute.html" >Contribute</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">3.2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="architecture.html" >Architecture</a>
-</td>
+            <td class="number-cell">3.2</td>
+            <td class="title-cell"><a href="trademarks.html" >Trademark Policy</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">3.3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="internals.html" >Internals</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">3.4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="trademarks.html" >Trademark Policy</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">3.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="security-contact.html" >Security Contact</a>
-</td>
+            <td class="number-cell">3.3</td>
+            <td class="title-cell"><a href="security-contact.html" >Security Contact</a></td>
           </tr>
         
         </table>
@@ -139,20 +103,16 @@
 
 
 
+      </div>
 
-
-
-    </div>
-
-    <div class="page-aside"></div>
-
-    <div class="page-content">
-      <div class="section" id="section_project">
+      <div class="body-content">
+        <div class="page-content">
+          <div class="section" id="section_project">
   
-  <h1 class="section-header"><a class="anchor" name="project" href="#project"></a><span class="section-number">3 </span>Project</h1>
+  <h1 class="section-header"><a class="anchor-target" name="project" href="#project"></a><span class="section-number">3 </span>Project</h1>
   
 
-  <p>Concourse started as a side-project by <a href="https://github.com/vito"><code>@vito</code></a> (hi!) and <a href="https://github.com/xoebus"><code>@xoebus</code></a> in 2014. Since then, Concourse has grown into a small but dedicated team of full-time engineers and part-time contributors.</p><p><h2>Where does the magic happen?</h2></p><ul>
+  <p>Concourse started as a side-project by <a href="https://github.com/vito"><code>@vito</code></a> (hi!) and <a href="https://github.com/xoebus"><code>@xoebus</code></a> in 2014. Since then, Concourse has grown into a small but dedicated team of full-time engineers and part-time contributors.</p><h2>Where does the magic happen?</h2><ul>
 
   <li><p>The <a href="https://github.com/concourse/concourse"><code>concourse/concourse</code> GitHub repo</a> is where the main code lives and where roadmap planning begins.</p></li>
 
@@ -164,36 +124,40 @@
 
   <li><p>Our <a href="https://discord.gg/MeRxXKW">Discord server</a> is a great place to chat with other contributors.</p></li>
 
-</ul><p><h2>Why make Concourse?</h2></p><p>When working on a sizable project, having a pipeline to reliably test, deploy, and publish the product is crucial for rapid iteration.</p><p>But with every CI system we used, we found ourselves constantly dealing with the same old problems: complicated configs hidden in many pages of the web UI, not knowing who changed what &amp; when, managing dependencies and state on the workers, build pollution, annoying UX...</p><p>Our project was growing larger, and with every box we checked and for every worker we hand-tweaked, the anxiety of having to do it all over again if something went wrong grew and grew. We started writing software to manage our CI instead of writing the software for the product we wanted to build.</p><p>We built Concourse to be a CI system that lets you sleep easier at night. A CI that&#39;s simple enough to fully grok and easy to manage as your project grows; in both the complexity of the product and the size of your team. We wanted to build a CI with strong abstractions and fewer things to learn, so that it can be easier to understand and so that Concourse can age gracefully.</p><p><h2>How can I help?</h2></p><p>It&#39;s pretty hard to write a CI system that makes everyone happy! Concourse is by no means perfect, and it sometimes takes us while to understand a problem space well enough to figure out how it should work in Concourse&#39;s puritanical world.</p><p>We tend to move slowly rather than tack on feature request after feature request. We are also extremely cautious about <a href="https://github.com/concourse/concourse/wiki/Anti-Patterns">anti-patterns</a> and introducing ways for users to shoot themselves in the foot.</p><p>Concourse is getting bigger and bigger, and we really appreciate any help we can get. There are many ways to contribute to Concourse; only some of them involve writing code! You help us out by being active in GitHub issues, voting with reactions for issues that matter to you, engaging in discussions while we map out a feature request, hanging out in our <a href="http://discuss.concourse-ci.org/">forums</a>, writing documentation, coming up with new designs, and of course contributing code!</p><p>As a contributor, you can jump on over to <a href="contribute.html">Contribute</a> for a more complete list of resources for contributors</p>
+</ul><h2>Why make Concourse?</h2><p>When working on a sizable project, having a pipeline to reliably test, deploy, and publish the product is crucial for rapid iteration.</p><p>But with every CI system we used, we found ourselves constantly dealing with the same old problems: complicated configs hidden in many pages of the web UI, not knowing who changed what &amp; when, managing dependencies and state on the workers, build pollution, annoying UX...</p><p>Our project was growing larger, and with every box we checked and for every worker we hand-tweaked, the anxiety of having to do it all over again if something went wrong grew and grew. We started writing software to manage our CI instead of writing the software for the product we wanted to build.</p><p>We built Concourse to be a CI system that lets you sleep easier at night. A CI that&#39;s simple enough to fully grok and easy to manage as your project grows; in both the complexity of the product and the size of your team. We wanted to build a CI with strong abstractions and fewer things to learn, so that it can be easier to understand and so that Concourse can age gracefully.</p><h2>How can I help?</h2><p>It&#39;s pretty hard to write a CI system that makes everyone happy! Concourse is by no means perfect, and it sometimes takes us while to understand a problem space well enough to figure out how it should work in Concourse&#39;s puritanical world.</p><p>We tend to move slowly rather than tack on feature request after feature request. We are also extremely cautious about <a href="https://github.com/concourse/concourse/wiki/Anti-Patterns">anti-patterns</a> and introducing ways for users to shoot themselves in the foot.</p><p>Concourse is getting bigger and bigger, and we really appreciate any help we can get. There are many ways to contribute to Concourse; only some of them involve writing code! You help us out by being active in GitHub issues, voting with reactions for issues that matter to you, engaging in discussions while we map out a feature request, hanging out in our <a href="http://discuss.concourse-ci.org/">forums</a>, writing documentation, coming up with new designs, and of course contributing code!</p><p>As a contributor, you can jump on over to <a href="contribute.html">Contribute</a> for a more complete list of resources for contributors</p>
 
   
 </div>
 
-      <nav class="prev-next">
-      
-        <div class="prev">
-          prev:
+          <nav class="prev-next">
+          
+            <div class="prev">
+              prev:
+
+              
+              <span class="section-number">2</span>
+              
+
+              <a href="examples.html">Examples</a>
+            </div>
+          
 
           
-          <span class="section-number">2</span>
-          
+            <div class="next">
+              next:
 
-          <a href="examples.html">Examples</a>
+              
+              <span class="section-number">3.1</span>
+              
+
+              <a href="contribute.html">Contribute</a>
+            </div>
+          
+          </nav>
         </div>
-      
 
-      
-        <div class="next">
-          next:
-
-          
-          <span class="section-number">3.1</span>
-          
-
-          <a href="contribute.html">Contribute</a>
-        </div>
-      
-      </nav>
+        <div class="page-aside"></div>
+      </div>
     </div>
 
     <ul class="improve-docs">

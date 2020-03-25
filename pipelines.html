@@ -25,11 +25,15 @@
 <script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
-    <div class="top-logo">
-  <a href="/"><img src="images/logo-white.svg" />Concourse</a>
-</div>
+    <div class="top-banner">
+      <p class="banner-text">
+        ✨ The <a href="https://airtable.com/shr4tyAb5ApbX3VV1">2020 Concourse CI Community Survey</a> is now live! ✨
+      </p>
+    </div>
 
-<nav class="top-nav">
+    <div class="page-top">
+      <nav class="top-nav">
+  <a class="top-link logo-link" href="/"><img src="images/logo-white.svg" />Concourse</a>
   
   <a class="top-link active" href="docs.html">Docs</a>
   
@@ -37,161 +41,115 @@
   
   <a class="top-link" href="project.html">Project</a>
   
+  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
   <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
   <a class="top-link" href="https://discuss.concourse-ci.org">discuss</a>
-  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
-</nav>
 
-<div class="top-search">
   <div id="search"></div>
-</div>
 
-<div class="top-banner">
-  ✨ The 2020 Concourse CI Community Survey is now live! ✨ <a href="https://airtable.com/shr4tyAb5ApbX3VV1">Click here to learn more and share your experience</a>.
-</div>
+  <script type="text/javascript">
+    var app = Elm.Main.init({
+      node: document.getElementById('search')
+    });
 
-<script type="text/javascript">
-  var app = Elm.Main.init({
-    node: document.getElementById('search')
-  });
+    app.ports.emitSearchTerm.subscribe(function(term) {
+      gtag('event', 'search', {search_term: term});
+    });
+  </script>
+</nav>
+    </div>
 
-  app.ports.emitSearchTerm.subscribe(function(term) {
-    gtag('event', 'search', {search_term: term});
-  });
-</script>
-
-    <div class="page-nav">
-      
+    <div class="page-body">
+      <div class="page-nav">
+        
 
 
 
 
 
 
-
+  
+  
   
 
   
   <div class="context">
     <nav>
       <div class="top">
-        
-        <span class="section-number">1</span>
-        
-        
-  <a href="docs.html"  class="active">Docs</a>
-
+        <span class="section-number">1</span><a href="docs.html"  class="active">Docs</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="install.html" >Install</a>
-</td>
+            <td class="number-cell">1.1</td>
+            <td class="title-cell"><a href="install.html" >Install</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="auth.html" >Auth &amp; Teams</a>
-</td>
+            <td class="number-cell">1.2</td>
+            <td class="title-cell"><a href="auth.html" >Auth &amp; Teams</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="fly.html" >The <code>fly</code> CLI</a>
-</td>
+            <td class="number-cell">1.3</td>
+            <td class="title-cell"><a href="fly.html" >The <code>fly</code> CLI</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="config-basics.html" >Config Basics</a>
-</td>
+            <td class="number-cell">1.4</td>
+            <td class="title-cell"><a href="config-basics.html" >Config Basics</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="pipelines.html"  class="self">Pipelines</a>
-</td>
+            <td class="number-cell">1.5</td>
+            <td class="title-cell"><a href="pipelines.html"  class="self">Pipelines</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.6&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resources.html" >Resources</a>
-</td>
+            <td class="number-cell">1.6</td>
+            <td class="title-cell"><a href="vars.html" >Vars</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.7&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
-</td>
+            <td class="number-cell">1.7</td>
+            <td class="title-cell"><a href="resources.html" >Resources</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.8&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
-</td>
+            <td class="number-cell">1.8</td>
+            <td class="title-cell"><a href="resource-types.html" >Resource Types</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.9&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
-</td>
+            <td class="number-cell">1.9</td>
+            <td class="title-cell"><a href="jobs.html" >Jobs</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.10&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="builds.html" >Builds</a>
-</td>
+            <td class="number-cell">1.10</td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.11&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="operation.html" >Operation</a>
-</td>
+            <td class="number-cell">1.11</td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.12&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="observation.html" >Observation</a>
-</td>
+            <td class="number-cell">1.12</td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.13</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14</td>
+            <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
         </table>
@@ -200,210 +158,33 @@
   </div>
   
 
+  
 
-
-
-
-<div class="context">
-  <div class="page-toc">
+  
+  <div class="context">
     <nav>
       <div class="top">
-        
-        <span class="section-number">1.5</span>
-        
-        
-  <a href="pipelines.html"  class="self">Pipelines</a>
-
+        <span class="section-number">1.5</span><a href="pipelines.html"  class="self">Pipelines</a>
       </div>
 
-      
-<div class="children">
-  <table>
-    
-      <tr>
+      <div class="children">
+        <table>
         
-          <td class="number-cell" align="right">1.5.1&nbsp;</td>
+          <tr>
+            <td class="number-cell">1.5.1</td>
+            <td class="title-cell"><a href="setting-pipelines.html" >Setting Pipelines</a></td>
+          </tr>
         
-        <td class="title-cell">
-          <a href="setting-pipelines.html">Setting Pipelines</a>
-
-          
-<div class="children">
-  <table>
-    
-      <tr>
+          <tr>
+            <td class="number-cell">1.5.2</td>
+            <td class="title-cell"><a href="managing-pipelines.html" >Managing Pipelines</a></td>
+          </tr>
         
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="setting-pipelines.html#fly-validate-pipeline"><code>fly validate-pipeline</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="setting-pipelines.html#fly-format-pipeline"><code>fly format-pipeline</code></a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.5.2&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="managing-pipelines.html">Managing Pipelines</a>
-
-          
-<div class="children">
-  <table>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="managing-pipelines.html#fly-pipelines"><code>fly pipelines</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="managing-pipelines.html#fly-rename-pipeline"><code>fly rename-pipeline</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="managing-pipelines.html#fly-pause-pipeline"><code>fly pause-pipeline</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="managing-pipelines.html#fly-unpause-pipeline"><code>fly unpause-pipeline</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="managing-pipelines.html#fly-expose-pipeline"><code>fly expose-pipeline</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="managing-pipelines.html#fly-hide-pipeline"><code>fly hide-pipeline</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="managing-pipelines.html#fly-get-pipeline"><code>fly get-pipeline</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="managing-pipelines.html#fly-destroy-pipeline"><code>fly destroy-pipeline</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="managing-pipelines.html#fly-order-pipelines"><code>fly order-pipelines</code></a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.5.3&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="pipeline-groups.html">Grouping Jobs</a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
+        </table>
+      </div>
     </nav>
   </div>
-</div>
-
+  
 
 
 
@@ -416,23 +197,48 @@
     <table>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="pipelines.html#pipeline-jobs"><strong><code>jobs</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="pipelines.html#schema.pipeline"><strong><code>pipeline</code></strong> schema</a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="pipelines.html#pipeline-resources"><strong><code>resources</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="pipelines.html#schema.group_config"><strong><code>group_config</code></strong> schema</a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="pipelines.html#pipeline-resource-types"><strong><code>resource_types</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="pipelines.html#schema.pipeline.jobs"><code class="schema-attribute-name"><bold>pipeline<wbr />.jobs</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="pipelines.html#pipeline-var-sources"><strong><code>var_sources</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="pipelines.html#schema.pipeline.resources"><code class="schema-attribute-name"><bold>pipeline<wbr />.resources</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="pipelines.html#pipeline-config-groups"><strong><code>groups</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="pipelines.html#schema.pipeline.resource_types"><code class="schema-attribute-name"><bold>pipeline<wbr />.resource_types</bold></code></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="pipelines.html#schema.pipeline.var_sources"><code class="schema-attribute-name"><bold>pipeline<wbr />.var_sources</bold></code></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="pipelines.html#schema.group_config.name"><code class="schema-attribute-name"><bold>group_config<wbr />.name</bold></code></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="pipelines.html#schema.group_config.jobs"><code class="schema-attribute-name"><bold>group_config<wbr />.jobs</bold></code></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="pipelines.html#schema.pipeline.groups"><code class="schema-attribute-name"><bold>pipeline<wbr />.groups</bold></code></a></td>
       </tr>
       
 
@@ -443,11 +249,293 @@
   </div>
 </div>
 
-    </div>
+      </div>
 
-    <div class="page-aside">
-      <div class="page-partial">
-        <div class="content">
+      <div class="body-content">
+        <div class="page-content">
+          <div class="section" id="section_pipelines">
+  
+  <h1 class="section-header"><a class="anchor-target" name="pipelines" href="#pipelines"></a><span class="section-number">1.5 </span>Pipelines</h1>
+  
+
+  <p>A pipeline is the result of configuring <a href="jobs.html">Jobs</a> and <a href="resources.html">Resources</a> together. When you configure a pipeline, it takes on a life of its own, to continuously detect resource versions and automatically queue new builds for jobs as they have new available inputs.</p><p>Pipelines are configured via <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a> or the <a href="jobs.html#set-pipeline-step"><code>set_pipeline</code> step</a> as declarative <a href="config-basics.html#intro-to-yaml">YAML files</a> which conform to the following schema:</p><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.pipeline" href="#schema.pipeline"></a><code>pipeline</code> schema</h2>
+
+  <div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.pipeline.jobs" type="checkbox" class="toggle" />
+  <label for="toggle-schema.pipeline.jobs" class="toggle-title">
+    <a id="schema.pipeline.jobs"></a>
+
+    <code><a class="attribute-name" href="#schema.pipeline.jobs">jobs</a>: <span class="attribute-type">[<a href="jobs.html#schema.job"><strong>job</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A set of <a href="jobs.html">jobs</a> for the pipeline to continuously schedule.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.pipeline.resources" type="checkbox" class="toggle" />
+  <label for="toggle-schema.pipeline.resources" class="toggle-title">
+    <a id="schema.pipeline.resources"></a>
+
+    <code><a class="attribute-name" href="#schema.pipeline.resources">resources</a>: <span class="attribute-type">[<a href="resources.html#schema.resource"><strong>resource</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A set of <a href="resources.html">resources</a> for the pipeline to continuously check.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.pipeline.resource_types" type="checkbox" class="toggle" />
+  <label for="toggle-schema.pipeline.resource_types" class="toggle-title">
+    <a id="schema.pipeline.resource_types"></a>
+
+    <code><a class="attribute-name" href="#schema.pipeline.resource_types">resource_types</a>: <span class="attribute-type">[<a href="resource-types.html#schema.resource_type"><strong>resource_type</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A set of <a href="resource-types.html">resource types</a> for resources within the pipeline to use.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.pipeline.var_sources" type="checkbox" class="toggle" />
+  <label for="toggle-schema.pipeline.var_sources" class="toggle-title">
+    <a id="schema.pipeline.var_sources"></a>
+
+    <code><a class="attribute-name" href="#schema.pipeline.var_sources">var_sources</a>: <span class="attribute-type">[<a href="vars.html#schema.var_source"><strong>var_source</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A set of <a href="vars.html#var-sources">Var sources</a> for the pipeline to use.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.pipeline.groups" type="checkbox" class="toggle" />
+  <label for="toggle-schema.pipeline.groups" class="toggle-title">
+    <a id="schema.pipeline.groups"></a>
+
+    <code><a class="attribute-name" href="#schema.pipeline.groups">groups</a>: <span class="attribute-type">[<a href="pipelines.html#schema.group_config"><strong>group_config</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A list of job groups to use for organizing jobs in the web UI.</p><p>Groups have no functional effect on your pipeline. They are purely for making it easier to grok large pipelines in the web UI.</p><p>Note: once you have added groups to your pipeline, all jobs must be in a group.</p><div class="toggleable example">
+  <input id="toggle-fe7348d1e7dbff5278e1bfa33c7c2ae45cb7de51" type="checkbox" class="toggle" />
+  <label for="toggle-fe7348d1e7dbff5278e1bfa33c7c2ae45cb7de51" class="toggle-title">Grouping jobs</label>
+  <div class="toggle-content">
+    <p>The following example will make the &#34;tests&#34; group the default view (since it&#39;s listed first), separating the later jobs into a &#34;publish&#34; group:</p><pre><code class="language-yaml">groups:
+- name: test
+  jobs:
+  - unit
+  - integration
+- name: publish
+  jobs:
+  - deploy
+  - shipit</code></pre><p>This would display two tabs at the top of the home page: &#34;test&#34; and &#34;publish&#34;.</p><p>For a real world example of how groups can be used to simplify navigation and provide logical grouping, see the groups used at the top of the page in the <a href="https://ci.concourse-ci.org">Concourse pipeline</a>.</p>
+  </div>
+</div><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.group_config" href="#schema.group_config"></a><code>group_config</code> schema</h2>
+
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.group_config.name" type="checkbox" class="toggle" />
+  <label for="toggle-schema.group_config.name" class="toggle-title">
+    <a id="schema.group_config.name"></a>
+
+    <code><a class="attribute-name" href="#schema.group_config.name">name</a>: <span class="attribute-type"><a href="config-basics.html#schema.identifier"><strong>identifier</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A unique name for the group. This should be short and simple as it will be used as the tab name for navigation.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.group_config.jobs" type="checkbox" class="toggle" />
+  <label for="toggle-schema.group_config.jobs" class="toggle-title">
+    <a id="schema.group_config.jobs"></a>
+
+    <code><a class="attribute-name" href="#schema.group_config.jobs">jobs</a>: <span class="attribute-type">[<a href="jobs.html#schema.job.name"><strong>job.name</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A list of jobs that should appear in this group. A job may appear in multiple groups. Neighbours of jobs in the current group will also appear on the same page in order to give context of the location of the group in the pipeline.</p>
+  </div>
+</div>
+</div>
+  </div>
+</div>
+</div><div class="table-of-contents">
+  <span class="toc-header">Table of contents:</span>
+
+  
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.5.1</span>
+      <a href="setting-pipelines.html">Setting Pipelines</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.5.1.1</span>
+      <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.5.1.2</span>
+      <a href="setting-pipelines.html#fly-validate-pipeline"><code>fly validate-pipeline</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.5.1.3</span>
+      <a href="setting-pipelines.html#fly-format-pipeline"><code>fly format-pipeline</code></a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.5.2</span>
+      <a href="managing-pipelines.html">Managing Pipelines</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.5.2.1</span>
+      <a href="managing-pipelines.html#fly-pipelines"><code>fly pipelines</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.5.2.2</span>
+      <a href="managing-pipelines.html#fly-rename-pipeline"><code>fly rename-pipeline</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.5.2.3</span>
+      <a href="managing-pipelines.html#fly-pause-pipeline"><code>fly pause-pipeline</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.5.2.4</span>
+      <a href="managing-pipelines.html#fly-unpause-pipeline"><code>fly unpause-pipeline</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.5.2.5</span>
+      <a href="managing-pipelines.html#fly-expose-pipeline"><code>fly expose-pipeline</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.5.2.6</span>
+      <a href="managing-pipelines.html#fly-hide-pipeline"><code>fly hide-pipeline</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.5.2.7</span>
+      <a href="managing-pipelines.html#fly-get-pipeline"><code>fly get-pipeline</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.5.2.8</span>
+      <a href="managing-pipelines.html#fly-destroy-pipeline"><code>fly destroy-pipeline</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.5.2.9</span>
+      <a href="managing-pipelines.html#fly-order-pipelines"><code>fly order-pipelines</code></a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+</div>
+
+  
+</div>
+
+          <nav class="prev-next">
+          
+            <div class="prev">
+              prev:
+
+              
+              <span class="section-number">1.4</span>
+              
+
+              <a href="config-basics.html">Config Basics</a>
+            </div>
+          
+
+          
+            <div class="next">
+              next:
+
+              
+              <span class="section-number">1.5.1</span>
+              
+
+              <a href="setting-pipelines.html">Setting Pipelines</a>
+            </div>
+          
+          </nav>
+        </div>
+
+        <div class="page-aside">
+          <div class="page-partial">
+            <div class="content">
   <h2>Examples</h2>
 
   <div class="example">
@@ -486,7 +574,7 @@ jobs:
 </div><div class="example">
   <h3>Chaining Jobs</h3>
 
-  <p>Promoting resources to downstream jobs is done by setting <a href="get-step.html#get-step-passed"><strong><code>passed</code></strong></a> on a <a href="get-step.html"><code>get</code> step</a>.</p><p>Note that nothing in <code>unit</code> says anything about triggering <code>build</code>. Job definitions are self-contained; they describe their dependencies and where they come from, which results in a dependency flow that Concourse pushes forward.</p><pre><code class="language-yaml">---
+  <p>Promoting resources to downstream jobs is done by setting <a href="jobs.html#schema.step.get-step.passed"><code>get</code> step <strong><code>passed</code></strong></a> on a <a href="jobs.html#get-step"><code>get</code> step</a>.</p><p>Note that nothing in <code>unit</code> says anything about triggering <code>build</code>. Job definitions are self-contained; they describe their dependencies and where they come from, which results in a dependency flow that Concourse pushes forward.</p><pre><code class="language-yaml">---
 resources:
 - name: booklit
   type: git
@@ -533,90 +621,9 @@ jobs:
     trigger: true</code></pre>
 </div>
 </div>
+          </div>
+          </div>
       </div>
-      </div>
-
-    <div class="page-content">
-      <div class="section" id="section_pipelines">
-  
-  <h1 class="section-header"><a class="anchor" name="pipelines" href="#pipelines"></a><span class="section-number">1.5 </span>Pipelines</h1>
-  
-
-  <p>A pipeline is the result of configuring <a href="jobs.html">Jobs</a> and <a href="resources.html">Resources</a> together. When you configure a pipeline, it takes on a life of its own, to continuously detect resource versions and automatically queue new builds for jobs as they have new available inputs.</p><p>Pipelines are configured as declarative YAML files, fitting the following schema:</p><div class="definition">
-  <div class="definition-thumb">
-    <a name="pipeline-jobs"></a>
-    <pre><a href="pipelines.html#pipeline-jobs"><strong>jobs</strong></a>: [job]</pre>
-  </div>
-
-  <div class="definition-content">
-    <p>A set of <a href="jobs.html">jobs</a> for the pipeline to continuously schedule.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="pipeline-resources"></a>
-    <pre><a href="pipelines.html#pipeline-resources"><strong>resources</strong></a>: [resource]</pre>
-  </div>
-
-  <div class="definition-content">
-    <p>A set of <a href="resources.html">resources</a> for the pipeline to continuously check.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="pipeline-resource-types"></a>
-    <pre><a href="pipelines.html#pipeline-resource-types"><strong>resource_types</strong></a>: [resource_type]</pre>
-  </div>
-
-  <div class="definition-content">
-    <p>A set of <a href="resource-types.html">resource types</a> for resources within the pipeline to use.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="pipeline-var-sources"></a>
-    <pre><a href="pipelines.html#pipeline-var-sources"><strong>var_sources</strong></a>: [var_source]</pre>
-  </div>
-
-  <div class="definition-content">
-    <p>A set of <a href="runtime-vars.html#var-sources"><code>((var))</code> Sources</a> for the pipeline to use.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="pipeline-config-groups"></a>
-    <pre><a href="pipelines.html#pipeline-config-groups"><strong>groups</strong></a>: [group]</pre>
-  </div>
-
-  <div class="definition-content">
-    <p>A list of <a href="pipeline-groups.html">groups</a> to use for cleaning up/organizing jobs in the web UI.</p><p>Each group must have a unique name.</p>
-  </div>
-</div>
-
-  
-</div>
-
-      <nav class="prev-next">
-      
-        <div class="prev">
-          prev:
-
-          
-          <span class="section-number">1.4</span>
-          
-
-          <a href="config-basics.html">Config Basics</a>
-        </div>
-      
-
-      
-        <div class="next">
-          next:
-
-          
-          <span class="section-number">1.5.1</span>
-          
-
-          <a href="setting-pipelines.html">Setting Pipelines</a>
-        </div>
-      
-      </nav>
     </div>
 
     <ul class="improve-docs">

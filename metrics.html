@@ -25,11 +25,15 @@
 <script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
-    <div class="top-logo">
-  <a href="/"><img src="images/logo-white.svg" />Concourse</a>
-</div>
+    <div class="top-banner">
+      <p class="banner-text">
+        ✨ The <a href="https://airtable.com/shr4tyAb5ApbX3VV1">2020 Concourse CI Community Survey</a> is now live! ✨
+      </p>
+    </div>
 
-<nav class="top-nav">
+    <div class="page-top">
+      <nav class="top-nav">
+  <a class="top-link logo-link" href="/"><img src="images/logo-white.svg" />Concourse</a>
   
   <a class="top-link active" href="docs.html">Docs</a>
   
@@ -37,393 +41,215 @@
   
   <a class="top-link" href="project.html">Project</a>
   
+  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
   <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
   <a class="top-link" href="https://discuss.concourse-ci.org">discuss</a>
-  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
-</nav>
 
-<div class="top-search">
   <div id="search"></div>
-</div>
 
-<div class="top-banner">
-  ✨ The 2020 Concourse CI Community Survey is now live! ✨ <a href="https://airtable.com/shr4tyAb5ApbX3VV1">Click here to learn more and share your experience</a>.
-</div>
+  <script type="text/javascript">
+    var app = Elm.Main.init({
+      node: document.getElementById('search')
+    });
 
-<script type="text/javascript">
-  var app = Elm.Main.init({
-    node: document.getElementById('search')
-  });
-
-  app.ports.emitSearchTerm.subscribe(function(term) {
-    gtag('event', 'search', {search_term: term});
-  });
-</script>
-
-    <div class="page-nav">
-      
-
-
-
-
-
-
-
-  
-  
-  
-
-  
-  <div class="context">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1</span>
-        
-        
-  <a href="docs.html"  class="active">Docs</a>
-
-      </div>
-
-      <div class="children">
-        <table>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="install.html" >Install</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="auth.html" >Auth &amp; Teams</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="fly.html" >The <code>fly</code> CLI</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="config-basics.html" >Config Basics</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.6&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resources.html" >Resources</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.7&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.8&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.9&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.10&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="builds.html" >Builds</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="operation.html"  class="active">Operation</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.12&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="observation.html" >Observation</a>
-</td>
-          </tr>
-        
-        </table>
-      </div>
-    </nav>
-  </div>
-  
-
-  
-
-  
-  <div class="context">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1.11</span>
-        
-        
-  <a href="operation.html"  class="active">Operation</a>
-
-      </div>
-
-      <div class="children">
-        <table>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="encryption.html" >Encryption</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11.2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="creds.html" >Credential Management</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11.3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="metrics.html"  class="self">Metrics</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11.4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="container-placement.html" >Container Placement</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="global-resources.html" >Global Resources (experimental)</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11.6&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="administration.html" >Administration</a>
-</td>
-          </tr>
-        
-        </table>
-      </div>
-    </nav>
-  </div>
-  
-
-
-
-
-
-<div class="context">
-  <div class="page-toc">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1.11.3</span>
-        
-        
-  <a href="metrics.html"  class="self">Metrics</a>
-
-      </div>
-
-      
-<div class="children">
-  <table>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="metrics.html#configuring-metrics">Configuring Metrics</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="metrics.html#whats-emitted">What&#39;s emitted?</a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-    </nav>
-  </div>
-</div>
-
-
-
-
-<div class="context">
-  <div class="Top">
-    On this page:
-  </div>
-
-  <div class="children anchors">
-    <table>
-      
-
-      
-  
-    
-      
-      
-  
-    
-  
-
-    
-      
-        <tr>
-          <td class="number-cell" align="left">1.11.3.2&nbsp;</td>
-          <td class="title-cell">
-  <a href="metrics.html#whats-emitted" >What&#39;s emitted?</a>
-</td>
-        </tr>
-        
-          <tr>
-            <td class="number-cell"></td>
-            <td class="title-cell"><a href="#ZgotmplZ">scheduling: full duration (ms)</a></td>
-          </tr>
-        
-          <tr>
-            <td class="number-cell"></td>
-            <td class="title-cell"><a href="#ZgotmplZ">scheduling: loading versions duration (ms)</a></td>
-          </tr>
-        
-          <tr>
-            <td class="number-cell"></td>
-            <td class="title-cell"><a href="#ZgotmplZ">scheduling: job duration (ms)</a></td>
-          </tr>
-        
-          <tr>
-            <td class="number-cell"></td>
-            <td class="title-cell"><a href="metrics.html#worker%20containers">worker containers</a></td>
-          </tr>
-        
-          <tr>
-            <td class="number-cell"></td>
-            <td class="title-cell"><a href="metrics.html#worker%20volumes">worker volumes</a></td>
-          </tr>
-        
-          <tr>
-            <td class="number-cell"></td>
-            <td class="title-cell"><a href="metrics.html#build%20started">build started</a></td>
-          </tr>
-        
-          <tr>
-            <td class="number-cell"></td>
-            <td class="title-cell"><a href="metrics.html#build%20finished">build finished</a></td>
-          </tr>
-        
-          <tr>
-            <td class="number-cell"></td>
-            <td class="title-cell"><a href="metrics.html#http%20response%20time">http response time</a></td>
-          </tr>
-        
-          <tr>
-            <td class="number-cell"></td>
-            <td class="title-cell"><a href="metrics.html#worker%20tasks">worker tasks</a></td>
-          </tr>
-        
-      
-      
-  
-    
-  
-
-    
-  
-
-    </table>
-  </div>
-</div>
-
+    app.ports.emitSearchTerm.subscribe(function(term) {
+      gtag('event', 'search', {search_term: term});
+    });
+  </script>
+</nav>
     </div>
 
-    <div class="page-aside"></div>
+    <div class="page-body">
+      <div class="page-nav">
+        
 
-    <div class="page-content">
-      <div class="section" id="section_metrics">
+
+
+
+
+
   
-  <h1 class="section-header"><a class="anchor" name="metrics" href="#metrics"></a><span class="section-number">1.11.3 </span>Metrics</h1>
+  
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1</span><a href="docs.html"  class="active">Docs</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.1</td>
+            <td class="title-cell"><a href="install.html" >Install</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2</td>
+            <td class="title-cell"><a href="auth.html" >Auth &amp; Teams</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.3</td>
+            <td class="title-cell"><a href="fly.html" >The <code>fly</code> CLI</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.4</td>
+            <td class="title-cell"><a href="config-basics.html" >Config Basics</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.5</td>
+            <td class="title-cell"><a href="pipelines.html" >Pipelines</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.6</td>
+            <td class="title-cell"><a href="vars.html" >Vars</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.7</td>
+            <td class="title-cell"><a href="resources.html" >Resources</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.8</td>
+            <td class="title-cell"><a href="resource-types.html" >Resource Types</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.9</td>
+            <td class="title-cell"><a href="jobs.html" >Jobs</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.10</td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11</td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12</td>
+            <td class="title-cell"><a href="operation.html"  class="active">Operation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.13</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14</td>
+            <td class="title-cell"><a href="internals.html" >Internals</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.12</span><a href="operation.html"  class="active">Operation</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.12.1</td>
+            <td class="title-cell"><a href="metrics.html"  class="self">Metrics</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.2</td>
+            <td class="title-cell"><a href="tracing.html" >Tracing</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.3</td>
+            <td class="title-cell"><a href="encryption.html" >Encryption</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.4</td>
+            <td class="title-cell"><a href="creds.html" >Credential Management</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.5</td>
+            <td class="title-cell"><a href="container-placement.html" >Container Placement</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.6</td>
+            <td class="title-cell"><a href="global-resources.html" >Global Resources (experimental)</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.7</td>
+            <td class="title-cell"><a href="administration.html" >Administration</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.12.1</span><a href="metrics.html"  class="self">Metrics</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.12.1.1</td>
+            <td class="title-cell"><a href="metrics.html#configuring-metrics" >Configuring Metrics</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.1.2</td>
+            <td class="title-cell"><a href="metrics.html#whats-emitted" >What&#39;s emitted?</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+      </div>
+
+      <div class="body-content">
+        <div class="page-content">
+          <div class="section" id="section_metrics">
+  
+  <h1 class="section-header"><a class="anchor-target" name="metrics" href="#metrics"></a><span class="section-number">1.12.1 </span>Metrics</h1>
   
 
   <p>Metrics are essential in understanding how any large system is behaving and performing. Concourse can emit metrics about both the system health itself and about the builds that it is running. Operators can tap into these metrics in order to observe the health of the system.</p><p>In the spirit of openness, the <a href="https://metrics.concourse-ci.org/dashboard/db/concourse">metrics from our deployment</a> are public. We consider it a bug to emit anything sensitive or secret into our metrics pipeline.</p>
@@ -432,10 +258,10 @@
     
       <div class="section" id="section_configuring-metrics">
   
-  <h2 class="section-header"><a class="anchor" name="configuring-metrics" href="#configuring-metrics"></a>Configuring Metrics</h2>
+  <h2 class="section-header"><a class="anchor-target" name="configuring-metrics" href="#configuring-metrics"></a>Configuring Metrics</h2>
   
 
-  <p>The <a href="concourse-web.html"><code>web</code> node</a> can be configured to emit metrics on start.</p><p>Currently supported metrics emitters are InfluxDB, NewRelic, Prometheus, Datadog, and Riemann. There is also a dummy emitter that will just spit the metrics out in to the logs at <code>DEBUG</code> level, which can be enabled with the <code>--emit-to-logs</code> flag.</p><p>Regardless of your metrics emitter, you can set <code>CONCOURSE_METRICS_BUFFER_SIZE</code> to determine how many metrics emissions are sent at a time. Increasing this number can be helpful if sending metrics is regularly failing (due to rate limiting or network failures) or if latency is particularly high.</p><p>There are various flags for different emitters; run <code>concourse web --help</code> and look for &#34;Metric Emitter&#34; to see what&#39;s available.</p>
+  <p>The <a href="concourse-web.html"><code>web</code> node</a> can be configured to emit metrics on start.</p><p>Currently supported metrics emitters are InfluxDB, NewRelic, Prometheus, and Datadog. There is also a dummy emitter that will just spit the metrics out in to the logs at <code>DEBUG</code> level, which can be enabled with the <code>--emit-to-logs</code> flag.</p><p>Regardless of your metrics emitter, you can set <code>CONCOURSE_METRICS_BUFFER_SIZE</code> to determine how many metrics emissions are sent at a time. Increasing this number can be helpful if sending metrics is regularly failing (due to rate limiting or network failures) or if latency is particularly high.</p><p>There are various flags for different emitters; run <code>concourse web --help</code> and look for &#34;Metric Emitter&#34; to see what&#39;s available.</p>
 
   
     
@@ -444,166 +270,648 @@
     
       <div class="section" id="section_whats-emitted">
   
-  <h2 class="section-header"><a class="anchor" name="whats-emitted" href="#whats-emitted"></a>What&#39;s emitted?</h2>
+  <h2 class="section-header"><a class="anchor-target" name="whats-emitted" href="#whats-emitted"></a>What&#39;s emitted?</h2>
   
 
-  <p>This reference section lists of all of the metrics that Concourse emits. We don&#39;t include the warning and critical levels as they will keep changing as we optimise the system. To find those, please refer to the source of truth: <a href="https://github.com/concourse/concourse/blob/master/atc/metric/metrics.go">the code</a>.</p><div class="definition">
-  <div class="definition-thumb">
-    <a name="scheduling: full duration (ms)"></a>
-    <pre>scheduling: full duration (ms)</pre>
-  </div>
+  <p>This reference section lists of all of the metrics that Concourse emits via the Prometheus emitter.</p><p>To make this document easy to maintain, Prometheus is used as the &#34;source of truth&#34; - primarily because it has help text built-in, making this list easy to generate. Treat this list as a reference when looking for the equivalent metric names for your emitter of choice.</p><p>
 
-  <div class="definition-content">
-    <p>This is the time taken (in milliseconds) to schedule an entire pipeline including the time taken to load the version information from the database and calculate the latest valid versions for each job.</p><p><span style="font-size: 120%">Attributes</span> <dl>
-  
-  <dt><p><code>pipeline</code></p></dt>
-    <dd><p>The pipeline which was being scheduled.</p></dd>
-  
-</dl></p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="scheduling: loading versions duration (ms)"></a>
-    <pre>scheduling: loading versions duration (ms)</pre>
-  </div>
-
-  <div class="definition-content">
-    <p>This is the time taken (in milliseconds) to load the version information from the database.</p><p><span style="font-size: 120%">Attributes</span> <dl>
-  
-  <dt><p><code>pipeline</code></p></dt>
-    <dd><p>The pipeline which was being scheduled.</p></dd>
-  
-</dl></p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="scheduling: job duration (ms)"></a>
-    <pre>scheduling: job duration (ms)</pre>
-  </div>
-
-  <div class="definition-content">
-    <p>This is the time taken (in milliseconds) to calculate the set of valid input versions when scheduling a job. It is emitted once for each job per pipeline scheduling tick.</p><p><span style="font-size: 120%">Attributes</span> <dl>
-  
-  <dt><p><code>pipeline</code></p></dt>
-    <dd><p>The pipeline which was being scheduled.</p></dd>
-  
-  <dt><p><code>job</code></p></dt>
-    <dd><p>The job which was being scheduled.</p></dd>
-  
-</dl></p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="worker containers"></a>
-    <pre>worker containers</pre>
-  </div>
-
-  <div class="definition-content">
-    <p>The number of containers that are currently running on your workers.</p><p><span style="font-size: 120%">Attributes</span> <dl>
-  
-  <dt><p><code>worker</code></p></dt>
-    <dd><p>The name of the worker.</p></dd>
-  
-</dl></p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="worker volumes"></a>
-    <pre>worker volumes</pre>
-  </div>
-
-  <div class="definition-content">
-    <p>The number of volumes that are currently present on your workers.</p><p><span style="font-size: 120%">Attributes</span> <dl>
-  
-  <dt><p><code>worker</code></p></dt>
-    <dd><p>The name of the worker.</p></dd>
-  
-</dl></p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="build started"></a>
-    <pre>build started</pre>
-  </div>
-
-  <div class="definition-content">
-    <p>This event is emitted when a build starts. Its value is the build ID of the build. However, it is most useful for annotating your metrics with the start and end of different jobs.</p><p><span style="font-size: 120%">Attributes</span> <dl>
-  
-  <dt><p><code>pipeline</code></p></dt>
-    <dd><p>The pipeline which contains the build being started.</p></dd>
-  
-  <dt><p><code>job</code></p></dt>
-    <dd><p>The job which configured the build being started.</p></dd>
-  
-  <dt><p><code>build_name</code></p></dt>
-    <dd><p>The name of the build being started. (Remember that build numbers in Concourse are actually names and are strings).</p></dd>
-  
-  <dt><p><code>build_id</code></p></dt>
-    <dd><p>The ID of the build being started.</p></dd>
-  
-</dl></p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="build finished"></a>
-    <pre>build finished</pre>
-  </div>
-
-  <div class="definition-content">
-    <p>This event is emitted when a build ends. Its value is the duration of the build in milliseconds. You can use this metric in conjunction with <code>build started</code> to annotate your metrics with when builds started and stopped.</p><p><span style="font-size: 120%">Attributes</span> <dl>
-  
-  <dt><p><code>pipeline</code></p></dt>
-    <dd><p>The pipeline which contains the build that finished.</p></dd>
-  
-  <dt><p><code>job</code></p></dt>
-    <dd><p>The job which configured the build that finished.</p></dd>
-  
-  <dt><p><code>build_name</code></p></dt>
-    <dd><p>The name of the build that finished. (Remember that build numbers in Concourse are actually names and are strings).</p></dd>
-  
-  <dt><p><code>build_id</code></p></dt>
-    <dd><p>The ID of the build that finished.</p></dd>
-  
-  <dt><p><code>build_status</code></p></dt>
-    <dd><p>The resulting status of the build; one of &#34;succeeded&#34;, &#34;failed&#34;, &#34;errored&#34;, or &#34;aborted&#34;.</p></dd>
-  
-</dl></p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="http response time"></a>
-    <pre>http response time</pre>
-  </div>
-
-  <div class="definition-content">
-    <p>This metric is emitted for each HTTP request to an ATC (both API and web requests). It contains the duration (in milliseconds) for each request and is useful for finding slow requests.</p><p><span style="font-size: 120%">Attributes</span> <dl>
-  
-  <dt><p><code>route</code></p></dt>
-    <dd><p>The route which the HTTP request matched. i.e. /builds/:id</p></dd>
-  
-  <dt><p><code>path</code></p></dt>
-    <dd><p>The literal path of the HTTP request. i.e. /builds/1234</p></dd>
-  
-</dl></p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="worker tasks"></a>
-    <pre>worker tasks</pre>
-  </div>
-
-  <div class="definition-content">
-    <p>This metric is emitted each time a worker registers or heartbeats. It contains the number of active task containers on the worker in question. Particularly if <code>max-active-tasks-per-worker</code> is set, this can be useful for debugging containers stuck in a pending state.</p><p><span style="font-size: 120%">Attributes</span> <dl>
-  
-  <dt><p><code>worker</code></p></dt>
-    <dd><p>The name of the worker registering/heartbeating.</p></dd>
-  
-  <dt><p><code>platform</code></p></dt>
-    <dd><p>The OS platform of the worker in question (i.e. windows/linux/darwin).</p></dd>
-  
-</dl></p>
+<div class="toggleable metric">
+  <input id="toggle-concourse_builds_aborted_total" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_builds_aborted_total" class="toggle-title">
+    <code><span class="metric-name">concourse_builds_aborted_total</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#counter">counter</a>
+  </label>
+  <div class="toggle-content">
+    Total number of Concourse builds aborted.
   </div>
 </div>
+
+<div class="toggleable metric">
+  <input id="toggle-concourse_builds_errored_total" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_builds_errored_total" class="toggle-title">
+    <code><span class="metric-name">concourse_builds_errored_total</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#counter">counter</a>
+  </label>
+  <div class="toggle-content">
+    Total number of Concourse builds errored.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-concourse_builds_failed_total" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_builds_failed_total" class="toggle-title">
+    <code><span class="metric-name">concourse_builds_failed_total</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#counter">counter</a>
+  </label>
+  <div class="toggle-content">
+    Total number of Concourse builds failed.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-concourse_builds_finished_total" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_builds_finished_total" class="toggle-title">
+    <code><span class="metric-name">concourse_builds_finished_total</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#counter">counter</a>
+  </label>
+  <div class="toggle-content">
+    Total number of Concourse builds finished.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-concourse_builds_running" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_builds_running" class="toggle-title">
+    <code><span class="metric-name">concourse_builds_running</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of Concourse builds currently running.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-concourse_builds_started_total" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_builds_started_total" class="toggle-title">
+    <code><span class="metric-name">concourse_builds_started_total</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#counter">counter</a>
+  </label>
+  <div class="toggle-content">
+    Total number of Concourse builds started.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-concourse_builds_succeeded_total" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_builds_succeeded_total" class="toggle-title">
+    <code><span class="metric-name">concourse_builds_succeeded_total</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#counter">counter</a>
+  </label>
+  <div class="toggle-content">
+    Total number of Concourse builds succeeded.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-concourse_db_connections" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_db_connections" class="toggle-title">
+    <code><span class="metric-name">concourse_db_connections</span><span class="metric-labels">{<span class="metric-label">dbname</span>}</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Current number of concourse database connections
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-concourse_db_queries_total" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_db_queries_total" class="toggle-title">
+    <code><span class="metric-name">concourse_db_queries_total</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#counter">counter</a>
+  </label>
+  <div class="toggle-content">
+    Total number of database Concourse database queries
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-concourse_http_responses_duration_seconds" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_http_responses_duration_seconds" class="toggle-title">
+    <code><span class="metric-name">concourse_http_responses_duration_seconds</span><span class="metric-labels">{<span class="metric-label">method</span>,<span class="metric-label">route</span>,<span class="metric-label">status</span>}</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#histogram">histogram</a>
+  </label>
+  <div class="toggle-content">
+    Response time in seconds
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-concourse_jobs_scheduled_total" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_jobs_scheduled_total" class="toggle-title">
+    <code><span class="metric-name">concourse_jobs_scheduled_total</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#counter">counter</a>
+  </label>
+  <div class="toggle-content">
+    Total number of Concourse jobs scheduled.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-concourse_jobs_scheduling" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_jobs_scheduling" class="toggle-title">
+    <code><span class="metric-name">concourse_jobs_scheduling</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of Concourse jobs currently being scheduled.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-concourse_lidar_check_queue_size" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_lidar_check_queue_size" class="toggle-title">
+    <code><span class="metric-name">concourse_lidar_check_queue_size</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    The size of the checks queue
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-concourse_lidar_checks_enqueued_total" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_lidar_checks_enqueued_total" class="toggle-title">
+    <code><span class="metric-name">concourse_lidar_checks_enqueued_total</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#counter">counter</a>
+  </label>
+  <div class="toggle-content">
+    Total number of checks enqueued
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-concourse_lidar_checks_finished_total" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_lidar_checks_finished_total" class="toggle-title">
+    <code><span class="metric-name">concourse_lidar_checks_finished_total</span><span class="metric-labels">{<span class="metric-label">status</span>}</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#counter">counter</a>
+  </label>
+  <div class="toggle-content">
+    Total number of checks finished
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-concourse_lidar_checks_started_total" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_lidar_checks_started_total" class="toggle-title">
+    <code><span class="metric-name">concourse_lidar_checks_started_total</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#counter">counter</a>
+  </label>
+  <div class="toggle-content">
+    Total number of checks started
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-concourse_locks_held" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_locks_held" class="toggle-title">
+    <code><span class="metric-name">concourse_locks_held</span><span class="metric-labels">{<span class="metric-label">type</span>}</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Database locks held
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-concourse_workers_containers" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_workers_containers" class="toggle-title">
+    <code><span class="metric-name">concourse_workers_containers</span><span class="metric-labels">{<span class="metric-label">platform</span>,<span class="metric-label">tags</span>,<span class="metric-label">team</span>,<span class="metric-label">worker</span>}</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of containers per worker
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-concourse_workers_registered" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_workers_registered" class="toggle-title">
+    <code><span class="metric-name">concourse_workers_registered</span><span class="metric-labels">{<span class="metric-label">state</span>}</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of workers per state as seen by the database
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-concourse_workers_tasks" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_workers_tasks" class="toggle-title">
+    <code><span class="metric-name">concourse_workers_tasks</span><span class="metric-labels">{<span class="metric-label">platform</span>,<span class="metric-label">worker</span>}</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of active tasks per worker
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-concourse_workers_volumes" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_workers_volumes" class="toggle-title">
+    <code><span class="metric-name">concourse_workers_volumes</span><span class="metric-labels">{<span class="metric-label">platform</span>,<span class="metric-label">tags</span>,<span class="metric-label">team</span>,<span class="metric-label">worker</span>}</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of volumes per worker
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_gc_duration_seconds" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_gc_duration_seconds" class="toggle-title">
+    <code><span class="metric-name">go_gc_duration_seconds</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#summary">summary</a>
+  </label>
+  <div class="toggle-content">
+    A summary of the GC invocation durations.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_goroutines" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_goroutines" class="toggle-title">
+    <code><span class="metric-name">go_goroutines</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of goroutines that currently exist.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_info" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_info" class="toggle-title">
+    <code><span class="metric-name">go_info</span><span class="metric-labels">{<span class="metric-label">version</span>}</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Information about the Go environment.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_memstats_alloc_bytes" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_memstats_alloc_bytes" class="toggle-title">
+    <code><span class="metric-name">go_memstats_alloc_bytes</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of bytes allocated and still in use.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_memstats_alloc_bytes_total" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_memstats_alloc_bytes_total" class="toggle-title">
+    <code><span class="metric-name">go_memstats_alloc_bytes_total</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#counter">counter</a>
+  </label>
+  <div class="toggle-content">
+    Total number of bytes allocated, even if freed.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_memstats_buck_hash_sys_bytes" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_memstats_buck_hash_sys_bytes" class="toggle-title">
+    <code><span class="metric-name">go_memstats_buck_hash_sys_bytes</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of bytes used by the profiling bucket hash table.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_memstats_frees_total" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_memstats_frees_total" class="toggle-title">
+    <code><span class="metric-name">go_memstats_frees_total</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#counter">counter</a>
+  </label>
+  <div class="toggle-content">
+    Total number of frees.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_memstats_gc_cpu_fraction" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_memstats_gc_cpu_fraction" class="toggle-title">
+    <code><span class="metric-name">go_memstats_gc_cpu_fraction</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    The fraction of this program&#39;s available CPU time used by the GC since the program started.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_memstats_gc_sys_bytes" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_memstats_gc_sys_bytes" class="toggle-title">
+    <code><span class="metric-name">go_memstats_gc_sys_bytes</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of bytes used for garbage collection system metadata.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_memstats_heap_alloc_bytes" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_memstats_heap_alloc_bytes" class="toggle-title">
+    <code><span class="metric-name">go_memstats_heap_alloc_bytes</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of heap bytes allocated and still in use.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_memstats_heap_idle_bytes" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_memstats_heap_idle_bytes" class="toggle-title">
+    <code><span class="metric-name">go_memstats_heap_idle_bytes</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of heap bytes waiting to be used.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_memstats_heap_inuse_bytes" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_memstats_heap_inuse_bytes" class="toggle-title">
+    <code><span class="metric-name">go_memstats_heap_inuse_bytes</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of heap bytes that are in use.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_memstats_heap_objects" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_memstats_heap_objects" class="toggle-title">
+    <code><span class="metric-name">go_memstats_heap_objects</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of allocated objects.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_memstats_heap_released_bytes" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_memstats_heap_released_bytes" class="toggle-title">
+    <code><span class="metric-name">go_memstats_heap_released_bytes</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of heap bytes released to OS.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_memstats_heap_sys_bytes" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_memstats_heap_sys_bytes" class="toggle-title">
+    <code><span class="metric-name">go_memstats_heap_sys_bytes</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of heap bytes obtained from system.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_memstats_last_gc_time_seconds" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_memstats_last_gc_time_seconds" class="toggle-title">
+    <code><span class="metric-name">go_memstats_last_gc_time_seconds</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of seconds since 1970 of last garbage collection.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_memstats_lookups_total" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_memstats_lookups_total" class="toggle-title">
+    <code><span class="metric-name">go_memstats_lookups_total</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#counter">counter</a>
+  </label>
+  <div class="toggle-content">
+    Total number of pointer lookups.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_memstats_mallocs_total" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_memstats_mallocs_total" class="toggle-title">
+    <code><span class="metric-name">go_memstats_mallocs_total</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#counter">counter</a>
+  </label>
+  <div class="toggle-content">
+    Total number of mallocs.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_memstats_mcache_inuse_bytes" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_memstats_mcache_inuse_bytes" class="toggle-title">
+    <code><span class="metric-name">go_memstats_mcache_inuse_bytes</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of bytes in use by mcache structures.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_memstats_mcache_sys_bytes" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_memstats_mcache_sys_bytes" class="toggle-title">
+    <code><span class="metric-name">go_memstats_mcache_sys_bytes</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of bytes used for mcache structures obtained from system.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_memstats_mspan_inuse_bytes" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_memstats_mspan_inuse_bytes" class="toggle-title">
+    <code><span class="metric-name">go_memstats_mspan_inuse_bytes</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of bytes in use by mspan structures.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_memstats_mspan_sys_bytes" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_memstats_mspan_sys_bytes" class="toggle-title">
+    <code><span class="metric-name">go_memstats_mspan_sys_bytes</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of bytes used for mspan structures obtained from system.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_memstats_next_gc_bytes" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_memstats_next_gc_bytes" class="toggle-title">
+    <code><span class="metric-name">go_memstats_next_gc_bytes</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of heap bytes when next garbage collection will take place.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_memstats_other_sys_bytes" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_memstats_other_sys_bytes" class="toggle-title">
+    <code><span class="metric-name">go_memstats_other_sys_bytes</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of bytes used for other system allocations.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_memstats_stack_inuse_bytes" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_memstats_stack_inuse_bytes" class="toggle-title">
+    <code><span class="metric-name">go_memstats_stack_inuse_bytes</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of bytes in use by the stack allocator.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_memstats_stack_sys_bytes" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_memstats_stack_sys_bytes" class="toggle-title">
+    <code><span class="metric-name">go_memstats_stack_sys_bytes</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of bytes obtained from system for stack allocator.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_memstats_sys_bytes" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_memstats_sys_bytes" class="toggle-title">
+    <code><span class="metric-name">go_memstats_sys_bytes</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of bytes obtained from system.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-go_threads" type="checkbox" class="toggle" checked />
+  <label for="toggle-go_threads" class="toggle-title">
+    <code><span class="metric-name">go_threads</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of OS threads created.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-process_cpu_seconds_total" type="checkbox" class="toggle" checked />
+  <label for="toggle-process_cpu_seconds_total" class="toggle-title">
+    <code><span class="metric-name">process_cpu_seconds_total</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#counter">counter</a>
+  </label>
+  <div class="toggle-content">
+    Total user and system CPU time spent in seconds.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-process_max_fds" type="checkbox" class="toggle" checked />
+  <label for="toggle-process_max_fds" class="toggle-title">
+    <code><span class="metric-name">process_max_fds</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Maximum number of open file descriptors.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-process_open_fds" type="checkbox" class="toggle" checked />
+  <label for="toggle-process_open_fds" class="toggle-title">
+    <code><span class="metric-name">process_open_fds</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of open file descriptors.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-process_resident_memory_bytes" type="checkbox" class="toggle" checked />
+  <label for="toggle-process_resident_memory_bytes" class="toggle-title">
+    <code><span class="metric-name">process_resident_memory_bytes</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Resident memory size in bytes.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-process_start_time_seconds" type="checkbox" class="toggle" checked />
+  <label for="toggle-process_start_time_seconds" class="toggle-title">
+    <code><span class="metric-name">process_start_time_seconds</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Start time of the process since unix epoch in seconds.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-process_virtual_memory_bytes" type="checkbox" class="toggle" checked />
+  <label for="toggle-process_virtual_memory_bytes" class="toggle-title">
+    <code><span class="metric-name">process_virtual_memory_bytes</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Virtual memory size in bytes.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-process_virtual_memory_max_bytes" type="checkbox" class="toggle" checked />
+  <label for="toggle-process_virtual_memory_max_bytes" class="toggle-title">
+    <code><span class="metric-name">process_virtual_memory_max_bytes</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Maximum amount of virtual memory available in bytes.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-promhttp_metric_handler_requests_in_flight" type="checkbox" class="toggle" checked />
+  <label for="toggle-promhttp_metric_handler_requests_in_flight" class="toggle-title">
+    <code><span class="metric-name">promhttp_metric_handler_requests_in_flight</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Current number of scrapes being served.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-promhttp_metric_handler_requests_total" type="checkbox" class="toggle" checked />
+  <label for="toggle-promhttp_metric_handler_requests_total" class="toggle-title">
+    <code><span class="metric-name">promhttp_metric_handler_requests_total</span><span class="metric-labels">{<span class="metric-label">code</span>}</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#counter">counter</a>
+  </label>
+  <div class="toggle-content">
+    Total number of scrapes by HTTP status code.
+  </div>
+</div></p>
 
   
     
@@ -613,31 +921,35 @@
   
 </div>
 
-      <nav class="prev-next">
-      
-        <div class="prev">
-          prev:
+          <nav class="prev-next">
+          
+            <div class="prev">
+              prev:
+
+              
+              <span class="section-number">1.12</span>
+              
+
+              <a href="operation.html">Operation</a>
+            </div>
+          
 
           
-          <span class="section-number">1.11.2</span>
-          
+            <div class="next">
+              next:
 
-          <a href="creds.html">Credential Management</a>
+              
+              <span class="section-number">1.12.2</span>
+              
+
+              <a href="tracing.html">Tracing</a>
+            </div>
+          
+          </nav>
         </div>
-      
 
-      
-        <div class="next">
-          next:
-
-          
-          <span class="section-number">1.11.4</span>
-          
-
-          <a href="container-placement.html">Container Placement</a>
-        </div>
-      
-      </nav>
+        <div class="page-aside"></div>
+      </div>
     </div>
 
     <ul class="improve-docs">

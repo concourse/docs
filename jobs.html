@@ -25,11 +25,15 @@
 <script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
-    <div class="top-logo">
-  <a href="/"><img src="images/logo-white.svg" />Concourse</a>
-</div>
+    <div class="top-banner">
+      <p class="banner-text">
+        ✨ The <a href="https://airtable.com/shr4tyAb5ApbX3VV1">2020 Concourse CI Community Survey</a> is now live! ✨
+      </p>
+    </div>
 
-<nav class="top-nav">
+    <div class="page-top">
+      <nav class="top-nav">
+  <a class="top-link logo-link" href="/"><img src="images/logo-white.svg" />Concourse</a>
   
   <a class="top-link active" href="docs.html">Docs</a>
   
@@ -37,161 +41,115 @@
   
   <a class="top-link" href="project.html">Project</a>
   
+  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
   <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
   <a class="top-link" href="https://discuss.concourse-ci.org">discuss</a>
-  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
-</nav>
 
-<div class="top-search">
   <div id="search"></div>
-</div>
 
-<div class="top-banner">
-  ✨ The 2020 Concourse CI Community Survey is now live! ✨ <a href="https://airtable.com/shr4tyAb5ApbX3VV1">Click here to learn more and share your experience</a>.
-</div>
+  <script type="text/javascript">
+    var app = Elm.Main.init({
+      node: document.getElementById('search')
+    });
 
-<script type="text/javascript">
-  var app = Elm.Main.init({
-    node: document.getElementById('search')
-  });
+    app.ports.emitSearchTerm.subscribe(function(term) {
+      gtag('event', 'search', {search_term: term});
+    });
+  </script>
+</nav>
+    </div>
 
-  app.ports.emitSearchTerm.subscribe(function(term) {
-    gtag('event', 'search', {search_term: term});
-  });
-</script>
-
-    <div class="page-nav">
-      
+    <div class="page-body">
+      <div class="page-nav">
+        
 
 
 
 
 
 
-
+  
+  
   
 
   
   <div class="context">
     <nav>
       <div class="top">
-        
-        <span class="section-number">1</span>
-        
-        
-  <a href="docs.html"  class="active">Docs</a>
-
+        <span class="section-number">1</span><a href="docs.html"  class="active">Docs</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="install.html" >Install</a>
-</td>
+            <td class="number-cell">1.1</td>
+            <td class="title-cell"><a href="install.html" >Install</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="auth.html" >Auth &amp; Teams</a>
-</td>
+            <td class="number-cell">1.2</td>
+            <td class="title-cell"><a href="auth.html" >Auth &amp; Teams</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="fly.html" >The <code>fly</code> CLI</a>
-</td>
+            <td class="number-cell">1.3</td>
+            <td class="title-cell"><a href="fly.html" >The <code>fly</code> CLI</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="config-basics.html" >Config Basics</a>
-</td>
+            <td class="number-cell">1.4</td>
+            <td class="title-cell"><a href="config-basics.html" >Config Basics</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
-</td>
+            <td class="number-cell">1.5</td>
+            <td class="title-cell"><a href="pipelines.html" >Pipelines</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.6&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resources.html" >Resources</a>
-</td>
+            <td class="number-cell">1.6</td>
+            <td class="title-cell"><a href="vars.html" >Vars</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.7&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
-</td>
+            <td class="number-cell">1.7</td>
+            <td class="title-cell"><a href="resources.html" >Resources</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.8&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="jobs.html"  class="self">Jobs</a>
-</td>
+            <td class="number-cell">1.8</td>
+            <td class="title-cell"><a href="resource-types.html" >Resource Types</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.9&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
-</td>
+            <td class="number-cell">1.9</td>
+            <td class="title-cell"><a href="jobs.html"  class="self">Jobs</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.10&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="builds.html" >Builds</a>
-</td>
+            <td class="number-cell">1.10</td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.11&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="operation.html" >Operation</a>
-</td>
+            <td class="number-cell">1.11</td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.12&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="observation.html" >Observation</a>
-</td>
+            <td class="number-cell">1.12</td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.13</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14</td>
+            <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
         </table>
@@ -200,298 +158,33 @@
   </div>
   
 
+  
 
-
-
-
-<div class="context">
-  <div class="page-toc">
+  
+  <div class="context">
     <nav>
       <div class="top">
-        
-        <span class="section-number">1.8</span>
-        
-        
-  <a href="jobs.html"  class="self">Jobs</a>
-
+        <span class="section-number">1.9</span><a href="jobs.html"  class="self">Jobs</a>
       </div>
 
-      
-<div class="children">
-  <table>
-    
-      <tr>
+      <div class="children">
+        <table>
         
-          <td class="number-cell" align="right">1.8.1&nbsp;</td>
+          <tr>
+            <td class="number-cell">1.9.1</td>
+            <td class="title-cell"><a href="jobs.html#steps" >Steps</a></td>
+          </tr>
         
-        <td class="title-cell">
-          <a href="steps.html">Steps</a>
-
-          
-<div class="children">
-  <table>
-    
-      <tr>
+          <tr>
+            <td class="number-cell">1.9.2</td>
+            <td class="title-cell"><a href="jobs.html#managing-jobs" >Managing Jobs</a></td>
+          </tr>
         
-          <td class="number-cell" align="right">1.8.1.1&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="get-step.html"><code>get</code> step</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.8.1.2&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="put-step.html"><code>put</code> step</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.8.1.3&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="task-step.html"><code>task</code> step</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.8.1.4&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="set-pipeline-step.html"><code>set_pipeline</code> step</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.8.1.5&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="aggregate-step.html"><code>aggregate</code> step</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.8.1.6&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="in-parallel-step.html"><code>in_parallel</code> step</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.8.1.7&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="do-step.html"><code>do</code> step</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.8.1.8&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="try-step.html"><code>try</code> step</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.8.1.9&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="on-success-step-hook.html"><code>on_success</code> step hook</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.8.1.10&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="on-failure-step-hook.html"><code>on_failure</code> step hook</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.8.1.11&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="on-abort-step-hook.html"><code>on_abort</code> step hook</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.8.1.12&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="on-error-step-hook.html"><code>on_error</code> step hook</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.8.1.13&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="ensure-step-hook.html"><code>ensure</code> step hook</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.8.1.14&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="tags-step-modifier.html"><code>tags</code> step modifier</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.8.1.15&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="timeout-step-modifier.html"><code>timeout</code> step modifier</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.8.1.16&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="attempts-step-modifier.html"><code>attempts</code> step modifier</a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.8.2&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="managing-jobs.html">Managing Jobs</a>
-
-          
-<div class="children">
-  <table>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="managing-jobs.html#fly-jobs"><code>fly jobs</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="managing-jobs.html#fly-trigger-job"><code>fly trigger-job</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="managing-jobs.html#fly-pause-job"><code>fly pause-job</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="managing-jobs.html#fly-unpause-job"><code>fly unpause-job</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="managing-jobs.html#fly-clear-task-cache"><code>fly clear-task-cache</code></a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
+        </table>
+      </div>
     </nav>
   </div>
-</div>
-
+  
 
 
 
@@ -504,175 +197,557 @@
     <table>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="jobs.html#job-name"><strong><code>name</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="jobs.html#schema.job"><strong><code>job</code></strong> schema</a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="jobs.html#job-old-name"><strong><code>old_name</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="jobs.html#schema.build_log_retention_policy"><strong><code>build_log_retention_policy</code></strong> schema</a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="jobs.html#job-plan"><strong><code>plan</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="jobs.html#schema.job.name"><code class="schema-attribute-name"><bold>job<wbr />.name</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="jobs.html#job-serial"><strong><code>serial</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="jobs.html#schema.job.plan"><code class="schema-attribute-name"><bold>job<wbr />.plan</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="jobs.html#job-build-log-retention-days"><strong><code>build_log_retention.days</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="jobs.html#schema.job.old_name"><code class="schema-attribute-name"><bold>job<wbr />.old_name</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="jobs.html#job-build-log-retention-builds"><strong><code>build_log_retention.builds</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="jobs.html#schema.job.serial"><code class="schema-attribute-name"><bold>job<wbr />.serial</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="jobs.html#job-build-log-retention-minimum-succeeded-builds"><strong><code>build_log_retention.minimum_succeeded_builds</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="jobs.html#schema.build_log_retention_policy.days"><code class="schema-attribute-name"><bold>build_log_retention_policy<wbr />.days</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="jobs.html#job-build-log-retention"><strong><code>build_log_retention</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="jobs.html#schema.build_log_retention_policy.builds"><code class="schema-attribute-name"><bold>build_log_retention_policy<wbr />.builds</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="jobs.html#job-build-logs-to-retain"><strong><code>build_logs_to_retain</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="jobs.html#schema.build_log_retention_policy.minimum_succeeded_builds"><code class="schema-attribute-name"><bold>build_log_retention_policy<wbr />.minimum_succeeded_builds</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="jobs.html#job-serial-groups"><strong><code>serial_groups</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="jobs.html#schema.job.build_log_retention"><code class="schema-attribute-name"><bold>job<wbr />.build_log_retention</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="jobs.html#job-max-in-flight"><strong><code>max_in_flight</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="jobs.html#schema.job.build_logs_to_retain"><code class="schema-attribute-name"><bold>job<wbr />.build_logs_to_retain</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="jobs.html#job-public"><strong><code>public</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="jobs.html#schema.job.serial_groups"><code class="schema-attribute-name"><bold>job<wbr />.serial_groups</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="jobs.html#job-disable-manual-trigger"><strong><code>disable_manual_trigger</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="jobs.html#schema.job.max_in_flight"><code class="schema-attribute-name"><bold>job<wbr />.max_in_flight</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="jobs.html#job-interruptible"><strong><code>interruptible</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="jobs.html#schema.job.public"><code class="schema-attribute-name"><bold>job<wbr />.public</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="jobs.html#job-on-success"><strong><code>on_success</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="jobs.html#schema.job.disable_manual_trigger"><code class="schema-attribute-name"><bold>job<wbr />.disable_manual_trigger</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="jobs.html#job-on-failure"><strong><code>on_failure</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="jobs.html#schema.job.interruptible"><code class="schema-attribute-name"><bold>job<wbr />.interruptible</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="jobs.html#job-on-error"><strong><code>on_error</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="jobs.html#schema.job.on_success"><code class="schema-attribute-name"><bold>job<wbr />.on_success</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="jobs.html#job-on-abort"><strong><code>on_abort</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="jobs.html#schema.job.on_failure"><code class="schema-attribute-name"><bold>job<wbr />.on_failure</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="jobs.html#job-ensure"><strong><code>ensure</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="jobs.html#schema.job.on_error"><code class="schema-attribute-name"><bold>job<wbr />.on_error</bold></code></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="jobs.html#schema.job.on_abort"><code class="schema-attribute-name"><bold>job<wbr />.on_abort</bold></code></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="jobs.html#schema.job.ensure"><code class="schema-attribute-name"><bold>job<wbr />.ensure</bold></code></a></td>
       </tr>
       
 
       
+  
+    
+      <tr>
+        <td class="number-cell">1.9.1</td>
+        <td class="title-cell"><a href="jobs.html#steps" >Steps</a></td>
+      </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step"><strong><code>step</code></strong> schema</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.in_parallel_config"><strong><code>in_parallel_config</code></strong> schema</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.get-step.get"><code>get</code> step <strong><code>get</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.get-step.resource"><code>get</code> step <strong><code>resource</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.get-step.passed"><code>get</code> step <strong><code>passed</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.get-step.params"><code>get</code> step <strong><code>params</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.get-step.trigger"><code>get</code> step <strong><code>trigger</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.get-step.version"><code>get</code> step <strong><code>version</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#get-step"><code>get</code> step</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.put-step.put"><code>put</code> step <strong><code>put</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.put-step.resource"><code>put</code> step <strong><code>resource</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.put-step.inputs"><code>put</code> step <strong><code>inputs</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.put-step.params"><code>put</code> step <strong><code>params</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.put-step.get_params"><code>put</code> step <strong><code>get_params</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#put-step"><code>put</code> step</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.task-step.task"><code>task</code> step <strong><code>task</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.task-step.config"><code>task</code> step <strong><code>config</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.task-step.file"><code>task</code> step <strong><code>file</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.task-step.image"><code>task</code> step <strong><code>image</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.task-step.privileged"><code>task</code> step <strong><code>privileged</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.task-step.vars"><code>task</code> step <strong><code>vars</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.task-step.params"><code>task</code> step <strong><code>params</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.task-step.input_mapping"><code>task</code> step <strong><code>input_mapping</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.task-step.output_mapping"><code>task</code> step <strong><code>output_mapping</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#task-step"><code>task</code> step</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.set-pipeline-step.set_pipeline"><code>set_pipeline</code> step <strong><code>set_pipeline</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.set-pipeline-step.file"><code>set_pipeline</code> step <strong><code>file</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.set-pipeline-step.vars"><code>set_pipeline</code> step <strong><code>vars</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.set-pipeline-step.var_files"><code>set_pipeline</code> step <strong><code>var_files</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#set-pipeline-step"><code>set_pipeline</code> step</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.load-var-step.load_var"><code>load_var</code> step <strong><code>load_var</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.load-var-step.file"><code>load_var</code> step <strong><code>file</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.load-var-step.format"><code>load_var</code> step <strong><code>format</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.load-var-step.reveal"><code>load_var</code> step <strong><code>reveal</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#load-var-step"><code>load_var</code> step</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.in_parallel_config.steps"><code>in_parallel</code> step <strong><code>steps</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.in_parallel_config.limit"><code>in_parallel</code> step <strong><code>limit</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.in_parallel_config.fail_fast"><code>in_parallel</code> step <strong><code>fail_fast</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.in-parallel-step.in_parallel"><code>in_parallel</code> step <strong><code>in_parallel</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#in-parallel-step"><code>in_parallel</code> step</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.aggregate-step.aggregate"><code>aggregate</code> step <strong><code>aggregate</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#aggregate-step"><code>aggregate</code> step</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.do-step.do"><code>do</code> step <strong><code>do</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#do-step"><code>do</code> step</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.try-step.try"><code>try</code> step <strong><code>try</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#try-step"><code>try</code> step</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.timeout"><code class="schema-attribute-name"><bold>step<wbr />.timeout</bold></code></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.attempts"><code class="schema-attribute-name"><bold>step<wbr />.attempts</bold></code></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.tags"><code class="schema-attribute-name"><bold>step<wbr />.tags</bold></code></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.on_success"><code class="schema-attribute-name"><bold>step<wbr />.on_success</bold></code></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.on_failure"><code class="schema-attribute-name"><bold>step<wbr />.on_failure</bold></code></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.on_abort"><code class="schema-attribute-name"><bold>step<wbr />.on_abort</bold></code></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.on_error"><code class="schema-attribute-name"><bold>step<wbr />.on_error</bold></code></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.ensure"><code class="schema-attribute-name"><bold>step<wbr />.ensure</bold></code></a></td>
+        </tr>
+      
+      
+  
+
+    
+      <tr>
+        <td class="number-cell">1.9.2</td>
+        <td class="title-cell"><a href="jobs.html#managing-jobs" >Managing Jobs</a></td>
+      </tr>
+      
+      
+  
+    
+      <tr>
+        <td class="number-cell">1.9.2.1</td>
+        <td class="title-cell"><a href="jobs.html#fly-jobs" ><code>fly jobs</code></a></td>
+      </tr>
+      
+      
+  
+    
+  
+
+    
+      <tr>
+        <td class="number-cell">1.9.2.2</td>
+        <td class="title-cell"><a href="jobs.html#fly-trigger-job" ><code>fly trigger-job</code></a></td>
+      </tr>
+      
+      
+  
+    
+  
+
+    
+      <tr>
+        <td class="number-cell">1.9.2.3</td>
+        <td class="title-cell"><a href="jobs.html#fly-rerun-build" ><code>fly rerun-build</code></a></td>
+      </tr>
+      
+      
+  
+    
+  
+
+    
+      <tr>
+        <td class="number-cell">1.9.2.4</td>
+        <td class="title-cell"><a href="jobs.html#fly-pause-job" ><code>fly pause-job</code></a></td>
+      </tr>
+      
+      
+  
+    
+  
+
+    
+      <tr>
+        <td class="number-cell">1.9.2.5</td>
+        <td class="title-cell"><a href="jobs.html#fly-unpause-job" ><code>fly unpause-job</code></a></td>
+      </tr>
+      
+      
+  
+    
+  
+
+    
+      <tr>
+        <td class="number-cell">1.9.2.6</td>
+        <td class="title-cell"><a href="jobs.html#fly-clear-task-cache" ><code>fly clear-task-cache</code></a></td>
+      </tr>
+      
+      
+  
+    
+  
+
+    
+  
+
+    
   
 
     </table>
   </div>
 </div>
 
-    </div>
+      </div>
 
-    <div class="page-aside"></div>
-
-    <div class="page-content">
-      <div class="section" id="section_jobs">
+      <div class="body-content">
+        <div class="page-content">
+          <div class="section" id="section_jobs">
   
-  <h1 class="section-header"><a class="anchor" name="jobs" href="#jobs"></a><span class="section-number">1.8 </span>Jobs</h1>
+  <h1 class="section-header"><a class="anchor-target" name="jobs" href="#jobs"></a><span class="section-number">1.9 </span>Jobs</h1>
   
 
-  <p><a href="jobs.html">Jobs</a> determine the <em>actions</em> of your pipeline. They determine how <a href="resources.html">resources</a> progress through it, and how the pipeline is visualized.</p><p>The most important attribute of a job is its build plan, configured as <a href="jobs.html#job-plan"><strong><code>plan</code></strong></a>. This determines the sequence of <a href="steps.html">Steps</a> to execute in any builds of the job.</p><p>Jobs are listed under the <code>jobs:</code> key in the pipeline configuration. Each configured job consists of the following fields:</p><div class="definition">
-  <div class="definition-thumb">
-    <a name="job-name"></a>
-    <pre><a href="jobs.html#job-name"><strong>name</strong></a>: string</pre>
-  </div>
+  <p><a href="jobs.html">Jobs</a> determine the <em>actions</em> of your pipeline. They determine how <a href="resources.html">resources</a> progress through it, and how the pipeline is visualized.</p><p>The most important attribute of a job is its build plan, configured as <a href="jobs.html#schema.job.plan"><code class="schema-attribute-name"><bold>job<wbr />.plan</bold></code></a>. This determines the sequence of <a href="jobs.html#steps">Steps</a> to execute in any builds of the job.</p><p>A pipeline&#39;s jobs are listed under <a href="pipelines.html#schema.pipeline.jobs"><code class="schema-attribute-name"><bold>pipeline<wbr />.jobs</bold></code></a> with the following schema:</p><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.job" href="#schema.job"></a><code>job</code> schema</h2>
 
-  <div class="definition-content">
-    <p><em>Required.</em> The name of the job. This should be short; it will show up in URLs.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="job-old-name"></a>
-    <pre><a href="jobs.html#job-old-name"><strong>old_name</strong></a>: string</pre>
-  </div>
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.job.name" type="checkbox" class="toggle" />
+  <label for="toggle-schema.job.name" class="toggle-title">
+    <a id="schema.job.name"></a>
 
-  <div class="definition-content">
-    <p><em>Optional.</em> The old name of the job. If configured, the history of old job will be inherited to the new one. Once the pipeline is set, this field can be removed as the builds have been transfered.</p><p>This can be used to rename a job without losing its history, like so:</p><pre><code class="language-yaml">jobs:
+    <code><a class="attribute-name" href="#schema.job.name">name</a>: <span class="attribute-type"><a href="config-basics.html#schema.identifier"><strong>identifier</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The name of the job. This should be short; it will show up in URLs.</p>
+  </div>
+</div><div class="toggleable schema-attribute required">
+  <input id="toggle-schema.job.plan" type="checkbox" class="toggle" />
+  <label for="toggle-schema.job.plan" class="toggle-title">
+    <a id="schema.job.plan"></a>
+
+    <code><a class="attribute-name" href="#schema.job.plan">plan</a>: <span class="attribute-type">[<a href="jobs.html#schema.step"><strong>step</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The sequence of <a href="jobs.html#steps">steps</a> to execute.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.job.old_name" type="checkbox" class="toggle" />
+  <label for="toggle-schema.job.old_name" class="toggle-title">
+    <a id="schema.job.old_name"></a>
+
+    <code><a class="attribute-name" href="#schema.job.old_name">old_name</a>: <span class="attribute-type"><a href="config-basics.html#schema.identifier"><strong>identifier</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The old name of the job. If configured, the history of old job will be inherited to the new one. Once the pipeline is set, this field can be removed as the builds have been transfered.</p><div class="toggleable example">
+  <input id="toggle-8d6dc7cd543f11b7267f8953d34dab033ac741a4" type="checkbox" class="toggle" />
+  <label for="toggle-8d6dc7cd543f11b7267f8953d34dab033ac741a4" class="toggle-title">Renaming a job</label>
+  <div class="toggle-content">
+    <p>This can be used to rename a job without losing its history, like so:</p><pre><code class="language-yaml">jobs:
 - name: new-name
   old_name: current-name
   plan: [get: 10m]</code></pre><p>After the pipeline is set, because the builds have been inherited, the job can have the field removed:</p><pre><code class="language-yaml">jobs:
 - name: new-name
   plan: [get: 10m]</code></pre>
   </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="job-plan"></a>
-    <pre><a href="jobs.html#job-plan"><strong>plan</strong></a>: [step]</pre>
+</div>
   </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.job.serial" type="checkbox" class="toggle" />
+  <label for="toggle-schema.job.serial" class="toggle-title">
+    <a id="schema.job.serial"></a>
 
-  <div class="definition-content">
-    <p><em>Required.</em> The sequence of <a href="steps.html">steps</a> to execute.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="job-serial"></a>
-    <pre><a href="jobs.html#job-serial"><strong>serial</strong></a>: boolean</pre>
-  </div>
+    <code><a class="attribute-name" href="#schema.job.serial">serial</a>: <span class="attribute-type"><a href="config-basics.html#schema.boolean"><strong>boolean</strong></a></span></code>
+  </label>
 
-  <div class="definition-content">
-    <p><em>Optional. Default <code>false</code>.</em> If set to <code>true</code>, builds will queue up and execute one-by-one, rather than executing in parallel.</p>
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>false</code>.</em> If set to <code>true</code>, builds will queue up and execute one-by-one, rather than executing in parallel.</p>
   </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="job-build-log-retention"></a>
-    <pre><a href="jobs.html#job-build-log-retention"><strong>build_log_retention</strong></a>: retention_config</pre>
-  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.job.build_log_retention" type="checkbox" class="toggle" />
+  <label for="toggle-schema.job.build_log_retention" class="toggle-title">
+    <a id="schema.job.build_log_retention"></a>
 
-  <div class="definition-content">
-    <p><em>Optional.</em> Configures the retention policy for build logs. This is useful if you have a job that runs often but after some amount of time the logs aren&#39;t worth keeping around.</p><p>The following fields may be specified in <code>retention_config</code>:</p><div class="definition">
-  <div class="definition-thumb">
-    <a name="job-build-log-retention-days"></a>
-    <pre><a href="jobs.html#job-build-log-retention-days"><strong>days</strong></a>: number</pre>
-  </div>
+    <code><a class="attribute-name" href="#schema.job.build_log_retention">build_log_retention</a>: <span class="attribute-type"><a href="jobs.html#schema.build_log_retention_policy"><strong>build_log_retention_policy</strong></a></span></code>
+  </label>
 
-  <div class="definition-content">
-    <p><em>Optional.</em> Keep logs for builds which have finished within the specified number of days.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="job-build-log-retention-builds"></a>
-    <pre><a href="jobs.html#job-build-log-retention-builds"><strong>builds</strong></a>: number</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Optional.</em> Keep logs for the last specified number of builds.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="job-build-log-retention-minimum-succeeded-builds"></a>
-    <pre><a href="jobs.html#job-build-log-retention-minimum-succeeded-builds"><strong>minimum_succeeded_builds</strong></a>: number</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Optional.</em> Keep a minimum number of successful build logs that would normally be reaped. Requires <a href="jobs.html#job-build-log-retention-builds"><strong><code>build_log_retention.builds</code></strong></a> to be set to an integer higher than 0 in order to work. For example, if <a href="jobs.html#job-build-log-retention-builds"><strong><code>build_log_retention.builds</code></strong></a> is set to 5, and this attribute to 1, say a job has the following build history: 7(f), 6(f), 5(f), 4(f), 3(f), 2(f), 1(s), where f means failed and s means succeeded, then builds 2 and 3 will be reaped, because it retains 5 build logs, and at least 1 succeeded build log. Default is 0.</p>
-  </div>
-</div><p>Builds which are not retained by one of the above configurations will have their logs reaped.</p><p>The following example will keep logs for any builds that have completed in the last 2 days, while also keeping the last 1000 builds and at least 1 succeeded build.</p><pre><code class="language-yaml">jobs:
+  <div class="toggle-content attribute-content">
+    <p>Configures the retention policy for build logs. This is useful if you have a job that runs often but after some amount of time the logs aren&#39;t worth keeping around.</p><p>Builds which are not retained by the configured policy will have their logs reaped. If this configuration is omitted, logs are kept forever.</p><div class="toggleable example">
+  <input id="toggle-2bcf96eb78ea68872c3d8f5e659ec77803338d27" type="checkbox" class="toggle" />
+  <label for="toggle-2bcf96eb78ea68872c3d8f5e659ec77803338d27" class="toggle-title">A complicated example</label>
+  <div class="toggle-content">
+    <p>The following example will keep logs for any builds that have completed in the last 2 days, while also keeping the last 1000 builds and at least 1 succeeded build.</p><pre><code class="language-yaml">jobs:
 - name: smoke-tests
   build_log_retention:
     days: 2
@@ -681,26 +756,72 @@
   plan:
   - get: 10m
   - task: smoke-tests
-    # ...</code></pre><p>Note: if more than 1000 builds finish in the past 2 days, <em>all</em> of them will be retained thanks to the <a href="jobs.html#job-build-log-retention-days"><strong><code>build_log_retention.days</code></strong></a> configuration. Similarly, if there are 1000 builds spanning more than 2 days, they will also be kept thanks to the <a href="jobs.html#job-build-log-retention-builds"><strong><code>build_log_retention.builds</code></strong></a> configuration. And if they all happened to have failed, the <a href="jobs.html#job-build-log-retention-minimum-succeeded-builds"><strong><code>build_log_retention.minimum_succeeded_builds</code></strong></a> will keep around at least one successful build. All policies operate independently.</p>
+    # ...</code></pre><p>If more than 1000 builds finish in the past 2 days, <em>all</em> of them will be retained thanks to the <a href="jobs.html#schema.build_log_retention_policy.days"><code>days</code></a> configuration. Similarly, if there are 1000 builds spanning more than 2 days, they will also be kept thanks to the <a href="jobs.html#schema.build_log_retention_policy.builds"><code>builds</code></a> configuration. And if they all happened to have failed, the <a href="jobs.html#schema.build_log_retention_policy.minimum_succeeded_builds"><code>minimum_succeeded_builds</code></a> will keep around at least one successful build. All policies operate independently.</p>
   </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="job-build-logs-to-retain"></a>
-    <pre><a href="jobs.html#job-build-logs-to-retain"><strong>build_logs_to_retain</strong></a>: number</pre>
-  </div>
+</div><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.build_log_retention_policy" href="#schema.build_log_retention_policy"></a><code>build_log_retention_policy</code> schema</h2>
 
-  <div class="definition-content">
-    <p><em>Optional.</em> Deprecated in favor of <a href="jobs.html#job-build-log-retention"><strong><code>build_log_retention</code></strong></a>.</p><p>Equivalent to the following:</p><pre><code class="language-yaml">build_log_retention:
-  builds: number</code></pre>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="job-serial-groups"></a>
-    <pre><a href="jobs.html#job-serial-groups"><strong>serial_groups</strong></a>: [string]</pre>
-  </div>
+  <div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.build_log_retention_policy.days" type="checkbox" class="toggle" />
+  <label for="toggle-schema.build_log_retention_policy.days" class="toggle-title">
+    <a id="schema.build_log_retention_policy.days"></a>
 
-  <div class="definition-content">
-    <p><em>Optional. Default <code>[]</code>.</em> When set to an array of arbitrary tag-like strings, builds of this job and other jobs referencing the same tags will be serialized.</p><p>This can be used to ensure that certain jobs do not run at the same time, like so:</p><pre><code class="language-yaml">jobs:
+    <code><a class="attribute-name" href="#schema.build_log_retention_policy.days">days</a>: <span class="attribute-type"><a href="config-basics.html#schema.number"><strong>number</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Keep logs for builds which have finished within the specified number of days.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.build_log_retention_policy.builds" type="checkbox" class="toggle" />
+  <label for="toggle-schema.build_log_retention_policy.builds" class="toggle-title">
+    <a id="schema.build_log_retention_policy.builds"></a>
+
+    <code><a class="attribute-name" href="#schema.build_log_retention_policy.builds">builds</a>: <span class="attribute-type"><a href="config-basics.html#schema.number"><strong>number</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Keep logs for the last specified number of builds.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.build_log_retention_policy.minimum_succeeded_builds" type="checkbox" class="toggle" />
+  <label for="toggle-schema.build_log_retention_policy.minimum_succeeded_builds" class="toggle-title">
+    <a id="schema.build_log_retention_policy.minimum_succeeded_builds"></a>
+
+    <code><a class="attribute-name" href="#schema.build_log_retention_policy.minimum_succeeded_builds">minimum_succeeded_builds</a>: <span class="attribute-type"><a href="config-basics.html#schema.number"><strong>number</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Keep a minimum number of successful build logs that would normally be reaped.</p><p>Requires <a href="jobs.html#schema.build_log_retention_policy.builds"><code>builds</code></a> to be set to an integer higher than 0 in order to work. For example, if <a href="jobs.html#schema.build_log_retention_policy.builds"><code>builds</code></a> is set to 5, and this attribute to 1, say a job has the following build history: 7(f), 6(f), 5(f), 4(f), 3(f), 2(f), 1(s), where f means failed and s means succeeded, then builds 2 and 3 will be reaped, because it retains 5 build logs, and at least 1 succeeded build log. Default is 0.</p>
+  </div>
+</div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.job.build_logs_to_retain" type="checkbox" class="toggle" />
+  <label for="toggle-schema.job.build_logs_to_retain" class="toggle-title">
+    <a id="schema.job.build_logs_to_retain"></a>
+
+    <code><a class="attribute-name" href="#schema.job.build_logs_to_retain">build_logs_to_retain</a>: <span class="attribute-type"><a href="config-basics.html#schema.number"><strong>number</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Deprecated.</em> Equivalent to setting <a href="jobs.html#schema.build_log_retention_policy.builds"><code>job.build_log_retention.builds</code></a>.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.job.serial_groups" type="checkbox" class="toggle" />
+  <label for="toggle-schema.job.serial_groups" class="toggle-title">
+    <a id="schema.job.serial_groups"></a>
+
+    <code><a class="attribute-name" href="#schema.job.serial_groups">serial_groups</a>: <span class="attribute-type">[<a href="config-basics.html#schema.identifier"><strong>identifier</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>[]</code>.</em> When set to an array of arbitrary tag-like strings, builds of this job and other jobs referencing the same tags will be serialized.</p><div class="toggleable example">
+  <input id="toggle-17821c1e6eeaa874a2cde83946f0ad8d35ac5826" type="checkbox" class="toggle" />
+  <label for="toggle-17821c1e6eeaa874a2cde83946f0ad8d35ac5826" class="toggle-title">Limiting parallelism</label>
+  <div class="toggle-content">
+    <p>This can be used to ensure that certain jobs do not run at the same time, like so:</p><pre><code class="language-yaml">jobs:
 - name: job-a
   serial_groups: [some-tag]
 - name: job-b
@@ -708,117 +829,1380 @@
 - name: job-c
   serial_groups: [some-other-tag]</code></pre><p>In this example, <code>job-a</code> and <code>job-c</code> can run concurrently, but neither job can run builds at the same time as <code>job-b</code>.</p><p>The builds are executed in their order of creation, across all jobs with common tags.</p>
   </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="job-max-in-flight"></a>
-    <pre><a href="jobs.html#job-max-in-flight"><strong>max_in_flight</strong></a>: integer</pre>
+</div>
   </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.job.max_in_flight" type="checkbox" class="toggle" />
+  <label for="toggle-schema.job.max_in_flight" class="toggle-title">
+    <a id="schema.job.max_in_flight"></a>
 
-  <div class="definition-content">
-    <p><em>Optional.</em> If set, specifies a maximum number of builds to run at a time. If <code>serial</code> or <code>serial_groups</code> are set, they take precedence and force this value to be <code>1</code>.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="job-public"></a>
-    <pre><a href="jobs.html#job-public"><strong>public</strong></a>: boolean</pre>
-  </div>
+    <code><a class="attribute-name" href="#schema.job.max_in_flight">max_in_flight</a>: <span class="attribute-type"><a href="config-basics.html#schema.number"><strong>number</strong></a></span></code>
+  </label>
 
-  <div class="definition-content">
-    <p><em>Optional. Default <code>false</code>.</em> If set to <code>true</code>, the build log of this job will be viewable by unauthenticated users. Unauthenticated users will always be able to see the inputs, outputs, and build status history of a job. This is useful if you would like to expose your pipeline publicly without showing sensitive information in the build log.</p><p>Note: when this is set to <code>true</code>, any <a href="get-step.html"><code>get</code> step</a> and <a href="put-step.html"><code>put</code> step</a>s will show the metadata for their resource version, regardless of whether the resource itself has set <a href="resources.html#resource-public"><strong><code>public</code></strong></a> to <code>true</code>.</p>
+  <div class="toggle-content attribute-content">
+    <p>If set, specifies a maximum number of builds to run at a time. If <code>serial</code> or <code>serial_groups</code> are set, they take precedence and force this value to be <code>1</code>.</p>
   </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="job-disable-manual-trigger"></a>
-    <pre><a href="jobs.html#job-disable-manual-trigger"><strong>disable_manual_trigger</strong></a>: boolean</pre>
-  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.job.public" type="checkbox" class="toggle" />
+  <label for="toggle-schema.job.public" class="toggle-title">
+    <a id="schema.job.public"></a>
 
-  <div class="definition-content">
-    <p><em>Optional. Default <code>false</code>.</em> If set to <code>true</code>, manual triggering of the job (via the web UI or <a href="managing-jobs.html#fly-trigger-job"><code>fly trigger-job</code></a>) will be disabled.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="job-interruptible"></a>
-    <pre><a href="jobs.html#job-interruptible"><strong>interruptible</strong></a>: boolean</pre>
-  </div>
+    <code><a class="attribute-name" href="#schema.job.public">public</a>: <span class="attribute-type"><a href="config-basics.html#schema.boolean"><strong>boolean</strong></a></span></code>
+  </label>
 
-  <div class="definition-content">
-    <p><em>Optional. Default <code>false</code>.</em> Normally, when a worker is shutting down it will wait for builds with containers running on that worker to finish before exiting. If this value is set to <code>true</code>, the worker will not wait on the builds of this job. You may want this if e.g. you have a self-deploying Concourse or long-running-but-low-importance jobs.</p>
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>false</code>.</em> If set to <code>true</code>, the build log of this job will be viewable by unauthenticated users. Unauthenticated users will always be able to see the inputs, outputs, and build status history of a job. This is useful if you would like to expose your pipeline publicly without showing sensitive information in the build log.</p><p>Note: when this is set to <code>true</code>, any <a href="jobs.html#get-step"><code>get</code> step</a> and <a href="jobs.html#put-step"><code>put</code> step</a>s will show the metadata for their resource version, regardless of whether the resource itself has set <a href="resources.html#schema.resource.public"><code class="schema-attribute-name"><bold>resource<wbr />.public</bold></code></a> to <code>true</code>.</p>
   </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="job-on-success"></a>
-    <pre><a href="jobs.html#job-on-success"><strong>on_success</strong></a>: step</pre>
-  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.job.disable_manual_trigger" type="checkbox" class="toggle" />
+  <label for="toggle-schema.job.disable_manual_trigger" class="toggle-title">
+    <a id="schema.job.disable_manual_trigger"></a>
 
-  <div class="definition-content">
-    <p><em>Optional.</em> Step to execute when the job succeeds. Equivalent to the <a href="on-success-step-hook.html#on_success"><strong><code>on_success</code></strong></a> step attribute.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="job-on-failure"></a>
-    <pre><a href="jobs.html#job-on-failure"><strong>on_failure</strong></a>: step</pre>
-  </div>
+    <code><a class="attribute-name" href="#schema.job.disable_manual_trigger">disable_manual_trigger</a>: <span class="attribute-type"><a href="config-basics.html#schema.boolean"><strong>boolean</strong></a></span></code>
+  </label>
 
-  <div class="definition-content">
-    <p><em>Optional.</em> Step to execute when the job fails. Equivalent to the <a href="on-failure-step-hook.html#on_failure"><strong><code>on_failure</code></strong></a> step attribute.</p>
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>false</code>.</em> If set to <code>true</code>, manual triggering of the job (via the web UI or <a href="jobs.html#fly-trigger-job"><code>fly trigger-job</code></a>) will be disabled.</p>
   </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="job-on-error"></a>
-    <pre><a href="jobs.html#job-on-error"><strong>on_error</strong></a>: step</pre>
-  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.job.interruptible" type="checkbox" class="toggle" />
+  <label for="toggle-schema.job.interruptible" class="toggle-title">
+    <a id="schema.job.interruptible"></a>
 
-  <div class="definition-content">
-    <p><em>Optional.</em> Step to execute when the job errors. Equivalent to the <a href="on-error-step-hook.html#on_error"><strong><code>on_error</code></strong></a> step attribute.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="job-on-abort"></a>
-    <pre><a href="jobs.html#job-on-abort"><strong>on_abort</strong></a>: step</pre>
-  </div>
+    <code><a class="attribute-name" href="#schema.job.interruptible">interruptible</a>: <span class="attribute-type"><a href="config-basics.html#schema.boolean"><strong>boolean</strong></a></span></code>
+  </label>
 
-  <div class="definition-content">
-    <p><em>Optional.</em> Step to execute when the job aborts. Equivalent to the <a href="on-abort-step-hook.html#on_abort"><strong><code>on_abort</code></strong></a> step attribute.</p>
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>false</code>.</em> Normally, when a worker is shutting down it will wait for builds with containers running on that worker to finish before exiting. If this value is set to <code>true</code>, the worker will not wait on the builds of this job. You may want this if e.g. you have a self-deploying Concourse or long-running-but-low-importance jobs.</p>
   </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="job-ensure"></a>
-    <pre><a href="jobs.html#job-ensure"><strong>ensure</strong></a>: step</pre>
-  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.job.on_success" type="checkbox" class="toggle" />
+  <label for="toggle-schema.job.on_success" class="toggle-title">
+    <a id="schema.job.on_success"></a>
 
-  <div class="definition-content">
-    <p><em>Optional.</em> Step to execute regardless of whether the job succeeds, fails, errors, or aborts. Equivalent to the <a href="ensure-step-hook.html#ensure"><strong><code>ensure</code></strong></a> step attribute.</p>
+    <code><a class="attribute-name" href="#schema.job.on_success">on_success</a>: <span class="attribute-type"><a href="jobs.html#schema.step"><strong>step</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Step to execute when the job succeeds. Equivalent to the <a href="jobs.html#schema.step.on_success"><code class="schema-attribute-name"><bold>step<wbr />.on_success</bold></code></a> hook.</p>
   </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.job.on_failure" type="checkbox" class="toggle" />
+  <label for="toggle-schema.job.on_failure" class="toggle-title">
+    <a id="schema.job.on_failure"></a>
+
+    <code><a class="attribute-name" href="#schema.job.on_failure">on_failure</a>: <span class="attribute-type"><a href="jobs.html#schema.step"><strong>step</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Step to execute when the job fails. Equivalent to the <a href="jobs.html#schema.step.on_failure"><code class="schema-attribute-name"><bold>step<wbr />.on_failure</bold></code></a> hook.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.job.on_error" type="checkbox" class="toggle" />
+  <label for="toggle-schema.job.on_error" class="toggle-title">
+    <a id="schema.job.on_error"></a>
+
+    <code><a class="attribute-name" href="#schema.job.on_error">on_error</a>: <span class="attribute-type"><a href="jobs.html#schema.step"><strong>step</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Step to execute when the job errors. Equivalent to the <a href="jobs.html#schema.step.on_error"><code class="schema-attribute-name"><bold>step<wbr />.on_error</bold></code></a> hook.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.job.on_abort" type="checkbox" class="toggle" />
+  <label for="toggle-schema.job.on_abort" class="toggle-title">
+    <a id="schema.job.on_abort"></a>
+
+    <code><a class="attribute-name" href="#schema.job.on_abort">on_abort</a>: <span class="attribute-type"><a href="jobs.html#schema.step"><strong>step</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Step to execute when the job aborts. Equivalent to the <a href="jobs.html#schema.step.on_abort"><code class="schema-attribute-name"><bold>step<wbr />.on_abort</bold></code></a> hook.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.job.ensure" type="checkbox" class="toggle" />
+  <label for="toggle-schema.job.ensure" class="toggle-title">
+    <a id="schema.job.ensure"></a>
+
+    <code><a class="attribute-name" href="#schema.job.ensure">ensure</a>: <span class="attribute-type"><a href="jobs.html#schema.step"><strong>step</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Step to execute regardless of whether the job succeeds, fails, errors, or aborts. Equivalent to the <a href="jobs.html#schema.step.ensure"><code class="schema-attribute-name"><bold>step<wbr />.ensure</bold></code></a> hook.</p>
+  </div>
+</div>
+</div><div class="table-of-contents">
+  <span class="toc-header">Table of contents:</span>
+
+  
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.9.1</span>
+      <a href="jobs.html#steps">Steps</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.9.2</span>
+      <a href="jobs.html#managing-jobs">Managing Jobs</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.9.2.1</span>
+      <a href="jobs.html#fly-jobs"><code>fly jobs</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.9.2.2</span>
+      <a href="jobs.html#fly-trigger-job"><code>fly trigger-job</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.9.2.3</span>
+      <a href="jobs.html#fly-rerun-build"><code>fly rerun-build</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.9.2.4</span>
+      <a href="jobs.html#fly-pause-job"><code>fly pause-job</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.9.2.5</span>
+      <a href="jobs.html#fly-unpause-job"><code>fly unpause-job</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.9.2.6</span>
+      <a href="jobs.html#fly-clear-task-cache"><code>fly clear-task-cache</code></a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+</div>
+
+  
+    
+      <div class="section" id="section_steps">
+  
+  <h2 class="section-header"><a class="anchor-target" name="steps" href="#steps"></a>Steps</h2>
+  
+
+  <p>Each <a href="jobs.html">job</a> has a single build plan configured as <a href="jobs.html#schema.job.plan"><code class="schema-attribute-name"><bold>job<wbr />.plan</bold></code></a>. A build plan is a recipe for what to run when a build of the job is created.</p><p>A build plan is a sequence of <em>steps</em>:</p><ul>
+
+  <li><p>the <a href="jobs.html#task-step"><code>task</code> step</a> runs a <a href="tasks.html">task</a></p></li>
+
+  <li><p>the <a href="jobs.html#get-step"><code>get</code> step</a> fetches a <a href="resources.html">resource</a></p></li>
+
+  <li><p>the <a href="jobs.html#put-step"><code>put</code> step</a> updates a <a href="resources.html">resource</a></p></li>
+
+  <li><p>the <a href="jobs.html#set-pipeline-step"><code>set_pipeline</code> step</a> configures a <a href="pipelines.html">pipeline</a></p></li>
+
+  <li><p>the <a href="jobs.html#load-var-step"><code>load_var</code> step</a> loads a value into a <a href="vars.html#local-vars">local var</a></p></li>
+
+  <li><p>the <a href="jobs.html#in-parallel-step"><code>in_parallel</code> step</a> runs steps in parallel</p></li>
+
+  <li><p>the <a href="jobs.html#do-step"><code>do</code> step</a> runs steps in sequence</p></li>
+
+  <li><p>the <a href="jobs.html#try-step"><code>try</code> step</a> attempts to run a step and succeeds even if the step fails</p></li>
+
+</ul><p>When a new version is available for a <code>get</code> step with <a href="jobs.html#schema.step.get-step.trigger"><code>trigger: true</code></a> configured, a new build of the job will be created from the build plan.</p><p>When viewing the job in the pipeline, resources that are used as <code>get</code> steps appear as inputs, and resources that are used in <code>put</code> steps appear as outputs. Jobs are rendered downstream of any jobs they reference in <a href="jobs.html#schema.step.get-step.passed"><code>passed</code></a> constraints, connected by the resource.</p><p>If any step in the build plan fails, the build will fail and subsequent steps will not be executed. Additional steps may be configured to run after failure by configuring <a href="jobs.html#schema.step.on_failure"><code class="schema-attribute-name"><bold>step<wbr />.on_failure</bold></code></a> or <a href="jobs.html#schema.step.ensure"><code class="schema-attribute-name"><bold>step<wbr />.ensure</bold></code></a> (or the job equivalents, <a href="jobs.html#schema.job.on_failure"><code class="schema-attribute-name"><bold>job<wbr />.on_failure</bold></code></a> and <a href="jobs.html#schema.job.ensure"><code class="schema-attribute-name"><bold>job<wbr />.ensure</bold></code></a>).</p><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.step" href="#schema.step"></a><code>step</code> schema</h2>
+
+  <div class="schema-one-of">
+  <div class="one-of-header">one of...</div>
+
+  
+  <div class="one-of-option">
+    <div class="schema-group">
+  <a id="get-step"></a>
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.step.get-step.get" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.get-step.get" class="toggle-title">
+    <a id="schema.step.get-step.get"></a>
+
+    <code><a class="attribute-name" href="#schema.step.get-step.get">get</a>: <span class="attribute-type"><a href="resources.html#schema.resource.name"><strong>resource.name</strong></a> | <a href="config-basics.html#schema.identifier"><strong>identifier</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Fetches a version of a <a href="resources.html">resource</a>.</p><p>The fetched bits will be registered in the build&#39;s artifact namespace under the given identifier. Subsequent <a href="jobs.html#task-step"><code>task</code> step</a> and <a href="jobs.html#put-step"><code>put</code> step</a> which list the identifier as an input will have a copy of the bits in their working directory.</p><div class="toggleable example">
+  <input id="toggle-1a73515856bda292c46f596251fcb83abf5ff1bb" type="checkbox" class="toggle" />
+  <label for="toggle-1a73515856bda292c46f596251fcb83abf5ff1bb" class="toggle-title">Fetching a repo and running its tests</label>
+  <div class="toggle-content">
+    <p>Almost every simple unit test job will look something like this: fetch my code with a <a href="jobs.html#get-step"><code>get</code> step</a> and run its tests with a <a href="jobs.html#task-step"><code>task</code> step</a>.</p><pre><code class="language-yaml">plan:
+- get: my-repo
+  trigger: true
+- task: unit
+  file: my-repo/ci/unit.yml</code></pre>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.get-step.resource" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.get-step.resource" class="toggle-title">
+    <a id="schema.step.get-step.resource"></a>
+
+    <code><a class="attribute-name" href="#schema.step.get-step.resource">resource</a>: <span class="attribute-type"><a href="resources.html#schema.resource.name"><strong>resource.name</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Defaults to the value of <code>get</code>.</em> The resource to fetch, as configured in <a href="pipelines.html#schema.pipeline.resources"><code class="schema-attribute-name"><bold>pipeline<wbr />.resources</bold></code></a>.</p><p>Use this attribute to rename a resource from the overall pipeline context into the job-specific context.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.get-step.passed" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.get-step.passed" class="toggle-title">
+    <a id="schema.step.get-step.passed"></a>
+
+    <code><a class="attribute-name" href="#schema.step.get-step.passed">passed</a>: <span class="attribute-type">[<a href="jobs.html#schema.job.name"><strong>job.name</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>When specified, only the versions of the resource that made it through the given list of jobs (AND-ed together) will be considered when triggering and fetching.</p><div class="toggleable example">
+  <input id="toggle-d0b8bde70a0cca5baafcb9f554bcfe4095de0533" type="checkbox" class="toggle" />
+  <label for="toggle-d0b8bde70a0cca5baafcb9f554bcfe4095de0533" class="toggle-title">Fanning in from upstream jobs</label>
+  <div class="toggle-content">
+    <p>If multiple <code>get</code>s are configured with <code>passed</code> constraints, all of the mentioned jobs are correlated. That is, with the following set of inputs:</p><pre><code class="language-yaml">plan:
+- get: a
+  passed: [a-unit, integration]
+- get: b
+  passed: [b-unit, integration]
+- get: x
+  passed: [integration]</code></pre><p>This means &#34;give me the versions of <code>a</code>, <code>b</code>, and <code>x</code> that have passed the <em>same build</em> of <code>integration</code>, with the same version of <code>a</code> passing <code>a-unit</code> and the same version of <code>b</code> passing <code>b-unit</code>.&#34;</p><p>This is crucial to being able to implement safe &#34;fan-in&#34; semantics as things progress through a pipeline.</p>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.get-step.params" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.get-step.params" class="toggle-title">
+    <a id="schema.step.get-step.params"></a>
+
+    <code><a class="attribute-name" href="#schema.step.get-step.params">params</a>: <span class="attribute-type"><a href="config-basics.html#schema.config"><strong>config</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Arbitrary configuration to pass to the resource. Refer to the resource type&#39;s documentation to see what it supports.</p><div class="toggleable example">
+  <input id="toggle-67cd8f6b08c66abea8bf732d378ea6faa678e523" type="checkbox" class="toggle" />
+  <label for="toggle-67cd8f6b08c66abea8bf732d378ea6faa678e523" class="toggle-title">Fetching with <code>params</code></label>
+  <div class="toggle-content">
+    <p>The following plan fetches a version number via the <code>semver</code> resource, bumps it to the next release candidate, and <a href="jobs.html#put-step"><code>put</code></a>s it back.</p><pre><code class="language-yaml">plan:
+- get: version
+  params:
+    bump: minor
+    rc: true
+- put: version
+  params: {version: version/number}</code></pre>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.get-step.trigger" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.get-step.trigger" class="toggle-title">
+    <a id="schema.step.get-step.trigger"></a>
+
+    <code><a class="attribute-name" href="#schema.step.get-step.trigger">trigger</a>: <span class="attribute-type"><a href="config-basics.html#schema.boolean"><strong>boolean</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>false</code>.</em> If set to <code>true</code>, new builds of the job will be automatically created when a new version for this input becomes available.</p><p>Note: if none of a job&#39;s <code>get</code> steps are set to <code>true</code>, the job can only be manually triggered.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.get-step.version" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.get-step.version" class="toggle-title">
+    <a id="schema.step.get-step.version"></a>
+
+    <code><a class="attribute-name" href="#schema.step.get-step.version">version</a>: <span class="attribute-type"><span class="schema-scalar">latest</span> | <span class="schema-scalar">every</span> | <a href="config-basics.html#schema.version"><strong>version</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>latest</code>.</em> The version of the resource to fetch.</p><p>If set to <code>latest</code>, scheduling will just find the latest available version of a resource and use it, allowing versions to be skipped.  This is usually what you want, e.g. if someone pushes 100 git commits.</p><p>If set to <code>every</code>, builds will walk through all available versions of the resource. Note that if <code>passed</code> is also configured, it will only step through the versions satisfying the constraints.</p><p>If set to a specific version (e.g. <code>{ref: abcdef123}</code>), only that version will be used. Note that the version must be available and detected by the resource, otherwise the input will never be satisfied. You may want to use <a href="managing-resources.html#fly-check-resource"><code>fly check-resource</code></a> to force detection of resource versions, if you need to use an older one that was never detected (as all newly configured resources start from the latest version).</p>
+  </div>
+</div>
+</div>
+  </div>
+  
+  <div class="one-of-option">
+    <div class="schema-group">
+  <a id="put-step"></a>
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.step.put-step.put" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.put-step.put" class="toggle-title">
+    <a id="schema.step.put-step.put"></a>
+
+    <code><a class="attribute-name" href="#schema.step.put-step.put">put</a>: <span class="attribute-type"><a href="resources.html#schema.resource.name"><strong>resource.name</strong></a> | <a href="config-basics.html#schema.identifier"><strong>identifier</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Pushes to the given <a href="resources.html">resource</a>.</p><p>When the step succeeds, the version by the step will be immediately fetched via an additional implicit <a href="jobs.html#get-step"><code>get</code> step</a>. This is so that later steps in your plan can use the artifact that was produced. The artifact will be available under the identifier <code>put</code> specifies.</p><div class="toggleable example">
+  <input id="toggle-b186f1fa36ccd7a2502cc6059378f5967a5c975e" type="checkbox" class="toggle" />
+  <label for="toggle-b186f1fa36ccd7a2502cc6059378f5967a5c975e" class="toggle-title">Pulling and pushing</label>
+  <div class="toggle-content">
+    <p>The following plan fetches a repo using <a href="jobs.html#get-step"><code>get</code></a> and pushes it to another repo (assuming <code>repo-develop</code> and <code>repo-master</code> are defined as <code>git</code> resources):</p><pre><code class="language-yaml">plan:
+- get: repo-develop
+- put: repo-master
+  params:
+    repository: repo-develop</code></pre>
+  </div>
+</div><div class="toggleable example">
+  <input id="toggle-3d1b355b8c153c62a564b4fff837301c68ebd712" type="checkbox" class="toggle" />
+  <label for="toggle-3d1b355b8c153c62a564b4fff837301c68ebd712" class="toggle-title">Parameterizing the implicit <code>get</code></label>
+  <div class="toggle-content">
+    <p>If the logical name (whatever <code>put</code> specifies) differs from the concrete resource, you would specify <code>resource</code> as well, like so:</p><pre><code class="language-yaml">plan:
+- put: resource-image
+  resource: docker-image-resource</code></pre><p>Additionally, you can control the settings of the implicit <code>get</code> step by setting <code>get_params</code>. For example, if you did not want a <code>put</code> step utilizing the <a href="https://github.com/concourse/docker-image-resource"> <code>docker-image</code> resource type</a> to download the image, you would implement your <code>put</code> step as such:</p><pre><code class="language-yaml">plan:
+- put: docker-build
+  params: {build: git-resource}
+  get_params: {skip_download: true}</code></pre>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.put-step.resource" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.put-step.resource" class="toggle-title">
+    <a id="schema.step.put-step.resource"></a>
+
+    <code><a class="attribute-name" href="#schema.step.put-step.resource">resource</a>: <span class="attribute-type"><a href="resources.html#schema.resource.name"><strong>resource.name</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Defaults to the value of <code>put</code>.</em> The resource to update, as configured in <a href="pipelines.html#schema.pipeline.resources"><code class="schema-attribute-name"><bold>pipeline<wbr />.resources</bold></code></a>.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.put-step.inputs" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.put-step.inputs" class="toggle-title">
+    <a id="schema.step.put-step.inputs"></a>
+
+    <code><a class="attribute-name" href="#schema.step.put-step.inputs">inputs</a>: <span class="attribute-type"><span class="schema-scalar">all</span> | <span class="schema-scalar">detect</span> | [<a href="config-basics.html#schema.identifier"><strong>identifier</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>all</code>.</em> When not set, or set to <code>all</code>, all artifacts will be provided. This can result in slow performance if the prior steps in the build plan register a bunch of large artifacts before this step, so you may want to consider being explicit.</p><p>If configured as a list of identifiers, only the listed artifacts will be provided to the container.</p><p>If set to <code>detect</code>, the artifacts are detected based on the configured <a href="jobs.html#schema.step.put-step.params"><code>put</code> step <strong><code>params</code></strong></a> by looking for all string values and using the first path segment as an identifier. (This may become the default in the future.)</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.put-step.params" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.put-step.params" class="toggle-title">
+    <a id="schema.step.put-step.params"></a>
+
+    <code><a class="attribute-name" href="#schema.step.put-step.params">params</a>: <span class="attribute-type"><a href="config-basics.html#schema.config"><strong>config</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Arbitrary configuration to pass to the resource. Refer to the resource type&#39;s documentation to see what it supports.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.put-step.get_params" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.put-step.get_params" class="toggle-title">
+    <a id="schema.step.put-step.get_params"></a>
+
+    <code><a class="attribute-name" href="#schema.step.put-step.get_params">get_params</a>: <span class="attribute-type"><a href="config-basics.html#schema.config"><strong>config</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Arbitrary configuration to get to the resource during the implicit <code>get</code> step. Refer to the resource type&#39;s documentation to see what it supports.</p>
+  </div>
+</div>
+</div>
+  </div>
+  
+  <div class="one-of-option">
+    <div class="schema-group">
+  <a id="task-step"></a>
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.step.task-step.task" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.task-step.task" class="toggle-title">
+    <a id="schema.step.task-step.task"></a>
+
+    <code><a class="attribute-name" href="#schema.step.task-step.task">task</a>: <span class="attribute-type"><a href="config-basics.html#schema.identifier"><strong>identifier</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Executes a <a href="tasks.html">task</a>.</p><p>When a task completes, the artifacts specified by <a href="tasks.html#schema.task.outputs"><code class="schema-attribute-name"><bold>task<wbr />.outputs</bold></code></a> will be registered in the build&#39;s artifact namespace. This allows subsequent <a href="jobs.html#task-step"><code>task</code> step</a>s and <a href="jobs.html#put-step"><code>put</code> step</a>s to access the result of a task.</p><p>The identifier value is just a name - short and sweet. The value is shown in the web UI but otherwise has no affect on anything. This may change in the future; <a href="https://github.com/concourse/rfcs/pull/32">RFC #32</a> proposes that the name be used to reference a file within the project.</p><div class="toggleable example">
+  <input id="toggle-8a2020df985d80039c9c362b767adc2e3ab5f294" type="checkbox" class="toggle" />
+  <label for="toggle-8a2020df985d80039c9c362b767adc2e3ab5f294" class="toggle-title">Functions from inputs to outputs</label>
+  <div class="toggle-content">
+    <p>The following plan pulls down a repo, makes a commit to it, and pushes the commit to another repo (the task must have an output called <code>repo-with-commit</code>):</p><pre><code class="language-yaml">plan:
+- get: my-repo
+- task: commit
+  file: my-repo/commit.yml
+- put: other-repo
+  params:
+    repository: repo-with-commit</code></pre>
+  </div>
+</div><div class="toggleable example">
+  <input id="toggle-a85a7eb61d8d494e5faa882bc44852693aa7ee73" type="checkbox" class="toggle" />
+  <label for="toggle-a85a7eb61d8d494e5faa882bc44852693aa7ee73" class="toggle-title">Build matrix with <code>in_parallel</code></label>
+  <div class="toggle-content">
+    <p>The following plan fetches a single repository and executes multiple tasks, using the <a href="jobs.html#in-parallel-step"><code>in_parallel</code></a> step, in a build matrix style configuration:</p><pre><code class="language-yaml">plan:
+- get: my-repo
+- in_parallel:
+  - task: go-1.3
+    file: my-repo/go-1.3.yml
+  - task: go-1.4
+    file: my-repo/ci/go-1.4.yml</code></pre><p>Only if both tasks succeed will the overall step succeed. See also <a href="jobs.html#in-parallel-step"><code>in_parallel</code> step</a>.</p>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.task-step.config" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.task-step.config" class="toggle-title">
+    <a id="schema.step.task-step.config"></a>
+
+    <code><a class="attribute-name" href="#schema.step.task-step.config">config</a>: <span class="attribute-type"><a href="tasks.html#schema.task"><strong>task</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The <a href="tasks.html">task config</a> to execute.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.task-step.file" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.task-step.file" class="toggle-title">
+    <a id="schema.step.task-step.file"></a>
+
+    <code><a class="attribute-name" href="#schema.step.task-step.file">file</a>: <span class="attribute-type"><a href="config-basics.html#schema.file-path"><strong>file-path</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A dynamic alternative to <a href="jobs.html#schema.step.task-step.config"><code>task</code> step <strong><code>config</code></strong></a>.</p><p><code>file</code> points at a <code>.yml</code> file containing the <a href="tasks.html">task config</a>, which allows this to be tracked with your resources.</p><p>The first segment in the path should refer to another source from the plan, and the rest of the path is relative to that source.</p><p>The content of the config file may contain template <code>((vars))</code>, which will be filled in using <a href="jobs.html#schema.step.task-step.vars"><code>task</code> step <strong><code>vars</code></strong></a> or a configured <a href="creds.html">credential manager</a>.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.task-step.image" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.task-step.image" class="toggle-title">
+    <a id="schema.step.task-step.image"></a>
+
+    <code><a class="attribute-name" href="#schema.step.task-step.image">image</a>: <span class="attribute-type"><a href="config-basics.html#schema.identifier"><strong>identifier</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Specifies an artifact source containing an image to use for the task. This overrides any <a href="tasks.html#schema.task.image_resource"><code class="schema-attribute-name"><bold>task<wbr />.image_resource</bold></code></a> configuration present in the task configuration.</p><p>This is very useful when part of your pipeline involves building an image, possibly with dependencies pre-baked. You can then propagate that image through the rest of your pipeline, guaranteeing that the correct version (and thus a consistent set of dependencies) is used throughout your pipeline.</p><div class="toggleable example">
+  <input id="toggle-090a27c83db306e51289e8580837be1df978eb0b" type="checkbox" class="toggle" />
+  <label for="toggle-090a27c83db306e51289e8580837be1df978eb0b" class="toggle-title">Fetching and using an image</label>
+  <div class="toggle-content">
+    <p>This can be used in to explicitly keep track of dependent images:</p><pre><code class="language-yaml">resources:
+- name: my-image
+  type: registry-image
+  source: {repository: golang, tag: &#34;1.13&#34;}
+
+- name: my-repo
+  type: git
+  source: # ...
+
+jobs:
+- name: use-image
+  plan:
+  - get: my-image
+  - get: my-repo
+  - task: unit
+    file: my-repo/ci/unit.yml
+    image: my-image</code></pre>
+  </div>
+</div><div class="toggleable example">
+  <input id="toggle-f9ff679a98755598d66e7bfb784e10284d3601cf" type="checkbox" class="toggle" />
+  <label for="toggle-f9ff679a98755598d66e7bfb784e10284d3601cf" class="toggle-title">Building and propagating an image</label>
+  <div class="toggle-content">
+    <p>Here&#39;s a pipeline which builds an image in one job and then propagates it to the next:</p><pre><code class="language-yaml">resources:
+- name: my-project
+  type: git
+  source: {uri: https://github.com/my-user/my-project}
+
+- name: my-task-image
+  type: docker-image
+  source: {repository: my-user/my-repo}
+
+jobs:
+- name: build-task-image
+  plan:
+  - get: my-project
+  - put: my-task-image
+    params: {build: my-project/ci/images/my-task}
+
+- name: use-task-image
+  plan:
+  - get: my-task-image
+    passed: [build-task-image]
+  - get: my-project
+    passed: [build-task-image]
+  - task: use-task-image
+    image: my-task-image
+    file: my-project/ci/tasks/my-task.yml</code></pre>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.task-step.privileged" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.task-step.privileged" class="toggle-title">
+    <a id="schema.step.task-step.privileged"></a>
+
+    <code><a class="attribute-name" href="#schema.step.task-step.privileged">privileged</a>: <span class="attribute-type"><a href="config-basics.html#schema.boolean"><strong>boolean</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>false</code>.</em> If set to <code>true</code>, the task will run with escalated capabilities available on the task&#39;s platform.</p><div class="warning">
+  <p>Setting <code>privileged: true</code> is a gaping security hole; use wisely and only if necessary. This is not part of the task configuration in order to prevent privilege escalation via pull requests changing the task file.</p>
+</div><p>For the <code>linux</code> platform, this determines whether or not the container will run in a separate user namespace. When set to <code>true</code>, the container&#39;s <code>root</code> user is <em>actual</em> <code>root</code>, i.e. not in a user namespace. This is not recommended, and should <em>never</em> be used with code you do not trust - e.g. pull requests.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.task-step.vars" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.task-step.vars" class="toggle-title">
+    <a id="schema.step.task-step.vars"></a>
+
+    <code><a class="attribute-name" href="#schema.step.task-step.vars">vars</a>: <span class="attribute-type"><a href="config-basics.html#schema.vars"><strong>vars</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A map of template variables to pass to an external task. Not to be confused with <a href="tasks.html#schema.task.params"><code class="schema-attribute-name"><bold>task<wbr />.params</bold></code></a>, which provides <em>environment variables</em> to the task.</p><p>This is to be used with external tasks defined in <a href="jobs.html#schema.step.task-step.file"><code>task</code> step <strong><code>file</code></strong></a>.</p><div class="toggleable example">
+  <input id="toggle-d8cefbe6d34edeb8b625bdf750d7307407cbd94d" type="checkbox" class="toggle" />
+  <label for="toggle-d8cefbe6d34edeb8b625bdf750d7307407cbd94d" class="toggle-title">Parameterizing a task config file with vars</label>
+  <div class="toggle-content">
+    <p>A var may be statically passed like so:</p><pre><code class="language-yaml">plan:
+- get: my-repo
+- task: integration
+  file: my-repo/ci/task.yml
+  vars:
+    text: &#34;Hello World!&#34;</code></pre><p>This is often used in combination with <a href="vars.html">Vars</a> in the pipeline (note the replacement of the string literal with the <code>((text))</code> pipeline var):</p><pre><code class="language-yaml">plan:
+- get: my-repo
+- task: integration
+  file: my-repo/ci/task.yml
+  vars:
+    text: ((text))</code></pre><p>When run with the following <code>task.yml</code>:</p><pre><code class="language-yaml">---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: my.local.registry:8080/my/image
+    username: ((myuser))
+    password: ((mypass))
+
+run:
+  path: echo
+  args: [&#34;((text))&#34;]</code></pre><p>...this will resolve <code>&#34;((text))&#34;</code> to <code>&#34;Hello World!&#34;</code>, while <code>((myuser))</code> and <code>((mypass))</code>  will be resolved in runtime via a <a href="creds.html">credential manager</a>, if it has been configured.</p>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.task-step.params" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.task-step.params" class="toggle-title">
+    <a id="schema.step.task-step.params"></a>
+
+    <code><a class="attribute-name" href="#schema.step.task-step.params">params</a>: <span class="attribute-type"><a href="config-basics.html#schema.env-vars"><strong>env-vars</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A map of task environment variable parameters to set, overriding those configured in the task&#39;s <code>config</code> or <code>file</code>.</p><p>The difference between <a href="jobs.html#schema.step.task-step.params"><code>params</code></a> and <a href="jobs.html#schema.step.task-step.vars"><code>vars</code></a> is that <a href="jobs.html#schema.step.task-step.vars"><code>vars</code></a> allows you to interpolate any template variable in an external task, while <a href="jobs.html#schema.step.task-step.params"><code>params</code></a> can be used to overwrite task parameters (i.e. env variables) specifically. Also, <a href="jobs.html#schema.step.task-step.params"><code>params</code></a> can have default values declared in the task.</p><div class="toggleable example">
+  <input id="toggle-e5d02a6719dc2ab2fc852b6776882dfdf7154850" type="checkbox" class="toggle" />
+  <label for="toggle-e5d02a6719dc2ab2fc852b6776882dfdf7154850" class="toggle-title">Running a task with env var params</label>
+  <div class="toggle-content">
+    <p>Let&#39;s say we have a <a href="tasks.html#schema.task">task config</a> in <code>intgration.yml</code> like so:</p><pre><code class="language-yaml">platform: linux
+image_resource: # ...
+params:
+  REMOTE_SERVER: https://example.com
+  USERNAME:
+  PASSWORD:</code></pre><p>This indicates that there are three params which can be set: <code>REMOTE_SERVER</code>, which has a default, and <code>USERNAME</code> and <code>PASSWORD</code>.</p><p>A pipeline could run the task with credentials passed in like so:</p><pre><code class="language-yaml">plan:
+- get: my-repo
+- task: integration
+  file: my-repo/ci/integration.yml
+  params:
+    USERNAME: my-user
+    PASSWORD: my-pass</code></pre>
+  </div>
+</div><div class="toggleable example">
+  <input id="toggle-3fc4482df6c629f113adf6af18f0c6549dc97c2b" type="checkbox" class="toggle" />
+  <label for="toggle-3fc4482df6c629f113adf6af18f0c6549dc97c2b" class="toggle-title">Using with <code>((vars))</code></label>
+  <div class="toggle-content">
+    <pre><code class="language-yaml">plan:
+- get: my-repo
+- task: integration
+  file: my-repo/ci/integration.yml
+  params:
+    REMOTE_SERVER: 10.20.30.40:8080
+    USERNAME: ((integration-username))
+    PASSWORD: ((integration-password))</code></pre>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.task-step.input_mapping" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.task-step.input_mapping" class="toggle-title">
+    <a id="schema.step.task-step.input_mapping"></a>
+
+    <code><a class="attribute-name" href="#schema.step.task-step.input_mapping">input_mapping</a>: <span class="attribute-type">{<a href="tasks.html#schema.input.name"><strong>input.name</strong></a>: <a href="config-basics.html#schema.identifier"><strong>identifier</strong></a>}</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A map from task input names to concrete names in the build plan. This allows a task with generic input names to be used multiple times in the same plan, mapping its inputs to specific resources within the plan.</p><div class="toggleable example">
+  <input id="toggle-9aab6d385a5102b19dfdca569bfaa5b1e3dd6985" type="checkbox" class="toggle" />
+  <label for="toggle-9aab6d385a5102b19dfdca569bfaa5b1e3dd6985" class="toggle-title">Generic task input names</label>
+  <div class="toggle-content">
+    <p>The following example demonstrates a task with a generic <code>release-repo</code> input being mapped to more specific artifact names:</p><pre><code class="language-yaml">plan:
+- get: diego-release
+- get: cf-release
+- get: ci-scripts
+- task: audit-diego-release
+  file: ci-scripts/audit-release.yml
+  input_mapping: {release-repo: diego-release}
+- task: audit-cf-release
+  file: ci-scripts/audit-release.yml
+  input_mapping: {release-repo: cf-release}</code></pre>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.task-step.output_mapping" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.task-step.output_mapping" class="toggle-title">
+    <a id="schema.step.task-step.output_mapping"></a>
+
+    <code><a class="attribute-name" href="#schema.step.task-step.output_mapping">output_mapping</a>: <span class="attribute-type">{<a href="tasks.html#schema.output.name"><strong>output.name</strong></a>: <a href="config-basics.html#schema.identifier"><strong>identifier</strong></a>}</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A map from task output names to concrete names to register in the build plan. This allows a task with generic output names to be used multiple times in the same plan.</p><div class="toggleable example">
+  <input id="toggle-6d511f62e4bc304c13ef2c92425961535b70c32c" type="checkbox" class="toggle" />
+  <label for="toggle-6d511f62e4bc304c13ef2c92425961535b70c32c" class="toggle-title">Using with <code>input_mapping</code></label>
+  <div class="toggle-content">
+    <p>This is often used together with <a href="jobs.html#schema.step.task-step.input_mapping"><code>task</code> step <strong><code>input_mapping</code></strong></a>:</p><pre><code class="language-yaml">plan:
+- get: diego-release
+- get: cf-release
+- get: ci-scripts
+- task: create-diego-release
+  file: ci-scripts/create-release.yml
+  input_mapping: {release-repo: diego-release}
+  output_mapping: {release-tarball: diego-release-tarball}
+- task: create-cf-release
+  file: ci-scripts/create-release.yml
+  input_mapping: {release-repo: cf-release}
+  output_mapping: {release-tarball: cf-release-tarball}</code></pre>
+  </div>
+</div>
+  </div>
+</div>
+</div>
+  </div>
+  
+  <div class="one-of-option">
+    <div class="schema-group">
+  <a id="set-pipeline-step"></a>
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.step.set-pipeline-step.set_pipeline" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.set-pipeline-step.set_pipeline" class="toggle-title">
+    <a id="schema.step.set-pipeline-step.set_pipeline"></a>
+
+    <code><a class="attribute-name" href="#schema.step.set-pipeline-step.set_pipeline">set_pipeline</a>: <span class="attribute-type"><a href="config-basics.html#schema.identifier"><strong>identifier</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <div class="warning">
+  <p>The <code>set_pipeline</code> step was introduced in Concourse v5.8.0. It is considered an <strong>experimental</strong> feature until its associated <a href="https://github.com/concourse/rfcs/pull/31">RFC</a> is resolved.</p>
+</div><p>Configures a <a href="pipelines.html">pipeline</a>.</p><p>The identifier specifies the name of the pipeline to configure. It will be configured within the current team and be created <em>unpaused</em>.</p><div class="toggleable example">
+  <input id="toggle-b3829955633e0fa7247a4d12e4d4929bae19f7f3" type="checkbox" class="toggle" />
+  <label for="toggle-b3829955633e0fa7247a4d12e4d4929bae19f7f3" class="toggle-title">One pipeline reconfiguring another</label>
+  <div class="toggle-content">
+    <p>This is a way to ensure a pipeline stays up to date with its definition in a source code repository, eliminating the need to manually run <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a>.</p><pre><code class="language-yaml">resources:
+- name: booklit
+  type: git
+  source: {uri: https://github.com/vito/booklit}
+jobs:
+- name: reconfigure
+  plan:
+  - get: booklit
+    trigger: true
+  - set_pipeline: booklit
+    file: booklit/ci/pipeline.yml</code></pre>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute required">
+  <input id="toggle-schema.step.set-pipeline-step.file" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.set-pipeline-step.file" class="toggle-title">
+    <a id="schema.step.set-pipeline-step.file"></a>
+
+    <code><a class="attribute-name" href="#schema.step.set-pipeline-step.file">file</a>: <span class="attribute-type"><a href="config-basics.html#schema.file-path"><strong>file-path</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The path to the pipeline&#39;s configuration file.</p><p><code>file</code> points at a <code>.yml</code> file containing the pipeline configuration, which allows this to be tracked with your resources or generated by a <a href="jobs.html#task-step"><code>task</code> step</a>.</p><p>The first segment in the path should refer to another artifact from the plan, and the rest of the path is relative to that artifact.</p><div class="toggleable example">
+  <input id="toggle-89d59d54c38815efd41212a9dd57b3014b8e624a" type="checkbox" class="toggle" />
+  <label for="toggle-89d59d54c38815efd41212a9dd57b3014b8e624a" class="toggle-title">Fetching and configuring a pipeline</label>
+  <div class="toggle-content">
+    <p>The <a href="jobs.html#get-step"><code>get</code> step</a> can be used to fetch your configuration from a <code>git</code> repo and auto-configure it using a <a href="jobs.html#set-pipeline-step"><code>set_pipeline</code> step</a>:</p><pre><code class="language-yaml">- get: ci
+- set_pipeline: my-pipeline
+  file: ci/pipelines/my-pipeline.yml</code></pre>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.set-pipeline-step.vars" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.set-pipeline-step.vars" class="toggle-title">
+    <a id="schema.step.set-pipeline-step.vars"></a>
+
+    <code><a class="attribute-name" href="#schema.step.set-pipeline-step.vars">vars</a>: <span class="attribute-type"><a href="config-basics.html#schema.vars"><strong>vars</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A map of template variables to pass to the pipeline config.</p><p>Note that variables set with this field will not propagate to tasks configured via <a href="jobs.html#schema.step.task-step.file"><code>task</code> step <strong><code>file</code></strong></a>. If you want those variables to be determined at the time the pipeline is set, use <a href="jobs.html#schema.step.task-step.vars"><code>task</code> step <strong><code>vars</code></strong></a> as well.</p><div class="toggleable example">
+  <input id="toggle-e3e7adfd80ad92c6b2465b066a8300f71733c749" type="checkbox" class="toggle" />
+  <label for="toggle-e3e7adfd80ad92c6b2465b066a8300f71733c749" class="toggle-title">Configuring static vars</label>
+  <div class="toggle-content">
+    <p>A var may be statically passed like so:</p><pre><code class="language-yaml">plan:
+- get: my-repo
+- set_pipeline: configure-the-pipeline
+  file: my-repo/ci/pipeline.yml
+  vars:
+    text: &#34;Hello World!&#34;</code></pre><p>Any <a href="vars.html">Vars</a> in the pipeline config will be filled in statically using this field.</p><p>For example, if <code>my-repo/ci/pipeline.yml</code> looks like...:</p><pre><code class="language-yaml">resources:
+- name: task-image
+    type: docker-image
+    source:
+      repository: my.local.registry:8080/my/image
+      username: ((myuser))
+      password: ((mypass))
+jobs:
+- name: job
+  plan:
+  - get: task-image
+  - task: do-stuff
+    image: task-image
+    config:
+      platform: linux
+      run:
+        path: echo
+        args: [&#34;((text))&#34;]</code></pre><p>...this will resolve <code>&#34;((text))&#34;</code> to <code>&#34;Hello World!&#34;</code>, while <code>((myuser))</code> and <code>((mypass))</code> will be left in the pipeline to be <a href="vars.html#dynamic-vars">fetched at runtime</a>.</p>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.set-pipeline-step.var_files" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.set-pipeline-step.var_files" class="toggle-title">
+    <a id="schema.step.set-pipeline-step.var_files"></a>
+
+    <code><a class="attribute-name" href="#schema.step.set-pipeline-step.var_files">var_files</a>: <span class="attribute-type">[<a href="config-basics.html#schema.file-path"><strong>file-path</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A list of paths to <code>.yml</code> files that will be passed to the pipeline config in the same manner as the <code>--load-vars-from</code> flag to <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a>. This means that if a variable appears in multiple files, the value from a file that is passed later in the list will override the values from files earlier in the list.</p>
+  </div>
+</div>
+</div>
+  </div>
+  
+  <div class="one-of-option">
+    <div class="schema-group">
+  <a id="load-var-step"></a>
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.step.load-var-step.load_var" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.load-var-step.load_var" class="toggle-title">
+    <a id="schema.step.load-var-step.load_var"></a>
+
+    <code><a class="attribute-name" href="#schema.step.load-var-step.load_var">load_var</a>: <span class="attribute-type"><a href="config-basics.html#schema.identifier"><strong>identifier</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <div class="warning">
+  <p>The <code>load_var</code> step was introduced in Concourse v6.0.0. It is considered an <strong>experimental</strong> feature until its associated <a href="https://github.com/concourse/rfcs/pull/27">RFC</a> is resolved.</p>
+</div><p>Load the value for a var at runtime, making it available to subsequent steps as a build-local var named after the given identifier.</p><div class="toggleable example">
+  <input id="toggle-1e49b9ae57d9639a6b8d51f7497295e26bf0fb5c" type="checkbox" class="toggle" />
+  <label for="toggle-1e49b9ae57d9639a6b8d51f7497295e26bf0fb5c" class="toggle-title">Loading a simple value as a var</label>
+  <div class="toggle-content">
+    <p>The following build plan uses a version produced by the <a href="https://github.com/concourse/semver-resource"><code>semver</code> resource</a> as a tag:</p><pre><code class="language-yaml">plan:
+- get: version
+- load_var: version-tag
+  file: version/version
+- put: image
+  params: {tag: ((.:version-tag))}</code></pre>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute required">
+  <input id="toggle-schema.step.load-var-step.file" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.load-var-step.file" class="toggle-title">
+    <a id="schema.step.load-var-step.file"></a>
+
+    <code><a class="attribute-name" href="#schema.step.load-var-step.file">file</a>: <span class="attribute-type"><a href="config-basics.html#schema.file-path"><strong>file-path</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The path to a file whose content shall be read and used as the var&#39;s value.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.load-var-step.format" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.load-var-step.format" class="toggle-title">
+    <a id="schema.step.load-var-step.format"></a>
+
+    <code><a class="attribute-name" href="#schema.step.load-var-step.format">format</a>: <span class="attribute-type"><span class="schema-scalar">detect</span> | <span class="schema-scalar">json</span> | <span class="schema-scalar">yaml</span> | <span class="schema-scalar">yml</span> | <span class="schema-scalar">raw</span></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>detect</code>.</em> The format of the file&#39;s content.</p><p>If set to <code>detect</code>, the format will be inferred from the file extension.</p><p>If set to <code>json</code>, <code>yaml</code>, or <code>yml</code>, the file content will be parsed accordingly and the resulting structure will be the value of the var.</p><p>If set to <code>raw</code>, the file content will be the value of the var as a single string value.</p><div class="toggleable example">
+  <input id="toggle-bdda81ac26ec1a72d0736beb6e45365428493769" type="checkbox" class="toggle" />
+  <label for="toggle-bdda81ac26ec1a72d0736beb6e45365428493769" class="toggle-title">Loading a var with multiple fields</label>
+  <div class="toggle-content">
+    <p>Let&#39;s say we have a task, <code>generate-creds</code>, which produces a <code>generated-user</code> output containing a <code>user.json</code> file like so:</p><pre><code class="language-yaml">{
+  &#34;username&#34;: &#34;some-user&#34;,
+  &#34;password&#34;: &#34;some-password&#34;
+}</code></pre><p>We could pass these credentials to subsequent steps by loading it into a var with <code>load_var</code>, which will detect that it is in JSON format based on the file extension:</p><pre><code class="language-yaml">plan:
+- task: generate-creds
+- load_var: user
+  file: generated-user/user.json
+- task: use-creds
+  params:
+    USERNAME: ((.:user.username))
+    PASSWORD: ((.:user.username))</code></pre><p>If the <code>use-creds</code> task were to print these values, they would be automatically redacted unless <a href="jobs.html#schema.step.load-var-step.reveal"><code>reveal: true</code></a> is set.</p>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.load-var-step.reveal" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.load-var-step.reveal" class="toggle-title">
+    <a id="schema.step.load-var-step.reveal"></a>
+
+    <code><a class="attribute-name" href="#schema.step.load-var-step.reveal">reveal</a>: <span class="attribute-type"><a href="config-basics.html#schema.boolean"><strong>boolean</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>false</code>.</em> If set to <code>true</code>, allow the var&#39;s content to be printed in the build output even with secret redaction enabled.</p>
+  </div>
+</div>
+</div>
+  </div>
+  
+  <div class="one-of-option">
+    <div class="schema-group">
+  <a id="in-parallel-step"></a>
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.step.in-parallel-step.in_parallel" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.in-parallel-step.in_parallel" class="toggle-title">
+    <a id="schema.step.in-parallel-step.in_parallel"></a>
+
+    <code><a class="attribute-name" href="#schema.step.in-parallel-step.in_parallel">in_parallel</a>: <span class="attribute-type">[<a href="jobs.html#schema.step"><strong>step</strong></a>] | <a href="jobs.html#schema.in_parallel_config"><strong>in_parallel_config</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Performs the given steps in parallel.</p><p>If any sub-steps (or <a href="jobs.html#task-step"><code>task</code></a>) in a <code>parallel</code> result in a failure or error, the parallel step as a whole is considered to have failed or errored.</p><p>Steps are either configured as a array or within a <a href="jobs.html#schema.in_parallel_config"><strong><code>in_parallel_config</code></strong> schema</a>.</p><div class="toggleable example">
+  <input id="toggle-689adf53e3dd0b1ef3ce0c6c29890a65fbde5f03" type="checkbox" class="toggle" />
+  <label for="toggle-689adf53e3dd0b1ef3ce0c6c29890a65fbde5f03" class="toggle-title">Fetching artifacts in parallel</label>
+  <div class="toggle-content">
+    <p>Using the <code>in_parallel</code> step where possible is the easiest way to speeding up a builds.</p><p>It is often used to fetch all dependent resources together at the start of a build plan:</p><pre><code class="language-yaml">plan:
+- in_parallel:
+  - get: component-a
+  - get: component-b
+  - get: integration-suite
+- task: integration
+  file: integration-suite/task.yml</code></pre>
+  </div>
+</div><div class="toggleable example">
+  <input id="toggle-efea4808e680869b2798a71635f96f24c7500258" type="checkbox" class="toggle" />
+  <label for="toggle-efea4808e680869b2798a71635f96f24c7500258" class="toggle-title">Running a build matrix</label>
+  <div class="toggle-content">
+    <p>If any step in the <code>in_parallel</code> fails, the build will fail, making it useful for build matrices:</p><pre><code class="language-yaml">plan:
+- get: some-repo
+- in_parallel:
+  - task: unit-windows
+    file: some-repo/ci/windows.yml
+  - task: unit-linux
+    file: some-repo/ci/linux.yml
+  - task: unit-darwin
+    file: some-repo/ci/darwin.yml</code></pre>
+  </div>
+</div><div class="toggleable example">
+  <input id="toggle-9997d45c25e89e0662fc2af33da236ccd759d12c" type="checkbox" class="toggle" />
+  <label for="toggle-9997d45c25e89e0662fc2af33da236ccd759d12c" class="toggle-title">Limiting parallelism</label>
+  <div class="toggle-content">
+    <p>Using <code>limit</code> is useful for performing parallel execution of a growing number of tasks without overloading your workers. In the example below, two tasks will be run in parallel and in order until all steps have been executed:</p><pre><code class="language-yaml">plan:
+- get: some-repo
+- in_parallel:
+    limit: 2
+    fail_fast: false
+    steps:
+      - task: unit-windows
+        file: some-repo/ci/windows.yml
+      - task: unit-linux
+        file: some-repo/ci/linux.yml
+      - task: unit-darwin
+        file: some-repo/ci/darwin.yml</code></pre>
+  </div>
+</div><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.in_parallel_config" href="#schema.in_parallel_config"></a><code>in_parallel_config</code> schema</h2>
+
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.in_parallel_config.steps" type="checkbox" class="toggle" />
+  <label for="toggle-schema.in_parallel_config.steps" class="toggle-title">
+    <a id="schema.in_parallel_config.steps"></a>
+
+    <code><a class="attribute-name" href="#schema.in_parallel_config.steps">steps</a>: <span class="attribute-type">[<a href="jobs.html#schema.step"><strong>step</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The steps to perform in parallel.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.in_parallel_config.limit" type="checkbox" class="toggle" />
+  <label for="toggle-schema.in_parallel_config.limit" class="toggle-title">
+    <a id="schema.in_parallel_config.limit"></a>
+
+    <code><a class="attribute-name" href="#schema.in_parallel_config.limit">limit</a>: <span class="attribute-type"><a href="config-basics.html#schema.number"><strong>number</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default unlimited.</em> A sempahore which limits the parallelism when executing the steps in a <code>in_parallel</code> step. When set, the number of running steps will not exceed the limit.</p><p>When not specified, <code>in_parallel</code> will execute all steps immediately, making the default behavior identical to <a href="jobs.html#aggregate-step"><code>aggregate</code></a>.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.in_parallel_config.fail_fast" type="checkbox" class="toggle" />
+  <label for="toggle-schema.in_parallel_config.fail_fast" class="toggle-title">
+    <a id="schema.in_parallel_config.fail_fast"></a>
+
+    <code><a class="attribute-name" href="#schema.in_parallel_config.fail_fast">fail_fast</a>: <span class="attribute-type"><a href="config-basics.html#schema.boolean"><strong>boolean</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>false</code>.</em> When enabled the parallel step will fail fast by returning as soon as any sub-step fails. This means that running steps will be interrupted and pending steps will no longer be scheduled.</p>
+  </div>
+</div>
+</div>
+  </div>
+</div>
+</div>
+  </div>
+  
+  <div class="one-of-option">
+    <div class="schema-group">
+  <a id="aggregate-step"></a>
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.step.aggregate-step.aggregate" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.aggregate-step.aggregate" class="toggle-title">
+    <a id="schema.step.aggregate-step.aggregate"></a>
+
+    <code><a class="attribute-name" href="#schema.step.aggregate-step.aggregate">aggregate</a>: <span class="attribute-type">[<a href="jobs.html#schema.step"><strong>step</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Deprecated.</em> Use <a href="jobs.html#in-parallel-step"><code>in_parallel</code> step</a> instead.</p>
+  </div>
+</div>
+</div>
+  </div>
+  
+  <div class="one-of-option">
+    <div class="schema-group">
+  <a id="do-step"></a>
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.step.do-step.do" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.do-step.do" class="toggle-title">
+    <a id="schema.step.do-step.do"></a>
+
+    <code><a class="attribute-name" href="#schema.step.do-step.do">do</a>: <span class="attribute-type">[<a href="jobs.html#schema.step"><strong>step</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Simply performs the given steps serially, with the same semantics as if they were at the top level step listing.</p><div class="toggleable example">
+  <input id="toggle-dedd2b1bcad1757549f17e9c75dea60f318c52dd" type="checkbox" class="toggle" />
+  <label for="toggle-dedd2b1bcad1757549f17e9c75dea60f318c52dd" class="toggle-title">Running multiple steps in a hook</label>
+  <div class="toggle-content">
+    <p>This can be used to perform multiple steps serially in an <a href="jobs.html#schema.step.on_failure"><code class="schema-attribute-name"><bold>step<wbr />.on_failure</bold></code></a>:</p><pre><code class="language-yaml">plan:
+- get: my-repo
+- task: unit
+  file: my-repo/ci/unit.yml
+  on_failure:
+    do:
+    - put: alert
+    - put: email</code></pre>
+  </div>
+</div>
+  </div>
+</div>
+</div>
+  </div>
+  
+  <div class="one-of-option">
+    <div class="schema-group">
+  <a id="try-step"></a>
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.step.try-step.try" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.try-step.try" class="toggle-title">
+    <a id="schema.step.try-step.try"></a>
+
+    <code><a class="attribute-name" href="#schema.step.try-step.try">try</a>: <span class="attribute-type"><a href="jobs.html#schema.step"><strong>step</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Performs the given step, ignoring any failure and masking it with success.</p><p>This can be used when you want to perform some side-effect, but you don&#39;t really want the whole build to fail if it doesn&#39;t work.</p><div class="toggleable example">
+  <input id="toggle-7cb95f02586831492735ff63373c34c652de8249" type="checkbox" class="toggle" />
+  <label for="toggle-7cb95f02586831492735ff63373c34c652de8249" class="toggle-title">Allowing non-critical behavior to fail</label>
+  <div class="toggle-content">
+    <p>When emitting logs somewhere for analyzing later, if the destination flakes out it may not really be critical, so we may want to just swallow the error:</p><pre><code class="language-yaml">plan:
+- task: run-tests
+  config: # ...
+  on_success:
+    try:
+      put: test-logs
+      params:
+        from: run-tests/*.log
+- task: do-something-else
+  config: # ...</code></pre>
+  </div>
+</div>
+  </div>
+</div>
+</div>
+  </div>
+  
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.timeout" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.timeout" class="toggle-title">
+    <a id="schema.step.timeout"></a>
+
+    <code><a class="attribute-name" href="#schema.step.timeout">timeout</a>: <span class="attribute-type"><a href="config-basics.html#schema.duration"><strong>duration</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The amount of time to limit the step&#39;s execution to, e.g. <code>30m</code> for 30 minutes.</p><p>When exceeded, the step will be interrupted, with the same semantics as aborting the build (except the build will be <code>failed</code>, not <code>aborted</code>, to distinguish between human intervention and timeouts being inforced).</p><div class="toggleable example">
+  <input id="toggle-aca7ed2414cb4b0bedf43fb34f07260609d43e9b" type="checkbox" class="toggle" />
+  <label for="toggle-aca7ed2414cb4b0bedf43fb34f07260609d43e9b" class="toggle-title">Giving up</label>
+  <div class="toggle-content">
+    <p>The following will run the <code>unit</code> task and cancel it if it takes longer than 1 hour and 30 minutes:</p><pre><code class="language-yaml">plan:
+- get: foo
+- task: unit
+  file: foo/unit.yml
+  timeout: 1h30m</code></pre>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.attempts" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.attempts" class="toggle-title">
+    <a id="schema.step.attempts"></a>
+
+    <code><a class="attribute-name" href="#schema.step.attempts">attempts</a>: <span class="attribute-type"><a href="config-basics.html#schema.number"><strong>number</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The total number of times a step should be tried before it should fail, e.g. <code>5</code> will run the step up to 5 times before giving up.</p><p>Attempts will retry on a Concourse error as well as build failure. When the number of attempts is reached and the step has still not succeeded then the step will fail.</p><div class="toggleable example">
+  <input id="toggle-8061a61c0abb57fbf470a73b7def20c442b7ebc3" type="checkbox" class="toggle" />
+  <label for="toggle-8061a61c0abb57fbf470a73b7def20c442b7ebc3" class="toggle-title">Retrying a task</label>
+  <div class="toggle-content">
+    <p>The following will run the task and retry it up to 9 times (for a total of 10 attempts) if it fails:</p><pre><code class="language-yaml">plan:
+- get: foo
+- task: unit
+  file: foo/unit.yml
+  attempts: 10</code></pre>
+  </div>
+</div><div class="toggleable example">
+  <input id="toggle-4bb5a82988cc6e948f00829195dc0614c293152b" type="checkbox" class="toggle" />
+  <label for="toggle-4bb5a82988cc6e948f00829195dc0614c293152b" class="toggle-title">Retrying with a timeout</label>
+  <div class="toggle-content">
+    <p>When used in combination with <code>timeout</code>, the timeout applies to <em>each</em> step.</p><p>This semi-arbitary decision was made because often things either succeed in a reasonable amount of time or fail due to hanging/flakiness. In this case it seems more useful to allow each attempt the allotted timeout rather than have one very long attempt prevent more attempts.</p><pre><code class="language-yaml">plan:
+- get: flake
+- task: flaky-tests
+  file: flake/integration.yml
+  timeout: 10m
+  attempts: 3</code></pre>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.tags" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.tags" class="toggle-title">
+    <a id="schema.step.tags"></a>
+
+    <code><a class="attribute-name" href="#schema.step.tags">tags</a>: <span class="attribute-type">[<a href="config-basics.html#schema.string"><strong>string</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>[]</code>.</em> The tags by which to match workers.</p><p>The step will be placed within the a pool of workers that match all of the given set of tags.</p><p>For example, if <code>[a, b]</code> is specified, only workers advertising the <code>a</code> and <code>b</code> tags (in addition to any others) will be used for running the step.</p><div class="toggleable example">
+  <input id="toggle-fdaa13e6ecf7b101edd52d14e772cb3f70a086ec" type="checkbox" class="toggle" />
+  <label for="toggle-fdaa13e6ecf7b101edd52d14e772cb3f70a086ec" class="toggle-title">Running in a private network</label>
+  <div class="toggle-content">
+    <p>You may have a private cluster only reachable by special workers running on-premises. To run steps against those workers, just provide a matching tag:</p><pre><code class="language-yaml">plan:
+- get: my-repo
+- put: my-site
+  tags: [private]
+  params: {path: my-repo}
+- task: acceptance-tests
+  tags: [private]
+  file: my-repo/ci/atteptance.yml</code></pre>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.on_success" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.on_success" class="toggle-title">
+    <a id="schema.step.on_success"></a>
+
+    <code><a class="attribute-name" href="#schema.step.on_success">on_success</a>: <span class="attribute-type"><a href="jobs.html#schema.step"><strong>step</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A hook step to execute if the parent step succeeds.</p><div class="toggleable example">
+  <input id="toggle-2da6e6aa9178325be2e7b0e32f1d09544512f43c" type="checkbox" class="toggle" />
+  <label for="toggle-2da6e6aa9178325be2e7b0e32f1d09544512f43c" class="toggle-title">Running on success</label>
+  <div class="toggle-content">
+    <p>The following will perform the second task only if the first one succeeds:</p><pre><code class="language-yaml">plan:
+- get: foo
+- task: unit
+  file: foo/unit.yml
+  on_success:
+    task: alert
+    file: foo/alert.yml</code></pre><p>Note that this is semantically equivalent to the following:</p><pre><code class="language-yaml">plan:
+- get: foo
+- task: unit
+  file: foo/unit.yml
+- task: alert
+  file: foo/alert.yml</code></pre><p>The <code>on_success</code> hook is provided mainly for cases where there is an equivalent <a href="jobs.html#schema.step.on_failure"><code class="schema-attribute-name"><bold>step<wbr />.on_failure</bold></code></a>, and having them next to each other is more clear.</p>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.on_failure" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.on_failure" class="toggle-title">
+    <a id="schema.step.on_failure"></a>
+
+    <code><a class="attribute-name" href="#schema.step.on_failure">on_failure</a>: <span class="attribute-type"><a href="jobs.html#schema.step"><strong>step</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A hook step to execute if the parent step fails.</p><p>This does not &#34;recover&#34; the failure - it will still fail even if the hook step succeeds.</p><div class="toggleable example">
+  <input id="toggle-a587acfe0e91d63b5ec48a507513b31df87ab225" type="checkbox" class="toggle" />
+  <label for="toggle-a587acfe0e91d63b5ec48a507513b31df87ab225" class="toggle-title">Alerting on failure</label>
+  <div class="toggle-content">
+    <p>The following will perform the <code>alert</code> task only if the <code>unit</code> task fails:</p><pre><code class="language-yaml">plan:
+- get: foo
+- task: unit
+  file: foo/unit.yml
+  on_failure:
+    task: alert
+    file: foo/alert.yml</code></pre>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.on_abort" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.on_abort" class="toggle-title">
+    <a id="schema.step.on_abort"></a>
+
+    <code><a class="attribute-name" href="#schema.step.on_abort">on_abort</a>: <span class="attribute-type"><a href="jobs.html#schema.step"><strong>step</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A hook step to execute if the build is aborted and the parent step is terminated.</p><div class="toggleable example">
+  <input id="toggle-d6bbc7b3ab182bee088869de12ab495a075188ad" type="checkbox" class="toggle" />
+  <label for="toggle-d6bbc7b3ab182bee088869de12ab495a075188ad" class="toggle-title">Cleaning up <code>on_abort</code></label>
+  <div class="toggle-content">
+    <p>The following will perform the <code>cleanup</code> task only if the build is aborted while the <code>unit</code> task was running:</p><pre><code class="language-yaml">plan:
+- get: foo
+- task: unit
+  file: foo/unit.yml
+  on_abort:
+    task: cleanup
+    file: foo/cleanup.yml</code></pre>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.on_error" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.on_error" class="toggle-title">
+    <a id="schema.step.on_error"></a>
+
+    <code><a class="attribute-name" href="#schema.step.on_error">on_error</a>: <span class="attribute-type"><a href="jobs.html#schema.step"><strong>step</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A hook step to execute after the parent step if the parent step terminates abnormally in any way other than those handled by the <a href="jobs.html#schema.step.on_abort"><code class="schema-attribute-name"><bold>step<wbr />.on_abort</bold></code></a> or <a href="jobs.html#schema.step.on_failure"><code class="schema-attribute-name"><bold>step<wbr />.on_failure</bold></code></a>. This covers scenarios as broad as configuration mistakes, temporary network issues with the workers, or running longer than a <a href="jobs.html#schema.step.timeout"><code class="schema-attribute-name"><bold>step<wbr />.timeout</bold></code></a>.</p><div class="toggleable example">
+  <input id="toggle-63b73a4daeeedbb97367acdbe0948434b0b5fe5e" type="checkbox" class="toggle" />
+  <label for="toggle-63b73a4daeeedbb97367acdbe0948434b0b5fe5e" class="toggle-title">Sending a notification</label>
+  <div class="toggle-content">
+    <p>Until notifications become first-class (<a href="https://github.com/concourse/rfcs/pull/28">RFC #28</a>, this step can be used to notify folks if their builds errored out:</p><pre><code class="language-yaml">plan:
+- do:
+  - get: ci
+  - task: unit
+    file: ci/unit.yml
+  on_error:
+    put: slack</code></pre>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.ensure" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.ensure" class="toggle-title">
+    <a id="schema.step.ensure"></a>
+
+    <code><a class="attribute-name" href="#schema.step.ensure">ensure</a>: <span class="attribute-type"><a href="jobs.html#schema.step"><strong>step</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A hook step to execute after the parent step regardless of whether the parent step succeeds, fails, or errors. The step will also be executed if the build was aborted and its parent step was interrupted.</p><p>If the parent step succeeds and the ensured step fails, the overall step fails.</p><div class="toggleable example">
+  <input id="toggle-4fb5fdfffd3cbea5d9dee1649d7d65741fddfc2e" type="checkbox" class="toggle" />
+  <label for="toggle-4fb5fdfffd3cbea5d9dee1649d7d65741fddfc2e" class="toggle-title">Releasing a lock</label>
+  <div class="toggle-content">
+    <p>The following build plan acquires a lock and then <code>ensure</code>s that the lock is released.</p><pre><code class="language-yaml">plan:
+- put: some-lock
+  params: {acquire: true}
+- task: integration
+  file: foo/integration.yml
+  ensure:
+    put: some-lock
+    params: {release: some-lock}</code></pre>
+  </div>
+</div>
+  </div>
+</div>
 </div>
 
   
 </div>
+    
+      <div class="section" id="section_managing-jobs">
+  
+  <h2 class="section-header"><a class="anchor-target" name="managing-jobs" href="#managing-jobs"></a>Managing Jobs</h2>
+  
 
-      <nav class="prev-next">
-      
-        <div class="prev">
-          prev:
+  
+
+  
+    
+      <div class="section" id="section_fly-jobs">
+  
+  <h3 class="section-header"><a class="anchor-target" name="fly-jobs" href="#fly-jobs"></a><code>fly jobs</code></h3>
+  
+
+  <p>To list the jobs configured in a pipeline, run:</p><pre><code class="language-bash">$ fly -t example jobs -p my-pipeline</code></pre>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_fly-trigger-job">
+  
+  <h3 class="section-header"><a class="anchor-target" name="fly-trigger-job" href="#fly-trigger-job"></a><code>fly trigger-job</code></h3>
+  
+
+  <p>To immediately queue a new build of a job, run:</p><pre><code class="language-bash">$ fly -t example trigger-job --job my-pipeline/my-job</code></pre><p>This will enqueue a new build of the <code>my-job</code> job in the <code>my-pipeline</code> pipeline.</p><p>To start watching the newly created build, append the <code>--watch</code> flag like so:</p><pre><code class="language-bash">$ fly -t example trigger-job --job my-pipeline/my-job --watch</code></pre><p>You can also queue new builds by clicking the <code>&#43;</code> button on the job or build pages in the web UI.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_fly-rerun-build">
+  
+  <h3 class="section-header"><a class="anchor-target" name="fly-rerun-build" href="#fly-rerun-build"></a><code>fly rerun-build</code></h3>
+  
+
+  <p>To queue a new build of a job with exactly the same inputs as a given build of the same job, run:</p><pre><code class="language-bash">$ fly -t example rerun-build --job my-pipeline/my-job --build 4</code></pre><p>This will enqueue a new build of the <code>my-job</code> job in the <code>my-pipeline</code> pipeline, using the same input versions as build number 4.</p><p>To start watching the newly created build, append the <code>--watch</code> flag like so:</p><pre><code class="language-bash">$ fly -t example rerun-build --job my-pipeline/my-job --build 4 --watch</code></pre><p>You can also rerun builds by visiting the build page for the build in question in the web UI and clicking the rerun button.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_fly-pause-job">
+  
+  <h3 class="section-header"><a class="anchor-target" name="fly-pause-job" href="#fly-pause-job"></a><code>fly pause-job</code></h3>
+  
+
+  <p>To prevent scheduling and running builds of a job, run:</p><pre><code class="language-bash">$ fly -t example pause-job --job my-pipeline/my-job</code></pre><p>This will prevent pending builds of the job from being scheduled, though builds that are in-flight will still run, and pending builds will still be created as normal.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_fly-unpause-job">
+  
+  <h3 class="section-header"><a class="anchor-target" name="fly-unpause-job" href="#fly-unpause-job"></a><code>fly unpause-job</code></h3>
+  
+
+  <p>To resume scheduling of a job, run:</p><pre><code class="language-bash">$ fly -t example unpause-job --job my-pipeline/my-job</code></pre><p>This will resume scheduling of builds queued for the job.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_fly-clear-task-cache">
+  
+  <h3 class="section-header"><a class="anchor-target" name="fly-clear-task-cache" href="#fly-clear-task-cache"></a><code>fly clear-task-cache</code></h3>
+  
+
+  <p>If you&#39;ve got a <a href="tasks.html#schema.task.caches">task cache</a> that you need to clear out for whatever reason, this can be done like so:</p><pre><code class="language-bash">$ fly -t example clear-task-cache --job my-pipeline/my-job --step my-step-name</code></pre><p>This will immediately invalidate the caches - they&#39;ll be garbage collected asynchronously and subsequent builds will run with empty caches.</p><p>You can also clear out a particular path for the given step&#39;s cache, using <code>--cache-path</code>:</p><pre><code class="language-bash">$ fly -t example clear-task-cache \
+    --job my-pipeline/my-job \
+    --step my-step-name \
+    --cache-path go/pkg</code></pre><p>If <code>--cache-path</code> is not specified, all caches for the given step will be cleared.</p>
+
+  
+    
+  
+</div>
+    
+  
+</div>
+    
+  
+</div>
+
+          <nav class="prev-next">
+          
+            <div class="prev">
+              prev:
+
+              
+              <span class="section-number">1.8</span>
+              
+
+              <a href="resource-types.html">Resource Types</a>
+            </div>
+          
 
           
-          <span class="section-number">1.7</span>
-          
+            <div class="next">
+              next:
 
-          <a href="resource-types.html">Resource Types</a>
+              
+              <span class="section-number">1.10</span>
+              
+
+              <a href="tasks.html">Tasks</a>
+            </div>
+          
+          </nav>
         </div>
-      
 
-      
-        <div class="next">
-          next:
-
-          
-          <span class="section-number">1.8.1</span>
-          
-
-          <a href="steps.html">Steps</a>
-        </div>
-      
-      </nav>
+        <div class="page-aside"></div>
+      </div>
     </div>
 
     <ul class="improve-docs">

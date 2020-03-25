@@ -13,7 +13,7 @@
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
-<title>Observation - Concourse CI</title>
+<title>Garbage Collector - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
@@ -68,6 +68,10 @@
 
 
 
+  
+  
+  
+  
   
   
   
@@ -144,12 +148,12 @@
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="observation.html"  class="self">Observation</a></td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="internals.html" >Internals</a></td>
+            <td class="title-cell"><a href="internals.html"  class="active">Internals</a></td>
           </tr>
         
         </table>
@@ -164,30 +168,30 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.13</span><a href="observation.html"  class="self">Observation</a>
+        <span class="section-number">1.14</span><a href="internals.html"  class="active">Internals</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.13.1</td>
-            <td class="title-cell"><a href="observation.html#dashboard" >The Dashboard</a></td>
+            <td class="number-cell">1.14.1</td>
+            <td class="title-cell"><a href="internals.html#basic-architecture" >Basic architecture</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.13.2</td>
-            <td class="title-cell"><a href="observation.html#ccxml" ><code>cc.xml</code></a></td>
+            <td class="number-cell">1.14.2</td>
+            <td class="title-cell"><a href="internals.html#component-atc"  class="active">ATC: web UI &amp; build scheduler</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.13.3</td>
-            <td class="title-cell"><a href="observation.html#badges" >Badges</a></td>
+            <td class="number-cell">1.14.3</td>
+            <td class="title-cell"><a href="internals.html#component-tsa" >TSA: worker registration &amp; forwarding</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.13.4</td>
-            <td class="title-cell"><a href="observation.html#pipeline-visibility" >Pipeline Visibility</a></td>
+            <td class="number-cell">1.14.4</td>
+            <td class="title-cell"><a href="internals.html#architecture-worker" >Workers: container runtime &amp; cache management</a></td>
           </tr>
         
         </table>
@@ -196,63 +200,89 @@
   </div>
   
 
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <a href="internals.html#component-atc"  class="active">ATC: web UI &amp; build scheduler</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.14.2.1</td>
+            <td class="title-cell"><a href="checker.html" >Resource Checker</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14.2.2</td>
+            <td class="title-cell"><a href="scheduler.html" >Build Scheduler</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14.2.3</td>
+            <td class="title-cell"><a href="build-tracker.html" >Build Tracker</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14.2.4</td>
+            <td class="title-cell"><a href="garbage-collector.html"  class="self">Garbage Collector</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+
 
 
       </div>
 
       <div class="body-content">
         <div class="page-content">
-          <div class="section" id="section_observation">
+          <div class="section" id="section_garbage-collector">
   
-  <h1 class="section-header"><a class="anchor-target" name="observation" href="#observation"></a><span class="section-number">1.13 </span>Observation</h1>
-  
-
-  <p>This section outlines everything you need to know for observing the state of your pipelines.</p>
-
-  
-    
-      <div class="section" id="section_dashboard">
-  
-  <h2 class="section-header"><a class="anchor-target" name="dashboard" href="#dashboard"></a>The Dashboard</h2>
+  <h1 class="section-header"><a class="anchor-target" name="garbage-collector" href="#garbage-collector"></a><span class="section-number">1.14.2.4 </span>Garbage Collector</h1>
   
 
-  <p>The dashboard, available at the default route (<code>/</code>), provides a bird&#39;s-eye view of the Concourse cluster. All visible pipelines across all teams are listed here. A &#34;HD view&#34; is available at <code>/hd</code>.</p>
+  <p>Concourse runs everything in isolated environments by creating fresh containers and volumes to ensure things can safely run in a repeatable environment, isolated from other workloads running on the same worker.</p><p>This introduces a new problem of knowing when Concourse should remove these containers and volumes. Safely identifying things for removal and then getting rid of them, releasing their resources, is the process of <em>garbage collection</em>.</p>
 
   
     
+      <div class="section" id="section_goals">
   
-</div>
-    
-      <div class="section" id="section_ccxml">
-  
-  <h2 class="section-header"><a class="anchor-target" name="ccxml" href="#ccxml"></a><code>cc.xml</code></h2>
+  <h2 class="section-header"><a class="anchor-target" name="goals" href="#goals"></a>Goals</h2>
   
 
-  <p>The Concourse API can return the status of a team&#39;s pipelines in a format compatible with tools like <a href="http://ccmenu.org/">CCMenu</a>. This endpoint is available at the following route:</p><pre>/api/v1/teams/{team}/cc.xml</pre><p>For example: <a href="http://ci.concourse-ci.org/api/v1/teams/main/cc.xml">the <code>main</code> team <code>cc.xml</code></a>.</p>
+  <p>Let&#39;s define our metrics for success:</p><ul>
+
+  <li><p><strong>Safe</strong>. There should never be a case where a build is running and a container or volume is removed out from under it, causing the build to fail. Resource checking should also never result in errors from check containers being removed. No one should even know garbage collection is happening.</p></li>
+
+  <li><p><strong>Airtight</strong>. Everything Concourse creates, whether it&#39;s a container or volume on a worker or an entry in the database, should never leak. Each object should have a fully defined lifecycle such that there is a clear end to its use. The ATC should be interruptible at any point in time and at the very least be able to remove any state it had created beforehand.</p></li>
+
+  <li><p><strong>Resilient</strong>. Garbage collection should never be outpaced by the workload. A single misbehaving worker should not prevent garbage collection from being performed on other workers. A slow delete of a volume should not prevent garbage collecting of other things on the same worker.</p></li>
+
+</ul>
 
   
     
   
 </div>
     
-      <div class="section" id="section_badges">
+      <div class="section" id="section_how-it-works">
   
-  <h2 class="section-header"><a class="anchor-target" name="badges" href="#badges"></a>Badges</h2>
-  
-
-  <p>The Concourse API supports returning SVG badges indicating the status of a job:</p><pre>/api/v1/teams/{team}/pipelines/{pipeline}/jobs/{job}/badge</pre><p>...and for an entire pipeline:</p><pre>/api/v1/teams/{team}/pipelines/{pipeline}/badge</pre><p>This can be used to annotate your READMEs with a build status badge like so:</p><pre><code class="language-md">![CI](https://wings.pivotal.io/api/v1/teams/vito/pipelines/booklit/jobs/unit/badge)]</code></pre><p>...which should render the following:</p><p><img src="https://wings.pivotal.io/api/v1/teams/vito/pipelines/booklit/jobs/unit/badge" alt="" /></p>
-
-  
-    
-  
-</div>
-    
-      <div class="section" id="section_pipeline-visibility">
-  
-  <h2 class="section-header"><a class="anchor-target" name="pipeline-visibility" href="#pipeline-visibility"></a>Pipeline Visibility</h2>
+  <h2 class="section-header"><a class="anchor-target" name="how-it-works" href="#how-it-works"></a>How it Works</h2>
   
 
-  <p>Pipelines may be exposed so that they can be monitored without having to authenticate. For more information, see <a href="exposing.html">Pipeline &amp; Build Visibility</a>.</p>
+  <p>The garbage collector is a batch operation that runs on an interval with a default of 30 seconds. It&#39;s important to note that the collector must be able to run frequently enough to not be outpaced by the workload producing things, and so the batch operation should be able to complete pretty quickly.</p><p>The batch operation first performs garbage collection within the database alone, removing rows that are no longer needed. The removal of rows from one stage will often result in removals in a later stage. There are individual collectors for each object, such as the volume collector or the container collector, and they are all run asynchronously.</p><p>After the initial pass of garbage collection in the database, there should now be a set of containers and volumes that meet criteria for garbage collection. These two are a bit more complicated to garbage-collect; they both require talking to a worker, and waiting on a potentially slow delete.</p><p>Containers and volumes are the costliest resources consumed by Concourse. There are also many of them created over time as builds execute and pipelines perform their resource checking. Therefore it is important to parallelize this aspect of garbage collection so that one slow delete or one slow worker does not cause them to pile up.</p>
 
   
     
@@ -268,10 +298,10 @@
               prev:
 
               
-              <span class="section-number">1.12</span>
+              <span class="section-number">1.14.2.3</span>
               
 
-              <a href="operation.html">Operation</a>
+              <a href="build-tracker.html">Build Tracker</a>
             </div>
           
 
@@ -280,10 +310,8 @@
               next:
 
               
-              <span class="section-number">1.14</span>
-              
 
-              <a href="internals.html">Internals</a>
+              <a href="internals.html#component-tsa">TSA: worker registration &amp; forwarding</a>
             </div>
           
           </nav>

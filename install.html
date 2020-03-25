@@ -25,11 +25,15 @@
 <script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
-    <div class="top-logo">
-  <a href="/"><img src="images/logo-white.svg" />Concourse</a>
-</div>
+    <div class="top-banner">
+      <p class="banner-text">
+        ✨ The <a href="https://airtable.com/shr4tyAb5ApbX3VV1">2020 Concourse CI Community Survey</a> is now live! ✨
+      </p>
+    </div>
 
-<nav class="top-nav">
+    <div class="page-top">
+      <nav class="top-nav">
+  <a class="top-link logo-link" href="/"><img src="images/logo-white.svg" />Concourse</a>
   
   <a class="top-link active" href="docs.html">Docs</a>
   
@@ -37,37 +41,122 @@
   
   <a class="top-link" href="project.html">Project</a>
   
+  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
   <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
   <a class="top-link" href="https://discuss.concourse-ci.org">discuss</a>
-  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
-</nav>
 
-<div class="top-search">
   <div id="search"></div>
-</div>
 
-<div class="top-banner">
-  ✨ The 2020 Concourse CI Community Survey is now live! ✨ <a href="https://airtable.com/shr4tyAb5ApbX3VV1">Click here to learn more and share your experience</a>.
-</div>
+  <script type="text/javascript">
+    var app = Elm.Main.init({
+      node: document.getElementById('search')
+    });
 
-<script type="text/javascript">
-  var app = Elm.Main.init({
-    node: document.getElementById('search')
-  });
+    app.ports.emitSearchTerm.subscribe(function(term) {
+      gtag('event', 'search', {search_term: term});
+    });
+  </script>
+</nav>
+    </div>
 
-  app.ports.emitSearchTerm.subscribe(function(term) {
-    gtag('event', 'search', {search_term: term});
-  });
-</script>
-
-    <div class="page-nav">
-      
+    <div class="page-body">
+      <div class="page-nav">
+        
 
 
 
 
 
 
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1</span><a href="docs.html"  class="active">Docs</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.1</td>
+            <td class="title-cell"><a href="install.html"  class="self">Install</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2</td>
+            <td class="title-cell"><a href="auth.html" >Auth &amp; Teams</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.3</td>
+            <td class="title-cell"><a href="fly.html" >The <code>fly</code> CLI</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.4</td>
+            <td class="title-cell"><a href="config-basics.html" >Config Basics</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.5</td>
+            <td class="title-cell"><a href="pipelines.html" >Pipelines</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.6</td>
+            <td class="title-cell"><a href="vars.html" >Vars</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.7</td>
+            <td class="title-cell"><a href="resources.html" >Resources</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.8</td>
+            <td class="title-cell"><a href="resource-types.html" >Resource Types</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.9</td>
+            <td class="title-cell"><a href="jobs.html" >Jobs</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.10</td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11</td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12</td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.13</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14</td>
+            <td class="title-cell"><a href="internals.html" >Internals</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
 
   
 
@@ -75,123 +164,45 @@
   <div class="context">
     <nav>
       <div class="top">
-        
-        <span class="section-number">1</span>
-        
-        
-  <a href="docs.html"  class="active">Docs</a>
-
+        <span class="section-number">1.1</span><a href="install.html"  class="self">Install</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="install.html"  class="self">Install</a>
-</td>
+            <td class="number-cell">1.1.1</td>
+            <td class="title-cell"><a href="quick-start.html" >Quick Start</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="auth.html" >Auth &amp; Teams</a>
-</td>
+            <td class="number-cell">1.1.2</td>
+            <td class="title-cell"><a href="postgresql-node.html" >Running a PostgreSQL node</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="fly.html" >The <code>fly</code> CLI</a>
-</td>
+            <td class="number-cell">1.1.3</td>
+            <td class="title-cell"><a href="concourse-cli.html" >The <code>concourse</code> CLI</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="config-basics.html" >Config Basics</a>
-</td>
+            <td class="number-cell">1.1.4</td>
+            <td class="title-cell"><a href="concourse-generate-key.html" >Generating Keys</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
-</td>
+            <td class="number-cell">1.1.5</td>
+            <td class="title-cell"><a href="concourse-web.html" >Running a <code>web</code> node</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.6&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resources.html" >Resources</a>
-</td>
+            <td class="number-cell">1.1.6</td>
+            <td class="title-cell"><a href="concourse-worker.html" >Running a <code>worker</code> node</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.7&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.8&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.9&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.10&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="builds.html" >Builds</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="operation.html" >Operation</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.12&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="observation.html" >Observation</a>
-</td>
+            <td class="number-cell">1.1.7</td>
+            <td class="title-cell"><a href="upgrading-concourse.html" >Upgrading Concourse</a></td>
           </tr>
         
         </table>
@@ -202,145 +213,422 @@
 
 
 
-
-
-<div class="context">
-  <div class="page-toc">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1.1</span>
-        
-        
-  <a href="install.html"  class="self">Install</a>
-
       </div>
+
+      <div class="body-content">
+        <div class="page-content">
+          <div class="section" id="section_install">
+  
+  <h1 class="section-header"><a class="anchor-target" name="install" href="#install"></a><span class="section-number">1.1 </span>Install</h1>
+  
+
+  <p>A Concourse installation is composed of a <a href="concourse-web.html"><code>web</code> node</a>, a <a href="concourse-worker.html"><code>worker</code> node</a>, and a <a href="postgresql-node.html">PostgreSQL node</a>.</p><p>There are many ways to deploy Concourse, depending on your personal preference. The <a href="quick-start.html">Quick Start</a> guide shows how to get Concourse up and running quickly via Docker Compose, and there is also an official <a href="https://github.com/concourse/concourse-chart">Concourse Helm chart</a>.</p><p>The documentation found here will primarily focus on the <code>concourse</code> CLI, which is the lowest common denominator, and can also be directly used if you want to just run Concourse yourself on real hardware or your own managed VMs.</p><div class="table-of-contents">
+  <span class="toc-header">Table of contents:</span>
+
+  
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.1.1</span>
+      <a href="quick-start.html">Quick Start</a>
 
       
-<div class="children">
-  <table>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.1.1&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="concourse-generate-key.html">Generating Keys</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.1.2&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="postgresql-node.html">Running a PostgreSQL node</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.1.3&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="concourse-web.html">Running a <code>web</code> node</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.1.4&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="concourse-worker.html">Running a <code>worker</code> node</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.1.5&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="upgrading-concourse.html">Upgrading Concourse</a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-    </nav>
-  </div>
-</div>
-
-
-
-
-    </div>
-
-    <div class="page-aside">
-      <div class="page-partial">
-        <div class="content">
-  <h2>Quick Start</h2>
-
-  <p>Alternatively, if you&#39;d just like to get a Concourse running and don&#39;t really care how, you can use <a href="https://docs.docker.com/compose/"><code>docker-compose</code></a> to run a quick-and-dirty Concourse cluster:</p><pre><code class="language-bash">$ wget https://concourse-ci.org/docker-compose.yml
-$ docker-compose up -d
-Creating docs_concourse-db_1 ...
-Creating docs_concourse-db_1 ... done
-Creating docs_concourse_1 ...
-Creating docs_concourse_1 ... done</code></pre><p>Concourse will be running at <a href="http://localhost:8080">localhost:8080</a>.</p><p>This instance is configured with a single user with the username and password as <code>test</code>. If you&#39;d like to change these credentials you can edit the <code>docker-compose.yml</code> - check out <a href="configuring-auth.html">Configuring Auth</a> to learn how.</p><p>From here you can continue on to <a href="fly.html"><code>fly</code> CLI</a> to get started.</p>
-</div>
-      </div>
-      </div>
-
-    <div class="page-content">
-      <div class="section" id="section_install">
   
-  <h1 class="section-header"><a class="anchor" name="install" href="#install"></a><span class="section-number">1.1 </span>Install</h1>
   
-
-  <p>A Concourse installation is composed of a <a href="concourse-web.html"><code>web</code> node</a>, a <a href="concourse-worker.html"><code>worker</code> node</a>, and a <a href="postgresql-node.html">PostgreSQL node</a>.</p><p>The <code>web</code> and <code>worker</code> nodes both run via a single <code>concourse</code> CLI, which can be downloaded from the <a href="https://github.com/concourse/concourse/releases/latest">latest GitHub release</a> - be sure to grab the appropriate archive for your platform of choice.</p><p>Each archive contains the following:</p><pre><code class="language-sh">concourse/bin/concourse
-concourse/bin/gdn            # on Linux
-concourse/fly-assets/...
-concourse/resource-types/... # on Linux</code></pre><p>When extracted, the <code>concourse</code> binary will auto-discover its sibling assets based on its file location, so you may extract it anywhere.</p><p>On Linux a typical install location is <code>/usr/local/concourse</code>:</p><pre><code class="language-sh">tar -zxf concourse-*.tgz -C /usr/local</code></pre><p>From there, you can either add <code>/usr/local/concourse/bin</code> to your <code>$PATH</code>, or just execute <code>/usr/local/concourse/bin/concourse</code> directly.</p><p><h2>Configuration basics</h2></p><p>All Concourse node configuration is defined statically via flags. For a full list of flags, you can pass <code>--help</code> to any command.</p><p>Each flag can also be set via an environment variable. The env var for each flag is based on the flag name, preceded with <code>CONCOURSE_</code>. These are also shown in <code>--help</code>.</p><p>Various sections in documentation may refer to configuration via env vars rather than flags, but they are both equivalent and interchangeable. Env vars are just easier to reference in isolation and are more useful to copy-paste.</p>
-
+    </li>
   
-</div>
+    <li>
+      <span class="section-number">1.1.2</span>
+      <a href="postgresql-node.html">Running a PostgreSQL node</a>
 
-      <nav class="prev-next">
       
-        <div class="prev">
-          prev:
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.1.2.1</span>
+      <a href="postgresql-node.html#db-prerequisites">Prerequisites</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.2.2</span>
+      <a href="postgresql-node.html#db-running">Running PostgreSQL</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.1.2.2.1</span>
+      <a href="postgresql-node.html#db-resource-utilization">Resource utilization</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.3</span>
+      <a href="concourse-cli.html">The <code>concourse</code> CLI</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.4</span>
+      <a href="concourse-generate-key.html">Generating Keys</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.5</span>
+      <a href="concourse-web.html">Running a <code>web</code> node</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.1.5.1</span>
+      <a href="concourse-web.html#web-prerequisites">Prerequisites</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.5.2</span>
+      <a href="concourse-web.html#web-running">Running <code>concourse web</code></a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.1.5.2.1</span>
+      <a href="concourse-web.html#web-ingress">Configuring ingress traffic</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.5.2.2</span>
+      <a href="concourse-web.html#web-resource-utilization">Resource utilization</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.5.3</span>
+      <a href="concourse-web.html#web-operation">Operating a <code>web</code> node</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.1.5.3.1</span>
+      <a href="concourse-web.html#scaling">Scaling</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.5.3.2</span>
+      <a href="concourse-web.html#restarting-and-upgrading">Restarting &amp; Upgrading</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.5.3.3</span>
+      <a href="concourse-web.html#downgrading">Downgrading</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.5.4</span>
+      <a href="concourse-web.html#web-configuration">Configuring the <code>web</code> node</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.1.5.4.1</span>
+      <a href="concourse-web.html#giving-your-cluster-a-name">Giving your cluster a name</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.5.4.2</span>
+      <a href="concourse-web.html#lets-encrypt">TLS via Let&#39;s Encrypt</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.5.4.3</span>
+      <a href="concourse-web.html#audit-logs">Enabling audit logs</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.6</span>
+      <a href="concourse-worker.html">Running a <code>worker</code> node</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.1.6.1</span>
+      <a href="concourse-worker.html#worker-prerequisites">Prerequisites</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.6.2</span>
+      <a href="concourse-worker.html#worker-running">Running <code>concourse worker</code></a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.1.6.2.1</span>
+      <a href="concourse-worker.html#worker-resource-utilization">Resource utilization</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.6.3</span>
+      <a href="concourse-worker.html#worker-operation">Operating a <code>worker</code> node</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.1.6.3.1</span>
+      <a href="concourse-worker.html#scaling-workers">Scaling Workers</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.6.3.2</span>
+      <a href="concourse-worker.html#worker-heartbeating-and-stalling">Worker Heartbeating &amp; Stalling</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.6.3.3</span>
+      <a href="concourse-worker.html#restarting-a-worker">Restarting a Worker</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.6.3.4</span>
+      <a href="concourse-worker.html#gracefully-removing-a-worker">Gracefully Removing a Worker</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.6.4</span>
+      <a href="concourse-worker.html#worker-configuration">Configuring the <code>worker</code> node</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.1.6.4.1</span>
+      <a href="concourse-worker.html#configuring-gdn-server">Configuring <code>gdn server</code></a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.1.6.4.1.1</span>
+      <a href="concourse-worker.html#troubleshooting-and-fixing-dns-resolution">Troubleshooting and fixing DNS resolution</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.1.6.4.1.1.1</span>
+      <a href="concourse-worker.html#pointing-to-external-dns-servers">Pointing to external DNS servers</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.6.4.1.1.2</span>
+      <a href="concourse-worker.html#using-a-local-dns-server">Using a local DNS server</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.7</span>
+      <a href="upgrading-concourse.html">Upgrading Concourse</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+</div>
+
+  
+</div>
+
+          <nav class="prev-next">
+          
+            <div class="prev">
+              prev:
+
+              
+              <span class="section-number">1</span>
+              
+
+              <a href="docs.html">Docs</a>
+            </div>
+          
 
           
-          <span class="section-number">1</span>
-          
+            <div class="next">
+              next:
 
-          <a href="docs.html">Docs</a>
+              
+              <span class="section-number">1.1.1</span>
+              
+
+              <a href="quick-start.html">Quick Start</a>
+            </div>
+          
+          </nav>
         </div>
-      
 
-      
-        <div class="next">
-          next:
-
-          
-          <span class="section-number">1.1.1</span>
-          
-
-          <a href="concourse-generate-key.html">Generating Keys</a>
-        </div>
-      
-      </nav>
+        <div class="page-aside"></div>
+      </div>
     </div>
 
     <ul class="improve-docs">

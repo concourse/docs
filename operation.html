@@ -25,11 +25,15 @@
 <script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
-    <div class="top-logo">
-  <a href="/"><img src="images/logo-white.svg" />Concourse</a>
-</div>
+    <div class="top-banner">
+      <p class="banner-text">
+        ✨ The <a href="https://airtable.com/shr4tyAb5ApbX3VV1">2020 Concourse CI Community Survey</a> is now live! ✨
+      </p>
+    </div>
 
-<nav class="top-nav">
+    <div class="page-top">
+      <nav class="top-nav">
+  <a class="top-link logo-link" href="/"><img src="images/logo-white.svg" />Concourse</a>
   
   <a class="top-link active" href="docs.html">Docs</a>
   
@@ -37,37 +41,122 @@
   
   <a class="top-link" href="project.html">Project</a>
   
+  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
   <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
   <a class="top-link" href="https://discuss.concourse-ci.org">discuss</a>
-  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
-</nav>
 
-<div class="top-search">
   <div id="search"></div>
-</div>
 
-<div class="top-banner">
-  ✨ The 2020 Concourse CI Community Survey is now live! ✨ <a href="https://airtable.com/shr4tyAb5ApbX3VV1">Click here to learn more and share your experience</a>.
-</div>
+  <script type="text/javascript">
+    var app = Elm.Main.init({
+      node: document.getElementById('search')
+    });
 
-<script type="text/javascript">
-  var app = Elm.Main.init({
-    node: document.getElementById('search')
-  });
+    app.ports.emitSearchTerm.subscribe(function(term) {
+      gtag('event', 'search', {search_term: term});
+    });
+  </script>
+</nav>
+    </div>
 
-  app.ports.emitSearchTerm.subscribe(function(term) {
-    gtag('event', 'search', {search_term: term});
-  });
-</script>
-
-    <div class="page-nav">
-      
+    <div class="page-body">
+      <div class="page-nav">
+        
 
 
 
 
 
 
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1</span><a href="docs.html"  class="active">Docs</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.1</td>
+            <td class="title-cell"><a href="install.html" >Install</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2</td>
+            <td class="title-cell"><a href="auth.html" >Auth &amp; Teams</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.3</td>
+            <td class="title-cell"><a href="fly.html" >The <code>fly</code> CLI</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.4</td>
+            <td class="title-cell"><a href="config-basics.html" >Config Basics</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.5</td>
+            <td class="title-cell"><a href="pipelines.html" >Pipelines</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.6</td>
+            <td class="title-cell"><a href="vars.html" >Vars</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.7</td>
+            <td class="title-cell"><a href="resources.html" >Resources</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.8</td>
+            <td class="title-cell"><a href="resource-types.html" >Resource Types</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.9</td>
+            <td class="title-cell"><a href="jobs.html" >Jobs</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.10</td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11</td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12</td>
+            <td class="title-cell"><a href="operation.html"  class="self">Operation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.13</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14</td>
+            <td class="title-cell"><a href="internals.html" >Internals</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
 
   
 
@@ -75,123 +164,45 @@
   <div class="context">
     <nav>
       <div class="top">
-        
-        <span class="section-number">1</span>
-        
-        
-  <a href="docs.html"  class="active">Docs</a>
-
+        <span class="section-number">1.12</span><a href="operation.html"  class="self">Operation</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="install.html" >Install</a>
-</td>
+            <td class="number-cell">1.12.1</td>
+            <td class="title-cell"><a href="metrics.html" >Metrics</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="auth.html" >Auth &amp; Teams</a>
-</td>
+            <td class="number-cell">1.12.2</td>
+            <td class="title-cell"><a href="tracing.html" >Tracing</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="fly.html" >The <code>fly</code> CLI</a>
-</td>
+            <td class="number-cell">1.12.3</td>
+            <td class="title-cell"><a href="encryption.html" >Encryption</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="config-basics.html" >Config Basics</a>
-</td>
+            <td class="number-cell">1.12.4</td>
+            <td class="title-cell"><a href="creds.html" >Credential Management</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
-</td>
+            <td class="number-cell">1.12.5</td>
+            <td class="title-cell"><a href="container-placement.html" >Container Placement</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.6&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resources.html" >Resources</a>
-</td>
+            <td class="number-cell">1.12.6</td>
+            <td class="title-cell"><a href="global-resources.html" >Global Resources (experimental)</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.7&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.8&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.9&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.10&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="builds.html" >Builds</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="operation.html"  class="self">Operation</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.12&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="observation.html" >Observation</a>
-</td>
+            <td class="number-cell">1.12.7</td>
+            <td class="title-cell"><a href="administration.html" >Administration</a></td>
           </tr>
         
         </table>
@@ -202,462 +213,393 @@
 
 
 
-
-
-<div class="context">
-  <div class="page-toc">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1.11</span>
-        
-        
-  <a href="operation.html"  class="self">Operation</a>
-
       </div>
 
+      <div class="body-content">
+        <div class="page-content">
+          <div class="section" id="section_operation">
+  
+  <h1 class="section-header"><a class="anchor-target" name="operation" href="#operation"></a><span class="section-number">1.12 </span>Operation</h1>
+  
+
+  <p>The following sections describes operator-focused features and tools that Concourse provides, such as monitoring and credential management.</p><p>These concepts are not required to operate Concourse, but are for users that are looking to extend the capabilities of managing a Concourse deployment. For users that are new to these concepts, we do recommend learning how to set up <a href="creds.html">Credential Management</a> and <a href="encryption.html">Encryption</a>.</p><div class="table-of-contents">
+  <span class="toc-header">Table of contents:</span>
+
+  
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.12.1</span>
+      <a href="metrics.html">Metrics</a>
+
       
-<div class="children">
-  <table>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.11.1&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="encryption.html">Encryption</a>
-
-          
-<div class="children">
-  <table>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="encryption.html#whats-encrypted">What&#39;s encrypted?</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="encryption.html#enabling-encryption">Enabling Encryption</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="encryption.html#rotating-the-encryption-key">Rotating the Encryption Key</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="encryption.html#disabling-encryption">Disabling Encryption</a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.11.2&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="creds.html">Credential Management</a>
-
-          
-<div class="children">
-  <table>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.11.2.1&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="vault-credential-manager.html">The Vault credential manager</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.11.2.2&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="credhub-credential-manager.html">The CredHub credential manager</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.11.2.3&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="aws-ssm-credential-manager.html">The AWS SSM credential manager</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.11.2.4&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="aws-asm-credential-manager.html">The AWS Secrets Manager credential manager</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.11.2.5&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="kubernetes-credential-manager.html">Kubernetes Credential Manager</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.11.2.6&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="creds-caching.html">Caching credentials</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.11.2.7&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="creds-redacting.html">Redacting credentials</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.11.2.8&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="creds-retry-logic.html">Retrying failed fetches</a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.11.3&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="metrics.html">Metrics</a>
-
-          
-<div class="children">
-  <table>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="metrics.html#configuring-metrics">Configuring Metrics</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="metrics.html#whats-emitted">What&#39;s emitted?</a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.11.4&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="container-placement.html">Container Placement</a>
-
-          
-<div class="children">
-  <table>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="container-placement.html#volume-locality-strategy">The <code>volume-locality</code> strategy</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="container-placement.html#fewest-build-containers-strategy">The <code>fewest-build-containers</code> strategy</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="container-placement.html#random-strategy">The <code>random</code> strategy</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="container-placement.html#limit-active-tasks-strategy">The <code>limit-active-tasks</code> strategy</a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.11.5&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="global-resources.html">Global Resources (experimental)</a>
-
-          
-<div class="children">
-  <table>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="global-resources.html#benefits-of-global-resources">Benefits of Global Resources</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="global-resources.html#risks-and-side-effects">Risks and Side Effects</a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.11.6&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="administration.html">Administration</a>
-
-          
-<div class="children">
-  <table>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="administration.html#fly-workers"><code>fly workers</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="administration.html#fly-prune-worker"><code>fly prune-worker</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="administration.html#fly-land-worker"><code>fly land-worker</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="administration.html#fly-containers"><code>fly containers</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="administration.html#fly-volumes"><code>fly volumes</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="administration.html#fly-curl"><code>fly curl</code></a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-    </nav>
-  </div>
-</div>
-
-
-
-
-    </div>
-
-    <div class="page-aside"></div>
-
-    <div class="page-content">
-      <div class="section" id="section_operation">
   
-  <h1 class="section-header"><a class="anchor" name="operation" href="#operation"></a><span class="section-number">1.11 </span>Operation</h1>
+  <ol class="toc">
   
+    <li>
+      <span class="section-number">1.12.1.1</span>
+      <a href="metrics.html#configuring-metrics">Configuring Metrics</a>
 
-  <p>The following sections are available to provide a deeper understanding of some of the concepts surrounding Concourse. They aren&#39;t necessary for using Concourse and understanding its general concept of pipelines and how to use them, but we do recommend at least learning how to set up <a href="creds.html">Credential Management</a> and <a href="encryption.html">Encryption</a>.</p>
-
-  
-</div>
-
-      <nav class="prev-next">
       
-        <div class="prev">
-          prev:
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.1.2</span>
+      <a href="metrics.html#whats-emitted">What&#39;s emitted?</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.2</span>
+      <a href="tracing.html">Tracing</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.12.2.1</span>
+      <a href="tracing.html#configuring-tracing">Configuring Tracing</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.3</span>
+      <a href="encryption.html">Encryption</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.12.3.1</span>
+      <a href="encryption.html#whats-encrypted">What&#39;s encrypted?</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.3.2</span>
+      <a href="encryption.html#enabling-encryption">Enabling Encryption</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.3.3</span>
+      <a href="encryption.html#rotating-the-encryption-key">Rotating the Encryption Key</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.3.4</span>
+      <a href="encryption.html#disabling-encryption">Disabling Encryption</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.4</span>
+      <a href="creds.html">Credential Management</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.12.4.1</span>
+      <a href="vault-credential-manager.html">The Vault credential manager</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.4.2</span>
+      <a href="credhub-credential-manager.html">The CredHub credential manager</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.4.3</span>
+      <a href="aws-ssm-credential-manager.html">The AWS SSM credential manager</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.4.4</span>
+      <a href="aws-asm-credential-manager.html">The AWS Secrets Manager credential manager</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.4.5</span>
+      <a href="kubernetes-credential-manager.html">Kubernetes Credential Manager</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.4.6</span>
+      <a href="creds-caching.html">Caching credentials</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.4.7</span>
+      <a href="creds-redacting.html">Redacting credentials</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.4.8</span>
+      <a href="creds-retry-logic.html">Retrying failed fetches</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.5</span>
+      <a href="container-placement.html">Container Placement</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.12.5.1</span>
+      <a href="container-placement.html#volume-locality-strategy">The <code>volume-locality</code> strategy</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.5.2</span>
+      <a href="container-placement.html#fewest-build-containers-strategy">The <code>fewest-build-containers</code> strategy</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.5.3</span>
+      <a href="container-placement.html#random-strategy">The <code>random</code> strategy</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.5.4</span>
+      <a href="container-placement.html#limit-active-tasks-strategy">The <code>limit-active-tasks</code> strategy</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.6</span>
+      <a href="global-resources.html">Global Resources (experimental)</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.12.6.1</span>
+      <a href="global-resources.html#benefits-of-global-resources">Benefits of Global Resources</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.6.2</span>
+      <a href="global-resources.html#risks-and-side-effects">Risks and Side Effects</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.7</span>
+      <a href="administration.html">Administration</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.12.7.1</span>
+      <a href="administration.html#fly-workers"><code>fly workers</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.7.2</span>
+      <a href="administration.html#fly-prune-worker"><code>fly prune-worker</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.7.3</span>
+      <a href="administration.html#fly-land-worker"><code>fly land-worker</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.7.4</span>
+      <a href="administration.html#fly-containers"><code>fly containers</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.7.5</span>
+      <a href="administration.html#fly-volumes"><code>fly volumes</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.7.6</span>
+      <a href="administration.html#fly-curl"><code>fly curl</code></a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+</div>
+
+  
+</div>
+
+          <nav class="prev-next">
+          
+            <div class="prev">
+              prev:
+
+              
+              <span class="section-number">1.11</span>
+              
+
+              <a href="builds.html">Builds</a>
+            </div>
+          
 
           
-          <span class="section-number">1.10</span>
-          
+            <div class="next">
+              next:
 
-          <a href="builds.html">Builds</a>
+              
+              <span class="section-number">1.12.1</span>
+              
+
+              <a href="metrics.html">Metrics</a>
+            </div>
+          
+          </nav>
         </div>
-      
 
-      
-        <div class="next">
-          next:
-
-          
-          <span class="section-number">1.11.1</span>
-          
-
-          <a href="encryption.html">Encryption</a>
-        </div>
-      
-      </nav>
+        <div class="page-aside"></div>
+      </div>
     </div>
 
     <ul class="improve-docs">

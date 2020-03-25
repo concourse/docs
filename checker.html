@@ -13,7 +13,7 @@
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
-<title>The CredHub credential manager - Concourse CI</title>
+<title>Resource Checker - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
@@ -143,7 +143,7 @@
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="operation.html"  class="active">Operation</a></td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
           </tr>
         
           <tr>
@@ -153,7 +153,7 @@
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="internals.html" >Internals</a></td>
+            <td class="title-cell"><a href="internals.html"  class="active">Internals</a></td>
           </tr>
         
         </table>
@@ -168,45 +168,30 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.12</span><a href="operation.html"  class="active">Operation</a>
+        <span class="section-number">1.14</span><a href="internals.html"  class="active">Internals</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.12.1</td>
-            <td class="title-cell"><a href="metrics.html" >Metrics</a></td>
+            <td class="number-cell">1.14.1</td>
+            <td class="title-cell"><a href="internals.html#basic-architecture" >Basic architecture</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.12.2</td>
-            <td class="title-cell"><a href="tracing.html" >Tracing</a></td>
+            <td class="number-cell">1.14.2</td>
+            <td class="title-cell"><a href="internals.html#component-atc"  class="active">ATC: web UI &amp; build scheduler</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.12.3</td>
-            <td class="title-cell"><a href="encryption.html" >Encryption</a></td>
+            <td class="number-cell">1.14.3</td>
+            <td class="title-cell"><a href="internals.html#component-tsa" >TSA: worker registration &amp; forwarding</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.12.4</td>
-            <td class="title-cell"><a href="creds.html"  class="active">Credential Management</a></td>
-          </tr>
-        
-          <tr>
-            <td class="number-cell">1.12.5</td>
-            <td class="title-cell"><a href="container-placement.html" >Container Placement</a></td>
-          </tr>
-        
-          <tr>
-            <td class="number-cell">1.12.6</td>
-            <td class="title-cell"><a href="global-resources.html" >Global Resources (experimental)</a></td>
-          </tr>
-        
-          <tr>
-            <td class="number-cell">1.12.7</td>
-            <td class="title-cell"><a href="administration.html" >Administration</a></td>
+            <td class="number-cell">1.14.4</td>
+            <td class="title-cell"><a href="internals.html#architecture-worker" >Workers: container runtime &amp; cache management</a></td>
           </tr>
         
         </table>
@@ -221,50 +206,30 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.12.4</span><a href="creds.html"  class="active">Credential Management</a>
+        <a href="internals.html#component-atc"  class="active">ATC: web UI &amp; build scheduler</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.12.4.1</td>
-            <td class="title-cell"><a href="vault-credential-manager.html" >The Vault credential manager</a></td>
+            <td class="number-cell">1.14.2.1</td>
+            <td class="title-cell"><a href="checker.html"  class="self">Resource Checker</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.12.4.2</td>
-            <td class="title-cell"><a href="credhub-credential-manager.html"  class="self">The CredHub credential manager</a></td>
+            <td class="number-cell">1.14.2.2</td>
+            <td class="title-cell"><a href="scheduler.html" >Build Scheduler</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.12.4.3</td>
-            <td class="title-cell"><a href="aws-ssm-credential-manager.html" >The AWS SSM credential manager</a></td>
+            <td class="number-cell">1.14.2.3</td>
+            <td class="title-cell"><a href="build-tracker.html" >Build Tracker</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.12.4.4</td>
-            <td class="title-cell"><a href="aws-asm-credential-manager.html" >The AWS Secrets Manager credential manager</a></td>
-          </tr>
-        
-          <tr>
-            <td class="number-cell">1.12.4.5</td>
-            <td class="title-cell"><a href="kubernetes-credential-manager.html" >Kubernetes Credential Manager</a></td>
-          </tr>
-        
-          <tr>
-            <td class="number-cell">1.12.4.6</td>
-            <td class="title-cell"><a href="creds-caching.html" >Caching credentials</a></td>
-          </tr>
-        
-          <tr>
-            <td class="number-cell">1.12.4.7</td>
-            <td class="title-cell"><a href="creds-redacting.html" >Redacting credentials</a></td>
-          </tr>
-        
-          <tr>
-            <td class="number-cell">1.12.4.8</td>
-            <td class="title-cell"><a href="creds-retry-logic.html" >Retrying failed fetches</a></td>
+            <td class="number-cell">1.14.2.4</td>
+            <td class="title-cell"><a href="garbage-collector.html" >Garbage Collector</a></td>
           </tr>
         
         </table>
@@ -283,43 +248,45 @@
 
       <div class="body-content">
         <div class="page-content">
-          <div class="section" id="section_credhub-credential-manager">
+          <div class="section" id="section_checker">
   
-  <h1 class="section-header"><a class="anchor-target" name="credhub-credential-manager" href="#credhub-credential-manager"></a><span class="section-number">1.12.4.2 </span>The CredHub credential manager</h1>
+  <h1 class="section-header"><a class="anchor-target" name="checker" href="#checker"></a><span class="section-number">1.14.2.1 </span>Resource Checker</h1>
   
 
-  
+  <p>Resources represent external state such as a git repository, an s3 bucket, or anything else that changes over time. By modelling these as resources, it allows you to use this external state as inputs (or triggers) to your workloads.</p>
 
   
     
-      <div class="section" id="section_configuration">
+      <div class="section" id="section_when-are-resources-checked">
   
-  <h2 class="section-header"><a class="anchor-target" name="configuration" href="#configuration"></a>Configuration</h2>
+  <h2 class="section-header"><a class="anchor-target" name="when-are-resources-checked" href="#when-are-resources-checked"></a>When are resources checked?</h2>
   
 
-  <p>The ATC is statically configured with a Credhub server URL with TLS and client config.</p><p>For example, to point the ATC at an internal Credhub server with TLS signed by a local CA, using client id and secret, you may configure:</p><pre><code class="language-bash">concourse web ... \
-  --credhub-url https://10.2.0.3:9000 \
-  --credhub-ca-cert /etc/my-ca.cert \
-  --credhub-client-id =db02de05-fa39-4855-059b-67221c5c2f63 \
-  --credhub-client-secret 6a174c20-f6de-a53c-74d2-6018fcceff64</code></pre>
+  <p>The component that schedules and runs the resource checks is called the <strong>resource checker</strong>. The rate at which these checks happen is called the check interval. There&#39;s an obvious tradeoff, whereby the more frequently you poll, the bigger the strain on Concourse (as well as the external source), however if you want to pick up those new commits as quickly as possible, then you need to poll as often as possible.</p><p>The resource checker uses the <a href="resources.html#schema.resource.check_every"><code class="schema-attribute-name"><bold>resource<wbr />.check_every</bold></code></a> interval in order to figure out if a resource needs to be checked. A resource&#39;s <code>check_every</code> interval dictates how often it should be checked for new versions, with a default of 1 minute. If that seems like a lot, it is, but it&#39;s how Concourse keeps everything snappy. You can configure this value independently for each resource, or if your external service supports it, you can set <a href="resources.html#schema.resource.webhook_token"><code class="schema-attribute-name"><bold>resource<wbr />.webhook_token</bold></code></a> to basically eliminate the need for polling altogether.</p><p>On every interval tick, the resource checker will see if there are any resources that need to be checked. It does this by first finding resources which are used as inputs to jobs, and then comparing the current time against the last time each resource was checked. If it has been longer than a resource&#39;s configured <code>check_every</code> interval, a new check will be enqueued. In practice this means that if a resource has a <code>check_every</code> of <code>1m</code>, it is not guaranteed to be checked precisely every 60 seconds.</p>
 
   
     
   
 </div>
     
-      <div class="section" id="section_credential-lookup-rules">
+      <div class="section" id="section_what-resources-produce">
   
-  <h2 class="section-header"><a class="anchor-target" name="credential-lookup-rules" href="#credential-lookup-rules"></a>Credential Lookup Rules</h2>
+  <h2 class="section-header"><a class="anchor-target" name="what-resources-produce" href="#what-resources-produce"></a>What do resource checks produce?</h2>
   
 
-  <p>When resolving a parameter such as <code>((foo_param))</code>, it will look in the following paths, in order:</p><ul>
+  <p>The whole point of running checks is to produce versions. Everything that happens in concourse is centered around the idea of resource versions. It&#39;s how concourse determines that something is <em>new</em> and a new build needs to be triggered. The versions produced by each resource all vary to a large degree. The git resource, for example, uses commits hashes, the registry image resource uses the digest sha, and the time resource uses timestamps. Every resource is different, but the end result is the same, a new input for your workload.</p>
 
-  <li><p><code>/concourse/TEAM_NAME/PIPELINE_NAME/foo_param</code></p></li>
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_resource-checker-components">
+  
+  <h2 class="section-header"><a class="anchor-target" name="resource-checker-components" href="#resource-checker-components"></a>Resource checker components</h2>
+  
 
-  <li><p><code>/concourse/TEAM_NAME/foo_param</code></p></li>
-
-</ul><p>The leading <code>/concourse</code> can be changed by specifying <code>--credhub-path-prefix</code>.</p><p>Credhub credentials actually have different types, which may contain multiple values. For example, the <code>user</code> type specifies both <code>username</code> and <code>password</code>. You can specified the field to grab via <code>.</code> syntax, e.g. <code>((foo_param.username))</code>.</p><p>If the action is being run in the context of a pipeline (e.g. a <code>check</code> or a step in a build of a job), the ATC will first look in the pipeline path. If it&#39;s not found there, it will look in the team path. This allows credentials to be scoped widely if they&#39;re common across many pipelines.</p><p>If an action is being run in a one-off build, the ATC will only look in the team path.</p>
+  <p>As of Concourse v5.6.0, resource checking has been redesigned to be asynchronous. There are now two processes that dictate how resource checking happens. The scanner, which determines if new checks need to run, and the checker which runs them.</p><p>The scanner will run every <code>CONCOURSE_LIDAR_SCANNER_INTERVAL</code>. It&#39;s job is to determine if new checks need to run. It will loop over every resource (and resource type) and if the check interval has elapsed since it last ran, it will schedule a new check for that resource.</p><p>The checker will run every <code>CONCOURSE_LIDAR_CHECKER_INTERVAL</code>. It&#39;s job is to run all the checks that were scheduled, which can be scheduled through the scanner or the manual resource checks.</p>
 
   
     
@@ -335,10 +302,8 @@
               prev:
 
               
-              <span class="section-number">1.12.4.1</span>
-              
 
-              <a href="vault-credential-manager.html">The Vault credential manager</a>
+              <a href="internals.html#component-atc">ATC: web UI &amp; build scheduler</a>
             </div>
           
 
@@ -347,10 +312,10 @@
               next:
 
               
-              <span class="section-number">1.12.4.3</span>
+              <span class="section-number">1.14.2.2</span>
               
 
-              <a href="aws-ssm-credential-manager.html">The AWS SSM credential manager</a>
+              <a href="scheduler.html">Build Scheduler</a>
             </div>
           
           </nav>

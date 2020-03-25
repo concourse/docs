@@ -25,11 +25,15 @@
 <script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
-    <div class="top-logo">
-  <a href="/"><img src="images/logo-white.svg" />Concourse</a>
-</div>
+    <div class="top-banner">
+      <p class="banner-text">
+        ✨ The <a href="https://airtable.com/shr4tyAb5ApbX3VV1">2020 Concourse CI Community Survey</a> is now live! ✨
+      </p>
+    </div>
 
-<nav class="top-nav">
+    <div class="page-top">
+      <nav class="top-nav">
+  <a class="top-link logo-link" href="/"><img src="images/logo-white.svg" />Concourse</a>
   
   <a class="top-link active" href="docs.html">Docs</a>
   
@@ -37,342 +41,237 @@
   
   <a class="top-link" href="project.html">Project</a>
   
+  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
   <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
   <a class="top-link" href="https://discuss.concourse-ci.org">discuss</a>
-  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
-</nav>
 
-<div class="top-search">
   <div id="search"></div>
-</div>
 
-<div class="top-banner">
-  ✨ The 2020 Concourse CI Community Survey is now live! ✨ <a href="https://airtable.com/shr4tyAb5ApbX3VV1">Click here to learn more and share your experience</a>.
-</div>
+  <script type="text/javascript">
+    var app = Elm.Main.init({
+      node: document.getElementById('search')
+    });
 
-<script type="text/javascript">
-  var app = Elm.Main.init({
-    node: document.getElementById('search')
-  });
-
-  app.ports.emitSearchTerm.subscribe(function(term) {
-    gtag('event', 'search', {search_term: term});
-  });
-</script>
-
-    <div class="page-nav">
-      
-
-
-
-
-
-
-
-  
-  
-  
-
-  
-  <div class="context">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1</span>
-        
-        
-  <a href="docs.html"  class="active">Docs</a>
-
-      </div>
-
-      <div class="children">
-        <table>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="install.html" >Install</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="auth.html" >Auth &amp; Teams</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="fly.html" >The <code>fly</code> CLI</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="config-basics.html" >Config Basics</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.6&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resources.html" >Resources</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.7&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.8&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.9&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.10&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="builds.html" >Builds</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="operation.html"  class="active">Operation</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.12&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="observation.html" >Observation</a>
-</td>
-          </tr>
-        
-        </table>
-      </div>
-    </nav>
-  </div>
-  
-
-  
-
-  
-  <div class="context">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1.11</span>
-        
-        
-  <a href="operation.html"  class="active">Operation</a>
-
-      </div>
-
-      <div class="children">
-        <table>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="encryption.html" >Encryption</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11.2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="creds.html" >Credential Management</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11.3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="metrics.html" >Metrics</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11.4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="container-placement.html"  class="self">Container Placement</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="global-resources.html" >Global Resources (experimental)</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11.6&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="administration.html" >Administration</a>
-</td>
-          </tr>
-        
-        </table>
-      </div>
-    </nav>
-  </div>
-  
-
-
-
-
-
-<div class="context">
-  <div class="page-toc">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1.11.4</span>
-        
-        
-  <a href="container-placement.html"  class="self">Container Placement</a>
-
-      </div>
-
-      
-<div class="children">
-  <table>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="container-placement.html#volume-locality-strategy">The <code>volume-locality</code> strategy</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="container-placement.html#fewest-build-containers-strategy">The <code>fewest-build-containers</code> strategy</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="container-placement.html#random-strategy">The <code>random</code> strategy</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="container-placement.html#limit-active-tasks-strategy">The <code>limit-active-tasks</code> strategy</a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-    </nav>
-  </div>
-</div>
-
-
-
-
+    app.ports.emitSearchTerm.subscribe(function(term) {
+      gtag('event', 'search', {search_term: term});
+    });
+  </script>
+</nav>
     </div>
 
-    <div class="page-aside"></div>
+    <div class="page-body">
+      <div class="page-nav">
+        
 
-    <div class="page-content">
-      <div class="section" id="section_container-placement">
+
+
+
+
+
   
-  <h1 class="section-header"><a class="anchor" name="container-placement" href="#container-placement"></a><span class="section-number">1.11.4 </span>Container Placement</h1>
+  
+  
+  
   
 
-  <p>Each <a href="steps.html">step</a> in a build is executed inside a container. The <a href="concourse-web.html"><code>web</code> node</a> distributes containers across the worker cluster depending on the configured strategy.</p>
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1</span><a href="docs.html"  class="active">Docs</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.1</td>
+            <td class="title-cell"><a href="install.html" >Install</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2</td>
+            <td class="title-cell"><a href="auth.html" >Auth &amp; Teams</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.3</td>
+            <td class="title-cell"><a href="fly.html" >The <code>fly</code> CLI</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.4</td>
+            <td class="title-cell"><a href="config-basics.html" >Config Basics</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.5</td>
+            <td class="title-cell"><a href="pipelines.html" >Pipelines</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.6</td>
+            <td class="title-cell"><a href="vars.html" >Vars</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.7</td>
+            <td class="title-cell"><a href="resources.html" >Resources</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.8</td>
+            <td class="title-cell"><a href="resource-types.html" >Resource Types</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.9</td>
+            <td class="title-cell"><a href="jobs.html" >Jobs</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.10</td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11</td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12</td>
+            <td class="title-cell"><a href="operation.html"  class="active">Operation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.13</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14</td>
+            <td class="title-cell"><a href="internals.html" >Internals</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.12</span><a href="operation.html"  class="active">Operation</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.12.1</td>
+            <td class="title-cell"><a href="metrics.html" >Metrics</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.2</td>
+            <td class="title-cell"><a href="tracing.html" >Tracing</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.3</td>
+            <td class="title-cell"><a href="encryption.html" >Encryption</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.4</td>
+            <td class="title-cell"><a href="creds.html" >Credential Management</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.5</td>
+            <td class="title-cell"><a href="container-placement.html"  class="self">Container Placement</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.6</td>
+            <td class="title-cell"><a href="global-resources.html" >Global Resources (experimental)</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.7</td>
+            <td class="title-cell"><a href="administration.html" >Administration</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.12.5</span><a href="container-placement.html"  class="self">Container Placement</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.12.5.1</td>
+            <td class="title-cell"><a href="container-placement.html#volume-locality-strategy" >The <code>volume-locality</code> strategy</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.5.2</td>
+            <td class="title-cell"><a href="container-placement.html#fewest-build-containers-strategy" >The <code>fewest-build-containers</code> strategy</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.5.3</td>
+            <td class="title-cell"><a href="container-placement.html#random-strategy" >The <code>random</code> strategy</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.5.4</td>
+            <td class="title-cell"><a href="container-placement.html#limit-active-tasks-strategy" >The <code>limit-active-tasks</code> strategy</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+      </div>
+
+      <div class="body-content">
+        <div class="page-content">
+          <div class="section" id="section_container-placement">
+  
+  <h1 class="section-header"><a class="anchor-target" name="container-placement" href="#container-placement"></a><span class="section-number">1.12.5 </span>Container Placement</h1>
+  
+
+  <p>Each <a href="jobs.html#steps">step</a> in a build is executed inside a container. The <a href="concourse-web.html"><code>web</code> node</a> distributes containers across the worker cluster depending on the configured strategy.</p>
 
   
     
       <div class="section" id="section_volume-locality-strategy">
   
-  <h2 class="section-header"><a class="anchor" name="volume-locality-strategy" href="#volume-locality-strategy"></a>The <code>volume-locality</code> strategy</h2>
+  <h2 class="section-header"><a class="anchor-target" name="volume-locality-strategy" href="#volume-locality-strategy"></a>The <code>volume-locality</code> strategy</h2>
   
 
-  <p>When using <code>volume-locality</code>, the <a href="concourse-web.html"><code>web</code> node</a> places <a href="task-step.html"><code>task</code> step</a> and <a href="put-step.html"><code>put</code> step</a> containers on workers where a majority of their inputs are already present. <strong>This is the default strategy.</strong></p><p>The advantage of this approach is that it reduces the likelihood that large artifacts will have to be streamed from one <a href="concourse-worker.html"><code>worker</code> node</a>, through the <a href="concourse-web.html"><code>web</code> node</a>, and to the target <a href="concourse-worker.html"><code>worker</code> node</a>. For large artifacts, this can result in quite a bit of overhead.</p><p>The disadvantage of this approach is that it can sometimes result in builds &#34;gravitating&#34; to a particular worker and overloading it, at least until the resource caches warm across the worker pool.</p><p>If your builds tend to be light on artifacts and heavy on task execution, you may want to try the <a href="container-placement.html#fewest-build-containers-strategy"><code>fewest-build-containers</code> strategy</a> instead.</p>
+  <p>When using <code>volume-locality</code>, the <a href="concourse-web.html"><code>web</code> node</a> places <a href="jobs.html#task-step"><code>task</code> step</a> and <a href="jobs.html#put-step"><code>put</code> step</a> containers on workers where a majority of their inputs are already present. <strong>This is the default strategy.</strong></p><p>The advantage of this approach is that it reduces the likelihood that large artifacts will have to be streamed from one <a href="concourse-worker.html"><code>worker</code> node</a>, through the <a href="concourse-web.html"><code>web</code> node</a>, and to the target <a href="concourse-worker.html"><code>worker</code> node</a>. For large artifacts, this can result in quite a bit of overhead.</p><p>The disadvantage of this approach is that it can sometimes result in builds &#34;gravitating&#34; to a particular worker and overloading it, at least until the resource caches warm across the worker pool.</p><p>If your builds tend to be light on artifacts and heavy on task execution, you may want to try the <a href="container-placement.html#fewest-build-containers-strategy"><code>fewest-build-containers</code> strategy</a> instead.</p>
 
   
     
@@ -381,7 +280,7 @@
     
       <div class="section" id="section_fewest-build-containers-strategy">
   
-  <h2 class="section-header"><a class="anchor" name="fewest-build-containers-strategy" href="#fewest-build-containers-strategy"></a>The <code>fewest-build-containers</code> strategy</h2>
+  <h2 class="section-header"><a class="anchor-target" name="fewest-build-containers-strategy" href="#fewest-build-containers-strategy"></a>The <code>fewest-build-containers</code> strategy</h2>
   
 
   <p>When using the <code>fewest-build-containers</code> strategy, step containers are placed on the worker that has the fewest build containers (i.e. containers for other steps of other builds).</p><p>To use this strategy, set the following env var on the <a href="concourse-web.html"><code>web</code> node</a>:</p><pre><code class="language-bash">CONCOURSE_CONTAINER_PLACEMENT_STRATEGY=fewest-build-containers</code></pre>
@@ -393,7 +292,7 @@
     
       <div class="section" id="section_random-strategy">
   
-  <h2 class="section-header"><a class="anchor" name="random-strategy" href="#random-strategy"></a>The <code>random</code> strategy</h2>
+  <h2 class="section-header"><a class="anchor-target" name="random-strategy" href="#random-strategy"></a>The <code>random</code> strategy</h2>
   
 
   <p>With the <code>random</code> strategy, the <a href="concourse-web.html"><code>web</code> node</a> places <code>get</code>, <code>put</code> and <code>task</code> containers on any worker, ignoring any affinity.</p><p>As this is truly random, this will be fine until one day it&#39;s not fine.</p><p>To use this strategy, set the following env var on the <a href="concourse-web.html"><code>web</code> node</a>:</p><pre><code class="language-bash">CONCOURSE_CONTAINER_PLACEMENT_STRATEGY=random</code></pre>
@@ -405,7 +304,7 @@
     
       <div class="section" id="section_limit-active-tasks-strategy">
   
-  <h2 class="section-header"><a class="anchor" name="limit-active-tasks-strategy" href="#limit-active-tasks-strategy"></a>The <code>limit-active-tasks</code> strategy</h2>
+  <h2 class="section-header"><a class="anchor-target" name="limit-active-tasks-strategy" href="#limit-active-tasks-strategy"></a>The <code>limit-active-tasks</code> strategy</h2>
   
 
   <p><div class="warning">
@@ -420,31 +319,35 @@
   
 </div>
 
-      <nav class="prev-next">
-      
-        <div class="prev">
-          prev:
+          <nav class="prev-next">
+          
+            <div class="prev">
+              prev:
+
+              
+              <span class="section-number">1.12.4</span>
+              
+
+              <a href="creds.html">Credential Management</a>
+            </div>
+          
 
           
-          <span class="section-number">1.11.3</span>
-          
+            <div class="next">
+              next:
 
-          <a href="metrics.html">Metrics</a>
+              
+              <span class="section-number">1.12.6</span>
+              
+
+              <a href="global-resources.html">Global Resources (experimental)</a>
+            </div>
+          
+          </nav>
         </div>
-      
 
-      
-        <div class="next">
-          next:
-
-          
-          <span class="section-number">1.11.5</span>
-          
-
-          <a href="global-resources.html">Global Resources (experimental)</a>
-        </div>
-      
-      </nav>
+        <div class="page-aside"></div>
+      </div>
     </div>
 
     <ul class="improve-docs">

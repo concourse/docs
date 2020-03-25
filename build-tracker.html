@@ -13,7 +13,7 @@
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
-<title>Observation - Concourse CI</title>
+<title>Build Tracker - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
@@ -68,6 +68,10 @@
 
 
 
+  
+  
+  
+  
   
   
   
@@ -144,12 +148,12 @@
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="observation.html"  class="self">Observation</a></td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="internals.html" >Internals</a></td>
+            <td class="title-cell"><a href="internals.html"  class="active">Internals</a></td>
           </tr>
         
         </table>
@@ -164,30 +168,30 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.13</span><a href="observation.html"  class="self">Observation</a>
+        <span class="section-number">1.14</span><a href="internals.html"  class="active">Internals</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.13.1</td>
-            <td class="title-cell"><a href="observation.html#dashboard" >The Dashboard</a></td>
+            <td class="number-cell">1.14.1</td>
+            <td class="title-cell"><a href="internals.html#basic-architecture" >Basic architecture</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.13.2</td>
-            <td class="title-cell"><a href="observation.html#ccxml" ><code>cc.xml</code></a></td>
+            <td class="number-cell">1.14.2</td>
+            <td class="title-cell"><a href="internals.html#component-atc"  class="active">ATC: web UI &amp; build scheduler</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.13.3</td>
-            <td class="title-cell"><a href="observation.html#badges" >Badges</a></td>
+            <td class="number-cell">1.14.3</td>
+            <td class="title-cell"><a href="internals.html#component-tsa" >TSA: worker registration &amp; forwarding</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.13.4</td>
-            <td class="title-cell"><a href="observation.html#pipeline-visibility" >Pipeline Visibility</a></td>
+            <td class="number-cell">1.14.4</td>
+            <td class="title-cell"><a href="internals.html#architecture-worker" >Workers: container runtime &amp; cache management</a></td>
           </tr>
         
         </table>
@@ -196,68 +200,62 @@
   </div>
   
 
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <a href="internals.html#component-atc"  class="active">ATC: web UI &amp; build scheduler</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.14.2.1</td>
+            <td class="title-cell"><a href="checker.html" >Resource Checker</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14.2.2</td>
+            <td class="title-cell"><a href="scheduler.html" >Build Scheduler</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14.2.3</td>
+            <td class="title-cell"><a href="build-tracker.html"  class="self">Build Tracker</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14.2.4</td>
+            <td class="title-cell"><a href="garbage-collector.html" >Garbage Collector</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+
 
 
       </div>
 
       <div class="body-content">
         <div class="page-content">
-          <div class="section" id="section_observation">
+          <div class="section" id="section_build-tracker">
   
-  <h1 class="section-header"><a class="anchor-target" name="observation" href="#observation"></a><span class="section-number">1.13 </span>Observation</h1>
-  
-
-  <p>This section outlines everything you need to know for observing the state of your pipelines.</p>
-
-  
-    
-      <div class="section" id="section_dashboard">
-  
-  <h2 class="section-header"><a class="anchor-target" name="dashboard" href="#dashboard"></a>The Dashboard</h2>
+  <h1 class="section-header"><a class="anchor-target" name="build-tracker" href="#build-tracker"></a><span class="section-number">1.14.2.3 </span>Build Tracker</h1>
   
 
-  <p>The dashboard, available at the default route (<code>/</code>), provides a bird&#39;s-eye view of the Concourse cluster. All visible pipelines across all teams are listed here. A &#34;HD view&#34; is available at <code>/hd</code>.</p>
+  <p>The build tracker is the component that runs the execution of a build. It picks up any started builds, which can be orphaned builds (builds that an ATC started but did not finish) or builds that have just been scheduled. There is one build tracker per ATC, which runs on an interval that is defaulted to 10 seconds.</p>
 
   
-    
-  
-</div>
-    
-      <div class="section" id="section_ccxml">
-  
-  <h2 class="section-header"><a class="anchor-target" name="ccxml" href="#ccxml"></a><code>cc.xml</code></h2>
-  
-
-  <p>The Concourse API can return the status of a team&#39;s pipelines in a format compatible with tools like <a href="http://ccmenu.org/">CCMenu</a>. This endpoint is available at the following route:</p><pre>/api/v1/teams/{team}/cc.xml</pre><p>For example: <a href="http://ci.concourse-ci.org/api/v1/teams/main/cc.xml">the <code>main</code> team <code>cc.xml</code></a>.</p>
-
-  
-    
-  
-</div>
-    
-      <div class="section" id="section_badges">
-  
-  <h2 class="section-header"><a class="anchor-target" name="badges" href="#badges"></a>Badges</h2>
-  
-
-  <p>The Concourse API supports returning SVG badges indicating the status of a job:</p><pre>/api/v1/teams/{team}/pipelines/{pipeline}/jobs/{job}/badge</pre><p>...and for an entire pipeline:</p><pre>/api/v1/teams/{team}/pipelines/{pipeline}/badge</pre><p>This can be used to annotate your READMEs with a build status badge like so:</p><pre><code class="language-md">![CI](https://wings.pivotal.io/api/v1/teams/vito/pipelines/booklit/jobs/unit/badge)]</code></pre><p>...which should render the following:</p><p><img src="https://wings.pivotal.io/api/v1/teams/vito/pipelines/booklit/jobs/unit/badge" alt="" /></p>
-
-  
-    
-  
-</div>
-    
-      <div class="section" id="section_pipeline-visibility">
-  
-  <h2 class="section-header"><a class="anchor-target" name="pipeline-visibility" href="#pipeline-visibility"></a>Pipeline Visibility</h2>
-  
-
-  <p>Pipelines may be exposed so that they can be monitored without having to authenticate. For more information, see <a href="exposing.html">Pipeline &amp; Build Visibility</a>.</p>
-
-  
-    
-  
-</div>
     
   
 </div>
@@ -268,10 +266,10 @@
               prev:
 
               
-              <span class="section-number">1.12</span>
+              <span class="section-number">1.14.2.2</span>
               
 
-              <a href="operation.html">Operation</a>
+              <a href="scheduler.html">Build Scheduler</a>
             </div>
           
 
@@ -280,10 +278,10 @@
               next:
 
               
-              <span class="section-number">1.14</span>
+              <span class="section-number">1.14.2.4</span>
               
 
-              <a href="internals.html">Internals</a>
+              <a href="garbage-collector.html">Garbage Collector</a>
             </div>
           
           </nav>

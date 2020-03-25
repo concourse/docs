@@ -25,11 +25,15 @@
 <script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
-    <div class="top-logo">
-  <a href="/"><img src="images/logo-white.svg" />Concourse</a>
-</div>
+    <div class="top-banner">
+      <p class="banner-text">
+        ✨ The <a href="https://airtable.com/shr4tyAb5ApbX3VV1">2020 Concourse CI Community Survey</a> is now live! ✨
+      </p>
+    </div>
 
-<nav class="top-nav">
+    <div class="page-top">
+      <nav class="top-nav">
+  <a class="top-link logo-link" href="/"><img src="images/logo-white.svg" />Concourse</a>
   
   <a class="top-link active" href="docs.html">Docs</a>
   
@@ -37,37 +41,122 @@
   
   <a class="top-link" href="project.html">Project</a>
   
+  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
   <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
   <a class="top-link" href="https://discuss.concourse-ci.org">discuss</a>
-  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
-</nav>
 
-<div class="top-search">
   <div id="search"></div>
-</div>
 
-<div class="top-banner">
-  ✨ The 2020 Concourse CI Community Survey is now live! ✨ <a href="https://airtable.com/shr4tyAb5ApbX3VV1">Click here to learn more and share your experience</a>.
-</div>
+  <script type="text/javascript">
+    var app = Elm.Main.init({
+      node: document.getElementById('search')
+    });
 
-<script type="text/javascript">
-  var app = Elm.Main.init({
-    node: document.getElementById('search')
-  });
+    app.ports.emitSearchTerm.subscribe(function(term) {
+      gtag('event', 'search', {search_term: term});
+    });
+  </script>
+</nav>
+    </div>
 
-  app.ports.emitSearchTerm.subscribe(function(term) {
-    gtag('event', 'search', {search_term: term});
-  });
-</script>
-
-    <div class="page-nav">
-      
+    <div class="page-body">
+      <div class="page-nav">
+        
 
 
 
 
 
 
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1</span><a href="docs.html"  class="active">Docs</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.1</td>
+            <td class="title-cell"><a href="install.html" >Install</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2</td>
+            <td class="title-cell"><a href="auth.html" >Auth &amp; Teams</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.3</td>
+            <td class="title-cell"><a href="fly.html"  class="self">The <code>fly</code> CLI</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.4</td>
+            <td class="title-cell"><a href="config-basics.html" >Config Basics</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.5</td>
+            <td class="title-cell"><a href="pipelines.html" >Pipelines</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.6</td>
+            <td class="title-cell"><a href="vars.html" >Vars</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.7</td>
+            <td class="title-cell"><a href="resources.html" >Resources</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.8</td>
+            <td class="title-cell"><a href="resource-types.html" >Resource Types</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.9</td>
+            <td class="title-cell"><a href="jobs.html" >Jobs</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.10</td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11</td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12</td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.13</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14</td>
+            <td class="title-cell"><a href="internals.html" >Internals</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
 
   
 
@@ -75,123 +164,55 @@
   <div class="context">
     <nav>
       <div class="top">
-        
-        <span class="section-number">1</span>
-        
-        
-  <a href="docs.html"  class="active">Docs</a>
-
+        <span class="section-number">1.3</span><a href="fly.html"  class="self">The <code>fly</code> CLI</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="install.html" >Install</a>
-</td>
+            <td class="number-cell">1.3.1</td>
+            <td class="title-cell"><a href="fly.html#fly-login" ><code>fly login</code></a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="auth.html" >Auth &amp; Teams</a>
-</td>
+            <td class="number-cell">1.3.2</td>
+            <td class="title-cell"><a href="fly.html#fly-targets" ><code>fly targets</code></a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="fly.html"  class="self">The <code>fly</code> CLI</a>
-</td>
+            <td class="number-cell">1.3.3</td>
+            <td class="title-cell"><a href="fly.html#fly-status" ><code>fly status</code></a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="config-basics.html" >Config Basics</a>
-</td>
+            <td class="number-cell">1.3.4</td>
+            <td class="title-cell"><a href="fly.html#fly-userinfo" ><code>fly userinfo</code></a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
-</td>
+            <td class="number-cell">1.3.5</td>
+            <td class="title-cell"><a href="fly.html#fly-logout" ><code>fly logout</code></a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.6&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resources.html" >Resources</a>
-</td>
+            <td class="number-cell">1.3.6</td>
+            <td class="title-cell"><a href="fly.html#fly-edit-target" ><code>fly edit-target</code></a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.7&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
-</td>
+            <td class="number-cell">1.3.7</td>
+            <td class="title-cell"><a href="fly.html#fly-delete-target" ><code>fly delete-target</code></a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.8&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
-</td>
+            <td class="number-cell">1.3.8</td>
+            <td class="title-cell"><a href="fly.html#fly-sync" ><code>fly sync</code></a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.9&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.10&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="builds.html" >Builds</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="operation.html" >Operation</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.12&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="observation.html" >Observation</a>
-</td>
+            <td class="number-cell">1.3.9</td>
+            <td class="title-cell"><a href="fly.html#fly-completion" ><code>fly completion</code></a></td>
           </tr>
         
         </table>
@@ -202,150 +223,113 @@
 
 
 
-
-
-<div class="context">
-  <div class="page-toc">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1.3</span>
-        
-        
-  <a href="fly.html"  class="self">The <code>fly</code> CLI</a>
-
       </div>
 
+      <div class="body-content">
+        <div class="page-content">
+          <div class="section" id="section_fly">
+  
+  <h1 class="section-header"><a class="anchor-target" name="fly" href="#fly"></a><span class="section-number">1.3 </span>The <code>fly</code> CLI</h1>
+  
+
+  <p>The first step to getting started with Concourse is to install the <code>fly</code> CLI tool. You can download <code>fly</code> from any Concourse installation. There are download links for common platforms in the bottom right hand corner of the main page.</p><p>Throughout the Concourse documentation we&#39;ll stick to the long-form name of every command and flag. Once you&#39;ve learned what the commands do, you may want to consult <code>fly -h</code> to learn the short forms.</p><div class="table-of-contents">
+  <span class="toc-header">Table of contents:</span>
+
+  
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.3.1</span>
+      <a href="fly.html#fly-login"><code>fly login</code></a>
+
       
-<div class="children">
-  <table>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="fly.html#fly-login"><code>fly login</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="fly.html#fly-targets"><code>fly targets</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="fly.html#fly-status"><code>fly status</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="fly.html#fly-userinfo"><code>fly userinfo</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="fly.html#fly-logout"><code>fly logout</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="fly.html#fly-edit-target"><code>fly edit-target</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="fly.html#fly-delete-target"><code>fly delete-target</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="fly.html#fly-sync"><code>fly sync</code></a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="fly.html#fly-completion"><code>fly completion</code></a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-    </nav>
-  </div>
-</div>
-
-
-
-
-    </div>
-
-    <div class="page-aside"></div>
-
-    <div class="page-content">
-      <div class="section" id="section_fly">
   
-  <h1 class="section-header"><a class="anchor" name="fly" href="#fly"></a><span class="section-number">1.3 </span>The <code>fly</code> CLI</h1>
   
+    </li>
+  
+    <li>
+      <span class="section-number">1.3.2</span>
+      <a href="fly.html#fly-targets"><code>fly targets</code></a>
 
-  <p>The first step to getting started with Concourse is to install the <code>fly</code> CLI tool. You can download <code>fly</code> from any Concourse installation. There are download links for common platforms in the bottom right hand corner of the main page.</p><p>Throughout the Concourse documentation we&#39;ll stick to the long-form name of every command and flag. Once you&#39;ve learned what the commands do, you may want to consult <code>fly -h</code> to learn the short forms.</p>
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.3.3</span>
+      <a href="fly.html#fly-status"><code>fly status</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.3.4</span>
+      <a href="fly.html#fly-userinfo"><code>fly userinfo</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.3.5</span>
+      <a href="fly.html#fly-logout"><code>fly logout</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.3.6</span>
+      <a href="fly.html#fly-edit-target"><code>fly edit-target</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.3.7</span>
+      <a href="fly.html#fly-delete-target"><code>fly delete-target</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.3.8</span>
+      <a href="fly.html#fly-sync"><code>fly sync</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.3.9</span>
+      <a href="fly.html#fly-completion"><code>fly completion</code></a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+</div>
 
   
     
       <div class="section" id="section_fly-login">
   
-  <h2 class="section-header"><a class="anchor" name="fly-login" href="#fly-login"></a><code>fly login</code></h2>
+  <h2 class="section-header"><a class="anchor-target" name="fly-login" href="#fly-login"></a><code>fly login</code></h2>
   
 
   <p>The first thing you&#39;ll want to do is authenticate with your target. This is done with the <a href="fly.html#fly-login"><code>fly login</code></a> command. This is also useful to save targets under a more convenient alias, so you don&#39;t have to type out the URL all the time:</p><p>The <code>login</code> command serves double duty: it authenticates with a given endpoint, and saves it under a more convenient name. The name and token are stored in <code>~/.flyrc</code> (though you shouldn&#39;t really edit the file manually).</p><p>Concourse deployments can be occupied by multiple <a href="auth.html">teams</a>. To specify the team to which to log in, specify the <code>--team-name</code> or <code>-n</code> flag. If not specified, this defaults to the <a href="main-team.html"><code>main</code> team</a>.</p><p>So, to log in to a team <code>my-team</code> an endpoint served at <code>https://ci.example.com</code> and save it as the more convenient name <code>example</code>, you would run:</p><pre><code class="language-bash">$ fly --target example login --team-name my-team \
@@ -358,7 +342,7 @@
     
       <div class="section" id="section_fly-targets">
   
-  <h2 class="section-header"><a class="anchor" name="fly-targets" href="#fly-targets"></a><code>fly targets</code></h2>
+  <h2 class="section-header"><a class="anchor-target" name="fly-targets" href="#fly-targets"></a><code>fly targets</code></h2>
   
 
   <p>To see what targets are currently known to <code>fly</code>, run:</p><pre><code class="language-bash">$ fly targets</code></pre><p>This will show each target&#39;s name, URL, and when its token expires.</p>
@@ -370,7 +354,7 @@
     
       <div class="section" id="section_fly-status">
   
-  <h2 class="section-header"><a class="anchor" name="fly-status" href="#fly-status"></a><code>fly status</code></h2>
+  <h2 class="section-header"><a class="anchor-target" name="fly-status" href="#fly-status"></a><code>fly status</code></h2>
   
 
   <p>To check your current authentication status with a given target, run:</p><pre><code class="language-bash">$ fly -t example status</code></pre><p>This will let you know if the token has expired.</p>
@@ -382,7 +366,7 @@
     
       <div class="section" id="section_fly-userinfo">
   
-  <h2 class="section-header"><a class="anchor" name="fly-userinfo" href="#fly-userinfo"></a><code>fly userinfo</code></h2>
+  <h2 class="section-header"><a class="anchor-target" name="fly-userinfo" href="#fly-userinfo"></a><code>fly userinfo</code></h2>
   
 
   <p>To check what user you&#39;re logged in as, as well as which teams you are currently authenticated to and which roles within each team you have, run:</p><pre><code class="language-bash">$ fly -t example userinfo</code></pre>
@@ -394,7 +378,7 @@
     
       <div class="section" id="section_fly-logout">
   
-  <h2 class="section-header"><a class="anchor" name="fly-logout" href="#fly-logout"></a><code>fly logout</code></h2>
+  <h2 class="section-header"><a class="anchor-target" name="fly-logout" href="#fly-logout"></a><code>fly logout</code></h2>
   
 
   <p>To clear out your token for a given target, run:</p><pre><code class="language-bash">$ fly -t example logout</code></pre><p>To clear out your token for <em>all</em> targets, run:</p><pre><code class="language-bash">$ fly logout -a</code></pre><p>Note: These two variations are mutually exclusive. If the target parameter <code>-t</code> and all parameter <code>-a</code> are both specified, an error will occur.</p>
@@ -406,7 +390,7 @@
     
       <div class="section" id="section_fly-edit-target">
   
-  <h2 class="section-header"><a class="anchor" name="fly-edit-target" href="#fly-edit-target"></a><code>fly edit-target</code></h2>
+  <h2 class="section-header"><a class="anchor-target" name="fly-edit-target" href="#fly-edit-target"></a><code>fly edit-target</code></h2>
   
 
   <p>To modify a target&#39;s name, team, or URL, run:</p><pre><code class="language-bash">$ fly -t example edit-target \
@@ -421,7 +405,7 @@
     
       <div class="section" id="section_fly-delete-target">
   
-  <h2 class="section-header"><a class="anchor" name="fly-delete-target" href="#fly-delete-target"></a><code>fly delete-target</code></h2>
+  <h2 class="section-header"><a class="anchor-target" name="fly-delete-target" href="#fly-delete-target"></a><code>fly delete-target</code></h2>
   
 
   <p>When logging out just isn&#39;t enough, a target can be completely removed from <code>~/.flyrc</code> by running:</p><pre><code class="language-bash">$ fly -t example delete-target</code></pre><p>To delete <em>all</em> targets, run:</p><pre><code class="language-bash">$ fly delete-target -a</code></pre><p>Note: These two variations are mutually exclusive. If the target parameter <code>-t</code> and all parameter <code>-a</code> are both specified, an error will occur.</p>
@@ -433,7 +417,7 @@
     
       <div class="section" id="section_fly-sync">
   
-  <h2 class="section-header"><a class="anchor" name="fly-sync" href="#fly-sync"></a><code>fly sync</code></h2>
+  <h2 class="section-header"><a class="anchor-target" name="fly-sync" href="#fly-sync"></a><code>fly sync</code></h2>
   
 
   <p>Occasionally we add additional features to <code>fly</code> or make changes to the communication between it and Concourse&#39;s API server. To make sure you&#39;re running the latest and greatest version that works with the Concourse you are targeting we provide a command called <code>sync</code> that will update your local <code>fly</code>. It can be used like so:</p><pre><code class="language-bash">$ fly -t example sync</code></pre><p>The <code>fly</code> command will also warn you if it notices that your CLI version is out of sync with the server.</p>
@@ -445,7 +429,7 @@
     
       <div class="section" id="section_fly-completion">
   
-  <h2 class="section-header"><a class="anchor" name="fly-completion" href="#fly-completion"></a><code>fly completion</code></h2>
+  <h2 class="section-header"><a class="anchor-target" name="fly-completion" href="#fly-completion"></a><code>fly completion</code></h2>
   
 
   <p>Fly can output autocomplete configuration for some shells. For example, you can add an entry to your <code>.bashrc</code> like this:</p><pre><code class="language-bash">source &lt;(fly completion --shell bash)</code></pre><p>or, using the <code>/etc/bash_completion.d</code> directory:</p><pre><code class="language-bash">$ fly completion --shell bash &gt; /etc/bash_completion.d/fly</code></pre><p>Note that, unlike other fly commands, this command does not interact with a remote server so you do not need to provide the <code>-t</code> or <code>--target</code> flag.</p>
@@ -458,31 +442,35 @@
   
 </div>
 
-      <nav class="prev-next">
-      
-        <div class="prev">
-          prev:
+          <nav class="prev-next">
+          
+            <div class="prev">
+              prev:
+
+              
+              <span class="section-number">1.2</span>
+              
+
+              <a href="auth.html">Auth &amp; Teams</a>
+            </div>
+          
 
           
-          <span class="section-number">1.2</span>
-          
+            <div class="next">
+              next:
 
-          <a href="auth.html">Auth &amp; Teams</a>
+              
+              <span class="section-number">1.4</span>
+              
+
+              <a href="config-basics.html">Config Basics</a>
+            </div>
+          
+          </nav>
         </div>
-      
 
-      
-        <div class="next">
-          next:
-
-          
-          <span class="section-number">1.4</span>
-          
-
-          <a href="config-basics.html">Config Basics</a>
-        </div>
-      
-      </nav>
+        <div class="page-aside"></div>
+      </div>
     </div>
 
     <ul class="improve-docs">

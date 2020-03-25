@@ -25,11 +25,15 @@
 <script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
-    <div class="top-logo">
-  <a href="/"><img src="images/logo-white.svg" />Concourse</a>
-</div>
+    <div class="top-banner">
+      <p class="banner-text">
+        ✨ The <a href="https://airtable.com/shr4tyAb5ApbX3VV1">2020 Concourse CI Community Survey</a> is now live! ✨
+      </p>
+    </div>
 
-<nav class="top-nav">
+    <div class="page-top">
+      <nav class="top-nav">
+  <a class="top-link logo-link" href="/"><img src="images/logo-white.svg" />Concourse</a>
   
   <a class="top-link active" href="docs.html">Docs</a>
   
@@ -37,161 +41,115 @@
   
   <a class="top-link" href="project.html">Project</a>
   
+  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
   <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
   <a class="top-link" href="https://discuss.concourse-ci.org">discuss</a>
-  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
-</nav>
 
-<div class="top-search">
   <div id="search"></div>
-</div>
 
-<div class="top-banner">
-  ✨ The 2020 Concourse CI Community Survey is now live! ✨ <a href="https://airtable.com/shr4tyAb5ApbX3VV1">Click here to learn more and share your experience</a>.
-</div>
+  <script type="text/javascript">
+    var app = Elm.Main.init({
+      node: document.getElementById('search')
+    });
 
-<script type="text/javascript">
-  var app = Elm.Main.init({
-    node: document.getElementById('search')
-  });
+    app.ports.emitSearchTerm.subscribe(function(term) {
+      gtag('event', 'search', {search_term: term});
+    });
+  </script>
+</nav>
+    </div>
 
-  app.ports.emitSearchTerm.subscribe(function(term) {
-    gtag('event', 'search', {search_term: term});
-  });
-</script>
-
-    <div class="page-nav">
-      
+    <div class="page-body">
+      <div class="page-nav">
+        
 
 
 
 
 
 
-
+  
+  
   
 
   
   <div class="context">
     <nav>
       <div class="top">
-        
-        <span class="section-number">1</span>
-        
-        
-  <a href="docs.html"  class="active">Docs</a>
-
+        <span class="section-number">1</span><a href="docs.html"  class="active">Docs</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="install.html" >Install</a>
-</td>
+            <td class="number-cell">1.1</td>
+            <td class="title-cell"><a href="install.html" >Install</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="auth.html" >Auth &amp; Teams</a>
-</td>
+            <td class="number-cell">1.2</td>
+            <td class="title-cell"><a href="auth.html" >Auth &amp; Teams</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="fly.html" >The <code>fly</code> CLI</a>
-</td>
+            <td class="number-cell">1.3</td>
+            <td class="title-cell"><a href="fly.html" >The <code>fly</code> CLI</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="config-basics.html" >Config Basics</a>
-</td>
+            <td class="number-cell">1.4</td>
+            <td class="title-cell"><a href="config-basics.html" >Config Basics</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
-</td>
+            <td class="number-cell">1.5</td>
+            <td class="title-cell"><a href="pipelines.html" >Pipelines</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.6&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resources.html" >Resources</a>
-</td>
+            <td class="number-cell">1.6</td>
+            <td class="title-cell"><a href="vars.html" >Vars</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.7&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resource-types.html"  class="self">Resource Types</a>
-</td>
+            <td class="number-cell">1.7</td>
+            <td class="title-cell"><a href="resources.html" >Resources</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.8&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
-</td>
+            <td class="number-cell">1.8</td>
+            <td class="title-cell"><a href="resource-types.html"  class="self">Resource Types</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.9&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
-</td>
+            <td class="number-cell">1.9</td>
+            <td class="title-cell"><a href="jobs.html" >Jobs</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.10&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="builds.html" >Builds</a>
-</td>
+            <td class="number-cell">1.10</td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.11&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="operation.html" >Operation</a>
-</td>
+            <td class="number-cell">1.11</td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.12&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="observation.html" >Observation</a>
-</td>
+            <td class="number-cell">1.12</td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.13</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14</td>
+            <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
         </table>
@@ -200,133 +158,33 @@
   </div>
   
 
+  
 
-
-
-
-<div class="context">
-  <div class="page-toc">
+  
+  <div class="context">
     <nav>
       <div class="top">
-        
-        <span class="section-number">1.7</span>
-        
-        
-  <a href="resource-types.html"  class="self">Resource Types</a>
-
+        <span class="section-number">1.8</span><a href="resource-types.html"  class="self">Resource Types</a>
       </div>
 
-      
-<div class="children">
-  <table>
-    
-      <tr>
+      <div class="children">
+        <table>
         
-          <td class="number-cell" align="right">1.7.1&nbsp;</td>
+          <tr>
+            <td class="number-cell">1.8.1</td>
+            <td class="title-cell"><a href="implementing-resource-types.html" >Implementing a Resource Type</a></td>
+          </tr>
         
-        <td class="title-cell">
-          <a href="managing-resource-types.html">Managing Resource Types</a>
-
-          
-<div class="children">
-  <table>
-    
-      <tr>
+          <tr>
+            <td class="number-cell">1.8.2</td>
+            <td class="title-cell"><a href="managing-resource-types.html" >Managing Resource Types</a></td>
+          </tr>
         
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="managing-resource-types.html#fly-check-resource-type"><code>fly check-resource-type</code></a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.7.2&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="implementing-resource-types.html">Implementing a Resource Type</a>
-
-          
-<div class="children">
-  <table>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="implementing-resource-types.html#resource-check"><code>check</code>: Check for new versions.</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="implementing-resource-types.html#resource-in"><code>in</code>: Fetch a given resource.</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="implementing-resource-types.html#resource-out"><code>out</code>: Update a resource.</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="implementing-resource-types.html#resource-metadata">Metadata</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="implementing-resource-types.html#resource-certs">Certificate Propagation</a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
+        </table>
+      </div>
     </nav>
   </div>
-</div>
-
+  
 
 
 
@@ -339,35 +197,48 @@
     <table>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-name"><strong><code>name</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="resource-types.html#schema.resource_type"><strong><code>resource_type</code></strong> schema</a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-type"><strong><code>type</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="resource-types.html#schema.resource_type.name"><code class="schema-attribute-name"><bold>resource_type<wbr />.name</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-source"><strong><code>source</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="resource-types.html#schema.resource_type.type"><code class="schema-attribute-name"><bold>resource_type<wbr />.type</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-privileged"><strong><code>privileged</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="resource-types.html#schema.resource_type.source"><code class="schema-attribute-name"><bold>resource_type<wbr />.source</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-params"><strong><code>params</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="resource-types.html#schema.resource_type.privileged"><code class="schema-attribute-name"><bold>resource_type<wbr />.privileged</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-check-every"><strong><code>check_every</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="resource-types.html#schema.resource_type.params"><code class="schema-attribute-name"><bold>resource_type<wbr />.params</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-tags"><strong><code>tags</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="resource-types.html#schema.resource_type.check_every"><code class="schema-attribute-name"><bold>resource_type<wbr />.check_every</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="resource-types.html#resource-type-unique-version-history"><strong><code>unique_version_history</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="resource-types.html#schema.resource_type.tags"><code class="schema-attribute-name"><bold>resource_type<wbr />.tags</bold></code></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="resource-types.html#schema.resource_type.unique_version_history"><code class="schema-attribute-name"><bold>resource_type<wbr />.unique_version_history</bold></code></a></td>
       </tr>
       
 
@@ -378,17 +249,112 @@
   </div>
 </div>
 
-    </div>
+      </div>
 
-    <div class="page-aside">
-      <div class="page-partial">
-        <div class="content">
-  <h2>Examples</h2>
+      <div class="body-content">
+        <div class="page-content">
+          <div class="section" id="section_resource-types">
+  
+  <h1 class="section-header"><a class="anchor-target" name="resource-types" href="#resource-types"></a><span class="section-number">1.8 </span>Resource Types</h1>
+  
 
-  <div class="example">
-  <h3>Using Resource Types</h3>
+  <p>Each resource in a pipeline has a <code>type</code>. The resource&#39;s type determines what versions are detected, the bits that are fetched when the resource&#39;s <a href="jobs.html#get-step"><code>get</code> step</a> runs, and the side effect that occurs when the resource&#39;s <a href="jobs.html#put-step"><code>put</code> step</a> runs.</p><p>Concourse comes with a few &#34;core&#34; resource types to cover common use cases like <code>git</code> and <code>s3</code> - the rest are developed and supported by the Concourse community. An exhaustive list of all resource types is available in the <a href="https://resource-types.concourse-ci.org">Resource Types catalog</a>.</p><p>A pipeline&#39;s resource types are listed under <a href="pipelines.html#schema.pipeline.resource_types"><code class="schema-attribute-name"><bold>pipeline<wbr />.resource_types</bold></code></a> with the following schema:</p><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.resource_type" href="#schema.resource_type"></a><code>resource_type</code> schema</h2>
 
-  <p><a href="resource-types.html">Resource Types</a> can be used to extend the functionality of your pipeline and provide deeper integrations. This example uses one to trigger a job whenever a new <a href="http://www.qwantz.com">Dinosaur Comic</a> is out.</p><pre><code class="language-yaml">---
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.resource_type.name" type="checkbox" class="toggle" />
+  <label for="toggle-schema.resource_type.name" class="toggle-title">
+    <a id="schema.resource_type.name"></a>
+
+    <code><a class="attribute-name" href="#schema.resource_type.name">name</a>: <span class="attribute-type"><a href="config-basics.html#schema.identifier"><strong>identifier</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The name of the resource type. This should be short and simple. This name will be referenced by <a href="pipelines.html#schema.pipeline.resources"><code class="schema-attribute-name"><bold>pipeline<wbr />.resources</bold></code></a> defined within the same pipeline, and <a href="tasks.html#schema.task.image_resource"><code class="schema-attribute-name"><bold>task<wbr />.image_resource</bold></code></a>s used by tasks running in the pipeline.</p><p>Pipeline-provided resource types can override the core resource types by specifying the same name.</p>
+  </div>
+</div><div class="toggleable schema-attribute required">
+  <input id="toggle-schema.resource_type.type" type="checkbox" class="toggle" />
+  <label for="toggle-schema.resource_type.type" class="toggle-title">
+    <a id="schema.resource_type.type"></a>
+
+    <code><a class="attribute-name" href="#schema.resource_type.type">type</a>: <span class="attribute-type"><a href="resource-types.html#schema.resource_type.name"><strong>resource_type.name</strong></a> | <a href="config-basics.html#schema.identifier"><strong>identifier</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The type of the resource used to provide the resource type&#39;s container image.</p><p>This is a bit meta. Usually this value will be <code>docker-image</code> or <code>registry-image</code>, as the resource type must result in a container image.</p><p>A resource type&#39;s type can refer to other resource types, and can also use the core type that it&#39;s overriding. This is useful for bringing in a newer or forked <code>registry-image</code> resource.</p>
+  </div>
+</div><div class="toggleable schema-attribute required">
+  <input id="toggle-schema.resource_type.source" type="checkbox" class="toggle" />
+  <label for="toggle-schema.resource_type.source" class="toggle-title">
+    <a id="schema.resource_type.source"></a>
+
+    <code><a class="attribute-name" href="#schema.resource_type.source">source</a>: <span class="attribute-type"><a href="config-basics.html#schema.config"><strong>config</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The location of the resource type&#39;s resource. This varies by resource type, and is a black box to Concourse; it is blindly passed to the resource at runtime.</p><p>To use <code>docker-image</code> as an example, the source would contain something like <code>repository: username/reponame</code>. See the <a href="https://github.com/concourse/docker-image-resource">Docker Image resource</a> (or whatever resource type your resource type uses) for more information.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.resource_type.privileged" type="checkbox" class="toggle" />
+  <label for="toggle-schema.resource_type.privileged" class="toggle-title">
+    <a id="schema.resource_type.privileged"></a>
+
+    <code><a class="attribute-name" href="#schema.resource_type.privileged">privileged</a>: <span class="attribute-type"><a href="config-basics.html#schema.boolean"><strong>boolean</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>false</code>.</em> If set to <code>true</code>, the resource&#39;s containers will be run with full capabilities, as determined by the worker backend the task runs on.</p><p>For Linux-based backends it typically determines whether or not the container will run in a separate user namespace, and whether the <code>root</code> user is &#34;actual&#34; <code>root</code> (if set to <code>true</code>) or a user namespaced <code>root</code> (if set to <code>false</code>, the default).</p><p>This is a gaping security hole; only configure it if the resource type needs it (which should be called out in its documentation). This is not up to the resource type to decide dynamically, so as to prevent privilege escalation via third-party resource type exploits.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.resource_type.params" type="checkbox" class="toggle" />
+  <label for="toggle-schema.resource_type.params" class="toggle-title">
+    <a id="schema.resource_type.params"></a>
+
+    <code><a class="attribute-name" href="#schema.resource_type.params">params</a>: <span class="attribute-type"><a href="config-basics.html#schema.config"><strong>config</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Arbitrary config to pass when running the <code>get</code> to fetch the resource type&#39;s image.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.resource_type.check_every" type="checkbox" class="toggle" />
+  <label for="toggle-schema.resource_type.check_every" class="toggle-title">
+    <a id="schema.resource_type.check_every"></a>
+
+    <code><a class="attribute-name" href="#schema.resource_type.check_every">check_every</a>: <span class="attribute-type"><a href="config-basics.html#schema.duration"><strong>duration</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>1m</code>.</em> The interval on which to check for new versions of the resource type. Acceptable interval options are defined by the <a href="https://golang.org/pkg/time/#ParseDuration">time.ParseDuration function</a>.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.resource_type.tags" type="checkbox" class="toggle" />
+  <label for="toggle-schema.resource_type.tags" class="toggle-title">
+    <a id="schema.resource_type.tags"></a>
+
+    <code><a class="attribute-name" href="#schema.resource_type.tags">tags</a>: <span class="attribute-type">[<a href="config-basics.html#schema.string"><strong>string</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>[]</code>.</em> A list of tags to determine which workers the checks will be performed on. You&#39;ll want to specify this if the source is internal to a worker&#39;s network, for example. See also <a href="jobs.html#schema.step.tags"><code class="schema-attribute-name"><bold>step<wbr />.tags</bold></code></a>.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.resource_type.unique_version_history" type="checkbox" class="toggle" />
+  <label for="toggle-schema.resource_type.unique_version_history" class="toggle-title">
+    <a id="schema.resource_type.unique_version_history"></a>
+
+    <code><a class="attribute-name" href="#schema.resource_type.unique_version_history">unique_version_history</a>: <span class="attribute-type"><a href="config-basics.html#schema.boolean"><strong>boolean</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>false</code>.</em> Only relevant when <a href="global-resources.html">Global Resources</a> is enabled. When set to <code>true</code>, resources using this resource type will have a version history that is unique to the resource, rather than sharing a global version history.</p>
+  </div>
+</div>
+</div><div class="toggleable example">
+  <input id="toggle-70a30d14d470813edc5f94bc534c9bb679022e45" type="checkbox" class="toggle" />
+  <label for="toggle-70a30d14d470813edc5f94bc534c9bb679022e45" class="toggle-title">Using a <code>rss</code> resource type to subscribe to RSS feeds</label>
+  <div class="toggle-content">
+    <p><a href="resource-types.html">Resource Types</a> can be used to extend the functionality of your pipeline and provide deeper integrations. This example uses one to trigger a job whenever a new <a href="http://www.qwantz.com">Dinosaur Comic</a> is out.</p><pre><code class="language-yaml">---
 resource_types:
 - name: rss
   type: docker-image
@@ -407,119 +373,131 @@ jobs:
   plan:
   - get: booklit-releases
     trigger: true</code></pre>
-</div>
-</div>
-      </div>
-      </div>
-
-    <div class="page-content">
-      <div class="section" id="section_resource-types">
-  
-  <h1 class="section-header"><a class="anchor" name="resource-types" href="#resource-types"></a><span class="section-number">1.7 </span>Resource Types</h1>
-  
-
-  <p>Each resource in a pipeline has a <code>type</code>. The resource&#39;s type determines what versions are detected, the bits that are fetched when used for a <a href="get-step.html"><code>get</code> step</a>, and the side effect that occurs when used for a <a href="put-step.html"><code>put</code> step</a>.</p><p>Out of the box, Concourse comes with a few resource types to cover common CI use cases like dealing with Git repositories and S3 buckets. These are called the &#34;core&#34; resource types. These are packaged with the worker, and can be listed via <a href="administration.html#fly-workers"><code>fly workers -d</code></a>.</p><p>Beyond these core types, each pipeline can configure its own resource types by specifying <code>resource_types</code> at the top level. Each resource type is itself defined as a resource that provides the container image for the pipeline resource type (see <a href="implementing-resource-types.html">Implementing a Resource Type</a>). You will almost always be using the <a href="https://github.com/concourse/registry-image-resource"><code>registry-image</code> resource</a> when doing this.</p><p>A somewhat exhaustive list of all available resource types - both from the Concourse core project and from external contributors - is available in the <a href="https://resource-types.concourse-ci.org">resource types</a> section of the site.</p><p>Similar to <a href="resources.html">Resources</a>, each configured resource type consists of the following attributes:</p><div class="definition">
-  <div class="definition-thumb">
-    <a name="resource-type-name"></a>
-    <pre><a href="resource-types.html#resource-type-name"><strong>name</strong></a>: string</pre>
   </div>
-
-  <div class="definition-content">
-    <p><em>Required.</em> The name of the new resource type. This should be short and simple. This name will be referenced by <a href="pipelines.html#pipeline-resources"><strong><code>resources</code></strong></a> defined within the same pipeline, and <a href="tasks.html#image_resource"><strong><code>image_resource</code></strong></a>s used by tasks running in the pipeline.</p><p>Pipeline-provided resource types can override the core resource types by specifying the same name.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="resource-type-type"></a>
-    <pre><a href="resource-types.html#resource-type-type"><strong>type</strong></a>: string</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Required.</em> The type of the resource used to provide the resource type&#39;s container image. Yes, this is a bit meta. Usually this will be <code>docker-image</code>, as the resource type must result in a container image, though there may be other image formats (possibly themselves defined as pipeline resource types!).</p><p>A resource type&#39;s type can refer to other resource types, and can also use the core type that it&#39;s overriding. This is useful for bringing in a newer or forked <code>registry-image</code> resource.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="resource-type-source"></a>
-    <pre><a href="resource-types.html#resource-type-source"><strong>source</strong></a>: object</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Optional.</em> The location of the resource type&#39;s resource. This varies by resource type, and is a black box to Concourse; it is blindly passed to the resource at runtime.</p><p>To use <code>docker-image</code> as an example, the source would contain something like <code>repository: username/reponame</code>. See the <a href="https://github.com/concourse/docker-image-resource">Docker Image resource</a> (or whatever resource type your resource type uses) for more information.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="resource-type-privileged"></a>
-    <pre><a href="resource-types.html#resource-type-privileged"><strong>privileged</strong></a>: boolean</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Optional. Default <code>false</code>.</em> If set to <code>true</code>, the resource&#39;s containers will be run with full capabilities, as determined by the Garden backend the task runs on. For Linux-based backends it typically determines whether or not the container will run in a separate user namespace, and whether the <code>root</code> user is &#34;actual&#34; <code>root</code> (if set to <code>true</code>) or a user namespaced <code>root</code> (if set to <code>false</code>, the default).</p><p>This is a gaping security hole; only configure it if the resource type needs it (which should be called out in its documentation). This is not up to the resource type to decide dynamically, so as to prevent privilege escalation via third-party resource type exploits.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="resource-type-params"></a>
-    <pre><a href="resource-types.html#resource-type-params"><strong>params</strong></a>: object</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Optional.</em> Arbitrary params to pass when fetching the resource.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="resource-type-check-every"></a>
-    <pre><a href="resource-types.html#resource-type-check-every"><strong>check_every</strong></a>: string</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Optional. Default <code>1m</code>.</em> The interval on which to check for new versions of the resource type. Acceptable interval options are defined by the <a href="https://golang.org/pkg/time/#ParseDuration">time.ParseDuration function</a>.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="resource-type-tags"></a>
-    <pre><a href="resource-types.html#resource-type-tags"><strong>tags</strong></a>: [string]</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Optional. Default <code>[]</code>.</em> A list of tags to determine which workers the checks will be performed on. You&#39;ll want to specify this if the source is internal to a worker&#39;s network, for example. See also <a href="tags-step-modifier.html"><code>tags</code> step modifier</a>.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="resource-type-unique-version-history"></a>
-    <pre><a href="resource-types.html#resource-type-unique-version-history"><strong>unique_version_history</strong></a>: bool</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Optional. Default <code>false</code>.</em> Only relevant when <a href="global-resources.html">Global Resources</a> is enabled. When set to <code>true</code>, resources using this resource type will have a version history that is unique to the resource, rather than sharing a global version history.</p>
-  </div>
-</div>
+</div><div class="table-of-contents">
+  <span class="toc-header">Table of contents:</span>
 
   
-</div>
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.8.1</span>
+      <a href="implementing-resource-types.html">Implementing a Resource Type</a>
 
-      <nav class="prev-next">
       
-        <div class="prev">
-          prev:
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.8.1.1</span>
+      <a href="implementing-resource-types.html#resource-check"><code>check</code>: Check for new versions.</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.8.1.2</span>
+      <a href="implementing-resource-types.html#resource-in"><code>in</code>: Fetch a given resource.</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.8.1.3</span>
+      <a href="implementing-resource-types.html#resource-out"><code>out</code>: Update a resource.</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.8.1.4</span>
+      <a href="implementing-resource-types.html#resource-metadata">Metadata</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.8.1.5</span>
+      <a href="implementing-resource-types.html#resource-certs">Certificate Propagation</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.8.2</span>
+      <a href="managing-resource-types.html">Managing Resource Types</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.8.2.1</span>
+      <a href="managing-resource-types.html#fly-check-resource-type"><code>fly check-resource-type</code></a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+</div>
+
+  
+</div>
+
+          <nav class="prev-next">
+          
+            <div class="prev">
+              prev:
+
+              
+              <span class="section-number">1.7</span>
+              
+
+              <a href="resources.html">Resources</a>
+            </div>
+          
 
           
-          <span class="section-number">1.6</span>
-          
+            <div class="next">
+              next:
 
-          <a href="resources.html">Resources</a>
+              
+              <span class="section-number">1.8.1</span>
+              
+
+              <a href="implementing-resource-types.html">Implementing a Resource Type</a>
+            </div>
+          
+          </nav>
         </div>
-      
 
-      
-        <div class="next">
-          next:
-
-          
-          <span class="section-number">1.7.1</span>
-          
-
-          <a href="managing-resource-types.html">Managing Resource Types</a>
-        </div>
-      
-      </nav>
+        <div class="page-aside"></div>
+      </div>
     </div>
 
     <ul class="improve-docs">

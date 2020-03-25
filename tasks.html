@@ -25,11 +25,15 @@
 <script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
-    <div class="top-logo">
-  <a href="/"><img src="images/logo-white.svg" />Concourse</a>
-</div>
+    <div class="top-banner">
+      <p class="banner-text">
+        ✨ The <a href="https://airtable.com/shr4tyAb5ApbX3VV1">2020 Concourse CI Community Survey</a> is now live! ✨
+      </p>
+    </div>
 
-<nav class="top-nav">
+    <div class="page-top">
+      <nav class="top-nav">
+  <a class="top-link logo-link" href="/"><img src="images/logo-white.svg" />Concourse</a>
   
   <a class="top-link active" href="docs.html">Docs</a>
   
@@ -37,161 +41,115 @@
   
   <a class="top-link" href="project.html">Project</a>
   
+  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
   <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
   <a class="top-link" href="https://discuss.concourse-ci.org">discuss</a>
-  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
-</nav>
 
-<div class="top-search">
   <div id="search"></div>
-</div>
 
-<div class="top-banner">
-  ✨ The 2020 Concourse CI Community Survey is now live! ✨ <a href="https://airtable.com/shr4tyAb5ApbX3VV1">Click here to learn more and share your experience</a>.
-</div>
+  <script type="text/javascript">
+    var app = Elm.Main.init({
+      node: document.getElementById('search')
+    });
 
-<script type="text/javascript">
-  var app = Elm.Main.init({
-    node: document.getElementById('search')
-  });
+    app.ports.emitSearchTerm.subscribe(function(term) {
+      gtag('event', 'search', {search_term: term});
+    });
+  </script>
+</nav>
+    </div>
 
-  app.ports.emitSearchTerm.subscribe(function(term) {
-    gtag('event', 'search', {search_term: term});
-  });
-</script>
-
-    <div class="page-nav">
-      
+    <div class="page-body">
+      <div class="page-nav">
+        
 
 
 
 
 
 
-
+  
+  
   
 
   
   <div class="context">
     <nav>
       <div class="top">
-        
-        <span class="section-number">1</span>
-        
-        
-  <a href="docs.html"  class="active">Docs</a>
-
+        <span class="section-number">1</span><a href="docs.html"  class="active">Docs</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="install.html" >Install</a>
-</td>
+            <td class="number-cell">1.1</td>
+            <td class="title-cell"><a href="install.html" >Install</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="auth.html" >Auth &amp; Teams</a>
-</td>
+            <td class="number-cell">1.2</td>
+            <td class="title-cell"><a href="auth.html" >Auth &amp; Teams</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="fly.html" >The <code>fly</code> CLI</a>
-</td>
+            <td class="number-cell">1.3</td>
+            <td class="title-cell"><a href="fly.html" >The <code>fly</code> CLI</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="config-basics.html" >Config Basics</a>
-</td>
+            <td class="number-cell">1.4</td>
+            <td class="title-cell"><a href="config-basics.html" >Config Basics</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
-</td>
+            <td class="number-cell">1.5</td>
+            <td class="title-cell"><a href="pipelines.html" >Pipelines</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.6&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resources.html" >Resources</a>
-</td>
+            <td class="number-cell">1.6</td>
+            <td class="title-cell"><a href="vars.html" >Vars</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.7&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resource-types.html" >Resource Types</a>
-</td>
+            <td class="number-cell">1.7</td>
+            <td class="title-cell"><a href="resources.html" >Resources</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.8&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
-</td>
+            <td class="number-cell">1.8</td>
+            <td class="title-cell"><a href="resource-types.html" >Resource Types</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.9&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="tasks.html"  class="self">Tasks</a>
-</td>
+            <td class="number-cell">1.9</td>
+            <td class="title-cell"><a href="jobs.html" >Jobs</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.10&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="builds.html" >Builds</a>
-</td>
+            <td class="number-cell">1.10</td>
+            <td class="title-cell"><a href="tasks.html"  class="self">Tasks</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.11&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="operation.html" >Operation</a>
-</td>
+            <td class="number-cell">1.11</td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
-            
-              <td class="number-cell" align="right">1.12&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="observation.html" >Observation</a>
-</td>
+            <td class="number-cell">1.12</td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.13</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14</td>
+            <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
         </table>
@@ -200,72 +158,33 @@
   </div>
   
 
+  
 
-
-
-
-<div class="context">
-  <div class="page-toc">
+  
+  <div class="context">
     <nav>
       <div class="top">
-        
-        <span class="section-number">1.9</span>
-        
-        
-  <a href="tasks.html"  class="self">Tasks</a>
-
+        <span class="section-number">1.10</span><a href="tasks.html"  class="self">Tasks</a>
       </div>
 
-      
-<div class="children">
-  <table>
-    
-      <tr>
+      <div class="children">
+        <table>
         
-          <td class="number-cell" align="right">1.9.1&nbsp;</td>
+          <tr>
+            <td class="number-cell">1.10.1</td>
+            <td class="title-cell"><a href="tasks.html#running-tasks" >Running tasks with <code>fly execute</code></a></td>
+          </tr>
         
-        <td class="title-cell">
-          <a href="running-tasks.html">Running Tasks</a>
-
-          
-<div class="children">
-  <table>
-    
-      <tr>
+          <tr>
+            <td class="number-cell">1.10.2</td>
+            <td class="title-cell"><a href="tasks.html#task-environment" >Task runtime environment</a></td>
+          </tr>
         
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="running-tasks.html#fly-execute"><code>fly execute</code></a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="right">1.9.2&nbsp;</td>
-        
-        <td class="title-cell">
-          <a href="task-environment.html">Task Environment</a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
+        </table>
+      </div>
     </nav>
   </div>
-</div>
-
+  
 
 
 
@@ -278,132 +197,528 @@
     <table>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#task-platform"><strong><code>platform</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.task"><strong><code>task</code></strong> schema</a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#image-resource-type"><strong><code>image_resource.type</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.anonymous_resource"><strong><code>anonymous_resource</code></strong> schema</a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#image-resource-source"><strong><code>image_resource.source</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.input"><strong><code>input</code></strong> schema</a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#image-resource-params"><strong><code>image_resource.params</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.output"><strong><code>output</code></strong> schema</a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#image-resource-version"><strong><code>image_resource.version</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.cache"><strong><code>cache</code></strong> schema</a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#task-image-resource"><strong><code>image_resource</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.command"><strong><code>command</code></strong> schema</a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#image_resource"><strong><code>image_resource</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.container_limits"><strong><code>container_limits</code></strong> schema</a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#task-rootfs-uri"><strong><code>rootfs_uri</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.task.platform"><code class="schema-attribute-name"><bold>task<wbr />.platform</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#task-container-limits-cpu"><strong><code>container_limits.cpu</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.anonymous_resource.type"><code class="schema-attribute-name"><bold>anonymous_resource<wbr />.type</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#task-container-limits-memory"><strong><code>container_limits.memory</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.anonymous_resource.source"><code class="schema-attribute-name"><bold>anonymous_resource<wbr />.source</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#task-container-limits"><strong><code>container_limits</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.anonymous_resource.params"><code class="schema-attribute-name"><bold>anonymous_resource<wbr />.params</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#input-name"><strong><code>inputs.name</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.anonymous_resource.version"><code class="schema-attribute-name"><bold>anonymous_resource<wbr />.version</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#input-path"><strong><code>inputs.path</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.task.image_resource"><code class="schema-attribute-name"><bold>task<wbr />.image_resource</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#input-optional"><strong><code>inputs.optional</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.input.name"><code class="schema-attribute-name"><bold>input<wbr />.name</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#task-inputs"><strong><code>inputs</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.input.path"><code class="schema-attribute-name"><bold>input<wbr />.path</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#output-name"><strong><code>outputs.name</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.input.optional"><code class="schema-attribute-name"><bold>input<wbr />.optional</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#output-path"><strong><code>outputs.path</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.task.inputs"><code class="schema-attribute-name"><bold>task<wbr />.inputs</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#task-outputs"><strong><code>outputs</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.output.name"><code class="schema-attribute-name"><bold>output<wbr />.name</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#cache-path"><strong><code>caches.path</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.output.path"><code class="schema-attribute-name"><bold>output<wbr />.path</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#task-caches"><strong><code>caches</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.task.outputs"><code class="schema-attribute-name"><bold>task<wbr />.outputs</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#caches"><strong><code>caches</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.cache.path"><code class="schema-attribute-name"><bold>cache<wbr />.path</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#task-run-path"><strong><code>run.path</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.task.caches"><code class="schema-attribute-name"><bold>task<wbr />.caches</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#task-run-args"><strong><code>run.args</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.task.params"><code class="schema-attribute-name"><bold>task<wbr />.params</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#task-run-dir"><strong><code>run.dir</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.command.path"><code class="schema-attribute-name"><bold>command<wbr />.path</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#task-run-user"><strong><code>run.user</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.command.args"><code class="schema-attribute-name"><bold>command<wbr />.args</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#task-run"><strong><code>run</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.command.dir"><code class="schema-attribute-name"><bold>command<wbr />.dir</bold></code></a></td>
       </tr>
       
       <tr>
-        <td colspan="2" class="title-cell"><a href="tasks.html#task-params"><strong><code>params</code></strong></a></td>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.command.user"><code class="schema-attribute-name"><bold>command<wbr />.user</bold></code></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.task.run"><code class="schema-attribute-name"><bold>task<wbr />.run</bold></code></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.task.rootfs_uri"><code class="schema-attribute-name"><bold>task<wbr />.rootfs_uri</bold></code></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.container_limits.cpu"><code class="schema-attribute-name"><bold>container_limits<wbr />.cpu</bold></code></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.container_limits.memory"><code class="schema-attribute-name"><bold>container_limits<wbr />.memory</bold></code></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="tasks.html#schema.task.container_limits"><code class="schema-attribute-name"><bold>task<wbr />.container_limits</bold></code></a></td>
       </tr>
       
 
       
+  
+    
+      <tr>
+        <td class="number-cell">1.10.1</td>
+        <td class="title-cell"><a href="tasks.html#running-tasks" >Running tasks with <code>fly execute</code></a></td>
+      </tr>
+      
+      
+  
+    
+  
+
+    
+      <tr>
+        <td class="number-cell">1.10.2</td>
+        <td class="title-cell"><a href="tasks.html#task-environment" >Task runtime environment</a></td>
+      </tr>
+      
+      
+  
+    
+  
+
+    
   
 
     </table>
   </div>
 </div>
 
-    </div>
+      </div>
 
-    <div class="page-aside">
-      <div class="page-partial">
-        <div class="content">
-  <h2>Examples</h2>
+      <div class="body-content">
+        <div class="page-content">
+          <div class="section" id="section_tasks">
+  
+  <h1 class="section-header"><a class="anchor-target" name="tasks" href="#tasks"></a><span class="section-number">1.10 </span>Tasks</h1>
+  
 
-  <div class="example">
-  <h3>Ruby App</h3>
+  <p>The smallest configurable unit in a Concourse pipeline is a single task. A task can be thought of as a function from <a href="tasks.html#schema.task.inputs"><code class="schema-attribute-name"><bold>task<wbr />.inputs</bold></code></a> to <a href="tasks.html#schema.task.outputs"><code class="schema-attribute-name"><bold>task<wbr />.outputs</bold></code></a> that can either succeed or fail.</p><p>Going a bit further, ideally tasks are <em>pure</em> functions: given the same set of inputs, it should either always succeed with the same outputs or always fail. This is entirely up to your script&#39;s level of discipline, however. Flaky tests or dependencies on the internet are the most common source of impurity.</p><p>Once you have a running Concourse deployment, you can start configuring your tasks and executing them interactively from your terminal with the <a href="fly.html">Fly</a> commandline tool.</p><p>Once you&#39;ve figured out your tasks&#39;s configuration, you can reuse it for a <a href="jobs.html">Job</a> in your <a href="pipelines.html">Pipeline</a>.</p><p>Conventionally a task&#39;s configuration is placed in the same repository as the code it&#39;s testing, possibly under some <code>ci</code> directory.</p><p>A task&#39;s configuration specifies the following:</p><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.task" href="#schema.task"></a><code>task</code> schema</h2>
 
-  <p>This configuration specifies that the task must run with the <code>ruby:2.1</code> Docker image with a <code>my-app</code> input, and when the task is executed it will run the <code>scripts/test</code> script in the same repo.</p><pre><code class="language-yaml">---
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.task.platform" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task.platform" class="toggle-title">
+    <a id="schema.task.platform"></a>
+
+    <code><a class="attribute-name" href="#schema.task.platform">platform</a>: <span class="attribute-type"><span class="schema-scalar">linux</span> | <span class="schema-scalar">darwin</span> | <span class="schema-scalar">windows</span></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The platform the task should run on. This determines the pool of workers that the task can run against.</p><p>Technically any string value is allowed so long as a worker advertises the same platform, but in practice only <code>linux</code>, <code>darwin</code>, and <code>windows</code> are in use.</p>
+  </div>
+</div><div class="toggleable schema-attribute required">
+  <input id="toggle-schema.task.image_resource" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task.image_resource" class="toggle-title">
+    <a id="schema.task.image_resource"></a>
+
+    <code><a class="attribute-name" href="#schema.task.image_resource">image_resource</a>: <span class="attribute-type"><a href="tasks.html#schema.anonymous_resource"><strong>anonymous_resource</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The container image to run with, as provided by an anonymous <a href="resources.html">resource</a> definition.</p><p>Whenever the task runs, the anonymous resource will be <code>check</code>ed to discover the latest version available. The image will then be fetched onto the worker if necessary just prior to running the task.</p><p>To use an image provided by a previous step within your build plan, set <a href="jobs.html#schema.step.task-step.image"><code>task</code> step <strong><code>image</code></strong></a> on the <a href="jobs.html#task-step"><code>task</code> step</a> instead.</p><div class="toggleable example">
+  <input id="toggle-97b5bc66b7412781afa95141cc265ac44e75a66b" type="checkbox" class="toggle" />
+  <label for="toggle-97b5bc66b7412781afa95141cc265ac44e75a66b" class="toggle-title">Using the <code>golang</code> Docker image</label>
+  <div class="toggle-content">
+    <p>The following task config will use the <a href="https://hub.docker.com/_/golang"><code>golang</code> Docker image</a> to run <code>go version</code>:</p><pre><code class="language-yaml">platform: linux
+
+image_resource:
+  type: registry-image
+  source: {repository: golang}
+
+run:
+  path: go
+  args: [version]</code></pre>
+  </div>
+</div><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.anonymous_resource" href="#schema.anonymous_resource"></a><code>anonymous_resource</code> schema</h2>
+
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.anonymous_resource.type" type="checkbox" class="toggle" />
+  <label for="toggle-schema.anonymous_resource.type" class="toggle-title">
+    <a id="schema.anonymous_resource.type"></a>
+
+    <code><a class="attribute-name" href="#schema.anonymous_resource.type">type</a>: <span class="attribute-type"><a href="resource-types.html#schema.resource_type.name"><strong>resource_type.name</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The type of the resource. Usually <code>registry-image</code>.</p><p>You can use any resource type that returns a filesystem in the correct format: a <code>/rootfs</code> directory containing a full filesystem, and a <code>metadata.json</code> file containing.</p>
+  </div>
+</div><div class="toggleable schema-attribute required">
+  <input id="toggle-schema.anonymous_resource.source" type="checkbox" class="toggle" />
+  <label for="toggle-schema.anonymous_resource.source" class="toggle-title">
+    <a id="schema.anonymous_resource.source"></a>
+
+    <code><a class="attribute-name" href="#schema.anonymous_resource.source">source</a>: <span class="attribute-type"><a href="config-basics.html#schema.config"><strong>config</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The configuration for the resource; see <a href="resources.html#schema.resource.source"><code class="schema-attribute-name"><bold>resource<wbr />.source</bold></code></a>.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.anonymous_resource.params" type="checkbox" class="toggle" />
+  <label for="toggle-schema.anonymous_resource.params" class="toggle-title">
+    <a id="schema.anonymous_resource.params"></a>
+
+    <code><a class="attribute-name" href="#schema.anonymous_resource.params">params</a>: <span class="attribute-type"><a href="config-basics.html#schema.config"><strong>config</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A map of arbitrary configuration to forward to the resource. Refer to the resource type&#39;s documentation to see what it supports.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.anonymous_resource.version" type="checkbox" class="toggle" />
+  <label for="toggle-schema.anonymous_resource.version" class="toggle-title">
+    <a id="schema.anonymous_resource.version"></a>
+
+    <code><a class="attribute-name" href="#schema.anonymous_resource.version">version</a>: <span class="attribute-type"><a href="config-basics.html#schema.version"><strong>version</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A specific version of the resource to fetch. This should be a map with string keys and values. If not specified, the latest version will be fetched.</p>
+  </div>
+</div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.task.inputs" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task.inputs" class="toggle-title">
+    <a id="schema.task.inputs"></a>
+
+    <code><a class="attribute-name" href="#schema.task.inputs">inputs</a>: <span class="attribute-type">[<a href="tasks.html#schema.input"><strong>input</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The set of artifacts used by task, determining which artifacts will be available in the current directory when the task runs.</p><p>These are satisfied by <a href="jobs.html#get-step"><code>get</code> step</a>s or <a href="tasks.html#schema.task.outputs"><code class="schema-attribute-name"><bold>task<wbr />.outputs</bold></code></a> of a previous task. These can also be provided by <code>-i</code> with <a href="tasks.html#running-tasks"><code>fly execute</code></a>.</p><p>If any required inputs are missing at run-time, then the task will error immediately.</p><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.input" href="#schema.input"></a><code>input</code> schema</h2>
+
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.input.name" type="checkbox" class="toggle" />
+  <label for="toggle-schema.input.name" class="toggle-title">
+    <a id="schema.input.name"></a>
+
+    <code><a class="attribute-name" href="#schema.input.name">name</a>: <span class="attribute-type"><a href="config-basics.html#schema.identifier"><strong>identifier</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The name of the input.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.input.path" type="checkbox" class="toggle" />
+  <label for="toggle-schema.input.path" class="toggle-title">
+    <a id="schema.input.path"></a>
+
+    <code><a class="attribute-name" href="#schema.input.path">path</a>: <span class="attribute-type"><a href="config-basics.html#schema.dir-path"><strong>dir-path</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The path where the input will be placed. If not specified, the input&#39;s <code>name</code> is used.</p><p>Paths are relative to the working directory of the task. Absolute paths are not respected.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.input.optional" type="checkbox" class="toggle" />
+  <label for="toggle-schema.input.optional" class="toggle-title">
+    <a id="schema.input.optional"></a>
+
+    <code><a class="attribute-name" href="#schema.input.optional">optional</a>: <span class="attribute-type"><a href="config-basics.html#schema.boolean"><strong>boolean</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>false</code>.</em> If <code>true</code>, then the input is not required by the task. The task may run even if this input is missing.</p><p>An <code>optional</code> input that is missing will not appear in the current directory of the running task.</p>
+  </div>
+</div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.task.outputs" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task.outputs" class="toggle-title">
+    <a id="schema.task.outputs"></a>
+
+    <code><a class="attribute-name" href="#schema.task.outputs">outputs</a>: <span class="attribute-type">[<a href="tasks.html#schema.output"><strong>output</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The artifacts produced by the task.</p><p>Each output configures a directory to make available to later steps in the <a href="jobs.html#steps">build plan</a>. The directory will be automatically created before the task runs, and the task should place any artifacts it wants to export in the directory.</p><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.output" href="#schema.output"></a><code>output</code> schema</h2>
+
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.output.name" type="checkbox" class="toggle" />
+  <label for="toggle-schema.output.name" class="toggle-title">
+    <a id="schema.output.name"></a>
+
+    <code><a class="attribute-name" href="#schema.output.name">name</a>: <span class="attribute-type"><a href="config-basics.html#schema.identifier"><strong>identifier</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The name of the output. The contents under <code>path</code> will be made available to the rest of the plan under this name.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.output.path" type="checkbox" class="toggle" />
+  <label for="toggle-schema.output.path" class="toggle-title">
+    <a id="schema.output.path"></a>
+
+    <code><a class="attribute-name" href="#schema.output.path">path</a>: <span class="attribute-type"><a href="config-basics.html#schema.dir-path"><strong>dir-path</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The path to a directory where the output will be taken from. If not specified, the output&#39;s <code>name</code> is used.</p><p>Paths are relative to the working directory of the task. Absolute paths are not respected.</p>
+  </div>
+</div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.task.caches" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task.caches" class="toggle-title">
+    <a id="schema.task.caches"></a>
+
+    <code><a class="attribute-name" href="#schema.task.caches">caches</a>: <span class="attribute-type">[<a href="tasks.html#schema.cache"><strong>cache</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The cached directories shared between task runs.</p><p>On the task&#39;s first run, all cache directories will be empty. It is the responsibility of the task to populate these directories with any artifacts to be cached. On subsequent runs, the cached directories will contain those artifacts.</p><p>Caches are scoped to the worker the task is run on, so you will not get a cache hit when subsequent builds run on different workers. This also means that caching is not intended to share state between workers, and your task should be able to run whether or not the cache is warmed.</p><p>Caches are also scoped to a particular task name inside of a pipeline&#39;s job. As a consequence, if the job name, step name or cache path are changed, the cache will not be used. This also means that caches do not exist for one-off builds.</p><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.cache" href="#schema.cache"></a><code>cache</code> schema</h2>
+
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.cache.path" type="checkbox" class="toggle" />
+  <label for="toggle-schema.cache.path" class="toggle-title">
+    <a id="schema.cache.path"></a>
+
+    <code><a class="attribute-name" href="#schema.cache.path">path</a>: <span class="attribute-type"><a href="config-basics.html#schema.dir-path"><strong>dir-path</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The path to a directory to be cached.</p><p>Paths are relative to the working directory of the task. Absolute paths are not respected.</p>
+  </div>
+</div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.task.params" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task.params" class="toggle-title">
+    <a id="schema.task.params"></a>
+
+    <code><a class="attribute-name" href="#schema.task.params">params</a>: <span class="attribute-type"><a href="config-basics.html#schema.env-vars"><strong>env-vars</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A key-value mapping of string keys and values that are exposed to the task via environment variables.</p><p>Pipelines can override these params by setting <a href="jobs.html#schema.step.task-step.params"><code>task</code> step <strong><code>params</code></strong></a> on the <a href="jobs.html#task-step"><code>task</code> step</a>. This is a common method of providing credentials to a task.</p>
+  </div>
+</div><div class="toggleable schema-attribute required">
+  <input id="toggle-schema.task.run" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task.run" class="toggle-title">
+    <a id="schema.task.run"></a>
+
+    <code><a class="attribute-name" href="#schema.task.run">run</a>: <span class="attribute-type"><a href="tasks.html#schema.command"><strong>command</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The command to execute in the container.</p><p>Note that this is <em>not</em> provided as a script blob, but explicit <code>path</code> and <code>args</code> values; this allows <code>fly</code> to forward arguments to the script, and forces your config <code>.yml</code> to stay fairly small.</p><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.command" href="#schema.command"></a><code>command</code> schema</h2>
+
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.command.path" type="checkbox" class="toggle" />
+  <label for="toggle-schema.command.path" class="toggle-title">
+    <a id="schema.command.path"></a>
+
+    <code><a class="attribute-name" href="#schema.command.path">path</a>: <span class="attribute-type"><a href="config-basics.html#schema.file-path"><strong>file-path</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The name of or path to the executable to run.</p><p><code>path</code> is relative to the working directory. If <code>dir</code> is specified to set the working directory, then <code>path</code> is relative to it.</p><p>This is commonly a path to a script provided by one of the task&#39;s inputs, e.g. <code>my-resource/scripts/test</code>. It could also be a command like <code>bash</code> (respecting standard <code>$PATH</code> lookup rules), or an absolute path to a file to execute, e.g. <code>/bin/bash</code>.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.command.args" type="checkbox" class="toggle" />
+  <label for="toggle-schema.command.args" class="toggle-title">
+    <a id="schema.command.args"></a>
+
+    <code><a class="attribute-name" href="#schema.command.args">args</a>: <span class="attribute-type">[<a href="config-basics.html#schema.string"><strong>string</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Arguments to pass to the command. Note that when executed with Fly, any arguments passed to Fly are appended to this array.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.command.dir" type="checkbox" class="toggle" />
+  <label for="toggle-schema.command.dir" class="toggle-title">
+    <a id="schema.command.dir"></a>
+
+    <code><a class="attribute-name" href="#schema.command.dir">dir</a>: <span class="attribute-type"><a href="config-basics.html#schema.dir-path"><strong>dir-path</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A directory, relative to the initial working directory, to set as the working directory when running the script.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.command.user" type="checkbox" class="toggle" />
+  <label for="toggle-schema.command.user" class="toggle-title">
+    <a id="schema.command.user"></a>
+
+    <code><a class="attribute-name" href="#schema.command.user">user</a>: <span class="attribute-type"><a href="config-basics.html#schema.string"><strong>string</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Explicitly set the user to run as. If not specified, this defaults to the user configured by the task&#39;s image. If not specified there, it&#39;s up to the Garden backend, and may be e.g. <code>root</code> on Linux.</p>
+  </div>
+</div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.task.rootfs_uri" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task.rootfs_uri" class="toggle-title">
+    <a id="schema.task.rootfs_uri"></a>
+
+    <code><a class="attribute-name" href="#schema.task.rootfs_uri">rootfs_uri</a>: <span class="attribute-type"><a href="config-basics.html#schema.string"><strong>string</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A string specifying the rootfs uri of the container, as interpreted by your worker&#39;s Garden backend.</p><p><a href="tasks.html#schema.task.image_resource"><code class="schema-attribute-name"><bold>task<wbr />.image_resource</bold></code></a> is the preferred way to specify base image. You should only use this if you have no other option and you really know what you&#39;re doing.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.task.container_limits" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task.container_limits" class="toggle-title">
+    <a id="schema.task.container_limits"></a>
+
+    <code><a class="attribute-name" href="#schema.task.container_limits">container_limits</a>: <span class="attribute-type"><a href="tasks.html#schema.container_limits"><strong>container_limits</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>CPU and memory limits to enforce on the task container.</p><p>Note that these values, when specified, will override any limits set by passing the <code>--default-task-cpu-limit</code> or <code>--default-task-memory-limit</code> flags to the <code>concourse web</code> command.</p><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.container_limits" href="#schema.container_limits"></a><code>container_limits</code> schema</h2>
+
+  <div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.container_limits.cpu" type="checkbox" class="toggle" />
+  <label for="toggle-schema.container_limits.cpu" class="toggle-title">
+    <a id="schema.container_limits.cpu"></a>
+
+    <code><a class="attribute-name" href="#schema.container_limits.cpu">cpu</a>: <span class="attribute-type"><a href="config-basics.html#schema.number"><strong>number</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The maximum amount of CPU available to the task container, measured in shares. 0 means unlimited.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.container_limits.memory" type="checkbox" class="toggle" />
+  <label for="toggle-schema.container_limits.memory" class="toggle-title">
+    <a id="schema.container_limits.memory"></a>
+
+    <code><a class="attribute-name" href="#schema.container_limits.memory">memory</a>: <span class="attribute-type"><a href="config-basics.html#schema.number"><strong>number</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The maximum amount of memory available to the task container, measured in bytes. 0 means unlimited.</p>
+  </div>
+</div>
+</div>
+  </div>
+</div>
+</div><div class="toggleable example">
+  <input id="toggle-de537edfde1e28da0a38cde50242df455da426e1" type="checkbox" class="toggle" />
+  <label for="toggle-de537edfde1e28da0a38cde50242df455da426e1" class="toggle-title">Testing a Ruby app</label>
+  <div class="toggle-content">
+    <p>This configuration specifies that the task must run with the <code>ruby:2.1</code> Docker image with a <code>my-app</code> input, and when the task is executed it will run the <code>scripts/test</code> script in the same repo.</p><pre><code class="language-yaml">---
 platform: linux
 
 image_resource:
@@ -417,10 +732,12 @@ inputs:
 
 run:
   path: my-app/scripts/test</code></pre>
-</div><div class="example">
-  <h3>Producing Outputs</h3>
-
-  <p>A task can configure <a href="tasks.html#task-outputs"><strong><code>outputs</code></strong></a> to produce artifacts that can then be propagated to a <a href="put-step.html"><code>put</code> step</a> or another <a href="task-step.html"><code>task</code> step</a> in the same plan. They can also be downloaded with <a href="running-tasks.html#fly-execute"><code>fly execute</code></a> by passing <code>-o</code>.</p><pre><code class="language-yaml">---
+  </div>
+</div><div class="toggleable example">
+  <input id="toggle-3e2549dbb0e4e84631bbdd416b5556e27ff22355" type="checkbox" class="toggle" />
+  <label for="toggle-3e2549dbb0e4e84631bbdd416b5556e27ff22355" class="toggle-title">Producing outputs from a task</label>
+  <div class="toggle-content">
+    <p>A task can configure <a href="tasks.html#schema.task.outputs"><code class="schema-attribute-name"><bold>task<wbr />.outputs</bold></code></a> to produce artifacts that can then be propagated to a <a href="jobs.html#put-step"><code>put</code> step</a> or another <a href="jobs.html#task-step"><code>task</code> step</a> in the same plan. They can also be downloaded with <a href="tasks.html#running-tasks"><code>fly execute</code></a> by passing <code>-o</code>.</p><pre><code class="language-yaml">---
 platform: linux
 
 image_resource: # ...
@@ -439,16 +756,18 @@ set -e -u -x
 export GOPATH=$PWD/project-src
 
 go build -o built-project/my-project \
-  github.com/concourse/my-project</code></pre><p>...this task could then be used in a <a href="steps.html">build plan</a> like so:</p><pre><code class="language-yaml">plan:
+  github.com/concourse/my-project</code></pre><p>...this task could then be used in a <a href="jobs.html#steps">build plan</a> like so:</p><pre><code class="language-yaml">plan:
 - get: project-src
 - task: build-bin
   file: project-src/ci/build.yml
 - put: project-bin
   params: file: built-project/my-project</code></pre>
-</div><div class="example">
-  <h3>Caching Ephemeral State</h3>
-
-  <p>The following task and script could be used by a Node project to cache the <code>node_modules</code> directory:</p><pre><code class="language-yaml">---
+  </div>
+</div><div class="toggleable example">
+  <input id="toggle-0cb9a039ace2fc94b1b7d9a0b5ef3e7d2f03f7eb" type="checkbox" class="toggle" />
+  <label for="toggle-0cb9a039ace2fc94b1b7d9a0b5ef3e7d2f03f7eb" class="toggle-title">Caching ephemeral state</label>
+  <div class="toggle-content">
+    <p>The following task and script could be used by a Node project to cache the <code>node_modules</code> directory:</p><pre><code class="language-yaml">---
 platform: linux
 
 image_resource: # ...
@@ -468,10 +787,12 @@ cd project-src
 npm install
 
 # ...</code></pre><p>...this task would cache the contents of <code>project-src/node_modules</code> between runs of this task on the same worker.</p>
-</div><div class="example">
-  <h3>Private Docker Registry</h3>
-
-  <p>The following external task uses an image from a private registry. Assuming the CA is configured properly on the workers, SSL should Just Work™.</p><p>External tasks are now fully interpolated using <a href="creds.html">credential manager variables</a> and <a href="task-step.html#task-step-vars"><strong><code>vars</code></strong></a>, so you can use template variables in an external task:</p><pre><code class="language-yaml">---
+  </div>
+</div><div class="toggleable example">
+  <input id="toggle-3aa0db94142151b23eb277ddf8bb8bf55d9d2b86" type="checkbox" class="toggle" />
+  <label for="toggle-3aa0db94142151b23eb277ddf8bb8bf55d9d2b86" class="toggle-title">Using an image from a private Docker registry</label>
+  <div class="toggle-content">
+    <p>The following external task uses an image from a private registry. Assuming the CA is configured properly on the workers, SSL should Just Work™.</p><p>External tasks are now fully interpolated using <a href="creds.html">credential manager variables</a> and <a href="jobs.html#schema.step.task-step.vars"><code>task</code> step <strong><code>vars</code></strong></a>, so you can use template variables in an external task:</p><pre><code class="language-yaml">---
 platform: linux
 
 image_resource:
@@ -487,272 +808,225 @@ inputs:
 run:
   path: my-app/scripts/test
   args: [&#34;Hello, world!&#34;, &#34;((myparam))&#34;]</code></pre>
-</div>
-</div>
-      </div>
-      </div>
-
-    <div class="page-content">
-      <div class="section" id="section_tasks">
-  
-  <h1 class="section-header"><a class="anchor" name="tasks" href="#tasks"></a><span class="section-number">1.9 </span>Tasks</h1>
-  
-
-  <p>The smallest configurable unit in a Concourse pipeline is a single task. A task can be thought of as a function from <a href="tasks.html#task-inputs"><strong><code>inputs</code></strong></a> to <a href="tasks.html#task-outputs"><strong><code>outputs</code></strong></a> that can either succeed or fail.</p><p>Going a bit further, ideally tasks are <em>pure</em> functions: given the same set of inputs, it should either always succeed with the same outputs or always fail. This is entirely up to your script&#39;s level of discipline, however. Flaky tests or dependencies on the internet are the most common source of impurity.</p><p>Once you have a running Concourse deployment, you can start configuring your tasks and executing them interactively from your terminal with the <a href="fly.html">Fly</a> commandline tool.</p><p>Once you&#39;ve figured out your tasks&#39;s configuration, you can reuse it for a <a href="jobs.html">Job</a> in your <a href="pipelines.html">Pipeline</a>.</p><p>Conventionally a task&#39;s configuration is placed in the same repository as the code it&#39;s testing, possibly under some <code>ci</code> directory.</p><p>A task&#39;s configuration specifies the following:</p><div class="definition">
-  <div class="definition-thumb">
-    <a name="task-platform"></a>
-    <pre><a href="tasks.html#task-platform"><strong>platform</strong></a>: string</pre>
   </div>
-
-  <div class="definition-content">
-    <p><em>Required.</em> The platform the task should run on. By convention, <code>windows</code>, <code>linux</code>, or <code>darwin</code> are specified. This determines the pool of workers that the task can run against. The base deployment provides Linux workers.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="task-image-resource"></a><a name="image_resource"></a>
-    <pre><a href="tasks.html#task-image-resource"><strong>image_resource</strong></a>: resource</pre>
-  </div>
-
-  <div class="definition-content">
-    <p>Where <em><code>resource</code></em> is:</p><div class="definition">
-  <div class="definition-thumb">
-    <a name="image-resource-type"></a>
-    <pre><a href="tasks.html#image-resource-type"><strong>type</strong></a>: string</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Required.</em> The type of the resource. Usually <code>docker-image</code>.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="image-resource-source"></a>
-    <pre><a href="tasks.html#image-resource-source"><strong>source</strong></a>: object</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Required.</em> The configuration for the resource; see <a href="resources.html#resource-source"><strong><code>source</code></strong></a>.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="image-resource-params"></a>
-    <pre><a href="tasks.html#image-resource-params"><strong>params</strong></a>: object</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Optional.</em> A map of arbitrary configuration to forward to the resource. Refer to the resource type&#39;s documentation to see what it supports.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="image-resource-version"></a>
-    <pre><a href="tasks.html#image-resource-version"><strong>version</strong></a>: object</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Optional.</em> A specific version of the resource to fetch. This should be a map with string keys and values. If not specified, the latest version will be fetched.</p>
-  </div>
-</div><p><em>Optional.</em> The base image of the container, as provided by a <a href="resources.html">resource</a> definition.</p><p>You can use any resource that returns a filesystem in the correct format (a <code>/rootfs</code> directory and a <code>metadata.json</code> file in the top level) but normally this will be the <a href="https://github.com/concourse/docker-image-resource">Docker Image resource</a>. If you&#39;d like to make a resource of your own that supports this please use that as a reference implementation for now.</p><p>If you want to use an artifact source within the plan containing an image, you must set the <a href="task-step.html#task-step-image"><strong><code>image</code></strong></a> in the plan step instead.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="task-rootfs-uri"></a>
-    <pre><a href="tasks.html#task-rootfs-uri"><strong>rootfs_uri</strong></a>: string</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Optional.</em> A string specifying the rootfs uri of the container, as interpreted by your worker&#39;s Garden backend.</p><p><a href="tasks.html#image_resource"><strong><code>image_resource</code></strong></a> is a preferred way to specify base image and <code>rootfs_uri</code> is not recommended. With <code>rootfs_uri</code> image fetching is delegated to backend which does not guarantee image caching and might result in some permission errors. You should only use this if you cannot use <a href="tasks.html#image_resource"><strong><code>image_resource</code></strong></a> for some reason, and you know what you&#39;re doing.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="task-container-limits"></a>
-    <pre><a href="tasks.html#task-container-limits"><strong>container_limits</strong></a>: container-limits</pre>
-  </div>
-
-  <div class="definition-content">
-    <p>Where <em><code>container-limits</code></em> is:</p><div class="definition">
-  <div class="definition-thumb">
-    <a name="task-container-limits-cpu"></a>
-    <pre><a href="tasks.html#task-container-limits-cpu"><strong>cpu</strong></a>: integer</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Optional.</em> The maximum amount of CPU available to the task container, measured in shares. 0 means unlimited.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="task-container-limits-memory"></a>
-    <pre><a href="tasks.html#task-container-limits-memory"><strong>memory</strong></a>: integer</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Optional.</em> The maximum amount of memory available to the task container, measured in bytes. 0 means unlimited.</p>
-  </div>
-</div><p><em>Optional.</em> CPU and memory limits to enforce on the task container.</p><p>Note that these values, when specified, will override any limits set by passing the <code>--default-task-cpu-limit</code> or <code>--default-task-memory-limit</code> flags to the <code>concourse web</code> command.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="task-inputs"></a>
-    <pre><a href="tasks.html#task-inputs"><strong>inputs</strong></a>: [input]</pre>
-  </div>
-
-  <div class="definition-content">
-    <p>Where <em><code>input</code></em> is:</p><div class="definition">
-  <div class="definition-thumb">
-    <a name="input-name"></a>
-    <pre><a href="tasks.html#input-name"><strong>name</strong></a>: string</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Required.</em> The logical name of the input.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="input-path"></a>
-    <pre><a href="tasks.html#input-path"><strong>path</strong></a>: string</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Optional.</em> The path where the input will be placed. If not specified, the input&#39;s <code>name</code> is used.</p><p>Paths are relative to the working directory of the task. Absolute paths are not respected.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="input-optional"></a>
-    <pre><a href="tasks.html#input-optional"><strong>optional</strong></a>: bool</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Optional.</em> If <code>true</code>, then the input is not required by the task. The task may run even if this input is missing.</p><p>An <code>optional</code> input that is missing will not appear in the current directory of the running task.</p>
-  </div>
-</div><p><em>Optional.</em> The set of artifacts used by task, determining which artifacts will be available in the current directory when the task runs.</p><p>These are satisfied by <a href="get-step.html"><code>get</code> step</a>s or <a href="tasks.html#task-outputs"><strong><code>outputs</code></strong></a> of a previous task. These can also be provided by <code>-i</code> with <a href="running-tasks.html#fly-execute"><code>fly execute</code></a>.</p><p>If any required inputs are missing at run-time, then the task will error immediately.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="task-outputs"></a>
-    <pre><a href="tasks.html#task-outputs"><strong>outputs</strong></a>: [output]</pre>
-  </div>
-
-  <div class="definition-content">
-    <p>Where <em><code>output</code></em> is:</p><div class="definition">
-  <div class="definition-thumb">
-    <a name="output-name"></a>
-    <pre><a href="tasks.html#output-name"><strong>name</strong></a>: string</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Required.</em> The logical name of the output. The contents under <code>path</code> will be made available to the rest of the plan under this name.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="output-path"></a>
-    <pre><a href="tasks.html#output-path"><strong>path</strong></a>: string</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Optional.</em> The path to a directory where the output will be taken from. If not specified, the output&#39;s <code>name</code> is used.</p><p>Paths are relative to the working directory of the task. Absolute paths are not respected.</p>
-  </div>
-</div><p><em>Optional.</em> The artifacts produced by the task.</p><p>Each output configures a directory to make available to later steps in the <a href="steps.html">build plan</a>. The directory will be automatically created before the task runs, and the task should place any artifacts it wants to export in the directory.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="task-caches"></a><a name="caches"></a>
-    <pre><a href="tasks.html#task-caches"><strong>caches</strong></a>: [cache]</pre>
-  </div>
-
-  <div class="definition-content">
-    <p>Where <em><code>cache</code></em> is:</p><div class="definition">
-  <div class="definition-thumb">
-    <a name="cache-path"></a>
-    <pre><a href="tasks.html#cache-path"><strong>path</strong></a>: string</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Required.</em> The path to a directory to be cached.</p><p>Paths are relative to the working directory of the task. Absolute paths are not respected.</p>
-  </div>
-</div><p><em>Optional.</em> The cached directories shared between task runs.</p><p>On the task&#39;s first run, all cache directories will be empty. It is the responsibility of the task to populate these directories with any artifacts to be cached. On subsequent runs, the cached directories will contain those artifacts.</p><p>Caches are scoped to the worker the task is run on, so you will not get a cache hit when subsequent builds run on different workers. This also means that caching is not intended to share state between workers, and your task should be able to run whether or not the cache is warmed.</p><p>Caches are also scoped to a particular task name inside of a pipeline&#39;s job. As a consequence, if the job name, step name or cache path are changed, the cache will not be used. This also means that caches do not exist for one-off builds.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="task-run"></a>
-    <pre><a href="tasks.html#task-run"><strong>run</strong></a>: run-config</pre>
-  </div>
-
-  <div class="definition-content">
-    <p>Where <em><code>run-config</code></em> is:</p><div class="definition">
-  <div class="definition-thumb">
-    <a name="task-run-path"></a>
-    <pre><a href="tasks.html#task-run-path"><strong>path</strong></a>: string</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Required.</em> The command to execute.</p><p><code>path</code> is relative to the working directory. If <code>dir</code> is specified to set the working directory, then <code>path</code> is relative to it.</p><p>This is commonly a path to a script provided by one of the task&#39;s inputs, e.g. <code>my-resource/scripts/test</code>. It could also be a command like <code>bash</code> (respecting standard <code>$PATH</code> lookup rules), or an absolute path to a file to execute, e.g. <code>/bin/bash</code>.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="task-run-args"></a>
-    <pre><a href="tasks.html#task-run-args"><strong>args</strong></a>: [string]</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Optional.</em> Arguments to pass to the command. Note that when executed with Fly, any arguments passed to Fly are appended to this array.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="task-run-dir"></a>
-    <pre><a href="tasks.html#task-run-dir"><strong>dir</strong></a>: string</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Optional.</em> A directory, relative to the initial working directory, to set as the working directory when running the script.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="task-run-user"></a>
-    <pre><a href="tasks.html#task-run-user"><strong>user</strong></a>: string</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Optional.</em> Explicitly set the user to run as. If not specified, this defaults to the user configured by the task&#39;s image. If not specified there, it&#39;s up to the Garden backend, and may be e.g. <code>root</code> on Linux.</p>
-  </div>
-</div><p><em>Required.</em> The command to execute in the container.</p><p>Note that this is <em>not</em> provided as a script blob, but explicit <code>path</code> and <code>args</code> values; this allows <code>fly</code> to forward arguments to the script, and forces your config <code>.yml</code> to stay fairly small.</p>
-  </div>
-</div><div class="definition">
-  <div class="definition-thumb">
-    <a name="task-params"></a>
-    <pre><a href="tasks.html#task-params"><strong>params</strong></a>: {string: string}</pre>
-  </div>
-
-  <div class="definition-content">
-    <p><em>Optional.</em> A key-value mapping of values that are exposed to the task via environment variables.</p><p>Use this to provide things like credentials to a task.</p>
-  </div>
-</div>
+</div><div class="table-of-contents">
+  <span class="toc-header">Table of contents:</span>
 
   
-</div>
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.10.1</span>
+      <a href="tasks.html#running-tasks">Running tasks with <code>fly execute</code></a>
 
-      <nav class="prev-next">
       
-        <div class="prev">
-          prev:
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.10.2</span>
+      <a href="tasks.html#task-environment">Task runtime environment</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+</div>
+
+  
+    
+      <div class="section" id="section_running-tasks">
+  
+  <h2 class="section-header"><a class="anchor-target" name="running-tasks" href="#running-tasks"></a>Running tasks with <code>fly execute</code></h2>
+  
+
+  <p>One of the most common use cases of <code>fly</code> is taking a local project on your computer and submitting it up with a task configuration to be run inside a container in Concourse. This is useful to build Linux projects on OS X or to avoid all of those debugging commits when something is configured differently between your local and remote setup.</p><p>You can execute a task like this:</p><pre><code class="language-bash">$ fly -t example execute --config tests.yml</code></pre><p>Your files will be uploaded and the task will be executed with them. The working directory name will be used as the input name. If they do not match, you must specify <code>-i name=.</code> instead, where <code>name</code> is the input name from the task configuration.</p><p>Fly will automatically capture <code>SIGINT</code> and <code>SIGTERM</code> and abort the build when received. This allows it to be transparently composed with other toolchains.</p><p>By default, Fly will not send extra files or large files in your current directory that would normally be ignored by your version control system. You can use the <code>--include-ignored</code> flags in order to send ignored files to Concourse along with those that are not ignored.</p><p>If your task needs to run as <code>root</code> then you can specify the <code>-p</code> or <code>--privileged</code> flag.</p><div class="toggleable example">
+  <input id="toggle-b56665b124db029db6b069a5c2f73da19909824f" type="checkbox" class="toggle" />
+  <label for="toggle-b56665b124db029db6b069a5c2f73da19909824f" class="toggle-title">Providing multiple inputs</label>
+  <div class="toggle-content">
+    <p>Tasks in Concourse can take multiple inputs. Up until now we&#39;ve just been submitting a single input (our current working directory) that has the same name as the directory.</p><p>Tasks must specify the inputs that they require as <a href="tasks.html#schema.task.inputs"><code class="schema-attribute-name"><bold>task<wbr />.inputs</bold></code></a>. For <code>fly</code> to upload these inputs you can use the <code>-i</code> or <code>--input</code> arguments with name and path pairs. For example:</p><pre><code class="language-bash">$ fly -t example execute \
+    --config build-stemcell.yml \
+    --input code=. \
+    --input stemcells=../stemcells</code></pre><p>This would work together with a <code>build-stemcell.yml</code> if its <code>inputs:</code> section was as follows:</p><pre><code class="language-yaml">inputs:
+- name: code
+- name: stemcells</code></pre><p>If you specify an input then the default input will no longer be added automatically and you will need to explicitly list it (as with the <code>code</code> input above).</p><p>This feature can be used to mimic other resources and try out combinations of input that would normally not be possible in a pipeline.</p>
+  </div>
+</div><div class="toggleable example">
+  <input id="toggle-5fd4fe67cdc57768e785666ba809f0c80defc4fd" type="checkbox" class="toggle" />
+  <label for="toggle-5fd4fe67cdc57768e785666ba809f0c80defc4fd" class="toggle-title">Basing inputs on a job in your pipeline with <code>--inputs-from</code></label>
+  <div class="toggle-content">
+    <p>If the <code>--inputs-from</code> flag is given, the specified job will be looked up in the pipeline, and the one-off build will base its inputs on those currently configured for the job.</p><p>If any <code>--input</code> flags are given (see above), they will override the base set of inputs.</p><p>For example:</p><pre><code class="language-bash">$ fly -t example execute \
+    --config task.yml \
+    --inputs-from main/integration \
+    --input foo=./foo</code></pre><p>This will trigger a one-off-build using the <code>task.yml</code> task config, basing its inputs on the latest candidates for the <code>integration</code> job in the <code>main</code> pipeline, with the <code>foo</code> input overridden to specify local code to run.</p><p>This can be used to more closely replicate the state in CI when weeding out flakiness, or as a shortcut for local development so that you don&#39;t have to upload every single resource from your local machine.</p>
+  </div>
+</div><div class="toggleable example">
+  <input id="toggle-2e46a698de65b5e796e557ccf7905d30cce72e3c" type="checkbox" class="toggle" />
+  <label for="toggle-2e46a698de65b5e796e557ccf7905d30cce72e3c" class="toggle-title">Using an image from a job in your pipeline with <code>--image</code></label>
+  <div class="toggle-content">
+    <p>When using <code>--inputs-from</code> as above, you can additionally specify which input to use as the task&#39;s image by passing <code>--image input-name</code>.</p><p>For example, the following pipeline fetches an image via a <a href="jobs.html#get-step"><code>get</code> step</a> and uses it for <a href="jobs.html#schema.step.task-step.image"><code>task</code> step <strong><code>image</code></strong></a>:</p><pre><code class="language-yaml">resources:
+- name: my-repo
+  type: git
+  source: {uri: https://example.com}
+
+- name: some-image
+  type: registry-image
+  source: {repository: ubuntu}
+
+jobs:
+- name: integration
+  plan:
+  - get: my-repo
+  - get: some-image
+  - task: my-task
+    file: my-repo/task.yml
+    image: some-image</code></pre><p>...so to run the same task with the same image in a one-off build, you would run:</p><pre><code class="language-bash">$ fly -t example execute \
+    --config task.yml \
+    --inputs-from main/integration \
+    --image some-image</code></pre>
+  </div>
+</div><div class="toggleable example">
+  <input id="toggle-83d5dc17a91b94725f09a3a017858f3d1c9e31b1" type="checkbox" class="toggle" />
+  <label for="toggle-83d5dc17a91b94725f09a3a017858f3d1c9e31b1" class="toggle-title">Taking artifacts from the build with <code>--output</code></label>
+  <div class="toggle-content">
+    <p>If a task specifies outputs then you&#39;re able to extract these back out of the build and back to your local system. For example:</p><pre><code class="language-bash">$ fly -t example execute \
+    --config build-stemcell.yml \
+    --input code=. \
+    --output stemcell=/tmp/stemcell</code></pre><p>This would work together with a <code>build-stemcell.yml</code> if its <code>outputs:</code> section was as follows:</p><pre><code class="language-yaml">outputs:
+- name: stemcell</code></pre><p>This feature is useful to farm work out to your Concourse server to build things in a repeatable manner.</p>
+  </div>
+</div><div class="toggleable example">
+  <input id="toggle-6fd3718bb754f4d00f9e73d64415cbb81ab32a2a" type="checkbox" class="toggle" />
+  <label for="toggle-6fd3718bb754f4d00f9e73d64415cbb81ab32a2a" class="toggle-title">Providing values for <code>params</code></label>
+  <div class="toggle-content">
+    <p>Any params listed in the task configuration can be specified by using environment variables.</p><p>So, if you have a task with the following params:</p><pre><code class="language-yaml">params:
+  FOO: fizzbuzz
+  BAR:</code></pre><p>...and you run:</p><pre><code class="language-bash">BAR=hello fly execute</code></pre><p>The task would then run with <code>BAR</code> as <code>&#34;hello&#34;</code>, and <code>FOO</code> as <code>&#34;fizzbuzz&#34;</code> (its default value).</p>
+  </div>
+</div><div class="toggleable example">
+  <input id="toggle-eddbf2550a94b7e8d4749612f3e9da54a8f44e81" type="checkbox" class="toggle" />
+  <label for="toggle-eddbf2550a94b7e8d4749612f3e9da54a8f44e81" class="toggle-title">Providing values for vars</label>
+  <div class="toggle-content">
+    <p>Task config files can contain <a href="vars.html">Vars</a> which can can be set during <code>fly execute</code> by using the <code>-v</code>, <code>-y</code> and <code>-l</code> flags:</p><pre><code class="language-bash">fly -t example execute --config tests.yml \
+  -l vars.yml \
+  -v some_string=&#34;Hello World!&#34; \
+  -y some_bool=true</code></pre><p>Any variables not satisfied via the above flags will be deferred to the configured <a href="creds.html">credential manager</a>.</p><p>To satisfy these vars when running the task in a pipeline, see <a href="jobs.html#schema.step.task-step.vars"><code>task</code> step <strong><code>vars</code></strong></a>.</p>
+  </div>
+</div><div class="toggleable example">
+  <input id="toggle-747c85ef4bbb300b7591f7e0da39f7e5adaa61d5" type="checkbox" class="toggle" />
+  <label for="toggle-747c85ef4bbb300b7591f7e0da39f7e5adaa61d5" class="toggle-title">Targeting a specific worker with <code>--tag</code></label>
+  <div class="toggle-content">
+    <p>If you want to execute a task on a worker that has a specific tag, you can do so by passing <code>--tag</code>:</p><pre><code class="language-bash">fly -t example execute --config task.yml --tag bar</code></pre><p>This will execute the task specified by <code>task.yml</code> on a worker that has been tagged <code>bar</code>.</p>
+  </div>
+</div>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_task-environment">
+  
+  <h2 class="section-header"><a class="anchor-target" name="task-environment" href="#task-environment"></a>Task runtime environment</h2>
+  
+
+  <p>A task runs in a new container every time, using the image provided by <a href="tasks.html#schema.task.image_resource"><code class="schema-attribute-name"><bold>task<wbr />.image_resource</bold></code></a> as its base filesystem (i.e. <code>/</code>).</p><p>The command specified by <a href="tasks.html#schema.task.run"><code class="schema-attribute-name"><bold>task<wbr />.run</bold></code></a> will be executed in a working directory containing each of the <a href="tasks.html#schema.task.inputs"><code class="schema-attribute-name"><bold>task<wbr />.inputs</bold></code></a>. If any inputs are missing the task will not run (and the container will not even be created).</p><p>The working directory will also contain empty directories for each of the <a href="tasks.html#schema.task.outputs"><code class="schema-attribute-name"><bold>task<wbr />.outputs</bold></code></a>. The task must place artifacts in the output directories for them to be exported. This meshes well with build tools with configurable destination paths.</p><blockquote class="aside"><p>If your build tools don&#39;t support output paths you&#39;ll have to copy bits around. If it&#39;s a <code>git</code> repo that you&#39;re modifying you can do a local <code>git clone ./input ./output</code>, which is much more efficient than <code>cp</code>, and then work out of <code>./output</code>.</p></blockquote><p>Any <a href="jobs.html#schema.step.task-step.params"><code>task</code> step <strong><code>params</code></strong></a> configured will be set in the environment for the task&#39;s command, along with any environment variables provided by the task&#39;s image (i.e. <code>ENV</code> rules from your <code>Dockerfile</code>).</p><p>The user the command runs as is determined by the image. If you&#39;re using a Docker image, this will be the user set by a <code>USER</code> rule in your <code>Dockerfile</code>, or <code>root</code> if not specified.</p><p>Another relevant bit of configuration is <a href="jobs.html#schema.step.task-step.privileged"><code>task</code> step <strong><code>privileged</code></strong></a>, which determines whether the user the task runs as will have full privileges (primarily when running as <code>root</code>). This is intentionally <em>not</em> configurable by the task itself, to prevent privilege escalation by way of pull requests to repositories containing task configs.</p><p>Putting all this together, the following task config:</p><pre><code class="language-yaml">---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: golang
+    tag: &#39;1.6&#39;
+
+params:
+  SOME_PARAM: some-default-value
+
+inputs:
+- name: some-input
+- name: some-input-with-custom-path
+  path: some/custom/path
+
+outputs:
+- name: some-output
+
+run:
+  path: sh
+  args:
+  - -exc
+  - |
+    whoami
+    env
+    go version
+    find .
+    touch some-output/my-built-artifact</code></pre><p>...will produce the following output:</p><pre><code class="language-bash">&#43; whoami
+root
+&#43; env
+USER=root
+HOME=/root
+GOLANG_DOWNLOAD_SHA256=5470eac05d273c74ff8bac7bef5bad0b5abbd1c4052efbdbc8db45332e836b0b
+PATH=/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+GOPATH=/go
+PWD=/tmp/build/e55deab7
+GOLANG_DOWNLOAD_URL=https://golang.org/dl/go1.6.linux-amd64.tar.gz
+GOLANG_VERSION=1.6
+SOME_PARAM=some-default-value
+&#43; go version
+go version go1.6 linux/amd64
+&#43; find .
+.
+./some-input
+./some-input/foo
+./some
+./some/custom
+./some/custom/path
+./some/custom/path/bar
+./some-output
+&#43; touch some-output/my-built-artifact</code></pre><p>...and propagate <code>my-built-artifact</code> to any later <a href="jobs.html#task-step"><code>task</code> step</a>s or <a href="jobs.html#put-step"><code>put</code> step</a>s that reference the <code>some-output</code> artifact, in the same way that this task had <code>some-input</code> as an input.</p>
+
+  
+    
+  
+</div>
+    
+  
+</div>
+
+          <nav class="prev-next">
+          
+            <div class="prev">
+              prev:
+
+              
+              <span class="section-number">1.9</span>
+              
+
+              <a href="jobs.html">Jobs</a>
+            </div>
+          
 
           
-          <span class="section-number">1.8</span>
-          
+            <div class="next">
+              next:
 
-          <a href="jobs.html">Jobs</a>
+              
+              <span class="section-number">1.11</span>
+              
+
+              <a href="builds.html">Builds</a>
+            </div>
+          
+          </nav>
         </div>
-      
 
-      
-        <div class="next">
-          next:
-
-          
-          <span class="section-number">1.9.1</span>
-          
-
-          <a href="running-tasks.html">Running Tasks</a>
-        </div>
-      
-      </nav>
+        <div class="page-aside"></div>
+      </div>
     </div>
 
     <ul class="improve-docs">

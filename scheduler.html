@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60508041-1"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-60508041-1');
+</script>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=775" />
+<title>Build Scheduler - Concourse CI</title>
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+<link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+<link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+<script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
+  </head>
+  <body>
+    <div class="top-banner">
+      <p class="banner-text">
+        ✨ The <a href="https://airtable.com/shr4tyAb5ApbX3VV1">2020 Concourse CI Community Survey</a> is now live! ✨
+      </p>
+    </div>
+
+    <div class="page-top">
+      <nav class="top-nav">
+  <a class="top-link logo-link" href="/"><img src="images/logo-white.svg" />Concourse</a>
+  
+  <a class="top-link active" href="docs.html">Docs</a>
+  
+  <a class="top-link" href="examples.html">Examples</a>
+  
+  <a class="top-link" href="project.html">Project</a>
+  
+  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
+  <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
+  <a class="top-link" href="https://discuss.concourse-ci.org">discuss</a>
+
+  <div id="search"></div>
+
+  <script type="text/javascript">
+    var app = Elm.Main.init({
+      node: document.getElementById('search')
+    });
+
+    app.ports.emitSearchTerm.subscribe(function(term) {
+      gtag('event', 'search', {search_term: term});
+    });
+  </script>
+</nav>
+    </div>
+
+    <div class="page-body">
+      <div class="page-nav">
+        
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1</span><a href="docs.html"  class="active">Docs</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.1</td>
+            <td class="title-cell"><a href="install.html" >Install</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2</td>
+            <td class="title-cell"><a href="auth.html" >Auth &amp; Teams</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.3</td>
+            <td class="title-cell"><a href="fly.html" >The <code>fly</code> CLI</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.4</td>
+            <td class="title-cell"><a href="config-basics.html" >Config Basics</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.5</td>
+            <td class="title-cell"><a href="pipelines.html" >Pipelines</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.6</td>
+            <td class="title-cell"><a href="vars.html" >Vars</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.7</td>
+            <td class="title-cell"><a href="resources.html" >Resources</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.8</td>
+            <td class="title-cell"><a href="resource-types.html" >Resource Types</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.9</td>
+            <td class="title-cell"><a href="jobs.html" >Jobs</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.10</td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11</td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12</td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.13</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14</td>
+            <td class="title-cell"><a href="internals.html"  class="active">Internals</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.14</span><a href="internals.html"  class="active">Internals</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.14.1</td>
+            <td class="title-cell"><a href="internals.html#basic-architecture" >Basic architecture</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14.2</td>
+            <td class="title-cell"><a href="internals.html#component-atc"  class="active">ATC: web UI &amp; build scheduler</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14.3</td>
+            <td class="title-cell"><a href="internals.html#component-tsa" >TSA: worker registration &amp; forwarding</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14.4</td>
+            <td class="title-cell"><a href="internals.html#architecture-worker" >Workers: container runtime &amp; cache management</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <a href="internals.html#component-atc"  class="active">ATC: web UI &amp; build scheduler</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.14.2.1</td>
+            <td class="title-cell"><a href="checker.html" >Resource Checker</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14.2.2</td>
+            <td class="title-cell"><a href="scheduler.html"  class="self">Build Scheduler</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14.2.3</td>
+            <td class="title-cell"><a href="build-tracker.html" >Build Tracker</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14.2.4</td>
+            <td class="title-cell"><a href="garbage-collector.html" >Garbage Collector</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+
+
+
+      </div>
+
+      <div class="body-content">
+        <div class="page-content">
+          <div class="section" id="section_scheduler">
+  
+  <h1 class="section-header"><a class="anchor-target" name="scheduler" href="#scheduler"></a><span class="section-number">1.14.2.2 </span>Build Scheduler</h1>
+  
+
+  <p><em>As of the v6.0.0 release, there have been many changes to the scheduler so it would be advisable to assume that this documentation should only be used for Concourse deployments v6.0.0 and above.</em></p><p>Builds represent each execution of a <a href="jobs.html">job</a>. Figuring out when to schedule a new build is the responsibility of the <strong>build scheduler</strong>. The scheduling of new builds can be dependent on many different factors such as when a new version of a resource is discovered, when a dependent upstream build finishes, or when a user manually triggers a build.</p><p>The build scheduler is a global component, where it deals with all the jobs within a deployment. It runs on an interval with a default of 10 seconds. If there are multiple ATCs, only one of the ATC&#39;s scheduler component will run per interval tick in order to ensure that there will be no duplicated work between ATC nodes.</p><p>The subcomponent used to figure out whether a build can be scheduled is called the <a href="scheduler.html#algorithm">algorithm</a>.</p>
+
+  
+    
+      <div class="section" id="section_algorithm">
+  
+  <h2 class="section-header"><a class="anchor-target" name="algorithm" href="#algorithm"></a>Algorithm</h2>
+  
+
+  <p>The algorithm is a subcomponent of the scheduler which is used to determine the input versions to the next build of a job. There are many factors that contribute to figuring out the next input versions. It can be anything that affects which resource versions will be used to schedule a build, such as <a href="jobs.html#schema.step.get-step.version">version constraints</a> or <a href="jobs.html#schema.step.get-step.passed">passed constraints</a> in a <a href="jobs.html#get-step"><code>get</code> step</a>, disabling versions through the web UI, etc. The algorithm can also fail to determine a successful set of input versions, which the error will be propogated to the preparation view in the build page.</p><p>If the algorithm computes a successful set of input versions, it will figure out whether or not the versions it computed can be used to produce a new build. This is done by comparing the <a href="jobs.html#schema.step.get-step.trigger">triggerable</a> input versions to the versions used by the previous build and if any of them have a different version, then the scheduler will know to schedule a new build. Conversly, if the input versions produced by the algorithm are the same as the previous build, then the scheduler will not create a new build.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_scheduling-behavior">
+  
+  <h2 class="section-header"><a class="anchor-target" name="scheduling-behavior" href="#scheduling-behavior"></a>Scheduling behavior</h2>
+  
+
+  <p>The scheduler will schedule a new build if any of the versions produced by the algorithm for <a href="jobs.html#schema.step.get-step.trigger"><code>trigger: true</code></a> resources is not equal to the version used by the <strong>previous build</strong> of the job.</p><p>What this means is if the algorithm runs and computes an input version, the scheduler will create a new build as long as that version is different than the previous build&#39;s version for that same input. Even if that version has been used by a build 2 months ago, the scheduler will schedule a new build as long as it has not been used by the previous build.</p><p>If there are any input versions that are different than the previous build, it will trigger a new build. This can affect some users that are using the pinning functionality to run older versions.</p><p>Let&#39;s say you have a job that takes a resource as an input. It currently has two builds, build 1 has ran with version <code>v1</code> of the resource and build 2 has ran with <code>v2</code>.</p><div class="diagram">
+  <img src="images/new-pinning-behavior-1.png" alt="diagram" width="80%" />
+</div><p>If I pin the input to an older version, a new build is produced because the pinned version <code>v1</code> is not equivalent to the version of the previous build <code>v2</code>.</p><div class="diagram">
+  <img src="images/new-pinning-behavior-3.png" alt="diagram" width="90%" />
+</div><p>Then if I unpin the version, another build would be triggered again using the latest version.</p><div class="diagram">
+  <img src="images/new-pinning-behavior-4.png" alt="diagram" width="90%" />
+</div><p>This is because after unpinning the resource, the input version for the next build becomes the latest version <code>v2</code> which is not equal to the version <code>v1</code> used by the previous build.</p><p>This is to allow the current state of the builds to always reflect the current state of the versions. That being said, this behavior can be undesirable if the goal is to only run a job using an old version. In this case, build rerunning is the better choice. If you would like to learn more about build rerunning, you can read more about it in the <a href="builds.html#build-rerunning">build rerunning section</a>.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_scheduling-on-demand">
+  
+  <h2 class="section-header"><a class="anchor-target" name="scheduling-on-demand" href="#scheduling-on-demand"></a>Scheduling on demand</h2>
+  
+
+  <p>The scheduler runs on an interval, but rather than scheduling all the jobs within a deployment on every tick, it only schedules the jobs that <em>need to be scheduled</em>.</p><p>First, the scheduler determines which jobs need to be scheduled. Below are all the reasons why Concourse will think a job needs to be scheduled: <ul>
+
+  <li><p>Detecting new versions of a resource through a check</p></li>
+
+  <li><p>Saving a new version through a put</p></li>
+
+  <li><p>A build finishes for an upstream job (through passed constraints)</p></li>
+
+  <li><p>Enabling/Disabling a resource version</p></li>
+
+  <li><p>Pinning/Unpinning a resource version</p></li>
+
+  <li><p>Setting a pipeline</p></li>
+
+  <li><p>Updating a resource&#39;s <code>resource_config</code></p></li>
+
+  <li><p>Manually triggering a build</p></li>
+
+  <li><p>Rerunning a build</p></li>
+
+  <li><p>Multiple versions available for a version every constraint</p></li>
+
+</ul></p><p>Each job that is scheduled will use the algorithm to determine what inputs its next build should have. Then the build is scheduled and picked up by the <a href="build-tracker.html">Build Tracker</a>.</p>
+
+  
+    
+  
+</div>
+    
+  
+</div>
+
+          <nav class="prev-next">
+          
+            <div class="prev">
+              prev:
+
+              
+              <span class="section-number">1.14.2.1</span>
+              
+
+              <a href="checker.html">Resource Checker</a>
+            </div>
+          
+
+          
+            <div class="next">
+              next:
+
+              
+              <span class="section-number">1.14.2.3</span>
+              
+
+              <a href="build-tracker.html">Build Tracker</a>
+            </div>
+          
+          </nav>
+        </div>
+
+        <div class="page-aside"></div>
+      </div>
+    </div>
+
+    <ul class="improve-docs">
+      <li><img src="images/icons/github-box.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+      <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+    </ul>
+  </body>
+</html>

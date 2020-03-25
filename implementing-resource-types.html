@@ -25,11 +25,15 @@
 <script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
-    <div class="top-logo">
-  <a href="/"><img src="images/logo-white.svg" />Concourse</a>
-</div>
+    <div class="top-banner">
+      <p class="banner-text">
+        ✨ The <a href="https://airtable.com/shr4tyAb5ApbX3VV1">2020 Concourse CI Community Survey</a> is now live! ✨
+      </p>
+    </div>
 
-<nav class="top-nav">
+    <div class="page-top">
+      <nav class="top-nav">
+  <a class="top-link logo-link" href="/"><img src="images/logo-white.svg" />Concourse</a>
   
   <a class="top-link active" href="docs.html">Docs</a>
   
@@ -37,305 +41,205 @@
   
   <a class="top-link" href="project.html">Project</a>
   
+  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
   <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
   <a class="top-link" href="https://discuss.concourse-ci.org">discuss</a>
-  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
-</nav>
 
-<div class="top-search">
   <div id="search"></div>
-</div>
 
-<div class="top-banner">
-  ✨ The 2020 Concourse CI Community Survey is now live! ✨ <a href="https://airtable.com/shr4tyAb5ApbX3VV1">Click here to learn more and share your experience</a>.
-</div>
+  <script type="text/javascript">
+    var app = Elm.Main.init({
+      node: document.getElementById('search')
+    });
 
-<script type="text/javascript">
-  var app = Elm.Main.init({
-    node: document.getElementById('search')
-  });
-
-  app.ports.emitSearchTerm.subscribe(function(term) {
-    gtag('event', 'search', {search_term: term});
-  });
-</script>
-
-    <div class="page-nav">
-      
-
-
-
-
-
-
-
-  
-  
-  
-
-  
-  <div class="context">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1</span>
-        
-        
-  <a href="docs.html"  class="active">Docs</a>
-
-      </div>
-
-      <div class="children">
-        <table>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="install.html" >Install</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="auth.html" >Auth &amp; Teams</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.3&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="fly.html" >The <code>fly</code> CLI</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.4&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="config-basics.html" >Config Basics</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.5&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="pipelines.html" >Pipelines</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.6&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resources.html" >Resources</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.7&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="resource-types.html"  class="active">Resource Types</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.8&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="jobs.html" >Jobs</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.9&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="tasks.html" >Tasks</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.10&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="builds.html" >Builds</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.11&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="operation.html" >Operation</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.12&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="observation.html" >Observation</a>
-</td>
-          </tr>
-        
-        </table>
-      </div>
-    </nav>
-  </div>
-  
-
-  
-
-  
-  <div class="context">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1.7</span>
-        
-        
-  <a href="resource-types.html"  class="active">Resource Types</a>
-
-      </div>
-
-      <div class="children">
-        <table>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.7.1&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="managing-resource-types.html" >Managing Resource Types</a>
-</td>
-          </tr>
-        
-          <tr>
-            
-              <td class="number-cell" align="right">1.7.2&nbsp;</td>
-            
-            <td class="title-cell">
-  <a href="implementing-resource-types.html"  class="self">Implementing a Resource Type</a>
-</td>
-          </tr>
-        
-        </table>
-      </div>
-    </nav>
-  </div>
-  
-
-
-
-
-
-<div class="context">
-  <div class="page-toc">
-    <nav>
-      <div class="top">
-        
-        <span class="section-number">1.7.2</span>
-        
-        
-  <a href="implementing-resource-types.html"  class="self">Implementing a Resource Type</a>
-
-      </div>
-
-      
-<div class="children">
-  <table>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="implementing-resource-types.html#resource-check"><code>check</code>: Check for new versions.</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="implementing-resource-types.html#resource-in"><code>in</code>: Fetch a given resource.</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="implementing-resource-types.html#resource-out"><code>out</code>: Update a resource.</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="implementing-resource-types.html#resource-metadata">Metadata</a>
-
-          
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td class="number-cell" align="left"></td>
-        
-        <td class="title-cell">
-          <a href="implementing-resource-types.html#resource-certs">Certificate Propagation</a>
-
-          
-        </td>
-      </tr>
-    
-  </table>
-</div>
-
-    </nav>
-  </div>
-</div>
-
-
-
-
+    app.ports.emitSearchTerm.subscribe(function(term) {
+      gtag('event', 'search', {search_term: term});
+    });
+  </script>
+</nav>
     </div>
 
-    <div class="page-aside"></div>
+    <div class="page-body">
+      <div class="page-nav">
+        
 
-    <div class="page-content">
-      <div class="section" id="section_implementing-resource-types">
+
+
+
+
+
   
-  <h1 class="section-header"><a class="anchor" name="implementing-resource-types" href="#implementing-resource-types"></a><span class="section-number">1.7.2 </span>Implementing a Resource Type</h1>
+  
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1</span><a href="docs.html"  class="active">Docs</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.1</td>
+            <td class="title-cell"><a href="install.html" >Install</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2</td>
+            <td class="title-cell"><a href="auth.html" >Auth &amp; Teams</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.3</td>
+            <td class="title-cell"><a href="fly.html" >The <code>fly</code> CLI</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.4</td>
+            <td class="title-cell"><a href="config-basics.html" >Config Basics</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.5</td>
+            <td class="title-cell"><a href="pipelines.html" >Pipelines</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.6</td>
+            <td class="title-cell"><a href="vars.html" >Vars</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.7</td>
+            <td class="title-cell"><a href="resources.html" >Resources</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.8</td>
+            <td class="title-cell"><a href="resource-types.html"  class="active">Resource Types</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.9</td>
+            <td class="title-cell"><a href="jobs.html" >Jobs</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.10</td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11</td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12</td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.13</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14</td>
+            <td class="title-cell"><a href="internals.html" >Internals</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.8</span><a href="resource-types.html"  class="active">Resource Types</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.8.1</td>
+            <td class="title-cell"><a href="implementing-resource-types.html"  class="self">Implementing a Resource Type</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.8.2</td>
+            <td class="title-cell"><a href="managing-resource-types.html" >Managing Resource Types</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.8.1</span><a href="implementing-resource-types.html"  class="self">Implementing a Resource Type</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.8.1.1</td>
+            <td class="title-cell"><a href="implementing-resource-types.html#resource-check" ><code>check</code>: Check for new versions.</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.8.1.2</td>
+            <td class="title-cell"><a href="implementing-resource-types.html#resource-in" ><code>in</code>: Fetch a given resource.</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.8.1.3</td>
+            <td class="title-cell"><a href="implementing-resource-types.html#resource-out" ><code>out</code>: Update a resource.</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.8.1.4</td>
+            <td class="title-cell"><a href="implementing-resource-types.html#resource-metadata" >Metadata</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.8.1.5</td>
+            <td class="title-cell"><a href="implementing-resource-types.html#resource-certs" >Certificate Propagation</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+      </div>
+
+      <div class="body-content">
+        <div class="page-content">
+          <div class="section" id="section_implementing-resource-types">
+  
+  <h1 class="section-header"><a class="anchor-target" name="implementing-resource-types" href="#implementing-resource-types"></a><span class="section-number">1.8.1 </span>Implementing a Resource Type</h1>
   
 
   <p>A resource type is implemented by a container image with three scripts:</p><ul>
@@ -352,7 +256,7 @@
     
       <div class="section" id="section_resource-check">
   
-  <h2 class="section-header"><a class="anchor" name="resource-check" href="#resource-check"></a><code>check</code>: Check for new versions.</h2>
+  <h2 class="section-header"><a class="anchor-target" name="resource-check" href="#resource-check"></a><code>check</code>: Check for new versions.</h2>
   
 
   <p>A resource type&#39;s <code>check</code> script is invoked to detect new versions of the resource. It is given the configured source and current version on stdin, and must print the array of new versions, in chronological order, to stdout, including the requested version if it&#39;s still valid.</p><p>The request body will have the following fields:</p><ul>
@@ -383,7 +287,7 @@ git pull &amp;&amp; git log 61cbef..HEAD</code></pre><p>Note that it conditional
     
       <div class="section" id="section_resource-in">
   
-  <h2 class="section-header"><a class="anchor" name="resource-in" href="#resource-in"></a><code>in</code>: Fetch a given resource.</h2>
+  <h2 class="section-header"><a class="anchor-target" name="resource-in" href="#resource-in"></a><code>in</code>: Fetch a given resource.</h2>
   
 
   <p>The <code>in</code> script is passed a destination directory as command line argument <code>$1</code>, and is given on stdin the configured source and a precise version of the resource to fetch.</p><p>The script must fetch the resource and place it in the given directory.</p><p>If the desired resource version is unavailable (for example, if it was deleted), the script must error.</p><p>The script must emit the fetched version, and may emit metadata as a list of key-value pairs. This data is intended for public consumption and will make it upstream, intended to be shown on the build&#39;s page.</p><p>The request will contain the following fields:</p><ul>
@@ -392,7 +296,7 @@ git pull &amp;&amp; git log 61cbef..HEAD</code></pre><p>Note that it conditional
 
   <li><p><code>version</code> is the same type of value passed to <a href="implementing-resource-types.html#resource-check"><code>check</code></a>, and specifies the version to fetch.</p></li>
 
-  <li><p><code>params</code> is an arbitrary JSON object passed along verbatim from <a href="get-step.html#get-step-params"><strong><code>params</code></strong></a> on a <a href="get-step.html"><code>get</code> step</a>.</p></li>
+  <li><p><code>params</code> is an arbitrary JSON object passed along verbatim from <a href="jobs.html#schema.step.get-step.params"><code>get</code> step <strong><code>params</code></strong></a> on a <a href="jobs.html#get-step"><code>get</code> step</a>.</p></li>
 
 </ul><p>Example request, in this case for the <code>git</code> resource:</p><pre><code class="language-json">{
   &#34;source&#34;: {
@@ -418,14 +322,14 @@ git checkout 61cebf</code></pre><p>And output:</p><pre><code class="language-jso
     
       <div class="section" id="section_resource-out">
   
-  <h2 class="section-header"><a class="anchor" name="resource-out" href="#resource-out"></a><code>out</code>: Update a resource.</h2>
+  <h2 class="section-header"><a class="anchor-target" name="resource-out" href="#resource-out"></a><code>out</code>: Update a resource.</h2>
   
 
   <p>The <code>out</code> script is called with a path to the directory containing the build&#39;s full set of sources as the first argument, and is given on stdin the configured params and the resource&#39;s source configuration.</p><p>The script must emit the resulting version of the resource. For example, the <code>git</code> resource emits the sha of the commit that it just pushed.</p><p>Additionally, the script may emit metadata as a list of key-value pairs. This data is intended for public consumption and will make it upstream, intended to be shown on the build&#39;s page.</p><p>The request will contain the following fields:</p><ul>
 
   <li><p><code>source</code> is the same value as passed to <a href="implementing-resource-types.html#resource-check"><code>check</code></a>.</p></li>
 
-  <li><p><code>params</code> is an arbitrary JSON object passed along verbatim from <a href="get-step.html#get-step-params"><strong><code>params</code></strong></a> on a <a href="put-step.html"><code>put</code> step</a>.</p></li>
+  <li><p><code>params</code> is an arbitrary JSON object passed along verbatim from <a href="jobs.html#schema.step.get-step.params"><code>get</code> step <strong><code>params</code></strong></a> on a <a href="jobs.html#put-step"><code>put</code> step</a>.</p></li>
 
 </ul><p>Example request, in this case for the <code>git</code> resource:</p><pre><code class="language-json">{
   &#34;params&#34;: {
@@ -452,10 +356,10 @@ git push origin develop</code></pre><p>And output:</p><pre><code class="language
     
       <div class="section" id="section_resource-metadata">
   
-  <h2 class="section-header"><a class="anchor" name="resource-metadata" href="#resource-metadata"></a>Metadata</h2>
+  <h2 class="section-header"><a class="anchor-target" name="resource-metadata" href="#resource-metadata"></a>Metadata</h2>
   
 
-  <p>When used in a <a href="get-step.html"><code>get</code> step</a> or a <a href="put-step.html"><code>put</code> step</a>, metadata about the running build is made available via the following environment variables:</p><dl>
+  <p>When used in a <a href="jobs.html#get-step"><code>get</code> step</a> or a <a href="jobs.html#put-step"><code>put</code> step</a>, metadata about the running build is made available via the following environment variables:</p><dl>
   
   <dt><code>$BUILD_ID</code></dt>
     <dd><p>The internal identifier for the build. Right now this is numeric but it may become a guid in the future. Treat it as an absolute reference to the build.</p></dd>
@@ -475,7 +379,7 @@ git push origin develop</code></pre><p>And output:</p><pre><code class="language
   <dt><code>$ATC_EXTERNAL_URL</code></dt>
     <dd><p>The public URL for your ATC; useful for debugging.</p></dd>
   
-</dl><p>If the build is a one-off, <code>$BUILD_NAME</code>, <code>$BUILD_JOB_NAME</code>, and <code>$BUILD_PIPELINE_NAME</code> will not be set.</p><p>None of these variables are available to <code>/check</code>.</p><p>These variables should be used solely for annotating things with metadata for traceability, i.e. for linking to the build in an alert or annotating an automated commit so its origin can be discovered.</p><p>They should <em>not</em> be used to emulate versioning (e.g. by using the increasing build number). They are not provided to <a href="task-step.html"><code>task</code> step</a>s to avoid this anti-pattern.</p>
+</dl><p>If the build is a one-off, <code>$BUILD_NAME</code>, <code>$BUILD_JOB_NAME</code>, and <code>$BUILD_PIPELINE_NAME</code> will not be set.</p><p>None of these variables are available to <code>/check</code>.</p><p>These variables should be used solely for annotating things with metadata for traceability, i.e. for linking to the build in an alert or annotating an automated commit so its origin can be discovered.</p><p>They should <em>not</em> be used to emulate versioning (e.g. by using the increasing build number). They are not provided to <a href="jobs.html#task-step"><code>task</code> step</a>s to avoid this anti-pattern.</p>
 
   
     
@@ -484,7 +388,7 @@ git push origin develop</code></pre><p>And output:</p><pre><code class="language
     
       <div class="section" id="section_resource-certs">
   
-  <h2 class="section-header"><a class="anchor" name="resource-certs" href="#resource-certs"></a>Certificate Propagation</h2>
+  <h2 class="section-header"><a class="anchor-target" name="resource-certs" href="#resource-certs"></a>Certificate Propagation</h2>
   
 
   <p>Certificates can be automatically propagated into each resource container, if the worker is configured to do so. The BOSH release configures this automatically, while the <code>concourse</code> binary must be given a <code>--certs-dir</code> flag pointing to the path containing the CA certificate bundle.</p><p>The worker&#39;s certificate directory will then be always mounted at <code>/etc/ssl/certs</code>, read-only, in each resource container created on the worker. There&#39;s no single standard path for this so we picked one that would work out of the box in most cases.</p><p>This approach to certificate configuration is similar in mindset to the propagation of <code>http_proxy</code>/<code>https_proxy</code> - certs are kind of a baseline assumption when deploying software, so Concourse should do its best to respect it out-of-the-box, especially as they&#39;re often used in tandem with a man-in-the-middle corporate SSL proxy. (In this way it doesn&#39;t feel too much like the anti-pattern of hand-tuning workers.)</p>
@@ -497,31 +401,35 @@ git push origin develop</code></pre><p>And output:</p><pre><code class="language
   
 </div>
 
-      <nav class="prev-next">
-      
-        <div class="prev">
-          prev:
+          <nav class="prev-next">
+          
+            <div class="prev">
+              prev:
+
+              
+              <span class="section-number">1.8</span>
+              
+
+              <a href="resource-types.html">Resource Types</a>
+            </div>
+          
 
           
-          <span class="section-number">1.7.1</span>
-          
+            <div class="next">
+              next:
 
-          <a href="managing-resource-types.html">Managing Resource Types</a>
+              
+              <span class="section-number">1.8.2</span>
+              
+
+              <a href="managing-resource-types.html">Managing Resource Types</a>
+            </div>
+          
+          </nav>
         </div>
-      
 
-      
-        <div class="next">
-          next:
-
-          
-          <span class="section-number">1.8</span>
-          
-
-          <a href="jobs.html">Jobs</a>
-        </div>
-      
-      </nav>
+        <div class="page-aside"></div>
+      </div>
     </div>
 
     <ul class="improve-docs">
