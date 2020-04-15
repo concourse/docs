@@ -254,16 +254,21 @@
         
           <tr>
             <td class="number-cell">1.12.4.6</td>
-            <td class="title-cell"><a href="creds-caching.html" >Caching credentials</a></td>
+            <td class="title-cell"><a href="conjur-credential-manager.html" >The Conjur credential manager</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.12.4.7</td>
-            <td class="title-cell"><a href="creds-redacting.html" >Redacting credentials</a></td>
+            <td class="title-cell"><a href="creds-caching.html" >Caching credentials</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.12.4.8</td>
+            <td class="title-cell"><a href="creds-redacting.html" >Redacting credentials</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.4.9</td>
             <td class="title-cell"><a href="creds-retry-logic.html"  class="self">Retrying failed fetches</a></td>
           </tr>
         
@@ -285,7 +290,7 @@
         <div class="page-content">
           <div class="section" id="section_creds-retry-logic">
   
-  <h1 class="section-header"><a class="anchor-target" name="creds-retry-logic" href="#creds-retry-logic"></a><span class="section-number">1.12.4.8 </span>Retrying failed fetches</h1>
+  <h1 class="section-header"><a class="anchor-target" name="creds-retry-logic" href="#creds-retry-logic"></a><span class="section-number">1.12.4.9 </span>Retrying failed fetches</h1>
   
 
   <p>When a request to the credential manager fails due to an intermittent error (e.g. a timeout or <code>connection refused</code>), Concourse will automatically try the request again up to 5 times before giving up. After all attempts fail, the error will be surfaced in the UI for the resource check or build step that initiated the request.</p><p>The retry logic can be configured by specifying the following env on the <a href="concourse-web.html"><code>web</code> node</a>:</p><pre><code class="language-bash">CONCOURSE_SECRET_RETRY_ATTEMPTS=5   # how many times to try
@@ -302,7 +307,7 @@ CONCOURSE_SECRET_RETRY_INTERVAL=10s # how long to wait between attempts</code></
               prev:
 
               
-              <span class="section-number">1.12.4.7</span>
+              <span class="section-number">1.12.4.8</span>
               
 
               <a href="creds-redacting.html">Redacting credentials</a>
