@@ -13,7 +13,7 @@
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
-<title>Serial job example - Concourse CI</title>
+<title>Set Pipelines Example - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
@@ -89,7 +89,7 @@
         
           <tr>
             <td class="number-cell">2.2</td>
-            <td class="title-cell"><a href="serial-job-example.html"  class="self">Serial job example</a></td>
+            <td class="title-cell"><a href="serial-job-example.html" >Serial job example</a></td>
           </tr>
         
           <tr>
@@ -99,7 +99,7 @@
         
           <tr>
             <td class="number-cell">2.4</td>
-            <td class="title-cell"><a href="set-pipelines-example.html" >Set Pipelines Example</a></td>
+            <td class="title-cell"><a href="set-pipelines-example.html"  class="self">Set Pipelines Example</a></td>
           </tr>
         
           <tr>
@@ -163,12 +163,12 @@
 
       <div class="body-content">
         <div class="page-content">
-          <div class="section" id="section_serial-job-example">
+          <div class="section" id="section_set-pipelines-example">
   
-  <h1 class="section-header"><a class="anchor-target" name="serial-job-example" href="#serial-job-example"></a><span class="section-number">2.2 </span>Serial job example</h1>
+  <h1 class="section-header"><a class="anchor-target" name="set-pipelines-example" href="#set-pipelines-example"></a><span class="section-number">2.4 </span>Set Pipelines Example</h1>
   
 
-  <p>Setting the <a href="jobs.html#schema.job.serial"><code class="schema-attribute-name"><bold>job<wbr />.serial</bold></code></a> flag restricts a job to run one build at a time.</p><p><iframe class="frame" frameborder="0" width="100%" height="300px" src="https://ci.concourse-ci.org/teams/examples/pipelines/serial-job"></iframe></p>
+  <p>You can set a static set of pipelines from another pipeline on the same team.</p><p><iframe class="frame" frameborder="0" width="100%" height="300px" src="https://ci.concourse-ci.org/teams/examples/pipelines/set-pipelines"></iframe></p>
 
   
     
@@ -178,20 +178,49 @@
   
 
   <pre><code class="language-yaml">---
+resources:
+  - name: concourse-examples
+    type: git
+    icon: github-circle
+    source:
+      uri: https://github.com/concourse/examples
+
 jobs:
-  - name: serial-job
+  - name: set-example-pipelines
     public: true
-    serial: true
     plan:
-      - task: simple-task
-        config:
-          platform: linux
-          image_resource:
-            type: registry-image
-            source: { repository: busybox }
-          run:
-            path: echo
-            args: [&#34;Hello, world!&#34;]</code></pre>
+      - get: concourse-examples
+        trigger: true
+      - set_pipeline: set-pipelines
+        file: concourse-examples/pipelines/set-pipelines.yml
+      - set_pipeline: job
+        file: concourse-examples/pipelines/hello-world.yml
+      - set_pipeline: serial-job
+        file: concourse-examples/pipelines/serial-job.yml
+      - set_pipeline: pipeline-vars
+        file: concourse-examples/pipelines/pipeline-vars.yml
+        vars:
+          first: initial
+          number: &#34;9000&#34;
+          hello: HAL
+      - set_pipeline: task-passing-artifact
+        file: concourse-examples/pipelines/task-passing-artifact.yml
+      - set_pipeline: time-triggered
+        file: concourse-examples/pipelines/time-triggered.yml
+      - set_pipeline: git-triggered
+        file: concourse-examples/pipelines/git-triggered.yml
+      - set_pipeline: manually-triggered
+        file: concourse-examples/pipelines/manually-triggered.yml
+      - set_pipeline: hooks
+        file: concourse-examples/pipelines/job-and-task-hooks.yml
+      - set_pipeline: golang-lib
+        file: concourse-examples/pipelines/golang-lib.yml
+      - set_pipeline: rails
+        file: concourse-examples/pipelines/rails-app-testing.yml
+      - set_pipeline: nodejs
+        file: concourse-examples/pipelines/nodejs-app-testing.yml
+      - set_pipeline: php
+        file: concourse-examples/pipelines/php-larvel-app-testing.yml</code></pre>
 
   
     
@@ -209,7 +238,7 @@ jobs:
 
   <li><p><a href="jobs.html#steps">Steps</a></p></li>
 
-  <li><p><a href="tasks.html">Tasks</a></p></li>
+  <li><p><a href="jobs.html#set-pipeline-step"><code>set_pipeline</code> step</a></p></li>
 
 </ul>
 
@@ -227,10 +256,10 @@ jobs:
               prev:
 
               
-              <span class="section-number">2.1</span>
+              <span class="section-number">2.3</span>
               
 
-              <a href="hello-world-example.html">Hello World pipeline</a>
+              <a href="pipeline-vars-example.html">Pipeline <code>((vars))</code> example</a>
             </div>
           
 
@@ -239,24 +268,16 @@ jobs:
               next:
 
               
-              <span class="section-number">2.3</span>
+              <span class="section-number">2.5</span>
               
 
-              <a href="pipeline-vars-example.html">Pipeline <code>((vars))</code> example</a>
+              <a href="task-inputs-outputs-example.html">Task inputs and outputs example</a>
             </div>
           
           </nav>
         </div>
 
-        <div class="page-aside">
-          <div class="page-partial">
-            <div class="content">
-  <h2>Why?</h2>
-
-  <p>By default, jobs are run in parallel. For some use cases this might be ideal (ex. testing all incoming commits from a repository). For other use cases this might be less ideal (ex. deploying an application).</p><p>You can also set the <a href="jobs.html#schema.job.max_in_flight"><code class="schema-attribute-name"><bold>job<wbr />.max_in_flight</bold></code></a> value to 1 to disable parallel job runs.</p>
-</div>
-          </div>
-          </div>
+        <div class="page-aside"></div>
       </div>
     </div>
 
