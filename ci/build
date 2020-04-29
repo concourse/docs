@@ -22,14 +22,6 @@ build-all-versions () {
     git clone --single-branch --branch $branch . $srcpath
 
     pushd $srcpath
-      major=`echo $branch | cut -f1 -d. | cut -f2 -dv`
-      if [[ $major < 5 ]]; then
-        export GO111MODULE=off
-        git submodule update --init --recursive
-      else
-        export GO111MODULE=on
-      fi
-
       ./scripts/build
     popd
 
