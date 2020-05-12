@@ -168,7 +168,7 @@
   <h1 class="section-header"><a class="anchor-target" name="task-inputs-outputs-example" href="#task-inputs-outputs-example"></a><span class="section-number">2.5 </span>Task inputs and outputs example</h1>
   
 
-  <p>A task can pass an artifacts to another task in the same job.</p><p><iframe class="frame" frameborder="0" width="100%" height="300px" src="https://ci.concourse-ci.org/teams/examples/pipelines/task-passing-artifact/jobs/create-and-consume/builds/latest"></iframe></p>
+  <p>A task can pass an artifacts to another task in the same job.</p><p><iframe class="frame" frameborder="0" width="100%" height="300px" src="https://ci.concourse-ci.org/teams/examples/pipelines/task-passing-artifact/jobs/create-and-consume/builds/latest"></iframe></p><p>Tasks within a job have the ability to pass artifacts directly inbetween them to allow you to process artifacts in many ways.</p><p>While you are free to create as many jobs as you&#39;d like for your pipeline, you have to use resources to pass artifacts inbetween them.</p><p>These constructs give you the ability to design a pipeline that can process artifacts in many different ways via <a href="tasks.html">Tasks</a>, and then store those processed artifacts externally via <a href="resources.html">Resources</a>.</p>
 
   
     
@@ -265,15 +265,7 @@ jobs:
           </nav>
         </div>
 
-        <div class="page-aside">
-          <div class="page-partial">
-            <div class="content">
-  <h2>Why?</h2>
-
-  <p>Tasks within a job have the ability to pass artifacts directly inbetween them to allow you to process artifacts in many ways.</p><p>While you are free to create as many jobs as you&#39;d like for your pipeline, you have to use resources to pass artifacts inbetween them.</p><p>These constructs give you the ability to design a pipeline that can process artifacts in many different ways via <a href="tasks.html">Tasks</a>, and then store those processed artifacts externally via <a href="resources.html">Resources</a>.</p>
-</div>
-          </div>
-          </div>
+        <div class="page-aside"></div>
       </div>
     </div>
 

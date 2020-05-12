@@ -323,6 +323,19 @@
 
       
   
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.1.5.3.1.1</span>
+      <a href="concourse-web.html#web-connection-pooling">Database connection pooling</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
   
     </li>
   
@@ -481,9 +494,22 @@ CONCOURSE_POSTGRES_PASSWORD=my-password</code></pre><p>If you&#39;re running Pos
   <h3 class="section-header"><a class="anchor-target" name="scaling" href="#scaling"></a>Scaling</h3>
   
 
-  <p>The <a href="concourse-web.html"><code>web</code> node</a> can be scaled up for high availability. They&#39;ll also roughly share their scheduling workloads, using the database to synchronize. This is done by just running more <code>web</code> commands on different machines, and optionally putting them behind a load balancer.</p><p>To run a cluster of <a href="concourse-web.html"><code>web</code> node</a>s, you&#39;ll first need to ensure they&#39;re all pointing to the same PostgreSQL server.</p><p>Furthermore, you may wish to configure the max number of parallel database connections that each node makes. The number you choose should not be greater than the maximum number of simultaneous connections your Postgres server will allow. For example:</p><pre><code class="language-bash">CONCOURSE_MAX_OPEN_CONNECTIONS=32</code></pre><p>Next, you&#39;ll need to configure a <em>peer address</em>. This is a DNS or IP address that can be used to reach this <code>web</code> node from other <code>web</code> nodes. Typically this uses a private IP, like so:</p><pre><code class="language-bash">CONCOURSE_PEER_ADDRESS=10.10.0.1</code></pre><p>This address will be used for forwarded worker connections, which listen on the ephemeral port range.</p><p>Finally, if all of these nodes are going to be accessed through a load balancer, you&#39;ll need to configure the external URL that will be used to reach your Concourse cluster:</p><pre><code class="language-bash">CONCOURSE_EXTERNAL_URL=https://ci.example.com</code></pre><p>Aside from the peer URL, all configuration must be consistent across all <code>web</code> nodes in the cluster to ensure consistent results.</p>
+  <p>The <a href="concourse-web.html"><code>web</code> node</a> can be scaled up for high availability. They&#39;ll also roughly share their scheduling workloads, using the database to synchronize. This is done by just running more <code>web</code> commands on different machines, and optionally putting them behind a load balancer.</p><p>To run a cluster of <a href="concourse-web.html"><code>web</code> node</a>s, you&#39;ll first need to ensure they&#39;re all pointing to the same PostgreSQL server.</p><p>Next, you&#39;ll need to configure a <em>peer address</em>. This is a DNS or IP address that can be used to reach this <code>web</code> node from other <code>web</code> nodes. Typically this uses a private IP, like so:</p><pre><code class="language-bash">CONCOURSE_PEER_ADDRESS=10.10.0.1</code></pre><p>This address will be used for forwarded worker connections, which listen on the ephemeral port range.</p><p>Finally, if all of these nodes are going to be accessed through a load balancer, you&#39;ll need to configure the external URL that will be used to reach your Concourse cluster:</p><pre><code class="language-bash">CONCOURSE_EXTERNAL_URL=https://ci.example.com</code></pre><p>Aside from the peer URL, all configuration must be consistent across all <code>web</code> nodes in the cluster to ensure consistent results.</p>
 
   
+    
+      <div class="section" id="section_web-connection-pooling">
+  
+  <h4 class="section-header"><a class="anchor-target" name="web-connection-pooling" href="#web-connection-pooling"></a>Database connection pooling</h4>
+  
+
+  <p>You may wish to configure the max number of parallel database connections that each node makes. There are two pools to configure: one for serving API requests, and one used for all the backend work such as pipeline scheduling. Another pool is reserved for garbage collection and has a hardcoded cap at 5 connections.</p><p>The sum of these numbers across all <code>web</code> nodes should not be greater than the maximum number of simultaneous connections your Postgres server will allow. See <a href="postgresql-node.html#db-resource-utilization"><code>db</code> node resource utilization</a> for more information.</p><p>For example, if 3 <code>web</code> nodes are configured as such:</p><pre><code class="language-bash">CONCOURSE_API_MAX_CONNS=10     # default
+CONCOURSE_BACKEND_MAX_CONNS=50 # default</code></pre><p>...then your PostgreSQL server should be configured with a connection limit of at least 195: (10 &#43; 50 &#43; 5) * 3.</p>
+
+  
+    
+  
+</div>
     
   
 </div>
