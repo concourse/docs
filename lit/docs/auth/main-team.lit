@@ -19,7 +19,7 @@ To learn how to configure your \code{main} team, continue on to the appropriate
 section for your auth provider of choice under \reference{configuring-auth}.
 
 \section{
-  \title{main-team flags}{main-team-flags}
+  \title{The main-team flags}{main-team-flags}
 
   These are the available \bold{main-team} flags that can be passed to \code{concourse web} command:
 
@@ -28,7 +28,7 @@ section for your auth provider of choice under \reference{configuring-auth}.
       A whitelisted local concourse user. These are the users you've added at web startup with the --add-local-user flag.
     }
   }{
-    \definition{\code{--main-team-config=/path/to/roles.yml}}{
+    \definition{\code{--main-team-config=/path/to/main-team-roles.yml}}{
       A .yml file with a single field, roles:, pointing to a list of role authorization configs.
 
       All of the attributes in each config will vary by provider. Consult the
