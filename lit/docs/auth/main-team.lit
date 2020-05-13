@@ -11,9 +11,47 @@ team, so \code{main} is a special-case.
 
 The \code{main} team is different in that all flags normally passed to
 \reference{fly-set-team} are instead passed to the \code{concourse web}
-command, prefixed with \code{--main-team-}. The values set in these flags
+command, prefixed with \code{--main-team-}. The values set in these \reference{main-team-flags}{flags}
 take effect whenever the \code{web} node starts up. This is done so that you
 can't get locked out.
 
 To learn how to configure your \code{main} team, continue on to the appropriate
 section for your auth provider of choice under \reference{configuring-auth}.
+
+\section{
+  \title{main-team flags}{main-team-flags}
+
+  These are the available \bold{main-team} flags that can be passed to \code{concourse web} command:
+
+  \definitions{
+    \definition{\code{--main-team-local-user=test,admin}}{
+      A whitelisted local concourse user. These are the users you've added at web startup with the --add-local-user flag.
+    }
+  }{
+    \definition{\code{--main-team-config=/path/to/roles.yml}}{
+      A .yml file with a single field, roles:, pointing to a list of role authorization configs.
+
+      All of the attributes in each config will vary by provider. Consult the
+      appropriate section for your provider under \reference{configuring-auth}
+      for specifics.
+
+      For example, the following config sets three roles with different auth
+      config for each role's provider:
+
+      \codeblock{bash}{{{
+        roles:
+          - name: owner
+            github:
+              users: ["admin"]
+          - name: member
+            github:
+              teams: ["org:team"]
+          - name: viewer
+            github:
+              orgs: ["org"]
+            local:
+              users: ["visitor"]
+      }}}
+    }
+  }
+}
