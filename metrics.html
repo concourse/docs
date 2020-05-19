@@ -25,12 +25,6 @@
 <script async type="text/javascript" src="js/prism.js"></script>
   </head>
   <body>
-    <div class="top-banner">
-      <p class="banner-text">
-        ✨ The <a href="https://airtable.com/shr4tyAb5ApbX3VV1">2020 Concourse CI Community Survey</a> is now live! ✨
-      </p>
-    </div>
-
     <div class="page-top">
       <nav class="top-nav">
   <a class="top-link logo-link" href="/"><img src="images/logo-white.svg" />Concourse</a>
@@ -353,6 +347,28 @@
 </div>
 
 <div class="toggleable metric">
+  <input id="toggle-concourse_concurrent_requests" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_concurrent_requests" class="toggle-title">
+    <code><span class="metric-name">concourse_concurrent_requests</span><span class="metric-labels">{<span class="metric-label">action</span>}</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of concurrent requests being served by endpoints that have a specified limit of concurrent requests.
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-concourse_concurrent_requests_limit_hit_total" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_concurrent_requests_limit_hit_total" class="toggle-title">
+    <code><span class="metric-name">concourse_concurrent_requests_limit_hit_total</span><span class="metric-labels">{<span class="metric-label">action</span>}</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#counter">counter</a>
+  </label>
+  <div class="toggle-content">
+    Total number of requests rejected because the server was already serving too many concurrent requests.
+  </div>
+</div>
+
+<div class="toggleable metric">
   <input id="toggle-concourse_db_connections" type="checkbox" class="toggle" checked />
   <label for="toggle-concourse_db_connections" class="toggle-title">
     <code><span class="metric-name">concourse_db_connections</span><span class="metric-labels">{<span class="metric-label">dbname</span>}</span></code>
@@ -459,6 +475,17 @@
   </label>
   <div class="toggle-content">
     Database locks held
+  </div>
+</div>
+
+<div class="toggleable metric">
+  <input id="toggle-concourse_tasks_waiting" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_tasks_waiting" class="toggle-title">
+    <code><span class="metric-name">concourse_tasks_waiting</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Number of Concourse tasks currently waiting. 
   </div>
 </div>
 
