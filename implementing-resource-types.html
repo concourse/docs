@@ -244,7 +244,7 @@
 
   <li><p><code>/opt/resource/out</code> for idempotently pushing a version up</p></li>
 
-</ul><p>Distributing resource types as containers allows them to package their own dependencies. For example, the Git resource comes with <code>git</code> installed.</p><p>All resources must implement all three actions, though the actions can just be no-ops (which still must be correctly implemented as detailed below).</p><p>Resources can emit logs to the user by writing to <code>stderr</code>. ANSI escape codes (coloring, cursor movement, etc.) will be interpreted properly by the web UI, so you should make your output pretty.</p>
+</ul><p>Distributing resource types as containers allows them to package their own dependencies. For example, the <code>git</code> resource comes with the <code>git</code> binary pre-installed.</p><p>All resources must implement all three actions, though the actions can just be no-ops (which still must be correctly implemented as detailed below).</p><p>Resources can emit logs to the user by writing to <code>stderr</code>. ANSI escape codes (coloring, cursor movement, etc.) will be interpreted properly by the web UI, so you should make your output pretty.</p>
 
   
     
@@ -253,13 +253,13 @@
   <h2 class="section-header"><a class="anchor-target" name="resource-check" href="#resource-check"></a><code>check</code>: Check for new versions.</h2>
   
 
-  <p>A resource type&#39;s <code>check</code> script is invoked to detect new versions of the resource. It is given the configured source and current version on stdin, and must print the array of new versions, in chronological order, to stdout, including the requested version if it&#39;s still valid.</p><p>The request body will have the following fields:</p><ul>
+  <p>A resource type&#39;s <code>check</code> script is invoked to detect new versions of the resource. It is given the configured source and current version on <code>stdin</code>, and must print the array of new versions, in chronological order, to <code>stdout</code>, including the requested version if it&#39;s still valid.</p><p>The request body will have the following fields:</p><ul>
 
-  <li><p><code>source</code> is an arbitrary JSON object which specifies the location of the resource, including any credentials. This is passed verbatim from the <a href="resources.html">resource configuration</a>.</p><p>For <code>git</code> this would be the repo URI, which branch, and a private key if necessary.</p></li>
+  <li><p><code>source</code> is an arbitrary JSON object which specifies the location of the resource, including any credentials. This is passed verbatim from the <a href="resources.html">resource configuration</a>.</p><p>For the <code>git</code> resource this would be the repo URI, the branch, and the private key, if necessary.</p></li>
 
-  <li><p><code>version</code> is a JSON object with <code>string</code> fields, used to uniquely identify an instance of the resource. For <code>git</code> this would be a commit SHA.</p><p>This will be omitted from the first request, in which case the resource should return the current version (<em>not</em> every version since the resource&#39;s inception).</p></li>
+  <li><p><code>version</code> is a JSON object with <code>string</code> fields, used to uniquely identify an instance of the resource. For <code>git</code> this would be the commit&#39;s SHA.</p><p>This will be omitted from the first request, in which case the resource should return the current version (<em>not</em> every version since the resource&#39;s inception).</p></li>
 
-</ul><p>For example, here&#39;s what the input for a <code>git</code> resource may look like:</p><pre><code class="language-json">{
+</ul><p>For example, here&#39;s what the input for the <code>git</code> resource may look like:</p><pre><code class="language-json">{
   &#34;source&#34;: {
     &#34;uri&#34;: &#34;git://some-uri&#34;,
     &#34;branch&#34;: &#34;develop&#34;,
@@ -284,7 +284,7 @@ git pull &amp;&amp; git log 61cbef..HEAD</code></pre><p>Note that it conditional
   <h2 class="section-header"><a class="anchor-target" name="resource-in" href="#resource-in"></a><code>in</code>: Fetch a given resource.</h2>
   
 
-  <p>The <code>in</code> script is passed a destination directory as command line argument <code>$1</code>, and is given on stdin the configured source and a precise version of the resource to fetch.</p><p>The script must fetch the resource and place it in the given directory.</p><p>If the desired resource version is unavailable (for example, if it was deleted), the script must error.</p><p>The script must emit the fetched version, and may emit metadata as a list of key-value pairs. This data is intended for public consumption and will make it upstream, intended to be shown on the build&#39;s page.</p><p>The request will contain the following fields:</p><ul>
+  <p>The <code>in</code> script is passed a destination directory as command line argument <code>$1</code>, and is given on <code>stdin</code> the configured source and a precise version of the resource to fetch.</p><p>The script must fetch the resource and place it in the given directory.</p><p>If the desired resource version is unavailable (for example, if it was deleted), the script must exit with error.</p><p>The script must emit the fetched version, and may emit metadata as a list of key-value pairs. This data is intended for public consumption and will make it upstream, intended to be shown on the build&#39;s page.</p><p>The request will contain the following fields:</p><ul>
 
   <li><p><code>source</code> is the same value as passed to <a href="implementing-resource-types.html#resource-check"><code>check</code></a>.</p></li>
 
@@ -319,7 +319,7 @@ git checkout 61cebf</code></pre><p>And output:</p><pre><code class="language-jso
   <h2 class="section-header"><a class="anchor-target" name="resource-out" href="#resource-out"></a><code>out</code>: Update a resource.</h2>
   
 
-  <p>The <code>out</code> script is called with a path to the directory containing the build&#39;s full set of sources as the first argument, and is given on stdin the configured params and the resource&#39;s source configuration.</p><p>The script must emit the resulting version of the resource. For example, the <code>git</code> resource emits the sha of the commit that it just pushed.</p><p>Additionally, the script may emit metadata as a list of key-value pairs. This data is intended for public consumption and will make it upstream, intended to be shown on the build&#39;s page.</p><p>The request will contain the following fields:</p><ul>
+  <p>The <code>out</code> script is called with a path to the directory containing the build&#39;s full set of sources as the first argument, and is given on <code>stdin</code> the configured params and the resource&#39;s source configuration.</p><p>The script must emit the resulting version of the resource. For example, the <code>git</code> resource emits the SHA of the commit that it has just pushed.</p><p>Additionally, the script may emit metadata as a list of key-value pairs. This data is intended for public consumption and will make it upstream, intended to be shown on the build&#39;s page.</p><p>The request will contain the following fields:</p><ul>
 
   <li><p><code>source</code> is the same value as passed to <a href="implementing-resource-types.html#resource-check"><code>check</code></a>.</p></li>
 
@@ -356,7 +356,7 @@ git push origin develop</code></pre><p>And output:</p><pre><code class="language
   <p>When used in a <a href="jobs.html#get-step"><code>get</code> step</a> or a <a href="jobs.html#put-step"><code>put</code> step</a>, metadata about the running build is made available via the following environment variables:</p><dl>
   
   <dt><code>$BUILD_ID</code></dt>
-    <dd><p>The internal identifier for the build. Right now this is numeric but it may become a guid in the future. Treat it as an absolute reference to the build.</p></dd>
+    <dd><p>The internal identifier for the build. Right now this is numeric, but it may become a UUID in the future. Treat it as an absolute reference to the build.</p></dd>
   
   <dt><code>$BUILD_NAME</code></dt>
     <dd><p>The build number within the build&#39;s job.</p></dd>
@@ -373,7 +373,7 @@ git push origin develop</code></pre><p>And output:</p><pre><code class="language
   <dt><code>$ATC_EXTERNAL_URL</code></dt>
     <dd><p>The public URL for your ATC; useful for debugging.</p></dd>
   
-</dl><p>If the build is a one-off, <code>$BUILD_NAME</code>, <code>$BUILD_JOB_NAME</code>, and <code>$BUILD_PIPELINE_NAME</code> will not be set.</p><p>None of these variables are available to <code>/check</code>.</p><p>These variables should be used solely for annotating things with metadata for traceability, i.e. for linking to the build in an alert or annotating an automated commit so its origin can be discovered.</p><p>They should <em>not</em> be used to emulate versioning (e.g. by using the increasing build number). They are not provided to <a href="jobs.html#task-step"><code>task</code> step</a>s to avoid this anti-pattern.</p>
+</dl><p>If the build is a one-off, <code>$BUILD_NAME</code>, <code>$BUILD_JOB_NAME</code>, and <code>$BUILD_PIPELINE_NAME</code> will not be set.</p><p>None of these variables are available to <a href="implementing-resource-types.html#resource-check"><code>check</code></a>.</p><p>These variables should be used solely for annotating things with metadata for traceability, i.e. for linking to the build in an alert or annotating an automated commit to facilitate its origin discovery.</p><p>They should <em>not</em> be used to emulate versioning (e.g. by using the increasing build number). They are not provided to <a href="jobs.html#task-step"><code>task</code> step</a>s to avoid this anti-pattern.</p>
 
   
     
@@ -385,7 +385,7 @@ git push origin develop</code></pre><p>And output:</p><pre><code class="language
   <h2 class="section-header"><a class="anchor-target" name="resource-certs" href="#resource-certs"></a>Certificate Propagation</h2>
   
 
-  <p>Certificates can be automatically propagated into each resource container, if the worker is configured to do so. The BOSH release configures this automatically, while the <code>concourse</code> binary must be given a <code>--certs-dir</code> flag pointing to the path containing the CA certificate bundle.</p><p>The worker&#39;s certificate directory will then be always mounted at <code>/etc/ssl/certs</code>, read-only, in each resource container created on the worker. There&#39;s no single standard path for this so we picked one that would work out of the box in most cases.</p><p>This approach to certificate configuration is similar in mindset to the propagation of <code>http_proxy</code>/<code>https_proxy</code> - certs are kind of a baseline assumption when deploying software, so Concourse should do its best to respect it out-of-the-box, especially as they&#39;re often used in tandem with a man-in-the-middle corporate SSL proxy. (In this way it doesn&#39;t feel too much like the anti-pattern of hand-tuning workers.)</p>
+  <p>Certificates can be automatically propagated into each resource container, if the worker is configured to do so. The BOSH release configures this automatically, while the <code>concourse</code> binary must be given a <code>--certs-dir</code> flag pointing to the path containing the CA certificate bundle.</p><p>The worker&#39;s certificate directory will then be always mounted at <code>/etc/ssl/certs</code>, read-only, in each resource container created on the worker. There&#39;s no single standard path for this, so we picked one that would work out of the box in most cases.</p><p>This approach to certificate configuration is similar in mindset to the propagation of <code>http_proxy</code>/<code>https_proxy</code> - certs are kind of a baseline assumption when deploying software, so Concourse should do its best to respect it out-of-the-box, especially as they&#39;re often used in tandem with a man-in-the-middle corporate SSL proxy. (In this way it doesn&#39;t feel too much like the anti-pattern of hand-tuning workers.)</p>
 
   
     

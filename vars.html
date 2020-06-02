@@ -308,6 +308,11 @@
       
         <tr>
           <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="vars.html#schema.vault_config.lookup_templates"><code>vault</code> var source <strong><code>lookup_templates</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
           <td class="title-cell"><a href="vars.html#schema.vault_config.shared_path"><code>vault</code> var source <strong><code>shared_path</code></strong></a></td>
         </tr>
       
@@ -784,7 +789,18 @@ resources:
   </label>
 
   <div class="toggle-content attribute-content">
-    <p><em>Default <code>/concourse</code>.</em> A prefix under which to look for all credential values.</p><p>See <a href="vault-credential-manager.html#vault-credential-lookup-rules">Credential lookup rules</a> for more information.</p>
+    <p><em>Default <code>/concourse</code>.</em> A prefix under which to look for all credential values.</p><p>See <a href="vault-credential-manager.html#vault-path-prefix">Changing the path prefix</a> for more information.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.vault_config.lookup_templates" type="checkbox" class="toggle" />
+  <label for="toggle-schema.vault_config.lookup_templates" class="toggle-title">
+    <a id="schema.vault_config.lookup_templates"></a>
+
+    <code><a class="attribute-name" href="#schema.vault_config.lookup_templates">lookup_templates</a>: <span class="attribute-type">[<a href="config-basics.html#schema.string"><strong>string</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>[&#34;/{{.Team}}/{{.Pipeline}}/{{.Secret}}&#34;, &#34;/{{.Team}}/{{.Secret}}&#34;]</code>.</em></p><p>A list of path templates to be expanded in a team and pipeline context subject to the <code>path_prefix</code> and <code>namespace</code>.</p><p>See <a href="vault-credential-manager.html#vault-lookup-templates">Changing the path templates</a> for more information.</p>
   </div>
 </div><div class="toggleable schema-attribute optional">
   <input id="toggle-schema.vault_config.shared_path" type="checkbox" class="toggle" />
