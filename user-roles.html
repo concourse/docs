@@ -1,17 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60508041-1"></script>
-
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-60508041-1');
-</script>
-
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
 <title>User Roles &amp; Permissions - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
@@ -23,6 +13,7 @@
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
 <script src="js/search.js"></script>
 <script async type="text/javascript" src="js/prism.js"></script>
+<script data-goatcounter="https://concourse.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   </head>
   <body>
     <div class="page-top">
@@ -287,7 +278,12 @@
   <h2 class="section-header"><a class="anchor-target" name="concourse-admin" href="#concourse-admin"></a>Concourse Admin</h2>
   
 
-  <p><em>Admin</em> is a special user attribute granted only to <a href="user-roles.html#team-owner-role">owners</a> of the <a href="main-team.html"><code>main</code> team</a>.</p><p>Admins have the ability to administrate teams using <a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a>, <a href="managing-teams.html#fly-destroy-team"><code>fly destroy-team</code></a>, <a href="managing-teams.html#fly-rename-team"><code>fly rename-team</code></a>, etc.</p><p>Admins always have permission to perform any action on any team. You cannot assign actions to the admin role using the <code>--config-rbac</code> flag.</p>
+  <p><em>Admin</em> is a special user attribute granted only to <a href="user-roles.html#team-owner-role">owners</a> of the <a href="main-team.html"><code>main</code> team</a>.</p><p>Admins have the ability to administrate teams using <a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a>, <a href="managing-teams.html#fly-destroy-team"><code>fly destroy-team</code></a>, <a href="managing-teams.html#fly-rename-team"><code>fly rename-team</code></a>, etc.</p><p>Admins always have permission to perform any action on any team. You cannot assign actions to the admin role using the <code>--config-rbac</code> flag.</p><p>The following actions are also assigned to admins, and cannot be reconfigured:</p><pre><code class="language-yaml">- GetLogLevel
+- ListActiveUsersSince
+- SetLogLevel
+- GetInfoCreds
+- SetWall
+- ClearWall</code></pre>
 
   
     
@@ -329,7 +325,6 @@
 - PruneWorker
 - HeartbeatWorker
 - DeleteWorker
-- SetLogLevel
 - HijackContainer
 - ReportWorkerContainers
 - ReportWorkerVolumes
@@ -408,10 +403,8 @@
 - ListPipelineBuilds
 - PipelineBadge
 - ListWorkers
-- GetLogLevel
 - DownloadCLI
 - GetInfo
-- GetInfoCreds
 - ListContainers
 - GetContainer
 - ListDestroyingContainers
@@ -1221,6 +1214,62 @@
   <tr>
     
     <td>GetLogLevel                  </td>
+    
+    <td>n/a                                                               </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
+    
+    <td>✘           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>SetLogLevel                  </td>
+    
+    <td>n/a                                                               </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
+    
+    <td>✘           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>GetWall                      </td>
+    
+    <td>n/a                                                               </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✓                                </td>
+    
+    <td>✘           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>SetWall                      </td>
+    
+    <td>n/a                                                               </td>
+    
+    <td>n/a                                    </td>
+    
+    <td>✘                                </td>
+    
+    <td>✘           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>ClearWall                    </td>
     
     <td>n/a                                                               </td>
     
