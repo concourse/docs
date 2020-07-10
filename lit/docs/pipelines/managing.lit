@@ -10,6 +10,8 @@
   \codeblock{bash}{{
   $ fly -t example pipelines
   }}
+  
+  Use \code{--include-archived} to also include archived pipelines
 }
 
 \section{
