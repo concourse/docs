@@ -1,0 +1,9 @@
+<div class="blog-feed">
+  <h1>Latest news</h1>
+
+  <div class="blog-posts side-by-side">
+    {{range $item := slice .Content 0 2}}
+    {{. | render}}
+    {{end}}
+  </div>
+</div>

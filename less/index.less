@@ -283,6 +283,37 @@ body.index .page-content h2 {
   }
 }
 
+#section_index h1 {
+  border: 0;
+  padding: 0;
+}
+
+.blog-feed {
+  padding: 70px;
+  margin: -70px;
+  margin-bottom: 0px;
+
+  .blog-posts {
+    margin-bottom: 0;
+  }
+
+  .blog-feed-item {
+    h2 {
+      margin-bottom: 0 !important;
+    }
+
+    .post-meta {
+      color: @grey-secondary;
+      font-size: 14px;
+    }
+
+    .post-excerpt {
+      margin-top: 0.5em;
+      margin-bottom: 0;
+    }
+  }
+}
+
 @media(max-width: @page-width) {
   .side-by-side {
     grid-template-columns: 100%;

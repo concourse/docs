@@ -1,0 +1,9 @@
+<div class="blog-feed-item">
+  <h2>{{.Content | render}}</h2>
+  <div class="post-meta">
+    <span class="post-date">{{.Partial "PublishedAt" | render}}</span>
+    by
+    <span class="post-author">{{.Partial "Author" | render}}</span>
+  </div>
+  <p class="post-excerpt">{{.Partial "Description" | render}}</p>
+</div>

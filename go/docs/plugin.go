@@ -14,6 +14,7 @@ import (
 
 	"github.com/blang/semver"
 	"github.com/google/go-github/github"
+	"github.com/mmcdole/gofeed"
 	dto "github.com/prometheus/client_model/go"
 	"github.com/prometheus/common/expfmt"
 	"golang.org/x/oauth2"
@@ -74,11 +75,25 @@ func (p Plugin) Codeblock(language string, code booklit.Content) booklit.Content
 	}
 }
 
-func (p Plugin) InlineHeader(content booklit.Content) booklit.Content {
+func (p Plugin) Header(depth, content booklit.Content) booklit.Content {
 	return booklit.Styled{
-		Style:   "inline-header",
+		Style:   "header",
 		Content: content,
 		Block:   true,
+		Partials: booklit.Partials{
+			"Depth": depth,
+		},
+	}
+}
+
+func (p Plugin) InlineHeader(content booklit.Content) booklit.Content {
+	return booklit.Styled{
+		Style:   "header",
+		Content: content,
+		Block:   true,
+		Partials: booklit.Partials{
+			"Depth": booklit.String("2"),
+		},
 	}
 }
 
@@ -96,6 +111,36 @@ func (p Plugin) SplashIntro(intro, downloads booklit.Content) {
 			},
 		},
 	)
+}
+
+func (p Plugin) BlogFeed() (booklit.Content, error) {
+	feed, err := gofeed.NewParser().ParseURL("https://blog.concourse-ci.org/rss/")
+	if err != nil {
+		return nil, fmt.Errorf("parse blog feed: %w", err)
+	}
+
+	items := booklit.Sequence{}
+	for _, item := range feed.Items {
+		items = append(items, booklit.Styled{
+			Style: "blog-feed-item",
+			Block: true,
+			Content: booklit.Link{
+				Content: booklit.String(item.Title),
+				Target:  item.Link,
+			},
+			Partials: booklit.Partials{
+				"Author":      booklit.String(item.Author.Name),
+				"PublishedAt": booklit.String(item.PublishedParsed.Format("January 6, 2006")),
+				"Description": booklit.String(item.Description),
+			},
+		})
+	}
+
+	return booklit.Styled{
+		Style:   "blog-feed",
+		Block:   true,
+		Content: items,
+	}, nil
 }
 
 func (p Plugin) QuickStart(content booklit.Content) booklit.Content {

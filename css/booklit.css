@@ -900,6 +900,29 @@ body.index .page-content h2:first-child {
 .side-by-side .pipeline-svg {
   padding: 48px;
 }
+#section_index h1 {
+  border: 0;
+  padding: 0;
+}
+.blog-feed {
+  padding: 70px;
+  margin: -70px;
+  margin-bottom: 0px;
+}
+.blog-feed .blog-posts {
+  margin-bottom: 0;
+}
+.blog-feed .blog-feed-item h2 {
+  margin-bottom: 0 !important;
+}
+.blog-feed .blog-feed-item .post-meta {
+  color: #7a7373;
+  font-size: 14px;
+}
+.blog-feed .blog-feed-item .post-excerpt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+}
 @media (max-width: 1100px) {
   .side-by-side {
     grid-template-columns: 100%;

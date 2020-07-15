@@ -16,6 +16,10 @@
   \download-links
 }
 
+\blog-feed
+
+\header{1}{Features}
+
 \side-by-side{
   \inline-header{Configure as code}
 
