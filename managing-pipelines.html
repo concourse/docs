@@ -234,6 +234,11 @@
             <td class="title-cell"><a href="managing-pipelines.html#fly-order-pipelines" ><code>fly order-pipelines</code></a></td>
           </tr>
         
+          <tr>
+            <td class="number-cell">1.5.2.10</td>
+            <td class="title-cell"><a href="managing-pipelines.html#fly-archive-pipeline" ><code>fly archive-pipeline</code></a></td>
+          </tr>
+        
         </table>
       </div>
     </nav>
@@ -260,7 +265,7 @@
   <h2 class="section-header"><a class="anchor-target" name="fly-pipelines" href="#fly-pipelines"></a><code>fly pipelines</code></h2>
   
 
-  <p>To list the currently-configured pipelines and their paused state, run:</p><pre><code class="language-bash">$ fly -t example pipelines</code></pre>
+  <p>To list the currently-configured pipelines and their paused state, run:</p><pre><code class="language-bash">$ fly -t example pipelines</code></pre><p>By default, archived pipelines are not included in the output of this command. To view archived pipelines, provide <code>--include-archived</code> flag.</p>
 
   
     
@@ -362,6 +367,18 @@
     --pipeline pipeline-1 \
     --pipeline pipeline-2 \
     --pipeline pipeline-3</code></pre><p>Note that this command only ensures that the given pipelines are in the given order. If there are other pipelines that you haven&#39;t included in the command, they may appear in-between, before, or after the given set.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_fly-archive-pipeline">
+  
+  <h2 class="section-header"><a class="anchor-target" name="fly-archive-pipeline" href="#fly-archive-pipeline"></a><code>fly archive-pipeline</code></h2>
+  
+
+  <p>A pipeline can be archived via fly. This means that the pipeline will be paused and hidden from the web UI. The pipeline config will be deleted (so any secrets or interpolated <a href="vars.html">Vars</a> will be removed) while the build logs will be retained.</p><pre><code class="language-bash">$ fly -t example archive-pipeline -p pipeline-1</code></pre><p>To unarchive a pipeline, simply set the pipeline again with the same name using <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a>. If a job in the new pipeline has the same name as a job in the archived pipeline, the old build logs for that job will be restored.</p><p>Note that because the config is deleted, <a href="managing-pipelines.html#fly-get-pipeline"><code>fly get-pipeline</code></a> will no longer work for archived pipelines.</p>
 
   
     
