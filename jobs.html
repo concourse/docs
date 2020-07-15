@@ -38,7 +38,11 @@
     });
 
     app.ports.emitSearchTerm.subscribe(function(term) {
-      gtag('event', 'search', {search_term: term});
+      goatcounter.count({
+        event: "search:"+term,
+        title: "user searched: " + term,
+        event: true
+      });
     });
   </script>
 </nav>
@@ -438,6 +442,11 @@
         <tr>
           <td class="number-cell"><code>#</code></td>
           <td class="title-cell"><a href="jobs.html#schema.step.set-pipeline-step.var_files"><code>set_pipeline</code> step <strong><code>var_files</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.set-pipeline-step.team"><code>set_pipeline</code> step <strong><code>team</code></strong></a></td>
         </tr>
       
         <tr>
@@ -1600,6 +1609,19 @@ jobs:
 
   <div class="toggle-content attribute-content">
     <p>A list of paths to <code>.yml</code> files that will be passed to the pipeline config in the same manner as the <code>--load-vars-from</code> flag to <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a>. This means that if a variable appears in multiple files, the value from a file that is passed later in the list will override the values from files earlier in the list.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.set-pipeline-step.team" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.set-pipeline-step.team" class="toggle-title">
+    <a id="schema.step.set-pipeline-step.team"></a>
+
+    <code><a class="attribute-name" href="#schema.step.set-pipeline-step.team">team</a>: <span class="attribute-type"><a href="config-basics.html#schema.identifier"><strong>identifier</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>By default, the <code>set_pipeline</code> step sets the pipeline for the same <a href="auth.html">team</a> that is running the build.</p><p>The <code>team</code> attribute can be used to specify another team.</p><p>Only the <a href="main-team.html"><code>main</code> team</a> is allowed to set another team&#39;s pipeline.  Any team other than the <a href="main-team.html"><code>main</code> team</a> using the <code>team</code> attribute will error, unless they reference their own team.</p><div class="warning">
+  <p>The <code>team</code> attribute was introduced in Concourse v6.4.0. It is considered an <strong>experimental</strong> feature and may be removed at any time. Contribute to the associated <a href="https://github.com/concourse/concourse/discussions/5731">discussion</a> with feedback.</p>
+</div>
   </div>
 </div>
 </div>

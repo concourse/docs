@@ -38,7 +38,11 @@
     });
 
     app.ports.emitSearchTerm.subscribe(function(term) {
-      gtag('event', 'search', {search_term: term});
+      goatcounter.count({
+        event: "search:"+term,
+        title: "user searched: " + term,
+        event: true
+      });
     });
   </script>
 </nav>
@@ -237,7 +241,7 @@
   <h1 class="section-header"><a class="anchor-target" name="metrics" href="#metrics"></a><span class="section-number">1.12.1 </span>Metrics</h1>
   
 
-  <p>Metrics are essential in understanding how any large system is behaving and performing. Concourse can emit metrics about both the system health itself and about the builds that it is running. Operators can tap into these metrics in order to observe the health of the system.</p><p>In the spirit of openness, the <a href="https://metrics.concourse-ci.org/dashboard/db/concourse">metrics from our deployment</a> are public. We consider it a bug to emit anything sensitive or secret into our metrics pipeline.</p>
+  <p>Metrics are essential in understanding how any large system is behaving and performing. Concourse can emit metrics about both the system health itself and about the builds that it is running. Operators can tap into these metrics in order to observe the health of the system.</p><p>In the spirit of openness, the <a href="https://p.datadoghq.com/sb/bb663c3fb-c0f3ba68561631a1b130a4507bf36a15?tpl_var_environment=ci&amp;tpl_var_web=ci-web&amp;tpl_var_worker=ci-worker">metrics from our deployment</a> are public. We consider it a bug to emit anything sensitive or secret into our metrics pipeline.</p>
 
   
     
@@ -476,7 +480,7 @@
     <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
   </label>
   <div class="toggle-content">
-    Number of Concourse tasks currently waiting. 
+    Number of Concourse tasks currently waiting.
   </div>
 </div>
 
