@@ -5,6 +5,7 @@
 
 You can run the tests for a Nodejs application.
 
+This also demonstrates seperating the npm install stage from the test running.
 \frame{https://ci.concourse-ci.org/teams/examples/pipelines/nodejs}
 
 \section{
@@ -12,36 +13,49 @@ You can run the tests for a Nodejs application.
 	\codeblock{yaml}{{{
 ---
 resources:
-  - name: nodejs.org-git
+  - name: repo
     type: git
     icon: github
     source:
       uri: https://github.com/nodejs/nodejs.org.git
 
+  - name: node-image
+    type: docker-image
+    source:
+      repository: node
+      tag: 13.10.1-stretch
+      
 jobs:
   - name: test
     public: true
     plan:
-      - get: nodejs.org-git
-        trigger: true
-      - task: run-tests
+      - get: node-image
+      - get: repo
+      - task: install
+        image: node-image
         config:
-          platform: linux
-          image_resource:
-            type: registry-image
-            source: { repository: node, tag: "8" }
           inputs:
-            - name: nodejs.org-git
+          - name: repo
+          outputs:
+          - name: dependencies
+            path: source/node_modules
+          platform: linux
           run:
-            path: /bin/sh
-            args:
-              - -c
-              - |
-                echo "Node Version: $(node --version)"
-                echo "NPM Version: $(npm --version)"
-                cd nodejs.org-git
-                npm install
-                npm test
+            path: npm
+            args: ["install"]
+            dir: source
+      - task: test
+        image: node-image
+        config:
+          inputs:
+          - name: repo
+          - name: dependencies
+            path: source/node_modules
+          platform: linux
+          run:
+            path: npm
+            args: ["run", "test"]
+            dir: source
 	}}}
 }
 
