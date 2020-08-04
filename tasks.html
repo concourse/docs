@@ -711,7 +711,7 @@ run:
 platform: linux
 
 image_resource:
-  type: docker-image
+  type: registry-image
   source:
     repository: ruby
     tag: &#39;2.1&#39;
@@ -785,7 +785,7 @@ npm install
 platform: linux
 
 image_resource:
-  type: docker-image
+  type: registry-image
   source:
     repository: my.local.registry:8080/my/image
     username: ((myuser))
@@ -929,7 +929,7 @@ jobs:
 platform: linux
 
 image_resource:
-  type: docker-image
+  type: registry-image
   source:
     repository: golang
     tag: &#39;1.6&#39;

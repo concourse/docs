@@ -546,7 +546,7 @@
     config:
       platform: linux
       image_resource:
-        type: docker-image
+        type: registry-image
         source: {repository: alpine}
       run:
         path: echo
@@ -601,7 +601,7 @@ jobs:
   <p><a href="resource-types.html">Resource Types</a> can be used to extend the functionality of your pipeline and provide deeper integrations. This example uses one to trigger a job whenever a new <a href="http://www.qwantz.com">Dinosaur Comic</a> is out.</p><pre><code class="language-yaml">---
 resource_types:
 - name: rss
-  type: docker-image
+  type: registry-image
   source:
     repository: suhlig/concourse-rss-resource
     tag: latest

@@ -330,7 +330,7 @@
   
     <li>
       <span class="section-number">1.1.5.3.2</span>
-      <a href="concourse-web.html#restarting-and-upgrading">Restarting &amp; Upgrading</a>
+      <a href="concourse-web.html#reloading-worker-authorized-key">Reloading worker authorized key</a>
 
       
   
@@ -339,6 +339,15 @@
   
     <li>
       <span class="section-number">1.1.5.3.3</span>
+      <a href="concourse-web.html#restarting-and-upgrading">Restarting &amp; Upgrading</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.5.3.4</span>
       <a href="concourse-web.html#downgrading">Downgrading</a>
 
       
@@ -499,6 +508,18 @@ CONCOURSE_BACKEND_MAX_CONNS=50 # default</code></pre><p>...then your PostgreSQL 
     
   
 </div>
+    
+  
+</div>
+    
+      <div class="section" id="section_reloading-worker-authorized-key">
+  
+  <h3 class="section-header"><a class="anchor-target" name="reloading-worker-authorized-key" href="#reloading-worker-authorized-key"></a>Reloading worker authorized key</h3>
+  
+
+  <p>While <a href="concourse-web.html#web-running">Running <code>concourse web</code></a>, the authorized worker key files are loaded at startup. During the lifecycle of a <a href="concourse-web.html"><code>web</code> node</a> new <code>worker</code> keys might be added or old ones removed.</p><p>The authorized key file containing <code>worker</code> public keys can be reloaded without downtime by sending <code>SIGHUP</code> to the <code>web</code> process. The process will remain running and Concourse will reload the keys to authorize.</p>
+
+  
     
   
 </div>

@@ -281,7 +281,7 @@
   </label>
 
   <div class="toggle-content attribute-content">
-    <p>The location of the resource type&#39;s resource. This varies by resource type, and is a black box to Concourse; it is blindly passed to the resource at runtime.</p><p>To use <code>docker-image</code> as an example, the source would contain something like <code>repository: username/reponame</code>. See the <a href="https://github.com/concourse/docker-image-resource">Docker Image resource</a> (or whatever resource type your resource type uses) for more information.</p>
+    <p>The location of the resource type&#39;s resource. This varies by resource type, and is a black box to Concourse; it is blindly passed to the resource at runtime.</p><p>To use <code>registry-image</code> as an example, the source would contain something like <code>repository: username/reponame</code>. See the <a href="https://github.com/concourse/registry-image-resource">Registry Image resource</a> (or whatever resource type your resource type uses) for more information.</p>
   </div>
 </div><div class="toggleable schema-attribute optional">
   <input id="toggle-schema.resource_type.privileged" type="checkbox" class="toggle" />
@@ -346,7 +346,7 @@
     <p><a href="resource-types.html">Resource Types</a> can be used to extend the functionality of your pipeline and provide deeper integrations. This example uses one to trigger a job whenever a new <a href="http://www.qwantz.com">Dinosaur Comic</a> is out.</p><pre><code class="language-yaml">---
 resource_types:
 - name: rss
-  type: docker-image
+  type: registry-image
   source:
     repository: suhlig/concourse-rss-resource
     tag: latest

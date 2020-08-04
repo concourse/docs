@@ -1180,7 +1180,7 @@
   <div class="toggle-content">
     <p>If the logical name (whatever <code>put</code> specifies) differs from the concrete resource, you would specify <code>resource</code> as well, like so:</p><pre><code class="language-yaml">plan:
 - put: resource-image
-  resource: docker-image-resource</code></pre><p>Additionally, you can control the settings of the implicit <code>get</code> step by setting <code>get_params</code>. For example, if you did not want a <code>put</code> step utilizing the <a href="https://github.com/concourse/docker-image-resource"> <code>docker-image</code> resource type</a> to download the image, you would implement your <code>put</code> step as such:</p><pre><code class="language-yaml">plan:
+  resource: registry-image-resource</code></pre><p>Additionally, you can control the settings of the implicit <code>get</code> step by setting <code>get_params</code>. For example, if you did not want a <code>put</code> step utilizing the <a href="https://github.com/concourse/registry-image-resource"> <code>registry-image</code> resource type</a> to download the image, you would implement your <code>put</code> step as such:</p><pre><code class="language-yaml">plan:
 - put: docker-build
   params: {build: git-resource}
   get_params: {skip_download: true}</code></pre>
@@ -1336,7 +1336,7 @@ jobs:
   source: {uri: https://github.com/my-user/my-project}
 
 - name: my-task-image
-  type: docker-image
+  type: registry-image
   source: {repository: my-user/my-repo}
 
 jobs:
@@ -1398,7 +1398,7 @@ jobs:
 platform: linux
 
 image_resource:
-  type: docker-image
+  type: registry-image
   source:
     repository: my.local.registry:8080/my/image
     username: ((myuser))
@@ -1580,7 +1580,7 @@ jobs:
   vars:
     text: &#34;Hello World!&#34;</code></pre><p>Any <a href="vars.html">Vars</a> in the pipeline config will be filled in statically using this field.</p><p>For example, if <code>my-repo/ci/pipeline.yml</code> looks like...:</p><pre><code class="language-yaml">resources:
 - name: task-image
-    type: docker-image
+    type: registry-image
     source:
       repository: my.local.registry:8080/my/image
       username: ((myuser))
