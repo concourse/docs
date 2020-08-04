@@ -1,56 +1,72 @@
+/* PrismJS 1.20.0
+ *
+ * HANDCRAFTED, BESPOKE, ARTISINAL - DO NOT GENERATE
+ */
+
+pre {
+  background: #2a2929;
+  color: #f6f5f5;
+  line-height: 24px;
+}
+
 .token.comment,
+.token.block-comment,
 .token.prolog,
 .token.doctype,
 .token.cdata {
   color: #7a7373;
 }
-.token.punctuation,
-.token.anchor {
+
+.token.punctuation {
   color: #9b9b9b;
 }
-.token.selector,
-.token.quantifier,
-.token.tag {
+
+.token.tag,
+.token.attr-name,
+.token.namespace,
+.token.deleted {
   color: #ed4b35;
 }
-.token.property,
+
+.token.function-name {
+  color: #4a90e2;
+}
+
 .token.boolean,
 .token.number,
-.token.constant,
-.token.symbol,
-.token.attr-name,
-.token.deleted {
+.token.function {
   color: #f5a623;
 }
+
+.token.property,
+.token.class-name,
+.token.constant,
+.token.symbol {
+  color: #f5a623;
+}
+
+.token.selector,
+.token.important,
+.token.atrule,
+.token.keyword,
+.token.builtin {
+  color: #4a90e2;
+}
+
 .token.string,
 .token.char,
 .token.attr-value,
-.token.builtin,
-.token.inserted {
-  color: #7a7373;
+.token.regex,
+.token.variable {
+  color: #11c560;
 }
+
 .token.operator,
 .token.entity,
 .token.url {
   color: #2d76cc;
 }
-.token.atrule,
-.token.keyword {
-  color: #4a90e2;
-}
-.token.function {
-  color: #4a90e2;
-}
-.token.regex,
-.token.important,
-.token.variable,
-.token.charset-punctuation {
-  color: #4a90e2;
-}
-.token.escape,
-.token.charclass {
-  color: #11c560;
-}
+
 .token.important,
 .token.bold {
   font-weight: bold;
@@ -58,6 +74,51 @@
 .token.italic {
   font-style: italic;
 }
+
 .token.entity {
   cursor: help;
+}
+
+.token.inserted {
+  color: #11c560;
+}
+
+pre[data-line] {
+  position: relative;
+}
+
+.line-highlight {
+  background: rgba(255, 255, 255, 0.1);
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-top: 0.5rem; /* same as pre padding */
+
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+.line-highlight:before,
+.line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #1e1d1d;
+  color: #efeeee;
+  text-align: center;
+  width: 2em;
+}
+
+.line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: 0;
+}
+
+.line-numbers .line-highlight:before,
+.line-numbers .line-highlight:after {
+  content: none;
 }
