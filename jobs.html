@@ -1517,13 +1517,21 @@ params:
   <label for="toggle-schema.step.set-pipeline-step.set_pipeline" class="toggle-title">
     <a id="schema.step.set-pipeline-step.set_pipeline"></a>
 
-    <code><a class="attribute-name" href="#schema.step.set-pipeline-step.set_pipeline">set_pipeline</a>: <span class="attribute-type"><a href="config-basics.html#schema.identifier"><strong>identifier</strong></a></span></code>
+    <code><a class="attribute-name" href="#schema.step.set-pipeline-step.set_pipeline">set_pipeline</a>: <span class="attribute-type"><a href="config-basics.html#schema.identifier"><strong>identifier</strong></a> | <span class="schema-scalar">self</span></span></code>
   </label>
 
   <div class="toggle-content attribute-content">
-    <div class="warning">
-  <p>The <code>set_pipeline</code> step was introduced in Concourse v5.8.0. It is considered an <strong>experimental</strong> feature until its associated <a href="https://github.com/concourse/rfcs/pull/31">RFC</a> is resolved.</p>
-</div><p>Configures a <a href="pipelines.html">pipeline</a>.</p><p>The identifier specifies the name of the pipeline to configure. It will be configured within the current team and be created <em>unpaused</em>.</p><div class="toggleable example">
+    <p>Configures a <a href="pipelines.html">pipeline</a>.</p><p>The identifier specifies the name of the pipeline to configure. Unless <a href="jobs.html#schema.step.set-pipeline-step.team"><code>set_pipeline</code> step <strong><code>team</code></strong></a> is set, it will be configured within the current team and be created <em>unpaused</em>. If set to <code>self</code>, the current pipeline will update its own config.</p><div class="warning">
+  <p><code>set_pipeline: self</code> was introduced in Concourse v6.5.0. It is considered an <strong>experimental</strong> feature and may be removed at any time. Contribute to the associated <a href="https://github.com/concourse/concourse/discussions/5732">discussion</a> with feedback.</p>
+</div><p>Pipelines configured with the <code>set_pipeline</code> step are tied to the job that configured them, and will be automatically archived in the following scenarios: <ul>
+
+  <li><p>When the job runs a successful build which did not configure the pipeline (i.e. the <code>set_pipeline</code> step was removed).</p></li>
+
+  <li><p>When the job is removed from its pipeline configuration (see <a href="jobs.html#schema.job.old_name"><code class="schema-attribute-name"><bold>job<wbr />.old_name</bold></code></a> for renaming instead of removing).</p></li>
+
+  <li><p>When the job&#39;s pipeline is archived or destroyed.</p></li>
+
+</ul> This means any job that uses <code>set_pipeline</code> should set all still-desired pipelines in each build, rather than setting them one-by-one through many builds.</p><p>See <a href="managing-pipelines.html#fly-archive-pipeline"><code>fly archive-pipeline</code></a> for what happens when a pipeline is archived.</p><div class="toggleable example">
   <input id="toggle-b3829955633e0fa7247a4d12e4d4929bae19f7f3" type="checkbox" class="toggle" />
   <label for="toggle-b3829955633e0fa7247a4d12e4d4929bae19f7f3" class="toggle-title">One pipeline reconfiguring another</label>
   <div class="toggle-content">
@@ -1670,11 +1678,11 @@ jobs:
   <label for="toggle-schema.step.load-var-step.format" class="toggle-title">
     <a id="schema.step.load-var-step.format"></a>
 
-    <code><a class="attribute-name" href="#schema.step.load-var-step.format">format</a>: <span class="attribute-type"><span class="schema-scalar">detect</span> | <span class="schema-scalar">json</span> | <span class="schema-scalar">yaml</span> | <span class="schema-scalar">yml</span> | <span class="schema-scalar">raw</span></span></code>
+    <code><a class="attribute-name" href="#schema.step.load-var-step.format">format</a>: <span class="attribute-type"><span class="schema-scalar">json</span> | <span class="schema-scalar">yaml</span> | <span class="schema-scalar">yml</span> | <span class="schema-scalar">trim</span> | <span class="schema-scalar">raw</span></span></code>
   </label>
 
   <div class="toggle-content attribute-content">
-    <p><em>Default <code>detect</code>.</em> The format of the file&#39;s content.</p><p>If set to <code>detect</code>, the format will be inferred from the file extension.</p><p>If set to <code>json</code>, <code>yaml</code>, or <code>yml</code>, the file content will be parsed accordingly and the resulting structure will be the value of the var.</p><p>If set to <code>raw</code>, the file content will be the value of the var as a single string value.</p><div class="toggleable example">
+    <p>The format of the file&#39;s content.</p><p>If unset, Concourse will try to detect the format from the file extension. If the file format cannot be determined, Concourse will fallback to <code>trim</code>.</p><p>If set to <code>json</code>, <code>yaml</code>, or <code>yml</code>, the file content will be parsed accordingly and the resulting structure will be the value of the var.</p><p>If set to <code>trim</code>, the var will be set to the content of the file with any trailing and leading whitespace removed.</p><p>If set to <code>raw</code>, the var will be set to the content of the file without modification (i.e. with any existing whitespace).</p><div class="toggleable example">
   <input id="toggle-bdda81ac26ec1a72d0736beb6e45365428493769" type="checkbox" class="toggle" />
   <label for="toggle-bdda81ac26ec1a72d0736beb6e45365428493769" class="toggle-title">Loading a var with multiple fields</label>
   <div class="toggle-content">

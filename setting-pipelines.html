@@ -232,7 +232,9 @@
 
   <p>To submit a pipeline configuration to Concourse from a file on your local disk you can use the <code>-c</code> or <code>--config</code> flag, like so:</p><pre><code class="language-bash">$ fly -t example set-pipeline \
     --pipeline my-pipeline \
-    --config pipeline.yml</code></pre><p>This will present a diff of the changes and ask you to confirm the changes. If you accept then Concourse&#39;s pipeline configuration will switch to the pipeline definition in the YAML file specified.</p>
+    --config pipeline.yml</code></pre><p>This will present a diff of the changes and ask you to confirm the changes. If you accept then Concourse&#39;s pipeline configuration will switch to the pipeline definition in the YAML file specified.</p><p>The <code>-c</code> or <code>--config</code> flag can also take in the value <code>-</code> to indicate reading from <code>stdin</code>:</p><pre><code class="language-bash">$ cat pipeline.yml | fly -t example set-pipeline \
+    --pipeline my-pipeline \
+    --config -</code></pre><p>Note that reading from <code>stdin</code> disables the confirmation prompt - the pipeline will be set automatically.</p>
 
   
     

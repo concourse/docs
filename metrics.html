@@ -474,9 +474,20 @@
 </div>
 
 <div class="toggleable metric">
+  <input id="toggle-concourse_tasks_wait_duration" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_tasks_wait_duration" class="toggle-title">
+    <code><span class="metric-name">concourse_tasks_wait_duration</span><span class="metric-labels">{<span class="metric-label">platform</span>,<span class="metric-label">teamId</span>,<span class="metric-label">workerTags</span>}</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#histogram">histogram</a>
+  </label>
+  <div class="toggle-content">
+    Elapsed time waiting for execution
+  </div>
+</div>
+
+<div class="toggleable metric">
   <input id="toggle-concourse_tasks_waiting" type="checkbox" class="toggle" checked />
   <label for="toggle-concourse_tasks_waiting" class="toggle-title">
-    <code><span class="metric-name">concourse_tasks_waiting</span></code>
+    <code><span class="metric-name">concourse_tasks_waiting</span><span class="metric-labels">{<span class="metric-label">platform</span>,<span class="metric-label">teamId</span>,<span class="metric-label">workerTags</span>}</span></code>
     <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
   </label>
   <div class="toggle-content">
