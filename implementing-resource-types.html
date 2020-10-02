@@ -314,7 +314,7 @@ git checkout 61cebf</code></pre><p>And output:</p><pre><code class="language-jso
   <h2 class="section-header"><a class="anchor-target" name="resource-out" href="#resource-out"></a><code>out</code>: Update a resource.</h2>
   
 
-  <p>The <code>out</code> script is called with a path to the directory containing the build&#39;s full set of sources as the first argument, and is given on <code>stdin</code> the configured params and the resource&#39;s source configuration.</p><p>The script must emit the resulting version of the resource. For example, the <code>git</code> resource emits the SHA of the commit that it has just pushed.</p><p>Additionally, the script may emit metadata as a list of key-value pairs. This data is intended for public consumption and will make it upstream, intended to be shown on the build&#39;s page.</p><p>The request will contain the following fields:</p><ul>
+  <p>The <code>out</code> script is passed a path to the directory containing the build&#39;s full set of sources as command line argument <code>$1</code>, and is given on <code>stdin</code> the configured params and the resource&#39;s source configuration.  </p><p>The script must emit the resulting version of the resource. For example, the <code>git</code> resource emits the SHA of the commit that it has just pushed.</p><p>Additionally, the script may emit metadata as a list of key-value pairs. This data is intended for public consumption and will make it upstream, intended to be shown on the build&#39;s page.</p><p>The request will contain the following fields:</p><ul>
 
   <li><p><code>source</code> is the same value as passed to <a href="implementing-resource-types.html#resource-check"><code>check</code></a>.</p></li>
 

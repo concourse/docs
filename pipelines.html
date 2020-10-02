@@ -197,6 +197,11 @@
       
       <tr>
         <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="pipelines.html#schema.display_config"><strong><code>display_config</code></strong> schema</a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
         <td class="title-cell"><a href="pipelines.html#schema.pipeline.jobs"><code class="schema-attribute-name"><bold>pipeline<wbr />.jobs</bold></code></a></td>
       </tr>
       
@@ -228,6 +233,16 @@
       <tr>
         <td class="number-cell"><code>#</code></td>
         <td class="title-cell"><a href="pipelines.html#schema.pipeline.groups"><code class="schema-attribute-name"><bold>pipeline<wbr />.groups</bold></code></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="pipelines.html#schema.display_config.background_image"><code class="schema-attribute-name"><bold>display_config<wbr />.background_image</bold></code></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="pipelines.html#schema.pipeline.display"><code class="schema-attribute-name"><bold>pipeline<wbr />.display</bold></code></a></td>
       </tr>
       
 
@@ -341,6 +356,41 @@
 
   <div class="toggle-content attribute-content">
     <p>A list of jobs that should appear in this group. A job may appear in multiple groups. Neighbours of jobs in the current group will also appear on the same page in order to give context of the location of the group in the pipeline.</p>
+  </div>
+</div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.pipeline.display" type="checkbox" class="toggle" />
+  <label for="toggle-schema.pipeline.display" class="toggle-title">
+    <a id="schema.pipeline.display"></a>
+
+    <code><a class="attribute-name" href="#schema.pipeline.display">display</a>: <span class="attribute-type"><a href="pipelines.html#schema.display_config"><strong>display_config</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <div class="warning">
+  <p><code>display</code> was introduced in Concourse v6.6.0. It is considered an <strong>experimental</strong> feature.</p>
+</div><p>Visual configurations for personalizing your pipeline.</p><div class="toggleable example">
+  <input id="toggle-2871f65e39098cff3a9d3173e0413f8279877d5e" type="checkbox" class="toggle" />
+  <label for="toggle-2871f65e39098cff3a9d3173e0413f8279877d5e" class="toggle-title">Background image</label>
+  <div class="toggle-content">
+    <p>The following example will display an image in the background of the pipeline it is configured on.</p><pre><code class="language-yaml">display:
+  background_image: https://avatars1.githubusercontent.com/u/7809479?s=400&amp;v=4</code></pre>
+  </div>
+</div><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.display_config" href="#schema.display_config"></a><code>display_config</code> schema</h2>
+
+  <div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.display_config.background_image" type="checkbox" class="toggle" />
+  <label for="toggle-schema.display_config.background_image" class="toggle-title">
+    <a id="schema.display_config.background_image"></a>
+
+    <code><a class="attribute-name" href="#schema.display_config.background_image">background_image</a>: <span class="attribute-type"><a href="config-basics.html#schema.string"><strong>string</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Allow users to specify a custom background image which is put at 30% opacity, grayscaled and blended into existing background</p><p>Uses the CSS property <code>background-image: url(&#39;blah&#39;)</code> so either hyperlinks or <code>data:image/png;base64</code> etc. strings can be used.</p>
   </div>
 </div>
 </div>
