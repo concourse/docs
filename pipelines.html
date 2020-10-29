@@ -28,7 +28,7 @@
   
   <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
   <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
-  <a class="top-link" href="https://discuss.concourse-ci.org">discuss</a>
+  <a class="top-link" href="https://github.com/concourse/concourse/discussions">discuss</a>
 
   <div id="search"></div>
 
@@ -265,7 +265,7 @@
   <p>A pipeline is the result of configuring <a href="jobs.html">Jobs</a> and <a href="resources.html">Resources</a> together. When you configure a pipeline, it takes on a life of its own, to continuously detect resource versions and automatically queue new builds for jobs as they have new available inputs.</p><p>Pipelines are configured via <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a> or the <a href="jobs.html#set-pipeline-step"><code>set_pipeline</code> step</a> as declarative <a href="config-basics.html#intro-to-yaml">YAML files</a> which conform to the following schema:</p><div class="schema">
   <h2 class="schema-header"><a class="anchor-target" name="schema.pipeline" href="#schema.pipeline"></a><code>pipeline</code> schema</h2>
 
-  <div class="toggleable schema-attribute optional">
+  <div class="toggleable schema-attribute required">
   <input id="toggle-schema.pipeline.jobs" type="checkbox" class="toggle" />
   <label for="toggle-schema.pipeline.jobs" class="toggle-title">
     <a id="schema.pipeline.jobs"></a>
@@ -274,7 +274,7 @@
   </label>
 
   <div class="toggle-content attribute-content">
-    <p>A set of <a href="jobs.html">jobs</a> for the pipeline to continuously schedule.</p>
+    <p>A set of <a href="jobs.html">jobs</a> for the pipeline to continuously schedule. At least one job is required for a pipeline to be valid.</p>
   </div>
 </div><div class="toggleable schema-attribute optional">
   <input id="toggle-schema.pipeline.resources" type="checkbox" class="toggle" />

@@ -28,7 +28,7 @@
   
   <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
   <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
-  <a class="top-link" href="https://discuss.concourse-ci.org">discuss</a>
+  <a class="top-link" href="https://github.com/concourse/concourse/discussions">discuss</a>
 
   <div id="search"></div>
 
@@ -230,6 +230,11 @@
         <td class="title-cell"><a href="resource-types.html#schema.resource_type.unique_version_history"><code class="schema-attribute-name"><bold>resource_type<wbr />.unique_version_history</bold></code></a></td>
       </tr>
       
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="resource-types.html#schema.resource_type.defaults"><code class="schema-attribute-name"><bold>resource_type<wbr />.defaults</bold></code></a></td>
+      </tr>
+      
 
       
   
@@ -281,7 +286,7 @@
   </label>
 
   <div class="toggle-content attribute-content">
-    <p>The location of the resource type&#39;s resource. This varies by resource type, and is a black box to Concourse; it is blindly passed to the resource at runtime.</p><p>To use <code>registry-image</code> as an example, the source would contain something like <code>repository: username/reponame</code>. See the <a href="https://github.com/concourse/registry-image-resource">Registry Image resource</a> (or whatever resource type your resource type uses) for more information.</p>
+    <p>The configuration for the resource type&#39;s resource. This varies by resource type, and is a black box to Concourse; it is blindly passed to the resource at runtime.</p><p>To use <code>registry-image</code> as an example, the source would contain something like <code>repository: username/reponame</code>. See the <a href="https://github.com/concourse/registry-image-resource">Registry Image resource</a> (or whatever resource type your resource type uses) for more information.</p>
   </div>
 </div><div class="toggleable schema-attribute optional">
   <input id="toggle-schema.resource_type.privileged" type="checkbox" class="toggle" />
@@ -337,6 +342,65 @@
 
   <div class="toggle-content attribute-content">
     <p><em>Default <code>false</code>.</em> Only relevant when <a href="global-resources.html">Global Resources</a> is enabled. When set to <code>true</code>, resources using this resource type will have a version history that is unique to the resource, rather than sharing a global version history.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.resource_type.defaults" type="checkbox" class="toggle" />
+  <label for="toggle-schema.resource_type.defaults" class="toggle-title">
+    <a id="schema.resource_type.defaults"></a>
+
+    <code><a class="attribute-name" href="#schema.resource_type.defaults">defaults</a>: <span class="attribute-type"><a href="config-basics.html#schema.config"><strong>config</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The default configuration for the resource type. This varies by resource type, and is a black box to Concourse; it is merged with (duplicate fields are overwritten by) <a href="resources.html#schema.resource.source"><code class="schema-attribute-name"><bold>resource<wbr />.source</bold></code></a> and passed to the resource at runtime.</p><div class="toggleable example">
+  <input id="toggle-9c9fd20fb2a2d5cfc11e4a6986ab0d451124f1b6" type="checkbox" class="toggle" />
+  <label for="toggle-9c9fd20fb2a2d5cfc11e4a6986ab0d451124f1b6" class="toggle-title">Setting default configuration for resources</label>
+  <div class="toggle-content">
+    <pre><code class="language-yaml">resource_types:
+- name: gcs
+  type: registry-image
+  source:
+    repository: frodenas/gcs-resource
+  defaults:
+    json_key: ((default_key))
+
+resources:
+- name: bucket-a
+  type: gcs
+  source:
+    bucket: a
+
+- name: bucket-b
+  type: gcs
+  source:
+    bucket: b
+
+- name: bucket-c
+  type: gcs
+  source:
+    bucket: c
+    json_key: ((different_key))</code></pre>
+  </div>
+</div><div class="toggleable example">
+  <input id="toggle-ca4a908f000f2d82c73716c20c5d8f03383c2111" type="checkbox" class="toggle" />
+  <label for="toggle-ca4a908f000f2d82c73716c20c5d8f03383c2111" class="toggle-title">Overriding default resource types</label>
+  <div class="toggle-content">
+    <p>Since it&#39;s possible to overwrite the base resource types, it can be used to give defaults to resources at the pipeline level.</p><pre><code class="language-yaml">resource_types:
+- name: registry-image
+  type: registry-image
+  source:
+    repository: concourse/registry-image-resource
+  defaults:
+    registry_mirror:
+      host: https://registry.mirror.example.com
+
+resources:
+- name: mirrored-image
+  type: registry-image
+  source:
+    repository: busybox</code></pre><p>Alternatively, the web node can be configured to use <a href="concourse-web.html#resource-defaults">defaults for base resource types</a></p>
+  </div>
+</div>
   </div>
 </div>
 </div><div class="toggleable example">

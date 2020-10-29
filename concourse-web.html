@@ -28,7 +28,7 @@
   
   <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
   <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
-  <a class="top-link" href="https://discuss.concourse-ci.org">discuss</a>
+  <a class="top-link" href="https://github.com/concourse/concourse/discussions">discuss</a>
 
   <div id="search"></div>
 
@@ -395,6 +395,15 @@
   
     </li>
   
+    <li>
+      <span class="section-number">1.1.5.4.4</span>
+      <a href="concourse-web.html#resource-defaults">Configuring defaults for resource types</a>
+
+      
+  
+  
+    </li>
+  
   </ol>
   
   
@@ -624,6 +633,20 @@ CONCOURSE_ENABLE_WORKER_AUDITING=true
 # Enable auditing for all api requests connected to volumes.
 CONCOURSE_ENABLE_VOLUME_AUDITING=true</code></pre><p>When enabled, API requests will result in an info-level log line like so:</p><pre><code class="language-json">{&#34;timestamp&#34;:&#34;2019-05-09T14:41:54.880381537Z&#34;,&#34;level&#34;:&#34;info&#34;,&#34;source&#34;:&#34;atc&#34;,&#34;message&#34;:&#34;atc.audit&#34;,&#34;data&#34;:{&#34;action&#34;:&#34;Info&#34;,&#34;parameters&#34;:{},&#34;user&#34;:&#34;test&#34;}}
 {&#34;timestamp&#34;:&#34;2019-05-09T14:42:36.704864093Z&#34;,&#34;level&#34;:&#34;info&#34;,&#34;source&#34;:&#34;atc&#34;,&#34;message&#34;:&#34;atc.audit&#34;,&#34;data&#34;:{&#34;action&#34;:&#34;GetPipeline&#34;,&#34;parameters&#34;:{&#34;:pipeline_name&#34;:[&#34;booklit&#34;],&#34;:team_name&#34;:[&#34;main&#34;]},&#34;user&#34;:&#34;test&#34;}}</code></pre>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_resource-defaults">
+  
+  <h3 class="section-header"><a class="anchor-target" name="resource-defaults" href="#resource-defaults"></a>Configuring defaults for resource types</h3>
+  
+
+  <p>Defaults for the &#34;core&#34; resource types (<a href="https://github.com/concourse?q=-resource">those that show up under the Concourse org</a>) that comes with Concourse can be set cluster-wide by passing in a configuration file. The format of the file is the name of the resource type followed by an arbitrary configuration.</p><p>Documentation for each resource type&#39;s configuration is in each implementation&#39;s <code>README</code>.</p><pre><code class="language-bash">CONCOURSE_BASE_RESOURCE_TYPE_DEFAULTS=./defaults.yml</code></pre><p>For example, a <code>defaults.yml</code> that configures the entire cluster to use a registry mirror would have: <pre><code class="language-yaml">registry-image:
+  registry_mirror:
+    host: https://registry.mirror.example.com</code></pre></p>
 
   
     
