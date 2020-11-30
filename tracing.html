@@ -243,7 +243,19 @@
 
   <p><div class="warning">
   This is an <strong>experimental</strong> feature.
-</div></p><p>Tracing in Concourse enables the delivery of traces related to the internal processes that go into running builds, and other internal operations, breaking them down by time, and component.</p><p>It currently integrates with <a href="https://www.jaegertracing.io/">Jaeger</a> and <a href="https://cloud.google.com/trace">Google Cloud Trace</a> (Stackdriver), although support for other systems is planned to expand as the underlying SDK (<a href="https://opentelemetry.io/">OpenTelemetry</a>) evolves.</p>
+</div></p><p>Tracing in Concourse enables the delivery of traces related to the internal processes that go into running builds, and other internal operations, breaking them down by time, and component.</p><p>It leverages the (<a href="https://opentelemetry.io/">OpenTelemetry</a>) SDK to allow support for many platforms. Currently tracing can be configured to integrates with:</p><ul>
+
+  <li><p><a href="https://www.jaegertracing.io/">Jaeger</a></p></li>
+
+  <li><p><a href="https://cloud.google.com/trace">Google Cloud Trace</a> (Stackdriver)</p></li>
+
+  <li></li>
+
+  <li><p><a href="https://honeycomb.io">Honeycomb.io</a></p></li>
+
+  <li><p><a href="https://github.com/open-telemetry/opentelemetry-go/tree/master/exporters/otlp">OpenTelemetry Protocol Exporter</a></p></li>
+
+</ul>
 
   
     
@@ -252,7 +264,16 @@
   <h2 class="section-header"><a class="anchor-target" name="configuring-tracing" href="#configuring-tracing"></a>Configuring Tracing</h2>
   
 
-  <p>To export spans to Jaeger, specify the Thrift HTTP endpoint of the Jaeger collector:</p><pre><code class="language-bash">CONCOURSE_TRACING_JAEGER_ENDPOINT=http://jaeger:14268/api/traces</code></pre><p>To export spans to Google Cloud Trace, specify the GCP Project ID:</p><pre><code class="language-bash">CONCOURSE_TRACING_STACKDRIVER_PROJECTID=your-gcp-project-id</code></pre><p>Note that suitable GCP credentials must be available, via the usual <a href="https://cloud.google.com/docs/authentication/getting-started#setting_the_environment_variable"><code>GOOGLE_APPLICATION_CREDENTIALS</code> environment variable</a>, the default location that the <code>gcloud</code> CLI expects, or from GCP&#39;s metadata server (if Concourse is deployed on GCP).</p>
+  <p>To export spans to Jaeger, specify the Thrift HTTP endpoint of the Jaeger collector:</p><pre><code class="language-bash">CONCOURSE_TRACING_JAEGER_ENDPOINT=http://jaeger:14268/api/traces</code></pre><p>To export spans to Google Cloud Trace, specify the GCP Project ID:</p><pre><code class="language-bash">CONCOURSE_TRACING_STACKDRIVER_PROJECTID=your-gcp-project-id</code></pre><p>Note that suitable GCP credentials must be available, via the usual <a href="https://cloud.google.com/docs/authentication/getting-started#setting_the_environment_variable"><code>GOOGLE_APPLICATION_CREDENTIALS</code> environment variable</a>, the default location that the <code>gcloud</code> CLI expects, or from GCP&#39;s metadata server (if Concourse is deployed on GCP).</p><p>To export spans to Lightstep via the OTLP Exporter, specify your collector access token and endpoint:</p><pre><code class="language-bash">CONCOURSE_TRACING_OTLP_ADDRESS=ingest.lightstep.com:443
+CONCOURSE_TRACING_OTLP_HEADERS=lightstep-access-token:mysupersecrettoken
+
+To export spans to Honeycomb.io, specify the API key, dataset and
+optionally the service name:
+
+\codeblock{bash}{{{
+CONCOURSE_TRACING_HONEYCOMB_API_KEY=your-honeycomb-api-key
+CONCOURSE_TRACING_HONEYCOMB_DATASET=your-honeycomb-dataset
+CONCOURSE_TRACING_HONEYCOMB_SERVICE_NAME=service-name-for-concourse  # NOTE: Optional. Defaults to &#34;concourse&#34;</code></pre>
 
   
     
