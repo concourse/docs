@@ -506,16 +506,6 @@
       
         <tr>
           <td class="number-cell"><code>#</code></td>
-          <td class="title-cell"><a href="jobs.html#schema.step.aggregate-step.aggregate"><code>aggregate</code> step <strong><code>aggregate</code></strong></a></td>
-        </tr>
-      
-        <tr>
-          <td class="number-cell"><code>#</code></td>
-          <td class="title-cell"><a href="jobs.html#aggregate-step"><code>aggregate</code> step</a></td>
-        </tr>
-      
-        <tr>
-          <td class="number-cell"><code>#</code></td>
           <td class="title-cell"><a href="jobs.html#schema.step.do-step.do"><code>do</code> step <strong><code>do</code></strong></a></td>
         </tr>
       
@@ -1793,7 +1783,7 @@ jobs:
   </label>
 
   <div class="toggle-content attribute-content">
-    <p><em>Default unlimited.</em> A sempahore which limits the parallelism when executing the steps in a <code>in_parallel</code> step. When set, the number of running steps will not exceed the limit.</p><p>When not specified, <code>in_parallel</code> will execute all steps immediately, making the default behavior identical to <a href="jobs.html#aggregate-step"><code>aggregate</code></a>.</p>
+    <p><em>Default unlimited.</em> A sempahore which limits the parallelism when executing the steps in a <code>in_parallel</code> step. When set, the number of running steps will not exceed the limit.</p><p>When not specified, <code>in_parallel</code> will execute all steps immediately.</p>
   </div>
 </div><div class="toggleable schema-attribute optional">
   <input id="toggle-schema.in_parallel_config.fail_fast" type="checkbox" class="toggle" />
@@ -1808,24 +1798,6 @@ jobs:
   </div>
 </div>
 </div>
-  </div>
-</div>
-</div>
-  </div>
-  
-  <div class="one-of-option">
-    <div class="schema-group">
-  <a id="aggregate-step"></a>
-  <div class="toggleable schema-attribute required">
-  <input id="toggle-schema.step.aggregate-step.aggregate" type="checkbox" class="toggle" />
-  <label for="toggle-schema.step.aggregate-step.aggregate" class="toggle-title">
-    <a id="schema.step.aggregate-step.aggregate"></a>
-
-    <code><a class="attribute-name" href="#schema.step.aggregate-step.aggregate">aggregate</a>: <span class="attribute-type">[<a href="jobs.html#schema.step"><strong>step</strong></a>]</span></code>
-  </label>
-
-  <div class="toggle-content attribute-content">
-    <p><em>Deprecated.</em> Use <a href="jobs.html#in-parallel-step"><code>in_parallel</code> step</a> instead.</p>
   </div>
 </div>
 </div>

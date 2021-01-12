@@ -510,8 +510,16 @@ CONCOURSE_POSTGRES_PASSWORD=my-password</code></pre><p>If you&#39;re running Pos
   <h4 class="section-header"><a class="anchor-target" name="web-connection-pooling" href="#web-connection-pooling"></a>Database connection pooling</h4>
   
 
-  <p>You may wish to configure the max number of parallel database connections that each node makes. There are two pools to configure: one for serving API requests, and one used for all the backend work such as pipeline scheduling. Another pool is reserved for garbage collection and has a hardcoded cap at 5 connections.</p><p>The sum of these numbers across all <code>web</code> nodes should not be greater than the maximum number of simultaneous connections your Postgres server will allow. See <a href="postgresql-node.html#db-resource-utilization"><code>db</code> node resource utilization</a> for more information.</p><p>For example, if 3 <code>web</code> nodes are configured as such:</p><pre><code class="language-bash">CONCOURSE_API_MAX_CONNS=10     # default
-CONCOURSE_BACKEND_MAX_CONNS=50 # default</code></pre><p>...then your PostgreSQL server should be configured with a connection limit of at least 195: (10 &#43; 50 &#43; 5) * 3.</p>
+  <p>You may wish to configure the max number of parallel database connections that each node makes. There are two pools to configure: one for serving API requests, and one used for all the backend work such as pipeline scheduling.</p><p>There are some non-configurable connection pools. They take up the following number of connections per pool: <ul>
+
+  <li><p>Garbage Collection: 5</p></li>
+
+  <li><p>Lock: 1</p></li>
+
+  <li><p>Worker Registration: 1</p></li>
+
+</ul></p><p>The sum of these numbers across all <code>web</code> nodes should not be greater than the maximum number of simultaneous connections your Postgres server will allow. See <a href="postgresql-node.html#db-resource-utilization"><code>db</code> node resource utilization</a> for more information.</p><p>For example, if 3 <code>web</code> nodes are configured as such:</p><pre><code class="language-bash">CONCOURSE_API_MAX_CONNS=10     # default
+CONCOURSE_BACKEND_MAX_CONNS=50 # default</code></pre><p>...then your PostgreSQL server should be configured with a connection limit of at least 201: (10 &#43; 50 &#43; 5 &#43; 1 &#43; 1) * 3.</p>
 
   
     

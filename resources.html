@@ -344,11 +344,11 @@
   <label for="toggle-schema.resource.check_every" class="toggle-title">
     <a id="schema.resource.check_every"></a>
 
-    <code><a class="attribute-name" href="#schema.resource.check_every">check_every</a>: <span class="attribute-type"><a href="config-basics.html#schema.duration"><strong>duration</strong></a></span></code>
+    <code><a class="attribute-name" href="#schema.resource.check_every">check_every</a>: <span class="attribute-type"><a href="config-basics.html#schema.duration"><strong>duration</strong></a> | <span class="schema-scalar">never</span></span></code>
   </label>
 
   <div class="toggle-content attribute-content">
-    <p><em>Default <code>1m</code>.</em> The interval on which to check for new versions of the resource. Acceptable interval options are defined by the <a href="https://golang.org/pkg/time/#ParseDuration">time.ParseDuration function</a>.</p>
+    <p><em>Default <code>1m</code>.</em> The interval on which to check for new versions of the resource. Acceptable interval options are defined by the <a href="https://golang.org/pkg/time/#ParseDuration">time.ParseDuration function</a>.</p><p>If set to <code>never</code> the resource will not be automatically checked. The resource can still be checked manually via the web UI, fly, or webhooks.</p>
   </div>
 </div><div class="toggleable schema-attribute optional">
   <input id="toggle-schema.resource.tags" type="checkbox" class="toggle" />

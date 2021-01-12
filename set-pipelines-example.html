@@ -128,11 +128,16 @@
         
           <tr>
             <td class="number-cell">2.12</td>
-            <td class="title-cell"><a href="nodejs-example.html" >Nodejs application testing example</a></td>
+            <td class="title-cell"><a href="java-example.html" >Java application testing example</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">2.13</td>
+            <td class="title-cell"><a href="nodejs-example.html" >Nodejs application testing example</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">2.14</td>
             <td class="title-cell"><a href="php-example.html" >PHP application testing example</a></td>
           </tr>
         
@@ -166,7 +171,7 @@
   <h2 class="section-header"><a class="anchor-target" name="configuration" href="#configuration"></a>Pipeline Configuration</h2>
   
 
-  <pre><code class="language-yaml">---
+  <p><pre><code class="language-yaml">---
 resources:
   - name: concourse-examples
     type: git
@@ -207,7 +212,7 @@ jobs:
         file: concourse-examples/pipelines/time-triggered.yml
       - set_pipeline: git-triggered
         file: concourse-examples/pipelines/git-triggered.yml
-      - set_pipeline: manually-triggered
+      - set_pipeline: manual-trigger
         file: concourse-examples/pipelines/manually-triggered.yml
       - set_pipeline: hooks
         file: concourse-examples/pipelines/job-and-task-hooks.yml
@@ -218,7 +223,10 @@ jobs:
       - set_pipeline: nodejs
         file: concourse-examples/pipelines/nodejs-app-testing.yml
       - set_pipeline: php
-        file: concourse-examples/pipelines/php-larvel-app-testing.yml</code></pre>
+        file: concourse-examples/pipelines/php-larvel-app-testing.yml
+      - set_pipeline: java
+        file: concourse-examples/pipelines/java.yml
+</code></pre></p>
 
   
     

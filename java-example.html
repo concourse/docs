@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
-<title>time-triggered job example - Concourse CI</title>
+<title>Java application testing example - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
@@ -98,7 +98,7 @@
         
           <tr>
             <td class="number-cell">2.6</td>
-            <td class="title-cell"><a href="time-trigger-example.html"  class="self"><code>time</code>-triggered job example</a></td>
+            <td class="title-cell"><a href="time-trigger-example.html" ><code>time</code>-triggered job example</a></td>
           </tr>
         
           <tr>
@@ -128,7 +128,7 @@
         
           <tr>
             <td class="number-cell">2.12</td>
-            <td class="title-cell"><a href="java-example.html" >Java application testing example</a></td>
+            <td class="title-cell"><a href="java-example.html"  class="self">Java application testing example</a></td>
           </tr>
         
           <tr>
@@ -157,12 +157,12 @@
 
       <div class="body-content">
         <div class="page-content">
-          <div class="section" id="section_time-trigger-example">
+          <div class="section" id="section_java-example">
   
-  <h1 class="section-header"><a class="anchor-target" name="time-trigger-example" href="#time-trigger-example"></a><span class="section-number">2.6 </span><code>time</code>-triggered job example</h1>
+  <h1 class="section-header"><a class="anchor-target" name="java-example" href="#java-example"></a><span class="section-number">2.12 </span>Java application testing example</h1>
   
 
-  <p>The <a href="https://github.com/concourse/time-resource"><code>time</code> resource</a> can be used to trigger a job.</p><p><iframe class="frame" frameborder="0" width="100%" height="300px" src="https://ci.concourse-ci.org/teams/examples/pipelines/time-triggered"></iframe></p>
+  <p>You can run the tests for a Java application.</p><p><iframe class="frame" frameborder="0" width="100%" height="300px" src="https://ci.concourse-ci.org/teams/examples/pipelines/java"></iframe></p>
 
   
     
@@ -171,29 +171,48 @@
   <h2 class="section-header"><a class="anchor-target" name="configuration" href="#configuration"></a>Pipeline Configuration</h2>
   
 
-  <p><pre><code class="language-yaml">---
-resources:
-  - name: every-30s
-    type: time
-    icon: clock-outline
-    source:
-      interval: 30s
+  <p><pre><code class="language-yaml">jobs:
+- name: test
+  plan:
+  - get: apache-kafka-git
+    trigger: true
+  - config:
+      caches:
+      - path: $HOME/.m2/repository
+      - path: $HOME/.gradle/caches/
+      - path: $HOME/.gradle/wrapper/
+      container_limits: {}
+      image_resource:
+        name: &#34;&#34;
+        source:
+          repository: gradle
+          tag: jdk8-slim
+        type: registry-image
+      inputs:
+      - name: apache-kafka-git
+      platform: linux
+      run:
+        args:
+        - -c
+        - |
+          java -Xmx32m -version
+          javac -J-Xmx32m -version
 
-jobs:
-  - name: job
-    public: true
-    plan:
-      - get: every-30s
-        trigger: true
-      - task: simple-task
-        config:
-          platform: linux
-          image_resource:
-            type: registry-image
-            source: { repository: busybox }
-          run:
-            path: echo
-            args: [&#34;Hello, world!&#34;]
+          cd apache-kafka-git
+
+          gradle wrapper
+          ./gradlew rat
+          ./gradlew systemTestLibs
+        path: /bin/sh
+        user: root
+    task: run-tests
+  public: true
+resources:
+- icon: github
+  name: apache-kafka-git
+  source:
+    uri: https://github.com/apache/kafka.git
+  type: git
 </code></pre></p>
 
   
@@ -207,8 +226,6 @@ jobs:
   
 
   <ul>
-
-  <li><p><a href="resources.html">Resources</a></p></li>
 
   <li><p><a href="jobs.html">Jobs</a></p></li>
 
@@ -232,10 +249,10 @@ jobs:
               prev:
 
               
-              <span class="section-number">2.5</span>
+              <span class="section-number">2.11</span>
               
 
-              <a href="task-inputs-outputs-example.html">Task inputs and outputs example</a>
+              <a href="rails-example.html">Rails application testing example</a>
             </div>
           
 
@@ -244,10 +261,10 @@ jobs:
               next:
 
               
-              <span class="section-number">2.7</span>
+              <span class="section-number">2.13</span>
               
 
-              <a href="git-trigger-example.html"><code>git</code>-triggered job example</a>
+              <a href="nodejs-example.html">Nodejs application testing example</a>
             </div>
           
           </nav>

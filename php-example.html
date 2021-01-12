@@ -128,11 +128,16 @@
         
           <tr>
             <td class="number-cell">2.12</td>
-            <td class="title-cell"><a href="nodejs-example.html" >Nodejs application testing example</a></td>
+            <td class="title-cell"><a href="java-example.html" >Java application testing example</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">2.13</td>
+            <td class="title-cell"><a href="nodejs-example.html" >Nodejs application testing example</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">2.14</td>
             <td class="title-cell"><a href="php-example.html"  class="self">PHP application testing example</a></td>
           </tr>
         
@@ -154,7 +159,7 @@
         <div class="page-content">
           <div class="section" id="section_php-example">
   
-  <h1 class="section-header"><a class="anchor-target" name="php-example" href="#php-example"></a><span class="section-number">2.13 </span>PHP application testing example</h1>
+  <h1 class="section-header"><a class="anchor-target" name="php-example" href="#php-example"></a><span class="section-number">2.14 </span>PHP application testing example</h1>
   
 
   <p>You can run the tests for a PHP application.</p><p><iframe class="frame" frameborder="0" width="100%" height="300px" src="https://ci.concourse-ci.org/teams/examples/pipelines/php"></iframe></p>
@@ -166,9 +171,9 @@
   <h2 class="section-header"><a class="anchor-target" name="configuration" href="#configuration"></a>Pipeline Configuration</h2>
   
 
-  <pre><code class="language-yaml">---
+  <p><pre><code class="language-yaml">---
 resources:
-  - name: laravel-websockets-git
+  - name: larvel-websockets-git
     type: git
     icon: github
     source:
@@ -178,33 +183,26 @@ jobs:
   - name: test
     public: true
     plan:
-      - get: laravel-websockets-git
+      - get: larvel-websockets-git
         trigger: true
       - task: run-tests
         config:
           platform: linux
           image_resource:
             type: registry-image
-            source: { repository: php, tag: 7.2-cli }
+            source: { repository: composer }
           inputs:
-            - name: laravel-websockets-git
+            - name: larvel-websockets-git
           run:
             path: /bin/sh
             args:
               - -c
               - |
-                apt-get update
-                apt-get install -y git unzip
-
-                php -r &#34;copy(&#39;https://getcomposer.org/installer&#39;, &#39;composer-setup.php&#39;);&#34;
-                php -r &#34;if (hash_file(&#39;sha384&#39;, &#39;composer-setup.php&#39;) === &#39;e0012edf3e80b6978849f5eff0d4b4e4c79ff1609dd1e613307e16318854d24ae64f26d17af3ef0bf7cfb710ca74755a&#39;) { echo &#39;Installer verified&#39;; } else { echo &#39;Installer corrupt&#39;; unlink(&#39;composer-setup.php&#39;); } echo PHP_EOL;&#34;
-                php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-                php -r &#34;unlink(&#39;composer-setup.php&#39;);&#34;
-
-                cd laravel-websockets-git
+                cd larvel-websockets-git
 
                 composer install
-                vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover</code></pre>
+                vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
+</code></pre></p>
 
   
     
@@ -240,7 +238,7 @@ jobs:
               prev:
 
               
-              <span class="section-number">2.12</span>
+              <span class="section-number">2.13</span>
               
 
               <a href="nodejs-example.html">Nodejs application testing example</a>

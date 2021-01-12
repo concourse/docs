@@ -128,11 +128,16 @@
         
           <tr>
             <td class="number-cell">2.12</td>
-            <td class="title-cell"><a href="nodejs-example.html"  class="self">Nodejs application testing example</a></td>
+            <td class="title-cell"><a href="java-example.html" >Java application testing example</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">2.13</td>
+            <td class="title-cell"><a href="nodejs-example.html"  class="self">Nodejs application testing example</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">2.14</td>
             <td class="title-cell"><a href="php-example.html" >PHP application testing example</a></td>
           </tr>
         
@@ -154,7 +159,7 @@
         <div class="page-content">
           <div class="section" id="section_nodejs-example">
   
-  <h1 class="section-header"><a class="anchor-target" name="nodejs-example" href="#nodejs-example"></a><span class="section-number">2.12 </span>Nodejs application testing example</h1>
+  <h1 class="section-header"><a class="anchor-target" name="nodejs-example" href="#nodejs-example"></a><span class="section-number">2.13 </span>Nodejs application testing example</h1>
   
 
   <p>You can run the tests for a Nodejs application.</p><p><iframe class="frame" frameborder="0" width="100%" height="300px" src="https://ci.concourse-ci.org/teams/examples/pipelines/nodejs"></iframe></p>
@@ -166,7 +171,7 @@
   <h2 class="section-header"><a class="anchor-target" name="configuration" href="#configuration"></a>Pipeline Configuration</h2>
   
 
-  <pre><code class="language-yaml">---
+  <p><pre><code class="language-yaml">---
 resources:
   - name: nodejs.org-git
     type: git
@@ -185,7 +190,7 @@ jobs:
           platform: linux
           image_resource:
             type: registry-image
-            source: { repository: node, tag: &#34;8&#34; }
+            source: { repository: node }
           inputs:
             - name: nodejs.org-git
           run:
@@ -197,7 +202,8 @@ jobs:
                 echo &#34;NPM Version: $(npm --version)&#34;
                 cd nodejs.org-git
                 npm install
-                npm test</code></pre>
+                npm test
+</code></pre></p>
 
   
     
@@ -233,10 +239,10 @@ jobs:
               prev:
 
               
-              <span class="section-number">2.11</span>
+              <span class="section-number">2.12</span>
               
 
-              <a href="rails-example.html">Rails application testing example</a>
+              <a href="java-example.html">Java application testing example</a>
             </div>
           
 
@@ -245,7 +251,7 @@ jobs:
               next:
 
               
-              <span class="section-number">2.13</span>
+              <span class="section-number">2.14</span>
               
 
               <a href="php-example.html">PHP application testing example</a>

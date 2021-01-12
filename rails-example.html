@@ -128,11 +128,16 @@
         
           <tr>
             <td class="number-cell">2.12</td>
-            <td class="title-cell"><a href="nodejs-example.html" >Nodejs application testing example</a></td>
+            <td class="title-cell"><a href="java-example.html" >Java application testing example</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">2.13</td>
+            <td class="title-cell"><a href="nodejs-example.html" >Nodejs application testing example</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">2.14</td>
             <td class="title-cell"><a href="php-example.html" >PHP application testing example</a></td>
           </tr>
         
@@ -166,7 +171,7 @@
   <h2 class="section-header"><a class="anchor-target" name="configuration" href="#configuration"></a>Pipeline Configuration</h2>
   
 
-  <pre><code class="language-yaml">---
+  <p><pre><code class="language-yaml">---
 resources:
   - name: rails-contributors-git
     type: git
@@ -213,8 +218,9 @@ jobs:
         config:
           image_resource:
             type: registry-image
-            source: { repository: ruby, tag: 2.6 }
-          &lt;&lt; : *task-config</code></pre>
+            source: { repository: ruby, tag: 2.6.5 }
+          &lt;&lt; : *task-config
+</code></pre></p>
 
   
     
@@ -265,7 +271,7 @@ jobs:
               <span class="section-number">2.12</span>
               
 
-              <a href="nodejs-example.html">Nodejs application testing example</a>
+              <a href="java-example.html">Java application testing example</a>
             </div>
           
           </nav>
