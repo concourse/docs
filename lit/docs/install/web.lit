@@ -370,8 +370,8 @@ as performing all pipeline scheduling. It's basically the brain of Concourse.
     When enabled, API requests will result in an info-level log line like so:
 
     \codeblock{json}{{{
-    {"timestamp":"2019-05-09T14:41:54.880381537Z","level":"info","source":"atc","message":"atc.audit","data":{"action":"Info","parameters":{},"user":"test"}}
-    {"timestamp":"2019-05-09T14:42:36.704864093Z","level":"info","source":"atc","message":"atc.audit","data":{"action":"GetPipeline","parameters":{":pipeline_name":["booklit"],":team_name":["main"]},"user":"test"}}
+    {"timestamp":"2019-05-09T14:41:54.880381537Z","level":"info","source":"atc","message":"atc.audit","data":{"action":"Info","ip":"192.168.2.55","parameters":{},"user":"test"}}
+    {"timestamp":"2019-05-09T14:42:36.704864093Z","level":"info","source":"atc","message":"atc.audit","data":{"action":"GetPipeline","ip":"192.168.2.55","parameters":{":pipeline_name":["booklit"],":team_name":["main"]},"user":"test"}}
     }}}
   }
 
