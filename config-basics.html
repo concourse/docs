@@ -471,11 +471,11 @@ SOME_NUMERIC_VALUE: &#34;1&#34;</code></pre><p>Note that in the last example we 
 
   <li><p>Decimal numbers.</p></li>
 
-  <li><p>Hyphens (-), as the canonical word separator.</p></li>
+  <li><p>Hyphens <code>-</code> and underscores <code>_</code> as word separators.</p></li>
 
-  <li><p>Periods (.), in order to support domain names and version numbers.</p></li>
+  <li><p>Periods <code>.</code> in order to support domain names and version numbers.</p></li>
 
-</ul><p>The validation rule is as follows:</p><pre><code class="language-regex">^[\p{Ll}\p{Lt}\p{Lm}\p{Lo}][\p{Ll}\p{Lt}\p{Lm}\p{Lo}\d\-.]*$</code></pre><p>Where all <em>identifier</em> must start with a Unicode lowercase letter, followed by any number of allowed characters.</p><p>Currently, the validation will only show as warnings. For the sake of future-proofing, you may want to conform to it.</p>
+</ul><p>The validation rule is as follows:</p><pre><code class="language-regex">^[\p{Ll}\p{Lt}\p{Lm}\p{Lo}][\p{Ll}\p{Lt}\p{Lm}\p{Lo}\d\-_.]*$</code></pre><p>Where all <em>identifier</em> must start with a Unicode lowercase letter, followed by any number of allowed characters.</p><p>Currently, the validation will only show as warnings. For the sake of future-proofing, you may want to conform to it.</p>
 </div><div class="schema">
   <h2 class="schema-header"><a class="anchor-target" name="schema.dir-path" href="#schema.dir-path"></a><code>dir-path</code> schema</h2>
 

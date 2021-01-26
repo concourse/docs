@@ -243,16 +243,21 @@
         
           <tr>
             <td class="number-cell">1.2.2.7</td>
-            <td class="title-cell"><a href="generic-oidc-auth.html"  class="self">Generic OIDC auth</a></td>
+            <td class="title-cell"><a href="microsoft-auth.html" >Microsoft auth</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.2.2.8</td>
-            <td class="title-cell"><a href="generic-oauth.html" >Generic oAuth</a></td>
+            <td class="title-cell"><a href="generic-oidc-auth.html"  class="self">Generic OIDC auth</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.2.2.9</td>
+            <td class="title-cell"><a href="generic-oauth.html" >Generic oAuth</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2.2.10</td>
             <td class="title-cell"><a href="generic-saml-auth.html" >Generic SAML auth</a></td>
           </tr>
         
@@ -274,7 +279,7 @@
         <div class="page-content">
           <div class="section" id="section_generic-oidc-auth">
   
-  <h1 class="section-header"><a class="anchor-target" name="generic-oidc-auth" href="#generic-oidc-auth"></a><span class="section-number">1.2.2.7 </span>Generic OIDC auth</h1>
+  <h1 class="section-header"><a class="anchor-target" name="generic-oidc-auth" href="#generic-oidc-auth"></a><span class="section-number">1.2.2.8 </span>Generic OIDC auth</h1>
   
 
   <p>A Concourse server can authenticate against any valid OIDC auth provider. This provider is similar to <a href="generic-oauth.html">Generic oAuth</a> except it only requires an issuer URL rather than auth/token/userinfo URLs.</p>
@@ -293,6 +298,28 @@ CONCOURSE_OIDC_ISSUER=https://oidc.example.com</code></pre><p>Consult <code>conc
 
   
     
+      <div class="section" id="section_a-note-about-user-lookup">
+  
+  <h3 class="section-header"><a class="anchor-target" name="a-note-about-user-lookup" href="#a-note-about-user-lookup"></a>A note about user lookup</h3>
+  
+
+  <p>When determining the user identity, Concourse will first look at the <code>preferred_username</code> claim. If this claim is empty or missing, it will then look at the claim specified by <code>CONCOURSE_OIDC_USER_NAME_KEY</code> (which defaults to <code>username</code>).</p><p>Let&#39;s say that you want to tie each user to their email by using <code>CONCOURSE_OIDC_USER_NAME_KEY=email</code>.</p><p>If your OIDC provider returns the following claims, Concourse will still resolve the user to <code>Jane Doe</code>: <pre><code class="language-json">{
+ &#34;sub&#34;: &#34;248289761001&#34;,
+ &#34;username&#34;: &#34;j.doe&#34;,
+ &#34;preferred_username&#34;: &#34;Jane Doe&#34;,
+ &#34;email&#34;: &#34;janedoe@example.com&#34;,
+}</code></pre></p><p>However, if the <code>preferred_username</code> claim is empty or missing, Concourse will respect the key and resolve the user to <code>janedoe@example.com</code>: <pre><code class="language-json">{
+ &#34;sub&#34;: &#34;248289761001&#34;,
+ &#34;username&#34;: &#34;j.doe&#34;,
+ &#34;preferred_username&#34;: &#34;&#34;,
+ &#34;email&#34;: &#34;janedoe@example.com&#34;,
+}</code></pre></p>
+
+  
+    
+  
+</div>
+    
   
 </div>
     
@@ -301,7 +328,9 @@ CONCOURSE_OIDC_ISSUER=https://oidc.example.com</code></pre><p>Consult <code>conc
   <h2 class="section-header"><a class="anchor-target" name="generic-oidc-authorization" href="#generic-oidc-authorization"></a>Authorization</h2>
   
 
-  <p>OIDC users and groups can be authorized for a team by passing the following flags to <a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a>:</p><dl>
+  <p><div class="warning">
+  When authorizing individual users, it&#39;s up to you to ensure that the <code>preferred_username</code> claim and/or the claim specified by <code>CONCOURSE_OIDC_USER_NAME_KEY</code> is unique. If they&#39;re not, then it&#39;s possible for users to impersonate each other
+</div></p><p>OIDC users and groups can be authorized for a team by passing the following flags to <a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a>:</p><dl>
   
   <dt><code>--oidc-user=USERNAME</code></dt>
     <dd><p>Authorize an individual user.</p></dd>
@@ -344,10 +373,10 @@ CONCOURSE_MAIN_TEAM_OIDC_GROUP=my-group</code></pre><p>Multiple users and groups
               prev:
 
               
-              <span class="section-number">1.2.2.6</span>
+              <span class="section-number">1.2.2.7</span>
               
 
-              <a href="ldap-auth.html">LDAP auth</a>
+              <a href="microsoft-auth.html">Microsoft auth</a>
             </div>
           
 
@@ -356,7 +385,7 @@ CONCOURSE_MAIN_TEAM_OIDC_GROUP=my-group</code></pre><p>Multiple users and groups
               next:
 
               
-              <span class="section-number">1.2.2.8</span>
+              <span class="section-number">1.2.2.9</span>
               
 
               <a href="generic-oauth.html">Generic oAuth</a>

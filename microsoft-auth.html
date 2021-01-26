@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
-<title>Local User auth - Concourse CI</title>
+<title>Microsoft auth - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
@@ -213,7 +213,7 @@
         
           <tr>
             <td class="number-cell">1.2.2.1</td>
-            <td class="title-cell"><a href="local-auth.html"  class="self">Local User auth</a></td>
+            <td class="title-cell"><a href="local-auth.html" >Local User auth</a></td>
           </tr>
         
           <tr>
@@ -243,7 +243,7 @@
         
           <tr>
             <td class="number-cell">1.2.2.7</td>
-            <td class="title-cell"><a href="microsoft-auth.html" >Microsoft auth</a></td>
+            <td class="title-cell"><a href="microsoft-auth.html"  class="self">Microsoft auth</a></td>
           </tr>
         
           <tr>
@@ -277,37 +277,45 @@
 
       <div class="body-content">
         <div class="page-content">
-          <div class="section" id="section_local-auth">
+          <div class="section" id="section_microsoft-auth">
   
-  <h1 class="section-header"><a class="anchor-target" name="local-auth" href="#local-auth"></a><span class="section-number">1.2.2.1 </span>Local User auth</h1>
+  <h1 class="section-header"><a class="anchor-target" name="microsoft-auth" href="#microsoft-auth"></a><span class="section-number">1.2.2.7 </span>Microsoft auth</h1>
   
 
-  <p>Local User auth is a primitive username/password-based auth mechanism. All users and passwords are configured statically.</p><p>In general, we recommend configuring one of the other providers instead, but for small deployments with only a few users, local user auth may be all you need.</p>
+  <p>A Concourse server can authenticate against Microsoft Azure AD to leverage its permission model.</p>
 
   
     
-      <div class="section" id="section_local-authentication">
+      <div class="section" id="section_microsoft-authentication">
   
-  <h2 class="section-header"><a class="anchor-target" name="local-authentication" href="#local-authentication"></a>Authentication</h2>
+  <h2 class="section-header"><a class="anchor-target" name="microsoft-authentication" href="#microsoft-authentication"></a>Authentication</h2>
   
 
-  <p>Local users are configured on the <a href="concourse-web.html"><code>web</code> node</a> by setting the following env:</p><pre><code class="language-bash">CONCOURSE_ADD_LOCAL_USER=myuser:mypass,anotheruser:anotherpass</code></pre><p>This configures two users, <code>myuser</code> and <code>anotheruser</code>, with their corresponding passwords.</p><p>When local users are configured, the log-in page in the web UI will show a username/password prompt.</p><p>Local users can also log in via <a href="fly.html#fly-login"><code>fly login</code></a> with the <code>--username</code> and <code>--password</code> flags.</p>
+  <p>You&#39;ll need to <a href="https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade">register a new application on Azure</a>.</p><p>The &#34;Callback URL&#34; must be the URL of your Concourse server with <code>/sky/issuer/callback</code> appended. This address must be reachable by Microsoft - it can&#39;t be <code>localhost</code>.</p><p>For example, Concourse&#39;s own CI server&#39;s callback URL would be:</p><pre><code class="language-bash">https://ci.concourse-ci.org/sky/issuer/callback</code></pre><p>You will be given a Client ID and a Client Secret for your new application. The client ID and secret must then be configured on the <a href="concourse-web.html"><code>web</code> node</a> by setting the following env:</p><pre><code class="language-bash">CONCOURSE_MICROSOFT_CLIENT_ID=myclientid
+CONCOURSE_MICROSOFT_CLIENT_SECRET=myclientsecret</code></pre><p>Consult <code>concourse web --help</code> for a full list of flags with descriptions.</p>
 
   
     
   
 </div>
     
-      <div class="section" id="section_local-authorization">
+      <div class="section" id="section_bitbucket-cloud-authorization">
   
-  <h2 class="section-header"><a class="anchor-target" name="local-authorization" href="#local-authorization"></a>Authorization</h2>
+  <h2 class="section-header"><a class="anchor-target" name="bitbucket-cloud-authorization" href="#bitbucket-cloud-authorization"></a>Authorization</h2>
   
 
-  <p>Local users are granted access to teams via <a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a>, using the <code>--local-user</code> flag:</p><pre><code class="language-bash">$ fly set-team -n my-team \
-    --local-user some_username</code></pre><p>...or via <code>--config</code> for <a href="managing-teams.html#setting-roles">setting user roles</a>:</p><pre><code class="language-bash">roles:
+  <p><div class="warning">
+  Individual user auth is disabled due to a quirk with with Microsoft returning unique IDs but non-unique usernames
+</div></p><p>Groups can be authorized for a team by passing the following flags to <a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a>:</p><dl>
+  
+  <dt><code>--microsoft-group=GROUP_NAME</code></dt>
+    <dd><p>Authorize an entire group&#39;s members.</p></dd>
+  
+</dl><p>For example:</p><pre><code class="language-bash">$ fly set-team -n my-team \
+    --microsoft-group my-group</code></pre><p>...or via <code>--config</code> for <a href="managing-teams.html#setting-roles">setting user roles</a>:</p><pre><code class="language-bash">roles:
 - name: member
-  local:
-    users: [&#34;some_username&#34;]</code></pre>
+  microsoft:
+    groups: [&#34;my-groups&#34;]</code></pre>
 
   
     
@@ -316,7 +324,7 @@
   <h3 class="section-header"><a class="anchor-target" name="configuring-main-team-authorization" href="#configuring-main-team-authorization"></a>Configuring <code>main</code> Team Authorization</h3>
   
 
-  <p>Local users can be added to the <a href="main-team.html"><code>main</code> team</a> authorization config by setting the following env on the <a href="concourse-web.html"><code>web</code> node</a>:</p><pre><code class="language-bash">CONCOURSE_MAIN_TEAM_LOCAL_USER=myuser</code></pre><p>Multiple users may be specified by comma-separating them.</p>
+  <p>Microsoft groups can be added to the <a href="main-team.html"><code>main</code> team</a> authorization config by setting the following env on the <a href="concourse-web.html"><code>web</code> node</a>:</p><pre><code class="language-bash">CONCOURSE_MAIN_TEAM_MICROSOFT_GROUP=my-group</code></pre><p>Multiple teams may be specified by comma-separating them.</p>
 
   
     
@@ -335,10 +343,10 @@
               prev:
 
               
-              <span class="section-number">1.2.2</span>
+              <span class="section-number">1.2.2.6</span>
               
 
-              <a href="configuring-auth.html">Configuring Auth</a>
+              <a href="ldap-auth.html">LDAP auth</a>
             </div>
           
 
@@ -347,10 +355,10 @@
               next:
 
               
-              <span class="section-number">1.2.2.2</span>
+              <span class="section-number">1.2.2.8</span>
               
 
-              <a href="github-auth.html">GitHub auth</a>
+              <a href="generic-oidc-auth.html">Generic OIDC auth</a>
             </div>
           
           </nav>

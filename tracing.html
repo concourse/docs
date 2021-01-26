@@ -249,8 +249,6 @@
 
   <li><p><a href="https://cloud.google.com/trace">Google Cloud Trace</a> (Stackdriver)</p></li>
 
-  <li></li>
-
   <li><p><a href="https://honeycomb.io">Honeycomb.io</a></p></li>
 
   <li><p><a href="https://github.com/open-telemetry/opentelemetry-go/tree/master/exporters/otlp">OpenTelemetry Protocol Exporter</a></p></li>
@@ -265,13 +263,7 @@
   
 
   <p>To export spans to Jaeger, specify the Thrift HTTP endpoint of the Jaeger collector:</p><pre><code class="language-bash">CONCOURSE_TRACING_JAEGER_ENDPOINT=http://jaeger:14268/api/traces</code></pre><p>To export spans to Google Cloud Trace, specify the GCP Project ID:</p><pre><code class="language-bash">CONCOURSE_TRACING_STACKDRIVER_PROJECTID=your-gcp-project-id</code></pre><p>Note that suitable GCP credentials must be available, via the usual <a href="https://cloud.google.com/docs/authentication/getting-started#setting_the_environment_variable"><code>GOOGLE_APPLICATION_CREDENTIALS</code> environment variable</a>, the default location that the <code>gcloud</code> CLI expects, or from GCP&#39;s metadata server (if Concourse is deployed on GCP).</p><p>To export spans to Lightstep via the OTLP Exporter, specify your collector access token and endpoint:</p><pre><code class="language-bash">CONCOURSE_TRACING_OTLP_ADDRESS=ingest.lightstep.com:443
-CONCOURSE_TRACING_OTLP_HEADERS=lightstep-access-token:mysupersecrettoken
-
-To export spans to Honeycomb.io, specify the API key, dataset and
-optionally the service name:
-
-\codeblock{bash}{{{
-CONCOURSE_TRACING_HONEYCOMB_API_KEY=your-honeycomb-api-key
+CONCOURSE_TRACING_OTLP_HEADERS=lightstep-access-token:mysupersecrettoken</code></pre><p>To export spans to Honeycomb.io, specify the API key, dataset and optionally the service name:</p><pre><code class="language-bash">CONCOURSE_TRACING_HONEYCOMB_API_KEY=your-honeycomb-api-key
 CONCOURSE_TRACING_HONEYCOMB_DATASET=your-honeycomb-dataset
 CONCOURSE_TRACING_HONEYCOMB_SERVICE_NAME=service-name-for-concourse  # NOTE: Optional. Defaults to &#34;concourse&#34;</code></pre>
 
