@@ -373,6 +373,17 @@ as performing all pipeline scheduling. It's basically the brain of Concourse.
     {"timestamp":"2019-05-09T14:41:54.880381537Z","level":"info","source":"atc","message":"atc.audit","data":{"action":"Info","ip":"192.168.2.55","parameters":{},"user":"test"}}
     {"timestamp":"2019-05-09T14:42:36.704864093Z","level":"info","source":"atc","message":"atc.audit","data":{"action":"GetPipeline","ip":"192.168.2.55","parameters":{":pipeline_name":["booklit"],":team_name":["main"]},"user":"test"}}
     }}}
+
+    A user's IP address is logged based on available headers in the request. The auditor will search, in this order, for:
+    \list{
+      The custom header set by \code{CONCOURSE_CLIENT_IP_HEADER}
+      }{
+      \code{X-REAL-IP}
+      }{
+      \code{X-FORWARDED-FOR}
+      }{
+      \code{RemoteAddr} in the request.
+      }
   }
 
   \section{
