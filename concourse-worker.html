@@ -409,7 +409,17 @@
 
   <ul>
 
-  <li><p>Linux: kernel v3.19 or later with support for user namespaces enabled. (This is off by default in some distributions!)</p><p>To enforce memory limits on tasks, memory &#43; swap accounting must be enabled.</p></li>
+  <li><p>Linux: We test and support the following distributions. Minimum kernel version tested is 4.4. User namespaces must be enabled. To enforce memory limits on tasks, memory &#43; swap accounting must be enabled. <ul>
+
+  <li><p>Ubuntu 16.04 (kernel 4.4)</p></li>
+
+  <li><p>Ubuntu 18.04 (kernel 5.3)</p></li>
+
+  <li><p>Ubuntu 20.04 (kernel 5.4)</p></li>
+
+  <li><p>Debian 10 (kernel 4.19)</p></li>
+
+</ul></p></li>
 
   <li><p>Windows/Darwin: no special requirements (that we know of).</p><p>Note that containerization is fairly primitive on these two platforms, so don&#39;t expect great support for multi-tenancy.</p></li>
 
