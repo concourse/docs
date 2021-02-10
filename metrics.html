@@ -496,6 +496,17 @@
 </div>
 
 <div class="toggleable metric">
+  <input id="toggle-concourse_volumes_volumes_streamed" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_volumes_volumes_streamed" class="toggle-title">
+    <code><span class="metric-name">concourse_volumes_volumes_streamed</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#counter">counter</a>
+  </label>
+  <div class="toggle-content">
+    Total number of volumes streamed from one worker to the other
+  </div>
+</div>
+
+<div class="toggleable metric">
   <input id="toggle-concourse_workers_containers" type="checkbox" class="toggle" checked />
   <label for="toggle-concourse_workers_containers" class="toggle-title">
     <code><span class="metric-name">concourse_workers_containers</span><span class="metric-labels">{<span class="metric-label">platform</span>,<span class="metric-label">tags</span>,<span class="metric-label">team</span>,<span class="metric-label">worker</span>}</span></code>

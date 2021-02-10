@@ -169,6 +169,11 @@
             <td class="title-cell"><a href="managing-pipelines.html" >Managing Pipelines</a></td>
           </tr>
         
+          <tr>
+            <td class="number-cell">1.5.3</td>
+            <td class="title-cell"><a href="instanced-pipelines.html" >Grouping Pipelines</a></td>
+          </tr>
+        
         </table>
       </div>
     </nav>
@@ -355,7 +360,20 @@
   </label>
 
   <div class="toggle-content attribute-content">
-    <p>A list of jobs that should appear in this group. A job may appear in multiple groups. Neighbours of jobs in the current group will also appear on the same page in order to give context of the location of the group in the pipeline.</p>
+    <p>A list of jobs that should appear in this group. A job may appear in multiple groups. Neighbours of jobs in the current group will also appear on the same page in order to give context of the location of the group in the pipeline.</p><p>You may also use any valid <a href="https://www.man7.org/linux/man-pages/man7/glob.7.html">glob</a> to represent several jobs, e.g.:</p><pre><code class="language-yaml">groups:
+- name: develop
+  jobs:
+  - terraform-*
+  - test
+  - deploy-{dev,staging}
+- name: ship
+  jobs:
+  - deploy-prod
+- name: all
+  jobs:
+  - &#34;*&#34;</code></pre><p>In this example, the <code>develop</code> group will match <code>terraform-apply</code>, <code>terraform-destroy</code>, <code>test</code>, <code>deploy-dev</code>, <code>deploy-staging</code>. The <code>ship</code> group will only match <code>deploy-prod</code>. The <code>all</code> group will match all jobs in the pipeline.</p><p><div class="warning">
+  Note that depending on how it&#39;s used, <code>*</code>, <code>{</code>, and <code>}</code> have special meaning in YAML, and may need to be quoted (as was done in the <code>all</code> job above)
+</div></p>
   </div>
 </div>
 </div>
@@ -537,6 +555,41 @@
       <a href="managing-pipelines.html#fly-archive-pipeline"><code>fly archive-pipeline</code></a>
 
       
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.5.3</span>
+      <a href="instanced-pipelines.html">Grouping Pipelines</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.5.3.1</span>
+      <a href="instanced-pipelines.html#managing-instanced-pipelines">Managing Instanced Pipelines</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.5.3.1.1</span>
+      <a href="instanced-pipelines.html#jobs-and-resources-instanced-pipelines">Managing Jobs and Resources</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
   
   
     </li>

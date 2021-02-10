@@ -234,6 +234,21 @@
             <td class="title-cell"><a href="container-placement.html#limit-active-tasks-strategy" >The <code>limit-active-tasks</code> strategy</a></td>
           </tr>
         
+          <tr>
+            <td class="number-cell">1.12.5.5</td>
+            <td class="title-cell"><a href="container-placement.html#limit-max-containers-strategy" >The <code>limit-max-containers</code> strategy</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.5.6</td>
+            <td class="title-cell"><a href="container-placement.html#limit-max-volumes-strategy" >The <code>limit-max-volumes</code> strategy</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.5.7</td>
+            <td class="title-cell"><a href="container-placement.html#chaining-placement-strategies" >Chaining Placement Strategies</a></td>
+          </tr>
+        
         </table>
       </div>
     </nav>
@@ -260,7 +275,7 @@
   <h2 class="section-header"><a class="anchor-target" name="volume-locality-strategy" href="#volume-locality-strategy"></a>The <code>volume-locality</code> strategy</h2>
   
 
-  <p>When using <code>volume-locality</code>, the <a href="concourse-web.html"><code>web</code> node</a> places <a href="jobs.html#task-step"><code>task</code> step</a> and <a href="jobs.html#put-step"><code>put</code> step</a> containers on workers where a majority of their inputs are already present. <strong>This is the default strategy.</strong></p><p>The advantage of this approach is that it reduces the likelihood that large artifacts will have to be streamed from one <a href="concourse-worker.html"><code>worker</code> node</a>, through the <a href="concourse-web.html"><code>web</code> node</a>, and to the target <a href="concourse-worker.html"><code>worker</code> node</a>. For large artifacts, this can result in quite a bit of overhead.</p><p>The disadvantage of this approach is that it can sometimes result in builds &#34;gravitating&#34; to a particular worker and overloading it, at least until the resource caches warm across the worker pool.</p><p>If your builds tend to be light on artifacts and heavy on task execution, you may want to try the <a href="container-placement.html#fewest-build-containers-strategy"><code>fewest-build-containers</code> strategy</a> instead.</p>
+  <p>When using <code>volume-locality</code>, the <a href="concourse-web.html"><code>web</code> node</a> places <a href="jobs.html#task-step"><code>task</code> step</a> and <a href="jobs.html#put-step"><code>put</code> step</a> containers on workers where a majority of their inputs are already present. <strong>This is the default strategy.</strong></p><p>The advantage of this approach is that it reduces the likelihood that large artifacts will have to be streamed from one <a href="concourse-worker.html"><code>worker</code> node</a>, through the <a href="concourse-web.html"><code>web</code> node</a>, and to the target <a href="concourse-worker.html"><code>worker</code> node</a>. For large artifacts, this can result in quite a bit of overhead.</p><p>The disadvantage of this approach is that it can sometimes result in builds &#34;gravitating&#34; to a particular worker and overloading it, at least until the resource caches warm across the worker pool. This disadvantage can be partially mitigated using the (currently experimental) <a href="container-placement.html#limit-max-volumes-strategy"><code>limit-max-volumes</code> strategy</a> in conjunction with <a href="container-placement.html#chaining-placement-strategies">Chaining Placement Strategies</a>.</p><p>If your builds tend to be light on artifacts and heavy on task execution, you may want to try the <a href="container-placement.html#fewest-build-containers-strategy"><code>fewest-build-containers</code> strategy</a> or the (currently experimental) <a href="container-placement.html#limit-active-tasks-strategy"><code>limit-active-tasks</code> strategy</a>.</p>
 
   
     
@@ -298,7 +313,61 @@
 
   <p><div class="warning">
   <code>limit-active-tasks</code> is an <strong>experimental</strong> feature.
-</div></p><p>When selecting the <code>limit-active-tasks</code> placement strategy, each <code>task</code> executed on a worker will increase the number of &#34;active tasks&#34; on that worker by one. When the task completes the number is decreased by one. The <a href="concourse-web.html"><code>web</code> node</a> then places <code>get</code>, <code>put</code> and <code>task</code> containers on the worker that currently has the <em>least amount of active tasks</em>.</p><p>Additionally <code>max-active-tasks-per-worker</code> can be set to be an integer of 1 or more, in which case a worker will not execute more than that amount of <strong>tasks</strong>. A value of 0 means that there is no limit on the maximum number of active tasks on the workers. If no worker can be selected because all of them already have <code>max-active-tasks-per-worker</code> active tasks, then the task will wait for a free worker, periodically polling the pool. The metric <code>concourse_tasks_waiting</code> is emitted to monitor these events. Note that the parameter does not apply to <code>get</code> and <code>put</code> steps which will always be scheduled on the worker with the fewest active tasks.</p><p><pre><code class="language-bash">CONCOURSE_CONTAINER_PLACEMENT_STRATEGY=limit-active-tasks</code></pre> and, optionally <pre><code class="language-bash">CONCOURSE_MAX_ACTIVE_TASKS_PER_WORKER=1</code></pre></p>
+</div></p><p>When selecting the <code>limit-active-tasks</code> placement strategy, each <code>task</code> executed on a worker will increase the number of &#34;active tasks&#34; on that worker by one. When the task completes the number is decreased by one. The <a href="concourse-web.html"><code>web</code> node</a> then places <code>get</code>, <code>put</code> and <code>task</code> containers on the worker that currently has the <em>least amount of active tasks</em>.</p><p>Additionally <code>max-active-tasks-per-worker</code> can be set to an integer of 1 or more, in which case a worker will not execute more than that amount of <strong>tasks</strong>. A value of 0 means that there is no limit on the maximum number of active tasks on the workers. If no worker can be selected because all of them already have <code>max-active-tasks-per-worker</code> active tasks, then the task will wait for a free worker, periodically polling the pool. The metric <code>concourse_tasks_waiting</code> is emitted to monitor these events. Note that the parameter does not apply to <code>get</code> and <code>put</code> steps which will always be scheduled on the worker with the fewest active tasks.</p><p><pre><code class="language-bash">CONCOURSE_CONTAINER_PLACEMENT_STRATEGY=limit-active-tasks</code></pre> and, optionally <pre><code class="language-bash">CONCOURSE_MAX_ACTIVE_TASKS_PER_WORKER=1</code></pre></p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_limit-max-containers-strategy">
+  
+  <h2 class="section-header"><a class="anchor-target" name="limit-max-containers-strategy" href="#limit-max-containers-strategy"></a>The <code>limit-max-containers</code> strategy</h2>
+  
+
+  <p><div class="warning">
+  <code>limit-max-containers</code> is an <strong>experimental</strong> feature.
+</div></p><p>The <code>limit-max-containers</code> placement strategy rejects workers that already have too many containers. It makes no effort to find the worker with the fewest number of containers present, and is therefore most useful when combined with other placement stragies by <a href="container-placement.html#chaining-placement-strategies">Chaining Placement Strategies</a>.</p><p><code>max-active-containers-per-worker</code> can be set to an integer of 1 or more, in which case a worker will not execute more than that amount of <strong>containers</strong>. If unset (or set to a value of 0), the <code>limit-max-containers</code> strategy has no effect - if this is your only placement strategy, workers will be chosen at random.</p><pre><code class="language-bash">CONCOURSE_CONTAINER_PLACEMENT_STRATEGY=limit-max-containers
+CONCOURSE_MAX_ACTIVE_CONTAINERS_PER_WORKER=200</code></pre>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_limit-max-volumes-strategy">
+  
+  <h2 class="section-header"><a class="anchor-target" name="limit-max-volumes-strategy" href="#limit-max-volumes-strategy"></a>The <code>limit-max-volumes</code> strategy</h2>
+  
+
+  <p><div class="warning">
+  <code>limit-max-volumes</code> is an <strong>experimental</strong> feature.
+</div></p><p>The <code>limit-max-volumes</code> placement strategy rejects workers that already have too many volumes. It makes no effort to find the worker with the fewest number of volumes present, and is therefore most useful when combined with other placement stragies by <a href="container-placement.html#chaining-placement-strategies">Chaining Placement Strategies</a>.</p><p><code>max-active-volumes-per-worker</code> can be set to be an integer of 1 or more, in which case a worker will not execute more than that amount of <strong>volumes</strong>. If unset (or set to a value of 0), the <code>limit-max-volumes</code> strategy has no effect - if this is your only placement strategy, workers will be chosen at random.</p><pre><code class="language-bash">CONCOURSE_CONTAINER_PLACEMENT_STRATEGY=limit-max-volumes
+CONCOURSE_MAX_ACTIVE_VOLUMES_PER_WORKER=200</code></pre>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_chaining-placement-strategies">
+  
+  <h2 class="section-header"><a class="anchor-target" name="chaining-placement-strategies" href="#chaining-placement-strategies"></a>Chaining Placement Strategies</h2>
+  
+
+  <p>Container placement strategies can be chained together to apply multiple strategies in sequence. The first strategy in the chain receives the entire set of workers, filtering the set down in some way, and passing that new set of workers to the next strategy in the chain. If the last strategy in the chain returns multiple workers, one will be chosen at random.</p><p>For instance, consider the following configuration:</p><pre><code class="language-bash">CONCOURSE_CONTAINER_PLACEMENT_STRATEGY=limit-max-containers,limit-max-volumes,volume-locality,fewest-build-containers
+CONCOURSE_MAX_ACTIVE_CONTAINERS_PER_WORKER=200
+CONCOURSE_MAX_ACTIVE_VOLUMES_PER_WORKER=100</code></pre><p>This defines a chain of 4 placement strategies, plus the implicit <code>random</code> strategy. Let&#39;s look at what each strategy accomplishes:</p><ol>
+
+  <li><p><a href="container-placement.html#limit-max-containers-strategy"><code>limit-max-containers</code> strategy</a> removes all workers that already have more than 200 containers</p></li>
+
+  <li><p><a href="container-placement.html#limit-max-volumes-strategy"><code>limit-max-volumes</code> strategy</a> removes all remaining workers that already have more than 100 volumes</p></li>
+
+  <li><p><a href="container-placement.html#volume-locality-strategy"><code>volume-locality</code> strategy</a> keeps only the remaining worker(s) that have the most inputs locally. This can keep more than one worker in the case of a tie</p></li>
+
+  <li><p><a href="container-placement.html#fewest-build-containers-strategy"><code>fewest-build-containers</code> strategy</a> will attempt to break ties by selecting the worker with fewer build containers. If all the remaining workers have the exact same number of containers, one will be selected at random.</p></li>
+
+</ol>
 
   
     

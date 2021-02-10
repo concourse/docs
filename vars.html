@@ -559,6 +559,8 @@
 
   <li><p><code>-y</code> or <code>--yaml-var</code> <code>NAME=VALUE</code> parses <code>VALUE</code> as YAML and sets it as the value for the var <code>NAME</code>.</p></li>
 
+  <li><p><code>-i</code> or <code>--instance-var</code> <code>NAME=VALUE</code> parses <code>VALUE</code> as YAML and sets it as the value for the instance var <code>NAME</code>. See <a href="instanced-pipelines.html">Grouping Pipelines</a> to learn more about instance vars.</p></li>
+
   <li><p><code>-l</code> or <code>--load-vars-from</code> <code>FILE</code> loads <code>FILE</code>, a YAML document containing mapping var names to values, and sets them all.</p></li>
 
 </ul><p>When used in combination with <code>-l</code>, the <code>-y</code> and <code>-v</code> flags take precedence. This way a vars file may be re-used, overriding individual values by hand.</p><div class="toggleable example">
@@ -599,7 +601,7 @@ run:
   source:
     uri: https://github.com/vito/booklit
     branch: ((branch))
-    private_key: ((private_key))
+    private_key: ((&#34;github.com&#34;.private_key))
 
 jobs:
 - name: unit
@@ -610,7 +612,7 @@ jobs:
     file: booklit/ci/unit.yml</code></pre><p>Let&#39;s say we have a private key in a file called <code>private_key</code>.</p><p>The <a href="setting-pipelines.html#fly-validate-pipeline"><code>fly validate-pipeline</code></a> command may be used to test how interpolation is applied, by passing the <code>--output</code> flag.</p><pre><code class="language-sh">$ fly validate-pipeline \
   -c pipeline.yml \
   -y trigger=true \
-  -v private_key=&#34;$(cat private_key)&#34; \
+  -v \&#34;github.com\&#34;.private_key=&#34;$(cat private_key)&#34; \
   -v branch=master \
   --output</code></pre><p>The above incantation should print the following:</p><pre><code class="language-yaml">jobs:
 - name: unit
@@ -640,7 +642,7 @@ resources:
   source:
     uri: https://github.com/vito/booklit
     branch: ((branch))
-    private_key: ((private_key))
+    private_key: ((&#34;github.com&#34;.private_key))
 
 jobs:
 - name: unit
@@ -648,10 +650,11 @@ jobs:
   - get: booklit
     trigger: ((trigger))
   - task: unit
-    file: booklit/ci/unit.yml</code></pre><p>Let&#39;s say I&#39;ve put the <code>private_key</code> var in a file called <code>vars.yml</code>, since it&#39;s quite large and hard to pass through flags:</p><pre><code class="language-yaml">private_key: |
-  -----BEGIN RSA PRIVATE KEY-----
-  # ... snipped ...
-  -----END RSA PRIVATE KEY-----</code></pre><p>The <a href="setting-pipelines.html#fly-validate-pipeline"><code>fly validate-pipeline</code></a> command may be used to test how interpolation is applied, by passing the <code>--output</code> flag.</p><pre><code class="language-sh">$ fly validate-pipeline \
+    file: booklit/ci/unit.yml</code></pre><p>Let&#39;s say I&#39;ve put the <code>private_key</code> var in a file called <code>vars.yml</code>, since it&#39;s quite large and hard to pass through flags:</p><pre><code class="language-yaml">github.com:
+  private_key: |
+    -----BEGIN RSA PRIVATE KEY-----
+    # ... snipped ...
+    -----END RSA PRIVATE KEY-----</code></pre><p>The <a href="setting-pipelines.html#fly-validate-pipeline"><code>fly validate-pipeline</code></a> command may be used to test how interpolation is applied, by passing the <code>--output</code> flag.</p><pre><code class="language-sh">$ fly validate-pipeline \
   -c pipeline.yml \
   -l vars.yml \
   -y trigger=true \

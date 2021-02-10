@@ -279,13 +279,11 @@ CONCOURSE_TRACING_HONEYCOMB_SERVICE_NAME=service-name-for-concourse  # NOTE: Opt
 
   <p>Below is a summary of the various operations that Concourse currently traces. They are arranged like a call tree, so that for each operation described, its sub-operations are described indented immediately below.</p><ul>
 
-  <li><p><code>scanner.Run</code> -- One of the <a href="checker.html#resource-checker-components">Resource checker components</a> responsible for determining which checks need to be run. <ul>
+  <li><p><code>scanner.Run</code> -- An execution of the <a href="checker.html">Resource Checker</a>, responsible for determining which resources need to be checked. <ul>
 
   <li><p><code>scanner.check</code> -- This operation simply represents inserting the check in the database.</p></li>
 
 </ul></p></li>
-
-  <li><p><code>checker.Run</code> -- follows from <code>scanner.check</code> above and will appear under the same trace. This is where the <a href="checker.html">Resource Checker</a> is actually executing a <a href="implementing-resource-types.html#resource-check"><code>check</code></a> script.</p></li>
 
   <li><p><code>scheduler.Run</code> -- This represents one tick of the <a href="scheduler.html">Build Scheduler</a>. <ul>
 

@@ -360,7 +360,10 @@ git push origin develop</code></pre><p>And output:</p><pre><code class="language
     <dd><p>The name of the build&#39;s job.</p></dd>
   
   <dt><code>$BUILD_PIPELINE_NAME</code></dt>
-    <dd><p>The pipeline that the build&#39;s job lives in.</p></dd>
+    <dd><p>The name of the pipeline that the build&#39;s job lives in.</p></dd>
+  
+  <dt><code>$BUILD_PIPELINE_INSTANCE_VARS</code></dt>
+    <dd><p>The instance vars of the instanced pipeline that the build&#39;s job lives in, serialized as JSON. See <a href="instanced-pipelines.html">Grouping Pipelines</a> for a definition of instanced pipelines.</p></dd>
   
   <dt><code>$BUILD_TEAM_NAME</code></dt>
     <dd><p>The team that the build belongs to.</p></dd>
@@ -368,7 +371,7 @@ git push origin develop</code></pre><p>And output:</p><pre><code class="language
   <dt><code>$ATC_EXTERNAL_URL</code></dt>
     <dd><p>The public URL for your ATC; useful for debugging.</p></dd>
   
-</dl><p>If the build is a one-off, <code>$BUILD_NAME</code>, <code>$BUILD_JOB_NAME</code>, and <code>$BUILD_PIPELINE_NAME</code> will not be set.</p><p>None of these variables are available to <a href="implementing-resource-types.html#resource-check"><code>check</code></a>.</p><p>These variables should be used solely for annotating things with metadata for traceability, i.e. for linking to the build in an alert or annotating an automated commit to facilitate its origin discovery.</p><p>They should <em>not</em> be used to emulate versioning (e.g. by using the increasing build number). They are not provided to <a href="jobs.html#task-step"><code>task</code> step</a>s to avoid this anti-pattern.</p>
+</dl><p>If the build is a one-off, <code>$BUILD_NAME</code>, <code>$BUILD_JOB_NAME</code>, <code>$BUILD_PIPELINE_NAME</code>, and <code>$BUILD_PIPELINE_INSTANCE_VARS</code> will not be set.</p><p>Additionally, <code>$BUILD_PIPELINE_INSTANCE_VARS</code> will not be set if the build&#39;s pipeline has no instance vars (i.e. is not an instanced pipeline).</p><p>None of these variables are available to <a href="implementing-resource-types.html#resource-check"><code>check</code></a>.</p><p>These variables should be used solely for annotating things with metadata for traceability, i.e. for linking to the build in an alert or annotating an automated commit to facilitate its origin discovery.</p><p>They should <em>not</em> be used to emulate versioning (e.g. by using the increasing build number). They are not provided to <a href="jobs.html#task-step"><code>task</code> step</a>s to avoid this anti-pattern.</p>
 
   
     

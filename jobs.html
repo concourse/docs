@@ -436,6 +436,11 @@
       
         <tr>
           <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.set-pipeline-step.instance_vars"><code>set_pipeline</code> step <strong><code>instance_vars</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
           <td class="title-cell"><a href="jobs.html#schema.step.set-pipeline-step.vars"><code>set_pipeline</code> step <strong><code>vars</code></strong></a></td>
         </tr>
       
@@ -1559,6 +1564,47 @@ jobs:
 </div>
   </div>
 </div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.set-pipeline-step.instance_vars" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.set-pipeline-step.instance_vars" class="toggle-title">
+    <a id="schema.step.set-pipeline-step.instance_vars"></a>
+
+    <code><a class="attribute-name" href="#schema.step.set-pipeline-step.instance_vars">instance_vars</a>: <span class="attribute-type"><a href="config-basics.html#schema.vars"><strong>vars</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A map of instance vars used to identify <a href="instanced-pipelines.html">instanced pipelines</a>. These vars will also be <a href="setting-pipelines.html#pipeline-static-vars">interpolated into the pipeline config</a>.</p><p>Note that variables set with this field will not propagate to tasks configured via <a href="jobs.html#schema.step.task-step.file"><code>task</code> step <strong><code>file</code></strong></a>. If you want those variables to be determined at the time the pipeline is set, use <a href="jobs.html#schema.step.task-step.vars"><code>task</code> step <strong><code>vars</code></strong></a> as well.</p><div class="toggleable example">
+  <input id="toggle-d4dff20a9740493946b798658ed47340070434f8" type="checkbox" class="toggle" />
+  <label for="toggle-d4dff20a9740493946b798658ed47340070434f8" class="toggle-title">Configuring instance vars and vars</label>
+  <div class="toggle-content">
+    <p>Both <code>instance_vars</code> and <code>vars</code> may be statically passed like so:</p><pre><code class="language-yaml">plan:
+- get: my-repo
+- set_pipeline: release
+  file: my-repo/ci/pipeline.yml
+  instance_vars:
+    version: 1.0.x
+  vars:
+    text: &#34;Hello World&#34;</code></pre><p>Any <a href="vars.html">Vars</a> in the pipeline config will be filled in statically using this field.</p><p>For example, if <code>my-repo/ci/pipeline.yml</code> looks like...:</p><pre><code class="language-yaml">resources:
+- name: task-image
+  type: registry-image
+  source:
+    repository: my.local.registry:8080/my/image
+    username: ((myuser))
+    password: ((mypass))
+jobs:
+- name: job
+  plan:
+  - get: task-image
+  - task: do-stuff
+    image: task-image
+    config:
+      platform: linux
+      run:
+        path: echo
+        args: [&#34;((text)) from version ((version))!&#34;]</code></pre><p>...this will resolve <code>&#34;((text)) from version ((version))&#34;</code> to <code>&#34;Hello World from version 1.0.x!&#34;</code>, while <code>((myuser))</code> and <code>((mypass))</code> will be left in the pipeline to be <a href="vars.html#dynamic-vars">fetched at runtime</a>.</p><p>Additionally, as per <a href="instanced-pipelines.html#managing-instanced-pipelines">Managing Instanced Pipelines</a>, this pipeline would be referred to in <code>fly</code> using the flag <code>--pipeline release/version:1.0.x</code></p>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
   <input id="toggle-schema.step.set-pipeline-step.vars" type="checkbox" class="toggle" />
   <label for="toggle-schema.step.set-pipeline-step.vars" class="toggle-title">
     <a id="schema.step.set-pipeline-step.vars"></a>
@@ -1567,7 +1613,7 @@ jobs:
   </label>
 
   <div class="toggle-content attribute-content">
-    <p>A map of template variables to pass to the pipeline config.</p><p>Note that variables set with this field will not propagate to tasks configured via <a href="jobs.html#schema.step.task-step.file"><code>task</code> step <strong><code>file</code></strong></a>. If you want those variables to be determined at the time the pipeline is set, use <a href="jobs.html#schema.step.task-step.vars"><code>task</code> step <strong><code>vars</code></strong></a> as well.</p><div class="toggleable example">
+    <p>A map of template variables to pass to the pipeline config. Unlike <a href="jobs.html#schema.step.set-pipeline-step.instance_vars"><code>instance_vars</code></a>, <code>vars</code> are solely used to for <a href="setting-pipelines.html#pipeline-static-vars">interpolation</a>, and do not become a part of the pipeline&#39;s identifier.</p><p>Note that variables set with this field will not propagate to tasks configured via <a href="jobs.html#schema.step.task-step.file"><code>task</code> step <strong><code>file</code></strong></a>. If you want those variables to be determined at the time the pipeline is set, use <a href="jobs.html#schema.step.task-step.vars"><code>task</code> step <strong><code>vars</code></strong></a> as well.</p><div class="toggleable example">
   <input id="toggle-e3e7adfd80ad92c6b2465b066a8300f71733c749" type="checkbox" class="toggle" />
   <label for="toggle-e3e7adfd80ad92c6b2465b066a8300f71733c749" class="toggle-title">Configuring static vars</label>
   <div class="toggle-content">
@@ -1578,11 +1624,11 @@ jobs:
   vars:
     text: &#34;Hello World!&#34;</code></pre><p>Any <a href="vars.html">Vars</a> in the pipeline config will be filled in statically using this field.</p><p>For example, if <code>my-repo/ci/pipeline.yml</code> looks like...:</p><pre><code class="language-yaml">resources:
 - name: task-image
-    type: registry-image
-    source:
-      repository: my.local.registry:8080/my/image
-      username: ((myuser))
-      password: ((mypass))
+  type: registry-image
+  source:
+    repository: my.local.registry:8080/my/image
+    username: ((myuser))
+    password: ((mypass))
 jobs:
 - name: job
   plan:
