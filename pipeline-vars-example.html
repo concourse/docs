@@ -173,30 +173,30 @@
 
   <p><pre><code class="language-yaml">---
 jobs:
-  - name: ((first))-job
-    public: true
-    plan:
-      - task: simple-task
-        config:
-          platform: linux
-          image_resource:
-            type: registry-image
-            source: { repository: busybox }
-          run:
-            path: echo
-            args: [&#34;Hello, ((hello))!&#34;]
-  - name: level-((number))-job
-    public: true
-    plan:
-      - task: simple-task
-        config:
-          platform: linux
-          image_resource:
-            type: registry-image
-            source: { repository: busybox }
-          run:
-            path: echo
-            args: [&#34;Hello, ((hello))!&#34;]
+- name: ((first))-job
+  public: true
+  plan:
+  - task: simple-task
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source: { repository: busybox }
+      run:
+        path: echo
+        args: [&#34;Hello, ((hello))!&#34;]
+- name: level-((number))-job
+  public: true
+  plan:
+  - task: simple-task
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source: { repository: busybox }
+      run:
+        path: echo
+        args: [&#34;Hello, ((hello))!&#34;]
 </code></pre></p>
 
   

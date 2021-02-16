@@ -173,27 +173,27 @@
 
   <p><pre><code class="language-yaml">---
 resources:
-  - name: every-30s
-    type: time
-    icon: clock-outline
-    source:
-      interval: 30s
+- name: every-30s
+  type: time
+  icon: clock-outline
+  source:
+    interval: 30s
 
 jobs:
-  - name: job
-    public: true
-    plan:
-      - get: every-30s
-        trigger: true
-      - task: simple-task
-        config:
-          platform: linux
-          image_resource:
-            type: registry-image
-            source: { repository: busybox }
-          run:
-            path: echo
-            args: [&#34;Hello, world!&#34;]
+- name: job
+  public: true
+  plan:
+  - get: every-30s
+    trigger: true
+  - task: simple-task
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source: { repository: busybox }
+      run:
+        path: echo
+        args: [&#34;Hello, world!&#34;]
 </code></pre></p>
 
   

@@ -173,11 +173,11 @@
 
   <p><pre><code class="language-yaml">---
 resources:
-  - name: rails-contributors-git
-    type: git
-    icon: github
-    source:
-      uri: https://github.com/rails/rails-contributors.git
+- name: rails-contributors-git
+  type: git
+  icon: github
+  source:
+    uri: https://github.com/rails/rails-contributors.git
 
 task-config: &amp;task-config
   platform: linux
@@ -209,17 +209,17 @@ task-config: &amp;task-config
         bundle exec rails test
 
 jobs:
-  - name: test
-    public: true
-    plan:
-      - get: rails-contributors-git
-        trigger: true
-      - task: run-tests
-        config:
-          image_resource:
-            type: registry-image
-            source: { repository: ruby, tag: 2.6.5 }
-          &lt;&lt; : *task-config
+- name: test
+  public: true
+  plan:
+    - get: rails-contributors-git
+      trigger: true
+    - task: run-tests
+      config:
+        image_resource:
+          type: registry-image
+          source: { repository: ruby, tag: 2.6.5 }
+        &lt;&lt; : *task-config
 </code></pre></p>
 
   

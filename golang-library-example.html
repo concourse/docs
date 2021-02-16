@@ -173,32 +173,32 @@
 
   <p><pre><code class="language-yaml">---
 resources:
-  - name: golang-mock-git
-    type: git
-    icon: github
-    source:
-      uri: https://github.com/golang/mock.git
+- name: golang-mock-git
+  type: git
+  icon: github
+  source:
+    uri: https://github.com/golang/mock.git
 
-  - name: golang-1.11.x-image
-    type: registry-image
-    icon: docker
-    source:
-      repository: golang
-      tag: 1.11-stretch
+- name: golang-1.11.x-image
+  type: registry-image
+  icon: docker
+  source:
+    repository: golang
+    tag: 1.11-stretch
 
-  - name: golang-1.12.x-image
-    type: registry-image
-    icon: docker
-    source:
-      repository: golang
-      tag: 1.12-stretch
+- name: golang-1.12.x-image
+  type: registry-image
+  icon: docker
+  source:
+    repository: golang
+    tag: 1.12-stretch
 
-  - name: golang-1.13.x-image
-    type: registry-image
-    icon: docker
-    source:
-      repository: golang
-      tag: 1.13-stretch
+- name: golang-1.13.x-image
+  type: registry-image
+  icon: docker
+  source:
+    repository: golang
+    tag: 1.13-stretch
 
 task-config: &amp;task-config
   platform: linux
@@ -227,39 +227,39 @@ task-config: &amp;task-config
         go test -v ./...
 
 jobs:
-  - name: golang-1.11
-    public: true
-    plan:
-      - get: golang-mock-git
-        trigger: true
-      - get: golang-1.11.x-image
-        trigger: true
-      - task: run-tests
-        image: golang-1.11.x-image
-        config:
-          &lt;&lt; : *task-config
-  - name: golang-1.12
-    public: true
-    plan:
-      - get: golang-mock-git
-        trigger: true
-      - get: golang-1.12.x-image
-        trigger: true
-      - task: run-tests
-        image: golang-1.12.x-image
-        config:
-          &lt;&lt; : *task-config
-  - name: golang-1.13
-    public: true
-    plan:
-      - get: golang-mock-git
-        trigger: true
-      - get: golang-1.13.x-image
-        trigger: true
-      - task: run-tests
-        image: golang-1.13.x-image
-        config:
-          &lt;&lt; : *task-config
+- name: golang-1.11
+  public: true
+  plan:
+    - get: golang-mock-git
+      trigger: true
+    - get: golang-1.11.x-image
+      trigger: true
+    - task: run-tests
+      image: golang-1.11.x-image
+      config:
+        &lt;&lt; : *task-config
+- name: golang-1.12
+  public: true
+  plan:
+    - get: golang-mock-git
+      trigger: true
+    - get: golang-1.12.x-image
+      trigger: true
+    - task: run-tests
+      image: golang-1.12.x-image
+      config:
+        &lt;&lt; : *task-config
+- name: golang-1.13
+  public: true
+  plan:
+    - get: golang-mock-git
+      trigger: true
+    - get: golang-1.13.x-image
+      trigger: true
+    - task: run-tests
+      image: golang-1.13.x-image
+      config:
+        &lt;&lt; : *task-config
 </code></pre></p>
 
   

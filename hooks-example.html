@@ -179,63 +179,63 @@ task-config: &amp;task-config
     source: { repository: busybox }
 
 jobs:
-  - name: job
-    public: true
-    plan:
-      - task: successful-task
+- name: job
+  public: true
+  plan:
+    - task: successful-task
+      config:
+        &lt;&lt; : *task-config
+        run:
+          path: sh
+          args: [&#34;-lc&#34;, &#34;exit 0&#34;]
+      on_success:
+        task: task-success
         config:
           &lt;&lt; : *task-config
           run:
-            path: sh
-            args: [&#34;-lc&#34;, &#34;exit 0&#34;]
-        on_success:
-          task: task-success
-          config:
-            &lt;&lt; : *task-config
-            run:
-              path: echo
-              args: [&#34;This task succeeded!&#34;]
-        on_abort:
-          task: task-aborted
-          config:
-            &lt;&lt; : *task-config
-            run:
-              path: echo
-              args: [&#34;This task was aborted!&#34;]
-      - task: failing-task
+            path: echo
+            args: [&#34;This task succeeded!&#34;]
+      on_abort:
+        task: task-aborted
         config:
           &lt;&lt; : *task-config
           run:
-            path: sh
-            args: [&#34;-lc&#34;, &#34;exit 1&#34;]
-        on_failure:
-          task: task-failure
-          config:
-            &lt;&lt; : *task-config
-            run:
-              path: echo
-              args: [&#34;This task failed!&#34;]
-    on_success:
-      task: job-success
+            path: echo
+            args: [&#34;This task was aborted!&#34;]
+    - task: failing-task
       config:
         &lt;&lt; : *task-config
         run:
-          path: echo
-          args: [&#34;This job succeeded!&#34;]
-    on_failure:
-      task: job-failure
-      config:
-        &lt;&lt; : *task-config
-        run:
-          path: echo
-          args: [&#34;This job failed!&#34;]
-    on_abort:
-      task: job-aborted
-      config:
-        &lt;&lt; : *task-config
-        run:
-          path: echo
-          args: [&#34;This job was aborted!&#34;]
+          path: sh
+          args: [&#34;-lc&#34;, &#34;exit 1&#34;]
+      on_failure:
+        task: task-failure
+        config:
+          &lt;&lt; : *task-config
+          run:
+            path: echo
+            args: [&#34;This task failed!&#34;]
+  on_success:
+    task: job-success
+    config:
+      &lt;&lt; : *task-config
+      run:
+        path: echo
+        args: [&#34;This job succeeded!&#34;]
+  on_failure:
+    task: job-failure
+    config:
+      &lt;&lt; : *task-config
+      run:
+        path: echo
+        args: [&#34;This job failed!&#34;]
+  on_abort:
+    task: job-aborted
+    config:
+      &lt;&lt; : *task-config
+      run:
+        path: echo
+        args: [&#34;This job was aborted!&#34;]
 </code></pre></p>
 
   

@@ -173,73 +173,73 @@
 
   <p><pre><code class="language-yaml">---
 resources:
-  - name: concourse-examples
-    type: git
-    icon: github
-    source:
-      uri: https://github.com/concourse/examples
+- name: concourse-examples
+  type: git
+  icon: github
+  source:
+    uri: https://github.com/concourse/examples
 
 jobs:
-  # update this pipeline before updating child pipelines
-  - name: set-self
-    public: true
-    plan:
-      - get: concourse-examples
-        trigger: true
-      - set_pipeline: set-pipelines
-        file: concourse-examples/pipelines/set-pipelines.yml
-  - name: set-example-pipelines
-    public: true
-    plan:
-      - get: concourse-examples
-        trigger: true
-        passed: [set-self]
-      - set_pipeline: job
-        file: concourse-examples/pipelines/hello-world.yml
-      - set_pipeline: separate-task-config
-        file: concourse-examples/pipelines/separate-task-config.yml
-      - set_pipeline: serial-job
-        file: concourse-examples/pipelines/serial-job.yml
-      - set_pipeline: pipeline-vars
-        file: concourse-examples/pipelines/pipeline-vars.yml
-        vars:
-          first: initial
-          number: &#34;9000&#34;
-          hello: HAL
-      - set_pipeline: instance-groups
-        file: concourse-examples/pipelines/pipeline-vars.yml
-        # instance_vars is currently experimental and requires the feature flag
-        # --enable-pipeline-instances
-        instance_vars:
-          first: initial
-          number: &#34;9000&#34;
-          hello: HAL
-      - set_pipeline: instance-groups
-        file: concourse-examples/pipelines/pipeline-vars.yml
-        instance_vars:
-          first: second
-          number: &#34;3000&#34;
-          hello: WALLY-E
-      - set_pipeline: task-passing-artifact
-        file: concourse-examples/pipelines/task-passing-artifact.yml
-      - set_pipeline: time-triggered
-        file: concourse-examples/pipelines/time-triggered.yml
-      - set_pipeline: git-triggered
-        file: concourse-examples/pipelines/git-triggered.yml
-      - set_pipeline: manual-trigger
-        file: concourse-examples/pipelines/manually-triggered.yml
-      - set_pipeline: hooks
-        file: concourse-examples/pipelines/job-and-task-hooks.yml
-      - set_pipeline: golang-lib
-        file: concourse-examples/pipelines/golang-lib.yml
-      - set_pipeline: rails
-        file: concourse-examples/pipelines/rails-app-testing.yml
-      - set_pipeline: nodejs
-        file: concourse-examples/pipelines/nodejs-app-testing.yml
-      - set_pipeline: php
-        file: concourse-examples/pipelines/php-larvel-app-testing.yml
-      - set_pipeline: java
-        file: concourse-examples/pipelines/java.yml
+# update this pipeline before updating child pipelines
+- name: set-self
+  public: true
+  plan:
+  - get: concourse-examples
+    trigger: true
+  - set_pipeline: set-pipelines
+    file: concourse-examples/pipelines/set-pipelines.yml
+- name: set-example-pipelines
+  public: true
+  plan:
+  - get: concourse-examples
+    trigger: true
+    passed: [set-self]
+  - set_pipeline: job
+    file: concourse-examples/pipelines/hello-world.yml
+  - set_pipeline: separate-task-config
+    file: concourse-examples/pipelines/separate-task-config.yml
+  - set_pipeline: serial-job
+    file: concourse-examples/pipelines/serial-job.yml
+  - set_pipeline: pipeline-vars
+    file: concourse-examples/pipelines/pipeline-vars.yml
+    vars:
+      first: initial
+      number: &#34;9000&#34;
+      hello: HAL
+  - set_pipeline: instance-groups
+    file: concourse-examples/pipelines/pipeline-vars.yml
+    # instance_vars is currently experimental and requires the feature flag
+    # --enable-pipeline-instances
+    instance_vars:
+      first: initial
+      number: &#34;9000&#34;
+      hello: HAL
+  - set_pipeline: instance-groups
+    file: concourse-examples/pipelines/pipeline-vars.yml
+    instance_vars:
+      first: second
+      number: &#34;3000&#34;
+      hello: WALLY-E
+  - set_pipeline: task-passing-artifact
+    file: concourse-examples/pipelines/task-passing-artifact.yml
+  - set_pipeline: time-triggered
+    file: concourse-examples/pipelines/time-triggered.yml
+  - set_pipeline: git-triggered
+    file: concourse-examples/pipelines/git-triggered.yml
+  - set_pipeline: manual-trigger
+    file: concourse-examples/pipelines/manually-triggered.yml
+  - set_pipeline: hooks
+    file: concourse-examples/pipelines/job-and-task-hooks.yml
+  - set_pipeline: golang-lib
+    file: concourse-examples/pipelines/golang-lib.yml
+  - set_pipeline: rails
+    file: concourse-examples/pipelines/rails-app-testing.yml
+  - set_pipeline: nodejs
+    file: concourse-examples/pipelines/nodejs-app-testing.yml
+  - set_pipeline: php
+    file: concourse-examples/pipelines/php-larvel-app-testing.yml
+  - set_pipeline: java
+    file: concourse-examples/pipelines/java.yml
 </code></pre></p>
 
   

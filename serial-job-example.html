@@ -173,19 +173,20 @@
 
   <p><pre><code class="language-yaml">---
 jobs:
-  - name: serial-job
-    public: true
-    serial: true
-    plan:
-      - task: simple-task
-        config:
-          platform: linux
-          image_resource:
-            type: registry-image
-            source: { repository: busybox }
-          run:
-            path: echo
-            args: [&#34;Hello, world!&#34;]
+# Try to trigger the job multiple times and see what happens
+- name: serial-job
+  public: true
+  serial: true
+  plan:
+  - task: simple-task
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source: { repository: busybox }
+      run:
+        path: echo
+        args: [&#34;Hello, world!&#34;]
 </code></pre></p>
 
   

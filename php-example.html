@@ -173,35 +173,35 @@
 
   <p><pre><code class="language-yaml">---
 resources:
-  - name: larvel-websockets-git
-    type: git
-    icon: github
-    source:
-      uri: https://github.com/beyondcode/laravel-websockets.git
+- name: larvel-websockets-git
+  type: git
+  icon: github
+  source:
+    uri: https://github.com/beyondcode/laravel-websockets.git
 
 jobs:
-  - name: test
-    public: true
-    plan:
-      - get: larvel-websockets-git
-        trigger: true
-      - task: run-tests
-        config:
-          platform: linux
-          image_resource:
-            type: registry-image
-            source: { repository: composer }
-          inputs:
-            - name: larvel-websockets-git
-          run:
-            path: /bin/sh
-            args:
-              - -c
-              - |
-                cd larvel-websockets-git
+- name: test
+  public: true
+  plan:
+  - get: larvel-websockets-git
+    trigger: true
+  - task: run-tests
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source: { repository: composer }
+      inputs:
+        - name: larvel-websockets-git
+      run:
+        path: /bin/sh
+        args:
+          - -c
+          - |
+            cd larvel-websockets-git
 
-                composer install
-                vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
+            composer install
+            vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
 </code></pre></p>
 
   

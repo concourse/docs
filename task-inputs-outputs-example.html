@@ -173,34 +173,34 @@
 
   <p><pre><code class="language-yaml">---
 jobs:
-  - name: create-and-consume
-    public: true
-    plan:
-      - task: make-a-file
-        config:
-          platform: linux
-          image_resource:
-            type: registry-image
-            source: { repository: busybox }
-          run:
-            path: sh
-            args:
-              - -exc
-              - ls -la; echo &#34;Created a file on $(date)&#34; &gt; ./files/created_file
-          outputs:
-            - name: files
-      - task: consume-the-file
-        config:
-          platform: linux
-          image_resource:
-            type: registry-image
-            source: { repository: busybox }
-          inputs:
-            - name: files
-          run:
-            path: cat
-            args:
-              - ./files/created_file
+- name: create-and-consume
+  public: true
+  plan:
+  - task: make-a-file
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source: { repository: busybox }
+      run:
+        path: sh
+        args:
+          - -exc
+          - ls -la; echo &#34;Created a file on $(date)&#34; &gt; ./files/created_file
+      outputs:
+        - name: files
+  - task: consume-the-file
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source: { repository: busybox }
+      inputs:
+        - name: files
+      run:
+        path: cat
+        args:
+          - ./files/created_file
 </code></pre></p>
 
   
