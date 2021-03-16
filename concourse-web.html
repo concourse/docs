@@ -388,7 +388,7 @@
   
     <li>
       <span class="section-number">1.1.5.4.3</span>
-      <a href="concourse-web.html#audit-logs">Enabling audit logs</a>
+      <a href="concourse-web.html#build-log-retention">Build log retention</a>
 
       
   
@@ -397,6 +397,15 @@
   
     <li>
       <span class="section-number">1.1.5.4.4</span>
+      <a href="concourse-web.html#audit-logs">Enabling audit logs</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.5.4.5</span>
       <a href="concourse-web.html#resource-defaults">Configuring defaults for resource types</a>
 
       
@@ -603,6 +612,20 @@ CONCOURSE_TLS_BIND_PORT=443
 CONCOURSE_ENABLE_LETS_ENCRYPT=true</code></pre><div class="warning">
   <p>Concourse&#39;s Let&#39;s Encrypt integration works by storing the TLS certificate and key in the database, so it is imperative that you enable <a href="encryption.html">database encryption</a> as well.</p>
 </div><p>By default, Concourse will reach out to <a href="https://acme-v02.api.letsencrypt.org/directory">Let&#39;s Encrypt&#39;s ACME CA directory</a>. An alernative URL can be configured like so:</p><pre><code class="language-bash">CONCOURSE_LETS_ENCRYPT_ACME_URL=https://acme.example.com/directory</code></pre><p>In order to negotiate the certificate, your <code>web</code> node must be reachable by the ACME server. There are intentionally <a href="https://letsencrypt.org/docs/faq/">no publicly listed IP addresses to whitelist</a>, so this typically means just making your <code>web</code> node publicly reachable.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_build-log-retention">
+  
+  <h3 class="section-header"><a class="anchor-target" name="build-log-retention" href="#build-log-retention"></a>Build log retention</h3>
+  
+
+  <p>Build logs are stored in the DB - if they are not cleanup up every once in a while, the storage usage for build logs will continue to grow as more builds run. While this is usually fine for small Concourse instances, as you scale up, you may run into storage concerns.</p><p>To clean up old build logs, you can configure Concourse to periodically scan for builds whose logs should be reaped based on a log retention policy, skipping over any paused pipelines and jobs. When a build&#39;s logs are reaped, they are no longer visible in the UI.</p><p>Concourse can be configured with a default build log retention policy for all jobs:</p><pre><code class="language-bash">CONCOURSE_DEFAULT_BUILD_LOGS_TO_RETAIN=50
+CONCOURSE_DEFAULT_DAYS_TO_RETAIN_BUILD_LOGS=14</code></pre><p>With these settings, Concource will keep the latest 50 builds for each job. If a job runs more than 50 builds in 14 days, all of those builds will be retained until 14 days after they ran.</p><p>Some jobs have differing retention requirements - you can configure <a href="jobs.html#schema.build_log_retention_policy"><strong><code>build_log_retention_policy</code></strong> schema</a> on a job-by-job basis.</p><p>You can also configure Concourse with maximum values for build log retention policies to prevent jobs from retaining their build logs for too long:</p><pre><code class="language-bash">CONCOURSE_MAX_BUILD_LOGS_TO_RETAIN=100
+CONCOURSE_MAX_DAYS_TO_RETAIN_BUILD_LOGS=30</code></pre><p>With these settings, <a href="jobs.html#schema.build_log_retention_policy.builds"><code class="schema-attribute-name"><bold>build_log_retention_policy<wbr />.builds</bold></code></a> is capped at 100, and <a href="jobs.html#schema.build_log_retention_policy.days"><code class="schema-attribute-name"><bold>build_log_retention_policy<wbr />.days</bold></code></a> is capped at 30.</p>
 
   
     

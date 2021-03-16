@@ -173,36 +173,50 @@
 
   <p><pre><code class="language-yaml">---
 resources:
-- name: nodejs.org-git
+- name: repo
   type: git
   icon: github
   source:
     uri: https://github.com/nodejs/nodejs.org.git
 
+- name: node-image
+  type: registry-image
+  source:
+    repository: node
+    tag: 13.10.1-stretch
+
 jobs:
 - name: test
   public: true
   plan:
-  - get: nodejs.org-git
+  - get: node-image
+  - get: repo
     trigger: true
-  - task: run-tests
+  - task: install
+    image: node-image
     config:
-      platform: linux
-      image_resource:
-        type: registry-image
-        source: { repository: node }
       inputs:
-        - name: nodejs.org-git
+      - name: repo
+      outputs:
+      - name: dependencies
+        path: repo/node_modules
+      platform: linux
       run:
-        path: /bin/sh
-        args:
-          - -c
-          - |
-            echo &#34;Node Version: $(node --version)&#34;
-            echo &#34;NPM Version: $(npm --version)&#34;
-            cd nodejs.org-git
-            npm install
-            npm test
+        path: npm
+        args: [&#34;install&#34;]
+        dir: repo
+  - task: test
+    image: node-image
+    config:
+      inputs:
+      - name: repo
+      - name: dependencies
+        path: repo/node_modules
+      platform: linux
+      run:
+        path: npm
+        args: [&#34;run&#34;, &#34;test&#34;]
+        dir: repo
 </code></pre></p>
 
   

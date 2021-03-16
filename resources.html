@@ -359,7 +359,9 @@
   </label>
 
   <div class="toggle-content attribute-content">
-    <p><em>Default <code>[]</code>.</em> A list of tags to determine which workers the checks will be performed on. You&#39;ll want to specify this if the source is internal to a worker&#39;s network, for example. See also <a href="jobs.html#schema.step.tags"><code class="schema-attribute-name"><bold>step<wbr />.tags</bold></code></a>.</p>
+    <p><em>Default <code>[]</code>.</em> A list of tags to determine which workers the checks will be performed on. You&#39;ll want to specify this if the source is internal to a worker&#39;s network, for example.</p><div class="warning">
+  <p>This does not apply tags to all <a href="jobs.html#get-step">get steps</a> or <a href="jobs.html#put-step">put steps</a> that use the resource. If you want these steps to use tags, you must set <a href="jobs.html#schema.step.tags"><code class="schema-attribute-name"><bold>step<wbr />.tags</bold></code></a> for each step.</p>
+</div>
   </div>
 </div><div class="toggleable schema-attribute optional">
   <input id="toggle-schema.resource.public" type="checkbox" class="toggle" />

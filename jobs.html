@@ -732,7 +732,7 @@
   </label>
 
   <div class="toggle-content attribute-content">
-    <p>Configures the retention policy for build logs. This is useful if you have a job that runs often but after some amount of time the logs aren&#39;t worth keeping around.</p><p>Builds which are not retained by the configured policy will have their logs reaped. If this configuration is omitted, logs are kept forever.</p><div class="toggleable example">
+    <p>Configures the retention policy for build logs. This is useful if you have a job that runs often but after some amount of time the logs aren&#39;t worth keeping around.</p><p>Builds which are not retained by the configured policy will have their logs reaped. If this configuration is omitted, logs are kept forever (unless <a href="concourse-web.html#build-log-retention">Build log retention</a> is configured globally).</p><div class="toggleable example">
   <input id="toggle-2bcf96eb78ea68872c3d8f5e659ec77803338d27" type="checkbox" class="toggle" />
   <label for="toggle-2bcf96eb78ea68872c3d8f5e659ec77803338d27" class="toggle-title">A complicated example</label>
   <div class="toggle-content">
