@@ -16,37 +16,43 @@
 <script data-goatcounter="https://concourse.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   </head>
   <body>
-    <div class="page-top">
-      <nav class="top-nav">
-  <a class="top-link logo-link" href="/"><img src="images/logo-white.svg" />Concourse</a>
-  
-  <a class="top-link" href="docs.html">Docs</a>
-  
-  <a class="top-link" href="examples.html">Examples</a>
-  
-  <a class="top-link active" href="project.html">Project</a>
-  
-  <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
-  <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
-  <a class="top-link" href="https://github.com/concourse/concourse/discussions">discuss</a>
+    <div class="top-banner">
+  <p class="banner-text">
+    ✨ The <a href="https://airtable.com/shrp01n9DwRSIz4vk">2021 Concourse CI Community Survey</a> is now live! ✨
+  </p>
+</div>
 
-  <div id="search"></div>
+<div class="page-top">
+  <nav class="top-nav">
+    <a class="top-link logo-link" href="/"><img src="images/logo-white.svg" />Concourse</a>
+    
+    <a class="top-link" href="docs.html">Docs</a>
+    
+    <a class="top-link" href="examples.html">Examples</a>
+    
+    <a class="top-link active" href="project.html">Project</a>
+    
+    <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
+    <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
+    <a class="top-link" href="https://github.com/concourse/concourse/discussions">discuss</a>
 
-  <script type="text/javascript">
-    var app = Elm.Main.init({
-      node: document.getElementById('search')
-    });
+    <div id="search"></div>
 
-    app.ports.emitSearchTerm.subscribe(function(term) {
-      goatcounter.count({
-        path: "search:" + term,
-        title: "user searched: " + term,
-        event: true
+    <script type="text/javascript">
+      var app = Elm.Main.init({
+        node: document.getElementById('search')
       });
-    });
-  </script>
-</nav>
-    </div>
+
+      app.ports.emitSearchTerm.subscribe(function(term) {
+        goatcounter.count({
+          path: "search:" + term,
+          title: "user searched: " + term,
+          event: true
+        });
+      });
+    </script>
+  </nav>
+</div>
 
     <div class="page-body">
       <div class="page-nav">
