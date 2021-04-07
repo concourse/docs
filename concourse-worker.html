@@ -427,7 +427,7 @@
 
 </ul></p></li>
 
-  <li><p>Windows/Darwin: no special requirements (that we know of).</p><p>Note that containerization is fairly primitive on these two platforms, so don&#39;t expect great support for multi-tenancy.</p></li>
+  <li><p>Windows/Darwin: no special requirements (that we know of).</p><blockquote class="aside"><p><strong>NOTE:</strong> Windows containers are currently not supported and Darwin does not have native containers. Steps will run inside a temporary directory on the Windows/Darwin worker. Any dependencies needed for your tasks (e.g. git, .NET, golang, ssh) should be pre-installed on the worker. Windows/Darwin workers do not come with any resource types.</p></blockquote></li>
 
 </ul>
 

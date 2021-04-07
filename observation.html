@@ -211,7 +211,7 @@
   <h2 class="section-header"><a class="anchor-target" name="dashboard" href="#dashboard"></a>The Dashboard</h2>
   
 
-  <p>The dashboard, available at the default route (<code>/</code>), provides a bird&#39;s-eye view of the Concourse cluster. All visible pipelines across all teams are listed here. A &#34;HD view&#34; is available at <code>/hd</code>.</p>
+  <p>The dashboard, available at the default route (<code>/</code>), provides a bird&#39;s-eye view of the Concourse cluster. All visible pipelines across all teams are listed here. A high-density (HD) view is available at <code>/hd</code>.</p>
 
   
     
@@ -223,7 +223,7 @@
   <h2 class="section-header"><a class="anchor-target" name="ccxml" href="#ccxml"></a><code>cc.xml</code></h2>
   
 
-  <p>The Concourse API can return the status of a team&#39;s pipelines in a format compatible with tools like <a href="http://ccmenu.org/">CCMenu</a>. This endpoint is available at the following route:</p><pre>/api/v1/teams/{team}/cc.xml</pre><p>For example: <a href="http://ci.concourse-ci.org/api/v1/teams/main/cc.xml">the <code>main</code> team <code>cc.xml</code></a>.</p>
+  <p>The Concourse API can return the status of a team&#39;s pipelines in a format compatible with tools like <a href="http://ccmenu.org/">CCMenu</a>. This endpoint is available at the following route:</p><pre>/api/v1/teams/{team}/cc.xml</pre>
 
   
     
@@ -235,7 +235,7 @@
   <h2 class="section-header"><a class="anchor-target" name="badges" href="#badges"></a>Badges</h2>
   
 
-  <p>The Concourse API supports returning SVG badges indicating the status of a job:</p><pre>/api/v1/teams/{team}/pipelines/{pipeline}/jobs/{job}/badge</pre><p>...and for an entire pipeline:</p><pre>/api/v1/teams/{team}/pipelines/{pipeline}/badge</pre><p>This can be used to annotate your READMEs with a build status badge like so:</p><pre><code class="language-md">![CI](https://wings.pivotal.io/api/v1/teams/vito/pipelines/booklit/jobs/unit/badge)]</code></pre><p>...which should render the following:</p><p><img src="https://wings.pivotal.io/api/v1/teams/vito/pipelines/booklit/jobs/unit/badge" alt="" /></p>
+  <p>The Concourse API supports returning SVG badges indicating the status of a job:</p><pre>/api/v1/teams/{team}/pipelines/{pipeline}/jobs/{job}/badge</pre><p>...and for an entire pipeline:</p><pre>/api/v1/teams/{team}/pipelines/{pipeline}/badge</pre><p>This can be used to annotate your READMEs with a build status badge like so:</p><pre><code class="language-md">![CI](https://ci.concourse-ci.org/api/v1/teams/main/pipelines/booklit/jobs/unit/badge)]</code></pre><p>...which should render the following:</p><p><img src="https://ci.concourse-ci.org/api/v1/teams/main/pipelines/booklit/jobs/unit/badge" alt="" /></p>
 
   
     
