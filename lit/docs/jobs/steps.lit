@@ -456,6 +456,26 @@ by configuring \reference{schema.step.on_failure} or
         }
       }
 
+      \optional-attribute{container_limits}{container_limits}{
+        CPU and memory limits to enforce on the task container.
+
+        Note that these values, when specified, will override any limits set by
+        passing the \code{--default-task-cpu-limit} or
+        \code{--default-task-memory-limit} flags to the \code{concourse web} command.
+
+        These values will also override any configuration set on \reference{schema.task.container_limits}.
+
+        \optional-attribute{cpu}{number}{
+          The maximum amount of CPU available to the task container, measured in
+          shares. 0 means unlimited.
+        }
+
+        \optional-attribute{memory}{number}{
+          The maximum amount of memory available to the task container, measured in
+          bytes. 0 means unlimited.
+        }
+      }
+
       \optional-attribute{params}{env-vars}{
         A map of task environment variable parameters to set, overriding those
         configured in the task's \code{config} or \code{file}.
@@ -1024,7 +1044,7 @@ by configuring \reference{schema.step.on_failure} or
     When exceeded, the step will be interrupted, with the same semantics as
     aborting the build (except the build will be \code{failed}, not
     \code{aborted}, to distinguish between human intervention and timeouts being
-    inforced).
+    enforced).
 
     \example-toggle{Giving up}{
       The following will run the \code{unit} task and cancel it if it takes
