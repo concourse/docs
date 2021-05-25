@@ -32,6 +32,8 @@
     
     <a class="top-link" href="project.html">Project</a>
     
+    <a class="top-link" href="ecosystem.html">Ecosystem</a>
+    
     <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
     <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
     <a class="top-link" href="https://github.com/concourse/concourse/discussions">discuss</a>
@@ -377,7 +379,9 @@
   <p>To configure the ordering of pipelines, run:</p><pre><code class="language-bash">$ fly -t example order-pipelines \
     --pipeline pipeline-1 \
     --pipeline pipeline-2 \
-    --pipeline pipeline-3</code></pre><p>Note that this command only ensures that the given pipelines are in the given order. If there are other pipelines that you haven&#39;t included in the command, they may appear in-between, before, or after the given set.</p>
+    --pipeline pipeline-3</code></pre><p>Note that this command only ensures that the given pipelines are in the given order. If there are other pipelines that you haven&#39;t included in the command, they may appear in-between, before, or after the given set.</p><div class="warning">
+  <p>If you want to reorder instanced pipelines within an individual instance group, you should use the <a href="instanced-pipelines.html#fly-order-instanced-pipelines"><code>fly order-instanced-pipelines</code></a> command.</p>
+</div>
 
   
     

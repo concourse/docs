@@ -32,6 +32,8 @@
     
     <a class="top-link" href="project.html">Project</a>
     
+    <a class="top-link" href="ecosystem.html">Ecosystem</a>
+    
     <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
     <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
     <a class="top-link" href="https://github.com/concourse/concourse/discussions">discuss</a>
@@ -408,6 +410,21 @@
         <tr>
           <td class="number-cell"><code>#</code></td>
           <td class="title-cell"><a href="jobs.html#schema.step.task-step.vars"><code>task</code> step <strong><code>vars</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.task-step.container_limits.cpu"><code>task</code> step <strong><code>cpu</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.task-step.container_limits.memory"><code>task</code> step <strong><code>memory</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.task-step.container_limits"><code>task</code> step <strong><code>container_limits</code></strong></a></td>
         </tr>
       
         <tr>
@@ -1412,6 +1429,39 @@ run:
 </div>
   </div>
 </div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.task-step.container_limits" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.task-step.container_limits" class="toggle-title">
+    <a id="schema.step.task-step.container_limits"></a>
+
+    <code><a class="attribute-name" href="#schema.step.task-step.container_limits">container_limits</a>: <span class="attribute-type"><a href="tasks.html#schema.container_limits"><strong>container_limits</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>CPU and memory limits to enforce on the task container.</p><p>Note that these values, when specified, will override any limits set by passing the <code>--default-task-cpu-limit</code> or <code>--default-task-memory-limit</code> flags to the <code>concourse web</code> command.</p><p>These values will also override any configuration set on <a href="tasks.html#schema.task.container_limits"><code class="schema-attribute-name"><bold>task<wbr />.container_limits</bold></code></a>.</p><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.task-step.container_limits.cpu" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.task-step.container_limits.cpu" class="toggle-title">
+    <a id="schema.step.task-step.container_limits.cpu"></a>
+
+    <code><a class="attribute-name" href="#schema.step.task-step.container_limits.cpu">cpu</a>: <span class="attribute-type"><a href="config-basics.html#schema.number"><strong>number</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The maximum amount of CPU available to the task container, measured in shares. 0 means unlimited.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.task-step.container_limits.memory" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.task-step.container_limits.memory" class="toggle-title">
+    <a id="schema.step.task-step.container_limits.memory"></a>
+
+    <code><a class="attribute-name" href="#schema.step.task-step.container_limits.memory">memory</a>: <span class="attribute-type"><a href="config-basics.html#schema.number"><strong>number</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The maximum amount of memory available to the task container, measured in bytes. 0 means unlimited.</p>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
   <input id="toggle-schema.step.task-step.params" type="checkbox" class="toggle" />
   <label for="toggle-schema.step.task-step.params" class="toggle-title">
     <a id="schema.step.task-step.params"></a>
@@ -1928,7 +1978,7 @@ jobs:
   </label>
 
   <div class="toggle-content attribute-content">
-    <p>The amount of time to limit the step&#39;s execution to, e.g. <code>30m</code> for 30 minutes.</p><p>When exceeded, the step will be interrupted, with the same semantics as aborting the build (except the build will be <code>failed</code>, not <code>aborted</code>, to distinguish between human intervention and timeouts being inforced).</p><div class="toggleable example">
+    <p>The amount of time to limit the step&#39;s execution to, e.g. <code>30m</code> for 30 minutes.</p><p>When exceeded, the step will be interrupted, with the same semantics as aborting the build (except the build will be <code>failed</code>, not <code>aborted</code>, to distinguish between human intervention and timeouts being enforced).</p><div class="toggleable example">
   <input id="toggle-aca7ed2414cb4b0bedf43fb34f07260609d43e9b" type="checkbox" class="toggle" />
   <label for="toggle-aca7ed2414cb4b0bedf43fb34f07260609d43e9b" class="toggle-title">Giving up</label>
   <div class="toggle-content">

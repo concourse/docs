@@ -32,6 +32,8 @@
     
     <a class="top-link" href="project.html">Project</a>
     
+    <a class="top-link" href="ecosystem.html">Ecosystem</a>
+    
     <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
     <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
     <a class="top-link" href="https://github.com/concourse/concourse/discussions">discuss</a>
@@ -325,6 +327,7 @@
 - CreateBuild
 - DeletePipeline
 - OrderPipelines
+- OrderPipelinesWithinGroup
 - ExposePipeline
 - HidePipeline
 - RenamePipeline
@@ -443,7 +446,7 @@
     
     <td><code>fly</code> commands affected                                      </td>
     
-    <td>UI actions affected                    </td>
+    <td>UI actions affected                             </td>
     
     <td>can be performed unauthenticated?</td>
     
@@ -457,7 +460,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>view one-off build page                </td>
+    <td>view one-off build page                         </td>
     
     <td>✓                                </td>
     
@@ -471,7 +474,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>view build page                        </td>
+    <td>view build page                                 </td>
     
     <td>✓                                </td>
     
@@ -485,7 +488,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>view build page                        </td>
+    <td>view build page                                 </td>
     
     <td>✓                                </td>
     
@@ -499,7 +502,7 @@
     
     <td><a href="builds.html#fly-watch"><code>fly watch</code></a>,<a href="tasks.html#running-tasks"><code>fly execute</code></a>                     </td>
     
-    <td>view build page                        </td>
+    <td>view build page                                 </td>
     
     <td>✓                                </td>
     
@@ -513,7 +516,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>view build page                        </td>
+    <td>view build page                                 </td>
     
     <td>✓                                </td>
     
@@ -527,7 +530,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✓                                </td>
     
@@ -541,7 +544,7 @@
     
     <td><a href="builds.html#fly-abort-build"><code>fly abort-build</code></a>                                       </td>
     
-    <td>abort button on build page             </td>
+    <td>abort button on build page                      </td>
     
     <td>✘                                </td>
     
@@ -555,7 +558,7 @@
     
     <td><a href="administration.html#fly-prune-worker"><code>fly prune-worker</code></a>                                      </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -569,7 +572,7 @@
     
     <td><a href="administration.html#fly-land-worker"><code>fly land-worker</code></a>                                       </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -583,7 +586,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -597,7 +600,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -611,7 +614,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -625,7 +628,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -639,7 +642,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -653,7 +656,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>view pipeline page                     </td>
+    <td>view pipeline page                              </td>
     
     <td>✓                                </td>
     
@@ -667,7 +670,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>view build page                        </td>
+    <td>view build page                                 </td>
     
     <td>✓                                </td>
     
@@ -681,7 +684,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✓                                </td>
     
@@ -695,7 +698,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✓                                </td>
     
@@ -709,7 +712,7 @@
     
     <td><a href="jobs.html#fly-jobs"><code>fly jobs</code></a>                                              </td>
     
-    <td>view pipeline page                     </td>
+    <td>view pipeline page                              </td>
     
     <td>✓                                </td>
     
@@ -723,7 +726,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>view job page                          </td>
+    <td>view job page                                   </td>
     
     <td>✓                                </td>
     
@@ -737,7 +740,7 @@
     
     <td><a href="builds.html#fly-builds"><code>fly builds</code></a>                                            </td>
     
-    <td>view job page                          </td>
+    <td>view job page                                   </td>
     
     <td>✓                                </td>
     
@@ -751,7 +754,7 @@
     
     <td><a href="builds.html#fly-builds"><code>fly builds</code></a>                                            </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✓                                </td>
     
@@ -765,7 +768,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>view resource page                     </td>
+    <td>view resource page                              </td>
     
     <td>✓                                </td>
     
@@ -779,7 +782,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>expand version on resource page        </td>
+    <td>expand version on resource page                 </td>
     
     <td>✓                                </td>
     
@@ -793,7 +796,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>expand version on resource page        </td>
+    <td>expand version on resource page                 </td>
     
     <td>✓                                </td>
     
@@ -807,7 +810,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✓                                </td>
     
@@ -821,7 +824,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✓                                </td>
     
@@ -835,7 +838,7 @@
     
     <td><code>fly resources</code>                                              </td>
     
-    <td>view pipeline page                     </td>
+    <td>view pipeline page                              </td>
     
     <td>✓                                </td>
     
@@ -849,7 +852,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✓                                </td>
     
@@ -863,7 +866,7 @@
     
     <td><code>fly resource-versions</code>,<a href="managing-resources.html#fly-pin-resource"><code>fly pin-resource</code></a>         </td>
     
-    <td>view resource page                     </td>
+    <td>view resource page                              </td>
     
     <td>✓                                </td>
     
@@ -877,7 +880,7 @@
     
     <td><a href="tasks.html#running-tasks"><code>fly execute</code></a>                                           </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -891,7 +894,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -905,7 +908,7 @@
     
     <td><a href="builds.html#fly-intercept"><code>fly intercept</code></a>                                         </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -919,7 +922,7 @@
     
     <td><a href="administration.html#fly-containers"><code>fly containers</code></a>                                        </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -933,7 +936,7 @@
     
     <td><a href="administration.html#fly-workers"><code>fly workers</code></a>                                           </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -947,7 +950,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -961,7 +964,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -975,7 +978,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -989,7 +992,7 @@
     
     <td><a href="managing-teams.html#fly-get-team"><code>fly get-team</code></a>                                          </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -1003,7 +1006,7 @@
     
     <td><a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a>                                          </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -1017,7 +1020,7 @@
     
     <td><a href="builds.html#fly-builds"><code>fly builds</code></a>                                            </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -1031,7 +1034,7 @@
     
     <td><a href="managing-teams.html#fly-rename-team"><code>fly rename-team</code></a>                                       </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -1045,7 +1048,7 @@
     
     <td><a href="managing-teams.html#fly-destroy-team"><code>fly destroy-team</code></a>                                      </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -1059,7 +1062,7 @@
     
     <td><a href="administration.html#fly-volumes"><code>fly volumes</code></a>                                           </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -1073,7 +1076,7 @@
     
     <td><a href="fly.html#fly-sync"><code>fly sync</code></a>                                              </td>
     
-    <td>icons on dashboard and pipeline pages  </td>
+    <td>icons on dashboard and pipeline pages           </td>
     
     <td>✓                                </td>
     
@@ -1087,7 +1090,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✓                                </td>
     
@@ -1101,7 +1104,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✓                                </td>
     
@@ -1115,7 +1118,7 @@
     
     <td><a href="managing-resources.html#fly-check-resource"><code>fly check-resource</code></a>,<a href="managing-resource-types.html#fly-check-resource-type"><code>fly check-resource-type</code></a></td>
     
-    <td>check button on resource page          </td>
+    <td>check button on resource page                   </td>
     
     <td>✘                                </td>
     
@@ -1129,7 +1132,7 @@
     
     <td><a href="managing-teams.html#fly-teams"><code>fly teams</code></a>                                             </td>
     
-    <td>view dashboard page                    </td>
+    <td>view dashboard page                             </td>
     
     <td>✓                                </td>
     
@@ -1143,7 +1146,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>view dashboard page                    </td>
+    <td>view dashboard page                             </td>
     
     <td>✓                                </td>
     
@@ -1157,7 +1160,7 @@
     
     <td><a href="managing-pipelines.html#fly-pipelines"><code>fly pipelines</code></a>                                         </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✓                                </td>
     
@@ -1171,7 +1174,7 @@
     
     <td><a href="managing-teams.html#fly-teams"><code>fly teams</code></a>                                             </td>
     
-    <td>view dashboard page                    </td>
+    <td>view dashboard page                             </td>
     
     <td>✓                                </td>
     
@@ -1185,7 +1188,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>view dashboard page                    </td>
+    <td>view dashboard page                             </td>
     
     <td>✓                                </td>
     
@@ -1199,7 +1202,7 @@
     
     <td><a href="builds.html#fly-builds"><code>fly builds</code></a>                                            </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✓                                </td>
     
@@ -1213,7 +1216,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✓                                </td>
     
@@ -1227,7 +1230,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -1241,7 +1244,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -1255,7 +1258,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✓                                </td>
     
@@ -1269,7 +1272,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -1283,7 +1286,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -1297,7 +1300,7 @@
     
     <td><a href="managing-teams.html#fly-active-users"><code>fly active-users</code></a>                                      </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -1311,7 +1314,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -1325,7 +1328,7 @@
     
     <td><a href="managing-resources.html#fly-check-resource"><code>fly check-resource</code></a>                                    </td>
     
-    <td>check button on resource page          </td>
+    <td>check button on resource page                   </td>
     
     <td>✘                                </td>
     
@@ -1339,7 +1342,7 @@
     
     <td><a href="managing-resource-types.html#fly-check-resource-type"><code>fly check-resource-type</code></a>                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -1353,7 +1356,7 @@
     
     <td><a href="jobs.html#fly-trigger-job"><code>fly trigger-job</code></a>                                       </td>
     
-    <td>trigger button on job and build pages  </td>
+    <td>trigger button on job and build pages           </td>
     
     <td>✘                                </td>
     
@@ -1367,7 +1370,7 @@
     
     <td><a href="jobs.html#fly-rerun-build"><code>fly rerun-build</code></a>                                       </td>
     
-    <td>rerun button on build page             </td>
+    <td>rerun button on build page                      </td>
     
     <td>✘                                </td>
     
@@ -1381,7 +1384,7 @@
     
     <td><a href="tasks.html#running-tasks"><code>fly execute</code></a>                                           </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -1395,7 +1398,7 @@
     
     <td><a href="managing-pipelines.html#fly-destroy-pipeline"><code>fly destroy-pipeline</code></a>                                  </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -1409,7 +1412,7 @@
     
     <td><a href="managing-resources.html#fly-disable-resource-version"><code>fly disable-resource-version</code></a>                          </td>
     
-    <td>version disable widget on resource page</td>
+    <td>version disable widget on resource page         </td>
     
     <td>✘                                </td>
     
@@ -1423,7 +1426,7 @@
     
     <td><a href="managing-resources.html#fly-enable-resource-version"><code>fly enable-resource-version</code></a>                           </td>
     
-    <td>version enable widget on resource page </td>
+    <td>version enable widget on resource page          </td>
     
     <td>✘                                </td>
     
@@ -1437,7 +1440,7 @@
     
     <td><a href="managing-resources.html#fly-pin-resource"><code>fly pin-resource</code></a>                                      </td>
     
-    <td>pin buttons on resource page           </td>
+    <td>pin buttons on resource page                    </td>
     
     <td>✘                                </td>
     
@@ -1451,7 +1454,7 @@
     
     <td><code>fly unpin-resource</code>                                         </td>
     
-    <td>pin buttons on resource page           </td>
+    <td>pin buttons on resource page                    </td>
     
     <td>✘                                </td>
     
@@ -1465,7 +1468,7 @@
     
     <td><a href="managing-resources.html#fly-pin-resource"><code>fly pin-resource</code></a>                                      </td>
     
-    <td>comment overlay on resource page       </td>
+    <td>comment overlay on resource page                </td>
     
     <td>✘                                </td>
     
@@ -1479,7 +1482,7 @@
     
     <td><a href="managing-pipelines.html#fly-get-pipeline"><code>fly get-pipeline</code></a>                                      </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -1493,7 +1496,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -1507,7 +1510,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -1521,7 +1524,7 @@
     
     <td>n/a                                                               </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -1535,7 +1538,21 @@
     
     <td><a href="managing-pipelines.html#fly-order-pipelines"><code>fly order-pipelines</code></a>                                   </td>
     
-    <td>drag and drop on dashboard             </td>
+    <td>drag and drop on dashboard                      </td>
+    
+    <td>✘                                </td>
+    
+    <td>✓           </td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td>OrderPipelinesWithinGroup    </td>
+    
+    <td><a href="instanced-pipelines.html#fly-order-instanced-pipelines"><code>fly order-instanced-pipelines</code></a>                         </td>
+    
+    <td>drag and drop within instance group on dashboard</td>
     
     <td>✘                                </td>
     
@@ -1549,7 +1566,7 @@
     
     <td><a href="jobs.html#fly-pause-job"><code>fly pause-job</code></a>                                         </td>
     
-    <td>pause button on job page               </td>
+    <td>pause button on job page                        </td>
     
     <td>✘                                </td>
     
@@ -1563,7 +1580,7 @@
     
     <td><a href="managing-pipelines.html#fly-pause-pipeline"><code>fly pause-pipeline</code></a>                                    </td>
     
-    <td>pause button on pipeline or dashboard  </td>
+    <td>pause button on pipeline or dashboard           </td>
     
     <td>✘                                </td>
     
@@ -1577,7 +1594,7 @@
     
     <td><a href="managing-pipelines.html#fly-rename-pipeline"><code>fly rename-pipeline</code></a>                                   </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -1591,7 +1608,7 @@
     
     <td><a href="jobs.html#fly-unpause-job"><code>fly unpause-job</code></a>                                       </td>
     
-    <td>play button on job page                </td>
+    <td>play button on job page                         </td>
     
     <td>✘                                </td>
     
@@ -1605,7 +1622,7 @@
     
     <td><a href="managing-pipelines.html#fly-unpause-pipeline"><code>fly unpause-pipeline</code></a>                                  </td>
     
-    <td>play button on pipeline or dashboard   </td>
+    <td>play button on pipeline or dashboard            </td>
     
     <td>✘                                </td>
     
@@ -1619,7 +1636,7 @@
     
     <td><a href="managing-pipelines.html#fly-expose-pipeline"><code>fly expose-pipeline</code></a>                                   </td>
     
-    <td>eyeball button on dashboard            </td>
+    <td>eyeball button on dashboard                     </td>
     
     <td>✘                                </td>
     
@@ -1633,7 +1650,7 @@
     
     <td><a href="managing-pipelines.html#fly-hide-pipeline"><code>fly hide-pipeline</code></a>                                     </td>
     
-    <td>slashed eyeball button on dashboard    </td>
+    <td>slashed eyeball button on dashboard             </td>
     
     <td>✘                                </td>
     
@@ -1647,7 +1664,7 @@
     
     <td><a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a>                                      </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -1661,7 +1678,7 @@
     
     <td><a href="jobs.html#fly-clear-task-cache"><code>fly clear-task-cache</code></a>                                  </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -1675,7 +1692,7 @@
     
     <td><a href="tasks.html#running-tasks"><code>fly execute</code></a>                                           </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     
@@ -1689,7 +1706,7 @@
     
     <td><a href="tasks.html#running-tasks"><code>fly execute</code></a>                                           </td>
     
-    <td>n/a                                    </td>
+    <td>n/a                                             </td>
     
     <td>✘                                </td>
     

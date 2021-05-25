@@ -32,6 +32,8 @@
     
     <a class="top-link" href="project.html">Project</a>
     
+    <a class="top-link" href="ecosystem.html">Ecosystem</a>
+    
     <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
     <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
     <a class="top-link" href="https://github.com/concourse/concourse/discussions">discuss</a>
@@ -233,11 +235,6 @@
       
       <tr>
         <td class="number-cell"><code>#</code></td>
-        <td class="title-cell"><a href="resource-types.html#schema.resource_type.unique_version_history"><code class="schema-attribute-name"><bold>resource_type<wbr />.unique_version_history</bold></code></a></td>
-      </tr>
-      
-      <tr>
-        <td class="number-cell"><code>#</code></td>
         <td class="title-cell"><a href="resource-types.html#schema.resource_type.defaults"><code class="schema-attribute-name"><bold>resource_type<wbr />.defaults</bold></code></a></td>
       </tr>
       
@@ -337,17 +334,6 @@
 
   <div class="toggle-content attribute-content">
     <p><em>Default <code>[]</code>.</em> A list of tags to determine which workers the checks will be performed on. You&#39;ll want to specify this if the source is internal to a worker&#39;s network, for example. See also <a href="jobs.html#schema.step.tags"><code class="schema-attribute-name"><bold>step<wbr />.tags</bold></code></a>.</p>
-  </div>
-</div><div class="toggleable schema-attribute optional">
-  <input id="toggle-schema.resource_type.unique_version_history" type="checkbox" class="toggle" />
-  <label for="toggle-schema.resource_type.unique_version_history" class="toggle-title">
-    <a id="schema.resource_type.unique_version_history"></a>
-
-    <code><a class="attribute-name" href="#schema.resource_type.unique_version_history">unique_version_history</a>: <span class="attribute-type"><a href="config-basics.html#schema.boolean"><strong>boolean</strong></a></span></code>
-  </label>
-
-  <div class="toggle-content attribute-content">
-    <p><em>Default <code>false</code>.</em> Only relevant when <a href="global-resources.html">Global Resources</a> is enabled. When set to <code>true</code>, resources using this resource type will have a version history that is unique to the resource, rather than sharing a global version history.</p>
   </div>
 </div><div class="toggleable schema-attribute optional">
   <input id="toggle-schema.resource_type.defaults" type="checkbox" class="toggle" />

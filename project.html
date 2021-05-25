@@ -32,6 +32,8 @@
     
     <a class="top-link active" href="project.html">Project</a>
     
+    <a class="top-link" href="ecosystem.html">Ecosystem</a>
+    
     <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
     <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
     <a class="top-link" href="https://github.com/concourse/concourse/discussions">discuss</a>
@@ -77,17 +79,27 @@
         
           <tr>
             <td class="number-cell">3.1</td>
-            <td class="title-cell"><a href="contribute.html" >Contribute</a></td>
+            <td class="title-cell"><a href="project.html#where-is-everything" >Where is everything?</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">3.2</td>
-            <td class="title-cell"><a href="trademarks.html" >Trademark Policy</a></td>
+            <td class="title-cell"><a href="project.html#why-make-concourse" >Why make Concourse?</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">3.3</td>
-            <td class="title-cell"><a href="security-contact.html" >Security Contact</a></td>
+            <td class="title-cell"><a href="project.html#how-can-i-help" >How can I help?</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">3.4</td>
+            <td class="title-cell"><a href="project.html#security-contact" >Report a security issue</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">3.5</td>
+            <td class="title-cell"><a href="project.html#thanks" >Thanks!</a></td>
           </tr>
         
         </table>
@@ -107,20 +119,96 @@
   <h1 class="section-header"><a class="anchor-target" name="project" href="#project"></a><span class="section-number">3 </span>Project</h1>
   
 
-  <p>Concourse started as a side-project by <a href="https://github.com/vito"><code>@vito</code></a> (hi!) and <a href="https://github.com/xoebus"><code>@xoebus</code></a> in 2014. Since then, Concourse has grown into a small but dedicated team of full-time engineers and part-time contributors.</p><h2>Where does the magic happen?</h2><ul>
+  <p>Concourse started as a side-project by <a href="https://github.com/vito"><code>@vito</code></a> (hi!) and <a href="https://github.com/xoebus"><code>@xoebus</code></a> in 2014. Over time Concourse has grown into a dedicated community with an <a href="https://github.com/concourse/governance">open governance model</a> and contributors from all around the world.</p>
 
-  <li><p>The <a href="https://github.com/concourse/concourse"><code>concourse/concourse</code> GitHub repo</a> is where the main code lives and where roadmap planning begins.</p></li>
+  
+    
+      <div class="section" id="section_where-is-everything">
+  
+  <h2 class="section-header"><a class="anchor-target" name="where-is-everything" href="#where-is-everything"></a>Where is everything?</h2>
+  
+
+  <ul>
+
+  <li><p>The <a href="https://github.com/concourse/concourse">Concourse repo</a> is where the main code lives, where the backlog is planned, and where bugs are reported. It is managed by the <a href="https://github.com/concourse/governance/blob/master/teams/maintainers.yml"><strong>maintainers</strong> team</a>.</p></li>
+
+  <li><p>The <a href="https://github.com/concourse/rfcs">RFCs repo</a> is where shiny new features are designed through collaborating in the open and collecting feedback. It is managed by the <a href="https://github.com/concourse/governance/blob/master/teams/core.yml"><strong>core</strong> team</a>.</p></li>
+
+  <li><p>The <a href="https://github.com/concourse/docs">Docs repo</a> is the source for the website you&#39;re reading now! It is managed by the <a href="https://github.com/concourse/governance/blob/master/teams/community.yml"><strong>community</strong> team</a>.</p></li>
+
+  <li><p>The <a href="https://github.com/concourse/governance">Governance repo</a> holds the source of truth for the project&#39;s permission structure and lays the foundation for self-governing teams. It is managed jointly by the <a href="https://github.com/concourse/governance/blob/master/teams/community.yml"><strong>community</strong> team</a> and the <a href="https://github.com/concourse/governance/blob/master/teams/infrastructure.yml"><strong>infrastructure</strong> team</a>.</p></li>
 
   <li><p><a href="https://github.com/concourse/concourse/discussions">GitHub Discussions</a> are used for support, announcements, sharing ideas, and general discussion.</p></li>
 
   <li><p>The <a href="https://github.com/concourse/concourse/wiki"><code>concourse/concourse</code> GitHub wiki</a> contains community-curated lists of tools and tutorials and serves as a knowledge base for Concourse users and operators.</p></li>
 
-  <li><p>Our <a href="https://blog.concourse-ci.org">blog</a> features tutorials and updates from the development side.</p></li>
+  <li><p>The <a href="https://blog.concourse-ci.org">Concourse blog</a> features tutorials and updates from the development side.</p></li>
 
-  <li><p>Our <a href="https://discord.gg/MeRxXKW">Discord server</a> is a great place to chat with other contributors.</p></li>
+  <li><p>The <a href="https://discord.gg/MeRxXKW">Concourse Discord server</a> is a great place to chat with other contributors.</p></li>
 
-</ul><h2>Why make Concourse?</h2><p>When working on a sizable project, having a pipeline to reliably test, deploy, and publish the product is crucial for rapid iteration.</p><p>But with every CI system we used, we found ourselves constantly dealing with the same old problems: complicated configs hidden in many pages of the web UI, not knowing who changed what &amp; when, managing dependencies and state on the workers, build pollution, annoying UX...</p><p>Our project was growing larger, and with every box we checked and for every worker we hand-tweaked, the anxiety of having to do it all over again if something went wrong grew and grew. We started writing software to manage our CI instead of writing the software for the product we wanted to build.</p><p>We built Concourse to be a CI system that lets you sleep easier at night. A CI that&#39;s simple enough to fully grok and easy to manage as your project grows; in both the complexity of the product and the size of your team. We wanted to build a CI with strong abstractions and fewer things to learn, so that it can be easier to understand and so that Concourse can age gracefully.</p><h2>How can I help?</h2><p>It&#39;s pretty hard to write a CI system that makes everyone happy! Concourse is by no means perfect, and it sometimes takes us while to understand a problem space well enough to figure out how it should work in Concourse&#39;s puritanical world.</p><p>We tend to move slowly rather than tack on feature request after feature request. We are also extremely cautious about <a href="https://github.com/concourse/concourse/wiki/Anti-Patterns">anti-patterns</a> and introducing ways for users to shoot themselves in the foot.</p><p>Concourse is getting bigger and bigger, and we really appreciate any help we can get. There are many ways to contribute to Concourse; only some of them involve writing code! You help us out by being active in GitHub issues, voting with reactions for issues that matter to you, engaging in discussions while we map out a feature request, hanging out in our <a href="https://github.com/concourse/concourse/discussions">forums</a>, writing documentation, coming up with new designs, and of course contributing code!</p><p>As a contributor, you can jump on over to <a href="contribute.html">Contribute</a> for a more complete list of resources for contributors</p>
+</ul>
 
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_why-make-concourse">
+  
+  <h2 class="section-header"><a class="anchor-target" name="why-make-concourse" href="#why-make-concourse"></a>Why make Concourse?</h2>
+  
+
+  <p>When working on a sizable project, having a pipeline to reliably test, deploy, and publish the product is crucial for rapid iteration.</p><p>But with every CI system we used, we found ourselves constantly dealing with the same old problems: complicated configs hidden in many pages of the web UI, not knowing who changed what &amp; when, managing dependencies and state on the workers, build pollution, annoying UX...</p><p>Our project was growing larger, and with every box we checked and for every worker we hand-tweaked, the anxiety of having to do it all over again if something went wrong grew and grew. We started writing software to manage our CI instead of writing the software for the product we wanted to build.</p><p>We built Concourse to be a CI system that lets you sleep easier at night. A CI that&#39;s simple enough to fully grok and easy to manage as your project grows; in both the complexity of the product and the size of your team. We wanted to build a CI with strong abstractions and fewer things to learn, so that it can be easier to understand and so that Concourse can age gracefully.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_how-can-i-help">
+  
+  <h2 class="section-header"><a class="anchor-target" name="how-can-i-help" href="#how-can-i-help"></a>How can I help?</h2>
+  
+
+  <p>Concourse is a free and Open Source software project that relies on the contributions of sponsors and volunteers from around the world.</p><p>If you&#39;re interested in helping out, head on over to GitHub and check out the <a href="https://github.com/concourse/concourse/blob/master/CONTRIBUTING.md">contributing docs</a>!</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_security-contact">
+  
+  <h2 class="section-header"><a class="anchor-target" name="security-contact" href="#security-contact"></a>Report a security issue</h2>
+  
+
+  <p>To report a security issue, please send an email to <a href="mailto:security@concourse-ci.org">security@concourse-ci.org</a>.</p><p>Security advisories will be published as <a href="https://github.com/concourse/concourse/security/advisories"><code>concourse/concourse</code> GitHub Security Advisories</a> and subsequently cross-posted to the <a href="https://groups.google.com/group/concourse-security">Concourse Security mailing list</a> which you may join to subscribe to security updates.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_thanks">
+  
+  <h2 class="section-header"><a class="anchor-target" name="thanks" href="#thanks"></a>Thanks!</h2>
+  
+
+  <p>It&#39;s been a long journey and we&#39;ve got a lot of people to thank for our continued success. We are deeply indebted to any and all who help keep this project going, but the heroic effort of the following organizations is worth giving special props.</p><dl>
+  
+  <dt><span style="font-size: 120%">Pivotal</span></dt>
+    <dd><p>Concourse wouldn&#39;t be what it is today without <a href="https://pivotal.io">Pivotal</a>. This goes beyond the sponsorship, which began in early 2015 - without the experiences we had and the practices we learned while working on <a href="https://cloudfoundry.org">Cloud Foundry</a> and <a href="https://bosh.io">BOSH</a>, we would have neither the technical experience nor the strong opinions that led to Concourse being born.</p></dd>
+  
+  <dt><span style="font-size: 120%">Stark &amp; Wayne</span></dt>
+    <dd><p>The <a href="https://concoursetutorial.com/">Concourse Tutorial</a> by <a href="https://www.starkandwayne.com/">Stark &amp; Wayne</a>  is probably the only reason a lot of people were able to learn Concourse. It&#39;s a great asset and does its job so well that we&#39;ve decided to basically just kill our tutorials and delegate to theirs. Thanks to Dr. Nic for writing and maintaining it, and everyone else that has helped out!</p></dd>
+  
+</dl>
+
+  
+    
+  
+</div>
+    
   
 </div>
 
@@ -142,10 +230,10 @@
               next:
 
               
-              <span class="section-number">3.1</span>
+              <span class="section-number">4</span>
               
 
-              <a href="contribute.html">Contribute</a>
+              <a href="ecosystem.html">Ecosystem</a>
             </div>
           
           </nav>
