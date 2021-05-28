@@ -134,16 +134,21 @@
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.15</td>
             <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
@@ -1418,6 +1423,15 @@
   
     </li>
   
+    <li>
+      <span class="section-number">1.7.2.5</span>
+      <a href="managing-resources.html#fly-clear-resource-cache"><code>fly clear-resource-cache</code></a>
+
+      
+  
+  
+    </li>
+  
   </ol>
   
   
@@ -1714,7 +1728,7 @@
   
     <li>
       <span class="section-number">1.12</span>
-      <a href="operation.html">Operation</a>
+      <a href="how-to-guides.html">How-To Guides</a>
 
       
   
@@ -1722,7 +1736,7 @@
   
     <li>
       <span class="section-number">1.12.1</span>
-      <a href="metrics.html">Metrics</a>
+      <a href="pipeline-guides.html">Pipeline Guides</a>
 
       
   
@@ -1730,7 +1744,7 @@
   
     <li>
       <span class="section-number">1.12.1.1</span>
-      <a href="metrics.html#configuring-metrics">Configuring Metrics</a>
+      <a href="common-pipeline-practices.html">Common Pipeline Practices</a>
 
       
   
@@ -1739,7 +1753,7 @@
   
     <li>
       <span class="section-number">1.12.1.2</span>
-      <a href="metrics.html#whats-emitted">What&#39;s emitted?</a>
+      <a href="exploring-task-input-and-output-scenarios.html">Exploring Task Input and Output Scenarios</a>
 
       
   
@@ -1753,7 +1767,7 @@
   
     <li>
       <span class="section-number">1.12.2</span>
-      <a href="tracing.html">Tracing</a>
+      <a href="git-guides.html">Git Guides</a>
 
       
   
@@ -1761,16 +1775,7 @@
   
     <li>
       <span class="section-number">1.12.2.1</span>
-      <a href="tracing.html#configuring-tracing">Configuring Tracing</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.2.2</span>
-      <a href="tracing.html#whats-emitted">What&#39;s emitted?</a>
+      <a href="basic-git-operations.html">Basic Git Operations</a>
 
       
   
@@ -1784,7 +1789,7 @@
   
     <li>
       <span class="section-number">1.12.3</span>
-      <a href="encryption.html">Encryption</a>
+      <a href="container-image-guides.html">Container Image Guides</a>
 
       
   
@@ -1792,302 +1797,7 @@
   
     <li>
       <span class="section-number">1.12.3.1</span>
-      <a href="encryption.html#whats-encrypted">What&#39;s encrypted?</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.3.2</span>
-      <a href="encryption.html#enabling-encryption">Enabling Encryption</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.3.3</span>
-      <a href="encryption.html#rotating-the-encryption-key">Rotating the Encryption Key</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.3.4</span>
-      <a href="encryption.html#disabling-encryption">Disabling Encryption</a>
-
-      
-  
-  
-    </li>
-  
-  </ol>
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.4</span>
-      <a href="creds.html">Credential Management</a>
-
-      
-  
-  <ol class="toc">
-  
-    <li>
-      <span class="section-number">1.12.4.1</span>
-      <a href="vault-credential-manager.html">The Vault credential manager</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.4.2</span>
-      <a href="credhub-credential-manager.html">The CredHub credential manager</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.4.3</span>
-      <a href="aws-ssm-credential-manager.html">The AWS SSM credential manager</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.4.4</span>
-      <a href="aws-asm-credential-manager.html">The AWS Secrets Manager credential manager</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.4.5</span>
-      <a href="kubernetes-credential-manager.html">Kubernetes Credential Manager</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.4.6</span>
-      <a href="conjur-credential-manager.html">The Conjur credential manager</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.4.7</span>
-      <a href="creds-caching.html">Caching credentials</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.4.8</span>
-      <a href="creds-redacting.html">Redacting credentials</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.4.9</span>
-      <a href="creds-retry-logic.html">Retrying failed fetches</a>
-
-      
-  
-  
-    </li>
-  
-  </ol>
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.5</span>
-      <a href="container-placement.html">Container Placement</a>
-
-      
-  
-  <ol class="toc">
-  
-    <li>
-      <span class="section-number">1.12.5.1</span>
-      <a href="container-placement.html#volume-locality-strategy">The <code>volume-locality</code> strategy</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.5.2</span>
-      <a href="container-placement.html#fewest-build-containers-strategy">The <code>fewest-build-containers</code> strategy</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.5.3</span>
-      <a href="container-placement.html#random-strategy">The <code>random</code> strategy</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.5.4</span>
-      <a href="container-placement.html#limit-active-tasks-strategy">The <code>limit-active-tasks</code> strategy</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.5.5</span>
-      <a href="container-placement.html#limit-active-containers-strategy">The <code>limit-active-containers</code> strategy</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.5.6</span>
-      <a href="container-placement.html#limit-active-volumes-strategy">The <code>limit-active-volumes</code> strategy</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.5.7</span>
-      <a href="container-placement.html#chaining-placement-strategies">Chaining Placement Strategies</a>
-
-      
-  
-  
-    </li>
-  
-  </ol>
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.6</span>
-      <a href="global-resources.html">Global Resources (experimental)</a>
-
-      
-  
-  <ol class="toc">
-  
-    <li>
-      <span class="section-number">1.12.6.1</span>
-      <a href="global-resources.html#benefits-of-global-resources">Benefits of Global Resources</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.6.2</span>
-      <a href="global-resources.html#risks-and-side-effects">Risks and Side Effects</a>
-
-      
-  
-  
-    </li>
-  
-  </ol>
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.7</span>
-      <a href="administration.html">Administration</a>
-
-      
-  
-  <ol class="toc">
-  
-    <li>
-      <span class="section-number">1.12.7.1</span>
-      <a href="administration.html#fly-workers"><code>fly workers</code></a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.7.2</span>
-      <a href="administration.html#fly-prune-worker"><code>fly prune-worker</code></a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.7.3</span>
-      <a href="administration.html#fly-land-worker"><code>fly land-worker</code></a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.7.4</span>
-      <a href="administration.html#fly-containers"><code>fly containers</code></a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.7.5</span>
-      <a href="administration.html#fly-volumes"><code>fly volumes</code></a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.12.7.6</span>
-      <a href="administration.html#fly-curl"><code>fly curl</code></a>
+      <a href="building-and-pushing-an-image.html">Building and Pushing an Image</a>
 
       
   
@@ -2106,7 +1816,7 @@
   
     <li>
       <span class="section-number">1.13</span>
-      <a href="observation.html">Observation</a>
+      <a href="operation.html">Operation</a>
 
       
   
@@ -2114,6 +1824,398 @@
   
     <li>
       <span class="section-number">1.13.1</span>
+      <a href="metrics.html">Metrics</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.13.1.1</span>
+      <a href="metrics.html#configuring-metrics">Configuring Metrics</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.1.2</span>
+      <a href="metrics.html#whats-emitted">What&#39;s emitted?</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.2</span>
+      <a href="tracing.html">Tracing</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.13.2.1</span>
+      <a href="tracing.html#configuring-tracing">Configuring Tracing</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.2.2</span>
+      <a href="tracing.html#whats-emitted">What&#39;s emitted?</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.3</span>
+      <a href="encryption.html">Encryption</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.13.3.1</span>
+      <a href="encryption.html#whats-encrypted">What&#39;s encrypted?</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.3.2</span>
+      <a href="encryption.html#enabling-encryption">Enabling Encryption</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.3.3</span>
+      <a href="encryption.html#rotating-the-encryption-key">Rotating the Encryption Key</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.3.4</span>
+      <a href="encryption.html#disabling-encryption">Disabling Encryption</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.4</span>
+      <a href="creds.html">Credential Management</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.13.4.1</span>
+      <a href="vault-credential-manager.html">The Vault credential manager</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.4.2</span>
+      <a href="credhub-credential-manager.html">The CredHub credential manager</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.4.3</span>
+      <a href="aws-ssm-credential-manager.html">The AWS SSM credential manager</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.4.4</span>
+      <a href="aws-asm-credential-manager.html">The AWS Secrets Manager credential manager</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.4.5</span>
+      <a href="kubernetes-credential-manager.html">Kubernetes Credential Manager</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.4.6</span>
+      <a href="conjur-credential-manager.html">The Conjur credential manager</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.4.7</span>
+      <a href="creds-caching.html">Caching credentials</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.4.8</span>
+      <a href="creds-redacting.html">Redacting credentials</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.4.9</span>
+      <a href="creds-retry-logic.html">Retrying failed fetches</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.5</span>
+      <a href="container-placement.html">Container Placement</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.13.5.1</span>
+      <a href="container-placement.html#volume-locality-strategy">The <code>volume-locality</code> strategy</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.5.2</span>
+      <a href="container-placement.html#fewest-build-containers-strategy">The <code>fewest-build-containers</code> strategy</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.5.3</span>
+      <a href="container-placement.html#random-strategy">The <code>random</code> strategy</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.5.4</span>
+      <a href="container-placement.html#limit-active-tasks-strategy">The <code>limit-active-tasks</code> strategy</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.5.5</span>
+      <a href="container-placement.html#limit-active-containers-strategy">The <code>limit-active-containers</code> strategy</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.5.6</span>
+      <a href="container-placement.html#limit-active-volumes-strategy">The <code>limit-active-volumes</code> strategy</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.5.7</span>
+      <a href="container-placement.html#chaining-placement-strategies">Chaining Placement Strategies</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.6</span>
+      <a href="global-resources.html">Global Resources (experimental)</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.13.6.1</span>
+      <a href="global-resources.html#benefits-of-global-resources">Benefits of Global Resources</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.6.2</span>
+      <a href="global-resources.html#risks-and-side-effects">Risks and Side Effects</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.7</span>
+      <a href="administration.html">Administration</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.13.7.1</span>
+      <a href="administration.html#fly-workers"><code>fly workers</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.7.2</span>
+      <a href="administration.html#fly-prune-worker"><code>fly prune-worker</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.7.3</span>
+      <a href="administration.html#fly-land-worker"><code>fly land-worker</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.7.4</span>
+      <a href="administration.html#fly-containers"><code>fly containers</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.7.5</span>
+      <a href="administration.html#fly-volumes"><code>fly volumes</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.13.7.6</span>
+      <a href="administration.html#fly-curl"><code>fly curl</code></a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.14</span>
+      <a href="observation.html">Observation</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.14.1</span>
       <a href="observation.html#dashboard">The Dashboard</a>
 
       
@@ -2122,7 +2224,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.13.2</span>
+      <span class="section-number">1.14.2</span>
       <a href="observation.html#ccxml"><code>cc.xml</code></a>
 
       
@@ -2131,7 +2233,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.13.3</span>
+      <span class="section-number">1.14.3</span>
       <a href="observation.html#badges">Badges</a>
 
       
@@ -2140,7 +2242,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.13.4</span>
+      <span class="section-number">1.14.4</span>
       <a href="observation.html#pipeline-visibility">Pipeline Visibility</a>
 
       
@@ -2154,7 +2256,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.14</span>
+      <span class="section-number">1.15</span>
       <a href="internals.html">Internals</a>
 
       
@@ -2162,7 +2264,7 @@
   <ol class="toc">
   
     <li>
-      <span class="section-number">1.14.1</span>
+      <span class="section-number">1.15.1</span>
       <a href="internals.html#basic-architecture">Basic architecture</a>
 
       
@@ -2171,7 +2273,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.14.2</span>
+      <span class="section-number">1.15.2</span>
       <a href="internals.html#component-atc">ATC: web UI &amp; build scheduler</a>
 
       
@@ -2179,7 +2281,7 @@
   <ol class="toc">
   
     <li>
-      <span class="section-number">1.14.2.1</span>
+      <span class="section-number">1.15.2.1</span>
       <a href="checker.html">Resource Checker</a>
 
       
@@ -2188,7 +2290,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.14.2.2</span>
+      <span class="section-number">1.15.2.2</span>
       <a href="scheduler.html">Build Scheduler</a>
 
       
@@ -2197,7 +2299,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.14.2.3</span>
+      <span class="section-number">1.15.2.3</span>
       <a href="build-tracker.html">Build Tracker</a>
 
       
@@ -2206,7 +2308,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.14.2.4</span>
+      <span class="section-number">1.15.2.4</span>
       <a href="garbage-collector.html">Garbage Collector</a>
 
       
@@ -2220,7 +2322,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.14.3</span>
+      <span class="section-number">1.15.3</span>
       <a href="internals.html#component-tsa">TSA: worker registration &amp; forwarding</a>
 
       
@@ -2229,7 +2331,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.14.4</span>
+      <span class="section-number">1.15.4</span>
       <a href="internals.html#architecture-worker">Workers: container runtime &amp; cache management</a>
 
       
@@ -2237,7 +2339,7 @@
   <ol class="toc">
   
     <li>
-      <span class="section-number">1.14.4.1</span>
+      <span class="section-number">1.15.4.1</span>
       <a href="internals.html#worker-lifecycle">The worker lifecycle</a>
 
       

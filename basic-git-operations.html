@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
-<title>The concourse CLI - Concourse CI</title>
+<title>Basic Git Operations - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
@@ -70,6 +70,8 @@
   
   
   
+  
+  
 
   
   <div class="context">
@@ -83,7 +85,7 @@
         
           <tr>
             <td class="number-cell">1.1</td>
-            <td class="title-cell"><a href="install.html"  class="active">Install</a></td>
+            <td class="title-cell"><a href="install.html" >Install</a></td>
           </tr>
         
           <tr>
@@ -138,7 +140,7 @@
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
+            <td class="title-cell"><a href="how-to-guides.html"  class="active">How-To Guides</a></td>
           </tr>
         
           <tr>
@@ -168,45 +170,48 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.1</span><a href="install.html"  class="active">Install</a>
+        <span class="section-number">1.12</span><a href="how-to-guides.html"  class="active">How-To Guides</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.1.1</td>
-            <td class="title-cell"><a href="quick-start.html" >Quick Start</a></td>
+            <td class="number-cell">1.12.1</td>
+            <td class="title-cell"><a href="pipeline-guides.html" >Pipeline Guides</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.1.2</td>
-            <td class="title-cell"><a href="postgresql-node.html" >Running a PostgreSQL node</a></td>
+            <td class="number-cell">1.12.2</td>
+            <td class="title-cell"><a href="git-guides.html"  class="active">Git Guides</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.1.3</td>
-            <td class="title-cell"><a href="concourse-cli.html"  class="self">The <code>concourse</code> CLI</a></td>
+            <td class="number-cell">1.12.3</td>
+            <td class="title-cell"><a href="container-image-guides.html" >Container Image Guides</a></td>
           </tr>
         
-          <tr>
-            <td class="number-cell">1.1.4</td>
-            <td class="title-cell"><a href="concourse-generate-key.html" >Generating Keys</a></td>
-          </tr>
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.12.2</span><a href="git-guides.html"  class="active">Git Guides</a>
+      </div>
+
+      <div class="children">
+        <table>
         
           <tr>
-            <td class="number-cell">1.1.5</td>
-            <td class="title-cell"><a href="concourse-web.html" >Running a <code>web</code> node</a></td>
-          </tr>
-        
-          <tr>
-            <td class="number-cell">1.1.6</td>
-            <td class="title-cell"><a href="concourse-worker.html" >Running a <code>worker</code> node</a></td>
-          </tr>
-        
-          <tr>
-            <td class="number-cell">1.1.7</td>
-            <td class="title-cell"><a href="upgrading-concourse.html" >Upgrading Concourse</a></td>
+            <td class="number-cell">1.12.2.1</td>
+            <td class="title-cell"><a href="basic-git-operations.html"  class="self">Basic Git Operations</a></td>
           </tr>
         
         </table>
@@ -225,17 +230,135 @@
 
       <div class="body-content">
         <div class="page-content">
-          <div class="section" id="section_concourse-cli">
+          <div class="section" id="section_basic-git-operations">
   
-  <h1 class="section-header"><a class="anchor-target" name="concourse-cli" href="#concourse-cli"></a><span class="section-number">1.1.3 </span>The <code>concourse</code> CLI</h1>
+  <h1 class="section-header"><a class="anchor-target" name="basic-git-operations" href="#basic-git-operations"></a><span class="section-number">1.12.2.1 </span>Basic Git Operations</h1>
   
 
-  <p>The <code>concourse</code> CLI can be downloaded from the <a href="https://github.com/concourse/concourse/releases/latest">latest GitHub release</a> - make sure to grab the appropriate archive for your platform. Each <code>concourse-*</code> archive contains the following files:</p><pre><code class="language-sh">concourse/bin/concourse
-concourse/bin/gdn            # on Linux
-concourse/fly-assets/...
-concourse/resource-types/... # on Linux</code></pre><p>When extracted, the <code>concourse</code> binary will auto-discover its sibling assets based on its file location, so you may extract it anywhere. On Linux a typical install location is <code>/usr/local/concourse</code>:</p><pre><code class="language-sh">tar -zxf concourse-*.tgz -C /usr/local</code></pre><p>From there, you can either add <code>/usr/local/concourse/bin</code> to your <code>$PATH</code>, or just execute <code>/usr/local/concourse/bin/concourse</code> directly.</p><h2>Configuring <code>concourse</code></h2><p>All Concourse <code>web</code> node and <code>worker</code> node configuration is defined statically via flags. For a full list of flags, you can pass <code>--help</code> to any command.</p><p>Each flag can also be set via an environment variable. The env var for each flag is based on the flag name, preceded with <code>CONCOURSE_</code>. These are also shown in <code>--help</code>.</p><p>Various sections in documentation may refer to configuration via env vars rather than flags, but they are both equivalent and interchangeable. Env vars are just easier to reference in isolation and are more useful to copy-paste.</p>
+  <p>All of these examples use the <a href="https://github.com/concourse/git-resource">concourse/git-resource</a> image. That image is probably the most popular git resource for Concourse since it is shipped in the <a href="https://hub.docker.com/r/concourse/concourse">concourse/concourse</a> image and in the tarball on the <a href="https://github.com/concourse/concourse/releases">Github release page</a>. It is not the only resource available for working with git-related resources. If you don&#39;t see your use-case on this page then there is probably another resource that you can use. For example, Pull Request workflows can be accomplished with the <a href="https://github.com/telia-oss/github-pr-resource">teliaoss/github-pr-resource</a>.</p><p>Check out the <a href="https://github.com/concourse/git-resource">docs</a> for the git resource for all configuration options.</p>
 
   
+    
+      <div class="section" id="section_fetching-a-repository">
+  
+  <h2 class="section-header"><a class="anchor-target" name="fetching-a-repository" href="#fetching-a-repository"></a>Fetching a Repository</h2>
+  
+
+  <p>Here is how you fetch the contents of a git repository and use it in a task.</p><pre><code class="language-yaml">resources:
+- name: concourse-examples
+  type: git
+  icon: github
+  source:
+    uri: https://github.com/concourse/examples
+
+jobs:
+- name: read-the-readme
+  plan:
+  - get: concourse-examples
+  - task: cat-readme
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          repository: busybox
+      inputs: # pass concourse-examples into this task step
+      - name: concourse-examples
+      run:
+        path: cat
+        args: [&#34;concourse-examples/README.md&#34;]</code></pre>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_creating-commits-and-tags">
+  
+  <h2 class="section-header"><a class="anchor-target" name="creating-commits-and-tags" href="#creating-commits-and-tags"></a>Creating Commits and Tags</h2>
+  
+
+  <p>Here&#39;s a simple way to create a commit using a bash script.</p><pre><code class="language-yaml">resources:
+- name: repo-main
+  type: git
+  icon: github
+  source:
+    uri: https://github.com/user/my-repo
+    branch: main
+
+jobs:
+- name: create-a-commit
+  plan:
+  - get: repo-main
+  - task: commit-and-tag
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          repository: gitea/gitea # use any image that has the git cli
+      inputs:
+      - name: repo-main
+      outputs:
+      # to pass the commit to the following steps specify
+      # the &#34;repo-main&#34; as an output as well
+      - name: repo-main
+      run:
+        path: sh
+        args:
+        - -cx
+        # this is just a bash script
+        - |
+          cd repo-main
+          # edit a file / make a change
+          date &#43;%Y-%m-%d &gt; todays-date
+          git add ./todays-date
+          git commit -m &#34;Add todays date&#34;
+          git tag v0.1.6
+  # push commit and tag
+  - put: repo-main
+    params:
+      # specify the &#34;repo-main&#34; artifact as the location
+      repository: repo-main</code></pre>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_merging-branches">
+  
+  <h2 class="section-header"><a class="anchor-target" name="merging-branches" href="#merging-branches"></a>Merging Branches</h2>
+  
+
+  <p>Here is how you can merge two branches. Common if you are using <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">gitflow</a> and need to merge a <code>dev</code> branch into <code>main</code> every so often.</p><pre><code class="language-yaml">resources:
+- name: repo-main
+  type: git
+  icon: github
+  source:
+    uri: https://github.com/user/my-repo
+    branch: main
+
+- name: repo-dev
+  type: git
+  icon: github
+  source:
+    uri: https://github.com/user/my-repo
+    branch: dev
+
+jobs:
+- name: merge-dev-into-main
+  plan:
+  - get: repo-dev
+  - put: repo-main
+    params:
+      repository: repo-dev
+      merge: true</code></pre>
+
+  
+    
+  
+</div>
     
   
 </div>
@@ -246,10 +369,10 @@ concourse/resource-types/... # on Linux</code></pre><p>When extracted, the <code
               prev:
 
               
-              <span class="section-number">1.1.2</span>
+              <span class="section-number">1.12.2</span>
               
 
-              <a href="postgresql-node.html">Running a PostgreSQL node</a>
+              <a href="git-guides.html">Git Guides</a>
             </div>
           
 
@@ -258,10 +381,10 @@ concourse/resource-types/... # on Linux</code></pre><p>When extracted, the <code
               next:
 
               
-              <span class="section-number">1.1.4</span>
+              <span class="section-number">1.12.3</span>
               
 
-              <a href="concourse-generate-key.html">Generating Keys</a>
+              <a href="container-image-guides.html">Container Image Guides</a>
             </div>
           
           </nav>

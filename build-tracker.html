@@ -140,16 +140,21 @@
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.15</td>
             <td class="title-cell"><a href="internals.html"  class="active">Internals</a></td>
           </tr>
         
@@ -165,29 +170,29 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.14</span><a href="internals.html"  class="active">Internals</a>
+        <span class="section-number">1.15</span><a href="internals.html"  class="active">Internals</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.14.1</td>
+            <td class="number-cell">1.15.1</td>
             <td class="title-cell"><a href="internals.html#basic-architecture" >Basic architecture</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.2</td>
+            <td class="number-cell">1.15.2</td>
             <td class="title-cell"><a href="internals.html#component-atc"  class="active">ATC: web UI &amp; build scheduler</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.3</td>
+            <td class="number-cell">1.15.3</td>
             <td class="title-cell"><a href="internals.html#component-tsa" >TSA: worker registration &amp; forwarding</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.4</td>
+            <td class="number-cell">1.15.4</td>
             <td class="title-cell"><a href="internals.html#architecture-worker" >Workers: container runtime &amp; cache management</a></td>
           </tr>
         
@@ -210,22 +215,22 @@
         <table>
         
           <tr>
-            <td class="number-cell">1.14.2.1</td>
+            <td class="number-cell">1.15.2.1</td>
             <td class="title-cell"><a href="checker.html" >Resource Checker</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.2.2</td>
+            <td class="number-cell">1.15.2.2</td>
             <td class="title-cell"><a href="scheduler.html" >Build Scheduler</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.2.3</td>
+            <td class="number-cell">1.15.2.3</td>
             <td class="title-cell"><a href="build-tracker.html"  class="self">Build Tracker</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.2.4</td>
+            <td class="number-cell">1.15.2.4</td>
             <td class="title-cell"><a href="garbage-collector.html" >Garbage Collector</a></td>
           </tr>
         
@@ -247,7 +252,7 @@
         <div class="page-content">
           <div class="section" id="section_build-tracker">
   
-  <h1 class="section-header"><a class="anchor-target" name="build-tracker" href="#build-tracker"></a><span class="section-number">1.14.2.3 </span>Build Tracker</h1>
+  <h1 class="section-header"><a class="anchor-target" name="build-tracker" href="#build-tracker"></a><span class="section-number">1.15.2.3 </span>Build Tracker</h1>
   
 
   <p>The build tracker is the component that runs the execution of a build. It picks up any started builds, which can be orphaned builds (builds that an ATC started but did not finish) or builds that have just been scheduled. There is one build tracker per ATC, which runs on an interval that is defaulted to 10 seconds.</p>
@@ -263,7 +268,7 @@
               prev:
 
               
-              <span class="section-number">1.14.2.2</span>
+              <span class="section-number">1.15.2.2</span>
               
 
               <a href="scheduler.html">Build Scheduler</a>
@@ -275,7 +280,7 @@
               next:
 
               
-              <span class="section-number">1.14.2.4</span>
+              <span class="section-number">1.15.2.4</span>
               
 
               <a href="garbage-collector.html">Garbage Collector</a>

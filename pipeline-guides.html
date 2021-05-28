@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
-<title>The concourse CLI - Concourse CI</title>
+<title>Pipeline Guides - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
@@ -83,7 +83,7 @@
         
           <tr>
             <td class="number-cell">1.1</td>
-            <td class="title-cell"><a href="install.html"  class="active">Install</a></td>
+            <td class="title-cell"><a href="install.html" >Install</a></td>
           </tr>
         
           <tr>
@@ -138,7 +138,7 @@
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
+            <td class="title-cell"><a href="how-to-guides.html"  class="active">How-To Guides</a></td>
           </tr>
         
           <tr>
@@ -168,45 +168,25 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.1</span><a href="install.html"  class="active">Install</a>
+        <span class="section-number">1.12</span><a href="how-to-guides.html"  class="active">How-To Guides</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.1.1</td>
-            <td class="title-cell"><a href="quick-start.html" >Quick Start</a></td>
+            <td class="number-cell">1.12.1</td>
+            <td class="title-cell"><a href="pipeline-guides.html"  class="self">Pipeline Guides</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.1.2</td>
-            <td class="title-cell"><a href="postgresql-node.html" >Running a PostgreSQL node</a></td>
+            <td class="number-cell">1.12.2</td>
+            <td class="title-cell"><a href="git-guides.html" >Git Guides</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.1.3</td>
-            <td class="title-cell"><a href="concourse-cli.html"  class="self">The <code>concourse</code> CLI</a></td>
-          </tr>
-        
-          <tr>
-            <td class="number-cell">1.1.4</td>
-            <td class="title-cell"><a href="concourse-generate-key.html" >Generating Keys</a></td>
-          </tr>
-        
-          <tr>
-            <td class="number-cell">1.1.5</td>
-            <td class="title-cell"><a href="concourse-web.html" >Running a <code>web</code> node</a></td>
-          </tr>
-        
-          <tr>
-            <td class="number-cell">1.1.6</td>
-            <td class="title-cell"><a href="concourse-worker.html" >Running a <code>worker</code> node</a></td>
-          </tr>
-        
-          <tr>
-            <td class="number-cell">1.1.7</td>
-            <td class="title-cell"><a href="upgrading-concourse.html" >Upgrading Concourse</a></td>
+            <td class="number-cell">1.12.3</td>
+            <td class="title-cell"><a href="container-image-guides.html" >Container Image Guides</a></td>
           </tr>
         
         </table>
@@ -218,6 +198,30 @@
   
 
   
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.12.1</span><a href="pipeline-guides.html"  class="self">Pipeline Guides</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.12.1.1</td>
+            <td class="title-cell"><a href="common-pipeline-practices.html" >Common Pipeline Practices</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12.1.2</td>
+            <td class="title-cell"><a href="exploring-task-input-and-output-scenarios.html" >Exploring Task Input and Output Scenarios</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
 
 
 
@@ -225,18 +229,41 @@
 
       <div class="body-content">
         <div class="page-content">
-          <div class="section" id="section_concourse-cli">
+          <div class="section" id="section_pipeline-guides">
   
-  <h1 class="section-header"><a class="anchor-target" name="concourse-cli" href="#concourse-cli"></a><span class="section-number">1.1.3 </span>The <code>concourse</code> CLI</h1>
+  <h1 class="section-header"><a class="anchor-target" name="pipeline-guides" href="#pipeline-guides"></a><span class="section-number">1.12.1 </span>Pipeline Guides</h1>
   
 
-  <p>The <code>concourse</code> CLI can be downloaded from the <a href="https://github.com/concourse/concourse/releases/latest">latest GitHub release</a> - make sure to grab the appropriate archive for your platform. Each <code>concourse-*</code> archive contains the following files:</p><pre><code class="language-sh">concourse/bin/concourse
-concourse/bin/gdn            # on Linux
-concourse/fly-assets/...
-concourse/resource-types/... # on Linux</code></pre><p>When extracted, the <code>concourse</code> binary will auto-discover its sibling assets based on its file location, so you may extract it anywhere. On Linux a typical install location is <code>/usr/local/concourse</code>:</p><pre><code class="language-sh">tar -zxf concourse-*.tgz -C /usr/local</code></pre><p>From there, you can either add <code>/usr/local/concourse/bin</code> to your <code>$PATH</code>, or just execute <code>/usr/local/concourse/bin/concourse</code> directly.</p><h2>Configuring <code>concourse</code></h2><p>All Concourse <code>web</code> node and <code>worker</code> node configuration is defined statically via flags. For a full list of flags, you can pass <code>--help</code> to any command.</p><p>Each flag can also be set via an environment variable. The env var for each flag is based on the flag name, preceded with <code>CONCOURSE_</code>. These are also shown in <code>--help</code>.</p><p>Various sections in documentation may refer to configuration via env vars rather than flags, but they are both equivalent and interchangeable. Env vars are just easier to reference in isolation and are more useful to copy-paste.</p>
+  <div class="table-of-contents">
+  <span class="toc-header">Table of contents:</span>
 
   
-    
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.12.1.1</span>
+      <a href="common-pipeline-practices.html">Common Pipeline Practices</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.12.1.2</span>
+      <a href="exploring-task-input-and-output-scenarios.html">Exploring Task Input and Output Scenarios</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+</div>
+
   
 </div>
 
@@ -246,10 +273,10 @@ concourse/resource-types/... # on Linux</code></pre><p>When extracted, the <code
               prev:
 
               
-              <span class="section-number">1.1.2</span>
+              <span class="section-number">1.12</span>
               
 
-              <a href="postgresql-node.html">Running a PostgreSQL node</a>
+              <a href="how-to-guides.html">How-To Guides</a>
             </div>
           
 
@@ -258,10 +285,10 @@ concourse/resource-types/... # on Linux</code></pre><p>When extracted, the <code
               next:
 
               
-              <span class="section-number">1.1.4</span>
+              <span class="section-number">1.12.1.1</span>
               
 
-              <a href="concourse-generate-key.html">Generating Keys</a>
+              <a href="common-pipeline-practices.html">Common Pipeline Practices</a>
             </div>
           
           </nav>

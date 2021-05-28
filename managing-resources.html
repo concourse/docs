@@ -138,16 +138,21 @@
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.15</td>
             <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
@@ -215,6 +220,11 @@
           <tr>
             <td class="number-cell">1.7.2.4</td>
             <td class="title-cell"><a href="managing-resources.html#fly-disable-resource-version" ><code>fly disable-resource-version</code></a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.7.2.5</td>
+            <td class="title-cell"><a href="managing-resources.html#fly-clear-resource-cache" ><code>fly clear-resource-cache</code></a></td>
           </tr>
         
         </table>
@@ -286,6 +296,20 @@
 
   <p>To disable a specific version of a resource, run:</p><pre><code class="language-bash">$ fly -t example disable-resource-version --resource my-pipeline/my-resource \
     --version ref:bceaf</code></pre><p>Note that the version needs to be provided as a key-value pair. For the git resource the <code>ref:</code> prefix is used while the <em>registry</em>  resource might use <code>digest</code> as a prefix like <code>digest:sha256:94be7d7b</code>.</p><p>This command is idempotent. Disabling an already disabled resource version will do nothing.</p><p>You can also disable a resource version via the UI by clicking on the check mark button next to the desired version on the resource page.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_fly-clear-resource-cache">
+  
+  <h2 class="section-header"><a class="anchor-target" name="fly-clear-resource-cache" href="#fly-clear-resource-cache"></a><code>fly clear-resource-cache</code></h2>
+  
+
+  <p>If you&#39;ve got a resource cache that you need to clear out for whatever reason, this can be done like so:</p><pre><code class="language-bash">$ fly -t example clear-resource-cache -r my-pipeline/my-resource</code></pre><p>This will immediately invalidate all the caches related to that resource - they&#39;ll be garbage collected asynchronously and subsequent builds will run with empty caches.</p><p>You can also clear out a particular version for the given resource cache, using <code>-v</code>:</p><pre><code class="language-bash">$ fly -t example clear-resource-cache \
+    -r my-pipeline/my-resource \
+    -v ref:abcdef</code></pre><p>If <code>-v</code> is not specified, all caches for the given resource will be cleared.</p>
 
   
     
