@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
-<title>Quick Start - Concourse CI</title>
+<title>Getting Started - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
@@ -64,8 +64,6 @@
   
   
   
-  
-  
 
   
   <div class="context">
@@ -79,7 +77,7 @@
         
           <tr>
             <td class="number-cell">1.1</td>
-            <td class="title-cell"><a href="getting-started.html"  class="active">Getting Started</a></td>
+            <td class="title-cell"><a href="getting-started.html"  class="self">Getting Started</a></td>
           </tr>
         
           <tr>
@@ -169,7 +167,7 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.1</span><a href="getting-started.html"  class="active">Getting Started</a>
+        <span class="section-number">1.1</span><a href="getting-started.html"  class="self">Getting Started</a>
       </div>
 
       <div class="children">
@@ -177,7 +175,7 @@
         
           <tr>
             <td class="number-cell">1.1.1</td>
-            <td class="title-cell"><a href="quick-start.html"  class="self">Quick Start</a></td>
+            <td class="title-cell"><a href="quick-start.html" >Quick Start</a></td>
           </tr>
         
           <tr>
@@ -201,89 +199,276 @@
   </div>
   
 
-  
-
-  
-  <div class="context">
-    <nav>
-      <div class="top">
-        <span class="section-number">1.1.1</span><a href="quick-start.html"  class="self">Quick Start</a>
-      </div>
-
-      <div class="children">
-        <table>
-        
-          <tr>
-            <td class="number-cell">1.1.1.1</td>
-            <td class="title-cell"><a href="quick-start.html#docker-compose-concourse" >Docker Compose Concourse</a></td>
-          </tr>
-        
-          <tr>
-            <td class="number-cell">1.1.1.2</td>
-            <td class="title-cell"><a href="quick-start.html#install-fly" >Install Fly</a></td>
-          </tr>
-        
-        </table>
-      </div>
-    </nav>
-  </div>
-  
-
 
 
       </div>
 
       <div class="body-content">
         <div class="page-content">
-          <div class="section" id="section_quick-start">
+          <div class="section" id="section_getting-started">
   
-  <h1 class="section-header"><a class="anchor-target" name="quick-start" href="#quick-start"></a><span class="section-number">1.1.1 </span>Quick Start</h1>
-  
-
+  <h1 class="section-header"><a class="anchor-target" name="getting-started" href="#getting-started"></a><span class="section-number">1.1 </span>Getting Started</h1>
   
 
-  
-    
-      <div class="section" id="section_docker-compose-concourse">
-  
-  <h2 class="section-header"><a class="anchor-target" name="docker-compose-concourse" href="#docker-compose-concourse"></a>Docker Compose Concourse</h2>
-  
+  <p>This tutorial will guide you through the basics of creating Concourse pipelines. You will use a local instance of Concourse running on your machine to run pipelines.</p><p>Before getting started you should have the following installed:</p><ul>
 
-  <p>Concourse is distributed as a single <code>concourse</code> binary, making it easy to run just about anywhere, especially with Docker.</p><p>If you&#39;d like to get Concourse running somewhere quickly so you can start to kick the tires, the easiest way is to use our <a href="docker-compose.yml">docker-compose.yml</a>:</p><pre><code class="language-bash">$ curl -O https://concourse-ci.org/docker-compose.yml
-$ docker-compose up -d
-Creating docs_concourse-db_1 ...
-Creating docs_concourse-db_1 ... done
-Creating docs_concourse_1 ...
-Creating docs_concourse_1 ... done</code></pre><p>Concourse will be running at <a href="http://localhost:8080">localhost:8080</a> on your machine. You can log in with the username/password as <code>test</code>/<code>test</code>.</p>
+  <li><p><a href="https://docs.docker.com/get-docker/">Docker</a></p></li>
+
+  <li><p><a href="https://docs.docker.com/compose/install/">Docker-compose</a></p></li>
+
+</ul><p>This tutorial assumes you understand what Linux containers are and how to work with them. If you know what a Dockfile is and how to make your own then you&#39;re probably good to jump into this tutorial. If you&#39;re not familiar with Linux containers then you may want to <a href="https://docs.docker.com/get-started/">get started with Docker</a> first before diving into this tutorial.</p><p>It will also help if you know how to read YAML. We have a quick <a href="config-basics.html#intro-to-yaml">Intro to YAML</a> if you&#39;re not familiar with the syntax.</p><div class="table-of-contents">
+  <span class="toc-header">Table of contents:</span>
 
   
-    
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.1.1</span>
+      <a href="quick-start.html">Quick Start</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.1.1.1</span>
+      <a href="quick-start.html#docker-compose-concourse">Docker Compose Concourse</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.1.2</span>
+      <a href="quick-start.html#install-fly">Install Fly</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.2</span>
+      <a href="tutorial-hello-world.html">Hello World Pipeline</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.1.2.1</span>
+      <a href="tutorial-hello-world.html#creating-a-pipeline">Creating a Pipeline</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.2.2</span>
+      <a href="tutorial-hello-world.html#add-a-job">Add a job</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.2.3</span>
+      <a href="tutorial-hello-world.html#add-a-step">Add a step</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.2.4</span>
+      <a href="tutorial-hello-world.html#what-is-a-step">What is a step?</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.2.5</span>
+      <a href="tutorial-hello-world.html#fill-in-the-task-config">Fill in the Task Config</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.2.6</span>
+      <a href="tutorial-hello-world.html#run-the-pipeline">Run the pipeline</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.3</span>
+      <a href="tutorial-inputs-outputs.html">Inputs and Outputs</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.1.3.1</span>
+      <a href="tutorial-inputs-outputs.html#overview">Overview</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.3.2</span>
+      <a href="tutorial-inputs-outputs.html#what-are-inputs-and-outputs">What are inputs and outputs?</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.3.3</span>
+      <a href="tutorial-inputs-outputs.html#passing-outputs-to-another-task">Passing outputs to another task</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.3.4</span>
+      <a href="tutorial-inputs-outputs.html#how-does-concourse-track-artifacts">How does Concourse track artifacts?</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.4</span>
+      <a href="tutorial-resources.html">Resources</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.1.4.1</span>
+      <a href="tutorial-resources.html#the-heart-of-concourse">The Heart of Concourse</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.4.2</span>
+      <a href="tutorial-resources.html#versions">Versions</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.4.3</span>
+      <a href="tutorial-resources.html#resource-interface">Resource Interface</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.4.4</span>
+      <a href="tutorial-resources.html#get-steps">Get Steps</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.4.5</span>
+      <a href="tutorial-resources.html#get-steps-and-inputs">Get Steps and Inputs</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.4.6</span>
+      <a href="tutorial-resources.html#checks">Checks</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.4.7</span>
+      <a href="tutorial-resources.html#put-steps">Put Steps</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.4.8</span>
+      <a href="tutorial-resources.html#using-external-resource-types">Using External Resource Types</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.1.4.9</span>
+      <a href="tutorial-resources.html#time-to-takeoff">Time For Takeoff ✈️</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+  </ol>
+  
   
 </div>
-    
-      <div class="section" id="section_install-fly">
-  
-  <h2 class="section-header"><a class="anchor-target" name="install-fly" href="#install-fly"></a>Install Fly</h2>
-  
 
-  <p>Next, install the <a href="fly.html"><code>fly</code> CLI</a> by downloading it from the web UI and <a href="fly.html#fly-login">login</a> to your local Concourse as the <code>test</code> user:</p><pre><code class="language-bash"># MacOS
-$ curl http://localhost:8080/api/v1/cli?arch=amd64&amp;platform=darwin -o fly \
-    &amp;&amp; chmod &#43;x ./fly &amp;&amp; mv ./fly /usr/local/bin/
-# Linux
-$ curl http://localhost:8080/api/v1/cli?arch=amd64&amp;platform=linux -o fly \
-    &amp;&amp; chmod &#43;x ./fly &amp;&amp; mv ./fly /usr/local/bin/
-# TODO Windows powershell. How to PATH on windows???
-
-$ fly -t tutorial login -c http://localhost:8080 -u test -p test
-logging in to team &#39;main&#39;
-
-target saved</code></pre><p>You&#39;ll notice that every <code>fly</code> command in this tutorial has to have the <a href="fly.html#fly-targets">target (<code>-t tutorial</code>)</a> specified. This is annoying when you only have one Concourse to target, but it helps ensure you don&#39;t trigger a job on the wrong Concourse instance. It will save you from hurting yourself!</p><p>Once you&#39;ve confirmed everything is up and running by logging in through fly and the <a href="http://localhost:8080">web UI</a>, you can move onto the next section. If you refresh this page you should see the web UI in the frame below.</p><p><iframe class="frame" frameborder="0" width="100%" height="500px" src="http://localhost:8080"></iframe></p>
-
-  
-    
-  
-</div>
-    
   
 </div>
 
@@ -293,10 +478,10 @@ target saved</code></pre><p>You&#39;ll notice that every <code>fly</code> comman
               prev:
 
               
-              <span class="section-number">1.1</span>
+              <span class="section-number">1</span>
               
 
-              <a href="getting-started.html">Getting Started</a>
+              <a href="docs.html">Docs</a>
             </div>
           
 
@@ -305,10 +490,10 @@ target saved</code></pre><p>You&#39;ll notice that every <code>fly</code> comman
               next:
 
               
-              <span class="section-number">1.1.2</span>
+              <span class="section-number">1.1.1</span>
               
 
-              <a href="tutorial-hello-world.html">Hello World Pipeline</a>
+              <a href="quick-start.html">Quick Start</a>
             </div>
           
           </nav>

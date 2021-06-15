@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=775" />
+<title>Hello World Pipeline - Concourse CI</title>
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+<link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+<link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+<script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
+<script data-goatcounter="https://concourse.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  </head>
+  <body>
+    
+
+<div class="page-top">
+  <nav class="top-nav">
+    <a class="top-link logo-link" href="/"><img src="images/logo-white.svg" />Concourse</a>
+    
+    <a class="top-link active" href="docs.html">Docs</a>
+    
+    <a class="top-link" href="examples.html">Examples</a>
+    
+    <a class="top-link" href="project.html">Project</a>
+    
+    <a class="top-link" href="ecosystem.html">Ecosystem</a>
+    
+    <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
+    <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
+    <a class="top-link" href="https://github.com/concourse/concourse/discussions">discuss</a>
+
+    <div id="search"></div>
+
+    <script type="text/javascript">
+      var app = Elm.Main.init({
+        node: document.getElementById('search')
+      });
+
+      app.ports.emitSearchTerm.subscribe(function(term) {
+        goatcounter.count({
+          path: "search:" + term,
+          title: "user searched: " + term,
+          event: true
+        });
+      });
+    </script>
+  </nav>
+</div>
+
+    <div class="page-body">
+      <div class="page-nav">
+        
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1</span><a href="docs.html"  class="active">Docs</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.1</td>
+            <td class="title-cell"><a href="getting-started.html"  class="active">Getting Started</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2</td>
+            <td class="title-cell"><a href="install.html" >Install</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.3</td>
+            <td class="title-cell"><a href="auth.html" >Auth &amp; Teams</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.4</td>
+            <td class="title-cell"><a href="fly.html" >The <code>fly</code> CLI</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.5</td>
+            <td class="title-cell"><a href="config-basics.html" >Config Basics</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.6</td>
+            <td class="title-cell"><a href="pipelines.html" >Pipelines</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.7</td>
+            <td class="title-cell"><a href="vars.html" >Vars</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.8</td>
+            <td class="title-cell"><a href="resources.html" >Resources</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.9</td>
+            <td class="title-cell"><a href="resource-types.html" >Resource Types</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.10</td>
+            <td class="title-cell"><a href="jobs.html" >Jobs</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11</td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12</td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.13</td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14</td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.15</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="internals.html" >Internals</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.1</span><a href="getting-started.html"  class="active">Getting Started</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.1.1</td>
+            <td class="title-cell"><a href="quick-start.html" >Quick Start</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.1.2</td>
+            <td class="title-cell"><a href="tutorial-hello-world.html"  class="self">Hello World Pipeline</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.1.3</td>
+            <td class="title-cell"><a href="tutorial-inputs-outputs.html" >Inputs and Outputs</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.1.4</td>
+            <td class="title-cell"><a href="tutorial-resources.html" >Resources</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.1.2</span><a href="tutorial-hello-world.html"  class="self">Hello World Pipeline</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.1.2.1</td>
+            <td class="title-cell"><a href="tutorial-hello-world.html#creating-a-pipeline" >Creating a Pipeline</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.1.2.2</td>
+            <td class="title-cell"><a href="tutorial-hello-world.html#add-a-job" >Add a job</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.1.2.3</td>
+            <td class="title-cell"><a href="tutorial-hello-world.html#add-a-step" >Add a step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.1.2.4</td>
+            <td class="title-cell"><a href="tutorial-hello-world.html#what-is-a-step" >What is a step?</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.1.2.5</td>
+            <td class="title-cell"><a href="tutorial-hello-world.html#fill-in-the-task-config" >Fill in the Task Config</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.1.2.6</td>
+            <td class="title-cell"><a href="tutorial-hello-world.html#run-the-pipeline" >Run the pipeline</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+
+
+      </div>
+
+      <div class="body-content">
+        <div class="page-content">
+          <div class="section" id="section_tutorial-hello-world">
+  
+  <h1 class="section-header"><a class="anchor-target" name="tutorial-hello-world" href="#tutorial-hello-world"></a><span class="section-number">1.1.2 </span>Hello World Pipeline</h1>
+  
+
+  
+
+  
+    
+      <div class="section" id="section_creating-a-pipeline">
+  
+  <h2 class="section-header"><a class="anchor-target" name="creating-a-pipeline" href="#creating-a-pipeline"></a>Creating a Pipeline</h2>
+  
+
+  <p>Let&#39;s start where all tutorials start, with a <code>Hello World!</code> example!</p><p>In this section you&#39;re going to create a pipeline that simply prints <code>Hello world!</code> to the console. While building up the pipeline we will pause to explain the core pieces of the pipeline.</p><p>Let&#39;s first answer: <strong>what is a pipeline made up from?</strong></p><p>The simplest Concourse <a href="pipelines.html">pipeline</a> is made of two objects:</p><p><ul>
+
+  <li><p>An unordered list of <a href="jobs.html">Jobs</a> which contains...</p></li>
+
+  <li><p>An ordered list of <a href="jobs.html#steps">Steps</a></p></li>
+
+</ul> If you&#39;ve used other pipeline building tools in the past, then what you think of as a pipeline is probably most similar to a <a href="jobs.html">job</a> in Concourse.</p><p>For our <code>Hello World!</code> pipeline we will need <strong>one job</strong> with <strong>one step</strong>. This is the smallest pipeline you can make in Concourse. The single step is what will print <code>Hello World!</code> to the console.</p><p>Create and open a new file called <code>hello-world.yml</code>. Inside that file let&#39;s add the first top-level key, <code><a href="jobs.html">jobs</a></code>.</p><pre><code class="language-yaml">jobs:</code></pre><p>The <code><a href="jobs.html">jobs</a></code> key is where we define the list of jobs that should make up our pipeline. The order of the jobs does not matter. <strong>The order of jobs does not define the structure of the pipeline.</strong> We&#39;ll get into pipeline structure and job ordering later when we talk about <a href="resources.html">Resources</a> and passed constraints.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_add-a-job">
+  
+  <h2 class="section-header"><a class="anchor-target" name="add-a-job" href="#add-a-job"></a>Add a job</h2>
+  
+
+  <p>We only need one job right now so let&#39;s add a single job named <code>hello-world-job</code>.</p><pre><code class="language-yaml">jobs:
+- name: hello-world-job</code></pre><p>Awesome, we have a <a href="jobs.html">job</a> named <code>hello-world</code>! Now we need to add a <code><a href="jobs.html#steps">step</a></code> to our job. To define a list of <a href="jobs.html#steps">steps</a> a job should execute, we need to add the <code><a href="jobs.html#schema.job.plan">plan</a></code> key to our job.</p><pre><code class="language-yaml">jobs:
+- name: hello-world-job
+  plan:</code></pre>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_add-a-step">
+  
+  <h2 class="section-header"><a class="anchor-target" name="add-a-step" href="#add-a-step"></a>Add a step</h2>
+  
+
+  <p>Unlike <a href="jobs.html">jobs</a>, the order of <a href="jobs.html#steps">steps</a> <strong>does matter!</strong> Concourse will run the <a href="jobs.html#steps">steps</a> in the order that they are listed. Let&#39;s <em>carefully</em> place a <a href="jobs.html#schema.step.task-step.task">task step</a> as the first (and only) step in our job.</p><pre><code class="language-yaml">jobs:
+- name: hello-world-job
+  plan:
+  - task: hello-world-task</code></pre><p>Fantastic! Now we need to tell Concourse <em>how</em> to run our task step. We do that by providing a <a href="tasks.html#schema.task">task config</a>.</p><pre><code class="language-yaml">jobs:
+- name: hello-world-job
+  plan:
+  - task: hello-world-task
+    config:</code></pre><p>At this point we are going to pause to explain steps a bit more.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_what-is-a-step">
+  
+  <h2 class="section-header"><a class="anchor-target" name="what-is-a-step" href="#what-is-a-step"></a>What is a step?</h2>
+  
+
+  <p>A step is a single container running on a <a href="concourse-worker.html">Concourse worker</a>. Each <a href="jobs.html#steps">step</a> in a <a href="jobs.html#schema.job.plan">job plan</a> runs in its own container. You can run anything you want inside the container <em>(i.e. run my tests, run this bash script, build this image, etc.)</em>.</p><p>So if you have a job with five steps Concourse will create five containers, one for each step. Therefore, we need to tell Concourse the following about each step:</p><ul>
+
+  <li><p>What type of <a href="concourse-worker.html">worker</a> to run the task on (linux/windows/darwin)</p></li>
+
+  <li><p>What container image to use <em>(Linux only)</em></p></li>
+
+  <li><p>What command to run inside the container</p></li>
+
+</ul><blockquote class="aside"><p>Concourse currently only supports Linux containers. Concourse does not yet run Windows containers. Darwin does not have native containers.</p></blockquote>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_fill-in-the-task-config">
+  
+  <h2 class="section-header"><a class="anchor-target" name="fill-in-the-task-config" href="#fill-in-the-task-config"></a>Fill in the Task Config</h2>
+  
+
+  <p>Let&#39;s answer the previous three questions for our <code>hello-world-task</code>:</p><ul>
+
+  <li><p><strong>What type of <a href="concourse-worker.html">worker</a> to run the task on (linux/windows/darwin)</strong></p><p>Linux, because our docker-composed Concourse only has one linux worker. You can verify this by running <code>fly -t tutorial workers</code></p></li>
+
+  <li><p><strong>What container image to use <em>(Linux only)</em></strong></p><p>We&#39;ll use the super small <a href="https://hub.docker.com/_/busybox">busybox image</a></p></li>
+
+  <li><p><strong>What command to run inside the container</strong></p><p><code>echo &#34;Hello world!&#34;</code></p></li>
+
+</ul><p>You can view the <a href="tasks.html">task documentation</a> to see all configurable options for tasks. For now, you can add the following <a href="tasks.html#schema.task">task config</a> to the step.</p><pre><code class="language-yaml">jobs:
+- name: hello-world-job
+  plan:
+  - task: hello-world-task
+    config:
+      # Tells Concourse which type of worker this task should run on
+      platform: linux
+      # This is one way of telling Concourse which container image to use for a
+      # task. We&#39;ll explain this more when talking about resources
+      image_resource:
+        type: registry-image
+        source:
+          repository: busybox # images are pulled from docker hub by default
+      # The command Concourse will run inside the container
+      # echo &#34;Hello world!&#34;
+      run:
+        path: echo
+        args: [&#34;Hello world!&#34;]</code></pre>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_run-the-pipeline">
+  
+  <h2 class="section-header"><a class="anchor-target" name="run-the-pipeline" href="#run-the-pipeline"></a>Run the pipeline</h2>
+  
+
+  <p>That&#39;s the whole pipeline! You can now set it, unpause, and trigger it using the <a href="fly.html">fly cli</a>. You can then view it from the <a href="http://localhost:8080/teams/main/pipelines/hello-world/jobs/hello-world-job">web ui</a>.</p><pre><code class="language-bash">$ fly -t tutorial set-pipeline -p hello-world -c hello-world.yml
+# pipelines are paused when first created
+$ fly -t tutorial unpause-pipeline -p hello-world
+# trigger the job and watch it run to completion
+$ fly -t tutorial trigger-job --job hello-world/hello-world-job --watch</code></pre><p>You&#39;ll see extra output than what we&#39;re showing below (the busybox image being downloaded) but the last four lines will be the task executing.</p><pre><code class="language-">selected worker: 701785fa43a1
+running echo Hello world!
+Hello world!
+succeeded</code></pre><p><iframe class="frame" frameborder="0" width="100%" height="500px" src="http://localhost:8080/teams/main/pipelines/hello-world"></iframe></p><p>Congratulations on building your first Concourse pipeline!</p><p>In the next section we will build upon what we have learned about tasks and introduce inputs and outputs, which allow you to pass files between tasks.</p>
+
+  
+    
+  
+</div>
+    
+  
+</div>
+
+          <nav class="prev-next">
+          
+            <div class="prev">
+              prev:
+
+              
+              <span class="section-number">1.1.1</span>
+              
+
+              <a href="quick-start.html">Quick Start</a>
+            </div>
+          
+
+          
+            <div class="next">
+              next:
+
+              
+              <span class="section-number">1.1.3</span>
+              
+
+              <a href="tutorial-inputs-outputs.html">Inputs and Outputs</a>
+            </div>
+          
+          </nav>
+        </div>
+
+        <div class="page-aside"></div>
+      </div>
+    </div>
+
+    <ul class="improve-docs">
+      <li><img src="images/icons/github-box.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+      <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+    </ul>
+  </body>
+</html>
