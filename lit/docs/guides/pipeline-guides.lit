@@ -677,3 +677,181 @@
     }}
   }
 }
+
+\section{
+  \omit-children-from-table-of-contents
+  \title{Pipeline Templating with ytt}
+
+  This guide will show the basics of how to template a pipeline with variables
+  and split a pipeline into multiple files using
+  \link{ytt}{https://github.com/vmware-tanzu/carvel-ytt}. The \link{ytt
+  website}{https://carvel.dev/ytt/} has interactive examples if you prefer to
+  try out \code{ytt} on its own first.
+
+  You can also combine ytt's templating with Concourse's
+  \reference{var-interpolation}{variable interpolation}. That is outside the
+  scope of this guide though.
+
+  \section{
+    \title{Variable Interpolation}
+
+    Let's see how we can add variables to an existing pipeline. Here's a simple
+    pipeline for our example.
+
+    \titled-codeblock{pipeline.yml}{yaml}{{
+      jobs:
+      - name: simple-job
+        plan:
+        - task: simple-task
+          config:
+            platform: linux
+            image_resource:
+              type: mock
+              source: {mirror_self: true}
+            run:
+              path: echo
+              args: ['Hello, world!']
+    }}
+    \inset{} {- spacer -}
+
+    Let's turn the \reference{schema.job.name}{job name}, \reference{schema.step.task-step.task}{task name}, and
+    \reference{schema.command.args}{\code{run.args}} into ytt variables.
+
+    In order to test this locally let's make a variables file with the variable
+    names we're going to use. We can leave them blank or populate them with
+    default values.
+
+    \titled-codeblock{vars.yml}{yaml}{{
+      #@data/values
+      ---
+      job_name: ""
+      task_name: ""
+      args: []
+    }}
+    \inset{} {- spacer -}
+
+    Now let's update our \code{pipeline.yml} with these variables.
+
+    \titled-codeblock{pipeline.yml}{yaml}{{
+      #@ load("@ytt:data", "data")
+      jobs:
+      - name: #@ data.values.job_name + "-job"
+        plan:
+        - task: #@ data.values.task_name
+          config:
+            platform: linux
+            image_resource:
+              type: mock
+              source: {mirror_self: true}
+            run:
+              path: echo
+              args: #@ data.values.args
+    }}
+    \inset{} {- spacer -}
+
+    We have all the pieces of a templated pipeline. Lets put it all together
+    and render the final pipeline.
+
+    Populate the \code{vas.yml} file with the value you want.
+
+    \titled-codeblock{vars.yml}{yaml}{{
+      #@data/values
+      ---
+      job_name: "hello-world"
+      task_name: "hello-task"
+      args:
+        - "hello world of vars!"
+    }}
+    \inset{} {- spacer -}
+
+    Then render the pipeline into a file called \code{rendered.yml}.
+
+    \codeblock{bash}{{
+    ytt -f pipeline.yml -f vars.yml > rendered.yml
+    }}
+
+    \code{rendered.yml} should look like the following:
+
+    \titled-codeblock{rendered.yml}{yaml}{{
+    jobs:
+    - name: hello-world-job
+      plan:
+      - task: hello-task
+        config:
+          platform: linux
+          image_resource:
+            type: mock
+            source:
+              mirror_self: true
+          run:
+            path: echo
+            args:
+            - hello world of vars!
+    }}
+    \inset{} {- spacer -}
+
+    The rendered pipeline can then be passed to \reference{fly-set-pipeline} or
+    the \reference{set-pipeline-step}.
+  }
+
+  \section{
+    \title{Splitting a Pipeline into Multiple Files}
+
+    This section will focus on how to split a single pipeline into a bunch of
+    smaller pieces. These pieces could exist all in one file or over multiple
+    files. \link{YTT}{https://github.com/vmware-tanzu/carvel-ytt/} is not picky
+    about which path you choose. You should do whatever makes the most sense
+    for you. This is one simple example of how you could split a pipeline up.
+
+    Files for this example are located at
+    \link{github.com/concourse/examples}{https://github.com/concourse/examples/tree/master/pipelines/templates/multiple-files}.
+
+    Here's the template that brings all the pieces together.
+
+    \remote-codeblock{yaml}{https://raw.githubusercontent.com/concourse/examples/master/pipelines/templates/multiple-files/template.yml}
+
+    \link{\code{jobs.lib.yml}}{https://github.com/concourse/examples/blob/master/pipelines/templates/multiple-files/jobs.lib.yml}
+    contains a list of functions. Each function returns one job.
+
+    \link{\code{resources.lib.yml}}{https://github.com/concourse/examples/blob/master/pipelines/templates/multiple-files/resources.lib.yml}
+    contains one function that returns all the resources.
+  }
+
+  \section{
+    \title{Rendering and Setting Templated Pipelines in Concourse}
+
+    To render the templates in Concourse, use an image that contains \code{ytt}
+    in a task. A bash script is the simplest way to accomplish this. This partial example is from \link{github.com/concourse/examples/blob/master/pipelines/set-pipelines.yml}{https://github.com/concourse/examples/blob/master/pipelines/set-pipelines.yml}
+
+    \codeblock{yaml}{{
+    - name: set-rendered-pipelines
+      plan:
+      - get: concourse-examples
+        trigger: true
+        passed: [set-self]
+      - task: render-pipelines
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source:
+              repository: taylorsilva/carvel-ytt
+          inputs:
+          - name: concourse-examples
+          outputs:
+          - name: pipeline
+          run:
+            path: sh
+            args:
+            - -cx
+            - |
+              ytt -f ./concourse-examples/pipelines/templates/simple > hello-world-rendered.yml
+              ytt -f ./concourse-examples/pipelines/templates/multiple-files > multi-files-rendered.yml
+              mv *.yml ./pipeline/
+      - set_pipeline: hello-world-rendered
+        file: pipeline/hello-world-rendered.yml
+      - set_pipeline: multi-files-rendered
+        file: pipeline/multi-files-rendered.yml
+    }}
+  }
+}
