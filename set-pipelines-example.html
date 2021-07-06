@@ -180,6 +180,7 @@ resources:
 - name: concourse-examples
   type: git
   icon: github
+  check_every: 30m
   source:
     uri: https://github.com/concourse/examples
 
@@ -192,6 +193,7 @@ jobs:
     trigger: true
   - set_pipeline: set-pipelines
     file: concourse-examples/pipelines/set-pipelines.yml
+
 - name: set-example-pipelines
   public: true
   plan:
@@ -244,6 +246,36 @@ jobs:
     file: concourse-examples/pipelines/php-larvel-app-testing.yml
   - set_pipeline: java
     file: concourse-examples/pipelines/java.yml
+
+- name: set-rendered-pipelines
+  public: true
+  plan:
+  - get: concourse-examples
+    trigger: true
+    passed: [set-self]
+  - task: render-pipelines
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          repository: taylorsilva/carvel-ytt
+      inputs:
+      - name: concourse-examples
+      outputs:
+      - name: pipeline
+      run:
+        path: sh
+        args:
+        - -cx
+        - |
+          ytt -f ./concourse-examples/pipelines/templates/simple &gt; hello-world-rendered.yml
+          ytt -f ./concourse-examples/pipelines/templates/multiple-files &gt; multi-files-rendered.yml
+          mv *.yml ./pipeline/
+  - set_pipeline: hello-world-rendered
+    file: pipeline/hello-world-rendered.yml
+  - set_pipeline: multi-files-rendered
+    file: pipeline/multi-files-rendered.yml
 </code></pre></p>
 
   
