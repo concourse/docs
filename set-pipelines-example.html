@@ -191,7 +191,7 @@ jobs:
   plan:
   - get: concourse-examples
     trigger: true
-  - set_pipeline: set-pipelines
+  - set_pipeline: self
     file: concourse-examples/pipelines/set-pipelines.yml
 
 - name: set-example-pipelines
