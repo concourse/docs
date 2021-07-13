@@ -214,6 +214,30 @@
   
 
   
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.2.6</span><a href="upgrading-concourse.html"  class="self">Upgrading Concourse</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.2.6.1</td>
+            <td class="title-cell"><a href="upgrading-concourse.html#upgrading-the-web-node" >Upgrading the Web Node</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2.6.2</td>
+            <td class="title-cell"><a href="upgrading-concourse.html#upgrading-the-worker-node" >Upgrading the Worker Node</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
 
 
 
@@ -226,7 +250,16 @@
   <h1 class="section-header"><a class="anchor-target" name="upgrading-concourse" href="#upgrading-concourse"></a><span class="section-number">1.2.6 </span>Upgrading Concourse</h1>
   
 
-  <p>Concourse is upgraded by stopping the Concourse process, swapping out the <code>concourse</code> binary with the new one, and re-starting it. This should be done on each <a href="concourse-web.html"><code>web</code> node</a> and <a href="concourse-worker.html"><code>worker</code> node</a>. Be careful to check the release notes for anything marked &#39;breaking&#39; - in particular, you&#39;ll want to look for any flags that have changed.</p><p>Each <a href="concourse-web.html"><code>web</code> node</a> will automatically run migrations on start and locks via the database to ensure only one of them runs the migrations. We currently do not guarantee zero-downtime upgrades, as migrations may make changes that confuse the older <code>web</code> nodes. This should resolve as each node is upgraded, and shouldn&#39;t result in any inconsistent state.</p><p>Typically, Concourse can be upgraded from any version to any other version, though around 3.x and 4.x we made some changes to how migrations are run, and as a result the following upgrade paths must be followed:</p><table>
+  <p>Be careful to check the &#34;Breaking Changes&#34; in the release notes - in particular, you&#39;ll want to look for any flags that have changed.</p>
+
+  
+    
+      <div class="section" id="section_upgrading-the-web-node">
+  
+  <h2 class="section-header"><a class="anchor-target" name="upgrading-the-web-node" href="#upgrading-the-web-node"></a>Upgrading the Web Node</h2>
+  
+
+  <p>The web node is upgraded by stopping the Concourse process, swapping out the <code>concourse</code> binary with the new one, and re-starting it.</p><p>Each <a href="concourse-web.html"><code>web</code> node</a> will automatically run database migrations on start-up and lock via the database to ensure only one of the web nodes runs the migrations. We currently do not guarantee zero-downtime upgrades, as migrations may make changes that confuse the older web nodes. This should resolve as each web node is upgraded, and shouldn&#39;t result in any inconsistent state.</p><p>Typically, Concourse can be upgraded from any version to any other version, though around 3.x and 4.x we made some changes to how migrations are run, and as a result the following upgrade paths must be followed:</p><table>
   
   <tr>
     
@@ -252,9 +285,54 @@
     
   </tr>
   
-</table><p>We&#39;ll try to minimize this kind of thing in the future.</p>
+</table><p>We&#39;ll try to minimize this kind of thing in the future.</p><p>Lastly, you will want to overwrite the contents of <code>concourse/fly-assets</code> with the contents from the <a href="https://github.com/concourse/concourse/releases">Github release tarball</a> so users can <a href="fly.html#fly-sync"><code>fly sync</code></a> to the correct version.</p>
 
   
+    
+  
+</div>
+    
+      <div class="section" id="section_upgrading-the-worker-node">
+  
+  <h2 class="section-header"><a class="anchor-target" name="upgrading-the-worker-node" href="#upgrading-the-worker-node"></a>Upgrading the Worker Node</h2>
+  
+
+  <p>The worker node is upgraded by stopping the Concourse process, swapping out the <code>concourse</code> binary with the new one, and re-starting it.</p>
+
+  
+    
+      <div class="section" id="section_linux-workers">
+  
+  <h3 class="section-header"><a class="anchor-target" name="linux-workers" href="#linux-workers"></a>Linux Workers</h3>
+  
+
+  <p>The Linux tarball from the <a href="https://github.com/concourse/concourse/releases">Github release page</a> contains extra assets that you will want to ensure are also upgraded at the same time. Make sure you overwrite the contents of the following directories:</p><ul>
+
+  <li><p><code>concourse/bin/...</code> - Other binaries like <code>gdn</code>, <code>runc</code>, and <code>containerd</code> are in this directory</p></li>
+
+  <li><p><code>concourse/resource-types/...</code> - The location of the default <a href="resource-types.html">resource-types</a> included with each Concourse release</p></li>
+
+</ul>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_darwin-and-windows-workers">
+  
+  <h3 class="section-header"><a class="anchor-target" name="darwin-and-windows-workers" href="#darwin-and-windows-workers"></a>Darwin and Windows Workers</h3>
+  
+
+  <p>There are no additional steps for upgrading Darwin and Windows workers.</p>
+
+  
+    
+  
+</div>
+    
+  
+</div>
     
   
 </div>

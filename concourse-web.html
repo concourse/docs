@@ -286,15 +286,6 @@
   
     <li>
       <span class="section-number">1.2.4.2.1</span>
-      <a href="concourse-web.html#web-ingress">Configuring ingress traffic</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.2.4.2.2</span>
       <a href="concourse-web.html#web-resource-utilization">Resource utilization</a>
 
       
@@ -388,7 +379,7 @@
   
     <li>
       <span class="section-number">1.2.4.4.2</span>
-      <a href="concourse-web.html#lets-encrypt">TLS via Let&#39;s Encrypt</a>
+      <a href="concourse-web.html#web-ingress">Configuring ingress traffic</a>
 
       
   
@@ -397,7 +388,7 @@
   
     <li>
       <span class="section-number">1.2.4.4.3</span>
-      <a href="concourse-web.html#build-log-retention">Build log retention</a>
+      <a href="concourse-web.html#lets-encrypt">TLS via Let&#39;s Encrypt</a>
 
       
   
@@ -406,7 +397,7 @@
   
     <li>
       <span class="section-number">1.2.4.4.4</span>
-      <a href="concourse-web.html#audit-logs">Enabling audit logs</a>
+      <a href="concourse-web.html#build-log-retention">Build log retention</a>
 
       
   
@@ -415,6 +406,15 @@
   
     <li>
       <span class="section-number">1.2.4.4.5</span>
+      <a href="concourse-web.html#audit-logs">Enabling audit logs</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.2.4.4.6</span>
       <a href="concourse-web.html#resource-defaults">Configuring defaults for resource types</a>
 
       
@@ -439,7 +439,7 @@
   <h2 class="section-header"><a class="anchor-target" name="web-prerequisites" href="#web-prerequisites"></a>Prerequisites</h2>
   
 
-  <p>Nothing special - the <code>web</code> node is a pretty simple Go application that can be run like a 12-factor app.</p>
+  <p>Nothing special - the <code>web</code> node is a pretty simple Go application that can be run like a <a href="https://en.wikipedia.org/wiki/Twelve-Factor_App_methodology">12-factor app</a>.</p>
 
   
     
@@ -462,18 +462,6 @@ CONCOURSE_POSTGRES_PASSWORD=my-password</code></pre><p>If you&#39;re running Pos
 
   
     
-      <div class="section" id="section_web-ingress">
-  
-  <h3 class="section-header"><a class="anchor-target" name="web-ingress" href="#web-ingress"></a>Configuring ingress traffic</h3>
-  
-
-  <p>If your web nodes are going to be accessed over the network, you will need to set <code>CONCOURSE_EXTERNAL_URL</code> to a URL accessible by your Concourse users. If you don&#39;t set this property, logging in will incorrectly redirect to its default value of <code>127.0.0.1</code>.</p><p>If your instance is available on the public internet, you may wish to prevent the Concourse UI from being nefariously embedded as an iframe by setting <code>CONCOURSE_X_FRAME_OPTIONS</code> to <code>deny</code> (to prevent <em>any</em> iframe embeddings) or <code>sameorigin</code> (to only allow iframe embeddings in pages served from the same subdomain). This protects against clickjacking.</p><p><strong>Note:</strong> If setting the value to <code>allow-from</code>, please note that not all browsers support this value and when not supported, the header is ignored by the browser.</p>
-
-  
-    
-  
-</div>
-    
       <div class="section" id="section_web-resource-utilization">
   
   <h3 class="section-header"><a class="anchor-target" name="web-resource-utilization" href="#web-resource-utilization"></a>Resource utilization</h3>
@@ -485,7 +473,7 @@ CONCOURSE_POSTGRES_PASSWORD=my-password</code></pre><p>If you&#39;re running Pos
 
   <li><p><code>db</code> on its configured port for locking and coordinating in a multi-<code>web</code> node deployment</p></li>
 
-  <li><p>other <code>web</code> nodes (possibly itself) on an ephemeral port when a worker is forwarded through the web node&#39;s TSA</p></li>
+  <li><p>other <code>web</code> nodes (possibly itself) on an <a href="https://en.wikipedia.org/wiki/Ephemeral_port">ephemeral port</a> when a worker is forwarded through the web node&#39;s TSA</p></li>
 
 </ul><p>Inbound traffic:</p><ul>
 
@@ -519,7 +507,7 @@ CONCOURSE_POSTGRES_PASSWORD=my-password</code></pre><p>If you&#39;re running Pos
   <h3 class="section-header"><a class="anchor-target" name="scaling" href="#scaling"></a>Scaling</h3>
   
 
-  <p>The <a href="concourse-web.html"><code>web</code> node</a> can be scaled up for high availability. They&#39;ll also roughly share their scheduling workloads, using the database to synchronize. This is done by just running more <code>web</code> commands on different machines, and optionally putting them behind a load balancer.</p><p>To run a cluster of <a href="concourse-web.html"><code>web</code> node</a>s, you&#39;ll first need to ensure they&#39;re all pointing to the same PostgreSQL server.</p><p>Next, you&#39;ll need to configure a <em>peer address</em>. This is a DNS or IP address that can be used to reach this <code>web</code> node from other <code>web</code> nodes. Typically this uses a private IP, like so:</p><pre><code class="language-bash">CONCOURSE_PEER_ADDRESS=10.10.0.1</code></pre><p>This address will be used for forwarded worker connections, which listen on the ephemeral port range.</p><p>Finally, if all of these nodes are going to be accessed through a load balancer, you&#39;ll need to configure the external URL that will be used to reach your Concourse cluster:</p><pre><code class="language-bash">CONCOURSE_EXTERNAL_URL=https://ci.example.com</code></pre><p>Aside from the peer URL, all configuration must be consistent across all <code>web</code> nodes in the cluster to ensure consistent results.</p>
+  <p>The <a href="concourse-web.html"><code>web</code> node</a> can be scaled up for high availability. They&#39;ll also roughly share their scheduling workloads, using the database to synchronize. This is done by just running more <code>web</code> commands on different machines, and optionally putting them behind a load balancer.</p><p>To run a cluster of <a href="concourse-web.html"><code>web</code> node</a>s, you&#39;ll first need to ensure they&#39;re all pointing to the same PostgreSQL server.</p><p>Next, you&#39;ll need to configure a <em>peer address</em>. This is a DNS or IP address that can be used to reach this <code>web</code> node from other <code>web</code> nodes. Typically this uses a private IP, like so:</p><pre><code class="language-bash">CONCOURSE_PEER_ADDRESS=10.10.0.1</code></pre><p>This address will be used for forwarded worker connections, which listen on the <a href="https://en.wikipedia.org/wiki/Ephemeral_port">ephemeral port</a> range.</p><p>Finally, if all of these nodes are going to be accessed through a load balancer, you&#39;ll need to configure the external URL that will be used to reach your Concourse cluster:</p><pre><code class="language-bash">CONCOURSE_EXTERNAL_URL=https://ci.example.com</code></pre><p>Aside from the peer URL, all configuration must be consistent across all <code>web</code> nodes in the cluster to ensure consistent results.</p>
 
   
     
@@ -528,7 +516,8 @@ CONCOURSE_POSTGRES_PASSWORD=my-password</code></pre><p>If you&#39;re running Pos
   <h4 class="section-header"><a class="anchor-target" name="web-connection-pooling" href="#web-connection-pooling"></a>Database connection pooling</h4>
   
 
-  <p>You may wish to configure the max number of parallel database connections that each node makes. There are two pools to configure: one for serving API requests, and one used for all the backend work such as pipeline scheduling.</p><p>There are some non-configurable connection pools. They take up the following number of connections per pool: <ul>
+  <p>You may wish to configure the max number of parallel database connections that each node makes. There are two pools to configure: one for serving API requests, and one used for all the backend work such as pipeline scheduling.</p><pre><code class="language-bash">CONCOURSE_API_MAX_CONNS=10     # default
+CONCOURSE_BACKEND_MAX_CONNS=50 # default</code></pre><p>There are some non-configurable connection pools. They take up the following number of connections per pool: <ul>
 
   <li><p>Garbage Collection: 5</p></li>
 
@@ -536,8 +525,7 @@ CONCOURSE_POSTGRES_PASSWORD=my-password</code></pre><p>If you&#39;re running Pos
 
   <li><p>Worker Registration: 1</p></li>
 
-</ul></p><p>The sum of these numbers across all <code>web</code> nodes should not be greater than the maximum number of simultaneous connections your Postgres server will allow. See <a href="postgresql-node.html#db-resource-utilization"><code>db</code> node resource utilization</a> for more information.</p><p>For example, if 3 <code>web</code> nodes are configured as such:</p><pre><code class="language-bash">CONCOURSE_API_MAX_CONNS=10     # default
-CONCOURSE_BACKEND_MAX_CONNS=50 # default</code></pre><p>...then your PostgreSQL server should be configured with a connection limit of at least 201: (10 &#43; 50 &#43; 5 &#43; 1 &#43; 1) * 3.</p>
+</ul></p><p>The sum of these numbers across all <code>web</code> nodes should not be greater than the maximum number of simultaneous connections your Postgres server will allow. See <a href="postgresql-node.html#db-resource-utilization"><code>db</code> node resource utilization</a> for more information.</p><p>For example, if 3 <code>web</code> nodes are configured with the values shown above then your PostgreSQL server should be configured with a connection limit of at least 201: <code>(10 &#43; 50 &#43; 5 &#43; 1 &#43; 1) * 3 web nodes</code>.</p>
 
   
     
@@ -552,7 +540,7 @@ CONCOURSE_BACKEND_MAX_CONNS=50 # default</code></pre><p>...then your PostgreSQL 
   <h3 class="section-header"><a class="anchor-target" name="reloading-worker-authorized-key" href="#reloading-worker-authorized-key"></a>Reloading worker authorized key</h3>
   
 
-  <p>While <a href="concourse-web.html#web-running">Running <code>concourse web</code></a>, the authorized worker key files are loaded at startup. During the lifecycle of a <a href="concourse-web.html"><code>web</code> node</a> new <code>worker</code> keys might be added or old ones removed.</p><p>The authorized key file containing <code>worker</code> public keys can be reloaded without downtime by sending <code>SIGHUP</code> to the <code>web</code> process. The process will remain running and Concourse will reload the keys to authorize.</p>
+  <p>While <a href="concourse-web.html#web-running">Running <code>concourse web</code></a>, the authorized worker key file, which contains all public keys for the workers, is loaded at startup. During the lifecycle of a <a href="concourse-web.html"><code>web</code> node</a> new <code>worker</code> keys might be added or old ones removed. To perform a live reload of this file you can send a <code>SIGHUP</code> signal to the <code>concourse web</code> process. The process will remain running and Concourse will reload the authorized worker key file.</p>
 
   
     
@@ -564,7 +552,7 @@ CONCOURSE_BACKEND_MAX_CONNS=50 # default</code></pre><p>...then your PostgreSQL 
   <h3 class="section-header"><a class="anchor-target" name="restarting-and-upgrading" href="#restarting-and-upgrading"></a>Restarting &amp; Upgrading</h3>
   
 
-  <p>The <code>web</code> nodes can be killed and restarted willy-nilly. No draining is necessary; if the <code>web</code> node was orchestrating a build it will just continue where it left off when it comes back, or the build will be picked up by one of the other <code>web</code> nodes.</p><p>To upgrade a <code>web</code> node, stop its process and start a new one using the newly installed <code>concourse</code>. Any migrations will be run automatically on start. If <code>web</code> nodes are started in parallel, only one will run the migrations.</p><p>Note that we don&#39;t currently guarantee a lack of funny-business if you&#39;re running mixed Concourse versions - database migrations can perform modifications that confuse other <code>web</code> nodes. So there may be some turbulence during a rolling upgrade, but everything should stabilize once all <code>web</code> nodes are running the latest version.</p>
+  <p>The <code>web</code> nodes can be killed and restarted willy-nilly. No draining is necessary; if the <code>web</code> node was orchestrating a build it will continue where it left off when it comes back, or the build will be picked up by one of the other <code>web</code> nodes.</p><p>To upgrade a <code>web</code> node, stop its process and start a new one using the newly installed <code>concourse</code>. Any database migrations will be run automatically on start. If <code>web</code> nodes are started in parallel, only one will run the migrations.</p><p>We don&#39;t currently guarantee a lack of funny-business if you&#39;re running mixed Concourse versions - database migrations can perform modifications that confuse other <code>web</code> nodes. So there may be some turbulence during a rolling upgrade, but everything should stabilize once all <code>web</code> nodes are running the latest version.</p><p>If you want more control over when the database migrations happen and know if they were successful you can use the <code>concourse migrate</code> command. The <code>migrate</code> command accepts the same <code>CONCOURSE_POSTGRES_*</code> env vars as the <code>concourse web</code> command.</p>
 
   
     
@@ -576,7 +564,7 @@ CONCOURSE_BACKEND_MAX_CONNS=50 # default</code></pre><p>...then your PostgreSQL 
   <h3 class="section-header"><a class="anchor-target" name="downgrading" href="#downgrading"></a>Downgrading</h3>
   
 
-  <p>If you&#39;re stuck in a pinch and need to downgrade from one version of Concourse to another, you can use the <code>concourse migrate</code> command.</p><em><p>Note: support for down migrations is a fairly recent addition to Concourse; it is not supported for downgrading to v3.6.0 and below.</p></em><p>First, grab the desired migration version by running the following:</p><pre><code class="language-bash"># make sure this is the *old* Concourse binary
+  <p>If you&#39;re stuck in a pinch and need to downgrade from one version of Concourse to another, you can use the <code>concourse migrate</code> command.</p><p>First, grab the desired migration version by running the following:</p><pre><code class="language-bash"># make sure this is the *old* Concourse binary
 $ concourse migrate --supported-db-version
 1551110547</code></pre><p>That number (yours will be different) is the expected migration version for that version of Concourse.</p><p>Next, run the following with the <em>new</em> Concourse binary:</p><pre><code class="language-bash">$ concourse migrate --migrate-db-to-version=1551110547</code></pre><p>This will need the same <code>CONCOURSE_POSTGRES_*</code> configuration described in <a href="concourse-web.html#web-running">Running <code>concourse web</code></a>.</p><p>Once this completes, switch all <code>web</code> nodes back to the older <code>concourse</code> binary and you should be good to go.</p>
 
@@ -603,6 +591,49 @@ $ concourse migrate --supported-db-version
   
 
   <p>If you&#39;ve got many Concourse clusters that you switch between, you can make it slightly easier to notice which one you&#39;re on by giving each cluster a name:</p><pre><code class="language-bash">CONCOURSE_CLUSTER_NAME=production</code></pre><p>When set, this name will be shown in the top bar when viewing the dashboard.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_web-ingress">
+  
+  <h3 class="section-header"><a class="anchor-target" name="web-ingress" href="#web-ingress"></a>Configuring ingress traffic</h3>
+  
+
+  <p>If your web nodes are going to be accessed multiple network layers, you will need to set <code>CONCOURSE_EXTERNAL_URL</code> to a URL accessible by your Concourse users. If you don&#39;t set this property, logging in will incorrectly redirect to its default value of <code>127.0.0.1</code>.</p><p>If your web node(s) will be behind a load balancer or reverse proxy then you will need to ensure connctions made by <a href="builds.html#fly-intercept"><code>fly intercept</code></a> are properly handled by upgrading the connection. Here is a sample nginx configuration that upgrades connections made by <a href="builds.html#fly-intercept"><code>fly intercept</code></a>.</p><pre><code class="language-">server {
+  server_name ci.example.com;
+
+  add_header Strict-Transport-Security &#34;max-age=31536000&#34; always;
+  ssl_stapling on;
+  ssl_stapling_verify on;
+
+  # Proxy main concourse traffic
+  location / {
+      proxy_pass http://concourse.local:8080/;
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+      proxy_set_header X-Forwarded-Protocol $scheme;
+      proxy_set_header X-Forwarded-Host $http_host;
+  }
+
+  # Proxy fly intercept traffic
+  location ~ /hijack$ {
+      proxy_pass http://concourse.local:8080;
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+      proxy_set_header X-Forwarded-Protocol $scheme;
+      proxy_set_header X-Forwarded-Host $http_host;
+      # Upgrade connection
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection &#34;upgrade&#34;;
+  }
+}</code></pre>
 
   
     

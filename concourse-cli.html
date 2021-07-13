@@ -227,9 +227,21 @@
   
 
   <p>The <code>concourse</code> CLI can be downloaded from the <a href="https://github.com/concourse/concourse/releases/latest">latest GitHub release</a> - make sure to grab the appropriate archive for your platform. Each <code>concourse-*</code> archive contains the following files:</p><pre><code class="language-sh">concourse/bin/concourse
-concourse/bin/gdn            # on Linux
+concourse/bin/gdn            # Linux only
 concourse/fly-assets/...
-concourse/resource-types/... # on Linux</code></pre><p>When extracted, the <code>concourse</code> binary will auto-discover its sibling assets based on its file location, so you may extract it anywhere. On Linux a typical install location is <code>/usr/local/concourse</code>:</p><pre><code class="language-sh">tar -zxf concourse-*.tgz -C /usr/local</code></pre><p>From there, you can either add <code>/usr/local/concourse/bin</code> to your <code>$PATH</code>, or just execute <code>/usr/local/concourse/bin/concourse</code> directly.</p><h2>Configuring <code>concourse</code></h2><p>All Concourse <code>web</code> node and <code>worker</code> node configuration is defined statically via flags. For a full list of flags, you can pass <code>--help</code> to any command.</p><p>Each flag can also be set via an environment variable. The env var for each flag is based on the flag name, preceded with <code>CONCOURSE_</code>. These are also shown in <code>--help</code>.</p><p>Various sections in documentation may refer to configuration via env vars rather than flags, but they are both equivalent and interchangeable. Env vars are just easier to reference in isolation and are more useful to copy-paste.</p>
+concourse/resource-types/... # Linux only</code></pre><p>The Linux release is the largest among all the platforms because it is prepackaged with a <a href="concourse-worker.html#bundled-resource-types">bundle of resource types</a> like the <a href="https://github.com/concourse/git-resource">git</a>, <a href="https://github.com/concourse/time-resource/">time</a>, and <a href="https://github.com/concourse/registry-image-resource/">registry-image</a> resources. Resources only run on Linux workers, that&#39;s why the other platforms are not bundled with resources; resources don&#39;t currently exist for non-linux platforms.</p><p>When extracted, the <code>concourse</code> binary will auto-discover its sibling assets based on its file location, so you may extract it anywhere. On Linux a typical install location is <code>/usr/local/concourse</code>:</p><pre><code class="language-sh">tar -zxf concourse-*.tgz -C /usr/local</code></pre><p>From there, you can either add <code>/usr/local/concourse/bin</code> to your <code>$PATH</code>, or just execute <code>/usr/local/concourse/bin/concourse</code> directly.</p><h2>Configuring <code>concourse</code></h2><p>All Concourse <code>web</code> and <code>worker</code> node configuration is defined statically via flags. For a full list of flags, you can pass <code>--help</code> to any command.</p><div class="titled-codeblock">
+  <div class="codeblock-title">
+    <code>CLI Commands</code>
+  </div>
+
+  <pre><code class="language-bash">concourse web --help
+concourse worker --help
+concourse quickstart --help
+concourse migrate --help
+concourse generate-key --help
+concourse land-worker --help
+concourse retire-worker --help</code></pre>
+</div><p>Each flag can also be set via an environment variable. The env var for each flag is based on the flag name uppercased, preceded with <code>CONCOURSE_</code> and dashes (<code>-</code>) replaced with underscores (<code>_</code>). These are also shown in <code>--help</code>.</p><p>Various sections in documentation may refer to configuration via env vars rather than flags, but they are both equivalent and interchangeable. Env vars are simply easier to reference in isolation and are more useful to copy-paste.</p>
 
   
     
