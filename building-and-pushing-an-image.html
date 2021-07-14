@@ -236,7 +236,7 @@
   <h1 class="section-header"><a class="anchor-target" name="building-and-pushing-an-image" href="#building-and-pushing-an-image"></a><span class="section-number">1.13.3.1 </span>Building and Pushing an Image</h1>
   
 
-  <p>In this guide we are going to show how to build and publish container images using the <a href="https://github.com/vito/oci-build-task">oci-build task</a> and <a href="https://github.com/concourse/registry-image-resource">registry-image resource</a>. This guide assumes you understand how to build container images with <a href="https://docs.docker.com/engine/reference/builder/">Dockerfile&#39;s</a> and publish to <a href="https://hub.docker.com/">Docker Hub</a> or another image registry using the docker cli.</p><blockquote class="aside"><p>This is one way of building and pushing images. There are many other ways to accomplish this same task in Concourse.</p></blockquote><p>First we need a Dockerfile. You can store this in your own repo or reference the <a href="https://github.com/concourse/examples">github.com/concourse/examples</a> repo. The rest of this post assumes you use the examples repo. All files in this blog post can be found in the examples repo.</p><h2>The Dockerfile</h2><div class="titled-codeblock">
+  <p>In this guide we are going to show how to build and publish container images using the <a href="https://github.com/concourse/oci-build-task">oci-build task</a> and <a href="https://github.com/concourse/registry-image-resource">registry-image resource</a>. This guide assumes you understand how to build container images with <a href="https://docs.docker.com/engine/reference/builder/">Dockerfile&#39;s</a> and publish to <a href="https://hub.docker.com/">Docker Hub</a> or another image registry using the docker cli.</p><blockquote class="aside"><p>This is one way of building and pushing images. There are many other ways to accomplish this same task in Concourse.</p></blockquote><p>First we need a Dockerfile. You can store this in your own repo or reference the <a href="https://github.com/concourse/examples">github.com/concourse/examples</a> repo. The rest of this post assumes you use the examples repo. All files in this blog post can be found in the examples repo.</p><h2>The Dockerfile</h2><div class="titled-codeblock">
   <div class="codeblock-title">
     <code>Dockerfile</code>
   </div>
@@ -279,7 +279,7 @@ jobs:
 - name: build-and-push
   plan:
   - get: concourse-examples</code></pre>
-</div><h2>Build the Image</h2><p>The second step in our job will build the container image.</p><p>To build the container image we are going to use the <a href="https://github.com/vito/oci-build-task">oci-build-task</a>. The <a href="https://github.com/vito/oci-build-task">oci-build-task</a> is a container image that is meant to be used in a Concourse <a href="tasks.html">task</a> to build other container images. Check out the <a href="https://github.com/vito/oci-build-task/blob/master/README.md">README</a> in the repo for more details on how to configure and use the oci-build-task in more complex build scenarios.</p><p><div class="titled-codeblock">
+</div><h2>Build the Image</h2><p>The second step in our job will build the container image.</p><p>To build the container image we are going to use the <a href="https://github.com/concourse/oci-build-task">oci-build-task</a>. The <a href="https://github.com/concourse/oci-build-task">oci-build-task</a> is a container image that is meant to be used in a Concourse <a href="tasks.html">task</a> to build other container images. Check out the <a href="https://github.com/concourse/oci-build-task/blob/master/README.md">README</a> in the repo for more details on how to configure and use the oci-build-task in more complex build scenarios.</p><p><div class="titled-codeblock">
   <div class="codeblock-title">
     <code>build-push.yml</code>
   </div>
@@ -297,7 +297,7 @@ jobs:
       image_resource:
         type: registry-image
         source:
-          repository: vito/oci-build-task</code></pre>
+          repository: concourse/oci-build-task</code></pre>
 </div> <div style="margin: 0 2em 1em" class="inset"></div></p><p>Next we will add <a href="https://github.com/concourse/examples">concourse-examples</a> as an <a href="tasks.html#schema.task.inputs">input</a> to the build task to ensure the artifact from the <a href="jobs.html#get-step">get step</a> (where our <code>Dockerfile</code> is fetched) is mounted in our <code>build-image</code> step.</p><p><div class="titled-codeblock">
   <div class="codeblock-title">
     <code>build-push.yml</code>
@@ -316,10 +316,10 @@ jobs:
       image_resource:
         type: registry-image
         source:
-          repository: vito/oci-build-task
+          repository: concourse/oci-build-task
       inputs:
       - name: concourse-examples</code></pre>
-</div> <div style="margin: 0 2em 1em" class="inset"></div></p><p>The oci-build-task <a href="https://github.com/vito/oci-build-task#outputs">outputs the built container image</a> in a directory called <code>image</code>. Let&#39;s add image as an output of our task so we can publish it in a later step.</p><div class="titled-codeblock">
+</div> <div style="margin: 0 2em 1em" class="inset"></div></p><p>The oci-build-task <a href="https://github.com/concourse/oci-build-task#outputs">outputs the built container image</a> in a directory called <code>image</code>. Let&#39;s add image as an output of our task so we can publish it in a later step.</p><div class="titled-codeblock">
   <div class="codeblock-title">
     <code>build-push.yml</code>
   </div>
@@ -337,12 +337,12 @@ jobs:
       image_resource:
         type: registry-image
         source:
-          repository: vito/oci-build-task
+          repository: concourse/oci-build-task
       inputs:
       - name: concourse-examples
       outputs:
       - name: image</code></pre>
-</div><h2>Defining the Build Context</h2><p>Next we need to tell the <code>oci-build-task</code> what the <a href="https://docs.docker.com/engine/reference/commandline/build/">build context</a> of our <code>Dockerfile</code> is. The <a href="https://github.com/vito/oci-build-task">README</a> goes over a few other methods of creating your build context. We are going to use the simplest use-case. By specifying <code>CONTEXT</code> the <code>oci-build-task</code> assumes a <code>Dockerfile</code> and its build context are in the same directory.</p><div class="titled-codeblock">
+</div><h2>Defining the Build Context</h2><p>Next we need to tell the <code>oci-build-task</code> what the <a href="https://docs.docker.com/engine/reference/commandline/build/">build context</a> of our <code>Dockerfile</code> is. The <a href="https://github.com/concourse/oci-build-task">README</a> goes over a few other methods of creating your build context. We are going to use the simplest use-case. By specifying <code>CONTEXT</code> the <code>oci-build-task</code> assumes a <code>Dockerfile</code> and its build context are in the same directory.</p><div class="titled-codeblock">
   <div class="codeblock-title">
     <code>build-push.yml</code>
   </div>
@@ -360,7 +360,7 @@ jobs:
       image_resource:
         type: registry-image
         source:
-          repository: vito/oci-build-task
+          repository: concourse/oci-build-task
       inputs:
       - name: concourse-examples
       outputs:
@@ -387,7 +387,7 @@ jobs:
       image_resource:
         type: registry-image
         source:
-          repository: vito/oci-build-task
+          repository: concourse/oci-build-task
       inputs:
       - name: concourse-examples
       outputs:
@@ -433,7 +433,7 @@ jobs:
       image_resource:
         type: registry-image
         source:
-          repository: vito/oci-build-task
+          repository: concourse/oci-build-task
       inputs:
       - name: concourse-examples
       outputs:
@@ -449,7 +449,7 @@ jobs:
   -c ./examples/pipelines/build-and-push-simple-image.yml \
   --var image-repo-name=&lt;repo-name&gt; \
   --var registry-username=&lt;user&gt; \
-  --var registry-password=&lt;password&gt;</code></pre><h2>Further Readings</h2><p>Understanding what the build context is is important when building container images. You can read <a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#understand-build-context">Dockerfile Best Practices</a> for more details about build contexts.</p><p>The <a href="https://github.com/vito/oci-build-task#inputs">inputs section</a> of the oci-build-task&#39;s <code>README</code> has examples on how to create a build context with multiple inputs and other complex build scenarios.</p><p>Read the <code>README</code>&#39;s in the <a href="https://github.com/vito/oci-build-task">oci-build-task</a> and <a href="https://github.com/concourse/registry-image-resource/">registry-image resource</a> to learn more about their other configuration options.</p>
+  --var registry-password=&lt;password&gt;</code></pre><h2>Further Readings</h2><p>Understanding what the build context is is important when building container images. You can read <a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#understand-build-context">Dockerfile Best Practices</a> for more details about build contexts.</p><p>The <a href="https://github.com/concourse/oci-build-task#inputs">inputs section</a> of the oci-build-task&#39;s <code>README</code> has examples on how to create a build context with multiple inputs and other complex build scenarios.</p><p>Read the <code>README</code>&#39;s in the <a href="https://github.com/concourse/oci-build-task">oci-build-task</a> and <a href="https://github.com/concourse/registry-image-resource/">registry-image resource</a> to learn more about their other configuration options.</p>
 
   
     
