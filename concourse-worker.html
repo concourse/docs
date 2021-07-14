@@ -388,6 +388,15 @@
   
     <li>
       <span class="section-number">1.2.5.4.3</span>
+      <a href="concourse-worker.html#worker-healthcheck-endpoint">Healthcheck Endpoint</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.2.5.4.4</span>
       <a href="concourse-worker.html#worker-resource-types">Resource Types</a>
 
       
@@ -395,7 +404,7 @@
   <ol class="toc">
   
     <li>
-      <span class="section-number">1.2.5.4.3.1</span>
+      <span class="section-number">1.2.5.4.4.1</span>
       <a href="concourse-worker.html#bundled-resource-types">Bundled Resource Types</a>
 
       
@@ -404,7 +413,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.2.5.4.3.2</span>
+      <span class="section-number">1.2.5.4.4.2</span>
       <a href="concourse-worker.html#installing-or-upgrading-bundled-resource-types">Installing or Upgrading Bundled Resource Types</a>
 
       
@@ -418,7 +427,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.2.5.4.4</span>
+      <span class="section-number">1.2.5.4.5</span>
       <a href="concourse-worker.html#configuring-runtimes">Configuring Runtimes</a>
 
       
@@ -426,7 +435,7 @@
   <ol class="toc">
   
     <li>
-      <span class="section-number">1.2.5.4.4.1</span>
+      <span class="section-number">1.2.5.4.5.1</span>
       <a href="concourse-worker.html#containerd-runtime"><code>containerd</code> runtime</a>
 
       
@@ -435,7 +444,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.2.5.4.4.2</span>
+      <span class="section-number">1.2.5.4.5.2</span>
       <a href="concourse-worker.html#transitioning-from-guardian-to-containerd">Transitioning from Guardian to containerd</a>
 
       
@@ -444,7 +453,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.2.5.4.4.3</span>
+      <span class="section-number">1.2.5.4.5.3</span>
       <a href="concourse-worker.html#guardian-runtime"><code>Guardian</code> runtime</a>
 
       
@@ -453,7 +462,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.2.5.4.4.4</span>
+      <span class="section-number">1.2.5.4.5.4</span>
       <a href="concourse-worker.html#troubleshooting-and-fixing-dns-resolution">Troubleshooting and fixing DNS resolution</a>
 
       
@@ -461,7 +470,7 @@
   <ol class="toc">
   
     <li>
-      <span class="section-number">1.2.5.4.4.4.1</span>
+      <span class="section-number">1.2.5.4.5.4.1</span>
       <a href="concourse-worker.html#pointing-to-external-dns-servers">Pointing to external DNS servers</a>
 
       
@@ -470,7 +479,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.2.5.4.4.4.2</span>
+      <span class="section-number">1.2.5.4.5.4.2</span>
       <a href="concourse-worker.html#using-a-local-dns-server">Using a local DNS server</a>
 
       
@@ -479,7 +488,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.2.5.4.4.4.3</span>
+      <span class="section-number">1.2.5.4.5.4.3</span>
       <a href="concourse-worker.html#note-on-allow-host-access">A note on allowing host access and DNS proxy</a>
 
       
@@ -516,7 +525,7 @@
 
   <ul>
 
-  <li><p>Linux: We test and support the following distributions. Minimum kernel version tested is 4.4. User namespaces must be enabled. To enforce memory limits on tasks, memory &#43; swap accounting must be enabled.</p><ul>
+  <li><p>Linux: We test and support the following distributions. Minimum kernel version tested is 4.4.</p><ul>
 
   <li><p>Ubuntu 16.04 (kernel 4.4)</p></li>
 
@@ -526,7 +535,15 @@
 
   <li><p>Debian 10 (kernel 4.19)</p></li>
 
-</ul></li>
+</ul><p>Other Requirements: <ul>
+
+  <li><p>User namespaces must be enabled.</p></li>
+
+  <li><p>To enforce memory limits on tasks, memory &#43; swap accounting must be enabled.</p></li>
+
+  <li><p>The <a href="concourse-worker.html#guardian-runtime"><code>Guardian</code> runtime</a> only supports cgroupsV1. Use the <a href="concourse-worker.html#containerd-runtime"><code>containerd</code> runtime</a> if you want to use cgroupsV2 or <a href="https://fedoraproject.org/wiki/Changes/CGroupsV2#Upgrade.2Fcompatibility_impact">downgrade to cgroupsV1</a>.</p></li>
+
+</ul></p></li>
 
   <li><p>Windows/Darwin: no special requirements (that we know of).</p><blockquote class="aside"><p><strong>NOTE:</strong> Windows containers are currently not supported and Darwin does not have native containers. Steps will run inside a temporary directory on the Windows/Darwin worker. Any dependencies needed for your tasks (e.g. git, .NET, golang, ssh) should be pre-installed on the worker. Windows/Darwin workers do not come with any resource types.</p></blockquote></li>
 
@@ -694,6 +711,25 @@ CONCOURSE_TEAM=&#34;lightweavers&#34;</code></pre><p>Only steps that are tagged 
     
   
 </div>
+    
+  
+</div>
+    
+      <div class="section" id="section_worker-healthcheck-endpoint">
+  
+  <h3 class="section-header"><a class="anchor-target" name="worker-healthcheck-endpoint" href="#worker-healthcheck-endpoint"></a>Healthcheck Endpoint</h3>
+  
+
+  <p>The worker will automatically listen on port <code>8888</code> as its healthcheck endpoint. It will return a <code>HTTP 200</code> status code with an empty body on a successful check. A successful check means the worker can reach the <a href="internals.html#architecture-worker">Garden and BaggageClaim servers</a>.</p><p>The healthcheck endpoint is configurable through three variables: <pre><code class="language-">--healthcheck-bind-ip=
+IP address on which to listen for health checking requests. (default: 0.0.0.0)
+
+--healthcheck-bind-port
+Port on which to listen for health checking requests. (default: 8888)
+
+--healthcheck-timeout
+HTTP timeout for the full duration of health checking. (default: 5s)</code></pre></p>
+
+  
     
   
 </div>
