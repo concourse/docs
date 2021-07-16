@@ -860,7 +860,7 @@ DNS Proxy Configuration:
   
   <tr>
     
-    <td><p><code>--garden-allow-host-access</code> <code>CONCOURSE_GARDEN_ALLOW_HOST_ACCESS</code></p></td>
+    <td><p><em>No equivalent CLI flag</em> <code>CONCOURSE_GARDEN_ALLOW_HOST_ACCESS</code></p></td>
     
     <td><p><code>--containerd-allow-host-access</code> <code>CONCOURSE_CONTAINERD_ALLOW_HOST_ACCESS</code></p></td>
     
@@ -884,7 +884,7 @@ DNS Proxy Configuration:
   
   <tr>
     
-    <td><p><code>--garden-deny-network</code> <code>CONCOURSE_GARDEN_DENY_NETWORKS</code></p></td>
+    <td><p><em>No equivalent CLI flag</em> <code>CONCOURSE_GARDEN_DENY_NETWORKS</code></p></td>
     
     <td><p><code>--containerd-restricted-network</code> <code>CONCOURSE_CONTAINERD_RESTRICTED_NETWORK</code></p></td>
     
@@ -892,7 +892,7 @@ DNS Proxy Configuration:
   
   <tr>
     
-    <td><p><code>--garden-dns-server</code> <code>CONCOURSE_GARDEN_DNS_SERVER</code></p></td>
+    <td><p><em>No equivalent CLI flag</em> <code>CONCOURSE_GARDEN_DNS_SERVER</code></p></td>
     
     <td><p><code>--containerd-dns-server</code> <code>CONCOURSE_CONTAINERD_DNS_SERVER</code></p></td>
     
@@ -900,7 +900,7 @@ DNS Proxy Configuration:
   
   <tr>
     
-    <td><p><code>--garden-external-ip</code> <code>CONCOURSE_GARDEN_EXTERNAL_IP</code></p></td>
+    <td><p><em>No equivalent CLI flag</em> <code>CONCOURSE_GARDEN_EXTERNAL_IP</code></p></td>
     
     <td><p><code>--containerd-external-ip</code> <code>CONCOURSE_CONTAINERD_EXTERNAL_IP</code></p></td>
     
@@ -908,7 +908,7 @@ DNS Proxy Configuration:
   
   <tr>
     
-    <td><p><code>--garden-mtu</code> <code>CONCOURSE_GARDEN_MTU</code></p></td>
+    <td><p><em>No equivalent CLI flag</em> <code>CONCOURSE_GARDEN_MTU</code></p></td>
     
     <td><p><code>--containerd-mtu</code> <code>CONCOURSE_CONTAINERD_MTU</code></p></td>
     
@@ -956,13 +956,12 @@ bash-5.0$</code></pre><p>In this case it is empty, as the host only listed a sin
   <h5 class="section-header"><a class="anchor-target" name="pointing-to-external-dns-servers" href="#pointing-to-external-dns-servers"></a>Pointing to external DNS servers</h5>
   
 
-  <p>If you have no need for special DNS resolution within your Concourse containers, you can configure your containers to use specific DNS server addresses external to the VM.</p><p>Both the Guardian and containerd runtimes can have their DNS servers configured with flags or envs vars.</p><div class="titled-codeblock">
+  <p>If you have no need for special DNS resolution within your Concourse containers, you can configure your containers to use specific DNS server addresses external to the VM.</p><p>The Guardian and containerd runtimes can have their DNS servers configured with flags or envs vars.</p><div class="titled-codeblock">
   <div class="codeblock-title">
-    <code>DNS Servers via flags</code>
+    <code>DNS Servers via flags (containerd runtime only)</code>
   </div>
 
-  <pre><code class="language-bash">concourse worker --containerd-dns-server=&#34;1.1.1.1&#34; --containerd-dns-server=&#34;8.8.8.8&#34;
-concourse worker --garden-dns-server=&#34;1.1.1.1&#34; --garden-dns-server=&#34;8.8.8.8&#34;</code></pre>
+  <pre><code class="language-bash">concourse worker --containerd-dns-server=&#34;1.1.1.1&#34; --containerd-dns-server=&#34;8.8.8.8&#34;</code></pre>
 </div><p><div style="margin: 0 2em 1em" class="inset"></div></p><div class="titled-codeblock">
   <div class="codeblock-title">
     <code>DNS Servers via env vars</code>
@@ -1002,11 +1001,10 @@ PING google.com (108.177.111.139): 56 data bytes
 
   <p>If you would like to use Consul, <code>dnsmasq</code>, or some other DNS server running on the worker VM, you&#39;ll have to configure the LAN address of the VM as the DNS server <em>and</em> allow the containers to reach the address, like so:</p><div class="titled-codeblock">
   <div class="codeblock-title">
-    <code>Local DNS Servers via flags</code>
+    <code>Local DNS Servers via flags (containerd runtime only)</code>
   </div>
 
-  <pre><code class="language-bash">concourse worker --containerd-dns-server=&#34;10.0.1.3&#34; --containerd-allow-host-access=&#34;true&#34;
-concourse worker --garden-dns-server=&#34;10.0.1.3&#34; --garden-allow-host-access=&#34;true&#34;</code></pre>
+  <pre><code class="language-bash">concourse worker --containerd-dns-server=&#34;10.0.1.3&#34; --containerd-allow-host-access=&#34;true&#34;</code></pre>
 </div><p><div style="margin: 0 2em 1em" class="inset"></div></p><div class="titled-codeblock">
   <div class="codeblock-title">
     <code>Local DNS Servers via env vars</code>
