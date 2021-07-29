@@ -273,6 +273,11 @@
       
         <tr>
           <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="config-basics.html#schema.value"><strong><code>value</code></strong> schema</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
           <td class="title-cell"><a href="config-basics.html#schema.identifier"><strong><code>identifier</code></strong> schema</a></td>
         </tr>
       
@@ -476,6 +481,16 @@ SOME_NUMERIC_VALUE: &#34;1&#34;</code></pre><p>Note that in the last example we 
   <h2 class="schema-header"><a class="anchor-target" name="schema.boolean" href="#schema.boolean"></a><code>boolean</code> schema</h2>
 
   <p><code>true</code> or <code>false</code>.</p><p>YAML also supports the alias <code>yes</code>, <code>no</code>, <code>on</code>, or <code>off</code>, but...please don&#39;t.</p>
+</div><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.value" href="#schema.value"></a><code>value</code> schema</h2>
+
+  <p>An arbitrary YAML value. May be a <a href="config-basics.html#schema.number"><strong><code>number</code></strong> schema</a>, <a href="config-basics.html#schema.string"><strong><code>string</code></strong> schema</a>, <a href="config-basics.html#schema.boolean"><strong><code>boolean</code></strong> schema</a>, <a href="config-basics.html#schema.config"><strong><code>config</code></strong> schema</a>, or a <code>[<a href="config-basics.html#schema.value"><strong><code>value</code></strong> schema</a>]</code>.</p><pre><code class="language-yaml">values:
+- 123
+- bar
+- true
+- key1: abc
+  key2: def
+- [hello, world]</code></pre>
 </div><div class="schema">
   <h2 class="schema-header"><a class="anchor-target" name="schema.identifier" href="#schema.identifier"></a><code>identifier</code> schema</h2>
 

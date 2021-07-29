@@ -236,7 +236,16 @@
   <h1 class="section-header"><a class="anchor-target" name="building-and-pushing-an-image" href="#building-and-pushing-an-image"></a><span class="section-number">1.13.3.1 </span>Building and Pushing an Image</h1>
   
 
-  <p>In this guide we are going to show how to build and publish container images using the <a href="https://github.com/concourse/oci-build-task">oci-build task</a> and <a href="https://github.com/concourse/registry-image-resource">registry-image resource</a>. This guide assumes you understand how to build container images with <a href="https://docs.docker.com/engine/reference/builder/">Dockerfile&#39;s</a> and publish to <a href="https://hub.docker.com/">Docker Hub</a> or another image registry using the docker cli.</p><blockquote class="aside"><p>This is one way of building and pushing images. There are many other ways to accomplish this same task in Concourse.</p></blockquote><p>First we need a Dockerfile. You can store this in your own repo or reference the <a href="https://github.com/concourse/examples">github.com/concourse/examples</a> repo. The rest of this post assumes you use the examples repo. All files in this blog post can be found in the examples repo.</p><h2>The Dockerfile</h2><div class="titled-codeblock">
+  <p>In this guide we are going to show how to build and publish container images using the <a href="https://github.com/concourse/oci-build-task">oci-build task</a> and <a href="https://github.com/concourse/registry-image-resource">registry-image resource</a>. This guide assumes you understand how to build container images with <a href="https://docs.docker.com/engine/reference/builder/">Dockerfile&#39;s</a> and publish to <a href="https://hub.docker.com/">Docker Hub</a> or another image registry using the docker cli.</p><blockquote class="aside"><p>This is one way of building and pushing images. There are many other ways to accomplish this same task in Concourse.</p></blockquote><p>First we need a Dockerfile. You can store this in your own repo or reference the <a href="https://github.com/concourse/examples">github.com/concourse/examples</a> repo. The rest of this post assumes you use the examples repo. All files in this blog post can be found in the examples repo.</p>
+
+  
+    
+      <div class="section" id="section_the-dockerfile">
+  
+  <h2 class="section-header"><a class="anchor-target" name="the-dockerfile" href="#the-dockerfile"></a>The Dockerfile</h2>
+  
+
+  <div class="titled-codeblock">
   <div class="codeblock-title">
     <code>Dockerfile</code>
   </div>
@@ -246,7 +255,19 @@
 RUN echo &#34;I&#39;m simple!&#34;
 COPY ./stranger /stranger
 RUN cat /stranger</code></pre>
-</div><h2>Defining Pipeline Resources</h2><p>Now we can start building out our pipeline. Let&#39;s declare our <a href="resources.html">Resources</a> first. We will need one resource to pull in the repo where our Dockerfile is located, and a second resource pointing to where we want to push the built container image to.</p><em><p>There are some <a href="pipeline-vars-example.html#variables">Variables</a> in this file that we will fill out when setting the pipeline.</p></em><div class="titled-codeblock">
+</div>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_defining-pipeline-resources">
+  
+  <h2 class="section-header"><a class="anchor-target" name="defining-pipeline-resources" href="#defining-pipeline-resources"></a>Defining Pipeline Resources</h2>
+  
+
+  <p>Now we can start building out our pipeline. Let&#39;s declare our <a href="resources.html">Resources</a> first. We will need one resource to pull in the repo where our Dockerfile is located, and a second resource pointing to where we want to push the built container image to.</p><em><p>There are some <a href="pipeline-vars-example.html#variables">Variables</a> in this file that we will fill out when setting the pipeline.</p></em><div class="titled-codeblock">
   <div class="codeblock-title">
     <code>build-push.yml</code>
   </div>
@@ -268,7 +289,19 @@ RUN cat /stranger</code></pre>
     repository: ((image-repo-name))/simple-image
     username: ((registry-username))
     password: ((registry-password))</code></pre>
-</div><h2>Create the Job</h2><p>Next we will create a <a href="jobs.html">job</a> that will build and push our container image.</p><p>To build the job we will need to pull in the repo where the <code>Dockerfile</code> is.</p><div class="titled-codeblock">
+</div>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_create-the-job">
+  
+  <h2 class="section-header"><a class="anchor-target" name="create-the-job" href="#create-the-job"></a>Create the Job</h2>
+  
+
+  <p>Next we will create a <a href="jobs.html">job</a> that will build and push our container image.</p><p>To build the job we will need to pull in the repo where the <code>Dockerfile</code> is.</p><div class="titled-codeblock">
   <div class="codeblock-title">
     <code>build-push.yml</code>
   </div>
@@ -279,7 +312,19 @@ jobs:
 - name: build-and-push
   plan:
   - get: concourse-examples</code></pre>
-</div><h2>Build the Image</h2><p>The second step in our job will build the container image.</p><p>To build the container image we are going to use the <a href="https://github.com/concourse/oci-build-task">oci-build-task</a>. The <a href="https://github.com/concourse/oci-build-task">oci-build-task</a> is a container image that is meant to be used in a Concourse <a href="tasks.html">task</a> to build other container images. Check out the <a href="https://github.com/concourse/oci-build-task/blob/master/README.md">README</a> in the repo for more details on how to configure and use the oci-build-task in more complex build scenarios.</p><p><div class="titled-codeblock">
+</div>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_build-the-image">
+  
+  <h2 class="section-header"><a class="anchor-target" name="build-the-image" href="#build-the-image"></a>Build the Image</h2>
+  
+
+  <p>The second step in our job will build the container image.</p><p>To build the container image we are going to use the <a href="https://github.com/concourse/oci-build-task">oci-build-task</a>. The <a href="https://github.com/concourse/oci-build-task">oci-build-task</a> is a container image that is meant to be used in a Concourse <a href="tasks.html">task</a> to build other container images. Check out the <a href="https://github.com/concourse/oci-build-task/blob/master/README.md">README</a> in the repo for more details on how to configure and use the oci-build-task in more complex build scenarios.</p><p><div class="titled-codeblock">
   <div class="codeblock-title">
     <code>build-push.yml</code>
   </div>
@@ -342,7 +387,19 @@ jobs:
       - name: concourse-examples
       outputs:
       - name: image</code></pre>
-</div><h2>Defining the Build Context</h2><p>Next we need to tell the <code>oci-build-task</code> what the <a href="https://docs.docker.com/engine/reference/commandline/build/">build context</a> of our <code>Dockerfile</code> is. The <a href="https://github.com/concourse/oci-build-task">README</a> goes over a few other methods of creating your build context. We are going to use the simplest use-case. By specifying <code>CONTEXT</code> the <code>oci-build-task</code> assumes a <code>Dockerfile</code> and its build context are in the same directory.</p><div class="titled-codeblock">
+</div>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_defining-the-build-context">
+  
+  <h2 class="section-header"><a class="anchor-target" name="defining-the-build-context" href="#defining-the-build-context"></a>Defining the Build Context</h2>
+  
+
+  <p>Next we need to tell the <code>oci-build-task</code> what the <a href="https://docs.docker.com/engine/reference/commandline/build/">build context</a> of our <code>Dockerfile</code> is. The <a href="https://github.com/concourse/oci-build-task">README</a> goes over a few other methods of creating your build context. We are going to use the simplest use-case. By specifying <code>CONTEXT</code> the <code>oci-build-task</code> assumes a <code>Dockerfile</code> and its build context are in the same directory.</p><div class="titled-codeblock">
   <div class="codeblock-title">
     <code>build-push.yml</code>
   </div>
@@ -369,7 +426,19 @@ jobs:
         CONTEXT: concourse-examples/Dockerfiles/simple
       run: # binary used to build the image
         path: build</code></pre>
-</div><h2>Publish the Container Image</h2><p>To push the container image add a <a href="jobs.html#put-step">put step</a> to our job plan and tell the regstry-image resource where the tarball of the container image is.</p><p>The put step will push the container image using the information defined previously in the resource&#39;s <a href="resources.html#schema.resource.source">source</a>.</p><div class="titled-codeblock">
+</div>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_publish-the-container-image">
+  
+  <h2 class="section-header"><a class="anchor-target" name="publish-the-container-image" href="#publish-the-container-image"></a>Publish the Container Image</h2>
+  
+
+  <p>To push the container image add a <a href="jobs.html#put-step">put step</a> to our job plan and tell the regstry-image resource where the tarball of the container image is.</p><p>The put step will push the container image using the information defined previously in the resource&#39;s <a href="resources.html#schema.resource.source">source</a>.</p><div class="titled-codeblock">
   <div class="codeblock-title">
     <code>build-push.yml</code>
   </div>
@@ -399,7 +468,19 @@ jobs:
   - put: simple-image
     params:
       image: image/image.tar</code></pre>
-</div><h2>The Entire Pipeline</h2><p>Putting all the pieces together, here is our pipeline that builds and pushes a container image.</p><p><div class="titled-codeblock">
+</div>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_the-entire-pipeline">
+  
+  <h2 class="section-header"><a class="anchor-target" name="the-entire-pipeline" href="#the-entire-pipeline"></a>The Entire Pipeline</h2>
+  
+
+  <p>Putting all the pieces together, here is our pipeline that builds and pushes a container image.</p><p><div class="titled-codeblock">
   <div class="codeblock-title">
     <code>build-push.yml</code>
   </div>
@@ -449,9 +530,24 @@ jobs:
   -c ./examples/pipelines/build-and-push-simple-image.yml \
   --var image-repo-name=&lt;repo-name&gt; \
   --var registry-username=&lt;user&gt; \
-  --var registry-password=&lt;password&gt;</code></pre><h2>Further Readings</h2><p>Understanding what the build context is is important when building container images. You can read <a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#understand-build-context">Dockerfile Best Practices</a> for more details about build contexts.</p><p>The <a href="https://github.com/concourse/oci-build-task#inputs">inputs section</a> of the oci-build-task&#39;s <code>README</code> has examples on how to create a build context with multiple inputs and other complex build scenarios.</p><p>Read the <code>README</code>&#39;s in the <a href="https://github.com/concourse/oci-build-task">oci-build-task</a> and <a href="https://github.com/concourse/registry-image-resource/">registry-image resource</a> to learn more about their other configuration options.</p>
+  --var registry-password=&lt;password&gt;</code></pre>
 
   
+    
+  
+</div>
+    
+      <div class="section" id="section_further-readings">
+  
+  <h2 class="section-header"><a class="anchor-target" name="further-readings" href="#further-readings"></a>Further Readings</h2>
+  
+
+  <p>Understanding what the build context is is important when building container images. You can read <a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#understand-build-context">Dockerfile Best Practices</a> for more details about build contexts.</p><p>The <a href="https://github.com/concourse/oci-build-task#inputs">inputs section</a> of the oci-build-task&#39;s <code>README</code> has examples on how to create a build context with multiple inputs and other complex build scenarios.</p><p>Read the <code>README</code>&#39;s in the <a href="https://github.com/concourse/oci-build-task">oci-build-task</a> and <a href="https://github.com/concourse/registry-image-resource/">registry-image resource</a> to learn more about their other configuration options.</p>
+
+  
+    
+  
+</div>
     
   
 </div>

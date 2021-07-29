@@ -325,6 +325,11 @@
       
         <tr>
           <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.across_var"><strong><code>across_var</code></strong> schema</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
           <td class="title-cell"><a href="jobs.html#schema.step.get-step.get"><code>get</code> step <strong><code>get</code></strong></a></td>
         </tr>
       
@@ -556,6 +561,31 @@
         <tr>
           <td class="number-cell"><code>#</code></td>
           <td class="title-cell"><a href="jobs.html#try-step"><code>try</code> step</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.across_var.var"><code class="schema-attribute-name"><bold>across_var<wbr />.var</bold></code></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.across_var.values"><code class="schema-attribute-name"><bold>across_var<wbr />.values</bold></code></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.across_var.max_in_flight"><code class="schema-attribute-name"><bold>across_var<wbr />.max_in_flight</bold></code></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.across_var.fail_fast"><code class="schema-attribute-name"><bold>across_var<wbr />.fail_fast</bold></code></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="jobs.html#schema.step.across"><code class="schema-attribute-name"><bold>step<wbr />.across</bold></code></a></td>
         </tr>
       
         <tr>
@@ -1059,6 +1089,8 @@
   <li><p>the <a href="jobs.html#in-parallel-step"><code>in_parallel</code> step</a> runs steps in parallel</p></li>
 
   <li><p>the <a href="jobs.html#do-step"><code>do</code> step</a> runs steps in sequence</p></li>
+
+  <li><p>the <a href="jobs.html#schema.step.across"><code>across</code> step modifier</a> runs a step multiple times; once for each combination of variable values</p></li>
 
   <li><p>the <a href="jobs.html#try-step"><code>try</code> step</a> attempts to run a step and succeeds even if the step fails</p></li>
 
@@ -1975,6 +2007,132 @@ jobs:
 </div>
   </div>
   
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.step.across" type="checkbox" class="toggle" />
+  <label for="toggle-schema.step.across" class="toggle-title">
+    <a id="schema.step.across"></a>
+
+    <code><a class="attribute-name" href="#schema.step.across">across</a>: <span class="attribute-type">[<a href="jobs.html#schema.across_var"><strong>across_var</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Run a step multiple times with different combinations of variable values.</p><div class="warning">
+  <p><code>across</code> is considered an <strong>experimental</strong> feature, and its syntax/semantics may change. To enable <code>across</code> for your deployment, you must set the feature flag <code>CONCOURSE_ENABLE_ACROSS_STEP</code>.</p>
+</div><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.across_var" href="#schema.across_var"></a><code>across_var</code> schema</h2>
+
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.across_var.var" type="checkbox" class="toggle" />
+  <label for="toggle-schema.across_var.var" class="toggle-title">
+    <a id="schema.across_var.var"></a>
+
+    <code><a class="attribute-name" href="#schema.across_var.var">var</a>: <span class="attribute-type"><a href="config-basics.html#schema.identifier"><strong>identifier</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The name of the variable that will be added to the <a href="vars.html#local-vars">&#34;<code>.</code>&#34; var source</a>. This variable will only be accessible in the scope of the step - each iteration of the step gets its own scope.</p><p>If a variable of the same name already exists in the parent scope, a warning will be printed.</p>
+  </div>
+</div><div class="toggleable schema-attribute required">
+  <input id="toggle-schema.across_var.values" type="checkbox" class="toggle" />
+  <label for="toggle-schema.across_var.values" class="toggle-title">
+    <a id="schema.across_var.values"></a>
+
+    <code><a class="attribute-name" href="#schema.across_var.values">values</a>: <span class="attribute-type">[<a href="config-basics.html#schema.value"><strong>value</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The list of values that the <a href="jobs.html#schema.across_var.var">var</a> will iterate over when running the substep. If multiple <a href="jobs.html#schema.across_var">vars</a> are configured, all combinations of values across all vars will run.</p><p>The list of values may also be interpolated. For instance, you may use the <a href="jobs.html#load-var-step"><code>load_var</code> step</a> to first load a list of <a href="config-basics.html#schema.value"><strong><code>value</code></strong> schema</a> into a <a href="vars.html#local-vars">local var</a>, and then iterate across that dynamic list of values.</p><div class="toggleable example">
+  <input id="toggle-936706bced08ec604e8e6921c399b3a601c4d0d9" type="checkbox" class="toggle" />
+  <label for="toggle-936706bced08ec604e8e6921c399b3a601c4d0d9" class="toggle-title">Value combinations</label>
+  <div class="toggle-content">
+    <p>The following <a href="jobs.html#schema.step.across"><code class="schema-attribute-name"><bold>step<wbr />.across</bold></code></a> will run the task <code>foo/build.yml</code> for each package defined in <code>foo/packages-to-build.json</code> with Go 1.15 and 1.16.</p><pre><code class="language-yaml">plan:
+- get: foo
+- load_var: packages
+  file: foo/packages-to-build.json
+- across:
+  - var: package
+    values: ((.:packages))
+  - var: go_version
+    values: [&#39;1.15&#39;, &#39;1.16&#39;]
+  task: build
+  file: foo/build.yml
+  vars:
+    go_version: ((.:go_version))
+    package: ((.:package))</code></pre><p>Supposing <code>foo/packages-to-build.json</code> had the following content: <pre><code class="language-json">[&#34;./cmd/first&#34;, &#34;./cmd/second&#34;, &#34;./cmd/third&#34;]</code></pre></p><p>...then the task <code>foo/build.yml</code> would be run with the following var combinations:</p><ul>
+
+  <li><p><code>{package: &#34;./cmd/first&#34;, go_version: &#34;1.15&#34;}</code></p></li>
+
+  <li><p><code>{package: &#34;./cmd/first&#34;, go_version: &#34;1.16&#34;}</code></p></li>
+
+  <li><p><code>{package: &#34;./cmd/second&#34;, go_version: &#34;1.15&#34;}</code></p></li>
+
+  <li><p><code>{package: &#34;./cmd/second&#34;, go_version: &#34;1.16&#34;}</code></p></li>
+
+  <li><p><code>{package: &#34;./cmd/third&#34;, go_version: &#34;1.15&#34;}</code></p></li>
+
+  <li><p><code>{package: &#34;./cmd/third&#34;, go_version: &#34;1.16&#34;}</code></p></li>
+
+</ul>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.across_var.max_in_flight" type="checkbox" class="toggle" />
+  <label for="toggle-schema.across_var.max_in_flight" class="toggle-title">
+    <a id="schema.across_var.max_in_flight"></a>
+
+    <code><a class="attribute-name" href="#schema.across_var.max_in_flight">max_in_flight</a>: <span class="attribute-type"><span class="schema-scalar">all</span> | <a href="config-basics.html#schema.number"><strong>number</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>1</code>.</em> If set to <code>all</code>, the substep will run with all combinations of the current var in parallel. If set to a <a href="config-basics.html#schema.number"><strong><code>number</code></strong> schema</a>, only that number of substeps may run in parallel.</p><div class="toggleable example">
+  <input id="toggle-275ef54947051d7ea02f6dccbf88a7cc147b82f0" type="checkbox" class="toggle" />
+  <label for="toggle-275ef54947051d7ea02f6dccbf88a7cc147b82f0" class="toggle-title">Multiple vars</label>
+  <div class="toggle-content">
+    <p>If multiple <a href="jobs.html#schema.across_var">vars</a> are configured, the effective <code>max_in_flight</code> is multiplicative. For instance:</p><pre><code class="language-yaml">plan:
+- across:
+  - var: var1
+    values: [a, b, c]
+    max_in_flight: all
+  - var: var2
+    values: [1, 2]
+  - var: var3
+    values: [foo, bar]
+    max_in_flight: 2</code></pre><p>Here, <strong>6 substeps</strong> will run in parallel, since all 3 of <code>var1</code>&#39;s values can run in parallel, and 2 of <code>var3</code>&#39;s values can run in parallel.</p>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.across_var.fail_fast" type="checkbox" class="toggle" />
+  <label for="toggle-schema.across_var.fail_fast" class="toggle-title">
+    <a id="schema.across_var.fail_fast"></a>
+
+    <code><a class="attribute-name" href="#schema.across_var.fail_fast">fail_fast</a>: <span class="attribute-type"><a href="config-basics.html#schema.boolean"><strong>boolean</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>false</code>.</em> When enabled, the <code>across</code> step will fail fast by returning as soon as any sub-step fails. This means that running steps will be interrupted and pending steps will no longer be scheduled.</p>
+  </div>
+</div>
+</div><p>The <code>across</code> step can be combined with the <a href="jobs.html#load-var-step"><code>load_var</code> step</a>, the <a href="jobs.html#set-pipeline-step"><code>set_pipeline</code> step</a>, and <a href="instanced-pipelines.html">instanced pipelines</a> to maintain a dynamically sized group of related pipelines.</p><div class="toggleable example">
+  <input id="toggle-aad4ecbadfe6092052e0ca8992befe7cafbf4f79" type="checkbox" class="toggle" />
+  <label for="toggle-aad4ecbadfe6092052e0ca8992befe7cafbf4f79" class="toggle-title">Multi-branch workflows</label>
+  <div class="toggle-content">
+    <p>You can use the <code>across</code> step to set a pipeline for each branch in a git repository.</p><pre><code class="language-yaml">plan:
+- get: release-branches
+  trigger: true
+- get: ci
+- load_var: branches
+  file: release-branches/branches.json
+- across:
+  - var: branch
+    values: ((.:branches))
+  set_pipeline: release
+  file: ci/pipelines/release.yml
+  instance_vars: {branch: ((.:branch.name))}</code></pre><p>When a new branch is added, a new pipeline will be created. When a branch is deleted, the pipeline will be automatically archived as described in the <a href="jobs.html#set-pipeline-step"><code>set_pipeline</code> step</a>.</p><p>For a more complete example, refer to <a href="multi-branch-workflows.html">Multi-Branch Workflows</a>.</p>
+  </div>
+</div>
+  </div>
 </div><div class="toggleable schema-attribute optional">
   <input id="toggle-schema.step.timeout" type="checkbox" class="toggle" />
   <label for="toggle-schema.step.timeout" class="toggle-title">
