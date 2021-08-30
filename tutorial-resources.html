@@ -534,7 +534,7 @@ jobs:
       - name: repo
       run:
         path: cat
-        args: [&#34;repo/README.md&#34;]</code></pre><p>Next let&#39;s change the <code>hello-world-task</code> to instead create a commit.</p><pre><code class="language-yaml">resources:
+        args: [&#34;repo/README.md&#34;]</code></pre><p>Next let&#39;s change the <code>hello-world-task</code> to instead create a commit. Since we want the commit to propagate to future steps, specifically the <a href="jobs.html#put-step"><code>put</code> step</a> we&#39;ll be adding soon, we will also need to add the <code>repo</code> as an output of the task.</p><pre><code class="language-yaml">resources:
 - name: repo
   type: git
   source:
@@ -557,6 +557,8 @@ jobs:
         source:
           repository: gitea/gitea # use any image that has the git cli
       inputs:
+      - name: repo
+      outputs: # Add repo as an output
       - name: repo
       run:
         path: sh
@@ -596,6 +598,8 @@ jobs:
         source:
           repository: gitea/gitea
       inputs:
+      - name: repo
+      outputs:
       - name: repo
       run:
         path: sh
