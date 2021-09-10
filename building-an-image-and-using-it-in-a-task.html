@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
-<title>How-To Guides - Concourse CI</title>
+<title>Building an Image and Using it in a Task - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
@@ -61,6 +61,10 @@
 
 
 
+  
+  
+  
+  
   
   
   
@@ -137,7 +141,7 @@
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="how-to-guides.html"  class="self">How-To Guides</a></td>
+            <td class="title-cell"><a href="how-to-guides.html"  class="active">How-To Guides</a></td>
           </tr>
         
           <tr>
@@ -167,7 +171,7 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.13</span><a href="how-to-guides.html"  class="self">How-To Guides</a>
+        <span class="section-number">1.13</span><a href="how-to-guides.html"  class="active">How-To Guides</a>
       </div>
 
       <div class="children">
@@ -185,7 +189,7 @@
         
           <tr>
             <td class="number-cell">1.13.3</td>
-            <td class="title-cell"><a href="container-image-guides.html" >Container Image Guides</a></td>
+            <td class="title-cell"><a href="container-image-guides.html"  class="active">Container Image Guides</a></td>
           </tr>
         
         </table>
@@ -194,122 +198,148 @@
   </div>
   
 
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.13.3</span><a href="container-image-guides.html"  class="active">Container Image Guides</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.13.3.1</td>
+            <td class="title-cell"><a href="building-and-pushing-an-image.html" >Building and Pushing an Image</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.13.3.2</td>
+            <td class="title-cell"><a href="building-an-image-and-using-it-in-a-task.html"  class="self">Building an Image and Using it in a Task</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+
 
 
       </div>
 
       <div class="body-content">
         <div class="page-content">
-          <div class="section" id="section_how-to-guides">
+          <div class="section" id="section_building-an-image-and-using-it-in-a-task">
   
-  <h1 class="section-header"><a class="anchor-target" name="how-to-guides" href="#how-to-guides"></a><span class="section-number">1.13 </span>How-To Guides</h1>
+  <h1 class="section-header"><a class="anchor-target" name="building-an-image-and-using-it-in-a-task" href="#building-an-image-and-using-it-in-a-task"></a><span class="section-number">1.13.3.2 </span>Building an Image and Using it in a Task</h1>
   
 
-  <p>The following pages are guides that show how to accomplish certain workflows within Concourse. Most of the guides will use specific images but you are in no way limited to or forced to use these images to accomplish the same task. There are many ways to accomplish the same thing in Concourse, so don&#39;t let these guides limit you in what you think is possible with Concourse.</p><div class="table-of-contents">
-  <span class="toc-header">Table of contents:</span>
+  <p>This guide will show you how to build and use an image within one <a href="jobs.html">job</a> without pushing the image to an external image registry like Docker Hub.</p>
 
   
+    
+      <div class="section" id="section_build-the-image">
   
-  <ol class="toc">
+  <h2 class="section-header"><a class="anchor-target" name="build-the-image" href="#build-the-image"></a>Build The Image</h2>
   
-    <li>
-      <span class="section-number">1.13.1</span>
-      <a href="pipeline-guides.html">Pipeline Guides</a>
 
-      
-  
-  <ol class="toc">
-  
-    <li>
-      <span class="section-number">1.13.1.1</span>
-      <a href="common-pipeline-practices.html">Common Pipeline Practices</a>
+  <p>To avoid repeating ourselves we&#39;re going to use the pipeline made in the other guide <a href="building-and-pushing-an-image.html">Building and Pushing an Image</a>. We will start with the pipeline from the <a href="building-and-pushing-an-image.html#defining-the-build-context">Defining the Build Context</a> section.</p><p>We will add the <code>UNPACK_ROOTFS</code> parameter to the task. This paramter tells the <a href="https://github.com/concourse/oci-build-task">oci-build-task</a> to include the image in a special format that Concourse&#39;s container runtime uses. <em>In the future this may not be necessary if Concourse starts using the OCI image format.</em></p><p><div class="titled-codeblock">
+  <div class="codeblock-title">
+    <code>build-and-use-image.yml</code>
+  </div>
 
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.13.1.2</span>
-      <a href="exploring-task-input-and-output-scenarios.html">Exploring Task Input and Output Scenarios</a>
+  <pre><code class="language-yaml">resources:
+# The repo with our Dockerfile
+- name: concourse-examples
+  type: git
+  icon: github
+  source:
+    uri: https://github.com/concourse/examples.git
+    branch: master
 
-      
-  
-  
-    </li>
-  
-  </ol>
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.13.2</span>
-      <a href="git-guides.html">Git Guides</a>
+jobs:
+- name: build-and-run
+  plan:
+  - get: concourse-examples
+  - task: build-image
+    privileged: true # oci-build-task must run in a privileged container
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          repository: concourse/oci-build-task
+      inputs:
+      - name: concourse-examples
+      outputs:
+      - name: image
+      params:
+        CONTEXT: concourse-examples/Dockerfiles/simple
+        UNPACK_ROOTFS: true #add this param
+      run: # binary used to build the image
+        path: build</code></pre>
+</div> <div style="margin: 0 2em 1em" class="inset"></div></p><p>The above pipeline will build a container image and also output it in Concourse&#39;s rootfs image format.</p>
 
-      
   
-  <ol class="toc">
-  
-    <li>
-      <span class="section-number">1.13.2.1</span>
-      <a href="basic-git-operations.html">Basic Git Operations</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.13.2.2</span>
-      <a href="multi-branch-workflows.html">Multi-Branch Workflows</a>
-
-      
-  
-  
-    </li>
-  
-  </ol>
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.13.3</span>
-      <a href="container-image-guides.html">Container Image Guides</a>
-
-      
-  
-  <ol class="toc">
-  
-    <li>
-      <span class="section-number">1.13.3.1</span>
-      <a href="building-and-pushing-an-image.html">Building and Pushing an Image</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.13.3.2</span>
-      <a href="building-an-image-and-using-it-in-a-task.html">Building an Image and Using it in a Task</a>
-
-      
-  
-  
-    </li>
-  
-  </ol>
-  
-  
-    </li>
-  
-  </ol>
-  
+    
   
 </div>
+    
+      <div class="section" id="section_use-the-image">
+  
+  <h2 class="section-header"><a class="anchor-target" name="use-the-image" href="#use-the-image"></a>Use the Image</h2>
+  
 
+  <p>Next we want to add a second task to this job which will use the image generated from the first task as its container image. To use the image from the previous step add the top-level <a href="jobs.html#schema.step.task-step.image">image</a> key to the <a href="jobs.html#schema.step.task-step.task">task step</a>.</p><p><div class="titled-codeblock">
+  <div class="codeblock-title">
+    <code>build-and-use-image.yml</code>
+  </div>
+
+  <pre><code class="language-yaml">resources: ...  # omitting for brevity
+
+jobs:
+- name: build-and-run
+  plan:
+  - get: concourse-examples
+  - task: build-image
+    privileged: true
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          repository: concourse/oci-build-task
+      inputs:
+      - name: concourse-examples
+      outputs:
+      - name: image
+      params:
+        CONTEXT: concourse-examples/Dockerfiles/simple
+        UNPACK_ROOTFS: true
+      run:
+        path: build
+  - task: use-built-image-in-task  # add a new task step
+    image: image  # using the image built in the previous step
+    config:
+      platform: linux
+      run:
+        path: cat
+        args: [&#34;/stranger&#34;]</code></pre>
+</div> <div style="margin: 0 2em 1em" class="inset"></div></p><p>You can set the pipeline with the following fly command.</p><pre><code class="language-bash">fly -t &lt;target&gt; set-pipeline -p build-and-use-image \
+  -c ./build-and-use-image.yml \</code></pre>
+
+  
+    
+  
+</div>
+    
   
 </div>
 
@@ -319,10 +349,10 @@
               prev:
 
               
-              <span class="section-number">1.12</span>
+              <span class="section-number">1.13.3.1</span>
               
 
-              <a href="builds.html">Builds</a>
+              <a href="building-and-pushing-an-image.html">Building and Pushing an Image</a>
             </div>
           
 
@@ -331,10 +361,10 @@
               next:
 
               
-              <span class="section-number">1.13.1</span>
+              <span class="section-number">1.14</span>
               
 
-              <a href="pipeline-guides.html">Pipeline Guides</a>
+              <a href="operation.html">Operation</a>
             </div>
           
           </nav>
