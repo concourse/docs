@@ -563,7 +563,7 @@ jobs:
       - name: repo
       outputs: # Add repo as an output
       - name: repo
-      params: # Change these to match your personal info
+      params: # Change these to match your ssh key info
         EMAIL: person@example.com
         GIT_AUTHOR_NAME: Person Doe
       run:
@@ -575,6 +575,8 @@ jobs:
           cd repo
           date &#43;%Y-%m-%d &gt; todays-date
           git add ./todays-date
+          git config --global user.email $EMAIL
+          git config --global user.name $GIT_AUTHOR_NAME
           git commit -m &#34;Update todays date&#34;</code></pre><p>Lastly we can add a <a href="jobs.html#put-step"><code>put</code> step</a> to push the commit made by the task. <a href="jobs.html#put-step">Put steps</a> usually have various <code>params</code> that you&#39;ll need to set in order run the step correctly. If we read the <a href="https://github.com/concourse/git-resource#out-push-to-a-repository">documentation for the git resource</a> we&#39;ll see that we need to specify <code>repository</code> field.</p><blockquote class="aside"><p>If you&#39;re wondering why we don&#39;t do <code>git push</code> from the task, that&#39;s for two reasons: <ol>
 
   <li><p>The newly made commit represents a new version and Concourse won&#39;t capture it correctly if it&#39;s pushed from the task, which is outside of the resource interface (check, get, put).</p></li>
@@ -619,6 +621,8 @@ jobs:
           cd repo
           date &#43;%Y-%m-%d &gt; todays-date
           git add ./todays-date
+          git config --global user.email $EMAIL
+          git config --global user.name $GIT_AUTHOR_NAME
           git commit -m &#34;Update todays date&#34;
   - put: repo
     params:
