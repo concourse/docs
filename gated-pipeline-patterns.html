@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
-<title>Pipeline Guides - Concourse CI</title>
+<title>Gated Pipeline Patterns - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
@@ -61,6 +61,8 @@
 
 
 
+  
+  
   
   
   
@@ -177,7 +179,7 @@
         
           <tr>
             <td class="number-cell">1.13.1</td>
-            <td class="title-cell"><a href="pipeline-guides.html"  class="self">Pipeline Guides</a></td>
+            <td class="title-cell"><a href="pipeline-guides.html"  class="active">Pipeline Guides</a></td>
           </tr>
         
           <tr>
@@ -202,7 +204,7 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.13.1</span><a href="pipeline-guides.html"  class="self">Pipeline Guides</a>
+        <span class="section-number">1.13.1</span><a href="pipeline-guides.html"  class="active">Pipeline Guides</a>
       </div>
 
       <div class="children">
@@ -220,7 +222,7 @@
         
           <tr>
             <td class="number-cell">1.13.1.3</td>
-            <td class="title-cell"><a href="gated-pipeline-patterns.html" >Gated Pipeline Patterns</a></td>
+            <td class="title-cell"><a href="gated-pipeline-patterns.html"  class="self">Gated Pipeline Patterns</a></td>
           </tr>
         
         </table>
@@ -229,56 +231,185 @@
   </div>
   
 
+  
+
+  
+
 
 
       </div>
 
       <div class="body-content">
         <div class="page-content">
-          <div class="section" id="section_pipeline-guides">
+          <div class="section" id="section_gated-pipeline-patterns">
   
-  <h1 class="section-header"><a class="anchor-target" name="pipeline-guides" href="#pipeline-guides"></a><span class="section-number">1.13.1 </span>Pipeline Guides</h1>
+  <h1 class="section-header"><a class="anchor-target" name="gated-pipeline-patterns" href="#gated-pipeline-patterns"></a><span class="section-number">1.13.1.3 </span>Gated Pipeline Patterns</h1>
   
 
-  <div class="table-of-contents">
-  <span class="toc-header">Table of contents:</span>
+  <p>Gated pipelines provide control for administrators and release managers on when a given software release is deployed to a tightly protected environment (e.g. production).</p><p>The execution of jobs that perform certain tasks (e.g. deployment) targeting the downstream environment beyond the &#34;gate&#34; step is done only upon either an approval coming from an external Change Control system or an explicit manual trigger of such step.</p>
 
   
+    
+      <div class="section" id="section_1---a-simple-gated-pipeline">
   
-  <ol class="toc">
+  <h2 class="section-header"><a class="anchor-target" name="1---a-simple-gated-pipeline" href="#1---a-simple-gated-pipeline"></a>#1 - A Simple Gated Pipeline</h2>
   
-    <li>
-      <span class="section-number">1.13.1.1</span>
-      <a href="common-pipeline-practices.html">Common Pipeline Practices</a>
 
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.13.1.2</span>
-      <a href="exploring-task-input-and-output-scenarios.html">Exploring Task Input and Output Scenarios</a>
+  <p>By default all <a href="jobs.html">Jobs</a> only run when manually triggered. That means a user has to run <a href="jobs.html#fly-trigger-job"><code>fly trigger-job</code></a> or click the plus button in the web interface for a job to run. A job only runs automatically if one of it&#39;s resources has the <a href="jobs.html#schema.step.get-step.trigger"><code>trigger: true</code></a> parameter set.</p><p>Therefore, in order to create a gated job in a pipeline you simply need to create a job that can only be manually triggered. That means not setting <code>trigger: true</code> for any of the jobs <a href="jobs.html#get-step">get steps</a>.</p><pre><code class="language-yaml">---
+jobs:
+- name: run-automatically
+  plan:
+  - get: my-repo
+    trigger: true  # has trigger:true so automatically triggers
+  # can include more steps to run other things before hitting the gate
 
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.13.1.3</span>
-      <a href="gated-pipeline-patterns.html">Gated Pipeline Patterns</a>
+- name: the-gate  # manually trigger this job
+  plan:
+  - get: my-repo
+    trigger: false  # redundant but guarantees the job won&#39;t run automatically
+    passed:
+      - run-automatically
 
-      
+# runs immediately after the gate is triggered
+- name: do-more-stuff-after-the-gate
+  plan:
+  - get: my-repo
+    passed:
+      - the-gate
+    trigger: true
+  # can include more steps to run other things
+
+resources:
+- name: my-repo
+  type: git
+  source:
+    uri: https://github.com/concourse/examples.git</code></pre><a href="images/how-to-guides/pipelines/simple-gated-pipeline.png"><div class="diagram">
+  <img src="images/how-to-guides/pipelines/simple-gated-pipeline.png" alt="diagram" width="100%" />
+</div></a>
+
   
-  
-    </li>
-  
-  </ol>
-  
+    
   
 </div>
+    
+      <div class="section" id="section_2---gated-pipeline-fanning-in-and-out">
+  
+  <h2 class="section-header"><a class="anchor-target" name="2---gated-pipeline-fanning-in-and-out" href="#2---gated-pipeline-fanning-in-and-out"></a>#2 - Gated Pipeline Fanning In and Out</h2>
+  
 
+  <p>You can also use a gate as way to fan-in from multiple jobs and/or fan-out to multiple jobs as well.</p><pre><code class="language-yaml">---
+jobs:
+# three pre-gate jobs
+- name: job-a
+  plan:
+  - get: my-repo
+    trigger: true
+- name: job-b
+  plan:
+  - get: my-repo
+    trigger: true
+- name: job-c
+  plan:
+  - get: my-repo
+    trigger: true
+
+- name: the-gate  # manually trigger this job
+  plan:
+  - get: my-repo
+    trigger: false
+    passed:  # fan-in from the three pre-gate jobs
+      - job-a
+      - job-b
+      - job-c
+
+# fan-out to three post-gate jobs
+- name: post-gate-job-a
+  plan:
+  - get: my-repo
+    trigger: true
+    passed: [the-gate]
+- name: post-gate-job-b
+  plan:
+  - get: my-repo
+    trigger: true
+    passed: [the-gate]
+- name: post-gate-job-c
+  plan:
+  - get: my-repo
+    trigger: true
+    passed: [the-gate]
+
+resources:
+- name: my-repo
+  type: git
+  source:
+    uri: https://github.com/concourse/examples.git</code></pre><a href="images/how-to-guides/pipelines/simple-gated-fan-in-fan-out.png"><div class="diagram">
+  <img src="images/how-to-guides/pipelines/simple-gated-fan-in-fan-out.png" alt="diagram" width="100%" />
+</div></a>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_3---a-gated-pipeline-with-notifications">
+  
+  <h2 class="section-header"><a class="anchor-target" name="3---a-gated-pipeline-with-notifications" href="#3---a-gated-pipeline-with-notifications"></a>#3 - A Gated Pipeline With Notifications</h2>
+  
+
+  <p>This pipeline shows you how you can send a notification, like an email, to notify someone that a new build of your application is ready to be shipped.</p><pre><code class="language-yaml">---
+jobs:
+- name: build-it
+  plan:
+  - get: my-repo
+    trigger: true
+  # can add steps to build your app
+
+- name: test-it
+  plan:
+  - get: my-repo
+    trigger: true
+    passed: [build-it]
+  # can add steps to run tests
+  - put: email-release-manager
+    params:
+      subject: &#34;Ready to ship&#34;
+      body_text: |
+        A build is ready to be shipped!
+        Build to be shipped: ${ATC_EXTERNAL_URL}/teams/${BUILD_TEAM_NAME}/pipelines/${BUILD_PIPELINE_NAME}/jobs/${BUILD_JOB_NAME}/builds/${BUILD_NAME}
+        Link to pipeline: ${ATC_EXTERNAL_URL}/teams/${BUILD_TEAM_NAME}/pipelines/${BUILD_PIPELINE_NAME}
+
+- name: ship-it
+  plan:
+  - get: my-repo
+    trigger: false
+    passed: [test-it]
+
+resources:
+- name: my-repo
+  type: git
+  source:
+    uri: https://github.com/concourse/examples.git
+- name: email-release-manager
+  type: email
+  source:
+    # other required fields for this resource have been omitted
+    from: pipeline@example.com
+    to: release-manager@example.com
+
+resource_types:
+- name: email
+  type: registry-image
+  source:
+    repository: pcfseceng/email-resource</code></pre><a href="images/how-to-guides/pipelines/gated-pipeline-with-notification.png"><div class="diagram">
+  <img src="images/how-to-guides/pipelines/gated-pipeline-with-notification.png" alt="diagram" width="100%" />
+</div></a>
+
+  
+    
+  
+</div>
+    
   
 </div>
 
@@ -288,10 +419,10 @@
               prev:
 
               
-              <span class="section-number">1.13</span>
+              <span class="section-number">1.13.1.2</span>
               
 
-              <a href="how-to-guides.html">How-To Guides</a>
+              <a href="exploring-task-input-and-output-scenarios.html">Exploring Task Input and Output Scenarios</a>
             </div>
           
 
@@ -300,10 +431,10 @@
               next:
 
               
-              <span class="section-number">1.13.1.1</span>
+              <span class="section-number">1.13.2</span>
               
 
-              <a href="common-pipeline-practices.html">Common Pipeline Practices</a>
+              <a href="git-guides.html">Git Guides</a>
             </div>
           
           </nav>
