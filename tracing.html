@@ -240,6 +240,11 @@
         
           <tr>
             <td class="number-cell">1.14.2.2</td>
+            <td class="title-cell"><a href="tracing.html#trace-context-propagation" >Trace context propagation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14.2.3</td>
             <td class="title-cell"><a href="tracing.html#whats-emitted" >What&#39;s emitted?</a></td>
           </tr>
         
@@ -281,10 +286,24 @@
   <h2 class="section-header"><a class="anchor-target" name="configuring-tracing" href="#configuring-tracing"></a>Configuring Tracing</h2>
   
 
-  <p>To export spans to Jaeger, specify the Thrift HTTP endpoint of the Jaeger collector:</p><pre><code class="language-bash">CONCOURSE_TRACING_JAEGER_ENDPOINT=http://jaeger:14268/api/traces</code></pre><p>To export spans to Google Cloud Trace, specify the GCP Project ID:</p><pre><code class="language-bash">CONCOURSE_TRACING_STACKDRIVER_PROJECTID=your-gcp-project-id</code></pre><p>Note that suitable GCP credentials must be available, via the usual <a href="https://cloud.google.com/docs/authentication/getting-started#setting_the_environment_variable"><code>GOOGLE_APPLICATION_CREDENTIALS</code> environment variable</a>, the default location that the <code>gcloud</code> CLI expects, or from GCP&#39;s metadata server (if Concourse is deployed on GCP).</p><p>To export spans to Lightstep via the OTLP Exporter, specify your collector access token and endpoint:</p><pre><code class="language-bash">CONCOURSE_TRACING_OTLP_ADDRESS=ingest.lightstep.com:443
-CONCOURSE_TRACING_OTLP_HEADERS=lightstep-access-token:mysupersecrettoken</code></pre><p>To export spans to Honeycomb.io, specify the API key, dataset and optionally the service name:</p><pre><code class="language-bash">CONCOURSE_TRACING_HONEYCOMB_API_KEY=your-honeycomb-api-key
+  <p>To export spans to Jaeger, specify the Thrift HTTP endpoint of the Jaeger collector:</p><pre><code class="language-bash">CONCOURSE_TRACING_JAEGER_ENDPOINT=http://jaeger:14268/api/traces</code></pre><p>To export spans to Google Cloud Trace, specify the GCP Project ID:</p><pre><code class="language-bash">CONCOURSE_TRACING_STACKDRIVER_PROJECTID=your-gcp-project-id</code></pre><p>Note that suitable GCP credentials must be available, via the usual <a href="https://cloud.google.com/docs/authentication/getting-started#setting_the_environment_variable"><code>GOOGLE_APPLICATION_CREDENTIALS</code> environment variable</a>, the default location that the <code>gcloud</code> CLI expects, or from GCP&#39;s metadata server (if Concourse is deployed on GCP).</p><p>To export spans the <a href="https://github.com/open-telemetry/opentelemetry-collector">OpenTelemetry Collector</a> via the OTLP Exporter, specify your collector access endpoint:</p><pre><code class="language-bash">CONCOURSE_TRACING_OTLP_ADDRESS=otel-collector.example.com:4317
+CONCOURSE_TRACING_OTLP_USE_TLS=false</code></pre><p>To export spans to <a href="https://opentelemetry.lightstep.com/">Lightstep</a> via the OTLP Exporter, specify your collector access token and endpoint:</p><pre><code class="language-bash">CONCOURSE_TRACING_OTLP_ADDRESS=ingest.lightstep.com:443
+CONCOURSE_TRACING_OTLP_HEADERS=lightstep-access-token:mysupersecrettoken</code></pre><p>To export spans to <a href="https://www.elastic.co/guide/en/apm/get-started/current/open-telemetry-elastic.html">Elastic Observability</a> via the OTLP Exporter, specify your Elastic APM secret token and endpoint:</p><pre><code class="language-bash">CONCOURSE_TRACING_OTLP_ADDRESS=elastic-apm-server.example.com:443
+CONCOURSE_TRACING_OTLP_HEADERS=Authorization=Bearer your-secret-token</code></pre><p>To export spans to Honeycomb.io, specify the API key, dataset and optionally the service name:</p><pre><code class="language-bash">CONCOURSE_TRACING_HONEYCOMB_API_KEY=your-honeycomb-api-key
 CONCOURSE_TRACING_HONEYCOMB_DATASET=your-honeycomb-dataset
 CONCOURSE_TRACING_HONEYCOMB_SERVICE_NAME=service-name-for-concourse  # NOTE: Optional. Defaults to &#34;concourse&#34;</code></pre>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_trace-context-propagation">
+  
+  <h2 class="section-header"><a class="anchor-target" name="trace-context-propagation" href="#trace-context-propagation"></a>Trace context propagation</h2>
+  
+
+  <p>When tracing is enabled, trace context propagation is activated in pipeline tasks thanks to the  injection of the environment variable <code>TRACEPARENT</code> in <code>run</code> commands. The environment variable <code>TRACEPARENT</code> complies with the  <a href="https://www.w3.org/TR/trace-context/">W3C Trace Context</a> specification.</p>
 
   
     
