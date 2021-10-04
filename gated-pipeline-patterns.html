@@ -225,6 +225,11 @@
             <td class="title-cell"><a href="gated-pipeline-patterns.html"  class="self">Gated Pipeline Patterns</a></td>
           </tr>
         
+          <tr>
+            <td class="number-cell">1.13.1.4</td>
+            <td class="title-cell"><a href="time-triggered-pipeline-patterns.html" >Time Triggered Pipeline Patterns</a></td>
+          </tr>
+        
         </table>
       </div>
     </nav>
@@ -255,8 +260,7 @@
   <h2 class="section-header"><a class="anchor-target" name="1---a-simple-gated-pipeline" href="#1---a-simple-gated-pipeline"></a>#1 - A Simple Gated Pipeline</h2>
   
 
-  <p>By default all <a href="jobs.html">Jobs</a> only run when manually triggered. That means a user has to run <a href="jobs.html#fly-trigger-job"><code>fly trigger-job</code></a> or click the plus button in the web interface for a job to run. A job only runs automatically if one of it&#39;s resources has the <a href="jobs.html#schema.step.get-step.trigger"><code>trigger: true</code></a> parameter set.</p><p>Therefore, in order to create a gated job in a pipeline you simply need to create a job that can only be manually triggered. That means not setting <code>trigger: true</code> for any of the jobs <a href="jobs.html#get-step">get steps</a>.</p><pre><code class="language-yaml">---
-jobs:
+  <p>By default all <a href="jobs.html">Jobs</a> only run when manually triggered. That means a user has to run <a href="jobs.html#fly-trigger-job"><code>fly trigger-job</code></a> or click the plus button in the web interface for a job to run. A job only runs automatically if one of it&#39;s resources has the <a href="jobs.html#schema.step.get-step.trigger"><code>trigger: true</code></a> parameter set.</p><p>Therefore, in order to create a gated job in a pipeline you simply need to create a job that can only be manually triggered. That means not setting <code>trigger: true</code> for any of the jobs <a href="jobs.html#get-step">get steps</a>.</p><pre><code class="language-yaml">jobs:
 - name: run-automatically
   plan:
   - get: my-repo
@@ -297,8 +301,7 @@ resources:
   <h2 class="section-header"><a class="anchor-target" name="2---gated-pipeline-fanning-in-and-out" href="#2---gated-pipeline-fanning-in-and-out"></a>#2 - Gated Pipeline Fanning In and Out</h2>
   
 
-  <p>You can also use a gate as way to fan-in from multiple jobs and/or fan-out to multiple jobs as well.</p><pre><code class="language-yaml">---
-jobs:
+  <p>You can also use a gate as way to fan-in from multiple jobs and/or fan-out to multiple jobs as well.</p><pre><code class="language-yaml">jobs:
 # three pre-gate jobs
 - name: job-a
   plan:
@@ -357,8 +360,7 @@ resources:
   <h2 class="section-header"><a class="anchor-target" name="3---a-gated-pipeline-with-notifications" href="#3---a-gated-pipeline-with-notifications"></a>#3 - A Gated Pipeline With Notifications</h2>
   
 
-  <p>This pipeline shows you how you can send a notification, like an email, to notify someone that a new build of your application is ready to be shipped.</p><pre><code class="language-yaml">---
-jobs:
+  <p>This pipeline shows you how you can send a notification, like an email, to notify someone that a new build of your application is ready to be shipped.</p><pre><code class="language-yaml">jobs:
 - name: build-it
   plan:
   - get: my-repo
@@ -431,10 +433,10 @@ resource_types:
               next:
 
               
-              <span class="section-number">1.13.2</span>
+              <span class="section-number">1.13.1.4</span>
               
 
-              <a href="git-guides.html">Git Guides</a>
+              <a href="time-triggered-pipeline-patterns.html">Time Triggered Pipeline Patterns</a>
             </div>
           
           </nav>
