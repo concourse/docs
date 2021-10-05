@@ -312,6 +312,19 @@
 
       
   
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.2.5.3.1.1</span>
+      <a href="concourse-worker.html#horizontal-vs-vertical-scaling">Horizontal vs Vertical Scaling</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
   
     </li>
   
@@ -611,9 +624,21 @@ sudo -E concourse worker</code></pre><p>Note that the worker must be run as <cod
   <h3 class="section-header"><a class="anchor-target" name="scaling-workers" href="#scaling-workers"></a>Scaling Workers</h3>
   
 
-  <p>More workers should be added to accomodate more pipelines. To know when this is necessary you should probably set up <a href="metrics.html">Metrics</a> and keep an eye on container counts. If it&#39;s starting to approach 200 or so, you should probably add another worker. Load average is another metric to keep an eye on.</p><p>To add a worker, just create another machine for the worker and follow the <a href="concourse-worker.html#worker-running">Running <code>concourse worker</code></a> instructions again.</p><blockquote class="aside"><p><strong>Note</strong>: it doesn&#39;t make sense to run multiple workers on one machine since they&#39;ll both be contending for the same physical resources. Workers should be given their own VMs or physical machines to maximize resource usage.</p></blockquote>
+  <p>More workers should be added to accommodate more pipelines. To know when this is necessary you should probably set up <a href="metrics.html">Metrics</a> and keep an eye on container counts. If average container count starts to approach 200 or so per worker, you should probably add another worker. Load average is another metric to keep an eye on.</p><p>To add a worker, just create another machine for the worker and follow the <a href="concourse-worker.html#worker-running">Running <code>concourse worker</code></a> instructions again.</p><blockquote class="aside"><p><strong>Note</strong>: it doesn&#39;t make sense to run multiple workers on one machine since they&#39;ll both be contending for the same physical resources. Workers should be given their own VMs or physical machines to maximize resource usage.</p></blockquote>
 
   
+    
+      <div class="section" id="section_horizontal-vs-vertical-scaling">
+  
+  <h4 class="section-header"><a class="anchor-target" name="horizontal-vs-vertical-scaling" href="#horizontal-vs-vertical-scaling"></a>Horizontal vs Vertical Scaling</h4>
+  
+
+  <p>The answer to whether you should scale your workers horizontally or vertically depends heavily on what workloads your pipelines are running. Anecdotally though, we have seen that a lot of smaller workers (horizontal scaling) is usually better than a few large workers (vertical scaling).</p><p>Again, this is not an absolute answer! You will have to test this out against the workloads your pipelines demand and adjust based on the <a href="metrics.html">Metrics</a> that you are tracking.</p>
+
+  
+    
+  
+</div>
     
   
 </div>
