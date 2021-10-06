@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
-<title>Container Image Guides - Concourse CI</title>
+<title>Fetching an Image and Using it in a Task - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
@@ -61,6 +61,8 @@
 
 
 
+  
+  
   
   
   
@@ -187,7 +189,7 @@
         
           <tr>
             <td class="number-cell">1.13.3</td>
-            <td class="title-cell"><a href="container-image-guides.html"  class="self">Container Image Guides</a></td>
+            <td class="title-cell"><a href="container-image-guides.html"  class="active">Container Image Guides</a></td>
           </tr>
         
         </table>
@@ -202,7 +204,7 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.13.3</span><a href="container-image-guides.html"  class="self">Container Image Guides</a>
+        <span class="section-number">1.13.3</span><a href="container-image-guides.html"  class="active">Container Image Guides</a>
       </div>
 
       <div class="children">
@@ -220,7 +222,7 @@
         
           <tr>
             <td class="number-cell">1.13.3.3</td>
-            <td class="title-cell"><a href="fetching-an-image-and-using-it-in-a-task.html" >Fetching an Image and Using it in a Task</a></td>
+            <td class="title-cell"><a href="fetching-an-image-and-using-it-in-a-task.html"  class="self">Fetching an Image and Using it in a Task</a></td>
           </tr>
         
         </table>
@@ -229,56 +231,41 @@
   </div>
   
 
+  
+
+  
+
 
 
       </div>
 
       <div class="body-content">
         <div class="page-content">
-          <div class="section" id="section_container-image-guides">
+          <div class="section" id="section_fetching-an-image-and-using-it-in-a-task">
   
-  <h1 class="section-header"><a class="anchor-target" name="container-image-guides" href="#container-image-guides"></a><span class="section-number">1.13.3 </span>Container Image Guides</h1>
+  <h1 class="section-header"><a class="anchor-target" name="fetching-an-image-and-using-it-in-a-task" href="#fetching-an-image-and-using-it-in-a-task"></a><span class="section-number">1.13.3.3 </span>Fetching an Image and Using it in a Task</h1>
   
 
-  <div class="table-of-contents">
-  <span class="toc-header">Table of contents:</span>
+  <p>You can fetch an image and use it in a subsequent task using the <a href="https://github.com/concourse/registry-image-resource/">registry-image resource</a>.</p><pre><code class="language-yaml">resources:
+- name: alpine
+  type: registry-image
+  source:
+    repository: alpine
+
+jobs:
+- name: fetch-and-run
+  plan:
+  - get: alpine
+  - task: use-fetched-image-in-task
+    image: alpine   # reference the image from the get step
+    config:
+      platform: linux
+      run:
+        path: cat
+        args: [&#34;/proc/version&#34;]</code></pre>
 
   
-  
-  <ol class="toc">
-  
-    <li>
-      <span class="section-number">1.13.3.1</span>
-      <a href="building-and-pushing-an-image.html">Building and Pushing an Image</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.13.3.2</span>
-      <a href="building-an-image-and-using-it-in-a-task.html">Building an Image and Using it in a Task</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.13.3.3</span>
-      <a href="fetching-an-image-and-using-it-in-a-task.html">Fetching an Image and Using it in a Task</a>
-
-      
-  
-  
-    </li>
-  
-  </ol>
-  
-  
-</div>
-
+    
   
 </div>
 
@@ -288,10 +275,10 @@
               prev:
 
               
-              <span class="section-number">1.13.2</span>
+              <span class="section-number">1.13.3.2</span>
               
 
-              <a href="git-guides.html">Git Guides</a>
+              <a href="building-an-image-and-using-it-in-a-task.html">Building an Image and Using it in a Task</a>
             </div>
           
 
@@ -300,10 +287,10 @@
               next:
 
               
-              <span class="section-number">1.13.3.1</span>
+              <span class="section-number">1.14</span>
               
 
-              <a href="building-and-pushing-an-image.html">Building and Pushing an Image</a>
+              <a href="operation.html">Operation</a>
             </div>
           
           </nav>
