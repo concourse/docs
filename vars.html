@@ -272,6 +272,17 @@
     
       <tr>
         <td class="number-cell">1.7.5.1</td>
+        <td class="title-cell"><a href="vars.html#dynamic-vars-across-step" >Across Step &amp; Dynamic Vars</a></td>
+      </tr>
+      
+      
+  
+    
+  
+
+    
+      <tr>
+        <td class="number-cell">1.7.5.2</td>
         <td class="title-cell"><a href="vars.html#var-sources" >Var sources <span class="dim">(experimental)</span></a></td>
       </tr>
       
@@ -417,7 +428,7 @@
 
     
       <tr>
-        <td class="number-cell">1.7.5.2</td>
+        <td class="number-cell">1.7.5.3</td>
         <td class="title-cell"><a href="vars.html#cluster-wide-credential-manager" >The cluster-wide credential manager</a></td>
       </tr>
       
@@ -498,7 +509,7 @@
   
     <li>
       <span class="section-number">1.7.5.1</span>
-      <a href="vars.html#var-sources">Var sources <span class="dim">(experimental)</span></a>
+      <a href="vars.html#dynamic-vars-across-step">Across Step &amp; Dynamic Vars</a>
 
       
   
@@ -507,6 +518,15 @@
   
     <li>
       <span class="section-number">1.7.5.2</span>
+      <a href="vars.html#var-sources">Var sources <span class="dim">(experimental)</span></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.7.5.3</span>
       <a href="vars.html#cluster-wide-credential-manager">The cluster-wide credential manager</a>
 
       
@@ -713,11 +733,29 @@ resources:
 
   <li><p><a href="jobs.html#schema.step.task-step.params"><code>task</code> step <strong><code>params</code></strong></a> on a task step in a pipeline</p></li>
 
-  <li><p><a href="tasks.html">Tasks</a> in their entirety - whether from <a href="jobs.html#schema.step.task-step.file"><code>task</code> step <strong><code>file</code></strong></a> or <a href="jobs.html#schema.step.task-step.config"><code>task</code> step <strong><code>config</code></strong></a> in a pipeline, or a config executed with <a href="tasks.html#running-tasks"><code>fly execute</code></a></p></li>
+  <li><p><a href="tasks.html">tasks configuration</a> in their entirety - whether from <a href="jobs.html#schema.step.task-step.file"><code>task</code> step <strong><code>file</code></strong></a> or <a href="jobs.html#schema.step.task-step.config"><code>task</code> step <strong><code>config</code></strong></a> in a pipeline, or a config executed with <a href="tasks.html#running-tasks"><code>fly execute</code></a></p></li>
 
 </ul><p>Concourse will fetch values for vars as late as possible - i.e. when a step using them is about to execute. This allows the credentials to have limited lifetime and rapid rotation policies.</p>
 
   
+    
+      <div class="section" id="section_dynamic-vars-across-step">
+  
+  <h3 class="section-header"><a class="anchor-target" name="dynamic-vars-across-step" href="#dynamic-vars-across-step"></a>Across Step &amp; Dynamic Vars</h3>
+  
+
+  <p>For the <a href="jobs.html#schema.step.across"><code class="schema-attribute-name"><bold>step<wbr />.across</bold></code></a> more fields can be dynamically interpolated during runtime:</p><ul>
+
+  <li><p><a href="jobs.html#set-pipeline-step"><code>set_pipeline</code> step</a> identifier and <a href="jobs.html#schema.step.set-pipeline-step.file"><code>file</code></a> field</p></li>
+
+  <li><p><a href="jobs.html#task-step"><code>task</code> step</a> identifier, <a href="jobs.html#schema.step.task-step.input_mapping"><code>input_mapping</code></a>, and <a href="jobs.html#schema.step.task-step.output_mapping"><code>output_mapping</code></a>, in addition to the all other fields mentioned above for the task step</p></li>
+
+</ul>
+
+  
+    
+  
+</div>
     
       <div class="section" id="section_var-sources">
   

@@ -246,11 +246,11 @@
   <h1 class="section-header"><a class="anchor-target" name="fetching-an-image-and-using-it-in-a-task" href="#fetching-an-image-and-using-it-in-a-task"></a><span class="section-number">1.13.3.3 </span>Fetching an Image and Using it in a Task</h1>
   
 
-  <p>You can fetch an image and use it in a subsequent task using the <a href="https://github.com/concourse/registry-image-resource/">registry-image resource</a>.</p><pre><code class="language-yaml">resources:
+  <p>You can fetch an image and use it in a subsequent task using the <a href="https://github.com/concourse/registry-image-resource/">registry-image resource</a>.</p><p>The following example downloads the <a href="https://hub.docker.com/_/alpine">alpine image</a> from docker hub and uses it in a task to run <code>cat /proc/version</code>.</p><pre><code class="language-yaml">resources:
 - name: alpine
   type: registry-image
   source:
-    repository: alpine
+    repository: alpine  # could also be the full URL &#34;docker.io/alpine&#34;
 
 jobs:
 - name: fetch-and-run

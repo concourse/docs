@@ -262,7 +262,7 @@
   <h2 class="section-header"><a class="anchor-target" name="resource-check" href="#resource-check"></a><code>check</code>: Check for new versions.</h2>
   
 
-  <p>A resource type&#39;s <code>check</code> script is invoked to detect new versions of the resource. It is given the configured source and current version on <code>stdin</code>, and must print the array of new versions, in chronological order, to <code>stdout</code>, including the requested version if it&#39;s still valid.</p><p>The request body will have the following fields:</p><ul>
+  <p>A resource type&#39;s <code>check</code> script is invoked to detect new versions of the resource. It is given the configured source and current version on <code>stdin</code>, and must print the array of new versions, in chronological order (oldest first), to <code>stdout</code>, including the requested version if it&#39;s still valid.</p><p>The request body will have the following fields:</p><ul>
 
   <li><p><code>source</code> is an arbitrary JSON object which specifies the location of the resource, including any credentials. This is passed verbatim from the <a href="resources.html">resource configuration</a>.</p><p>For the <code>git</code> resource this would be the repo URI, the branch, and the private key, if necessary.</p></li>
 

@@ -2112,9 +2112,133 @@ jobs:
     <p><em>Default <code>false</code>.</em> When enabled, the <code>across</code> step will fail fast by returning as soon as any sub-step fails. This means that running steps will be interrupted and pending steps will no longer be scheduled.</p>
   </div>
 </div>
-</div><p>The <code>across</code> step can be combined with the <a href="jobs.html#load-var-step"><code>load_var</code> step</a>, the <a href="jobs.html#set-pipeline-step"><code>set_pipeline</code> step</a>, and <a href="instanced-pipelines.html">instanced pipelines</a> to maintain a dynamically sized group of related pipelines.</p><div class="toggleable example">
-  <input id="toggle-aad4ecbadfe6092052e0ca8992befe7cafbf4f79" type="checkbox" class="toggle" />
-  <label for="toggle-aad4ecbadfe6092052e0ca8992befe7cafbf4f79" class="toggle-title">Multi-branch workflows</label>
+</div><p>The <code>across</code> step can be combined with the <a href="jobs.html#load-var-step"><code>load_var</code> step</a>, the <a href="jobs.html#set-pipeline-step"><code>set_pipeline</code> step</a>, and <a href="instanced-pipelines.html">instanced pipelines</a> to maintain a dynamically sized group of related pipelines.</p><p>More fields are also available for variable interpolation with the across step. See <a href="vars.html#dynamic-vars-across-step">Across Step &amp; Dynamic Vars</a> for details.</p><div class="warning">
+  <p>Outputs from steps ran within the across step are not available to steps outside of the across step.</p>
+</div><p><div class="toggleable example">
+  <input id="toggle-d270e0eaaa4d1d172916f6b24c05310ea1c393d8" type="checkbox" class="toggle" />
+  <label for="toggle-d270e0eaaa4d1d172916f6b24c05310ea1c393d8" class="toggle-title">Across with task step</label>
+  <div class="toggle-content">
+    <pre><code class="language-yaml">jobs:
+- name: job
+  plan:
+  - across:
+    - var: some-text
+      values: [&#34;hello-world&#34;, &#34;hello-concourse&#34;]
+    task: running-((.:some-text))
+    config:
+      platform: linux
+      image_resource:
+        type: mock
+        source:
+          mirror_self: true
+      run:
+        path: echo
+        args: [&#34;((.:some-text))&#34;]</code></pre>
+  </div>
+</div> <div class="toggleable example">
+  <input id="toggle-136f1b54b7f2e66cb7461ebae1fd087e8b57f680" type="checkbox" class="toggle" />
+  <label for="toggle-136f1b54b7f2e66cb7461ebae1fd087e8b57f680" class="toggle-title">Across with input and output mapping</label>
+  <div class="toggle-content">
+    <pre><code class="language-yaml">resources:
+- name: ci
+  type: git
+  source:
+    uri: https://github.com/concourse/examples.git
+
+jobs:
+- name: job
+  plan:
+  - get: ci
+  - across:
+    - var: pipeline
+      values: [&#34;hello-world&#34;, &#34;time-triggered&#34;]
+    do:
+      - task: running-((.:pipeline))
+        input_mapping:
+          ((.:pipeline)): ci
+        output_mapping:
+          ((.:pipeline)): newci
+        config:
+          platform: linux
+          image_resource:
+            type: mock
+            source:
+              mirror_self: true
+          inputs:
+            - name: ((.:pipeline))
+          outputs:
+            - name: ((.:pipeline))
+          run:
+            path: cat
+            args: [&#34;((.:pipeline))/pipelines/((.:pipeline)).yml&#34;]
+      - task: newci-((.:pipeline))
+        config:
+          platform: linux
+          image_resource:
+            type: mock
+            source:
+              mirror_self: true
+          inputs:
+            - name: newci
+          run:
+            path: cat
+            args: [&#34;newci/pipelines/((.:pipeline)).yml&#34;]</code></pre>
+  </div>
+</div> <div class="toggleable example">
+  <input id="toggle-0d8cb490c333b9d6d2dd704a02a86380d8d4ee23" type="checkbox" class="toggle" />
+  <label for="toggle-0d8cb490c333b9d6d2dd704a02a86380d8d4ee23" class="toggle-title">Across with set_pipeline step</label>
+  <div class="toggle-content">
+    <pre><code class="language-yaml">resources:
+- name: ci
+  type: git
+  source:
+    uri: https://github.com/concourse/examples.git
+
+jobs:
+- name: job
+  plan:
+  - get: ci
+  - across:
+    - var: pipeline
+      values: [&#34;hello-world&#34;, &#34;time-triggered&#34;]
+    set_pipeline: ((.:pipeline))
+    file: ci/pipelines/((.:pipeline)).yml</code></pre>
+  </div>
+</div> <div class="toggleable example">
+  <input id="toggle-de1311e4dce23976914185cba8cd24a2a30c6b9d" type="checkbox" class="toggle" />
+  <label for="toggle-de1311e4dce23976914185cba8cd24a2a30c6b9d" class="toggle-title">Across with multiple steps</label>
+  <div class="toggle-content">
+    <p>Use the <a href="jobs.html#do-step"><code>do</code> step</a> to <code>across</code> over multiple steps. <pre><code class="language-yaml">jobs:
+- name: job
+  plan:
+  - across:
+    - var: name
+      values: [&#34;Kaladin&#34;, &#34;Jasnah&#34;]
+    do:  # takes a list of steps
+    - task: saying-hello
+      config:
+        platform: linux
+        image_resource:
+          type: mock
+          source:
+            mirror_self: true
+        run:
+          path: echo
+          args: [&#34;Hello ((.:name))!&#34;]
+    - task: saying-bye
+      config:
+        platform: linux
+        image_resource:
+          type: mock
+          source:
+            mirror_self: true
+        run:
+          path: echo
+          args: [&#34;Bye ((.:name))!&#34;]</code></pre></p>
+  </div>
+</div> <div class="toggleable example">
+  <input id="toggle-a9e3e4fed8d24c8eaa92ef61dd86110a00ec9139" type="checkbox" class="toggle" />
+  <label for="toggle-a9e3e4fed8d24c8eaa92ef61dd86110a00ec9139" class="toggle-title">Multi-branch workflows (instance pipelines)</label>
   <div class="toggle-content">
     <p>You can use the <code>across</code> step to set a pipeline for each branch in a git repository.</p><pre><code class="language-yaml">plan:
 - get: release-branches
@@ -2129,6 +2253,16 @@ jobs:
   file: ci/pipelines/release.yml
   instance_vars: {branch: ((.:branch.name))}</code></pre><p>When a new branch is added, a new pipeline will be created. When a branch is deleted, the pipeline will be automatically archived as described in the <a href="jobs.html#set-pipeline-step"><code>set_pipeline</code> step</a>.</p><p>For a more complete example, refer to <a href="multi-branch-workflows.html">Multi-Branch Workflows</a>.</p>
   </div>
+</div></p><div class="warning">
+  <p>The <code>across</code> step does not work well with the <a href="jobs.html#get-step"><code>get</code> step</a> or <a href="jobs.html#put-step"><code>put</code> step</a>. The names of resouces are not interpolated within across steps. Trying to do the following will not work. <pre><code class="language-yaml">- across:
+  - var: version
+    values: [&#34;1.16&#34;, &#34;1.17&#34;]
+  do:
+    - get: go-((.:version))
+    # or this
+    - get: golang
+      resource: go-((.version))</code></pre></p><p>The main reason this does not work is that Concourse determines the inputs for a job before the job starts. Concourse has no way of determining inputs for a job while it&#39;s in the middle of running.</p><p>Current pipeline valdiation logic will also block you from setting the pipeline at all since Concourse validates the relationship between all resources and jobs by looking at get and put steps.</p><p>The above example will return an error like this when trying to set the pipeline: <pre><code class="language-">invalid jobs:
+  jobs.job.plan.do[0].across.get(go): unknown resource &#39;go-((.:version))&#39;</code></pre></p>
 </div>
   </div>
 </div><div class="toggleable schema-attribute optional">
