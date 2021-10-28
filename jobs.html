@@ -1365,22 +1365,23 @@
   <label for="toggle-090a27c83db306e51289e8580837be1df978eb0b" class="toggle-title">Fetching and using an image</label>
   <div class="toggle-content">
     <p>This can be used in to explicitly keep track of dependent images:</p><pre><code class="language-yaml">resources:
-- name: my-image
+- name: golang
   type: registry-image
-  source: {repository: golang, tag: &#34;1.13&#34;}
-
-- name: my-repo
-  type: git
-  source: # ...
+  source:
+    repository: golang  # could also be the full URL &#34;docker.io/golang&#34;
+    tag: &#34;1.17&#34;
 
 jobs:
-- name: use-image
+- name: fetch-and-run
   plan:
-  - get: my-image
-  - get: my-repo
-  - task: unit
-    file: my-repo/ci/unit.yml
-    image: my-image</code></pre>
+  - get: golang
+  - task: use-fetched-image-in-task
+    image: golang   # reference the image from the get step
+    config:
+      platform: linux
+      run:
+        path: go
+        args: [&#34;version&#34;]</code></pre>
   </div>
 </div><div class="toggleable example">
   <input id="toggle-f9ff679a98755598d66e7bfb784e10284d3601cf" type="checkbox" class="toggle" />
