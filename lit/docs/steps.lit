@@ -816,7 +816,9 @@ by configuring \reference{schema.step.on_failure} or
       }
     }
   }
-    \schema-group{\code{load_var} step}{load-var-step}{
+  \section{
+    \title{\code{load_var} step}{load-var-step}
+    \schema-group{\code{load_var} step}{load-var}{
       \required-attribute{load_var}{identifier}{
         Load the value for a var at runtime, making it available to subsequent
         steps as a build-local var named after the given identifier.
@@ -887,7 +889,7 @@ by configuring \reference{schema.step.on_failure} or
 
           If the \code{use-creds} task were to print these values, they would
           be automatically redacted unless
-          \reference{schema.step.load-var-step.reveal}{\code{reveal: true}} is
+          \reference{schema.load-var.reveal}{\code{reveal: true}} is
           set.
         }
       }
@@ -898,6 +900,7 @@ by configuring \reference{schema.step.on_failure} or
         enabled.
       }
     }
+  }
     \schema-group{\code{in_parallel} step}{in-parallel-step}{
       \required-attribute{in_parallel}{[step] | in_parallel_config}{
         Performs the given steps in parallel.
