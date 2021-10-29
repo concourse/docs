@@ -772,7 +772,7 @@
     means a user has to run \reference{fly-trigger-job} or click the plus
     button in the web interface for a job to run. A job only runs automatically
     if one of it's resources has the
-    \reference{schema.step.get-step.trigger}{\code{trigger: true}} parameter
+    \reference{schema.get.trigger}{\code{trigger: true}} parameter
     set.
 
     Therefore, in order to create a gated job in a pipeline you simply need to

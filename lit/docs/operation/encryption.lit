@@ -39,7 +39,7 @@ management} as well.
     they contain sensitive information such as usernames and/or passwords.
   }{
     Put step \reference{schema.step.put-step.params} and get step
-    \reference{schema.step.get-step.params} are also encrypted, even though they rarely
+    \reference{schema.get.params} are also encrypted, even though they rarely
     should contain credentials (they're usually in
     \reference{schema.resource.source}).
   }{

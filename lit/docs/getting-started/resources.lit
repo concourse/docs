@@ -264,9 +264,9 @@
   }}
 
   The final piece is telling Concourse to trigger the \code{hello-world-job}
-  whenever the \code{repo} resource emits a new version. We can do that
-  by setting \reference{schema.step.get-step.trigger}{\code{trigger}} to
-  \code{true} for the \reference{get-step}{get step}.
+  whenever the \code{repo} resource emits a new version. We can do that by
+  setting \reference{schema.get.trigger}{\code{trigger}} to \code{true} for the
+  \reference{get-step}{get step}.
 
   \codeblock{yaml}{{
   resources:
