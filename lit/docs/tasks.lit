@@ -3,8 +3,8 @@
 \use-plugin{concourse-docs}
 
 The smallest configurable unit in a Concourse pipeline is a single task. A task
-can be thought of as a function from \reference{schema.task.inputs} to
-\reference{schema.task.outputs} that can either succeed or fail.
+can be thought of as a function from \reference{schema.task-config.inputs} to
+\reference{schema.task-config.outputs} that can either succeed or fail.
 
 Going a bit further, ideally tasks are \italic{pure} functions: given the same
 set of inputs, it should either always succeed with the same outputs or always
@@ -23,7 +23,7 @@ code it's testing, possibly under some \code{ci} directory.
 
 A task's configuration specifies the following:
 
-\schema{task}{
+\schema{task-config}{
   \required-attribute{platform}{`linux` | `darwin` | `windows`}{
     The platform the task should run on. This determines the pool of workers
     that the task can run against.
@@ -42,12 +42,12 @@ A task's configuration specifies the following:
     the worker, if necessary, just prior to running the task.
 
     To use an image provided by a previous step within your build plan, set
-    \reference{schema.step.task-step.image} on the \reference{task-step}
+    \reference{schema.task.image} on the \reference{task-step}
     instead.
 
     \aside{
       \bold{NOTE:} This field is only required for tasks targeting the
-      \reference{schema.task.platform}{Linux platform}. This field will be
+      \reference{schema.task-config.platform}{Linux platform}. This field will be
       ignored for Windows and Darwin workers. Windows containers are currently
       not supported and Darwin does not have native containers. The task will
       run inside a clean temporary directory on the Windows/Darwin worker with
@@ -103,9 +103,9 @@ A task's configuration specifies the following:
     The set of artifacts used by task, determining which artifacts will be
     available in the current directory when the task runs.
 
-    These are satisfied by \reference{get-step}s or \reference{schema.task.outputs} of a
-    previous task. These can also be provided by \code{-i} with
-    \reference{fly-execute}.
+    These are satisfied by \reference{get-step}s or
+    \reference{schema.task-config.outputs} of a previous task. These can also
+    be provided by \code{-i} with \reference{fly-execute}.
 
     If any required inputs are missing at run-time, then the task will error
     immediately.
@@ -189,7 +189,7 @@ A task's configuration specifies the following:
     via environment variables.
 
     Pipelines can override these params by setting
-    \reference{schema.step.task-step.params} on the \reference{task-step}. This is a common
+    \reference{schema.task.params} on the \reference{task-step}. This is a common
     method of providing credentials to a task.
   }
 
@@ -238,7 +238,7 @@ A task's configuration specifies the following:
     A string specifying the rootfs uri of the container, as interpreted by your
     worker's Garden backend.
 
-    \reference{schema.task.image_resource} is the preferred way to specify base image.
+    \reference{schema.task-config.image_resource} is the preferred way to specify base image.
     You should only use this if you have no other option and you really know
     what you're doing.
   }
@@ -288,7 +288,7 @@ A task's configuration specifies the following:
 }
 
 \example-toggle{Producing outputs from a task}{
-  A task can configure \reference{schema.task.outputs} to produce artifacts that can
+  A task can configure \reference{schema.task-config.outputs} to produce artifacts that can
   then be propagated to a \reference{put-step} or another
   \reference{task-step} in the same plan. They can also be downloaded with
   \reference{fly-execute} by passing \code{-o}.
@@ -377,7 +377,7 @@ A task's configuration specifies the following:
   is configured properly on the workers, SSL should Just Work™.
 
   External tasks are now fully interpolated using \reference{creds}{credential manager variables} and
-  \reference{schema.step.task-step.vars}, so you can use template variables in an external task:
+  \reference{schema.task.vars}, so you can use template variables in an external task:
 
   \codeblock{yaml}{{{
     ---
