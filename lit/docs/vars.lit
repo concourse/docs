@@ -98,7 +98,7 @@ configured multiple times with different parameters
   \title{Static vars}{static-vars}
 
   Var values may also be specified statically using the
-  \reference{schema.step.set-pipeline-step.vars}{\code{set_pipeline} step} and
+  \reference{schema.set-pipeline.vars}{\code{set_pipeline} step} and
   \reference{schema.task.vars}{\code{task} step}.
 
   When running the \reference{fly-cli} equivalent commands
@@ -329,7 +329,7 @@ configured multiple times with different parameters
 
     \list{
       \reference{set-pipeline-step} identifier and
-      \reference{schema.step.set-pipeline-step.file}{\code{file}} field
+      \reference{schema.set-pipeline.file}{\code{file}} field
     }{
       \reference{task-step} identifier,
       \reference{schema.task.input_mapping}{\code{input_mapping}}, and
