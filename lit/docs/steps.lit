@@ -248,12 +248,14 @@ by configuring \reference{schema.step.on_failure} or
       }
     }
   }
-    \schema-group{\code{task} step}{task-step}{
+  \section{
+    \title{\code{task} step}
+    \schema-group{\code{task} step}{task}{
       \required-attribute{task}{identifier}{
         Executes a \reference{tasks}{task}.
 
         When a task completes, the artifacts specified by
-        \reference{schema.task.outputs} will be registered in the build's artifact
+        \reference{schema.task-config.outputs} will be registered in the build's artifact
         namespace. This allows subsequent \reference{task-step}s and
         \reference{put-step}s to access the result of a task.
 
@@ -299,12 +301,12 @@ by configuring \reference{schema.step.on_failure} or
         }
       }
 
-      \optional-attribute{config}{task}{
+      \optional-attribute{config}{task-config}{
         The \reference{tasks}{task config} to execute.
       }
 
       \optional-attribute{file}{file-path}{
-        A dynamic alternative to \reference{schema.step.task-step.config}.
+        A dynamic alternative to \reference{schema.task.config}.
 
         \code{file} points at a \code{.yml} file containing the
         \reference{tasks}{task config}, which allows this to be tracked with
@@ -314,13 +316,13 @@ by configuring \reference{schema.step.on_failure} or
         plan, and the rest of the path is relative to that source.
 
         The content of the config file may contain template \code{((vars))},
-        which will be filled in using \reference{schema.step.task-step.vars}
+        which will be filled in using \reference{schema.task.vars}
         or a configured \reference{creds}{credential manager}.
       }
 
       \optional-attribute{image}{identifier}{
         Specifies an artifact source containing an image to use for the task.
-        This overrides any \reference{schema.task.image_resource} configuration present in
+        This overrides any \reference{schema.task-config.image_resource} configuration present in
         the task configuration.
 
         This is very useful when part of your pipeline involves building an image,
@@ -412,7 +414,7 @@ by configuring \reference{schema.step.on_failure} or
         \italic{environment variables} to the task.
 
         This is to be used with external tasks defined in
-        \reference{schema.step.task-step.file}.
+        \reference{schema.task.file}.
 
         \example-toggle{Parameterizing a task config file with vars}{
           A var may be statically passed like so:
@@ -487,17 +489,17 @@ by configuring \reference{schema.step.on_failure} or
         A map of task environment variable parameters to set, overriding those
         configured in the task's \code{config} or \code{file}.
 
-        The difference between \reference{schema.step.task-step.params}{\code{params}}
-        and \reference{schema.step.task-step.vars}{\code{vars}} is that
-        \reference{schema.step.task-step.vars}{\code{vars}} allows you to interpolate
+        The difference between \reference{schema.task.params}{\code{params}}
+        and \reference{schema.task.vars}{\code{vars}} is that
+        \reference{schema.task.vars}{\code{vars}} allows you to interpolate
         any template variable in an external task, while
-        \reference{schema.step.task-step.params}{\code{params}} can be used to
+        \reference{schema.task.params}{\code{params}} can be used to
         overwrite task parameters (i.e. env variables) specifically. Also,
-        \reference{schema.step.task-step.params}{\code{params}} can have default
+        \reference{schema.task.params}{\code{params}} can have default
         values declared in the task.
 
         \example-toggle{Running a task with env var params}{
-          Let's say we have a \reference{schema.task}{task config} in
+          Let's say we have a \reference{schema.task-config}{task config} in
           \code{intgration.yml} like so:
 
           \codeblock{yaml}{{{
@@ -571,7 +573,8 @@ by configuring \reference{schema.step.on_failure} or
         times in the same plan.
 
         \example-toggle{Using with \code{input_mapping}}{
-          This is often used together with \reference{schema.step.task-step.input_mapping}:
+          This is often used together with
+          \reference{schema.task.input_mapping}:
 
           \codeblock{yaml}{{{
           plan:
@@ -590,6 +593,7 @@ by configuring \reference{schema.step.on_failure} or
         }
       }
     }
+  }
     \schema-group{\code{set_pipeline} step}{set-pipeline-step}{
       \required-attribute{set_pipeline}{identifier | `self`}{
         Configures a \reference{pipelines}{pipeline}.
@@ -673,8 +677,8 @@ by configuring \reference{schema.step.on_failure} or
         \reference{pipeline-static-vars}{interpolated into the pipeline config}.
 
         Note that variables set with this field will not propagate to tasks configured
-        via \reference{schema.step.task-step.file}. If you want those variables to be determined
-        at the time the pipeline is set, use \reference{schema.step.task-step.vars} as well.
+        via \reference{schema.task.file}. If you want those variables to be determined
+        at the time the pipeline is set, use \reference{schema.task.vars} as well.
 
         \example-toggle{Configuring instance vars and vars}{
           Both \code{instance_vars} and \code{vars} may be statically passed like so:
@@ -735,8 +739,8 @@ by configuring \reference{schema.step.on_failure} or
         the pipeline's identifier.
 
         Note that variables set with this field will not propagate to tasks configured
-        via \reference{schema.step.task-step.file}. If you want those variables to be determined
-        at the time the pipeline is set, use \reference{schema.step.task-step.vars} as well.
+        via \reference{schema.task.file}. If you want those variables to be determined
+        at the time the pipeline is set, use \reference{schema.task.vars} as well.
 
         \example-toggle{Configuring static vars}{
           A var may be statically passed like so:
