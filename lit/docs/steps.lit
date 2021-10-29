@@ -901,7 +901,9 @@ by configuring \reference{schema.step.on_failure} or
       }
     }
   }
-    \schema-group{\code{in_parallel} step}{in-parallel-step}{
+  \section{
+    \title{\code{in_parallel} step}{in-parallel-step}
+    \schema-group{\code{in_parallel} step}{in-parallel}{
       \required-attribute{in_parallel}{[step] | in_parallel_config}{
         Performs the given steps in parallel.
 
@@ -991,7 +993,10 @@ by configuring \reference{schema.step.on_failure} or
         }
       }
     }
-    \schema-group{\code{do} step}{do-step}{
+  }
+  \section{
+  \title{\code{do} step}{do-step}
+    \schema-group{\code{do} step}{do}{
       \required-attribute{do}{[step]}{
         Simply performs the given steps serially, with the same semantics as if
         they were at the top level step listing.
@@ -1013,7 +1018,10 @@ by configuring \reference{schema.step.on_failure} or
         }
       }
     }
-    \schema-group{\code{try} step}{try-step}{
+  }
+  \section{
+  \title{\code{try} step}{try-step}
+    \schema-group{\code{try} step}{try}{
       \required-attribute{try}{step}{
         Performs the given step, ignoring any failure and masking it with
         success.
@@ -1041,6 +1049,7 @@ by configuring \reference{schema.step.on_failure} or
         }
       }
     }
+  }
 
 {- modifier steps -}
   \optional-attribute{across}{[across_var]}{
