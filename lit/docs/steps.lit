@@ -33,13 +33,13 @@ A build plan is a sequence of \italic{steps}:
 }
 
 When a new version is available for a \code{get} step with
-\reference{schema.step.get-step.trigger}{\code{trigger: true}} configured, a
+\reference{schema.get.trigger}{\code{trigger: true}} configured, a
 new build of the job will be created from the build plan.
 
 When viewing the job in the pipeline, resources that are used as \code{get}
 steps appear as inputs, and resources that are used in \code{put} steps appear
 as outputs. Jobs are rendered downstream of any jobs they reference in
-\reference{schema.step.get-step.passed}{\code{passed}} constraints, connected
+\reference{schema.get.passed}{\code{passed}} constraints, connected
 by the resource.
 
 If any step in the build plan fails, the build will fail and subsequent steps
@@ -51,8 +51,9 @@ by configuring \reference{schema.step.on_failure} or
 \split-sections
 
 \schema{step}{
-  \one-of{
-    \schema-group{\code{get} step}{get-step}{
+  \section{
+    \title{\code{get} step}
+    \schema-group{\code{get} step}{get}{
       \required-attribute{get}{resource.name | identifier}{
         Fetches a version of a \reference{resources}{resource}.
 
@@ -163,7 +164,7 @@ by configuring \reference{schema.step.on_failure} or
         configured resources start from the latest version).
       }
     }
-  }{
+  }
     \schema-group{\code{put} step}{put-step}{
       \required-attribute{put}{resource.name | identifier}{
         Pushes to the given \reference{resources}{resource}.
@@ -244,7 +245,6 @@ by configuring \reference{schema.step.on_failure} or
         it supports.
       }
     }
-  }{
     \schema-group{\code{task} step}{task-step}{
       \required-attribute{task}{identifier}{
         Executes a \reference{tasks}{task}.
@@ -587,7 +587,6 @@ by configuring \reference{schema.step.on_failure} or
         }
       }
     }
-  }{
     \schema-group{\code{set_pipeline} step}{set-pipeline-step}{
       \required-attribute{set_pipeline}{identifier | `self`}{
         Configures a \reference{pipelines}{pipeline}.
@@ -807,7 +806,6 @@ by configuring \reference{schema.step.on_failure} or
         }
       }
     }
-  }{
     \schema-group{\code{load_var} step}{load-var-step}{
       \required-attribute{load_var}{identifier}{
         Load the value for a var at runtime, making it available to subsequent
@@ -890,7 +888,6 @@ by configuring \reference{schema.step.on_failure} or
         enabled.
       }
     }
-  }{
     \schema-group{\code{in_parallel} step}{in-parallel-step}{
       \required-attribute{in_parallel}{[step] | in_parallel_config}{
         Performs the given steps in parallel.
@@ -981,7 +978,6 @@ by configuring \reference{schema.step.on_failure} or
         }
       }
     }
-  }{
     \schema-group{\code{do} step}{do-step}{
       \required-attribute{do}{[step]}{
         Simply performs the given steps serially, with the same semantics as if
@@ -1004,7 +1000,6 @@ by configuring \reference{schema.step.on_failure} or
         }
       }
     }
-  }{
     \schema-group{\code{try} step}{try-step}{
       \required-attribute{try}{step}{
         Performs the given step, ignoring any failure and masking it with
@@ -1033,8 +1028,8 @@ by configuring \reference{schema.step.on_failure} or
         }
       }
     }
-  }
 
+{- modifier steps -}
   \optional-attribute{across}{[across_var]}{
     Run a step multiple times with different combinations of variable values.
 

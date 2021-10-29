@@ -108,11 +108,11 @@ platforms. Currently tracing can be configured to integrates with:
         \list{
           \code{individualResolver.Resolve} -- This is used to determine versions
           input to a \reference{get-step} without
-          \reference{schema.step.get-step.passed}{\code{passed}} constraints.
+          \reference{schema.get.passed}{\code{passed}} constraints.
         }{
           \code{groupResolver.Resolve} -- This is the juicy part of the algorithm,
           which deals with
-          \reference{schema.step.get-step.passed}{\code{passed}} constraints.
+          \reference{schema.get.passed}{\code{passed}} constraints.
         }{
           \code{pinnedResolver.Resolve} -- This operation is used to determine
           inputs when \reference{version-pinning} is at play.

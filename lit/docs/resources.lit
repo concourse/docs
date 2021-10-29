@@ -77,7 +77,7 @@ with the following schema.
 
   \optional-attribute{version}{version}{
     A version to pin the resource to across the pipeline. This has the same
-    effect as setting \reference{schema.step.get-step.version} on every
+    effect as setting \reference{schema.get.version} on every
     \reference{get-step} referencing the resource.
 
     Resources can also be temporarily pinned to a version via the API and web UI.
@@ -170,7 +170,7 @@ with the following schema.
     }}}
 
     This could be passed to a job via a \reference{get-step} with
-    \reference{schema.step.get-step.trigger}{\code{trigger: true}} to run the tests
+    \reference{schema.get.trigger}{\code{trigger: true}} to run the tests
     whenever there's new code:
 
     \codeblock{yaml}{{{
@@ -199,7 +199,7 @@ with the following schema.
     }}}
 
     This could be passed to a job via a \reference{get-step} with
-    \reference{schema.step.get-step.trigger}{\code{trigger: true}} to run the job
+    \reference{schema.get.trigger}{\code{trigger: true}} to run the job
     periodically:
 
     \codeblock{yaml}{{{
