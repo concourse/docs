@@ -211,5 +211,4 @@ following schema:
 
 \table-of-contents
 
-\include-section{jobs/steps.lit}
 \include-section{jobs/managing.lit}
