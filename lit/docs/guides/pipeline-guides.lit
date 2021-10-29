@@ -53,7 +53,7 @@
 
     There are two ways to specify which artifacts to send to a
     \reference{put-step}. You can specify \code{detect} as the
-    \reference{schema.step.put-step.inputs} or you can pass in an exact list of
+    \reference{schema.put.inputs} or you can pass in an exact list of
     all artifacts the \reference{put-step} needs.
 
     Using \code{detect}:

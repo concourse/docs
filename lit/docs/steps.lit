@@ -165,7 +165,9 @@ by configuring \reference{schema.step.on_failure} or
       }
     }
   }
-    \schema-group{\code{put} step}{put-step}{
+  \section{
+    \title{\code{put} step}
+    \schema-group{\code{put} step}{put}{
       \required-attribute{put}{resource.name | identifier}{
         Pushes to the given \reference{resources}{resource}.
 
@@ -229,7 +231,7 @@ by configuring \reference{schema.step.on_failure} or
         be provided to the container.
 
         If set to \code{detect}, the artifacts are detected based on the
-        configured \reference{schema.step.put-step.params} by looking for all string values
+        configured \reference{schema.put.params} by looking for all string values
         and using the first path segment as an identifier. (This may become the
         default in the future.)
       }
@@ -245,6 +247,7 @@ by configuring \reference{schema.step.on_failure} or
         it supports.
       }
     }
+  }
     \schema-group{\code{task} step}{task-step}{
       \required-attribute{task}{identifier}{
         Executes a \reference{tasks}{task}.

@@ -38,7 +38,7 @@ management} as well.
     Pipeline \reference{schema.step.task-step.vars} and \reference{schema.step.task-step.params}, in case
     they contain sensitive information such as usernames and/or passwords.
   }{
-    Put step \reference{schema.step.put-step.params} and get step
+    Put step \reference{schema.put.params} and get step
     \reference{schema.get.params} are also encrypted, even though they rarely
     should contain credentials (they're usually in
     \reference{schema.resource.source}).
