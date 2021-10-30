@@ -51,28 +51,48 @@ by configuring \reference{schema.step.on_failure} or
 \split-sections
 
 \schema{step}{
+\table-of-contents
   \section{
     \title{\code{get} step}
+      Fetches a version of a \reference{resources}{resource}. Expand each
+      section below for more details and examples.
+
     \schema-group{\code{get} step}{get}{
       \required-attribute{get}{resource.name | identifier}{
-        Fetches a version of a \reference{resources}{resource}.
 
         The fetched bits will be registered in the build's artifact namespace
         under the given identifier. Subsequent \reference{task-step} and
         \reference{put-step} which list the identifier as an input will have a
         copy of the bits in their working directory.
 
-        \example-toggle{Fetching a repo and running its tests}{
-          Almost every simple unit test job will look something like this:
-          fetch my code with a \reference{get-step} and run its tests with a
+        \example-toggle{Fetching a repo and passing it to a task}{
+          Almost every simple job will look something like this: fetch my code
+          with a \reference{get-step} and do something (run tests) with it in a
           \reference{task-step}.
 
           \codeblock{yaml}{{{
-          plan:
-          - get: my-repo
-            trigger: true
-          - task: unit
-            file: my-repo/ci/unit.yml
+          jobs:
+          - name: fetch-repo
+            plan:
+            - get: repo # fetches repo under artifact name "repo"
+            - task: ls-repo
+              config:
+                platform: linux
+                image_resource:
+                  type: mock
+                  source: {mirror_self: true}
+                # pass the "repo" artifact into the task
+                inputs:
+                - name: repo
+                run:
+                  path: ls
+                  args: ["-lah","repo"]
+
+          resources:
+          - name: repo
+            type: git
+            source:
+              uri: https://github.com/concourse/examples.git
           }}}
         }
       }
@@ -83,6 +103,35 @@ by configuring \reference{schema.step.on_failure} or
 
         Use this attribute to rename a resource from the overall pipeline context
         into the job-specific context.
+
+        \example-toggle{Re-labelling artifact}{
+          \codeblock{yaml}{{{
+          jobs:
+          - name: fetch-repo
+            plan:
+            - get: repo
+              # fetches repo under artifact name "thecode"
+              resource: thecode
+            - task: ls-repo
+              config:
+                platform: linux
+                image_resource:
+                  type: mock
+                  source: {mirror_self: true}
+                # pass the "thecode" artifact into the task
+                inputs:
+                - name: thecode
+                run:
+                  path: ls
+                  args: ["-lah","thecode"]
+
+          resources:
+          - name: repo
+            type: git
+            source:
+              uri: https://github.com/concourse/examples.git
+          }}}
+        }
       }
 
       \optional-attribute{passed}{[job.name]}{
@@ -90,25 +139,67 @@ by configuring \reference{schema.step.on_failure} or
         the given list of jobs (AND-ed together) will be considered when
         triggering and fetching.
 
-        \example-toggle{Fanning in from upstream jobs}{
+        \example-toggle{Fanning out and in}{
           If multiple \code{get}s are configured with \code{passed}
-          constraints, all of the mentioned jobs are correlated. That is, with
-          the following set of inputs:
+          constraints, all of the mentioned jobs are correlated.
 
           \codeblock{yaml}{{{
-          plan:
-          - get: a
-            passed: [a-unit, integration]
-          - get: b
-            passed: [b-unit, integration]
-          - get: x
-            passed: [integration]
+            jobs:
+            - name: lvl-1-firewall
+              plan:
+              - in_parallel:
+                - get: black-ice
+                - get: control-node
+                - get: cyberdeck
+
+            - name: lvl-2-unit
+              plan:
+              - in_parallel:
+                - get: black-ice
+                  passed: [lvl-1-firewall]
+                - get: control-node
+                  passed: [lvl-1-firewall]
+                - get: cyberdeck
+                  passed: [lvl-1-firewall]
+
+            - name: lvl-2-integration
+              plan:
+              - in_parallel:
+                - get: black-ice
+                  passed: [lvl-1-firewall]
+                - get: control-node
+                  passed: [lvl-1-firewall]
+                - get: cyberdeck
+                  passed: [lvl-1-firewall]
+
+            - name: lvl-3-production
+              plan:
+              - in_parallel:
+                - get: black-ice
+                  passed: [lvl-2-unit,lvl-2-integration]
+                - get: control-node
+                  passed: [lvl-2-unit,lvl-2-integration]
+                - get: cyberdeck
+                  passed: [lvl-2-unit,lvl-2-integration]
+
+            resources:
+            - name: black-ice
+              type: mock
+              source:
+                initial_version: lvl4
+            - name: control-node
+              type: mock
+              source:
+                initial_version: tower
+            - name: cyberdeck
+              type: mock
+              source:
+                initial_version: mk3
           }}}
 
-          This means "give me the versions of \code{a}, \code{b}, and \code{x} that
-          have passed the \italic{same build} of \code{integration}, with the same
-          version of \code{a} passing \code{a-unit} and the same version of \code{b}
-          passing \code{b-unit}."
+          For the final job, \code{lvl-3-production}, only versions that have
+          passed the previous two jobs (\code{lvl-2-unit} and
+          \code{lvl-2-integration}) will be passed to \code{lvl-3-production}.
 
           This is crucial to being able to implement safe "fan-in" semantics as
           things progress through a pipeline.
@@ -120,18 +211,22 @@ by configuring \reference{schema.step.on_failure} or
         type's documentation to see what it supports.
 
         \example-toggle{Fetching with \code{params}}{
-          The following plan fetches a version number via the \code{semver}
-          resource, bumps it to the next release candidate, and
-          \reference{put-step}{\code{put}}s it back.
-
           \codeblock{yaml}{{{
-          plan:
-          - get: version
-            params:
-              bump: minor
-              rc: true
-          - put: version
-            params: {version: version/number}
+          jobs:
+          - name: resource-params
+            plan:
+            - get: cyberdeck
+              params:
+                create_files_via_params:
+                  version_to_put.txt: "made-via-params"
+            - put: cyberdeck
+              params:
+                file: cyberdeck/version_to_put.txt
+
+
+          resources:
+          - name: cyberdeck
+            type: mock
           }}}
         }
       }
@@ -143,6 +238,35 @@ by configuring \reference{schema.step.on_failure} or
 
         Note: if none of a job's \code{get} steps are set to \code{true}, the
         job can only be manually triggered.
+
+        \example-toggle{Automatically trigger job on new versions}{
+
+          \codeblock{yaml}{{{
+          jobs:
+          - name: fetch-repo
+            plan:
+            - get: repo
+              trigger: true # automatically runs the job
+            - task: ls-repo
+              config:
+                platform: linux
+                image_resource:
+                  type: mock
+                  source: {mirror_self: true}
+                # pass the "repo" artifact into the task
+                inputs:
+                - name: repo
+                run:
+                  path: ls
+                  args: ["-lah","repo"]
+
+          resources:
+          - name: repo
+            type: git
+            source:
+              uri: https://github.com/concourse/examples.git
+          }}}
+        }
       }
 
       \optional-attribute{version}{`latest` | `every` | version}{
