@@ -289,58 +289,76 @@ by configuring \reference{schema.step.on_failure} or
   }
   \section{
     \title{\code{put} step}
+      Pushes to the given \reference{resources}{resource}. Expand each section
+      below for more details and examples.
+
     \schema-group{\code{put} step}{put}{
       \required-attribute{put}{resource.name | identifier}{
-        Pushes to the given \reference{resources}{resource}.
-
         When the step succeeds, the version by the step will be immediately
         fetched via an additional implicit \reference{get-step}. This is so
         that later steps in your plan can use the artifact that was produced.
         The artifact will be available under the identifier \code{put}
         specifies.
 
-        \example-toggle{Pulling and pushing}{
-          The following plan fetches a repo using \reference{get-step}{\code{get}} and
-          pushes it to another repo (assuming \code{repo-develop} and \code{repo-master}
-          are defined as \code{git} resources):
+        \example-toggle{Getting and Putting}{
+          The following plan fetches a version using
+          \reference{get-step}{\code{get}} and pushes it to another resource
+          using \reference{put-step}{\code{put}}:
 
           \codeblock{yaml}{{{
-          plan:
-          - get: repo-develop
-          - put: repo-master
-            params:
-              repository: repo-develop
+            jobs:
+            - name: get-and-pull
+              plan:
+              - get: the-ice
+              - put: cyberdeck
+                params:
+                  file: the-ice/version.txt
+
+            resources:
+            - name: the-ice
+              type: mock
+              source:
+                create_files:
+                  version.txt: "made-via-source"
+            - name: cyberdeck
+              type: mock
           }}}
         }
 
-        \example-toggle{Parameterizing the implicit \code{get}}{
-          If the logical name (whatever \code{put} specifies) differs from the
-          concrete resource, you would specify \code{resource} as well, like so:
-
-          \codeblock{yaml}{{{
-          plan:
-          - put: resource-image
-            resource: registry-image-resource
-          }}}
-
-          Additionally, you can control the settings of the implicit \code{get} step
-          by setting \code{get_params}. For example, if you did not want a \code{put}
-          step utilizing the \link{ \code{registry-image} resource
-          type}{https://github.com/concourse/registry-image-resource} to download the
-          image, you would implement your \code{put} step as such:
-
-          \codeblock{yaml}{{{
-          plan:
-          - put: docker-build
-            params: {build: git-resource}
-            get_params: {skip_download: true}
-          }}}
-        }
       }
 
       \optional-attribute{resource}{resource.name}{
         \italic{Defaults to the value of \code{put}.} The resource to update,
         as configured in \reference{schema.pipeline.resources}.
+
+        \example-toggle{Re-label Put Resource}{
+          \codeblock{yaml}{{{
+            jobs:
+            - name: fetch-repo
+              plan:
+                # puts to "repo" and fetches new version under artifact name "thecode"
+              - put: thecode
+                resource: repo
+                params:
+                  version: put-only
+              - task: ls-repo
+                config:
+                  platform: linux
+                  image_resource:
+                    type: mock
+                    source: {mirror_self: true}
+                  # pass the "thecode" artifact into the task
+                  inputs:
+                  - name: thecode
+                  run:
+                    path: ls
+                    args: ["-lah","thecode"]
+
+            resources:
+            - name: repo
+              type: mock
+          }}}
+        }
       }
 
       \optional-attribute{inputs}{`all` | `detect` | [identifier]}{
@@ -356,17 +374,93 @@ by configuring \reference{schema.step.on_failure} or
         configured \reference{schema.put.params} by looking for all string values
         and using the first path segment as an identifier. (This may become the
         default in the future.)
+
+        \example-toggle{Put Input Methods}{
+          \codeblock{yaml}{{{
+            jobs:
+            - name: put-input-methods
+              plan:
+              - in_parallel:
+                - get: repo-dev
+                - get: repo-master
+                - get: app-image
+                - get: ci
+              - put: all-inputs
+                resource: repo
+                inputs: all # default option
+                params:
+                  file: ci/version.txt
+              - put: detect-inputs
+                resource: repo
+                inputs: detect # will only stream the "ci" artifact
+                params:
+                  file: ci/version.txt
+              - put: explicit-inputs
+                resource: repo
+                inputs: # explicitly list artifacts to stream to put step
+                  - ci
+                params:
+                  file: ci/version.txt
+
+            resources:
+            - name: repo
+              type: mock
+            - name: repo-dev
+              type: mock
+            - name: repo-master
+              type: mock
+            - name: app-image
+              type: mock
+            - name: ci
+              type: mock
+              source:
+                create_files:
+                  version.txt: "42"
+          }}}
+        }
       }
 
       \optional-attribute{params}{config}{
         Arbitrary configuration to pass to the resource. Refer to the resource
         type's documentation to see what it supports.
+
+        \example-toggle{Putting with params}{
+          \codeblock{yaml}{{{
+          jobs:
+          - name: resource-params
+            plan:
+            - put: cyberdeck
+              params:
+                version: "made-via-params"
+
+          resources:
+          - name: cyberdeck
+            type: mock
+          }}}
+        }
       }
 
       \optional-attribute{get_params}{config}{
-        Arbitrary configuration to get to the resource during the implicit
+        Arbitrary configuration to pass to the resource during the implicit
         \code{get} step. Refer to the resource type's documentation to see what
         it supports.
+
+        \example-toggle{Parameterizing the implicit \code{get}}{
+          You can control the settings of the implicit \code{get} step
+          by setting \code{get_params}. For example, if you did not want a \code{put}
+          step utilizing the \link{ \code{registry-image} resource
+          type}{https://github.com/concourse/registry-image-resource} to download the
+          image, you would implement your \code{put} step as such:
+
+          \codeblock{yaml}{{{
+          plan:
+          - put: app-image
+            params:
+              build: git-resource
+            get_params:
+              skip_download: true
+          }}}
+        }
       }
     }
   }
