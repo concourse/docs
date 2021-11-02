@@ -467,14 +467,15 @@ by configuring \reference{schema.step.on_failure} or
   \section{
     \title{\code{task} step}
     \schema-group{\code{task} step}{task}{
+      Executes a \reference{tasks}{task}. Expand each section below for more
+      details and examples.
+
+      When a task completes, the artifacts specified by
+      \reference{schema.task-config.outputs} will be registered in the build's
+      artifact namespace. This allows subsequent \reference{task-step}s and
+      \reference{put-step}s to access the result of a task.
+
       \required-attribute{task}{identifier}{
-        Executes a \reference{tasks}{task}.
-
-        When a task completes, the artifacts specified by
-        \reference{schema.task-config.outputs} will be registered in the build's artifact
-        namespace. This allows subsequent \reference{task-step}s and
-        \reference{put-step}s to access the result of a task.
-
         The identifier value is just a name - short and sweet. The value is
         shown in the web UI but otherwise has no affect on anything. This may
         change in the future; \link{RFC
@@ -482,43 +483,75 @@ by configuring \reference{schema.step.on_failure} or
         be used to reference a file within the project.
 
         \example-toggle{Functions from inputs to outputs}{
-          The following plan pulls down a repo, makes a commit to it, and pushes the
-          commit to another repo (the task must have an output called
-          \code{repo-with-commit}):
+          You can think of tasks like functions. They have predefined inputs
+          and outputs and can be written in idempotent ways.
 
-          \codeblock{yaml}{{{
-          plan:
-          - get: my-repo
-          - task: commit
-            file: my-repo/commit.yml
-          - put: other-repo
-            params:
-              repository: repo-with-commit
-          }}}
-        }
+          The following pipeline contains a function that increments a number.
+          You can think of the task \code{add-one} like this pseudo-function:
 
-        \example-toggle{Build matrix with \code{in_parallel}}{
-          The following plan fetches a single repository and executes multiple tasks,
-          using the \reference{in-parallel-step}{\code{in_parallel}} step, in a build matrix
-          style configuration:
-
-          \codeblock{yaml}{{{
-          plan:
-          - get: my-repo
-          - in_parallel:
-            - task: go-1.3
-              file: my-repo/go-1.3.yml
-            - task: go-1.4
-              file: my-repo/ci/go-1.4.yml
+          \codeblock{}{{{
+            func AddOne(num int) int {
+              return num + 1
+            }
           }}}
 
-          Only if both tasks succeed will the overall step succeed. See also
-          \reference{in-parallel-step}.
+          \codeblock{yaml}{{{
+            jobs:
+            - name: idempotent-task
+              plan:
+              - get: counter
+              - task: add-one
+                config:
+                  platform: linux
+                  image_resource:
+                    type: mock
+                    source: {mirror_self: true}
+                  inputs:
+                  - name: counter
+                  outputs:
+                  - name: counter
+                  run:
+                    path: sh
+                    args:
+                    - -c
+                    - |
+                      COUNTER=$(cat counter/version)
+                      NEXT=$(($COUNTER + 1))
+                      echo "new version: $NEXT"
+                      echo $NEXT > counter/next
+              - put: counter
+                params:
+                  file: counter/next
+
+            resources:
+            - name: counter
+              type: mock
+              source:
+                initial_version: "1"
+          }}}
+
         }
       }
 
       \optional-attribute{config}{task-config}{
         The \reference{tasks}{task config} to execute.
+        \example-toggle{Task config}{
+          \codeblock{yaml}{{{
+            jobs:
+            - name: job
+              public: true
+              plan:
+              - task: simple-task
+                config: # contains all field in a task config
+                  platform: linux
+                  image_resource:
+                    type: registry-image
+                    source: { repository: busybox }
+                  run:
+                    path: echo
+                    args: ["Hello world!"]
+          }}}
+        }
       }
 
       \optional-attribute{file}{file-path}{
@@ -534,6 +567,23 @@ by configuring \reference{schema.step.on_failure} or
         The content of the config file may contain template \code{((vars))},
         which will be filled in using \reference{schema.task.vars}
         or a configured \reference{creds}{credential manager}.
+        \example-toggle{Using a task config file}{
+          Uses \link{this config file}{https://github.com/concourse/examples/blob/master/tasks/hello-world.yml}.
+          \codeblock{yaml}{{{
+            jobs:
+            - name: task-config-in-file
+              plan:
+              - get: ci
+              - task: config-from-file
+                file: ci/tasks/hello-world.yml
+
+            resources:
+            - name: ci
+              type: git
+              source:
+                uri: https://github.com/concourse/examples.git
+          }}}
+        }
       }
 
       \optional-attribute{image}{identifier}{
@@ -547,7 +597,9 @@ by configuring \reference{schema.step.on_failure} or
         thus a consistent set of dependencies) is used throughout your pipeline.
 
         \example-toggle{Fetching and using an image}{
-          This can be used in to explicitly keep track of dependent images:
+          This can be used to explicitly keep track of dependent images. You
+          could also modify it to build and push the image in one job and use
+          it in later jobs. See \reference{building-and-pushing-an-image}.
 
           \codeblock{yaml}{{{
             resources:
@@ -558,7 +610,7 @@ by configuring \reference{schema.step.on_failure} or
                 tag: "1.17"
 
             jobs:
-            - name: fetch-and-run
+            - name: fetch-and-run-image
               plan:
               - get: golang
               - task: use-fetched-image-in-task
@@ -571,37 +623,8 @@ by configuring \reference{schema.step.on_failure} or
           }}}
         }
 
-        \example-toggle{Building and propagating an image}{
-          Here's a pipeline which builds an image in one job and then propagates
-          it to the next:
-
-          \codeblock{yaml}{{{
-          resources:
-          - name: my-project
-            type: git
-            source: {uri: https://github.com/my-user/my-project}
-
-          - name: my-task-image
-            type: registry-image
-            source: {repository: my-user/my-repo}
-
-          jobs:
-          - name: build-task-image
-            plan:
-            - get: my-project
-            - put: my-task-image
-              params: {build: my-project/ci/images/my-task}
-
-          - name: use-task-image
-            plan:
-            - get: my-task-image
-              passed: [build-task-image]
-            - get: my-project
-              passed: [build-task-image]
-            - task: use-task-image
-              image: my-task-image
-              file: my-project/ci/tasks/my-task.yml
-          }}}
+        \example-toggle{Building and using an image}{
+          \reference{building-an-image-and-using-it-in-a-task}
         }
       }
 
@@ -622,6 +645,9 @@ by configuring \reference{schema.step.on_failure} or
         \code{root}, i.e. not in a user namespace. This is not recommended, and
         should \italic{never} be used with code you do not trust - e.g. pull
         requests.
+
+        For macOS and Windows this field has no effect since workloads on
+        those machines are not containerized.
       }
 
       \optional-attribute{vars}{vars}{
@@ -636,48 +662,53 @@ by configuring \reference{schema.step.on_failure} or
           A var may be statically passed like so:
 
           \codeblock{yaml}{{{
-          plan:
-          - get: my-repo
-          - task: integration
-            file: my-repo/ci/task.yml
-            vars:
-              text: "Hello World!"
+          jobs:
+          - name: task-vars
+            plan:
+            - get: ci
+            - task: override-task-vars
+              file: ci/tasks/print-var.yml
+              vars: # statically defined vars
+                my-var: "Cookies are the best"
+                second-var: "chips are a close second"
+
+          resources:
+          - name: ci
+            type: git
+            source:
+              uri: https://github.com/concourse/examples.git
           }}}
 
-          This is often used in combination with \reference{vars} in the
-          pipeline (note the replacement of the string literal with the
-          \code{((text))} pipeline var):
+          When run with the following \reference{tasks}{task config}:
+
+          \remote-codeblock{yaml}{https://raw.githubusercontent.com/concourse/examples/master/tasks/print-var.yml}
+
+          The \code{"((my-var))"} will be resolved to \code{"Cookies are the
+          best"} and \code{((second-var))} will be resolved to \code{"chips are
+          a close second"}.
+
+          This can also be used in combination with \reference{vars} from a
+          \reference{creds}{credential manager} (i.e. Vault) as a way to re-map
+          variable names to match what the task is expecting:
 
           \codeblock{yaml}{{{
-          plan:
-          - get: my-repo
-          - task: integration
-            file: my-repo/ci/task.yml
-            vars:
-              text: ((text))
+          jobs:
+          - name: task-vars
+            plan:
+            - get: ci
+            - task: override-task-vars
+              file: ci/tasks/print-var.yml
+              vars: # re-mapped vars
+                my-var: ((var-from-vault))
+                second-var: ((apple.type))
+
+          resources:
+          - name: ci
+            type: git
+            source:
+              uri: https://github.com/concourse/examples.git
           }}}
 
-          When run with the following \code{task.yml}:
-
-          \codeblock{yaml}{{{
-            ---
-            platform: linux
-
-            image_resource:
-              type: registry-image
-              source:
-                repository: my.local.registry:8080/my/image
-                username: ((myuser))
-                password: ((mypass))
-
-            run:
-              path: echo
-              args: ["((text))"]
-          }}}
-
-          ...this will resolve \code{"((text))"} to \code{{"Hello World!"}}, while
-          \code{((myuser))} and \code{((mypass))}  will be resolved in runtime via a
-          \reference{creds}{credential manager}, if it has been configured.
         }
       }
 
@@ -688,16 +719,59 @@ by configuring \reference{schema.step.on_failure} or
         passing the \code{--default-task-cpu-limit} or
         \code{--default-task-memory-limit} flags to the \code{concourse web} command.
 
-        These values will also override any configuration set on \reference{schema.task.container_limits}.
+        These values will also override any configuration set on a
+        \reference{schema.task-config.container_limits}{task's config
+        \code{container_limits}}.
 
         \optional-attribute{cpu}{number}{
           The maximum amount of CPU available to the task container, measured in
           shares. 0 means unlimited.
+
+          CPU shares are relative to the CPU shares of other containers on a
+          worker. For example, if you have two containers both with a CPU
+          limit of 2 shares then each container will get 50% of the CPU's time.
+
+          \codeblock{}{{{
+            Container A: 2 shares - 50% CPU
+            Container B: 2 shares - 50% CPU
+            Total CPU shares declared: 4
+          }}}
+
+          If you introduce another container then the number of CPU time per
+          container changes. CPU shares are relative to each other.
+          \codeblock{}{{{
+            Container A: 2 shares - 25% CPU
+            Container B: 2 shares - 25% CPU
+            Container C: 4 shares - 50% CPU
+            Total CPU shares declared: 8
+          }}}
         }
 
         \optional-attribute{memory}{number}{
           The maximum amount of memory available to the task container, measured in
           bytes. 0 means unlimited.
+        }
+
+        \example-toggle{Setting CPU and Memory limits}{
+          This task will only be given 10MB of memory and 2 CPU shares.
+
+          \codeblock{yaml}{{{
+            jobs:
+            - name: limited-resources
+              plan:
+              - task: constrained-task
+                container_limits:
+                  cpu: 2 # CPU shares are relative
+                  memory: 10000000 # 10MB
+                config:
+                  platform: linux
+                  image_resource:
+                    type: registry-image
+                    source: { repository: busybox }
+                  run:
+                    path: echo
+                    args: ["Hello world!"]
+          }}}
         }
       }
 
@@ -707,53 +781,61 @@ by configuring \reference{schema.step.on_failure} or
 
         The difference between \reference{schema.task.params}{\code{params}}
         and \reference{schema.task.vars}{\code{vars}} is that
-        \reference{schema.task.vars}{\code{vars}} allows you to interpolate
-        any template variable in an external task, while
-        \reference{schema.task.params}{\code{params}} can be used to
-        overwrite task parameters (i.e. env variables) specifically. Also,
-        \reference{schema.task.params}{\code{params}} can have default
-        values declared in the task.
+        \reference{schema.task.vars}{\code{vars}} allows you to interpolate any
+        template variable in an external task file, while
+        \reference{schema.task.params}{\code{params}} can be used to overwrite
+        task parameters specifically. Also,
+        \reference{schema.task.params}{\code{params}} can have default values
+        declared in the task.
 
         \example-toggle{Running a task with env var params}{
-          Let's say we have a \reference{schema.task-config}{task config} in
-          \code{intgration.yml} like so:
+          Let's say we have a \reference{schema.task-config}{task config} like
+          so:
+
+          \remote-codeblock{yaml}{https://raw.githubusercontent.com/concourse/examples/master/tasks/print-param.yml}
+
+          This indicates that there are two params which can be set:
+          \code{ECHO_ME}, which has a default, and \code{ALSO_ME} which has no
+          default set.
+
+          A pipeline could run the task with values passed in like so:
 
           \codeblock{yaml}{{{
-          platform: linux
-          image_resource: # ...
-          params:
-            REMOTE_SERVER: https://example.com
-            USERNAME:
-            PASSWORD:
-          }}}
+            jobs:
+            - name: task-params
+              plan:
+              - get: ci
+              - task: constrained-task
+                file: ci/tasks/print-param.yml
+                params:
+                  ECHO_ME: "Eat your fruits"
+                  ALSO_ME: "veggies"
 
-          This indicates that there are three params which can be set:
-          \code{REMOTE_SERVER}, which has a default, and \code{USERNAME} and
-          \code{PASSWORD}.
-
-          A pipeline could run the task with credentials passed in like so:
-
-          \codeblock{yaml}{{{
-          plan:
-          - get: my-repo
-          - task: integration
-            file: my-repo/ci/integration.yml
-            params:
-              USERNAME: my-user
-              PASSWORD: my-pass
+            resources:
+            - name: ci
+              type: git
+              source:
+                uri: https://github.com/concourse/examples.git
           }}}
         }
 
         \example-toggle{Using with \code{((vars))}}{
           \codeblock{yaml}{{{
-          plan:
-          - get: my-repo
-          - task: integration
-            file: my-repo/ci/integration.yml
-            params:
-              REMOTE_SERVER: 10.20.30.40:8080
-              USERNAME: ((integration-username))
-              PASSWORD: ((integration-password))
+            jobs:
+            - name: task-params
+              plan:
+              - get: ci
+              - task: constrained-task
+                file: ci/tasks/print-param.yml
+                params:
+                  ECHO_ME: ((some-var))
+                  ALSO_ME: ((another-var))
+
+            resources:
+            - name: ci
+              type: git
+              source:
+                uri: https://github.com/concourse/examples.git
           }}}
         }
       }
@@ -764,21 +846,33 @@ by configuring \reference{schema.step.on_failure} or
         same plan, mapping its inputs to specific resources within the plan.
 
         \example-toggle{Generic task input names}{
-          The following example demonstrates a task with a generic
-          \code{release-repo} input being mapped to more specific artifact
-          names:
+          The following example demonstrates a task with generic \code{main}
+          and \code{dev} inputs being mapped to more specific artifact names,
+          \code{repo} and \code{repo-dev}:
 
           \codeblock{yaml}{{{
-          plan:
-          - get: diego-release
-          - get: cf-release
-          - get: ci-scripts
-          - task: audit-diego-release
-            file: ci-scripts/audit-release.yml
-            input_mapping: {release-repo: diego-release}
-          - task: audit-cf-release
-            file: ci-scripts/audit-release.yml
-            input_mapping: {release-repo: cf-release}
+            jobs:
+            - name: task-input-mapping
+              plan:
+              - in_parallel:
+                - get: repo
+                - get: repo-dev
+                - get: ci
+              - task: list-inputs
+                input_mapping:
+                  main: repo
+                  dev: repo-dev
+                file: ci/tasks/generic-inputs.yml
+
+            resources:
+            - name: repo
+              type: mock
+            - name: repo-dev
+              type: mock
+            - name: ci
+              type: git
+              source:
+                uri: https://github.com/concourse/examples.git
           }}}
         }
       }
@@ -792,19 +886,44 @@ by configuring \reference{schema.step.on_failure} or
           This is often used together with
           \reference{schema.task.input_mapping}:
 
+          Given this task config:
+          \remote-codeblock{yaml}{https://raw.githubusercontent.com/concourse/examples/master/tasks/generic-outputs.yml}
+
+          This pipeline will map the inputs and outputs of the task to match
+          the name of the resources in the pipeline.
           \codeblock{yaml}{{{
-          plan:
-          - get: diego-release
-          - get: cf-release
-          - get: ci-scripts
-          - task: create-diego-release
-            file: ci-scripts/create-release.yml
-            input_mapping: {release-repo: diego-release}
-            output_mapping: {release-tarball: diego-release-tarball}
-          - task: create-cf-release
-            file: ci-scripts/create-release.yml
-            input_mapping: {release-repo: cf-release}
-            output_mapping: {release-tarball: cf-release-tarball}
+            jobs:
+            - name: task-output-mapping
+              plan:
+              - in_parallel:
+                - get: repo
+                - get: repo-dev
+                - get: ci
+              - task: create-outputs
+                input_mapping:
+                  main: repo
+                  dev: repo-dev
+                output_mapping:
+                  main: repo
+                  dev: repo-dev
+                file: ci/tasks/generic-outputs.yml
+              - in_parallel:
+                - put: repo
+                  params:
+                    file: repo/version
+                - put: repo-dev
+                  params:
+                    file: repo-dev/version
+
+            resources:
+            - name: repo
+              type: mock
+            - name: repo-dev
+              type: mock
+            - name: ci
+              type: git
+              source:
+                uri: https://github.com/concourse/examples.git
           }}}
         }
       }

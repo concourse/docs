@@ -254,6 +254,25 @@ A task's configuration specifies the following:
       \optional-attribute{cpu}{number}{
         The maximum amount of CPU available to the task container, measured in
         shares. 0 means unlimited.
+
+        CPU shares are relative to the CPU shares of other containers on a
+        worker. For example, if you have two containers both with a CPU
+        limit of 2 shares then each container will get 50% of the CPU's time.
+
+        \codeblock{}{{{
+          Container A: 2 shares - 50% CPU
+          Container B: 2 shares - 50% CPU
+          Total CPU shares declared: 4
+        }}}
+
+        If you introduce another container then the number of CPU time per
+        container changes. CPU shares are relative to each other.
+        \codeblock{}{{{
+          Container A: 2 shares - 25% CPU
+          Container B: 2 shares - 25% CPU
+          Container C: 4 shares - 50% CPU
+          Total CPU shares declared: 8
+        }}}
       }
 
       \optional-attribute{memory}{number}{
