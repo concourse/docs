@@ -932,9 +932,27 @@ by configuring \reference{schema.step.on_failure} or
   \section{
     \title{\code{set_pipeline} step}{set-pipeline-step}
     \schema-group{\code{set_pipeline} step}{set-pipeline}{
-      \required-attribute{set_pipeline}{identifier | `self`}{
-        Configures a \reference{pipelines}{pipeline}.
+        Configures a \reference{pipelines}{pipeline}.  Expand each section
+        below for more details and examples.
 
+        Pipelines configured with the \code{set_pipeline} step are connected to
+        the \reference{jobs}{job} that configured them and will be
+        automatically archived in the following scenarios:
+        \list{
+          When the job that previously set a pipeline runs a successful build
+          which did not configure the pipeline (i.e.  the \code{set_pipeline}
+          step was removed for that specific pipeline).
+        }{
+          When the job is removed from its pipeline configuration (see
+          \reference{schema.job.old_name} for renaming instead of removing).
+        }{
+          When the job's pipeline is archived or destroyed.
+        }
+        This means any job that uses \code{set_pipeline} should set all still-desired
+        pipelines in each build, rather than setting them one-by-one through many builds.
+
+        See \reference{fly-archive-pipeline} for what happens when a pipeline is archived.
+      \required-attribute{set_pipeline}{identifier | `self`}{
         The identifier specifies the name of the pipeline to configure. Unless
         \reference{schema.set-pipeline.team} is set, it will be configured
         within the current team and be created \italic{unpaused}. If set to \code{self},
@@ -948,39 +966,27 @@ by configuring \reference{schema.step.on_failure} or
           with feedback.
         }
 
-        Pipelines configured with the \code{set_pipeline} step are tied to the job that
-        configured them, and will be automatically archived in the following scenarios:
-        \list{
-          When the job runs a successful build which did not configure the pipeline (i.e.
-          the \code{set_pipeline} step was removed).
-        }{
-          When the job is removed from its pipeline configuration (see
-          \reference{schema.job.old_name} for renaming instead of removing).
-        }{
-          When the job's pipeline is archived or destroyed.
-        }
-        This means any job that uses \code{set_pipeline} should set all still-desired
-        pipelines in each build, rather than setting them one-by-one through many builds.
 
-        See \reference{fly-archive-pipeline} for what happens when a pipeline is archived.
-
-        \example-toggle{One pipeline reconfiguring another}{
+        \example-toggle{One pipeline configuring another}{
           This is a way to ensure a pipeline stays up to date with its definition in
           a source code repository, eliminating the need to manually run
           \reference{fly-set-pipeline}.
 
           \codeblock{yaml}{{{
-          resources:
-          - name: booklit
-            type: git
-            source: {uri: https://github.com/vito/booklit}
-          jobs:
-          - name: reconfigure
-            plan:
-            - get: booklit
-              trigger: true
-            - set_pipeline: booklit
-              file: booklit/ci/pipeline.yml
+            jobs:
+            - name: set-pipeline
+              plan:
+              - get: examples
+                trigger: true
+              - set_pipeline: hello-world  # pipeline's name
+                file: examples/pipelines/hello-world.yml  # pipeline's config
+
+            resources:
+            - name: examples
+              type: git
+              icon: github
+              source:
+                uri: https://github.com/concourse/examples.git
           }}}
         }
       }
@@ -1001,9 +1007,20 @@ by configuring \reference{schema.step.on_failure} or
           \reference{set-pipeline-step}:
 
           \codeblock{yaml}{{{
-          - get: ci
-          - set_pipeline: my-pipeline
-            file: ci/pipelines/my-pipeline.yml
+            jobs:
+            - name: set-pipeline
+              plan:
+              - get: examples
+                trigger: true
+              - set_pipeline: hello-world  # pipeline's name
+                file: examples/pipelines/hello-world.yml  # pipeline's config
+
+            resources:
+            - name: examples
+              type: git
+              icon: github
+              source:
+                uri: https://github.com/concourse/examples.git
           }}}
         }
       }
@@ -1017,54 +1034,76 @@ by configuring \reference{schema.step.on_failure} or
         via \reference{schema.task.file}. If you want those variables to be determined
         at the time the pipeline is set, use \reference{schema.task.vars} as well.
 
+        \warn{
+          \reference{instanced-pipelines}{Instance pipelines} are experimental
+          and need to be enabled by setting the
+          \code{--enable-pipeline-instances} flag on the \reference{web-node}.
+        }
+
+        \example-toggle{Configuring instance vars}{
+          The following pipeline will create one instance group with three
+          pipelines. The instance group is called \code{my-bots} and each
+          pipeline has a different set of \code{instance_vars} making it
+          distinct from the other pipelines in the instance group.
+          \codeblock{yaml}{{{
+            jobs:
+            - name: set-pipeline-instance-group
+              plan:
+              - get: examples
+              - in_parallel:
+                - set_pipeline: my-bots
+                  file: examples/pipelines/pipeline-vars.yml
+                  instance_vars:
+                    first: initial
+                    number: "9000"
+                    hello: HAL
+                - set_pipeline: my-bots
+                  file: examples/pipelines/pipeline-vars.yml
+                  instance_vars:
+                    first: second
+                    number: "3000"
+                    hello: WALLY-E
+                - set_pipeline: my-bots
+                  file: examples/pipelines/pipeline-vars.yml
+                  instance_vars:
+                    first: the-third
+                    number: "6000"
+                    hello: R2D2
+
+            resources:
+            - name: examples
+              type: git
+              icon: github
+              source:
+                uri: https://github.com/concourse/examples.git
+          }}}
+        }
         \example-toggle{Configuring instance vars and vars}{
-          Both \code{instance_vars} and \code{vars} may be statically passed like so:
+          Both \code{instance_vars} and \code{vars} may be statically. The
+          difference between the two fields is that \code{instance_vars} are
+          used to identify a pipeline and render the pipeline config.
+          \code{vars} are only used for rendering the pipeline config:
 
           \codeblock{yaml}{{{
-          plan:
-          - get: my-repo
-          - set_pipeline: release
-            file: my-repo/ci/pipeline.yml
-            instance_vars:
-              version: 1.0.x
-            vars:
-              text: "Hello World"
+            jobs:
+            - name: set-pipeline-vars-and-instance-vars
+              plan:
+              - get: examples
+              - set_pipeline: my-bots
+                file: examples/pipelines/pipeline-vars.yml
+                instance_vars:
+                  first: initial
+                  number: "9000"
+                vars:
+                  hello: HAL
+
+            resources:
+            - name: examples
+              type: git
+              icon: github
+              source:
+                uri: https://github.com/concourse/examples.git
           }}}
-
-          Any \reference{vars} in the pipeline config will be filled in
-          statically using this field.
-
-          For example, if \code{my-repo/ci/pipeline.yml} looks like...:
-
-          \codeblock{yaml}{{{
-          resources:
-          - name: task-image
-            type: registry-image
-            source:
-              repository: my.local.registry:8080/my/image
-              username: ((myuser))
-              password: ((mypass))
-          jobs:
-          - name: job
-            plan:
-            - get: task-image
-            - task: do-stuff
-              image: task-image
-              config:
-                platform: linux
-                run:
-                  path: echo
-                  args: ["((text)) from version ((version))!"]
-          }}}
-
-          ...this will resolve \code{"((text)) from version ((version))"} to
-          \code{{"Hello World from version 1.0.x!"}}, while \code{((myuser))} and
-          \code{((mypass))} will be left in the pipeline to be
-          \reference{dynamic-vars}{fetched at runtime}.
-
-          Additionally, as per \reference{managing-instanced-pipelines}, this
-          pipeline would be referred to in \code{fly} using the flag \code{--pipeline
-          release/version:1.0.x}
         }
       }
 
@@ -1080,46 +1119,25 @@ by configuring \reference{schema.step.on_failure} or
         at the time the pipeline is set, use \reference{schema.task.vars} as well.
 
         \example-toggle{Configuring static vars}{
-          A var may be statically passed like so:
-
           \codeblock{yaml}{{{
-          plan:
-          - get: my-repo
-          - set_pipeline: configure-the-pipeline
-            file: my-repo/ci/pipeline.yml
-            vars:
-              text: "Hello World!"
+            jobs:
+            - name: set-pipeline-vars-only
+              plan:
+              - get: examples
+              - set_pipeline: pipeline-set-with-vars
+                file: examples/pipelines/pipeline-vars.yml
+                vars:
+                  first: initial
+                  number: "9000"
+                  hello: HAL
+
+            resources:
+            - name: examples
+              type: git
+              icon: github
+              source:
+                uri: https://github.com/concourse/examples.git
           }}}
-
-          Any \reference{vars} in the pipeline config will be filled in
-          statically using this field.
-
-          For example, if \code{my-repo/ci/pipeline.yml} looks like...:
-
-          \codeblock{yaml}{{{
-          resources:
-          - name: task-image
-            type: registry-image
-            source:
-              repository: my.local.registry:8080/my/image
-              username: ((myuser))
-              password: ((mypass))
-          jobs:
-          - name: job
-            plan:
-            - get: task-image
-            - task: do-stuff
-              image: task-image
-              config:
-                platform: linux
-                run:
-                  path: echo
-                  args: ["((text))"]
-          }}}
-
-          ...this will resolve \code{"((text))"} to \code{{"Hello World!"}},
-          while \code{((myuser))} and \code{((mypass))} will be left in the
-          pipeline to be \reference{dynamic-vars}{fetched at runtime}.
         }
       }
 
@@ -1129,6 +1147,31 @@ by configuring \reference{schema.step.on_failure} or
         to \reference{fly-set-pipeline}. This means that if a variable appears
         in multiple files, the value from a file that is passed later in the
         list will override the values from files earlier in the list.
+
+        \example-toggle{Configuring static vars with a vars file}{
+          Where the vars file looks like:
+          \remote-codeblock{yaml}{https://raw.githubusercontent.com/concourse/examples/master/pipelines/vars-file.yml}
+
+          And the pipeline config is:
+
+          \codeblock{yaml}{{{
+            jobs:
+            - name: set-pipeline-vars-only
+              plan:
+              - get: examples
+              - set_pipeline: pipeline-set-with-vars
+                file: examples/pipelines/pipeline-vars.yml
+                var_files:
+                  - examples/pipelines/vars-file.yml
+
+            resources:
+            - name: examples
+              type: git
+              icon: github
+              source:
+                uri: https://github.com/concourse/examples.git
+          }}}
+        }
       }
 
       \optional-attribute{team}{identifier}{
@@ -1147,6 +1190,26 @@ by configuring \reference{schema.step.on_failure} or
           time. Contribute to the associated
           \link{discussion}{https://github.com/concourse/concourse/discussions/5731}
           with feedback.
+        }
+
+        \example-toggle{Setting a pipeline on another team}{
+          \codeblock{yaml}{{{
+            jobs:
+            - name: set-pipeline
+              plan:
+              - get: examples
+                trigger: true
+              - set_pipeline: hello-world
+                file: examples/pipelines/hello-world.yml
+                team: other-team  # name of the team goes here
+
+            resources:
+            - name: examples
+              type: git
+              icon: github
+              source:
+                uri: https://github.com/concourse/examples.git
+          }}}
         }
       }
     }
