@@ -1217,22 +1217,42 @@ by configuring \reference{schema.step.on_failure} or
   \section{
     \title{\code{load_var} step}{load-var-step}
     \schema-group{\code{load_var} step}{load-var}{
+        Load the value for a var at runtime from a file, making it available to
+        subsequent steps as a \reference{local-vars}{local build var} named
+        after the given identifier.
+
       \required-attribute{load_var}{identifier}{
-        Load the value for a var at runtime, making it available to subsequent
-        steps as a build-local var named after the given identifier.
+        The identifier will be the name of var, available to subsequent steps
+        as a \reference{local-vars}{local build var}.
 
         \example-toggle{Loading a simple value as a var}{
-          The following build plan uses a version produced by the
-          \resource{semver} as a tag:
+          The following pipeline loads vars from a text file whose contents are
+          used as a version number to \reference{put-step}{\code{put}}.
 
           \codeblock{yaml}{{{
-          plan:
-          - get: version
-          - load_var: version-tag
-            file: version/version
-          - put: image
-            params: {tag: ((.:version-tag))}
+            jobs:
+            - name: loading-vars
+              plan:
+              - get: examples
+              - load_var: version
+                file: examples/misc/simple-value.txt
+              - put: img
+                params:
+                  version: ((.:version))
+
+
+            resources:
+            - name: examples
+              type: git
+              icon: github
+              source:
+                uri: https://github.com/concourse/examples.git
+            - name: img
+              type: mock
           }}}
+
+          \code{simple-value.txt} looks like this:
+          \remote-codeblock{}{https://raw.githubusercontent.com/concourse/examples/master/misc/simple-value.txt}
         }
       }
 
@@ -1259,36 +1279,39 @@ by configuring \reference{schema.step.on_failure} or
         without modification (i.e. with any existing whitespace).
 
         \example-toggle{Loading a var with multiple fields}{
-          Let's say we have a task, \code{generate-creds}, which produces a
-          \code{generated-user} output containing a \code{user.json} file like
-          so:
+          Let's say we have a file with multiple fields, like this yaml file:
 
-          \codeblock{yaml}{{{
-          {
-            "username": "some-user",
-            "password": "some-password"
-          }
-          }}}
+          \remote-codeblock{yaml}{https://raw.githubusercontent.com/concourse/examples/master/pipelines/vars-file.yml}
 
-          We could pass these credentials to subsequent steps by loading it
-          into a var with \code{load_var}, which will detect that it is in JSON
+          We could pass these values to subsequent steps by loading it
+          into a var with \code{load_var}, which will detect that it is in YAML
           format based on the file extension:
 
           \codeblock{yaml}{{{
-          plan:
-          - task: generate-creds
-          - load_var: user
-            file: generated-user/user.json
-          - task: use-creds
-            params:
-              USERNAME: ((.:user.username))
-              PASSWORD: ((.:user.password))
+            jobs:
+            - name: loading-vars
+              plan:
+              - get: examples
+              - load_var: version
+                file: examples/pipelines/vars-file.yml
+              - put: img
+                params:
+                  version: "((.:version.hello))-((.:version.number))"
+
+
+            resources:
+            - name: examples
+              type: git
+              icon: github
+              source:
+                uri: https://github.com/concourse/examples.git
+            - name: img
+              type: mock
           }}}
 
-          If the \code{use-creds} task were to print these values, they would
-          be automatically redacted unless
-          \reference{schema.load-var.reveal}{\code{reveal: true}} is
-          set.
+          If the file \code{vars-file.yml} was generated in a task and printed
+          these values, they would be automatically redacted unless
+          \reference{schema.load-var.reveal}{\code{reveal: true}} is set.
         }
       }
 
