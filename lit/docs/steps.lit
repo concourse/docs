@@ -1465,23 +1465,30 @@ by configuring \reference{schema.step.on_failure} or
   \section{
   \title{\code{do} step}{do-step}
     \schema-group{\code{do} step}{do}{
+        Performs the given steps serially, with the same semantics as if they
+        were at the top level step listing. Most commonly used with \reference{try-step}, \link{across-step}{}, and \link{step-hooks}{}.
       \required-attribute{do}{[step]}{
-        Simply performs the given steps serially, with the same semantics as if
-        they were at the top level step listing.
-
-        \example-toggle{Running multiple steps in a hook}{
-          This can be used to perform multiple steps serially in an
-          \reference{schema.step.on_failure}:
+        \example-toggle{Running multiple steps in a try}{
+          This can be used to perform multiple steps serially in a
+          \reference{try-step}:
 
           \codeblock{yaml}{{{
-          plan:
-          - get: my-repo
-          - task: unit
-            file: my-repo/ci/unit.yml
-            on_failure:
-              do:
-              - put: alert
-              - put: email
+            jobs:
+            - name: with-do
+              plan:
+              - try:
+                  do:
+                  - get: black-ice
+                  - get: control-node
+                  - get: cyberdeck
+
+            resources:
+            - name: black-ice
+              type: mock
+            - name: control-node
+              type: mock
+            - name: cyberdeck
+              type: mock
           }}}
         }
       }
