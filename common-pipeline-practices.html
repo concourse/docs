@@ -295,7 +295,7 @@
   # using detect will result in &#34;apples-location&#34; and &#34;basket&#34; being passed in
   # &#34;monkeys&#34; will not be passed in
   - put: apples-in-basket
-    input: detect
+    inputs: detect
     params:
       apples-location: apples/location # matches the first get step
       basket: apple-basket # matches the second get step</code></pre></p><p>Specifying the exact inputs needed for the <a href="jobs.html#put-step"><code>put</code> step</a>: <pre><code class="language-yaml">jobs:
@@ -306,7 +306,7 @@
     - get: apple-basket
     - get: monkeys
   - put: apples-in-basket
-    input: [apples, apple-basket] # specify the exact inputs needed
+    inputs: [apples, apple-basket] # specify the exact inputs needed
     params:
       apples-location: apples/location
       basket: apple-basket</code></pre></p>
