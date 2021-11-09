@@ -68,7 +68,7 @@
       # using detect will result in "apples-location" and "basket" being passed in
       # "monkeys" will not be passed in
       - put: apples-in-basket
-        input: detect
+        inputs: detect
         params:
           apples-location: apples/location # matches the first get step
           basket: apple-basket # matches the second get step
@@ -84,7 +84,7 @@
         - get: apple-basket
         - get: monkeys
       - put: apples-in-basket
-        input: [apples, apple-basket] # specify the exact inputs needed
+        inputs: [apples, apple-basket] # specify the exact inputs needed
         params:
           apples-location: apples/location
           basket: apple-basket
