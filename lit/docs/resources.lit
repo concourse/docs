@@ -97,7 +97,7 @@ with the following schema.
     resource can still be checked manually via the web UI, fly, or webhooks.
   }
 
-  \optional-attribute{check_timeout}{duration | `never`}{
+  \optional-attribute{check_timeout}{duration}{
     \italic{Default \code{1h}.} The time limit on checking new versions of
     resources. Acceptable interval options are defined by the
     \link{time.ParseDuration
