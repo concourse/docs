@@ -253,6 +253,12 @@ UI, so you should make your output pretty.
       The team that the build belongs to.
     }
   }{
+    \definition{\code{$BUILD_CREATED_BY}}{
+      The username that created the build. By default it is not available. See
+      \reference{schema.resource.expose_build_created_by}{\code{expose_build_created_by}}
+      for how to opt in.
+    }
+  }{
     \definition{\code{$ATC_EXTERNAL_URL}}{
       The public URL for your ATC; useful for debugging.
     }
