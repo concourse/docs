@@ -97,6 +97,20 @@ with the following schema.
     resource can still be checked manually via the web UI, fly, or webhooks.
   }
 
+  \optional-attribute{check_timeout}{duration}{
+    \italic{Default \code{1h}.} The time limit on checking new versions of
+    resources. Acceptable interval options are defined by the
+    \link{time.ParseDuration
+    function}{https://golang.org/pkg/time/#ParseDuration}.
+  }
+
+  \optional-attribute{expose_build_created_by}{boolean}{
+    \italic{Default \code{false}.} If set to \code{true}, environment variable
+    \reference{resource-metadata}{\code{BUILD_CREATED_BY}} will be available
+    in the metadata of a \reference{get-step}{get step} or
+    \reference{put-step}{put step}.
+  }
+
   \optional-attribute{tags}{[string]}{
     \italic{Default \code{[]}.} A list of tags to determine which workers the
     checks will be performed on. You'll want to specify this if the source is
