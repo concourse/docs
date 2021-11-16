@@ -286,7 +286,7 @@ decide much on its own.
     will not be used for any untagged \reference{steps}.
 
     To run build steps on a tagged worker, specify the
-    \reference{schema.step.tags} on any particular step in your
+    \reference{schema.tags} on any particular step in your
     \reference{jobs}{job}.
 
     To perform resource \code{check}s on on a tagged worker, specify

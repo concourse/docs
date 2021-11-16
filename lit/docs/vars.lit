@@ -324,7 +324,7 @@ configured multiple times with different parameters
   \section{
     \title{Across Step & Dynamic Vars}{dynamic-vars-across-step}
 
-    For the \reference{schema.step.across} more fields can be dynamically
+    For the \reference{schema.across} more fields can be dynamically
     interpolated during runtime:
 
     \list{
