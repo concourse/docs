@@ -1528,17 +1528,35 @@ by configuring \reference{schema.on_failure} or
 
   \section{
   \title{Modifier And Hook Steps}
+  The following steps can be added to any other \reference{steps}{step} type.
+
+  \table-of-contents
   \split-sections
     \section{
     \title{\code{across} Step Modifier}{across-step}
-      \optional-attribute{across}{[across_var]}{
-        Run a step multiple times with different combinations of variable values.
+      Run a step multiple times with different combinations of variable values.
 
-        \warn{
-          \code{across} is considered an \bold{experimental} feature, and its
-          syntax/semantics may change. To enable \code{across} for your deployment,
-          you must set the feature flag \code{CONCOURSE_ENABLE_ACROSS_STEP}.
-        }
+      \warn{
+        \code{across} is considered an \bold{experimental} feature, and its
+        syntax/semantics may change. To enable \code{across} for your deployment,
+        you must set the feature flag \code{CONCOURSE_ENABLE_ACROSS_STEP}.
+      }
+
+      The \code{across} step can be combined with the \reference{load-var-step},
+      the \reference{set-pipeline-step}, and \reference{instanced-pipelines}{instanced pipelines}
+      to maintain a dynamically sized group of related pipelines.
+
+      More fields are also available for variable interpolation with the across
+      step. See \reference{dynamic-vars-across-step} for details.
+
+      \warn{
+        Outputs from steps ran within the across step are not available to steps
+        outside of the across step.
+      }
+
+      \optional-attribute{across}{[across_var]}{
+
+        Contains a list of \reference{schema.across_var}.
 
         \schema{across_var}{
           \required-attribute{var}{identifier}{
@@ -1641,28 +1659,105 @@ by configuring \reference{schema.on_failure} or
             will be interrupted and pending steps will no longer be scheduled.
           }
         }
+      }
+      \example-toggle{Across with task step}{
+        \codeblock{yaml}{{
+          jobs:
+          - name: job
+            plan:
+            - across:
+              - var: some-text
+                values: ["hello-world", "hello-concourse"]
+              task: running-((.:some-text))
+              config:
+                platform: linux
+                image_resource:
+                  type: mock
+                  source:
+                    mirror_self: true
+                run:
+                  path: echo
+                  args: ["((.:some-text))"]
+        }}
+      }
+      \example-toggle{Across with input and output mapping}{
+        \codeblock{yaml}{{
+          resources:
+          - name: ci
+            type: git
+            source:
+              uri: https://github.com/concourse/examples.git
 
-        The \code{across} step can be combined with the \reference{load-var-step},
-        the \reference{set-pipeline-step}, and \reference{instanced-pipelines}{instanced pipelines}
-        to maintain a dynamically sized group of related pipelines.
+          jobs:
+          - name: job
+            plan:
+            - get: ci
+            - across:
+              - var: pipeline
+                values: ["hello-world", "time-triggered"]
+              do:
+                - task: running-((.:pipeline))
+                  input_mapping:
+                    ((.:pipeline)): ci
+                  output_mapping:
+                    ((.:pipeline)): newci
+                  config:
+                    platform: linux
+                    image_resource:
+                      type: mock
+                      source:
+                        mirror_self: true
+                    inputs:
+                      - name: ((.:pipeline))
+                    outputs:
+                      - name: ((.:pipeline))
+                    run:
+                      path: cat
+                      args: ["((.:pipeline))/pipelines/((.:pipeline)).yml"]
+                - task: newci-((.:pipeline))
+                  config:
+                    platform: linux
+                    image_resource:
+                      type: mock
+                      source:
+                        mirror_self: true
+                    inputs:
+                      - name: newci
+                    run:
+                      path: cat
+                      args: ["newci/pipelines/((.:pipeline)).yml"]
+        }}
+      }
+      \example-toggle{Across with set_pipeline step}{
+        \codeblock{yaml}{{
+          resources:
+          - name: ci
+            type: git
+            source:
+              uri: https://github.com/concourse/examples.git
 
-        More fields are also available for variable interpolation with the across
-        step. See \reference{dynamic-vars-across-step} for details.
-
-        \warn{
-          Outputs from steps ran within the across step are not available to steps
-          outside of the across step.
-        }
-
-        \example-toggle{Across with task step}{
-          \codeblock{yaml}{{
-            jobs:
-            - name: job
-              plan:
-              - across:
-                - var: some-text
-                  values: ["hello-world", "hello-concourse"]
-                task: running-((.:some-text))
+          jobs:
+          - name: job
+            plan:
+            - get: ci
+            - across:
+              - var: pipeline
+                values: ["hello-world", "time-triggered"]
+              set_pipeline: ((.:pipeline))
+              file: ci/pipelines/((.:pipeline)).yml
+        }}
+      }
+      \example-toggle{Across with multiple steps}{
+        Use the \reference{do-step} to \code{across} over multiple steps.
+        \codeblock{yaml}{{
+          jobs:
+          - name: job
+            plan:
+            - across:
+              - var: name
+                values: ["Kaladin", "Jasnah"]
+              do:  # takes a list of steps
+              - task: saying-hello
                 config:
                   platform: linux
                   image_resource:
@@ -1671,137 +1766,51 @@ by configuring \reference{schema.on_failure} or
                       mirror_self: true
                   run:
                     path: echo
-                    args: ["((.:some-text))"]
-          }}
-        }
-        \example-toggle{Across with input and output mapping}{
-          \codeblock{yaml}{{
-            resources:
-            - name: ci
-              type: git
-              source:
-                uri: https://github.com/concourse/examples.git
+                    args: ["Hello ((.:name))!"]
+              - task: saying-bye
+                config:
+                  platform: linux
+                  image_resource:
+                    type: mock
+                    source:
+                      mirror_self: true
+                  run:
+                    path: echo
+                    args: ["Bye ((.:name))!"]
+        }}
+      }
+      \example-toggle{Multi-branch workflows (instance pipelines)}{
+        You can use the \code{across} step to set a pipeline for each branch in a
+        git repository.
 
-            jobs:
-            - name: job
-              plan:
-              - get: ci
-              - across:
-                - var: pipeline
-                  values: ["hello-world", "time-triggered"]
-                do:
-                  - task: running-((.:pipeline))
-                    input_mapping:
-                      ((.:pipeline)): ci
-                    output_mapping:
-                      ((.:pipeline)): newci
-                    config:
-                      platform: linux
-                      image_resource:
-                        type: mock
-                        source:
-                          mirror_self: true
-                      inputs:
-                        - name: ((.:pipeline))
-                      outputs:
-                        - name: ((.:pipeline))
-                      run:
-                        path: cat
-                        args: ["((.:pipeline))/pipelines/((.:pipeline)).yml"]
-                  - task: newci-((.:pipeline))
-                    config:
-                      platform: linux
-                      image_resource:
-                        type: mock
-                        source:
-                          mirror_self: true
-                      inputs:
-                        - name: newci
-                      run:
-                        path: cat
-                        args: ["newci/pipelines/((.:pipeline)).yml"]
-          }}
-        }
-        \example-toggle{Across with set_pipeline step}{
-          \codeblock{yaml}{{
-            resources:
-            - name: ci
-              type: git
-              source:
-                uri: https://github.com/concourse/examples.git
+        \codeblock{yaml}{{{
+        plan:
+        - get: release-branches
+          trigger: true
+        - get: ci
+        - load_var: branches
+          file: release-branches/branches.json
+        - across:
+          - var: branch
+            values: ((.:branches))
+          set_pipeline: release
+          file: ci/pipelines/release.yml
+          instance_vars: {branch: ((.:branch.name))}
+        }}}
 
-            jobs:
-            - name: job
-              plan:
-              - get: ci
-              - across:
-                - var: pipeline
-                  values: ["hello-world", "time-triggered"]
-                set_pipeline: ((.:pipeline))
-                file: ci/pipelines/((.:pipeline)).yml
-          }}
-        }
-        \example-toggle{Across with multiple steps}{
-          Use the \reference{do-step} to \code{across} over multiple steps.
-          \codeblock{yaml}{{
-            jobs:
-            - name: job
-              plan:
-              - across:
-                - var: name
-                  values: ["Kaladin", "Jasnah"]
-                do:  # takes a list of steps
-                - task: saying-hello
-                  config:
-                    platform: linux
-                    image_resource:
-                      type: mock
-                      source:
-                        mirror_self: true
-                    run:
-                      path: echo
-                      args: ["Hello ((.:name))!"]
-                - task: saying-bye
-                  config:
-                    platform: linux
-                    image_resource:
-                      type: mock
-                      source:
-                        mirror_self: true
-                    run:
-                      path: echo
-                      args: ["Bye ((.:name))!"]
-          }}
-        }
-        \example-toggle{Multi-branch workflows (instance pipelines)}{
-          You can use the \code{across} step to set a pipeline for each branch in a
-          git repository.
+        When a new branch is added, a new pipeline will be created. When a branch
+        is deleted, the pipeline will be automatically archived as described in
+        the \reference{set-pipeline-step}.
 
-          \codeblock{yaml}{{{
-          plan:
-          - get: release-branches
-            trigger: true
-          - get: ci
-          - load_var: branches
-            file: release-branches/branches.json
-          - across:
-            - var: branch
-              values: ((.:branches))
-            set_pipeline: release
-            file: ci/pipelines/release.yml
-            instance_vars: {branch: ((.:branch.name))}
-          }}}
+        For a more complete example, refer to \reference{multi-branch-workflows}.
+      }
 
-          When a new branch is added, a new pipeline will be created. When a branch
-          is deleted, the pipeline will be automatically archived as described in
-          the \reference{set-pipeline-step}.
-
-          For a more complete example, refer to \reference{multi-branch-workflows}.
-        }
-
-        \warn{
-          The \code{across} step does not work well with the \reference{get-step}
-          or \reference{put-step}. The names of resouces are not interpolated
+      \single-page
+      \omit-children-from-table-of-contents
+      \section{
+      \title{Limitations}
+          The \code{across} step does not work with the \reference{get-step} or
+          \reference{put-step}. The names of resouces are not interpolated
           within across steps. Trying to do the following will not work.
           \codeblock{yaml}{{
           - across:
@@ -1827,21 +1836,20 @@ by configuring \reference{schema.on_failure} or
           invalid jobs:
             jobs.job.plan.do[0].across.get(go): unknown resource 'go-((.:version))'
           }}
-        }
       }
     }
 
     \section{
     \title{\code{timeout} Step Modifier}{timeout-step}
+      The amount of time to limit the step's execution to, e.g. \code{30m} for 30
+      minutes.
+
+      When exceeded, the step will be interrupted, with the same semantics as
+      aborting the build (except the build will be \code{failed}, not
+      \code{aborted}, to distinguish between human intervention and timeouts being
+      enforced).
+
       \optional-attribute{timeout}{duration}{
-        The amount of time to limit the step's execution to, e.g. \code{30m} for 30
-        minutes.
-
-        When exceeded, the step will be interrupted, with the same semantics as
-        aborting the build (except the build will be \code{failed}, not
-        \code{aborted}, to distinguish between human intervention and timeouts being
-        enforced).
-
         \example-toggle{Giving up}{
           The following will run the \code{unit} task and cancel it if it takes
           longer than 1 hour and 30 minutes:
@@ -1859,14 +1867,14 @@ by configuring \reference{schema.on_failure} or
 
     \section{
     \title{\code{attempts} Step Modifier}{attempts-step}
+      The total number of times a step should be tried before it should fail,
+      e.g. \code{5} will run the step up to 5 times before giving up.
+
+      Attempts will retry on a Concourse error as well as build failure. When the
+      number of attempts is reached and the step has still not succeeded then the
+      step will fail.
+
       \optional-attribute{attempts}{number}{
-        The total number of times a step should be tried before it should fail,
-        e.g. \code{5} will run the step up to 5 times before giving up.
-
-        Attempts will retry on a Concourse error as well as build failure. When the
-        number of attempts is reached and the step has still not succeeded then the
-        step will fail.
-
         \example-toggle{Retrying a task}{
           The following will run the task and retry it up to 9 times (for a total
           of 10 attempts) if it fails:
@@ -1903,40 +1911,39 @@ by configuring \reference{schema.on_failure} or
 
     \section{
     \title{\code{tags} Step Modifier}{tags-step}
+      The tags by which to match workers.  The step will be placed within the a
+      pool of workers that match all of the given set of tags.
+
+      For example, if \code{[a, b]} is specified, only workers advertising the
+      \code{a} and \code{b} tags (in addition to any others) will be used for
+      running the step.
       \optional-attribute{tags}{[string]}{
-        \italic{Default \code{[]}.} The tags by which to match workers.
+        \italic{Default \code{[]}.}
 
-        The step will be placed within the a pool of workers that match all of the
-        given set of tags.
+        \example-toggle{Running in a private network}{
+          You may have a private cluster only reachable by special workers
+          running on-premises. To run steps against those workers, just provide a
+          matching tag:
 
-        For example, if \code{[a, b]} is specified, only workers advertising the
-        \code{a} and \code{b} tags (in addition to any others) will be used for
-        running the step.
-
-          \example-toggle{Running in a private network}{
-            You may have a private cluster only reachable by special workers
-            running on-premises. To run steps against those workers, just provide a
-            matching tag:
-
-            \codeblock{yaml}{{{
-            plan:
-            - get: my-repo
-            - put: my-site
-              tags: [private]
-              params: {path: my-repo}
-            - task: acceptance-tests
-              tags: [private]
-              file: my-repo/ci/acceptance.yml
-            }}}
-          }
+          \codeblock{yaml}{{{
+          plan:
+          - get: my-repo
+          - put: my-site
+            tags: [private]
+            params: {path: my-repo}
+          - task: acceptance-tests
+            tags: [private]
+            file: my-repo/ci/acceptance.yml
+          }}}
+        }
       }
     }
 
     \section{
     \title{\code{on_success} Step Hook}{on-success-step}
-      \optional-attribute{on_success}{step}{
-        A hook step to execute if the parent step succeeds.
+      A hook step to execute if the parent step succeeds.
 
+      \optional-attribute{on_success}{step}{
         \example-toggle{Running on success}{
           The following will perform the second task only if the first one
           succeeds:
@@ -1971,12 +1978,11 @@ by configuring \reference{schema.on_failure} or
 
     \section{
     \title{\code{on_failure} Step Hook}{on-failure-hook}
+      A hook step to execute if the parent step fails.
+
+      This does not "recover" the failure - it will still fail even if the hook
+      step succeeds.
       \optional-attribute{on_failure}{step}{
-        A hook step to execute if the parent step fails.
-
-        This does not "recover" the failure - it will still fail even if the hook
-        step succeeds.
-
         \example-toggle{Alerting on failure}{
           The following will perform the \code{alert} task only if the \code{unit}
           task fails:
@@ -1996,10 +2002,10 @@ by configuring \reference{schema.on_failure} or
 
     \section{
     \title{\code{on_abort} Step Hook}{on-abort-hook}
-      \optional-attribute{on_abort}{step}{
-        A hook step to execute if the build is aborted and the parent step is
-        terminated.
+      A hook step to execute if the build is aborted and the parent step was
+      running and then terminated.
 
+      \optional-attribute{on_abort}{step}{
         \example-toggle{Cleaning up \code{on_abort}}{
           The following will perform the \code{cleanup} task only if the build is
           aborted while the \code{unit} task was running:
@@ -2019,13 +2025,13 @@ by configuring \reference{schema.on_failure} or
 
     \section{
     \title{\code{on_error} Step Hook}{on-error-hook}
-      \optional-attribute{on_error}{step}{
-        A hook step to execute after the parent step if the parent step terminates
-        abnormally in any way other than those handled by the
-        \reference{schema.on_abort} or \reference{schema.on_failure}. This covers
-        scenarios as broad as configuration mistakes, temporary network issues with
-        the workers, or running longer than a \reference{schema.timeout}.
+      A hook step to execute after the parent step if the parent step terminates
+      abnormally in any way other than those handled by the
+      \reference{schema.on_abort} or \reference{schema.on_failure}. This covers
+      scenarios as broad as configuration mistakes, temporary network issues with
+      the workers, or running longer than a \reference{schema.timeout}.
 
+      \optional-attribute{on_error}{step}{
         \example-toggle{Sending a notification}{
           Until notifications become first-class (\link{RFC
           #28}{https://github.com/concourse/rfcs/pull/28}, this step can be used to
@@ -2046,14 +2052,14 @@ by configuring \reference{schema.on_failure} or
 
     \section{
     \title{\code{ensure} Step Hook}{ensure-hook}
+      A hook step to execute after the parent step regardless of whether the
+      parent step succeeds, fails, or errors. The step will also be executed if
+      the build was aborted and its parent step was interrupted.
+
+      If the parent step succeeds and the ensured step fails, the overall step
+      fails.
+
       \optional-attribute{ensure}{step}{
-        A hook step to execute after the parent step regardless of whether the
-        parent step succeeds, fails, or errors. The step will also be executed if
-        the build was aborted and its parent step was interrupted.
-
-        If the parent step succeeds and the ensured step fails, the overall step
-        fails.
-
         \example-toggle{Releasing a lock}{
           The following build plan acquires a lock and then \code{ensure}s that the
           lock is released.
