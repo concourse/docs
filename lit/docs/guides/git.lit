@@ -155,11 +155,11 @@
   Manually setting (and eventually archiving) a pipeline for each feature branch
   would be quite a burden. For this type of workflow, Concourse has a few
   important tools to help you out: the \reference{set-pipeline-step},
-  \reference{schema.step.across}, and \reference{instanced-pipelines}{instanced
+  \reference{schema.across}, and \reference{instanced-pipelines}{instanced
   pipelines}.
 
   \warn{
-    \reference{schema.step.across} and \reference{instanced-pipelines}{instanced pipelines}
+    \reference{schema.across} and \reference{instanced-pipelines}{instanced pipelines}
     are both experimental features, and must be enabled with the feature flags
     \code{CONCOURSE_ENABLE_ACROSS_STEP} and \code{CONCOURSE_ENABLE_PIPELINE_INSTANCES}, respectively.
   }
@@ -173,7 +173,7 @@
   }{
     \reference{multi-branch-tracking-branches} in a repository; for each
     branch, we'll set a pipeline (using the \reference{set-pipeline-step} and
-    \reference{schema.step.across})
+    \reference{schema.across})
   }{
     Automatically \reference{multi-branch-cleaning-up} after branches get
     merged or deleted
