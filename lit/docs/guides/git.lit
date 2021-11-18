@@ -13,7 +13,7 @@
   image. That image is probably the most popular git resource for Concourse
   since it is shipped in the
   \link{concourse/concourse}{https://hub.docker.com/r/concourse/concourse}
-  image and in the tarball on the \link{Github release
+  image and in the tarball on the \link{GitHub release
   page}{https://github.com/concourse/concourse/releases}. It is not the only
   resource available for working with git-related resources. If you don't see
   your use-case on this page then there is probably another resource that you
