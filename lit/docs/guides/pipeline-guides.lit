@@ -53,7 +53,7 @@
 
     There are two ways to specify which artifacts to send to a
     \reference{put-step}. You can specify \code{detect} as the
-    \reference{schema.step.put-step.inputs} or you can pass in an exact list of
+    \reference{schema.put.inputs} or you can pass in an exact list of
     all artifacts the \reference{put-step} needs.
 
     Using \code{detect}:
@@ -96,7 +96,7 @@
     \title{Putting Task Configs in Files}
 
     A lot of the pipeline examples that you will find on this site and in
-    resource repos will embed a \reference{schema.step.task-step.config} directly
+    resource repos will embed a \reference{schema.task.config} directly
     in the pipeline. This is a nice way of clearly seeing what inputs/outputs the
     task uses. Tasks are usually designed to be used in multiple places, maybe
     with slightly different configuration. To support this scenario, most users
@@ -141,10 +141,10 @@
     \title{\code{Get} Images for Tasks Instead of using Anonymous Image Resources}
 
     It is easy to let Concourse fetch images for tasks right when they are
-    needed by using the \reference{schema.task.image_resource} field in a
+    needed by using the \reference{schema.task-config.image_resource} field in a
     \reference{tasks}{task config}. It's the easy out-of-the-box solution.
     Another way is to pass the image for a task as an input to the job by
-    setting the \reference{schema.step.task-step.image} field. This also allows
+    setting the \reference{schema.task.image} field. This also allows
     you to track the version of the image being used by the task and also avoid
     getting rate-limited by configuring the resource with credentials.
 
@@ -413,11 +413,11 @@
     \title{#3 - Mapping the Names of Inputs and Outputs}
 
     Sometimes the names of inputs and outputs don't match between multiple
-    \reference{schema.step.task-step.config}{task configs}, or they do match and
+    \reference{schema.task.config}{task configs}, or they do match and
     you don't want them overwriting each other, like in the previous example.
     That's when
-    \reference{schema.step.task-step.input_mapping}{\code{input_mapping}} and
-    \reference{schema.step.task-step.output_mapping}{\code{output_mapping}}
+    \reference{schema.task.input_mapping}{\code{input_mapping}} and
+    \reference{schema.task.output_mapping}{\code{output_mapping}}
     become helpful. Both of these features rename the inputs/outputs in the task's
     config to some other name in the job plan.
 
@@ -772,7 +772,7 @@
     means a user has to run \reference{fly-trigger-job} or click the plus
     button in the web interface for a job to run. A job only runs automatically
     if one of it's resources has the
-    \reference{schema.step.get-step.trigger}{\code{trigger: true}} parameter
+    \reference{schema.get.trigger}{\code{trigger: true}} parameter
     set.
 
     Therefore, in order to create a gated job in a pipeline you simply need to

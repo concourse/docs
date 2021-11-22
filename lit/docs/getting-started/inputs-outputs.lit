@@ -23,7 +23,7 @@
   between steps. We'll refer to both inputs and outputs as \bold{artifacts}.
 
   Let's start exploring how artifacts work by adding a
-  \reference{schema.task.outputs} to our \code{hello-world-task}.
+  \reference{schema.task-config.outputs} to our \code{hello-world-task}.
 
   \codeblock{yaml}{{
   jobs:
@@ -164,7 +164,7 @@
 
   \list{
     Concourse runs the task step \code{hello-world-task} with
-    \reference{schema.task.outputs}{output} \code{the-artifact}
+    \reference{schema.task-config.outputs}{output} \code{the-artifact}
 
     \aside{
     Concourse creates an empty artifact, assigns it the name \code{the-artifact}, and
@@ -172,7 +172,7 @@
     }
   }{
     Concourse runs the task step \code{read-the-artifact} with
-    \reference{schema.task.inputs}{input} \code{the-artifact}
+    \reference{schema.task-config.inputs}{input} \code{the-artifact}
 
     \aside{
       Concourse looks up, in its list of artifacts for the build, for an

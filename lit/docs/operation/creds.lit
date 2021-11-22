@@ -27,11 +27,11 @@ The following configurations can be parameterized with a credential manager:
   \reference{schema.resource.webhook_token} under
   \reference{schema.pipeline.resources}
 }{
-  \reference{schema.step.task-step.params} on a task step in a pipeline
+  \reference{schema.task.params} on a task step in a pipeline
 }{
   \reference{tasks} in their entirety - whether from
-  \reference{schema.step.task-step.file} or
-  \reference{schema.step.task-step.config} in a pipeline, or a config executed
+  \reference{schema.task.file} or
+  \reference{schema.task.config} in a pipeline, or a config executed
   with \reference{fly-execute}
 }
 

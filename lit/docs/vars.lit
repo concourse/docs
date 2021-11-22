@@ -98,8 +98,8 @@ configured multiple times with different parameters
   \title{Static vars}{static-vars}
 
   Var values may also be specified statically using the
-  \reference{schema.step.set-pipeline-step.vars}{\code{set_pipeline} step} and
-  \reference{schema.step.task-step.vars}{\code{task} step}.
+  \reference{schema.set-pipeline.vars}{\code{set_pipeline} step} and
+  \reference{schema.task.vars}{\code{task} step}.
 
   When running the \reference{fly-cli} equivalent commands
   (\reference{fly-set-pipeline} and \reference{fly-execute}), var values may be
@@ -125,7 +125,7 @@ configured multiple times with different parameters
   values by hand.
 
   \example-toggle{Setting values with the \code{task} step}{
-    Let's say we have a \reference{schema.task}{task config} like so:
+    Let's say we have a \reference{schema.task-config}{task config} like so:
 
     \codeblock{yaml}{{{
       platform: linux
@@ -143,7 +143,7 @@ configured multiple times with different parameters
         path: booklit/ci/unit
     }}}
 
-    We could use \reference{schema.step.task-step.vars}{\code{vars}} to run this
+    We could use \reference{schema.task.vars}{\code{vars}} to run this
     task against different versions of Go:
 
     \codeblock{yaml}{{{
@@ -313,27 +313,27 @@ configured multiple times with different parameters
     \reference{schema.resource.webhook_token} under
     \reference{schema.pipeline.resources}
   }{
-    \reference{schema.step.task-step.params} on a task step in a pipeline
+    \reference{schema.task.params} on a task step in a pipeline
   }{
     \reference{tasks}{tasks configuration} in their entirety - whether from
-    \reference{schema.step.task-step.file} or
-    \reference{schema.step.task-step.config} in a pipeline, or a config
+    \reference{schema.task.file} or
+    \reference{schema.task.config} in a pipeline, or a config
     executed with \reference{fly-execute}
   }
 
   \section{
     \title{Across Step & Dynamic Vars}{dynamic-vars-across-step}
 
-    For the \reference{schema.step.across} more fields can be dynamically
+    For the \reference{schema.across} more fields can be dynamically
     interpolated during runtime:
 
     \list{
       \reference{set-pipeline-step} identifier and
-      \reference{schema.step.set-pipeline-step.file}{\code{file}} field
+      \reference{schema.set-pipeline.file}{\code{file}} field
     }{
       \reference{task-step} identifier,
-      \reference{schema.step.task-step.input_mapping}{\code{input_mapping}}, and
-      \reference{schema.step.task-step.output_mapping}{\code{output_mapping}}, in
+      \reference{schema.task.input_mapping}{\code{input_mapping}}, and
+      \reference{schema.task.output_mapping}{\code{output_mapping}}, in
       addition to the all other fields mentioned above for the task step
     }
   }

@@ -22,7 +22,7 @@ These constructs give you the ability to design a pipeline that can process arti
 	\title{References}{references}
 
 	\list{
-		\reference{schema.task.outputs}
+		\reference{schema.task-config.outputs}
 	}{
 		\reference{tasks}
 	}{
