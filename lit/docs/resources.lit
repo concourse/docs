@@ -77,7 +77,7 @@ with the following schema.
 
   \optional-attribute{version}{version}{
     A version to pin the resource to across the pipeline. This has the same
-    effect as setting \reference{schema.step.get-step.version} on every
+    effect as setting \reference{schema.get.version} on every
     \reference{get-step} referencing the resource.
 
     Resources can also be temporarily pinned to a version via the API and web UI.
@@ -97,6 +97,20 @@ with the following schema.
     resource can still be checked manually via the web UI, fly, or webhooks.
   }
 
+  \optional-attribute{check_timeout}{duration}{
+    \italic{Default \code{1h}.} The time limit on checking new versions of
+    resources. Acceptable interval options are defined by the
+    \link{time.ParseDuration
+    function}{https://golang.org/pkg/time/#ParseDuration}.
+  }
+
+  \optional-attribute{expose_build_created_by}{boolean}{
+    \italic{Default \code{false}.} If set to \code{true}, environment variable
+    \reference{resource-metadata}{\code{BUILD_CREATED_BY}} will be available
+    in the metadata of a \reference{get-step}{get step} or
+    \reference{put-step}{put step}.
+  }
+
   \optional-attribute{tags}{[string]}{
     \italic{Default \code{[]}.} A list of tags to determine which workers the
     checks will be performed on. You'll want to specify this if the source is
@@ -105,7 +119,7 @@ with the following schema.
     \warn{
       This does not apply tags to all \reference{get-step}{get steps} or
       \reference{put-step}{put steps} that use the resource. If you want these steps
-      to use tags, you must set \reference{schema.step.tags} for each step.
+      to use tags, you must set \reference{schema.tags} for each step.
     }
   }
 
@@ -170,7 +184,7 @@ with the following schema.
     }}}
 
     This could be passed to a job via a \reference{get-step} with
-    \reference{schema.step.get-step.trigger}{\code{trigger: true}} to run the tests
+    \reference{schema.get.trigger}{\code{trigger: true}} to run the tests
     whenever there's new code:
 
     \codeblock{yaml}{{{
@@ -199,7 +213,7 @@ with the following schema.
     }}}
 
     This could be passed to a job via a \reference{get-step} with
-    \reference{schema.step.get-step.trigger}{\code{trigger: true}} to run the job
+    \reference{schema.get.trigger}{\code{trigger: true}} to run the job
     periodically:
 
     \codeblock{yaml}{{{

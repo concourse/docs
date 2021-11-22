@@ -185,31 +185,30 @@ following schema:
 
   \optional-attribute{on_success}{step}{
     Step to execute when the job succeeds. Equivalent to the
-    \reference{schema.step.on_success} hook.
+    \reference{schema.on_success} hook.
   }
 
   \optional-attribute{on_failure}{step}{
     Step to execute when the job fails. Equivalent to the
-    \reference{schema.step.on_failure} hook.
+    \reference{schema.on_failure} hook.
   }
 
   \optional-attribute{on_error}{step}{
     Step to execute when the job errors. Equivalent to the
-    \reference{schema.step.on_error} hook.
+    \reference{schema.on_error} hook.
   }
 
   \optional-attribute{on_abort}{step}{
     Step to execute when the job aborts. Equivalent to the
-    \reference{schema.step.on_abort} hook.
+    \reference{schema.on_abort} hook.
   }
 
   \optional-attribute{ensure}{step}{
     Step to execute regardless of whether the job succeeds, fails, errors, or
-    aborts. Equivalent to the \reference{schema.step.ensure} hook.
+    aborts. Equivalent to the \reference{schema.ensure} hook.
   }
 }
 
 \table-of-contents
 
-\include-section{jobs/steps.lit}
 \include-section{jobs/managing.lit}

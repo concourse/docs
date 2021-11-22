@@ -37,7 +37,7 @@ or \code{--privileged} flag.
   name as the directory.
 
   Tasks must specify the inputs that they require as
-  \reference{schema.task.inputs}. For \code{fly} to upload these inputs you can
+  \reference{schema.task-config.inputs}. For \code{fly} to upload these inputs you can
   use the \code{-i} or \code{--input} arguments with name and path pairs.
   For example:
 
@@ -98,7 +98,7 @@ or \code{--privileged} flag.
   input-name}.
 
   For example, the following pipeline fetches an image via a
-  \reference{get-step} and uses it for \reference{schema.step.task-step.image}:
+  \reference{get-step} and uses it for \reference{schema.task.image}:
 
   \codeblock{yaml}{{{
   resources:
@@ -192,7 +192,7 @@ or \code{--privileged} flag.
   configured \reference{creds}{credential manager}.
 
   To satisfy these vars when running the task in a pipeline, see
-  \reference{schema.step.task-step.vars}.
+  \reference{schema.task.vars}.
 }
 
 \example-toggle{Targeting a specific worker with \code{--tag}}{

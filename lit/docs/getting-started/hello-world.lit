@@ -70,7 +70,7 @@
   Unlike \reference{jobs}{jobs}, the order of \reference{steps}{steps}
   \bold{does matter!} Concourse will run the \reference{steps}{steps} in the
   order that they are listed. Let's \italic{carefully} place a
-  \reference{schema.step.task-step.task}{task step} as the first (and only)
+  \reference{schema.task.task}{task step} as the first (and only)
   step in our job.
 
   \codeblock{yaml}{{
@@ -81,7 +81,7 @@
   }}
 
   Fantastic! Now we need to tell Concourse \italic{how} to run our task step. We
-  do that by providing a \reference{schema.task}{task config}.
+  do that by providing a \reference{schema.task-config}{task config}.
 
   \codeblock{yaml}{{
   jobs:
@@ -143,7 +143,7 @@
 
   You can view the \reference{tasks}{task documentation} to see all configurable
   options for tasks. For now, you can add the following
-  \reference{schema.task}{task config} to the step.
+  \reference{schema.task-config}{task config} to the step.
 
   \codeblock{yaml}{{
   jobs:
@@ -203,6 +203,6 @@
 
   \aside{
     If you have any feedback for this tutorial please share it in \link{this
-    Github discussion}{https://github.com/concourse/concourse/discussions/7353}
+    GitHub discussion}{https://github.com/concourse/concourse/discussions/7353}
   }
 }
