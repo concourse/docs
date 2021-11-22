@@ -129,31 +129,36 @@
         
           <tr>
             <td class="number-cell">1.11</td>
-            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+            <td class="title-cell"><a href="steps.html" >Steps</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
             <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
@@ -273,7 +278,7 @@
 
   <li><p>An unordered list of <a href="jobs.html">Jobs</a> which contains...</p></li>
 
-  <li><p>An ordered list of <a href="jobs.html#steps">Steps</a></p></li>
+  <li><p>An ordered list of <a href="steps.html">Steps</a></p></li>
 
 </ul> If you&#39;ve used other pipeline building tools in the past, then what you think of as a pipeline is probably most similar to a <a href="jobs.html">job</a> in Concourse.</p><p>For our <code>Hello World!</code> pipeline we will need <strong>one job</strong> with <strong>one step</strong>. This is the smallest pipeline you can make in Concourse. The single step is what will print <code>Hello World!</code> to the console.</p><p>Create and open a new file called <code>hello-world.yml</code>. Inside that file let&#39;s add the first top-level key, <code><a href="jobs.html">jobs</a></code>.</p><pre><code class="language-yaml">jobs:</code></pre><p>The <code><a href="jobs.html">jobs</a></code> key is where we define the list of jobs that should make up our pipeline. The order of the jobs does not matter. <strong>The order of jobs does not define the structure of the pipeline.</strong> We&#39;ll get into pipeline structure and job ordering later when we talk about <a href="resources.html">Resources</a> and passed constraints.</p>
 
@@ -288,7 +293,7 @@
   
 
   <p>We only need one job right now so let&#39;s add a single job named <code>hello-world-job</code>.</p><pre><code class="language-yaml">jobs:
-- name: hello-world-job</code></pre><p>Awesome, we have a <a href="jobs.html">job</a> named <code>hello-world</code>! Now we need to add a <code><a href="jobs.html#steps">step</a></code> to our job. To define a list of <a href="jobs.html#steps">steps</a> a job should execute, we need to add the <code><a href="jobs.html#schema.job.plan">plan</a></code> key to our job.</p><pre><code class="language-yaml">jobs:
+- name: hello-world-job</code></pre><p>Awesome, we have a <a href="jobs.html">job</a> named <code>hello-world</code>! Now we need to add a <code><a href="steps.html">step</a></code> to our job. To define a list of <a href="steps.html">steps</a> a job should execute, we need to add the <code><a href="jobs.html#schema.job.plan">plan</a></code> key to our job.</p><pre><code class="language-yaml">jobs:
 - name: hello-world-job
   plan:</code></pre>
 
@@ -302,10 +307,10 @@
   <h2 class="section-header"><a class="anchor-target" name="add-a-step" href="#add-a-step"></a>Add a step</h2>
   
 
-  <p>Unlike <a href="jobs.html">jobs</a>, the order of <a href="jobs.html#steps">steps</a> <strong>does matter!</strong> Concourse will run the <a href="jobs.html#steps">steps</a> in the order that they are listed. Let&#39;s <em>carefully</em> place a <a href="jobs.html#schema.step.task-step.task">task step</a> as the first (and only) step in our job.</p><pre><code class="language-yaml">jobs:
+  <p>Unlike <a href="jobs.html">jobs</a>, the order of <a href="steps.html">steps</a> <strong>does matter!</strong> Concourse will run the <a href="steps.html">steps</a> in the order that they are listed. Let&#39;s <em>carefully</em> place a <a href="task-step.html#schema.task.task">task step</a> as the first (and only) step in our job.</p><pre><code class="language-yaml">jobs:
 - name: hello-world-job
   plan:
-  - task: hello-world-task</code></pre><p>Fantastic! Now we need to tell Concourse <em>how</em> to run our task step. We do that by providing a <a href="tasks.html#schema.task">task config</a>.</p><pre><code class="language-yaml">jobs:
+  - task: hello-world-task</code></pre><p>Fantastic! Now we need to tell Concourse <em>how</em> to run our task step. We do that by providing a <a href="tasks.html#schema.task-config">task config</a>.</p><pre><code class="language-yaml">jobs:
 - name: hello-world-job
   plan:
   - task: hello-world-task
@@ -321,7 +326,7 @@
   <h2 class="section-header"><a class="anchor-target" name="what-is-a-step" href="#what-is-a-step"></a>What is a step?</h2>
   
 
-  <p>A step is a single container running on a <a href="concourse-worker.html">Concourse worker</a>. Each <a href="jobs.html#steps">step</a> in a <a href="jobs.html#schema.job.plan">job plan</a> runs in its own container. You can run anything you want inside the container <em>(i.e. run my tests, run this bash script, build this image, etc.)</em>.</p><p>So if you have a job with five steps Concourse will create five containers, one for each step. Therefore, we need to tell Concourse the following about each step:</p><ul>
+  <p>A step is a single container running on a <a href="concourse-worker.html">Concourse worker</a>. Each <a href="steps.html">step</a> in a <a href="jobs.html#schema.job.plan">job plan</a> runs in its own container. You can run anything you want inside the container <em>(i.e. run my tests, run this bash script, build this image, etc.)</em>.</p><p>So if you have a job with five steps Concourse will create five containers, one for each step. Therefore, we need to tell Concourse the following about each step:</p><ul>
 
   <li><p>What type of <a href="concourse-worker.html">worker</a> to run the task on (linux/windows/darwin)</p></li>
 
@@ -349,7 +354,7 @@
 
   <li><p><strong>What command to run inside the container</strong></p><p><code>echo &#34;Hello world!&#34;</code></p></li>
 
-</ul><p>You can view the <a href="tasks.html">task documentation</a> to see all configurable options for tasks. For now, you can add the following <a href="tasks.html#schema.task">task config</a> to the step.</p><pre><code class="language-yaml">jobs:
+</ul><p>You can view the <a href="tasks.html">task documentation</a> to see all configurable options for tasks. For now, you can add the following <a href="tasks.html#schema.task-config">task config</a> to the step.</p><pre><code class="language-yaml">jobs:
 - name: hello-world-job
   plan:
   - task: hello-world-task
@@ -385,7 +390,7 @@ $ fly -t tutorial unpause-pipeline -p hello-world
 $ fly -t tutorial trigger-job --job hello-world/hello-world-job --watch</code></pre><p>You&#39;ll see extra output than what we&#39;re showing below (the busybox image being downloaded) but the last four lines will be the task executing.</p><pre><code class="language-">selected worker: 701785fa43a1
 running echo Hello world!
 Hello world!
-succeeded</code></pre><p><em>The following is an iframe to <a href="http://localhost:8080/teams/main/pipelines/hello-world">http://localhost:8080/teams/main/pipelines/hello-world</a></em> <iframe class="frame" frameborder="0" width="100%" height="500px" src="http://localhost:8080/teams/main/pipelines/hello-world"></iframe></p><p>Congratulations on building your first Concourse pipeline!</p><p>In the next section we will build upon what we have learned about tasks and introduce inputs and outputs, which allow you to pass files between tasks.</p><blockquote class="aside"><p>If you have any feedback for this tutorial please share it in <a href="https://github.com/concourse/concourse/discussions/7353">this Github discussion</a></p></blockquote>
+succeeded</code></pre><p><em>The following is an iframe to <a href="http://localhost:8080/teams/main/pipelines/hello-world">http://localhost:8080/teams/main/pipelines/hello-world</a></em> <iframe class="frame" frameborder="0" width="100%" height="500px" src="http://localhost:8080/teams/main/pipelines/hello-world"></iframe></p><p>Congratulations on building your first Concourse pipeline!</p><p>In the next section we will build upon what we have learned about tasks and introduce inputs and outputs, which allow you to pass files between tasks.</p><blockquote class="aside"><p>If you have any feedback for this tutorial please share it in <a href="https://github.com/concourse/concourse/discussions/7353">this GitHub discussion</a></p></blockquote>
 
   
     

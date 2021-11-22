@@ -127,31 +127,36 @@
         
           <tr>
             <td class="number-cell">1.11</td>
-            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+            <td class="title-cell"><a href="steps.html" >Steps</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
             <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
@@ -241,6 +246,16 @@
       
       <tr>
         <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="resources.html#schema.resource.check_timeout"><code class="schema-attribute-name"><bold>resource<wbr />.check_timeout</bold></code></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="resources.html#schema.resource.expose_build_created_by"><code class="schema-attribute-name"><bold>resource<wbr />.expose_build_created_by</bold></code></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
         <td class="title-cell"><a href="resources.html#schema.resource.tags"><code class="schema-attribute-name"><bold>resource<wbr />.tags</bold></code></a></td>
       </tr>
       
@@ -271,7 +286,7 @@
   <h1 class="section-header"><a class="anchor-target" name="resources" href="#resources"></a><span class="section-number">1.8 </span>Resources</h1>
   
 
-  <p>Resources are the heart and soul of Concourse. They represent all external inputs to and outputs of <a href="jobs.html">jobs</a> in the pipeline.</p><p>Each resource represents a versioned artifact with an external source of truth. Configuring the same resource in any pipeline on any Concourse cluster will behave the exact same way. Concourse will continuously <code>check</code> each configured resource to discover new versions. These versions then flow through the pipeline via <a href="jobs.html#get-step"><code>get</code> step</a>s configured on <a href="jobs.html">Jobs</a>.</p><p>A pipeline&#39;s resources are listed under <a href="pipelines.html#schema.pipeline.resources"><code class="schema-attribute-name"><bold>pipeline<wbr />.resources</bold></code></a> with the following schema.</p><div class="schema">
+  <p>Resources are the heart and soul of Concourse. They represent all external inputs to and outputs of <a href="jobs.html">jobs</a> in the pipeline.</p><p>Each resource represents a versioned artifact with an external source of truth. Configuring the same resource in any pipeline on any Concourse cluster will behave the exact same way. Concourse will continuously <code>check</code> each configured resource to discover new versions. These versions then flow through the pipeline via <a href="get-step.html"><code>get</code> step</a>s configured on <a href="jobs.html">Jobs</a>.</p><p>A pipeline&#39;s resources are listed under <a href="pipelines.html#schema.pipeline.resources"><code class="schema-attribute-name"><bold>pipeline<wbr />.resources</bold></code></a> with the following schema.</p><div class="schema">
   <h2 class="schema-header"><a class="anchor-target" name="schema.resource" href="#schema.resource"></a><code>resource</code> schema</h2>
 
   <div class="toggleable schema-attribute required">
@@ -283,7 +298,7 @@
   </label>
 
   <div class="toggle-content attribute-content">
-    <p>The name of the resource. This should be short and simple. This name will be referenced by <a href="jobs.html#steps">build plans</a> of jobs in the pipeline.</p>
+    <p>The name of the resource. This should be short and simple. This name will be referenced by <a href="steps.html">build plans</a> of jobs in the pipeline.</p>
   </div>
 </div><div class="toggleable schema-attribute required">
   <input id="toggle-schema.resource.type" type="checkbox" class="toggle" />
@@ -351,7 +366,7 @@
   </label>
 
   <div class="toggle-content attribute-content">
-    <p>A version to pin the resource to across the pipeline. This has the same effect as setting <a href="jobs.html#schema.step.get-step.version"><code>get</code> step <strong><code>version</code></strong></a> on every <a href="jobs.html#get-step"><code>get</code> step</a> referencing the resource.</p><p>Resources can also be temporarily pinned to a version via the API and web UI. However this functionality is disabled if the resource is pinned via configuration, and if a pipeline is configured to have a version pinned while also pinned in the web UI, the configuration takes precedence and will clear out the temporary pin.</p>
+    <p>A version to pin the resource to across the pipeline. This has the same effect as setting <a href="get-step.html#schema.get.version"><code>get</code> step <strong><code>version</code></strong></a> on every <a href="get-step.html"><code>get</code> step</a> referencing the resource.</p><p>Resources can also be temporarily pinned to a version via the API and web UI. However this functionality is disabled if the resource is pinned via configuration, and if a pipeline is configured to have a version pinned while also pinned in the web UI, the configuration takes precedence and will clear out the temporary pin.</p>
   </div>
 </div><div class="toggleable schema-attribute optional">
   <input id="toggle-schema.resource.check_every" type="checkbox" class="toggle" />
@@ -365,6 +380,28 @@
     <p><em>Default <code>1m</code>.</em> The interval on which to check for new versions of the resource. Acceptable interval options are defined by the <a href="https://golang.org/pkg/time/#ParseDuration">time.ParseDuration function</a>.</p><p>If set to <code>never</code> the resource will not be automatically checked. The resource can still be checked manually via the web UI, fly, or webhooks.</p>
   </div>
 </div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.resource.check_timeout" type="checkbox" class="toggle" />
+  <label for="toggle-schema.resource.check_timeout" class="toggle-title">
+    <a id="schema.resource.check_timeout"></a>
+
+    <code><a class="attribute-name" href="#schema.resource.check_timeout">check_timeout</a>: <span class="attribute-type"><a href="config-basics.html#schema.duration"><strong>duration</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>1h</code>.</em> The time limit on checking new versions of resources. Acceptable interval options are defined by the <a href="https://golang.org/pkg/time/#ParseDuration">time.ParseDuration function</a>.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.resource.expose_build_created_by" type="checkbox" class="toggle" />
+  <label for="toggle-schema.resource.expose_build_created_by" class="toggle-title">
+    <a id="schema.resource.expose_build_created_by"></a>
+
+    <code><a class="attribute-name" href="#schema.resource.expose_build_created_by">expose_build_created_by</a>: <span class="attribute-type"><a href="config-basics.html#schema.boolean"><strong>boolean</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>false</code>.</em> If set to <code>true</code>, environment variable <a href="implementing-resource-types.html#resource-metadata"><code>BUILD_CREATED_BY</code></a> will be available in the metadata of a <a href="get-step.html">get step</a> or <a href="put-step.html">put step</a>.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
   <input id="toggle-schema.resource.tags" type="checkbox" class="toggle" />
   <label for="toggle-schema.resource.tags" class="toggle-title">
     <a id="schema.resource.tags"></a>
@@ -374,7 +411,7 @@
 
   <div class="toggle-content attribute-content">
     <p><em>Default <code>[]</code>.</em> A list of tags to determine which workers the checks will be performed on. You&#39;ll want to specify this if the source is internal to a worker&#39;s network, for example.</p><div class="warning">
-  <p>This does not apply tags to all <a href="jobs.html#get-step">get steps</a> or <a href="jobs.html#put-step">put steps</a> that use the resource. If you want these steps to use tags, you must set <a href="jobs.html#schema.step.tags"><code class="schema-attribute-name"><bold>step<wbr />.tags</bold></code></a> for each step.</p>
+  <p>This does not apply tags to all <a href="get-step.html">get steps</a> or <a href="put-step.html">put steps</a> that use the resource. If you want these steps to use tags, you must set <a href="tags-step.html#schema.tags"><code class="schema-attribute-name"><bold>tags</bold></code></a> for each step.</p>
 </div>
   </div>
 </div><div class="toggleable schema-attribute optional">
@@ -563,7 +600,7 @@
 
   <p>The following resource definition is an example of the <a href="https://github.com/concourse/git-resource"><code>git</code> resource</a>:</p><pre><code class="language-yaml">name: booklit
 type: git
-source: {uri: &#34;https://github.com/vito/booklit&#34;}</code></pre><p>This could be passed to a job via a <a href="jobs.html#get-step"><code>get</code> step</a> with <a href="jobs.html#schema.step.get-step.trigger"><code>trigger: true</code></a> to run the tests whenever there&#39;s new code:</p><pre><code class="language-yaml">resources:
+source: {uri: &#34;https://github.com/vito/booklit&#34;}</code></pre><p>This could be passed to a job via a <a href="get-step.html"><code>get</code> step</a> with <a href="get-step.html#schema.get.trigger"><code>trigger: true</code></a> to run the tests whenever there&#39;s new code:</p><pre><code class="language-yaml">resources:
 - name: booklit
   type: git
   source: {uri: &#34;https://github.com/vito/booklit&#34;}
@@ -580,7 +617,7 @@ jobs:
 
   <p>The following resource emits a new version every hour:</p><pre><code class="language-yaml">name: 1h
 type: time
-source: {interval: 1h}</code></pre><p>This could be passed to a job via a <a href="jobs.html#get-step"><code>get</code> step</a> with <a href="jobs.html#schema.step.get-step.trigger"><code>trigger: true</code></a> to run the job periodically:</p><pre><code class="language-yaml">resources:
+source: {interval: 1h}</code></pre><p>This could be passed to a job via a <a href="get-step.html"><code>get</code> step</a> with <a href="get-step.html#schema.get.trigger"><code>trigger: true</code></a> to run the job periodically:</p><pre><code class="language-yaml">resources:
 - name: 1h
   type: time
   source: {interval: 1h}

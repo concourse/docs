@@ -129,31 +129,36 @@
         
           <tr>
             <td class="number-cell">1.11</td>
-            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+            <td class="title-cell"><a href="steps.html" >Steps</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
             <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
@@ -467,7 +472,7 @@ CONCOURSE_POSTGRES_PASSWORD=my-password</code></pre><p>If you&#39;re running Pos
   <h3 class="section-header"><a class="anchor-target" name="web-resource-utilization" href="#web-resource-utilization"></a>Resource utilization</h3>
   
 
-  <p>CPU usage: peaks during pipeline scheduling, primarily when scheduling <a href="jobs.html">Jobs</a>. Mitigated by adding more <code>web</code> nodes. In this regard, <code>web</code> nodes can be considered compute-heavy more than anything else at large scale.</p><p>Memory usage: not very well classified at the moment as it&#39;s not generally a concern. Give it a few gigabytes and keep an eye on it.</p><p>Disk usage: none</p><p>Bandwidth usage: aside from handling external traffic, the <code>web</code> node will at times have to stream bits out from one worker and into another while executing <a href="jobs.html#steps">Steps</a>.</p><p>Highly available: yes; <code>web</code> nodes can all be configured the same (aside from <code>--peer-address</code>) and placed behind a load balancer. Periodic tasks like garbage-collection will not be duplicated for each node.</p><p>Horizontally scalable: yes; they will coordinate workloads using the database, resulting in less work for each node and thus lower CPU usage.</p><p>Outbound traffic:</p><ul>
+  <p>CPU usage: peaks during pipeline scheduling, primarily when scheduling <a href="jobs.html">Jobs</a>. Mitigated by adding more <code>web</code> nodes. In this regard, <code>web</code> nodes can be considered compute-heavy more than anything else at large scale.</p><p>Memory usage: not very well classified at the moment as it&#39;s not generally a concern. Give it a few gigabytes and keep an eye on it.</p><p>Disk usage: none</p><p>Bandwidth usage: aside from handling external traffic, the <code>web</code> node will at times have to stream bits out from one worker and into another while executing <a href="steps.html">Steps</a>.</p><p>Highly available: yes; <code>web</code> nodes can all be configured the same (aside from <code>--peer-address</code>) and placed behind a load balancer. Periodic tasks like garbage-collection will not be duplicated for each node.</p><p>Horizontally scalable: yes; they will coordinate workloads using the database, resulting in less work for each node and thus lower CPU usage.</p><p>Outbound traffic:</p><ul>
 
   <li><p><code>db</code> on its configured port for persistence</p></li>
 

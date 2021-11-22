@@ -131,31 +131,36 @@
         
           <tr>
             <td class="number-cell">1.11</td>
-            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+            <td class="title-cell"><a href="steps.html" >Steps</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="how-to-guides.html"  class="active">How-To Guides</a></td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html"  class="active">How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
             <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
@@ -171,24 +176,24 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.13</span><a href="how-to-guides.html"  class="active">How-To Guides</a>
+        <span class="section-number">1.14</span><a href="how-to-guides.html"  class="active">How-To Guides</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.13.1</td>
+            <td class="number-cell">1.14.1</td>
             <td class="title-cell"><a href="pipeline-guides.html" >Pipeline Guides</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.13.2</td>
+            <td class="number-cell">1.14.2</td>
             <td class="title-cell"><a href="git-guides.html" >Git Guides</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.13.3</td>
+            <td class="number-cell">1.14.3</td>
             <td class="title-cell"><a href="container-image-guides.html"  class="active">Container Image Guides</a></td>
           </tr>
         
@@ -204,19 +209,19 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.13.3</span><a href="container-image-guides.html"  class="active">Container Image Guides</a>
+        <span class="section-number">1.14.3</span><a href="container-image-guides.html"  class="active">Container Image Guides</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.13.3.1</td>
+            <td class="number-cell">1.14.3.1</td>
             <td class="title-cell"><a href="building-and-pushing-an-image.html"  class="self">Building and Pushing an Image</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.13.3.2</td>
+            <td class="number-cell">1.14.3.2</td>
             <td class="title-cell"><a href="building-an-image-and-using-it-in-a-task.html" >Building an Image and Using it in a Task</a></td>
           </tr>
         
@@ -238,7 +243,7 @@
         <div class="page-content">
           <div class="section" id="section_building-and-pushing-an-image">
   
-  <h1 class="section-header"><a class="anchor-target" name="building-and-pushing-an-image" href="#building-and-pushing-an-image"></a><span class="section-number">1.13.3.1 </span>Building and Pushing an Image</h1>
+  <h1 class="section-header"><a class="anchor-target" name="building-and-pushing-an-image" href="#building-and-pushing-an-image"></a><span class="section-number">1.14.3.1 </span>Building and Pushing an Image</h1>
   
 
   <p>In this guide we are going to show how to build and publish container images using the <a href="https://github.com/concourse/oci-build-task">oci-build task</a> and <a href="https://github.com/concourse/registry-image-resource">registry-image resource</a>. This guide assumes you understand how to build container images with <a href="https://docs.docker.com/engine/reference/builder/">Dockerfile&#39;s</a> and publish to <a href="https://hub.docker.com/">Docker Hub</a> or another image registry using the docker cli.</p><blockquote class="aside"><p>This is one way of building and pushing images. There are many other ways to accomplish this same task in Concourse.</p></blockquote><p>First we need a Dockerfile. You can store this in your own repo or reference the <a href="https://github.com/concourse/examples">github.com/concourse/examples</a> repo. The rest of this post assumes you use the examples repo. All files in this blog post can be found in the examples repo.</p>
@@ -348,7 +353,7 @@ jobs:
         type: registry-image
         source:
           repository: concourse/oci-build-task</code></pre>
-</div> <div style="margin: 0 2em 1em" class="inset"></div></p><p>Next we will add <a href="https://github.com/concourse/examples">concourse-examples</a> as an <a href="tasks.html#schema.task.inputs">input</a> to the build task to ensure the artifact from the <a href="jobs.html#get-step">get step</a> (where our <code>Dockerfile</code> is fetched) is mounted in our <code>build-image</code> step.</p><p><div class="titled-codeblock">
+</div> <div style="margin: 0 2em 1em" class="inset"></div></p><p>Next we will add <a href="https://github.com/concourse/examples">concourse-examples</a> as an <a href="tasks.html#schema.task-config.inputs">input</a> to the build task to ensure the artifact from the <a href="get-step.html">get step</a> (where our <code>Dockerfile</code> is fetched) is mounted in our <code>build-image</code> step.</p><p><div class="titled-codeblock">
   <div class="codeblock-title">
     <code>build-push.yml</code>
   </div>
@@ -443,7 +448,7 @@ jobs:
   <h2 class="section-header"><a class="anchor-target" name="publish-the-container-image" href="#publish-the-container-image"></a>Publish the Container Image</h2>
   
 
-  <p>To push the container image add a <a href="jobs.html#put-step">put step</a> to our job plan and tell the regstry-image resource where the tarball of the container image is.</p><p>The put step will push the container image using the information defined previously in the resource&#39;s <a href="resources.html#schema.resource.source">source</a>.</p><div class="titled-codeblock">
+  <p>To push the container image add a <a href="put-step.html">put step</a> to our job plan and tell the regstry-image resource where the tarball of the container image is.</p><p>The put step will push the container image using the information defined previously in the resource&#39;s <a href="resources.html#schema.resource.source">source</a>.</p><div class="titled-codeblock">
   <div class="codeblock-title">
     <code>build-push.yml</code>
   </div>
@@ -563,7 +568,7 @@ jobs:
               prev:
 
               
-              <span class="section-number">1.13.3</span>
+              <span class="section-number">1.14.3</span>
               
 
               <a href="container-image-guides.html">Container Image Guides</a>
@@ -575,7 +580,7 @@ jobs:
               next:
 
               
-              <span class="section-number">1.13.3.2</span>
+              <span class="section-number">1.14.3.2</span>
               
 
               <a href="building-an-image-and-using-it-in-a-task.html">Building an Image and Using it in a Task</a>

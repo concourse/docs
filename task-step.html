@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=775" />
+<title>task step - Concourse CI</title>
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+<link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+<link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+<script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
+<script data-goatcounter="https://concourse.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  </head>
+  <body>
+    
+
+<div class="page-top">
+  <nav class="top-nav">
+    <a class="top-link logo-link" href="/"><img src="images/logo-white.svg" />Concourse</a>
+    
+    <a class="top-link active" href="docs.html">Docs</a>
+    
+    <a class="top-link" href="examples.html">Examples</a>
+    
+    <a class="top-link" href="project.html">Project</a>
+    
+    <a class="top-link" href="ecosystem.html">Ecosystem</a>
+    
+    <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
+    <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
+    <a class="top-link" href="https://github.com/concourse/concourse/discussions">discuss</a>
+
+    <div id="search"></div>
+
+    <script type="text/javascript">
+      var app = Elm.Main.init({
+        node: document.getElementById('search')
+      });
+
+      app.ports.emitSearchTerm.subscribe(function(term) {
+        goatcounter.count({
+          path: "search:" + term,
+          title: "user searched: " + term,
+          event: true
+        });
+      });
+    </script>
+  </nav>
+</div>
+
+    <div class="page-body">
+      <div class="page-nav">
+        
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1</span><a href="docs.html"  class="active">Docs</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.1</td>
+            <td class="title-cell"><a href="getting-started.html" >Getting Started</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2</td>
+            <td class="title-cell"><a href="install.html" >Install</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.3</td>
+            <td class="title-cell"><a href="auth.html" >Auth &amp; Teams</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.4</td>
+            <td class="title-cell"><a href="fly.html" >The <code>fly</code> CLI</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.5</td>
+            <td class="title-cell"><a href="config-basics.html" >Config Basics</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.6</td>
+            <td class="title-cell"><a href="pipelines.html" >Pipelines</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.7</td>
+            <td class="title-cell"><a href="vars.html" >Vars</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.8</td>
+            <td class="title-cell"><a href="resources.html" >Resources</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.9</td>
+            <td class="title-cell"><a href="resource-types.html" >Resource Types</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.10</td>
+            <td class="title-cell"><a href="jobs.html" >Jobs</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11</td>
+            <td class="title-cell"><a href="steps.html"  class="active">Steps</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12</td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.13</td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14</td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.15</td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
+            <td class="title-cell"><a href="internals.html" >Internals</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.11</span><a href="steps.html"  class="active">Steps</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.11.1</td>
+            <td class="title-cell"><a href="get-step.html" ><code>get</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.2</td>
+            <td class="title-cell"><a href="put-step.html" ><code>put</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.3</td>
+            <td class="title-cell"><a href="task-step.html"  class="self"><code>task</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.4</td>
+            <td class="title-cell"><a href="set-pipeline-step.html" ><code>set_pipeline</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.5</td>
+            <td class="title-cell"><a href="load-var-step.html" ><code>load_var</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.6</td>
+            <td class="title-cell"><a href="in-parallel-step.html" ><code>in_parallel</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.7</td>
+            <td class="title-cell"><a href="do-step.html" ><code>do</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.8</td>
+            <td class="title-cell"><a href="try-step.html" ><code>try</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.9</td>
+            <td class="title-cell"><a href="modifier-and-hook-steps.html" >Modifier And Hook Steps</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+
+
+
+<div class="context">
+  <div class="Top">
+    On this page:
+  </div>
+
+  <div class="children anchors">
+    <table>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="task-step.html#schema.task.task"><code>task</code> step <strong><code>task</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="task-step.html#schema.task.config"><code>task</code> step <strong><code>config</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="task-step.html#schema.task.file"><code>task</code> step <strong><code>file</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="task-step.html#schema.task.image"><code>task</code> step <strong><code>image</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="task-step.html#schema.task.privileged"><code>task</code> step <strong><code>privileged</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="task-step.html#schema.task.vars"><code>task</code> step <strong><code>vars</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="task-step.html#schema.task.container_limits.cpu"><code>task</code> step <strong><code>cpu</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="task-step.html#schema.task.container_limits.memory"><code>task</code> step <strong><code>memory</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="task-step.html#schema.task.container_limits"><code>task</code> step <strong><code>container_limits</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="task-step.html#schema.task.params"><code>task</code> step <strong><code>params</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="task-step.html#schema.task.input_mapping"><code>task</code> step <strong><code>input_mapping</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="task-step.html#schema.task.output_mapping"><code>task</code> step <strong><code>output_mapping</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="task-step.html#task"><code>task</code> step</a></td>
+      </tr>
+      
+
+      
+  
+    
+  
+
+    </table>
+  </div>
+</div>
+
+      </div>
+
+      <div class="body-content">
+        <div class="page-content">
+          <div class="section" id="section_task-step">
+  
+  <h1 class="section-header"><a class="anchor-target" name="task-step" href="#task-step"></a><span class="section-number">1.11.3 </span><code>task</code> step</h1>
+  
+
+  <div class="schema-group">
+  <a id="task"></a>
+  <p>Executes a <a href="tasks.html">task</a>. Expand each section below for more details and examples.</p><p>When a task completes, the artifacts specified by <a href="tasks.html#schema.task-config.outputs"><code class="schema-attribute-name"><bold>task-config<wbr />.outputs</bold></code></a> will be registered in the build&#39;s artifact namespace. This allows subsequent <a href="task-step.html"><code>task</code> step</a>s and <a href="put-step.html"><code>put</code> step</a>s to access the result of a task.</p><div class="toggleable schema-attribute required">
+  <input id="toggle-schema.task.task" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task.task" class="toggle-title">
+    <a id="schema.task.task"></a>
+
+    <code><a class="attribute-name" href="#schema.task.task">task</a>: <span class="attribute-type"><a href="config-basics.html#schema.identifier"><strong>identifier</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The identifier value is just a name - short and sweet. The value is shown in the web UI but otherwise has no affect on anything. This may change in the future; <a href="https://github.com/concourse/rfcs/pull/32">RFC #32</a> proposes that the name be used to reference a file within the project.</p><div class="toggleable example">
+  <input id="toggle-1a42722963f6a5a8c7ae866a6dd84f68e55f30ff" type="checkbox" class="toggle" />
+  <label for="toggle-1a42722963f6a5a8c7ae866a6dd84f68e55f30ff" class="toggle-title">Functions from inputs to outputs</label>
+  <div class="toggle-content">
+    <p>You can think of tasks like functions. They have predefined inputs and outputs and can be written in idempotent ways.</p><p>The following pipeline contains a function that increments a number. You can think of the task <code>add-one</code> like this pseudo-function:</p><pre><code class="language-">func AddOne(num int) int {
+  return num &#43; 1
+}</code></pre><pre><code class="language-yaml">jobs:
+- name: idempotent-task
+  plan:
+  - get: counter
+  - task: add-one
+    config:
+      platform: linux
+      image_resource:
+        type: mock
+        source: {mirror_self: true}
+      inputs:
+      - name: counter
+      outputs:
+      - name: counter
+      run:
+        path: sh
+        args:
+        - -c
+        - |
+          COUNTER=$(cat counter/version)
+          NEXT=$(($COUNTER &#43; 1))
+          echo &#34;new version: $NEXT&#34;
+          echo $NEXT &gt; counter/next
+  - put: counter
+    params:
+      file: counter/next
+
+resources:
+- name: counter
+  type: mock
+  source:
+    initial_version: &#34;1&#34;</code></pre>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.task.config" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task.config" class="toggle-title">
+    <a id="schema.task.config"></a>
+
+    <code><a class="attribute-name" href="#schema.task.config">config</a>: <span class="attribute-type"><a href="tasks.html#schema.task-config"><strong>task-config</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The <a href="tasks.html">task config</a> to execute. <div class="toggleable example">
+  <input id="toggle-696cf01363be89cbfd7c542585b1a1b36e93e032" type="checkbox" class="toggle" />
+  <label for="toggle-696cf01363be89cbfd7c542585b1a1b36e93e032" class="toggle-title">Task config</label>
+  <div class="toggle-content">
+    <pre><code class="language-yaml">jobs:
+- name: job
+  public: true
+  plan:
+  - task: simple-task
+    config: # contains all field in a task config
+      platform: linux
+      image_resource:
+        type: registry-image
+        source: { repository: busybox }
+      run:
+        path: echo
+        args: [&#34;Hello world!&#34;]</code></pre>
+  </div>
+</div></p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.task.file" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task.file" class="toggle-title">
+    <a id="schema.task.file"></a>
+
+    <code><a class="attribute-name" href="#schema.task.file">file</a>: <span class="attribute-type"><a href="config-basics.html#schema.file-path"><strong>file-path</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A dynamic alternative to <a href="task-step.html#schema.task.config"><code>task</code> step <strong><code>config</code></strong></a>.</p><p><code>file</code> points at a <code>.yml</code> file containing the <a href="tasks.html">task config</a>, which allows this to be tracked with your resources.</p><p>The first segment in the path should refer to another source from the plan, and the rest of the path is relative to that source.</p><p>The content of the config file may contain template <code>((vars))</code>, which will be filled in using <a href="task-step.html#schema.task.vars"><code>task</code> step <strong><code>vars</code></strong></a> or a configured <a href="creds.html">credential manager</a>. <div class="toggleable example">
+  <input id="toggle-ec5e7d1edfc8e7e2478a0da8d815a0922e035d5c" type="checkbox" class="toggle" />
+  <label for="toggle-ec5e7d1edfc8e7e2478a0da8d815a0922e035d5c" class="toggle-title">Using a task config file</label>
+  <div class="toggle-content">
+    <p>Uses <a href="https://github.com/concourse/examples/blob/master/tasks/hello-world.yml">this config file</a>. <pre><code class="language-yaml">jobs:
+- name: task-config-in-file
+  plan:
+  - get: ci
+  - task: config-from-file
+    file: ci/tasks/hello-world.yml
+
+resources:
+- name: ci
+  type: git
+  source:
+    uri: https://github.com/concourse/examples.git</code></pre></p>
+  </div>
+</div></p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.task.image" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task.image" class="toggle-title">
+    <a id="schema.task.image"></a>
+
+    <code><a class="attribute-name" href="#schema.task.image">image</a>: <span class="attribute-type"><a href="config-basics.html#schema.identifier"><strong>identifier</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Specifies an artifact source containing an image to use for the task. This overrides any <a href="tasks.html#schema.task-config.image_resource"><code class="schema-attribute-name"><bold>task-config<wbr />.image_resource</bold></code></a> configuration present in the task configuration.</p><p>This is very useful when part of your pipeline involves building an image, possibly with dependencies pre-baked. You can then propagate that image through the rest of your pipeline, guaranteeing that the correct version (and thus a consistent set of dependencies) is used throughout your pipeline.</p><div class="toggleable example">
+  <input id="toggle-18f79fb35486a56f696ebf92848de516bbebe388" type="checkbox" class="toggle" />
+  <label for="toggle-18f79fb35486a56f696ebf92848de516bbebe388" class="toggle-title">Fetching and using an image</label>
+  <div class="toggle-content">
+    <p>This can be used to explicitly keep track of dependent images. You could also modify it to build and push the image in one job and use it in later jobs. See <a href="building-and-pushing-an-image.html">Building and Pushing an Image</a>.</p><pre><code class="language-yaml">resources:
+- name: golang
+  type: registry-image
+  source:
+    repository: golang  # could also be the full URL &#34;docker.io/golang&#34;
+    tag: &#34;1.17&#34;
+
+jobs:
+- name: fetch-and-run-image
+  plan:
+  - get: golang
+  - task: use-fetched-image-in-task
+    image: golang   # reference the image from the get step
+    config:
+      platform: linux
+      run:
+        path: go
+        args: [&#34;version&#34;]</code></pre>
+  </div>
+</div><div class="toggleable example">
+  <input id="toggle-93277e7085def79873c9dfc6826fafc6bcd37cb6" type="checkbox" class="toggle" />
+  <label for="toggle-93277e7085def79873c9dfc6826fafc6bcd37cb6" class="toggle-title">Building and using an image</label>
+  <div class="toggle-content">
+    <p><a href="building-an-image-and-using-it-in-a-task.html">Building an Image and Using it in a Task</a></p>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.task.privileged" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task.privileged" class="toggle-title">
+    <a id="schema.task.privileged"></a>
+
+    <code><a class="attribute-name" href="#schema.task.privileged">privileged</a>: <span class="attribute-type"><a href="config-basics.html#schema.boolean"><strong>boolean</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>false</code>.</em> If set to <code>true</code>, the task will run with escalated capabilities available on the task&#39;s platform.</p><div class="warning">
+  <p>Setting <code>privileged: true</code> is a gaping security hole; use wisely and only if necessary. This is not part of the task configuration in order to prevent privilege escalation via pull requests changing the task file.</p>
+</div><p>For the <code>linux</code> platform, this determines whether or not the container will run in a separate user namespace. When set to <code>true</code>, the container&#39;s <code>root</code> user is <em>actual</em> <code>root</code>, i.e. not in a user namespace. This is not recommended, and should <em>never</em> be used with code you do not trust - e.g. pull requests.</p><p>For macOS and Windows this field has no effect since workloads on those machines are not containerized.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.task.vars" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task.vars" class="toggle-title">
+    <a id="schema.task.vars"></a>
+
+    <code><a class="attribute-name" href="#schema.task.vars">vars</a>: <span class="attribute-type"><a href="config-basics.html#schema.vars"><strong>vars</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A map of template variables to pass to an external task. Not to be confused with <a href="task-step.html#schema.task.params"><code>task</code> step <strong><code>params</code></strong></a>, which provides <em>environment variables</em> to the task.</p><p>This is to be used with external tasks defined in <a href="task-step.html#schema.task.file"><code>task</code> step <strong><code>file</code></strong></a>.</p><div class="toggleable example">
+  <input id="toggle-63ab29786db83d73680ae30eb6e2d138987b8a94" type="checkbox" class="toggle" />
+  <label for="toggle-63ab29786db83d73680ae30eb6e2d138987b8a94" class="toggle-title">Parameterizing a task config file with vars</label>
+  <div class="toggle-content">
+    <p>A var may be statically passed like so:</p><pre><code class="language-yaml">jobs:
+- name: task-vars
+  plan:
+  - get: ci
+  - task: override-task-vars
+    file: ci/tasks/print-var.yml
+    vars: # statically defined vars
+      my-var: &#34;Cookies are the best&#34;
+      second-var: &#34;chips are a close second&#34;
+
+resources:
+- name: ci
+  type: git
+  source:
+    uri: https://github.com/concourse/examples.git</code></pre><p>When run with the following <a href="tasks.html">task config</a>:</p><p><pre><code class="language-yaml">platform: linux
+
+image_resource:
+  type: mock
+  source: { mirror_self: true }
+
+params:
+  MY_VAR: ((my-var))
+
+run:
+  path: sh
+  args:
+  - -c
+  - |
+    echo ${MY_VAR} and ((second-var))
+</code></pre></p><p>The <code>&#34;((my-var))&#34;</code> will be resolved to <code>&#34;Cookies are the best&#34;</code> and <code>((second-var))</code> will be resolved to <code>&#34;chips are a close second&#34;</code>.</p><p>This can also be used in combination with <a href="vars.html">Vars</a> from a <a href="creds.html">credential manager</a> (i.e. Vault) as a way to re-map variable names to match what the task is expecting:</p><pre><code class="language-yaml">jobs:
+- name: task-vars
+  plan:
+  - get: ci
+  - task: override-task-vars
+    file: ci/tasks/print-var.yml
+    vars: # re-mapped vars
+      my-var: ((var-from-vault))
+      second-var: ((apple.type))
+
+resources:
+- name: ci
+  type: git
+  source:
+    uri: https://github.com/concourse/examples.git</code></pre>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.task.container_limits" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task.container_limits" class="toggle-title">
+    <a id="schema.task.container_limits"></a>
+
+    <code><a class="attribute-name" href="#schema.task.container_limits">container_limits</a>: <span class="attribute-type"><a href="tasks.html#schema.container_limits"><strong>container_limits</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>CPU and memory limits to enforce on the task container.</p><p>Note that these values, when specified, will override any limits set by passing the <code>--default-task-cpu-limit</code> or <code>--default-task-memory-limit</code> flags to the <code>concourse web</code> command.</p><p>These values will also override any configuration set on a <a href="tasks.html#schema.task-config.container_limits">task&#39;s config <code>container_limits</code></a>.</p><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.task.container_limits.cpu" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task.container_limits.cpu" class="toggle-title">
+    <a id="schema.task.container_limits.cpu"></a>
+
+    <code><a class="attribute-name" href="#schema.task.container_limits.cpu">cpu</a>: <span class="attribute-type"><a href="config-basics.html#schema.number"><strong>number</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The maximum amount of CPU available to the task container, measured in shares. 0 means unlimited.</p><p>CPU shares are relative to the CPU shares of other containers on a worker. For example, if you have two containers both with a CPU limit of 2 shares then each container will get 50% of the CPU&#39;s time.</p><pre><code class="language-">Container A: 2 shares - 50% CPU
+Container B: 2 shares - 50% CPU
+Total CPU shares declared: 4</code></pre><p>If you introduce another container then the number of CPU time per container changes. CPU shares are relative to each other. <pre><code class="language-">Container A: 2 shares - 25% CPU
+Container B: 2 shares - 25% CPU
+Container C: 4 shares - 50% CPU
+Total CPU shares declared: 8</code></pre></p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.task.container_limits.memory" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task.container_limits.memory" class="toggle-title">
+    <a id="schema.task.container_limits.memory"></a>
+
+    <code><a class="attribute-name" href="#schema.task.container_limits.memory">memory</a>: <span class="attribute-type"><a href="config-basics.html#schema.number"><strong>number</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The maximum amount of memory available to the task container, measured in bytes. 0 means unlimited.</p>
+  </div>
+</div><div class="toggleable example">
+  <input id="toggle-04fceafe9a0f6cef0d8e8b4ab7def7d0889e7e83" type="checkbox" class="toggle" />
+  <label for="toggle-04fceafe9a0f6cef0d8e8b4ab7def7d0889e7e83" class="toggle-title">Setting CPU and Memory limits</label>
+  <div class="toggle-content">
+    <p>This task will only be given 10MB of memory and 2 CPU shares.</p><pre><code class="language-yaml">jobs:
+- name: limited-resources
+  plan:
+  - task: constrained-task
+    container_limits:
+      cpu: 2 # CPU shares are relative
+      memory: 10000000 # 10MB
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source: { repository: busybox }
+      run:
+        path: echo
+        args: [&#34;Hello world!&#34;]</code></pre>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.task.params" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task.params" class="toggle-title">
+    <a id="schema.task.params"></a>
+
+    <code><a class="attribute-name" href="#schema.task.params">params</a>: <span class="attribute-type"><a href="config-basics.html#schema.env-vars"><strong>env-vars</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A map of task environment variable parameters to set, overriding those configured in the task&#39;s <code>config</code> or <code>file</code>.</p><p>The difference between <a href="task-step.html#schema.task.params"><code>params</code></a> and <a href="task-step.html#schema.task.vars"><code>vars</code></a> is that <a href="task-step.html#schema.task.vars"><code>vars</code></a> allows you to interpolate any template variable in an external task file, while <a href="task-step.html#schema.task.params"><code>params</code></a> can be used to overwrite task parameters specifically. Also, <a href="task-step.html#schema.task.params"><code>params</code></a> can have default values declared in the task.</p><div class="toggleable example">
+  <input id="toggle-78300ac6cf8c2c4ec0e11d8e8fc435139020768c" type="checkbox" class="toggle" />
+  <label for="toggle-78300ac6cf8c2c4ec0e11d8e8fc435139020768c" class="toggle-title">Running a task with env var params</label>
+  <div class="toggle-content">
+    <p>Let&#39;s say we have a <a href="tasks.html#schema.task-config">task config</a> like so:</p><p><pre><code class="language-yaml">platform: linux
+
+image_resource:
+  type: mock
+  source: { mirror_self: true }
+
+params:
+  ECHO_ME: &#34;default text to echo from task config file&#34;
+  ALSO_ME:
+
+run:
+  path: sh
+  args:
+  - -c
+  - |
+    echo ${ECHO_ME} and ${ALSO_ME}
+</code></pre></p><p>This indicates that there are two params which can be set: <code>ECHO_ME</code>, which has a default, and <code>ALSO_ME</code> which has no default set.</p><p>A pipeline could run the task with values passed in like so:</p><pre><code class="language-yaml">jobs:
+- name: task-params
+  plan:
+  - get: ci
+  - task: constrained-task
+    file: ci/tasks/print-param.yml
+    params:
+      ECHO_ME: &#34;Eat your fruits&#34;
+      ALSO_ME: &#34;veggies&#34;
+
+resources:
+- name: ci
+  type: git
+  source:
+    uri: https://github.com/concourse/examples.git</code></pre>
+  </div>
+</div><div class="toggleable example">
+  <input id="toggle-84d41361e8b998e7cf238de2e4f76ef86ed55a06" type="checkbox" class="toggle" />
+  <label for="toggle-84d41361e8b998e7cf238de2e4f76ef86ed55a06" class="toggle-title">Using with <code>((vars))</code></label>
+  <div class="toggle-content">
+    <pre><code class="language-yaml">jobs:
+- name: task-params
+  plan:
+  - get: ci
+  - task: constrained-task
+    file: ci/tasks/print-param.yml
+    params:
+      ECHO_ME: ((some-var))
+      ALSO_ME: ((another-var))
+
+resources:
+- name: ci
+  type: git
+  source:
+    uri: https://github.com/concourse/examples.git</code></pre>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.task.input_mapping" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task.input_mapping" class="toggle-title">
+    <a id="schema.task.input_mapping"></a>
+
+    <code><a class="attribute-name" href="#schema.task.input_mapping">input_mapping</a>: <span class="attribute-type">{<a href="tasks.html#schema.input.name"><strong>input.name</strong></a>: <a href="config-basics.html#schema.identifier"><strong>identifier</strong></a>}</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A map from task input names to concrete names in the build plan. This allows a task with generic input names to be used multiple times in the same plan, mapping its inputs to specific resources within the plan.</p><div class="toggleable example">
+  <input id="toggle-52e3c8a64748838a3a9e0610c148120385b35fd3" type="checkbox" class="toggle" />
+  <label for="toggle-52e3c8a64748838a3a9e0610c148120385b35fd3" class="toggle-title">Generic task input names</label>
+  <div class="toggle-content">
+    <p>The following example demonstrates a task with generic <code>main</code> and <code>dev</code> inputs being mapped to more specific artifact names, <code>repo</code> and <code>repo-dev</code>:</p><pre><code class="language-yaml">jobs:
+- name: task-input-mapping
+  plan:
+  - in_parallel:
+    - get: repo
+    - get: repo-dev
+    - get: ci
+  - task: list-inputs
+    input_mapping:
+      main: repo
+      dev: repo-dev
+    file: ci/tasks/generic-inputs.yml
+
+resources:
+- name: repo
+  type: mock
+- name: repo-dev
+  type: mock
+- name: ci
+  type: git
+  source:
+    uri: https://github.com/concourse/examples.git</code></pre>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.task.output_mapping" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task.output_mapping" class="toggle-title">
+    <a id="schema.task.output_mapping"></a>
+
+    <code><a class="attribute-name" href="#schema.task.output_mapping">output_mapping</a>: <span class="attribute-type">{<a href="tasks.html#schema.output.name"><strong>output.name</strong></a>: <a href="config-basics.html#schema.identifier"><strong>identifier</strong></a>}</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A map from task output names to concrete names to register in the build plan. This allows a task with generic output names to be used multiple times in the same plan.</p><div class="toggleable example">
+  <input id="toggle-db41c602c04e55a653a83fe2cadea494c33da0d1" type="checkbox" class="toggle" />
+  <label for="toggle-db41c602c04e55a653a83fe2cadea494c33da0d1" class="toggle-title">Using with <code>input_mapping</code></label>
+  <div class="toggle-content">
+    <p>This is often used together with <a href="task-step.html#schema.task.input_mapping"><code>task</code> step <strong><code>input_mapping</code></strong></a>:</p><p>Given this task config: <pre><code class="language-yaml">platform: linux
+image_resource:
+  type: mock
+  source: {mirror_self: true}
+
+inputs:
+- name: main
+- name: dev
+
+outputs:
+- name: main
+- name: dev
+
+run:
+  path: sh
+  args:
+  - -c
+  - |
+    ls -lah
+    echo &#34;creating versions&#34;
+    echo &#34;hello-world&#34; &gt; main/version
+    echo &#34;hey there dev&#34; &gt; dev/version
+</code></pre></p><p>This pipeline will map the inputs and outputs of the task to match the name of the resources in the pipeline. <pre><code class="language-yaml">jobs:
+- name: task-output-mapping
+  plan:
+  - in_parallel:
+    - get: repo
+    - get: repo-dev
+    - get: ci
+  - task: create-outputs
+    input_mapping:
+      main: repo
+      dev: repo-dev
+    output_mapping:
+      main: repo
+      dev: repo-dev
+    file: ci/tasks/generic-outputs.yml
+  - in_parallel:
+    - put: repo
+      params:
+        file: repo/version
+    - put: repo-dev
+      params:
+        file: repo-dev/version
+
+resources:
+- name: repo
+  type: mock
+- name: repo-dev
+  type: mock
+- name: ci
+  type: git
+  source:
+    uri: https://github.com/concourse/examples.git</code></pre></p>
+  </div>
+</div>
+  </div>
+</div>
+</div>
+
+  
+    
+  
+</div>
+
+          <nav class="prev-next">
+          
+            <div class="prev">
+              prev:
+
+              
+              <span class="section-number">1.11.2</span>
+              
+
+              <a href="put-step.html"><code>put</code> step</a>
+            </div>
+          
+
+          
+            <div class="next">
+              next:
+
+              
+              <span class="section-number">1.11.4</span>
+              
+
+              <a href="set-pipeline-step.html"><code>set_pipeline</code> step</a>
+            </div>
+          
+          </nav>
+        </div>
+
+        <div class="page-aside"></div>
+      </div>
+    </div>
+
+    <ul class="improve-docs">
+      <li><img src="images/icons/github-box.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+      <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+    </ul>
+  </body>
+</html>

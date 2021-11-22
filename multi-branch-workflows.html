@@ -131,31 +131,36 @@
         
           <tr>
             <td class="number-cell">1.11</td>
-            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+            <td class="title-cell"><a href="steps.html" >Steps</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="how-to-guides.html"  class="active">How-To Guides</a></td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html"  class="active">How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
             <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
@@ -171,24 +176,24 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.13</span><a href="how-to-guides.html"  class="active">How-To Guides</a>
+        <span class="section-number">1.14</span><a href="how-to-guides.html"  class="active">How-To Guides</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.13.1</td>
+            <td class="number-cell">1.14.1</td>
             <td class="title-cell"><a href="pipeline-guides.html" >Pipeline Guides</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.13.2</td>
+            <td class="number-cell">1.14.2</td>
             <td class="title-cell"><a href="git-guides.html"  class="active">Git Guides</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.13.3</td>
+            <td class="number-cell">1.14.3</td>
             <td class="title-cell"><a href="container-image-guides.html" >Container Image Guides</a></td>
           </tr>
         
@@ -204,19 +209,19 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.13.2</span><a href="git-guides.html"  class="active">Git Guides</a>
+        <span class="section-number">1.14.2</span><a href="git-guides.html"  class="active">Git Guides</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.13.2.1</td>
+            <td class="number-cell">1.14.2.1</td>
             <td class="title-cell"><a href="basic-git-operations.html" >Basic Git Operations</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.13.2.2</td>
+            <td class="number-cell">1.14.2.2</td>
             <td class="title-cell"><a href="multi-branch-workflows.html"  class="self">Multi-Branch Workflows</a></td>
           </tr>
         
@@ -238,16 +243,16 @@
         <div class="page-content">
           <div class="section" id="section_multi-branch-workflows">
   
-  <h1 class="section-header"><a class="anchor-target" name="multi-branch-workflows" href="#multi-branch-workflows"></a><span class="section-number">1.13.2.2 </span>Multi-Branch Workflows</h1>
+  <h1 class="section-header"><a class="anchor-target" name="multi-branch-workflows" href="#multi-branch-workflows"></a><span class="section-number">1.14.2.2 </span>Multi-Branch Workflows</h1>
   
 
-  <p>Teams may make use of multiple branches for their development. For instance, some teams create feature branches while working on new functionality - once this functionality is ready, the branch will be merged into the main branch and the feature branch will be deleted.</p><p>While a feature is under development, you&#39;ll often want to run tests against the feature branch and possibly deploy to a staging environment. To model this in Concourse, you&#39;ll need to have a pipeline for each active feature branch. Manually setting (and eventually archiving) a pipeline for each feature branch would be quite a burden. For this type of workflow, Concourse has a few important tools to help you out: the <a href="jobs.html#set-pipeline-step"><code>set_pipeline</code> step</a>, <a href="jobs.html#schema.step.across"><code class="schema-attribute-name"><bold>step<wbr />.across</bold></code></a>, and <a href="instanced-pipelines.html">instanced pipelines</a>.</p><div class="warning">
-  <p><a href="jobs.html#schema.step.across"><code class="schema-attribute-name"><bold>step<wbr />.across</bold></code></a> and <a href="instanced-pipelines.html">instanced pipelines</a> are both experimental features, and must be enabled with the feature flags <code>CONCOURSE_ENABLE_ACROSS_STEP</code> and <code>CONCOURSE_ENABLE_PIPELINE_INSTANCES</code>, respectively.</p>
+  <p>Teams may make use of multiple branches for their development. For instance, some teams create feature branches while working on new functionality - once this functionality is ready, the branch will be merged into the main branch and the feature branch will be deleted.</p><p>While a feature is under development, you&#39;ll often want to run tests against the feature branch and possibly deploy to a staging environment. To model this in Concourse, you&#39;ll need to have a pipeline for each active feature branch. Manually setting (and eventually archiving) a pipeline for each feature branch would be quite a burden. For this type of workflow, Concourse has a few important tools to help you out: the <a href="set-pipeline-step.html"><code>set_pipeline</code> step</a>, <a href="across-step.html#schema.across"><code class="schema-attribute-name"><bold>across</bold></code></a>, and <a href="instanced-pipelines.html">instanced pipelines</a>.</p><div class="warning">
+  <p><a href="across-step.html#schema.across"><code class="schema-attribute-name"><bold>across</bold></code></a> and <a href="instanced-pipelines.html">instanced pipelines</a> are both experimental features, and must be enabled with the feature flags <code>CONCOURSE_ENABLE_ACROSS_STEP</code> and <code>CONCOURSE_ENABLE_PIPELINE_INSTANCES</code>, respectively.</p>
 </div><p>In this guide, we&#39;ll cover:</p><ol>
 
   <li><p>Writing a pipeline to <a href="multi-branch-workflows.html#multi-branch-test-build-deploy">Test, Build &amp; Deploy</a> a branch to a staging environment. We&#39;ll use <a href="https://www.terraform.io/">Terraform</a> for our deployment</p></li>
 
-  <li><p><a href="multi-branch-workflows.html#multi-branch-tracking-branches">Tracking Branches</a> in a repository; for each branch, we&#39;ll set a pipeline (using the <a href="jobs.html#set-pipeline-step"><code>set_pipeline</code> step</a> and <a href="jobs.html#schema.step.across"><code class="schema-attribute-name"><bold>step<wbr />.across</bold></code></a>)</p></li>
+  <li><p><a href="multi-branch-workflows.html#multi-branch-tracking-branches">Tracking Branches</a> in a repository; for each branch, we&#39;ll set a pipeline (using the <a href="set-pipeline-step.html"><code>set_pipeline</code> step</a> and <a href="across-step.html#schema.across"><code class="schema-attribute-name"><bold>across</bold></code></a>)</p></li>
 
   <li><p>Automatically <a href="multi-branch-workflows.html#multi-branch-cleaning-up">Cleaning Up Old Workspaces</a> after branches get merged or deleted</p></li>
 
@@ -505,7 +510,7 @@ jobs:
               prev:
 
               
-              <span class="section-number">1.13.2.1</span>
+              <span class="section-number">1.14.2.1</span>
               
 
               <a href="basic-git-operations.html">Basic Git Operations</a>
@@ -517,7 +522,7 @@ jobs:
               next:
 
               
-              <span class="section-number">1.13.3</span>
+              <span class="section-number">1.14.3</span>
               
 
               <a href="container-image-guides.html">Container Image Guides</a>

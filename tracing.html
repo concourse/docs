@@ -129,31 +129,36 @@
         
           <tr>
             <td class="number-cell">1.11</td>
-            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+            <td class="title-cell"><a href="steps.html" >Steps</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="operation.html"  class="active">Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html"  class="active">Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
             <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
@@ -169,49 +174,49 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.14</span><a href="operation.html"  class="active">Operation</a>
+        <span class="section-number">1.15</span><a href="operation.html"  class="active">Operation</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.14.1</td>
+            <td class="number-cell">1.15.1</td>
             <td class="title-cell"><a href="metrics.html" >Metrics</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.2</td>
+            <td class="number-cell">1.15.2</td>
             <td class="title-cell"><a href="tracing.html"  class="self">Tracing</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.3</td>
+            <td class="number-cell">1.15.3</td>
             <td class="title-cell"><a href="encryption.html" >Encryption</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.4</td>
+            <td class="number-cell">1.15.4</td>
             <td class="title-cell"><a href="creds.html" >Credential Management</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.5</td>
+            <td class="number-cell">1.15.5</td>
             <td class="title-cell"><a href="container-placement.html" >Container Placement</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.6</td>
+            <td class="number-cell">1.15.6</td>
             <td class="title-cell"><a href="opa.html" >Open Policy Agent Integration</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.7</td>
+            <td class="number-cell">1.15.7</td>
             <td class="title-cell"><a href="global-resources.html" >Global Resources (experimental)</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.8</td>
+            <td class="number-cell">1.15.8</td>
             <td class="title-cell"><a href="administration.html" >Administration</a></td>
           </tr>
         
@@ -227,24 +232,24 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.14.2</span><a href="tracing.html"  class="self">Tracing</a>
+        <span class="section-number">1.15.2</span><a href="tracing.html"  class="self">Tracing</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.14.2.1</td>
+            <td class="number-cell">1.15.2.1</td>
             <td class="title-cell"><a href="tracing.html#configuring-tracing" >Configuring Tracing</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.2.2</td>
+            <td class="number-cell">1.15.2.2</td>
             <td class="title-cell"><a href="tracing.html#trace-context-propagation" >Trace context propagation</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.2.3</td>
+            <td class="number-cell">1.15.2.3</td>
             <td class="title-cell"><a href="tracing.html#whats-emitted" >What&#39;s emitted?</a></td>
           </tr>
         
@@ -262,7 +267,7 @@
         <div class="page-content">
           <div class="section" id="section_tracing">
   
-  <h1 class="section-header"><a class="anchor-target" name="tracing" href="#tracing"></a><span class="section-number">1.14.2 </span>Tracing</h1>
+  <h1 class="section-header"><a class="anchor-target" name="tracing" href="#tracing"></a><span class="section-number">1.15.2 </span>Tracing</h1>
   
 
   <p><div class="warning">
@@ -329,9 +334,9 @@ CONCOURSE_TRACING_HONEYCOMB_SERVICE_NAME=service-name-for-concourse  # NOTE: Opt
 
   <li><p><code>Algorithm.Compute</code> -- this is where the <a href="scheduler.html#algorithm">Algorithm</a> determines inputs for a job. Each of the resolvers below describes a different strategy for determining inputs, depending on the job&#39;s config. <ul>
 
-  <li><p><code>individualResolver.Resolve</code> -- This is used to determine versions input to a <a href="jobs.html#get-step"><code>get</code> step</a> without <a href="jobs.html#schema.step.get-step.passed"><code>passed</code></a> constraints.</p></li>
+  <li><p><code>individualResolver.Resolve</code> -- This is used to determine versions input to a <a href="get-step.html"><code>get</code> step</a> without <a href="get-step.html#schema.get.passed"><code>passed</code></a> constraints.</p></li>
 
-  <li><p><code>groupResolver.Resolve</code> -- This is the juicy part of the algorithm, which deals with <a href="jobs.html#schema.step.get-step.passed"><code>passed</code></a> constraints.</p></li>
+  <li><p><code>groupResolver.Resolve</code> -- This is the juicy part of the algorithm, which deals with <a href="get-step.html#schema.get.passed"><code>passed</code></a> constraints.</p></li>
 
   <li><p><code>pinnedResolver.Resolve</code> -- This operation is used to determine inputs when <a href="resource-versions.html#version-pinning">Version Pinning</a> is at play.</p></li>
 
@@ -345,15 +350,15 @@ CONCOURSE_TRACING_HONEYCOMB_SERVICE_NAME=service-name-for-concourse  # NOTE: Opt
 
   <li><p><code>build</code> -- this is the primary operation performed by the <a href="build-tracker.html">Build Tracker</a>. When a build is automatically triggered, this span follows from the <code>job.EnsurePendingBuildExists</code> operation which created the build, appearing in the same trace. <ul>
 
-  <li><p><code>get</code> -- this tracks the execution of a <a href="jobs.html#get-step"><code>get</code> step</a>.</p></li>
+  <li><p><code>get</code> -- this tracks the execution of a <a href="get-step.html"><code>get</code> step</a>.</p></li>
 
-  <li><p><code>put</code> -- this tracks the execution of a <a href="jobs.html#put-step"><code>put</code> step</a>.</p></li>
+  <li><p><code>put</code> -- this tracks the execution of a <a href="put-step.html"><code>put</code> step</a>.</p></li>
 
-  <li><p><code>task</code> -- this tracks the execution of a <a href="jobs.html#task-step"><code>task</code> step</a>.</p></li>
+  <li><p><code>task</code> -- this tracks the execution of a <a href="task-step.html"><code>task</code> step</a>.</p></li>
 
-  <li><p><code>set_pipeline</code> -- this tracks the execution of a <a href="jobs.html#set-pipeline-step"><code>set_pipeline</code> step</a>.</p></li>
+  <li><p><code>set_pipeline</code> -- this tracks the execution of a <a href="set-pipeline-step.html"><code>set_pipeline</code> step</a>.</p></li>
 
-  <li><p><code>load_var</code> -- this tracks the execution of a <a href="jobs.html#load-var-step"><code>load_var</code> step</a>.</p></li>
+  <li><p><code>load_var</code> -- this tracks the execution of a <a href="load-var-step.html"><code>load_var</code> step</a>.</p></li>
 
 </ul></p></li>
 
@@ -373,7 +378,7 @@ CONCOURSE_TRACING_HONEYCOMB_SERVICE_NAME=service-name-for-concourse  # NOTE: Opt
               prev:
 
               
-              <span class="section-number">1.14.1</span>
+              <span class="section-number">1.15.1</span>
               
 
               <a href="metrics.html">Metrics</a>
@@ -385,7 +390,7 @@ CONCOURSE_TRACING_HONEYCOMB_SERVICE_NAME=service-name-for-concourse  # NOTE: Opt
               next:
 
               
-              <span class="section-number">1.14.3</span>
+              <span class="section-number">1.15.3</span>
               
 
               <a href="encryption.html">Encryption</a>

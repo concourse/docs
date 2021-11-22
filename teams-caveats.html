@@ -129,31 +129,36 @@
         
           <tr>
             <td class="number-cell">1.11</td>
-            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+            <td class="title-cell"><a href="steps.html" >Steps</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
             <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
@@ -228,7 +233,7 @@
 
   <p>At present, teams only provide <em>trusted multi-tenancy</em>. This means it should be used for cases where you know and trust who you&#39;re allowing access into your Concourse cluster.</p><p>There are a few reasons it&#39;d be a bad idea to do otherwise:</p><ul>
 
-  <li><p>Any team can run builds with <a href="jobs.html#schema.step.task-step.privileged"><code>task</code> step <strong><code>privileged</code></strong></a> tasks. A bad actor in the mix could easily use this to harm your workers and your cluster.</p><p>In the future, we&#39;ll probably have this as a flag on a team, indicating whether they&#39;re permitted to run privileged builds.</p></li>
+  <li><p>Any team can run builds with <a href="task-step.html#schema.task.privileged"><code>task</code> step <strong><code>privileged</code></strong></a> tasks. A bad actor in the mix could easily use this to harm your workers and your cluster.</p><p>In the future, we&#39;ll probably have this as a flag on a team, indicating whether they&#39;re permitted to run privileged builds.</p></li>
 
   <li><p>There are no networking restrictions in place, and traffic to and from the workers is currently unencrypted and unauthorized. Anyone could run a task that does horrible things to your worker&#39;s containers, possibly stealing sensitive information.</p><p>This can be remedied with configuration specified on Garden to restrict access to the internal network, but this is not detailed in our docs, and we&#39;ll probably want to find a better answer than configuration in the future.</p></li>
 

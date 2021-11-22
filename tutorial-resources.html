@@ -129,31 +129,36 @@
         
           <tr>
             <td class="number-cell">1.11</td>
-            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+            <td class="title-cell"><a href="steps.html" >Steps</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
             <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
@@ -294,7 +299,7 @@
 
   <li><p>Fetch or push the latest image of your app? <a href="https://github.com/concourse/registry-image-resource/">Registry-image resource</a></p></li>
 
-</ul><p>Resources can do a lot of things! The main goal of resources is to represent some external system or object in your pipeline. That external thing can then be used as a trigger for your <a href="jobs.html">Jobs</a> or your <a href="jobs.html">Jobs</a> can push back and modify the external system or object. It all depends on the resource you use and what features its author has implemented.</p><p>Resources are also how Concourse tries to stay as technology agnostic as possible. For example, Concourse doesn&#39;t care what <a href="https://en.wikipedia.org/wiki/Version_control">version control system</a> you store your code in, if you deploy apps with <a href="https://helm.sh/">Helm</a> or <a href="https://www.terraform.io/">Terraform</a>, or what language your apps are built in.  If you can put your latest and hottest tech behind the resource interface then Concourse can understand your workflow.</p><p>The Concourse team bundles a few basic resource types that come with the Linux tarball you can <a href="https://github.com/concourse/concourse/releases">download from Github</a>. You&#39;ll notice that the Linux tarball is much larger than the macOS or Windows tarball because of all the bundled resources.</p><blockquote class="aside"><p>You can find out which resources a worker has by running: <pre><code class="language-">$ fly -t tutorial workers --details</code></pre></p></blockquote><p>Resources only run on Linux workers because resources are distributed as Linux container images. There are currently no resources for macOS or Windows. Only <a href="jobs.html#task-step">task steps</a> can run on macOS or Windows workers.</p>
+</ul><p>Resources can do a lot of things! The main goal of resources is to represent some external system or object in your pipeline. That external thing can then be used as a trigger for your <a href="jobs.html">Jobs</a> or your <a href="jobs.html">Jobs</a> can push back and modify the external system or object. It all depends on the resource you use and what features its author has implemented.</p><p>Resources are also how Concourse tries to stay as technology agnostic as possible. For example, Concourse doesn&#39;t care what <a href="https://en.wikipedia.org/wiki/Version_control">version control system</a> you store your code in, if you deploy apps with <a href="https://helm.sh/">Helm</a> or <a href="https://www.terraform.io/">Terraform</a>, or what language your apps are built in.  If you can put your latest and hottest tech behind the resource interface then Concourse can understand your workflow.</p><p>The Concourse team bundles a few basic resource types that come with the Linux tarball you can <a href="https://github.com/concourse/concourse/releases">download from Github</a>. You&#39;ll notice that the Linux tarball is much larger than the macOS or Windows tarball because of all the bundled resources.</p><blockquote class="aside"><p>You can find out which resources a worker has by running: <pre><code class="language-">$ fly -t tutorial workers --details</code></pre></p></blockquote><p>Resources only run on Linux workers because resources are distributed as Linux container images. There are currently no resources for macOS or Windows. Only <a href="task-step.html">task steps</a> can run on macOS or Windows workers.</p>
 
   
     
@@ -318,13 +323,13 @@
   <h2 class="section-header"><a class="anchor-target" name="resource-interface" href="#resource-interface"></a>Resource Interface</h2>
   
 
-  <p>Resources are <a href="https://en.wikipedia.org/wiki/List_of_Linux_containers">container images</a> that contain three executables. Each executable is run by a different type of <a href="jobs.html#steps">step</a> within a pipeline:</p><ul>
+  <p>Resources are <a href="https://en.wikipedia.org/wiki/List_of_Linux_containers">container images</a> that contain three executables. Each executable is run by a different type of <a href="steps.html">step</a> within a pipeline:</p><ul>
 
-  <li><p><code>/opt/resource/check</code> - implicitly ran when a <a href="jobs.html">job</a> contains a <a href="jobs.html#get-step">get step</a>. Should return the latest version from the external system or object. Its responsibility is to find new versions.</p></li>
+  <li><p><code>/opt/resource/check</code> - implicitly ran when a <a href="jobs.html">job</a> contains a <a href="get-step.html">get step</a>. Should return the latest version from the external system or object. Its responsibility is to find new versions.</p></li>
 
-  <li><p><code>/opt/resource/in</code> - run in a <a href="jobs.html#get-step">get step</a>. <code>in</code> is given a specific version (generated by a <code>check</code> or <a href="jobs.html#put-step"><code>put</code> step</a>) and retrieves the files representing that version from the external system or object.</p></li>
+  <li><p><code>/opt/resource/in</code> - run in a <a href="get-step.html">get step</a>. <code>in</code> is given a specific version (generated by a <code>check</code> or <a href="put-step.html"><code>put</code> step</a>) and retrieves the files representing that version from the external system or object.</p></li>
 
-  <li><p><code>/opt/resource/out</code> - run in a <a href="jobs.html#put-step">put step</a>. Generates a new version, usually based on some input generated by another step in the job. Depending on the resource, this may mean sending something to the external system. For the git resource, this means pushing commits to the external git repository.</p></li>
+  <li><p><code>/opt/resource/out</code> - run in a <a href="put-step.html">put step</a>. Generates a new version, usually based on some input generated by another step in the job. Depending on the resource, this may mean sending something to the external system. For the git resource, this means pushing commits to the external git repository.</p></li>
 
 </ul><p>That&#39;s a high-level overview of the resource interface. Next, we will learn how to add resources to a pipeline.</p>
 
@@ -398,7 +403,7 @@ jobs:
           repository: busybox
       run:
         path: echo
-        args: [&#34;Hello World!&#34;]</code></pre><p>Next we need to connect the <code>repo</code> resource to the <code>hello-world-job</code>. We connect the two objects by adding a <a href="jobs.html#get-step">get step</a> to the job.</p><pre><code class="language-yaml">resources:
+        args: [&#34;Hello World!&#34;]</code></pre><p>Next we need to connect the <code>repo</code> resource to the <code>hello-world-job</code>. We connect the two objects by adding a <a href="get-step.html">get step</a> to the job.</p><pre><code class="language-yaml">resources:
 - name: repo
   type: git
   source:
@@ -418,7 +423,7 @@ jobs:
           repository: busybox
       run:
         path: echo
-        args: [&#34;Hello World!&#34;]</code></pre><p>The final piece is telling Concourse to trigger the <code>hello-world-job</code> whenever the <code>repo</code> resource emits a new version. We can do that by setting <a href="jobs.html#schema.step.get-step.trigger"><code>trigger</code></a> to <code>true</code> for the <a href="jobs.html#get-step">get step</a>.</p><pre><code class="language-yaml">resources:
+        args: [&#34;Hello World!&#34;]</code></pre><p>The final piece is telling Concourse to trigger the <code>hello-world-job</code> whenever the <code>repo</code> resource emits a new version. We can do that by setting <a href="get-step.html#schema.get.trigger"><code>trigger</code></a> to <code>true</code> for the <a href="get-step.html">get step</a>.</p><pre><code class="language-yaml">resources:
 - name: repo
   type: git
   source:
@@ -438,7 +443,7 @@ jobs:
           repository: busybox
       run:
         path: echo
-        args: [&#34;Hello World!&#34;]</code></pre><p>Let&#39;s set our pipeline and watch it automatically trigger from the <a href="http://localhost:8080/teams/main/pipelines/hello-world">web UI</a>.</p><pre><code class="language-">$ fly -t tutorial set-pipeline -p hello-world -c hello-world.yml</code></pre><p><img src="images/tutorial/hello-world-trigger-job.png" alt="" /></p><p>If you <a href="http://localhost:8080/teams/main/pipelines/hello-world/resources/repo">click the resource</a> you&#39;ll see a list of the versions that it has emitted so far. You can expand each version to see which build it was used in and some metadata if the resource fetched any. Metadata is only populated after a version is fetched by a <a href="jobs.html#get-step"><code>get</code> step</a>.</p><p>By default, resources will only fetch the most recent version available. At this point you can make commits to your repo and watch Concourse find them and trigger the job. If you want to populate the version history with older versions you can use <a href="managing-resources.html#fly-check-resource"><code>fly check-resource</code></a> with the <code>--from</code> flag.</p>
+        args: [&#34;Hello World!&#34;]</code></pre><p>Let&#39;s set our pipeline and watch it automatically trigger from the <a href="http://localhost:8080/teams/main/pipelines/hello-world">web UI</a>.</p><pre><code class="language-">$ fly -t tutorial set-pipeline -p hello-world -c hello-world.yml</code></pre><p><img src="images/tutorial/hello-world-trigger-job.png" alt="" /></p><p>If you <a href="http://localhost:8080/teams/main/pipelines/hello-world/resources/repo">click the resource</a> you&#39;ll see a list of the versions that it has emitted so far. You can expand each version to see which build it was used in and some metadata if the resource fetched any. Metadata is only populated after a version is fetched by a <a href="get-step.html"><code>get</code> step</a>.</p><p>By default, resources will only fetch the most recent version available. At this point you can make commits to your repo and watch Concourse find them and trigger the job. If you want to populate the version history with older versions you can use <a href="managing-resources.html#fly-check-resource"><code>fly check-resource</code></a> with the <code>--from</code> flag.</p>
 
   
     
@@ -450,7 +455,7 @@ jobs:
   <h2 class="section-header"><a class="anchor-target" name="get-steps-and-inputs" href="#get-steps-and-inputs"></a>Get Steps and Inputs</h2>
   
 
-  <p>Let&#39;s tie together two concepts that we&#39;ve learned so far. <a href="jobs.html#get-step">Get steps</a> and <a href="tasks.html#schema.task.inputs">task inputs</a>.</p><p>In the previous section we learned that <a href="jobs.html#task-step">task steps</a> can specify <a href="tasks.html#schema.task.outputs">outputs</a> that other <a href="jobs.html#task-step">task steps</a> can then consume as <a href="tasks.html#schema.task.inputs">inputs</a>. <a href="jobs.html#get-step">Get steps</a> generate one output that can then be consumed by tasks as an <a href="tasks.html#schema.task.inputs">input</a>. <a href="jobs.html#get-step">Get steps</a> always generate output artifacts based on their name.</p><p>To find out the structure of the artifact generated by a <a href="jobs.html#get-step"><code>get</code> step</a> you will have to refer to the resource&#39;s documentation. The documentation for the <a href="https://github.com/concourse/git-resource#in-clone-the-repository-at-the-given-ref">git resource</a> tells us that the <code>in</code> script will clone the git repository.</p><p>Let&#39;s add <code>repo</code> as an input to the <code>hello-world-task</code>. Let&#39;s also update the command the task runs to instead print the contents of some file in the <code>repo</code>.</p><pre><code class="language-yaml">resources:
+  <p>Let&#39;s tie together two concepts that we&#39;ve learned so far. <a href="get-step.html">Get steps</a> and <a href="tasks.html#schema.task-config.inputs">task inputs</a>.</p><p>In the previous section we learned that <a href="task-step.html">task steps</a> can specify <a href="tasks.html#schema.task-config.outputs">outputs</a> that other <a href="task-step.html">task steps</a> can then consume as <a href="tasks.html#schema.task-config.inputs">inputs</a>. <a href="get-step.html">Get steps</a> generate one output that can then be consumed by tasks as an <a href="tasks.html#schema.task-config.inputs">input</a>. <a href="get-step.html">Get steps</a> always generate output artifacts based on their name.</p><p>To find out the structure of the artifact generated by a <a href="get-step.html"><code>get</code> step</a> you will have to refer to the resource&#39;s documentation. The documentation for the <a href="https://github.com/concourse/git-resource#in-clone-the-repository-at-the-given-ref">git resource</a> tells us that the <code>in</code> script will clone the git repository.</p><p>Let&#39;s add <code>repo</code> as an input to the <code>hello-world-task</code>. Let&#39;s also update the command the task runs to instead print the contents of some file in the <code>repo</code>.</p><pre><code class="language-yaml">resources:
 - name: repo
   type: git
   source:
@@ -507,7 +512,7 @@ id   name                    status     start
   <h2 class="section-header"><a class="anchor-target" name="put-steps" href="#put-steps"></a>Put Steps</h2>
   
 
-  <p>The last piece of the resource interface is <a href="jobs.html#put-step">put steps</a>. Put steps are generally for pushing some change to the external system or object the resource represents. What this means will vary by resource, so again, you should carefully read the documentation for the specific resource you are using. Each resource is basically its own little application.</p><p>In order to &#34;put&#34; something, in the context of the <a href="https://github.com/concourse/git-resource">git resource</a>, we&#39;ll need to make a commit that can then be &#34;put&#34; to the repo.</p><blockquote class="aside"><p>If you haven&#39;t already, you&#39;ll probably need to provide the git resource with your <code>private_key</code> or a <code>username</code> and <code>password</code>, depending on the format of <code>uri</code> you provided.</p><p>If you&#39;re used to pushing code from your computer you probably have a private key in your <code>~/.ssh/</code> directory that you can use.</p></blockquote><pre><code class="language-yaml">resources:
+  <p>The last piece of the resource interface is <a href="put-step.html">put steps</a>. Put steps are generally for pushing some change to the external system or object the resource represents. What this means will vary by resource, so again, you should carefully read the documentation for the specific resource you are using. Each resource is basically its own little application.</p><p>In order to &#34;put&#34; something, in the context of the <a href="https://github.com/concourse/git-resource">git resource</a>, we&#39;ll need to make a commit that can then be &#34;put&#34; to the repo.</p><blockquote class="aside"><p>If you haven&#39;t already, you&#39;ll probably need to provide the git resource with your <code>private_key</code> or a <code>username</code> and <code>password</code>, depending on the format of <code>uri</code> you provided.</p><p>If you&#39;re used to pushing code from your computer you probably have a private key in your <code>~/.ssh/</code> directory that you can use.</p></blockquote><pre><code class="language-yaml">resources:
 - name: repo
   type: git
   source:
@@ -536,7 +541,7 @@ jobs:
       - name: repo
       run:
         path: cat
-        args: [&#34;repo/README.md&#34;]</code></pre><p>Next let&#39;s change the <code>hello-world-task</code> to instead create a commit. Since we want the commit to propagate to future steps, specifically the <a href="jobs.html#put-step"><code>put</code> step</a> we&#39;ll be adding soon, we will also need to add the <code>repo</code> as an output of the task.</p><pre><code class="language-yaml">resources:
+        args: [&#34;repo/README.md&#34;]</code></pre><p>Next let&#39;s change the <code>hello-world-task</code> to instead create a commit. Since we want the commit to propagate to future steps, specifically the <a href="put-step.html"><code>put</code> step</a> we&#39;ll be adding soon, we will also need to add the <code>repo</code> as an output of the task.</p><pre><code class="language-yaml">resources:
 - name: repo
   type: git
   source:
@@ -577,7 +582,7 @@ jobs:
           git add ./todays-date
           git config --global user.email $EMAIL
           git config --global user.name $GIT_AUTHOR_NAME
-          git commit -m &#34;Update todays date&#34;</code></pre><p>Lastly we can add a <a href="jobs.html#put-step"><code>put</code> step</a> to push the commit made by the task. <a href="jobs.html#put-step">Put steps</a> usually have various <code>params</code> that you&#39;ll need to set in order run the step correctly. If we read the <a href="https://github.com/concourse/git-resource#out-push-to-a-repository">documentation for the git resource</a> we&#39;ll see that we need to specify <code>repository</code> field.</p><blockquote class="aside"><p>If you&#39;re wondering why we don&#39;t do <code>git push</code> from the task, that&#39;s for two reasons: <ol>
+          git commit -m &#34;Update todays date&#34;</code></pre><p>Lastly we can add a <a href="put-step.html"><code>put</code> step</a> to push the commit made by the task. <a href="put-step.html">Put steps</a> usually have various <code>params</code> that you&#39;ll need to set in order run the step correctly. If we read the <a href="https://github.com/concourse/git-resource#out-push-to-a-repository">documentation for the git resource</a> we&#39;ll see that we need to specify <code>repository</code> field.</p><blockquote class="aside"><p>If you&#39;re wondering why we don&#39;t do <code>git push</code> from the task, that&#39;s for two reasons: <ol>
 
   <li><p>The newly made commit represents a new version and Concourse won&#39;t capture it correctly if it&#39;s pushed from the task, which is outside of the resource interface (check, get, put).</p></li>
 
@@ -626,7 +631,7 @@ jobs:
           git commit -m &#34;Update todays date&#34;
   - put: repo
     params:
-      repository: repo</code></pre><p>Set the pipeline and let&#39;s watch it trigger and run from the <a href="http://localhost:8080/teams/main/pipelines/hello-world">web UI</a>.</p><pre><code class="language-">$ fly -t tutorial set-pipeline -p hello-world -c hello-world.yml</code></pre><p>The job now has the <code>repo</code> resource to the left and right of the <code>hello-world-job</code>. This is how Concourse visually represents the inputs (<a href="jobs.html#get-step">get steps</a>) and outputs (<a href="jobs.html#put-step">put steps</a>) of a job.</p><p>That covers the basics of resources. It is best of think of each resource as a little application, so carefully read any documentation the resource author has provided. Every resource behaves a little differently based on the external system it is representing.</p>
+      repository: repo</code></pre><p>Set the pipeline and let&#39;s watch it trigger and run from the <a href="http://localhost:8080/teams/main/pipelines/hello-world">web UI</a>.</p><pre><code class="language-">$ fly -t tutorial set-pipeline -p hello-world -c hello-world.yml</code></pre><p>The job now has the <code>repo</code> resource to the left and right of the <code>hello-world-job</code>. This is how Concourse visually represents the inputs (<a href="get-step.html">get steps</a>) and outputs (<a href="put-step.html">put steps</a>) of a job.</p><p>That covers the basics of resources. It is best of think of each resource as a little application, so carefully read any documentation the resource author has provided. Every resource behaves a little differently based on the external system it is representing.</p>
 
   
     
@@ -689,7 +694,7 @@ jobs:
 
   <li><p>Find other resources at <a href="https://resource-types.concourse-ci.org/">resource-types.concourse-ci.org</a> or put <code><em>something</em> concourse resource</code> into your favorite search engine.</p></li>
 
-</ul><p>Best of luck on your automation journey!</p><blockquote class="aside"><p>If you have any feedback for this tutorial please share it in <a href="https://github.com/concourse/concourse/discussions/7353">this Github discussion</a></p></blockquote>
+</ul><p>Best of luck on your automation journey!</p><blockquote class="aside"><p>If you have any feedback for this tutorial please share it in <a href="https://github.com/concourse/concourse/discussions/7353">this GitHub discussion</a></p></blockquote>
 
   
     

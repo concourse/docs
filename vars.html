@@ -127,31 +127,36 @@
         
           <tr>
             <td class="number-cell">1.11</td>
-            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+            <td class="title-cell"><a href="steps.html" >Steps</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
             <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
@@ -563,7 +568,7 @@
   <h2 class="section-header"><a class="anchor-target" name="local-vars" href="#local-vars"></a>The &#34;<code>.</code>&#34; var source</h2>
   
 
-  <p>The special var source name <code>.</code> refers to a &#34;local var source.&#34;</p><p>The precise scope for these &#34;local vars&#34; depends on where they&#39;re being used. Currently the only mechanism that uses the local var source is the <a href="jobs.html#load-var-step"><code>load_var</code> step</a>, which sets a var in a local var source provided to all steps executed in the build.</p>
+  <p>The special var source name <code>.</code> refers to a &#34;local var source.&#34;</p><p>The precise scope for these &#34;local vars&#34; depends on where they&#39;re being used. Currently the only mechanism that uses the local var source is the <a href="load-var-step.html"><code>load_var</code> step</a>, which sets a var in a local var source provided to all steps executed in the build.</p>
 
   
     
@@ -587,7 +592,7 @@
   <h2 class="section-header"><a class="anchor-target" name="static-vars" href="#static-vars"></a>Static vars</h2>
   
 
-  <p>Var values may also be specified statically using the <a href="jobs.html#schema.step.set-pipeline-step.vars"><code>set_pipeline</code> step</a> and <a href="jobs.html#schema.step.task-step.vars"><code>task</code> step</a>.</p><p>When running the <a href="fly.html"><code>fly</code> CLI</a> equivalent commands (<a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a> and <a href="tasks.html#running-tasks"><code>fly execute</code></a>), var values may be provided using the following flags:</p><ul>
+  <p>Var values may also be specified statically using the <a href="set-pipeline-step.html#schema.set-pipeline.vars"><code>set_pipeline</code> step</a> and <a href="task-step.html#schema.task.vars"><code>task</code> step</a>.</p><p>When running the <a href="fly.html"><code>fly</code> CLI</a> equivalent commands (<a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a> and <a href="tasks.html#running-tasks"><code>fly execute</code></a>), var values may be provided using the following flags:</p><ul>
 
   <li><p><code>-v</code> or <code>--var</code> <code>NAME=VALUE</code> sets the string <code>VALUE</code> as the value for the var <code>NAME</code>.</p></li>
 
@@ -601,7 +606,7 @@
   <input id="toggle-cfad2fce8bfcbbdc74051faee697c756f9881295" type="checkbox" class="toggle" />
   <label for="toggle-cfad2fce8bfcbbdc74051faee697c756f9881295" class="toggle-title">Setting values with the <code>task</code> step</label>
   <div class="toggle-content">
-    <p>Let&#39;s say we have a <a href="tasks.html#schema.task">task config</a> like so:</p><pre><code class="language-yaml">platform: linux
+    <p>Let&#39;s say we have a <a href="tasks.html#schema.task-config">task config</a> like so:</p><pre><code class="language-yaml">platform: linux
 
 image_resource:
   type: registry-image
@@ -613,7 +618,7 @@ inputs:
 - name: booklit
 
 run:
-  path: booklit/ci/unit</code></pre><p>We could use <a href="jobs.html#schema.step.task-step.vars"><code>vars</code></a> to run this task against different versions of Go:</p><pre><code class="language-yaml">jobs:
+  path: booklit/ci/unit</code></pre><p>We could use <a href="task-step.html#schema.task.vars"><code>vars</code></a> to run this task against different versions of Go:</p><pre><code class="language-yaml">jobs:
 - name: unit
   plan:
   - get: booklit
@@ -731,9 +736,9 @@ resources:
 
   <li><p><a href="resources.html#schema.resource.webhook_token"><code class="schema-attribute-name"><bold>resource<wbr />.webhook_token</bold></code></a> under <a href="pipelines.html#schema.pipeline.resources"><code class="schema-attribute-name"><bold>pipeline<wbr />.resources</bold></code></a></p></li>
 
-  <li><p><a href="jobs.html#schema.step.task-step.params"><code>task</code> step <strong><code>params</code></strong></a> on a task step in a pipeline</p></li>
+  <li><p><a href="task-step.html#schema.task.params"><code>task</code> step <strong><code>params</code></strong></a> on a task step in a pipeline</p></li>
 
-  <li><p><a href="tasks.html">tasks configuration</a> in their entirety - whether from <a href="jobs.html#schema.step.task-step.file"><code>task</code> step <strong><code>file</code></strong></a> or <a href="jobs.html#schema.step.task-step.config"><code>task</code> step <strong><code>config</code></strong></a> in a pipeline, or a config executed with <a href="tasks.html#running-tasks"><code>fly execute</code></a></p></li>
+  <li><p><a href="tasks.html">tasks configuration</a> in their entirety - whether from <a href="task-step.html#schema.task.file"><code>task</code> step <strong><code>file</code></strong></a> or <a href="task-step.html#schema.task.config"><code>task</code> step <strong><code>config</code></strong></a> in a pipeline, or a config executed with <a href="tasks.html#running-tasks"><code>fly execute</code></a></p></li>
 
 </ul><p>Concourse will fetch values for vars as late as possible - i.e. when a step using them is about to execute. This allows the credentials to have limited lifetime and rapid rotation policies.</p>
 
@@ -744,11 +749,11 @@ resources:
   <h3 class="section-header"><a class="anchor-target" name="dynamic-vars-across-step" href="#dynamic-vars-across-step"></a>Across Step &amp; Dynamic Vars</h3>
   
 
-  <p>For the <a href="jobs.html#schema.step.across"><code class="schema-attribute-name"><bold>step<wbr />.across</bold></code></a> more fields can be dynamically interpolated during runtime:</p><ul>
+  <p>For the <a href="across-step.html#schema.across"><code class="schema-attribute-name"><bold>across</bold></code></a> more fields can be dynamically interpolated during runtime:</p><ul>
 
-  <li><p><a href="jobs.html#set-pipeline-step"><code>set_pipeline</code> step</a> identifier and <a href="jobs.html#schema.step.set-pipeline-step.file"><code>file</code></a> field</p></li>
+  <li><p><a href="set-pipeline-step.html"><code>set_pipeline</code> step</a> identifier and <a href="set-pipeline-step.html#schema.set-pipeline.file"><code>file</code></a> field</p></li>
 
-  <li><p><a href="jobs.html#task-step"><code>task</code> step</a> identifier, <a href="jobs.html#schema.step.task-step.input_mapping"><code>input_mapping</code></a>, and <a href="jobs.html#schema.step.task-step.output_mapping"><code>output_mapping</code></a>, in addition to the all other fields mentioned above for the task step</p></li>
+  <li><p><a href="task-step.html"><code>task</code> step</a> identifier, <a href="task-step.html#schema.task.input_mapping"><code>input_mapping</code></a>, and <a href="task-step.html#schema.task.output_mapping"><code>output_mapping</code></a>, in addition to the all other fields mentioned above for the task step</p></li>
 
 </ul>
 

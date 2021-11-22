@@ -131,31 +131,36 @@
         
           <tr>
             <td class="number-cell">1.11</td>
-            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+            <td class="title-cell"><a href="steps.html" >Steps</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="how-to-guides.html"  class="active">How-To Guides</a></td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html"  class="active">How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
             <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
@@ -171,24 +176,24 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.13</span><a href="how-to-guides.html"  class="active">How-To Guides</a>
+        <span class="section-number">1.14</span><a href="how-to-guides.html"  class="active">How-To Guides</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.13.1</td>
+            <td class="number-cell">1.14.1</td>
             <td class="title-cell"><a href="pipeline-guides.html"  class="active">Pipeline Guides</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.13.2</td>
+            <td class="number-cell">1.14.2</td>
             <td class="title-cell"><a href="git-guides.html" >Git Guides</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.13.3</td>
+            <td class="number-cell">1.14.3</td>
             <td class="title-cell"><a href="container-image-guides.html" >Container Image Guides</a></td>
           </tr>
         
@@ -204,29 +209,29 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.13.1</span><a href="pipeline-guides.html"  class="active">Pipeline Guides</a>
+        <span class="section-number">1.14.1</span><a href="pipeline-guides.html"  class="active">Pipeline Guides</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.13.1.1</td>
+            <td class="number-cell">1.14.1.1</td>
             <td class="title-cell"><a href="common-pipeline-practices.html"  class="self">Common Pipeline Practices</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.13.1.2</td>
+            <td class="number-cell">1.14.1.2</td>
             <td class="title-cell"><a href="exploring-task-input-and-output-scenarios.html" >Exploring Task Input and Output Scenarios</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.13.1.3</td>
+            <td class="number-cell">1.14.1.3</td>
             <td class="title-cell"><a href="gated-pipeline-patterns.html" >Gated Pipeline Patterns</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.13.1.4</td>
+            <td class="number-cell">1.14.1.4</td>
             <td class="title-cell"><a href="time-triggered-pipeline-patterns.html" >Time Triggered Pipeline Patterns</a></td>
           </tr>
         
@@ -248,7 +253,7 @@
         <div class="page-content">
           <div class="section" id="section_common-pipeline-practices">
   
-  <h1 class="section-header"><a class="anchor-target" name="common-pipeline-practices" href="#common-pipeline-practices"></a><span class="section-number">1.13.1.1 </span>Common Pipeline Practices</h1>
+  <h1 class="section-header"><a class="anchor-target" name="common-pipeline-practices" href="#common-pipeline-practices"></a><span class="section-number">1.14.1.1 </span>Common Pipeline Practices</h1>
   
 
   <p>The following are practices that we see a lot of people use in their pipelines. These are by no means &#34;Best&#34; practices, they are simply common and may or may not work for you and your team.</p>
@@ -260,13 +265,13 @@
   <h2 class="section-header"><a class="anchor-target" name="parallelizing-get-steps-in-jobs" href="#parallelizing-get-steps-in-jobs"></a>Parallelizing Get Steps in Jobs</h2>
   
 
-  <p>All jobs usually have <a href="jobs.html#get-step">get steps</a> as their first set of steps.</p><pre><code class="language-yaml">jobs:
+  <p>All jobs usually have <a href="get-step.html">get steps</a> as their first set of steps.</p><pre><code class="language-yaml">jobs:
 - name: awesome-job
   plan:
   - get: cool-code
   - get: funny-binary
   - get: the-weather
-  - task: business-stuff</code></pre><p>To reduce the waiting time to the length of the longest running get step, put all get steps under an <a href="jobs.html#in-parallel-step"><code>in_parallel</code> step</a>.</p><pre><code class="language-yaml">jobs:
+  - task: business-stuff</code></pre><p>To reduce the waiting time to the length of the longest running get step, put all get steps under an <a href="in-parallel-step.html"><code>in_parallel</code> step</a>.</p><pre><code class="language-yaml">jobs:
 - name: awesome-job
   plan:
   - in_parallel:
@@ -285,7 +290,7 @@
   <h2 class="section-header"><a class="anchor-target" name="specify-inputs-for-put-steps" href="#specify-inputs-for-put-steps"></a>Specify Inputs for Put Steps</h2>
   
 
-  <p>By default <a href="jobs.html#put-step"><code>put</code> step</a>&#39;s have all artifacts from a job mounted in their resource container. This can result in long initialization times for put steps. It&#39;s likely that a <a href="jobs.html#put-step"><code>put</code> step</a> only needs a subset of all available artifacts generated throughout the job.</p><p>There are two ways to specify which artifacts to send to a <a href="jobs.html#put-step"><code>put</code> step</a>. You can specify <code>detect</code> as the <a href="jobs.html#schema.step.put-step.inputs"><code>put</code> step <strong><code>inputs</code></strong></a> or you can pass in an exact list of all artifacts the <a href="jobs.html#put-step"><code>put</code> step</a> needs.</p><p>Using <code>detect</code>: <pre><code class="language-yaml">jobs:
+  <p>By default <a href="put-step.html"><code>put</code> step</a>&#39;s have all artifacts from a job mounted in their resource container. This can result in long initialization times for put steps. It&#39;s likely that a <a href="put-step.html"><code>put</code> step</a> only needs a subset of all available artifacts generated throughout the job.</p><p>There are two ways to specify which artifacts to send to a <a href="put-step.html"><code>put</code> step</a>. You can specify <code>detect</code> as the <a href="put-step.html#schema.put.inputs"><code>put</code> step <strong><code>inputs</code></strong></a> or you can pass in an exact list of all artifacts the <a href="put-step.html"><code>put</code> step</a> needs.</p><p>Using <code>detect</code>: <pre><code class="language-yaml">jobs:
 - name: the-job
   plan: # Get some artifacts
   - in_parallel:
@@ -298,7 +303,7 @@
     inputs: detect
     params:
       apples-location: apples/location # matches the first get step
-      basket: apple-basket # matches the second get step</code></pre></p><p>Specifying the exact inputs needed for the <a href="jobs.html#put-step"><code>put</code> step</a>: <pre><code class="language-yaml">jobs:
+      basket: apple-basket # matches the second get step</code></pre></p><p>Specifying the exact inputs needed for the <a href="put-step.html"><code>put</code> step</a>: <pre><code class="language-yaml">jobs:
 - name: the-job
   plan: # Get some artifacts
   - in_parallel:
@@ -321,7 +326,7 @@
   <h2 class="section-header"><a class="anchor-target" name="putting-task-configs-in-files" href="#putting-task-configs-in-files"></a>Putting Task Configs in Files</h2>
   
 
-  <p>A lot of the pipeline examples that you will find on this site and in resource repos will embed a <a href="jobs.html#schema.step.task-step.config"><code>task</code> step <strong><code>config</code></strong></a> directly in the pipeline. This is a nice way of clearly seeing what inputs/outputs the task uses. Tasks are usually designed to be used in multiple places, maybe with slightly different configuration. To support this scenario, most users store task configs in files instead of embedding the config directly in the pipeline.</p><p>Here&#39;s what this looks like in practice:</p><p><div class="titled-codeblock">
+  <p>A lot of the pipeline examples that you will find on this site and in resource repos will embed a <a href="task-step.html#schema.task.config"><code>task</code> step <strong><code>config</code></strong></a> directly in the pipeline. This is a nice way of clearly seeing what inputs/outputs the task uses. Tasks are usually designed to be used in multiple places, maybe with slightly different configuration. To support this scenario, most users store task configs in files instead of embedding the config directly in the pipeline.</p><p>Here&#39;s what this looks like in practice:</p><p><div class="titled-codeblock">
   <div class="codeblock-title">
     <code>print-date.yml, stored in some git repo under a folder named &#34;tasks&#34;</code>
   </div>
@@ -365,7 +370,7 @@ jobs:
   <h2 class="section-header"><a class="anchor-target" name="get-images-for-tasks-instead-of-using-anonymous-image-resources" href="#get-images-for-tasks-instead-of-using-anonymous-image-resources"></a><code>Get</code> Images for Tasks Instead of using Anonymous Image Resources</h2>
   
 
-  <p>It is easy to let Concourse fetch images for tasks right when they are needed by using the <a href="tasks.html#schema.task.image_resource"><code class="schema-attribute-name"><bold>task<wbr />.image_resource</bold></code></a> field in a <a href="tasks.html">task config</a>. It&#39;s the easy out-of-the-box solution. Another way is to pass the image for a task as an input to the job by setting the <a href="jobs.html#schema.step.task-step.image"><code>task</code> step <strong><code>image</code></strong></a> field. This also allows you to track the version of the image being used by the task and also avoid getting rate-limited by configuring the resource with credentials.</p><p><strong>Before - Anonymous Image Fetching for Tasks</strong></p><pre><code class="language-yaml">jobs:
+  <p>It is easy to let Concourse fetch images for tasks right when they are needed by using the <a href="tasks.html#schema.task-config.image_resource"><code class="schema-attribute-name"><bold>task-config<wbr />.image_resource</bold></code></a> field in a <a href="tasks.html">task config</a>. It&#39;s the easy out-of-the-box solution. Another way is to pass the image for a task as an input to the job by setting the <a href="task-step.html#schema.task.image"><code>task</code> step <strong><code>image</code></strong></a> field. This also allows you to track the version of the image being used by the task and also avoid getting rate-limited by configuring the resource with credentials.</p><p><strong>Before - Anonymous Image Fetching for Tasks</strong></p><pre><code class="language-yaml">jobs:
 - name: job
   plan:
   - task: simple-task
@@ -411,7 +416,7 @@ jobs:
               prev:
 
               
-              <span class="section-number">1.13.1</span>
+              <span class="section-number">1.14.1</span>
               
 
               <a href="pipeline-guides.html">Pipeline Guides</a>
@@ -423,7 +428,7 @@ jobs:
               next:
 
               
-              <span class="section-number">1.13.1.2</span>
+              <span class="section-number">1.14.1.2</span>
               
 
               <a href="exploring-task-input-and-output-scenarios.html">Exploring Task Input and Output Scenarios</a>

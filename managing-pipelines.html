@@ -129,31 +129,36 @@
         
           <tr>
             <td class="number-cell">1.11</td>
-            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+            <td class="title-cell"><a href="steps.html" >Steps</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
             <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
@@ -334,7 +339,7 @@
   <h2 class="section-header"><a class="anchor-target" name="fly-expose-pipeline" href="#fly-expose-pipeline"></a><code>fly expose-pipeline</code></h2>
   
 
-  <p>By default, newly configured pipelines are only visible to the pipeline&#39;s team. To make a pipeline viewable by other teams and unauthenticated users, run:</p><pre><code class="language-bash">$ fly -t example expose-pipeline --pipeline my-pipeline</code></pre><p>This feature is useful if you&#39;re using Concourse for an open source project and you&#39;d like your community to be able to see into your build pipeline.</p><p>To undo this change, see <a href="managing-pipelines.html#fly-hide-pipeline"><code>fly hide-pipeline</code></a>.</p><p>Exposing a pipeline reveals basically everything except for build output and resource metadata.</p><p>To expose a resource&#39;s metadata, <a href="resources.html#schema.resource.public"><code class="schema-attribute-name"><bold>resource<wbr />.public</bold></code></a> must be set to <code>true</code>.</p><p>To expose a job&#39;s build output, <a href="jobs.html#schema.job.public"><code class="schema-attribute-name"><bold>job<wbr />.public</bold></code></a> must be set to <code>true</code>. This will also reveal resource metadata for any <a href="jobs.html#get-step"><code>get</code> step</a> or <a href="jobs.html#put-step"><code>put</code> step</a>s in the build output.</p>
+  <p>By default, newly configured pipelines are only visible to the pipeline&#39;s team. To make a pipeline viewable by other teams and unauthenticated users, run:</p><pre><code class="language-bash">$ fly -t example expose-pipeline --pipeline my-pipeline</code></pre><p>This feature is useful if you&#39;re using Concourse for an open source project and you&#39;d like your community to be able to see into your build pipeline.</p><p>To undo this change, see <a href="managing-pipelines.html#fly-hide-pipeline"><code>fly hide-pipeline</code></a>.</p><p>Exposing a pipeline reveals basically everything except for build output and resource metadata.</p><p>To expose a resource&#39;s metadata, <a href="resources.html#schema.resource.public"><code class="schema-attribute-name"><bold>resource<wbr />.public</bold></code></a> must be set to <code>true</code>.</p><p>To expose a job&#39;s build output, <a href="jobs.html#schema.job.public"><code class="schema-attribute-name"><bold>job<wbr />.public</bold></code></a> must be set to <code>true</code>. This will also reveal resource metadata for any <a href="get-step.html"><code>get</code> step</a> or <a href="put-step.html"><code>put</code> step</a>s in the build output.</p>
 
   
     

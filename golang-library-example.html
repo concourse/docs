@@ -166,7 +166,7 @@
   <h1 class="section-header"><a class="anchor-target" name="golang-library-example" href="#golang-library-example"></a><span class="section-number">2.10 </span>Golang library testing example</h1>
   
 
-  <p>You can run the tests for a Golang library across any specified versions.</p><p><iframe class="frame" frameborder="0" width="100%" height="300px" src="https://ci.concourse-ci.org/teams/examples/pipelines/golang-lib"></iframe></p><p>This example shows how to have multiple versions of a language, environment, or dependency fetched and integrated in to a <a href="pipelines.html">Pipeline</a>.</p><p>For these Docker images, defining them as <a href="resources.html">Resources</a> has two advantages for this use case. First, this enables the pipeline to be triggered when there are new versions of those images available. Second, referencing them in the task&#39;s <a href="jobs.html#schema.step.task-step.image"><code>task</code> step <strong><code>image</code></strong></a> param is helpful as it will ensure consistency between the image versions fetched by the <a href="resources.html">Resource</a> and the image version running in the job.</p>
+  <p>You can run the tests for a Golang library across any specified versions.</p><p><iframe class="frame" frameborder="0" width="100%" height="300px" src="https://ci.concourse-ci.org/teams/examples/pipelines/golang-lib"></iframe></p><p>This example shows how to have multiple versions of a language, environment, or dependency fetched and integrated in to a <a href="pipelines.html">Pipeline</a>.</p><p>For these Docker images, defining them as <a href="resources.html">Resources</a> has two advantages for this use case. First, this enables the pipeline to be triggered when there are new versions of those images available. Second, referencing them in the task&#39;s <a href="task-step.html#schema.task.image"><code>task</code> step <strong><code>image</code></strong></a> param is helpful as it will ensure consistency between the image versions fetched by the <a href="resources.html">Resource</a> and the image version running in the job.</p>
 
   
     
@@ -280,7 +280,7 @@ jobs:
 
   <li><p><a href="jobs.html">Jobs</a></p></li>
 
-  <li><p><a href="jobs.html#steps">Steps</a></p></li>
+  <li><p><a href="steps.html">Steps</a></p></li>
 
   <li><p><a href="tasks.html">Tasks</a></p></li>
 

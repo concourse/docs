@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=775" />
+<title>across Step Modifier - Concourse CI</title>
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+<link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+<link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+<script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
+<script data-goatcounter="https://concourse.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  </head>
+  <body>
+    
+
+<div class="page-top">
+  <nav class="top-nav">
+    <a class="top-link logo-link" href="/"><img src="images/logo-white.svg" />Concourse</a>
+    
+    <a class="top-link active" href="docs.html">Docs</a>
+    
+    <a class="top-link" href="examples.html">Examples</a>
+    
+    <a class="top-link" href="project.html">Project</a>
+    
+    <a class="top-link" href="ecosystem.html">Ecosystem</a>
+    
+    <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
+    <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
+    <a class="top-link" href="https://github.com/concourse/concourse/discussions">discuss</a>
+
+    <div id="search"></div>
+
+    <script type="text/javascript">
+      var app = Elm.Main.init({
+        node: document.getElementById('search')
+      });
+
+      app.ports.emitSearchTerm.subscribe(function(term) {
+        goatcounter.count({
+          path: "search:" + term,
+          title: "user searched: " + term,
+          event: true
+        });
+      });
+    </script>
+  </nav>
+</div>
+
+    <div class="page-body">
+      <div class="page-nav">
+        
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1</span><a href="docs.html"  class="active">Docs</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.1</td>
+            <td class="title-cell"><a href="getting-started.html" >Getting Started</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2</td>
+            <td class="title-cell"><a href="install.html" >Install</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.3</td>
+            <td class="title-cell"><a href="auth.html" >Auth &amp; Teams</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.4</td>
+            <td class="title-cell"><a href="fly.html" >The <code>fly</code> CLI</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.5</td>
+            <td class="title-cell"><a href="config-basics.html" >Config Basics</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.6</td>
+            <td class="title-cell"><a href="pipelines.html" >Pipelines</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.7</td>
+            <td class="title-cell"><a href="vars.html" >Vars</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.8</td>
+            <td class="title-cell"><a href="resources.html" >Resources</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.9</td>
+            <td class="title-cell"><a href="resource-types.html" >Resource Types</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.10</td>
+            <td class="title-cell"><a href="jobs.html" >Jobs</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11</td>
+            <td class="title-cell"><a href="steps.html"  class="active">Steps</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12</td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.13</td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14</td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.15</td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
+            <td class="title-cell"><a href="internals.html" >Internals</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.11</span><a href="steps.html"  class="active">Steps</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.11.1</td>
+            <td class="title-cell"><a href="get-step.html" ><code>get</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.2</td>
+            <td class="title-cell"><a href="put-step.html" ><code>put</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.3</td>
+            <td class="title-cell"><a href="task-step.html" ><code>task</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.4</td>
+            <td class="title-cell"><a href="set-pipeline-step.html" ><code>set_pipeline</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.5</td>
+            <td class="title-cell"><a href="load-var-step.html" ><code>load_var</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.6</td>
+            <td class="title-cell"><a href="in-parallel-step.html" ><code>in_parallel</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.7</td>
+            <td class="title-cell"><a href="do-step.html" ><code>do</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.8</td>
+            <td class="title-cell"><a href="try-step.html" ><code>try</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.9</td>
+            <td class="title-cell"><a href="modifier-and-hook-steps.html"  class="active">Modifier And Hook Steps</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.11.9</span><a href="modifier-and-hook-steps.html"  class="active">Modifier And Hook Steps</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.11.9.1</td>
+            <td class="title-cell"><a href="across-step.html"  class="self"><code>across</code> Step Modifier</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.9.2</td>
+            <td class="title-cell"><a href="timeout-step.html" ><code>timeout</code> Step Modifier</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.9.3</td>
+            <td class="title-cell"><a href="attempts-step.html" ><code>attempts</code> Step Modifier</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.9.4</td>
+            <td class="title-cell"><a href="tags-step.html" ><code>tags</code> Step Modifier</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.9.5</td>
+            <td class="title-cell"><a href="on-success-step.html" ><code>on_success</code> Step Hook</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.9.6</td>
+            <td class="title-cell"><a href="on-failure-hook.html" ><code>on_failure</code> Step Hook</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.9.7</td>
+            <td class="title-cell"><a href="on-abort-hook.html" ><code>on_abort</code> Step Hook</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.9.8</td>
+            <td class="title-cell"><a href="on-error-hook.html" ><code>on_error</code> Step Hook</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.9.9</td>
+            <td class="title-cell"><a href="ensure-hook.html" ><code>ensure</code> Step Hook</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+
+
+
+<div class="context">
+  <div class="Top">
+    On this page:
+  </div>
+
+  <div class="children anchors">
+    <table>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="across-step.html#schema.across_var"><strong><code>across_var</code></strong> schema</a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="across-step.html#schema.across_var.var"><code class="schema-attribute-name"><bold>across_var<wbr />.var</bold></code></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="across-step.html#schema.across_var.values"><code class="schema-attribute-name"><bold>across_var<wbr />.values</bold></code></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="across-step.html#schema.across_var.max_in_flight"><code class="schema-attribute-name"><bold>across_var<wbr />.max_in_flight</bold></code></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="across-step.html#schema.across_var.fail_fast"><code class="schema-attribute-name"><bold>across_var<wbr />.fail_fast</bold></code></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="across-step.html#schema.across"><code class="schema-attribute-name"><bold>across</bold></code></a></td>
+      </tr>
+      
+
+      
+  
+    
+      <tr>
+        <td class="number-cell">1.11.9.1.1</td>
+        <td class="title-cell"><a href="across-step.html#limitations" >Limitations</a></td>
+      </tr>
+      
+      
+  
+    
+  
+
+    
+  
+
+    </table>
+  </div>
+</div>
+
+      </div>
+
+      <div class="body-content">
+        <div class="page-content">
+          <div class="section" id="section_across-step">
+  
+  <h1 class="section-header"><a class="anchor-target" name="across-step" href="#across-step"></a><span class="section-number">1.11.9.1 </span><code>across</code> Step Modifier</h1>
+  
+
+  <p>Run a step multiple times with different combinations of variable values.</p><div class="warning">
+  <p><code>across</code> is considered an <strong>experimental</strong> feature, and its syntax/semantics may change. To enable <code>across</code> for your deployment, you must set the feature flag <code>CONCOURSE_ENABLE_ACROSS_STEP</code>.</p>
+</div><p>The <code>across</code> step can be combined with the <a href="load-var-step.html"><code>load_var</code> step</a>, the <a href="set-pipeline-step.html"><code>set_pipeline</code> step</a>, and <a href="instanced-pipelines.html">instanced pipelines</a> to maintain a dynamically sized group of related pipelines.</p><p>More fields are also available for variable interpolation with the across step. See <a href="vars.html#dynamic-vars-across-step">Across Step &amp; Dynamic Vars</a> for details.</p><div class="warning">
+  <p>Outputs from steps ran within the across step are not available to steps outside of the across step.</p>
+</div><p><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.across" type="checkbox" class="toggle" />
+  <label for="toggle-schema.across" class="toggle-title">
+    <a id="schema.across"></a>
+
+    <code><a class="attribute-name" href="#schema.across">across</a>: <span class="attribute-type">[<a href="across-step.html#schema.across_var"><strong>across_var</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Contains a list of <a href="across-step.html#schema.across_var"><strong><code>across_var</code></strong> schema</a>.</p><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.across_var" href="#schema.across_var"></a><code>across_var</code> schema</h2>
+
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.across_var.var" type="checkbox" class="toggle" />
+  <label for="toggle-schema.across_var.var" class="toggle-title">
+    <a id="schema.across_var.var"></a>
+
+    <code><a class="attribute-name" href="#schema.across_var.var">var</a>: <span class="attribute-type"><a href="config-basics.html#schema.identifier"><strong>identifier</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The name of the variable that will be added to the <a href="vars.html#local-vars">&#34;<code>.</code>&#34; var source</a>. This variable will only be accessible in the scope of the step - each iteration of the step gets its own scope.</p><p>If a variable of the same name already exists in the parent scope, a warning will be printed.</p>
+  </div>
+</div><div class="toggleable schema-attribute required">
+  <input id="toggle-schema.across_var.values" type="checkbox" class="toggle" />
+  <label for="toggle-schema.across_var.values" class="toggle-title">
+    <a id="schema.across_var.values"></a>
+
+    <code><a class="attribute-name" href="#schema.across_var.values">values</a>: <span class="attribute-type">[<a href="config-basics.html#schema.value"><strong>value</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The list of values that the <a href="across-step.html#schema.across_var.var">var</a> will iterate over when running the substep. If multiple <a href="across-step.html#schema.across_var">vars</a> are configured, all combinations of values across all vars will run.</p><p>The list of values may also be interpolated. For instance, you may use the <a href="load-var-step.html"><code>load_var</code> step</a> to first load a list of <a href="config-basics.html#schema.value"><strong><code>value</code></strong> schema</a> into a <a href="vars.html#local-vars">local var</a>, and then iterate across that dynamic list of values.</p><div class="toggleable example">
+  <input id="toggle-936706bced08ec604e8e6921c399b3a601c4d0d9" type="checkbox" class="toggle" />
+  <label for="toggle-936706bced08ec604e8e6921c399b3a601c4d0d9" class="toggle-title">Value combinations</label>
+  <div class="toggle-content">
+    <p>The following <a href="across-step.html#schema.across"><code class="schema-attribute-name"><bold>across</bold></code></a> will run the task <code>foo/build.yml</code> for each package defined in <code>foo/packages-to-build.json</code> with Go 1.15 and 1.16.</p><pre><code class="language-yaml">plan:
+- get: foo
+- load_var: packages
+  file: foo/packages-to-build.json
+- across:
+  - var: package
+    values: ((.:packages))
+  - var: go_version
+    values: [&#39;1.15&#39;, &#39;1.16&#39;]
+  task: build
+  file: foo/build.yml
+  vars:
+    go_version: ((.:go_version))
+    package: ((.:package))</code></pre><p>Supposing <code>foo/packages-to-build.json</code> had the following content: <pre><code class="language-json">[&#34;./cmd/first&#34;, &#34;./cmd/second&#34;, &#34;./cmd/third&#34;]</code></pre></p><p>...then the task <code>foo/build.yml</code> would be run with the following var combinations:</p><ul>
+
+  <li><p><code>{package: &#34;./cmd/first&#34;, go_version: &#34;1.15&#34;}</code></p></li>
+
+  <li><p><code>{package: &#34;./cmd/first&#34;, go_version: &#34;1.16&#34;}</code></p></li>
+
+  <li><p><code>{package: &#34;./cmd/second&#34;, go_version: &#34;1.15&#34;}</code></p></li>
+
+  <li><p><code>{package: &#34;./cmd/second&#34;, go_version: &#34;1.16&#34;}</code></p></li>
+
+  <li><p><code>{package: &#34;./cmd/third&#34;, go_version: &#34;1.15&#34;}</code></p></li>
+
+  <li><p><code>{package: &#34;./cmd/third&#34;, go_version: &#34;1.16&#34;}</code></p></li>
+
+</ul>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.across_var.max_in_flight" type="checkbox" class="toggle" />
+  <label for="toggle-schema.across_var.max_in_flight" class="toggle-title">
+    <a id="schema.across_var.max_in_flight"></a>
+
+    <code><a class="attribute-name" href="#schema.across_var.max_in_flight">max_in_flight</a>: <span class="attribute-type"><span class="schema-scalar">all</span> | <a href="config-basics.html#schema.number"><strong>number</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>1</code>.</em> If set to <code>all</code>, the substep will run with all combinations of the current var in parallel. If set to a <a href="config-basics.html#schema.number"><strong><code>number</code></strong> schema</a>, only that number of substeps may run in parallel.</p><div class="toggleable example">
+  <input id="toggle-275ef54947051d7ea02f6dccbf88a7cc147b82f0" type="checkbox" class="toggle" />
+  <label for="toggle-275ef54947051d7ea02f6dccbf88a7cc147b82f0" class="toggle-title">Multiple vars</label>
+  <div class="toggle-content">
+    <p>If multiple <a href="across-step.html#schema.across_var">vars</a> are configured, the effective <code>max_in_flight</code> is multiplicative. For instance:</p><pre><code class="language-yaml">plan:
+- across:
+  - var: var1
+    values: [a, b, c]
+    max_in_flight: all
+  - var: var2
+    values: [1, 2]
+  - var: var3
+    values: [foo, bar]
+    max_in_flight: 2</code></pre><p>Here, <strong>6 substeps</strong> will run in parallel, since all 3 of <code>var1</code>&#39;s values can run in parallel, and 2 of <code>var3</code>&#39;s values can run in parallel.</p>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.across_var.fail_fast" type="checkbox" class="toggle" />
+  <label for="toggle-schema.across_var.fail_fast" class="toggle-title">
+    <a id="schema.across_var.fail_fast"></a>
+
+    <code><a class="attribute-name" href="#schema.across_var.fail_fast">fail_fast</a>: <span class="attribute-type"><a href="config-basics.html#schema.boolean"><strong>boolean</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>false</code>.</em> When enabled, the <code>across</code> step will fail fast by returning as soon as any sub-step fails. This means that running steps will be interrupted and pending steps will no longer be scheduled.</p>
+  </div>
+</div>
+</div>
+  </div>
+</div> <div class="toggleable example">
+  <input id="toggle-030293ed3bcc88c31dd4f2959b9c588a658626c1" type="checkbox" class="toggle" />
+  <label for="toggle-030293ed3bcc88c31dd4f2959b9c588a658626c1" class="toggle-title">Across with task step</label>
+  <div class="toggle-content">
+    <pre><code class="language-yaml">jobs:
+- name: job
+  plan:
+  - across:
+    - var: some-text
+      values: [&#34;hello-world&#34;, &#34;hello-concourse&#34;]
+    task: running-((.:some-text))
+    config:
+      platform: linux
+      image_resource:
+        type: mock
+        source:
+          mirror_self: true
+      run:
+        path: echo
+        args: [&#34;((.:some-text))&#34;]</code></pre>
+  </div>
+</div> <div class="toggleable example">
+  <input id="toggle-177ce61ade96753d7d68445a637f39bc9ab8f8a2" type="checkbox" class="toggle" />
+  <label for="toggle-177ce61ade96753d7d68445a637f39bc9ab8f8a2" class="toggle-title">Across with input and output mapping</label>
+  <div class="toggle-content">
+    <pre><code class="language-yaml">resources:
+- name: ci
+  type: git
+  source:
+    uri: https://github.com/concourse/examples.git
+
+jobs:
+- name: job
+  plan:
+  - get: ci
+  - across:
+    - var: pipeline
+      values: [&#34;hello-world&#34;, &#34;time-triggered&#34;]
+    do:
+      - task: running-((.:pipeline))
+        input_mapping:
+          ((.:pipeline)): ci
+        output_mapping:
+          ((.:pipeline)): newci
+        config:
+          platform: linux
+          image_resource:
+            type: mock
+            source:
+              mirror_self: true
+          inputs:
+            - name: ((.:pipeline))
+          outputs:
+            - name: ((.:pipeline))
+          run:
+            path: cat
+            args: [&#34;((.:pipeline))/pipelines/((.:pipeline)).yml&#34;]
+      - task: newci-((.:pipeline))
+        config:
+          platform: linux
+          image_resource:
+            type: mock
+            source:
+              mirror_self: true
+          inputs:
+            - name: newci
+          run:
+            path: cat
+            args: [&#34;newci/pipelines/((.:pipeline)).yml&#34;]</code></pre>
+  </div>
+</div> <div class="toggleable example">
+  <input id="toggle-3ccc4eb9d4c3992f0d6af6ed12f18f1aaf98241b" type="checkbox" class="toggle" />
+  <label for="toggle-3ccc4eb9d4c3992f0d6af6ed12f18f1aaf98241b" class="toggle-title">Across with set_pipeline step</label>
+  <div class="toggle-content">
+    <pre><code class="language-yaml">resources:
+- name: ci
+  type: git
+  source:
+    uri: https://github.com/concourse/examples.git
+
+jobs:
+- name: job
+  plan:
+  - get: ci
+  - across:
+    - var: pipeline
+      values: [&#34;hello-world&#34;, &#34;time-triggered&#34;]
+    set_pipeline: ((.:pipeline))
+    file: ci/pipelines/((.:pipeline)).yml</code></pre>
+  </div>
+</div> <div class="toggleable example">
+  <input id="toggle-d18414970a19d6b5d7270c749362425cc873543b" type="checkbox" class="toggle" />
+  <label for="toggle-d18414970a19d6b5d7270c749362425cc873543b" class="toggle-title">Across with multiple steps</label>
+  <div class="toggle-content">
+    <p>Use the <a href="do-step.html"><code>do</code> step</a> to <code>across</code> over multiple steps. <pre><code class="language-yaml">jobs:
+- name: job
+  plan:
+  - across:
+    - var: name
+      values: [&#34;Kaladin&#34;, &#34;Jasnah&#34;]
+    do:  # takes a list of steps
+    - task: saying-hello
+      config:
+        platform: linux
+        image_resource:
+          type: mock
+          source:
+            mirror_self: true
+        run:
+          path: echo
+          args: [&#34;Hello ((.:name))!&#34;]
+    - task: saying-bye
+      config:
+        platform: linux
+        image_resource:
+          type: mock
+          source:
+            mirror_self: true
+        run:
+          path: echo
+          args: [&#34;Bye ((.:name))!&#34;]</code></pre></p>
+  </div>
+</div> <div class="toggleable example">
+  <input id="toggle-fe63c62ff2d01b195cb210e33ba22ca307198110" type="checkbox" class="toggle" />
+  <label for="toggle-fe63c62ff2d01b195cb210e33ba22ca307198110" class="toggle-title">Multi-branch workflows (instance pipelines)</label>
+  <div class="toggle-content">
+    <p>You can use the <code>across</code> step to set a pipeline for each branch in a git repository.</p><pre><code class="language-yaml">plan:
+- get: release-branches
+  trigger: true
+- get: ci
+- load_var: branches
+  file: release-branches/branches.json
+- across:
+  - var: branch
+    values: ((.:branches))
+  set_pipeline: release
+  file: ci/pipelines/release.yml
+  instance_vars: {branch: ((.:branch.name))}</code></pre><p>When a new branch is added, a new pipeline will be created. When a branch is deleted, the pipeline will be automatically archived as described in the <a href="set-pipeline-step.html"><code>set_pipeline</code> step</a>.</p><p>For a more complete example, refer to <a href="multi-branch-workflows.html">Multi-Branch Workflows</a>.</p>
+  </div>
+</div></p>
+
+  
+    
+      <div class="section" id="section_limitations">
+  
+  <h2 class="section-header"><a class="anchor-target" name="limitations" href="#limitations"></a>Limitations</h2>
+  
+
+  <p>The <code>across</code> step does not work with the <a href="get-step.html"><code>get</code> step</a> or <a href="put-step.html"><code>put</code> step</a>. The names of resouces are not interpolated within across steps. Trying to do the following will not work. <pre><code class="language-yaml">- across:
+  - var: version
+    values: [&#34;1.16&#34;, &#34;1.17&#34;]
+  do:
+    - get: go-((.:version))
+    # or this
+    - get: golang
+      resource: go-((.version))</code></pre></p><p>The main reason this does not work is that Concourse determines the inputs for a job before the job starts. Concourse has no way of determining inputs for a job while it&#39;s in the middle of running.</p><p>Current pipeline valdiation logic will also block you from setting the pipeline at all since Concourse validates the relationship between all resources and jobs by looking at get and put steps.</p><p>The above example will return an error like this when trying to set the pipeline: <pre><code class="language-">invalid jobs:
+  jobs.job.plan.do[0].across.get(go): unknown resource &#39;go-((.:version))&#39;</code></pre></p>
+
+  
+    
+  
+</div>
+    
+  
+</div>
+
+          <nav class="prev-next">
+          
+            <div class="prev">
+              prev:
+
+              
+              <span class="section-number">1.11.9</span>
+              
+
+              <a href="modifier-and-hook-steps.html">Modifier And Hook Steps</a>
+            </div>
+          
+
+          
+            <div class="next">
+              next:
+
+              
+              <span class="section-number">1.11.9.2</span>
+              
+
+              <a href="timeout-step.html"><code>timeout</code> Step Modifier</a>
+            </div>
+          
+          </nav>
+        </div>
+
+        <div class="page-aside"></div>
+      </div>
+    </div>
+
+    <ul class="improve-docs">
+      <li><img src="images/icons/github-box.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+      <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+    </ul>
+  </body>
+</html>

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=775" />
+<title>get step - Concourse CI</title>
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+<link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+<link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+<script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
+<script data-goatcounter="https://concourse.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  </head>
+  <body>
+    
+
+<div class="page-top">
+  <nav class="top-nav">
+    <a class="top-link logo-link" href="/"><img src="images/logo-white.svg" />Concourse</a>
+    
+    <a class="top-link active" href="docs.html">Docs</a>
+    
+    <a class="top-link" href="examples.html">Examples</a>
+    
+    <a class="top-link" href="project.html">Project</a>
+    
+    <a class="top-link" href="ecosystem.html">Ecosystem</a>
+    
+    <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
+    <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
+    <a class="top-link" href="https://github.com/concourse/concourse/discussions">discuss</a>
+
+    <div id="search"></div>
+
+    <script type="text/javascript">
+      var app = Elm.Main.init({
+        node: document.getElementById('search')
+      });
+
+      app.ports.emitSearchTerm.subscribe(function(term) {
+        goatcounter.count({
+          path: "search:" + term,
+          title: "user searched: " + term,
+          event: true
+        });
+      });
+    </script>
+  </nav>
+</div>
+
+    <div class="page-body">
+      <div class="page-nav">
+        
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1</span><a href="docs.html"  class="active">Docs</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.1</td>
+            <td class="title-cell"><a href="getting-started.html" >Getting Started</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2</td>
+            <td class="title-cell"><a href="install.html" >Install</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.3</td>
+            <td class="title-cell"><a href="auth.html" >Auth &amp; Teams</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.4</td>
+            <td class="title-cell"><a href="fly.html" >The <code>fly</code> CLI</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.5</td>
+            <td class="title-cell"><a href="config-basics.html" >Config Basics</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.6</td>
+            <td class="title-cell"><a href="pipelines.html" >Pipelines</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.7</td>
+            <td class="title-cell"><a href="vars.html" >Vars</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.8</td>
+            <td class="title-cell"><a href="resources.html" >Resources</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.9</td>
+            <td class="title-cell"><a href="resource-types.html" >Resource Types</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.10</td>
+            <td class="title-cell"><a href="jobs.html" >Jobs</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11</td>
+            <td class="title-cell"><a href="steps.html"  class="active">Steps</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12</td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.13</td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14</td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.15</td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
+            <td class="title-cell"><a href="internals.html" >Internals</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.11</span><a href="steps.html"  class="active">Steps</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.11.1</td>
+            <td class="title-cell"><a href="get-step.html"  class="self"><code>get</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.2</td>
+            <td class="title-cell"><a href="put-step.html" ><code>put</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.3</td>
+            <td class="title-cell"><a href="task-step.html" ><code>task</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.4</td>
+            <td class="title-cell"><a href="set-pipeline-step.html" ><code>set_pipeline</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.5</td>
+            <td class="title-cell"><a href="load-var-step.html" ><code>load_var</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.6</td>
+            <td class="title-cell"><a href="in-parallel-step.html" ><code>in_parallel</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.7</td>
+            <td class="title-cell"><a href="do-step.html" ><code>do</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.8</td>
+            <td class="title-cell"><a href="try-step.html" ><code>try</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.9</td>
+            <td class="title-cell"><a href="modifier-and-hook-steps.html" >Modifier And Hook Steps</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+
+
+
+<div class="context">
+  <div class="Top">
+    On this page:
+  </div>
+
+  <div class="children anchors">
+    <table>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="get-step.html#schema.get.get"><code>get</code> step <strong><code>get</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="get-step.html#schema.get.resource"><code>get</code> step <strong><code>resource</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="get-step.html#schema.get.passed"><code>get</code> step <strong><code>passed</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="get-step.html#schema.get.params"><code>get</code> step <strong><code>params</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="get-step.html#schema.get.trigger"><code>get</code> step <strong><code>trigger</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="get-step.html#schema.get.version"><code>get</code> step <strong><code>version</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="get-step.html#get"><code>get</code> step</a></td>
+      </tr>
+      
+
+      
+  
+    
+  
+
+    </table>
+  </div>
+</div>
+
+      </div>
+
+      <div class="body-content">
+        <div class="page-content">
+          <div class="section" id="section_get-step">
+  
+  <h1 class="section-header"><a class="anchor-target" name="get-step" href="#get-step"></a><span class="section-number">1.11.1 </span><code>get</code> step</h1>
+  
+
+  <p>Fetches a version of a <a href="resources.html">resource</a>. Expand each section below for more details and examples.</p><div class="schema-group">
+  <a id="get"></a>
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.get.get" type="checkbox" class="toggle" />
+  <label for="toggle-schema.get.get" class="toggle-title">
+    <a id="schema.get.get"></a>
+
+    <code><a class="attribute-name" href="#schema.get.get">get</a>: <span class="attribute-type"><a href="resources.html#schema.resource.name"><strong>resource.name</strong></a> | <a href="config-basics.html#schema.identifier"><strong>identifier</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The fetched bits will be registered in the build&#39;s artifact namespace under the given identifier. Subsequent <a href="task-step.html"><code>task</code> step</a> and <a href="put-step.html"><code>put</code> step</a> which list the identifier as an input will have a copy of the bits in their working directory.</p><div class="toggleable example">
+  <input id="toggle-1678a82556aef96e3333cdd75009167e199ac2ee" type="checkbox" class="toggle" />
+  <label for="toggle-1678a82556aef96e3333cdd75009167e199ac2ee" class="toggle-title">Fetching a repo and passing it to a task</label>
+  <div class="toggle-content">
+    <p>Almost every simple job will look something like this: fetch my code with a <a href="get-step.html"><code>get</code> step</a> and do something (run tests) with it in a <a href="task-step.html"><code>task</code> step</a>.</p><pre><code class="language-yaml">jobs:
+- name: fetch-repo
+  plan:
+  - get: repo # fetches repo under artifact name &#34;repo&#34;
+  - task: ls-repo
+    config:
+      platform: linux
+      image_resource:
+        type: mock
+        source: {mirror_self: true}
+      # pass the &#34;repo&#34; artifact into the task
+      inputs:
+      - name: repo
+      run:
+        path: ls
+        args: [&#34;-lah&#34;,&#34;repo&#34;]
+
+resources:
+- name: repo
+  type: git
+  source:
+    uri: https://github.com/concourse/examples.git</code></pre>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.get.resource" type="checkbox" class="toggle" />
+  <label for="toggle-schema.get.resource" class="toggle-title">
+    <a id="schema.get.resource"></a>
+
+    <code><a class="attribute-name" href="#schema.get.resource">resource</a>: <span class="attribute-type"><a href="resources.html#schema.resource.name"><strong>resource.name</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Defaults to the value of <code>get</code>.</em> The resource to fetch, as configured in <a href="pipelines.html#schema.pipeline.resources"><code class="schema-attribute-name"><bold>pipeline<wbr />.resources</bold></code></a>.</p><p>Use this attribute to rename a resource from the overall pipeline context into the job-specific context.</p><div class="toggleable example">
+  <input id="toggle-7155e847480b395faca5c754e3da9673295fd036" type="checkbox" class="toggle" />
+  <label for="toggle-7155e847480b395faca5c754e3da9673295fd036" class="toggle-title">Re-labelling artifact</label>
+  <div class="toggle-content">
+    <pre><code class="language-yaml">jobs:
+- name: fetch-repo
+  plan:
+  - get: thecode # fetches &#34;repo&#34; under artifact name &#34;thecode&#34;
+    resource: repo
+  - task: ls-repo
+    config:
+      platform: linux
+      image_resource:
+        type: mock
+        source: {mirror_self: true}
+      # pass the &#34;thecode&#34; artifact into the task
+      inputs:
+      - name: thecode
+      run:
+        path: ls
+        args: [&#34;-lah&#34;,&#34;thecode&#34;]
+
+resources:
+- name: repo
+  type: git
+  source:
+    uri: https://github.com/concourse/examples.git</code></pre>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.get.passed" type="checkbox" class="toggle" />
+  <label for="toggle-schema.get.passed" class="toggle-title">
+    <a id="schema.get.passed"></a>
+
+    <code><a class="attribute-name" href="#schema.get.passed">passed</a>: <span class="attribute-type">[<a href="jobs.html#schema.job.name"><strong>job.name</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>When specified, only the versions of the resource that made it through the given list of jobs (AND-ed together) will be considered when triggering and fetching.</p><div class="toggleable example">
+  <input id="toggle-b315522d24158012ce64ec4a3c62be6b9ce7f7c8" type="checkbox" class="toggle" />
+  <label for="toggle-b315522d24158012ce64ec4a3c62be6b9ce7f7c8" class="toggle-title">Fanning out and in</label>
+  <div class="toggle-content">
+    <p>If multiple <code>get</code>s are configured with <code>passed</code> constraints, all of the mentioned jobs are correlated.</p><pre><code class="language-yaml">jobs:
+- name: lvl-1-firewall
+  plan:
+  - in_parallel:
+    - get: black-ice
+    - get: control-node
+    - get: cyberdeck
+
+- name: lvl-2-unit
+  plan:
+  - in_parallel:
+    - get: black-ice
+      passed: [lvl-1-firewall]
+    - get: control-node
+      passed: [lvl-1-firewall]
+    - get: cyberdeck
+      passed: [lvl-1-firewall]
+
+- name: lvl-2-integration
+  plan:
+  - in_parallel:
+    - get: black-ice
+      passed: [lvl-1-firewall]
+    - get: control-node
+      passed: [lvl-1-firewall]
+    - get: cyberdeck
+      passed: [lvl-1-firewall]
+
+- name: lvl-3-production
+  plan:
+  - in_parallel:
+    - get: black-ice
+      passed: [lvl-2-unit,lvl-2-integration]
+    - get: control-node
+      passed: [lvl-2-unit,lvl-2-integration]
+    - get: cyberdeck
+      passed: [lvl-2-unit,lvl-2-integration]
+
+resources:
+- name: black-ice
+  type: mock
+  source:
+    initial_version: lvl4
+- name: control-node
+  type: mock
+  source:
+    initial_version: tower
+- name: cyberdeck
+  type: mock
+  source:
+    initial_version: mk3</code></pre><p>For the final job, <code>lvl-3-production</code>, only versions that have passed the previous two jobs (<code>lvl-2-unit</code> and <code>lvl-2-integration</code>) will be passed to <code>lvl-3-production</code>.</p><p>This is crucial to being able to implement safe &#34;fan-in&#34; semantics as things progress through a pipeline.</p>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.get.params" type="checkbox" class="toggle" />
+  <label for="toggle-schema.get.params" class="toggle-title">
+    <a id="schema.get.params"></a>
+
+    <code><a class="attribute-name" href="#schema.get.params">params</a>: <span class="attribute-type"><a href="config-basics.html#schema.config"><strong>config</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Arbitrary configuration to pass to the resource. Refer to the resource type&#39;s documentation to see what it supports.</p><div class="toggleable example">
+  <input id="toggle-bb83d0c8fbb30abb54b0d423ea49126a0ad1a0a2" type="checkbox" class="toggle" />
+  <label for="toggle-bb83d0c8fbb30abb54b0d423ea49126a0ad1a0a2" class="toggle-title">Fetching with <code>params</code></label>
+  <div class="toggle-content">
+    <pre><code class="language-yaml">jobs:
+- name: resource-params
+  plan:
+  - get: cyberdeck
+    params:
+      create_files_via_params:
+        version_to_put.txt: &#34;made-via-params&#34;
+  - put: cyberdeck
+    params:
+      file: cyberdeck/version_to_put.txt
+
+
+resources:
+- name: cyberdeck
+  type: mock</code></pre>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.get.trigger" type="checkbox" class="toggle" />
+  <label for="toggle-schema.get.trigger" class="toggle-title">
+    <a id="schema.get.trigger"></a>
+
+    <code><a class="attribute-name" href="#schema.get.trigger">trigger</a>: <span class="attribute-type"><a href="config-basics.html#schema.boolean"><strong>boolean</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>false</code>.</em> If set to <code>true</code>, new builds of the job will be automatically created when a new version for this input becomes available.</p><p>Note: if none of a job&#39;s <code>get</code> steps are set to <code>true</code>, the job can only be manually triggered.</p><div class="toggleable example">
+  <input id="toggle-629880867ed5abbd5b38d884d52928d84c74aeb6" type="checkbox" class="toggle" />
+  <label for="toggle-629880867ed5abbd5b38d884d52928d84c74aeb6" class="toggle-title">Automatically trigger job on new versions</label>
+  <div class="toggle-content">
+    <pre><code class="language-yaml">jobs:
+- name: fetch-repo
+  plan:
+  - get: repo
+    trigger: true # automatically runs the job
+  - task: ls-repo
+    config:
+      platform: linux
+      image_resource:
+        type: mock
+        source: {mirror_self: true}
+      inputs:
+      - name: repo
+      run:
+        path: ls
+        args: [&#34;-lah&#34;,&#34;repo&#34;]
+
+resources:
+- name: repo
+  type: git
+  source:
+    uri: https://github.com/concourse/examples.git</code></pre>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.get.version" type="checkbox" class="toggle" />
+  <label for="toggle-schema.get.version" class="toggle-title">
+    <a id="schema.get.version"></a>
+
+    <code><a class="attribute-name" href="#schema.get.version">version</a>: <span class="attribute-type"><span class="schema-scalar">latest</span> | <span class="schema-scalar">every</span> | <a href="config-basics.html#schema.version"><strong>version</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>latest</code>.</em> The version of the resource to fetch.</p><p>If set to <code>latest</code>, scheduling will just find the latest available version of a resource and use it, allowing versions to be skipped.  This is usually what you want, e.g. if someone pushes 100 git commits.</p><p>If set to <code>every</code>, builds will walk through all available versions of the resource. Note that if <code>passed</code> is also configured, it will only step through the versions satisfying the constraints.</p><p>If set to a specific version (e.g. <code>{ref: abcdef123}</code>), only that version will be used. Note that the version must be available and detected by the resource, otherwise the input will never be satisfied. You may want to use <a href="managing-resources.html#fly-check-resource"><code>fly check-resource</code></a> to force detection of resource versions, if you need to use an older one that was never detected (as all newly configured resources start from the latest version).</p>
+  </div>
+</div>
+</div>
+
+  
+    
+  
+</div>
+
+          <nav class="prev-next">
+          
+            <div class="prev">
+              prev:
+
+              
+              <span class="section-number">1.11</span>
+              
+
+              <a href="steps.html">Steps</a>
+            </div>
+          
+
+          
+            <div class="next">
+              next:
+
+              
+              <span class="section-number">1.11.2</span>
+              
+
+              <a href="put-step.html"><code>put</code> step</a>
+            </div>
+          
+          </nav>
+        </div>
+
+        <div class="page-aside"></div>
+      </div>
+    </div>
+
+    <ul class="improve-docs">
+      <li><img src="images/icons/github-box.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+      <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+    </ul>
+  </body>
+</html>

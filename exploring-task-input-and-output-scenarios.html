@@ -131,31 +131,36 @@
         
           <tr>
             <td class="number-cell">1.11</td>
-            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+            <td class="title-cell"><a href="steps.html" >Steps</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="how-to-guides.html"  class="active">How-To Guides</a></td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html"  class="active">How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
             <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
@@ -171,24 +176,24 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.13</span><a href="how-to-guides.html"  class="active">How-To Guides</a>
+        <span class="section-number">1.14</span><a href="how-to-guides.html"  class="active">How-To Guides</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.13.1</td>
+            <td class="number-cell">1.14.1</td>
             <td class="title-cell"><a href="pipeline-guides.html"  class="active">Pipeline Guides</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.13.2</td>
+            <td class="number-cell">1.14.2</td>
             <td class="title-cell"><a href="git-guides.html" >Git Guides</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.13.3</td>
+            <td class="number-cell">1.14.3</td>
             <td class="title-cell"><a href="container-image-guides.html" >Container Image Guides</a></td>
           </tr>
         
@@ -204,29 +209,29 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.13.1</span><a href="pipeline-guides.html"  class="active">Pipeline Guides</a>
+        <span class="section-number">1.14.1</span><a href="pipeline-guides.html"  class="active">Pipeline Guides</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.13.1.1</td>
+            <td class="number-cell">1.14.1.1</td>
             <td class="title-cell"><a href="common-pipeline-practices.html" >Common Pipeline Practices</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.13.1.2</td>
+            <td class="number-cell">1.14.1.2</td>
             <td class="title-cell"><a href="exploring-task-input-and-output-scenarios.html"  class="self">Exploring Task Input and Output Scenarios</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.13.1.3</td>
+            <td class="number-cell">1.14.1.3</td>
             <td class="title-cell"><a href="gated-pipeline-patterns.html" >Gated Pipeline Patterns</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.13.1.4</td>
+            <td class="number-cell">1.14.1.4</td>
             <td class="title-cell"><a href="time-triggered-pipeline-patterns.html" >Time Triggered Pipeline Patterns</a></td>
           </tr>
         
@@ -248,7 +253,7 @@
         <div class="page-content">
           <div class="section" id="section_exploring-task-input-and-output-scenarios">
   
-  <h1 class="section-header"><a class="anchor-target" name="exploring-task-input-and-output-scenarios" href="#exploring-task-input-and-output-scenarios"></a><span class="section-number">1.13.1.2 </span>Exploring Task Input and Output Scenarios</h1>
+  <h1 class="section-header"><a class="anchor-target" name="exploring-task-input-and-output-scenarios" href="#exploring-task-input-and-output-scenarios"></a><span class="section-number">1.14.1.2 </span>Exploring Task Input and Output Scenarios</h1>
   
 
   <p>Understanding how task inputs and outputs work in Concourse can be a little confusing initially. This guide will walk you through a few example pipelines to show you how inputs and outputs work within a single Concourse job. By the end you should understand how inputs and outputs work within the context of a single job.</p><p>To run the pipelines in the following examples yourself you can get your own Concourse running locally by following the <a href="quick-start.html">Quick Start</a> guide. Then use <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a> to see the pipelines in action.</p>
@@ -260,7 +265,7 @@
   <h2 class="section-header"><a class="anchor-target" name="1---passing-inputs-between-tasks" href="#1---passing-inputs-between-tasks"></a>#1 - Passing Inputs Between Tasks</h2>
   
 
-  <p>This pipeline will show us how to create outputs and pass outputs as inputs to the next <a href="jobs.html#steps">step</a> in a <a href="jobs.html#schema.job.plan">job plan</a>.</p><p>This pipeline has two tasks. The first task outputs a file with the date. The second task reads and prints the contents of the file from the first task.</p><p>Here&#39;s a visualization of the job. <div class="diagram">
+  <p>This pipeline will show us how to create outputs and pass outputs as inputs to the next <a href="steps.html">step</a> in a <a href="jobs.html#schema.job.plan">job plan</a>.</p><p>This pipeline has two tasks. The first task outputs a file with the date. The second task reads and prints the contents of the file from the first task.</p><p>Here&#39;s a visualization of the job. <div class="diagram">
   <img src="images/how-to-guides/pipelines/explore-task-inputs-outs-example-one-10.gif" alt="diagram" width="100%" />
 </div></p><div class="titled-codeblock">
   <div class="codeblock-title">
@@ -323,7 +328,7 @@ fly -t tutorial trigger-job --job passing-artifacts/the-job --watch</code></pre>
   <h2 class="section-header"><a class="anchor-target" name="2---two-tasks-with-the-same-output-who-wins" href="#2---two-tasks-with-the-same-output-who-wins"></a>#2 - Two tasks with the same output, who wins?</h2>
   
 
-  <p>This scenario is to satisfy the curiosity cat inside all of us. Never do this in real life because you&#39;re definitely going to hurt yourself!</p><p>There are two <a href="jobs.html">Jobs</a> in this pipeline. The first job, <code>writing-in-parallel</code>, has two <a href="jobs.html#steps">Steps</a>; both steps will produce an artifact named <code>the-output</code> in parallel. If you run the <code>writing-to-the-same-output-in-parallel</code> job multiple times you&#39;ll see the file in <code>the-output</code> folder changes depending on which of the parallel tasks finished last. Here&#39;s a visualization of the first job.</p><div class="diagram">
+  <p>This scenario is to satisfy the curiosity cat inside all of us. Never do this in real life because you&#39;re definitely going to hurt yourself!</p><p>There are two <a href="jobs.html">Jobs</a> in this pipeline. The first job, <code>writing-in-parallel</code>, has two <a href="steps.html">Steps</a>; both steps will produce an artifact named <code>the-output</code> in parallel. If you run the <code>writing-to-the-same-output-in-parallel</code> job multiple times you&#39;ll see the file in <code>the-output</code> folder changes depending on which of the parallel tasks finished last. Here&#39;s a visualization of the first job.</p><div class="diagram">
   <img src="images/how-to-guides/pipelines/explore-task-inputs-outs-example-two-parallel.gif" alt="diagram" width="100%" />
 </div><p>The second job, <code>writing-to-the-same-output-serially</code>, is a serial version of the first job. In this job the second task always wins because it&#39;s the last task that outputs <code>the-output</code>, so only <code>file2</code> will be in <code>the-output</code> directory in the last step in the job plan.</p><div class="diagram">
   <img src="images/how-to-guides/pipelines/explore-task-inputs-outs-example-two-serial.gif" alt="diagram" width="100%" />
@@ -442,7 +447,7 @@ fly -t tutorial trigger-job --job parallel-artifacts/writing-to-the-same-output-
   <h2 class="section-header"><a class="anchor-target" name="3---mapping-the-names-of-inputs-and-outputs" href="#3---mapping-the-names-of-inputs-and-outputs"></a>#3 - Mapping the Names of Inputs and Outputs</h2>
   
 
-  <p>Sometimes the names of inputs and outputs don&#39;t match between multiple <a href="jobs.html#schema.step.task-step.config">task configs</a>, or they do match and you don&#39;t want them overwriting each other, like in the previous example. That&#39;s when <a href="jobs.html#schema.step.task-step.input_mapping"><code>input_mapping</code></a> and <a href="jobs.html#schema.step.task-step.output_mapping"><code>output_mapping</code></a> become helpful. Both of these features rename the inputs/outputs in the task&#39;s config to some other name in the job plan.</p><p>This pipeline has one job with four tasks.</p><p>The first task outputs a file with the date to the <code>the-output</code> directory.  <code>the-output</code> is mapped to the new name <code>demo-disk</code>. The artifact <code>demo-disk</code> is now available in the rest of the job plan for future steps to take as inputs.</p><p>The second task reads and prints the contents of the file under the new name <code>demo-disk</code>.</p><p>The third task reads and prints the contents of the file under another name, <code>generic-input</code>. The <code>demo-disk</code> artifact in the job plan is mapped to <code>generic-input</code>.</p><p>The fourth task tries to use the artifact named <code>the-output</code> as its input. This task fails to even start because there was no artifact with the name <code>the-output</code> available in the <a href="jobs.html#schema.job.plan">job plan</a>; it was remapped to <code>demo-disk</code>.</p><p>Here&#39;s a visualization of the job.</p><div class="diagram">
+  <p>Sometimes the names of inputs and outputs don&#39;t match between multiple <a href="task-step.html#schema.task.config">task configs</a>, or they do match and you don&#39;t want them overwriting each other, like in the previous example. That&#39;s when <a href="task-step.html#schema.task.input_mapping"><code>input_mapping</code></a> and <a href="task-step.html#schema.task.output_mapping"><code>output_mapping</code></a> become helpful. Both of these features rename the inputs/outputs in the task&#39;s config to some other name in the job plan.</p><p>This pipeline has one job with four tasks.</p><p>The first task outputs a file with the date to the <code>the-output</code> directory.  <code>the-output</code> is mapped to the new name <code>demo-disk</code>. The artifact <code>demo-disk</code> is now available in the rest of the job plan for future steps to take as inputs.</p><p>The second task reads and prints the contents of the file under the new name <code>demo-disk</code>.</p><p>The third task reads and prints the contents of the file under another name, <code>generic-input</code>. The <code>demo-disk</code> artifact in the job plan is mapped to <code>generic-input</code>.</p><p>The fourth task tries to use the artifact named <code>the-output</code> as its input. This task fails to even start because there was no artifact with the name <code>the-output</code> available in the <a href="jobs.html#schema.job.plan">job plan</a>; it was remapped to <code>demo-disk</code>.</p><p>Here&#39;s a visualization of the job.</p><div class="diagram">
   <img src="images/how-to-guides/pipelines/explore-task-inputs-outs-example-three-1.gif" alt="diagram" width="100%" />
 </div><div class="titled-codeblock">
   <div class="codeblock-title">
@@ -692,7 +697,7 @@ fly -t tutorial trigger-job --job multiple-artifacts/multiple-outputs --watch</c
   <h2 class="section-header"><a class="anchor-target" name="6---get-steps-generate-artifacts" href="#6---get-steps-generate-artifacts"></a>#6 - Get Steps Generate Artifacts</h2>
   
 
-  <p>The majority of Concourse pipelines have at least one <a href="resources.html">resource</a>, which means they have at least one <a href="jobs.html#get-step">get step</a>. Using a <a href="jobs.html#get-step">get step</a> in a job makes an artifact with the name of the get step available for later steps in the job plan to consume as inputs.</p><p>Here&#39;s a visualization of the job. <div class="diagram">
+  <p>The majority of Concourse pipelines have at least one <a href="resources.html">resource</a>, which means they have at least one <a href="get-step.html">get step</a>. Using a <a href="get-step.html">get step</a> in a job makes an artifact with the name of the get step available for later steps in the job plan to consume as inputs.</p><p>Here&#39;s a visualization of the job. <div class="diagram">
   <img src="images/how-to-guides/pipelines/explore-task-inputs-outs-example-six.gif" alt="diagram" width="100%" />
 </div></p><div class="titled-codeblock">
   <div class="codeblock-title">
@@ -743,7 +748,7 @@ fly -t tutorial trigger-job --job get-artifact/get-job --watch</code></pre>
               prev:
 
               
-              <span class="section-number">1.13.1.1</span>
+              <span class="section-number">1.14.1.1</span>
               
 
               <a href="common-pipeline-practices.html">Common Pipeline Practices</a>
@@ -755,7 +760,7 @@ fly -t tutorial trigger-job --job get-artifact/get-job --watch</code></pre>
               next:
 
               
-              <span class="section-number">1.13.1.3</span>
+              <span class="section-number">1.14.1.3</span>
               
 
               <a href="gated-pipeline-patterns.html">Gated Pipeline Patterns</a>

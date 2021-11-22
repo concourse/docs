@@ -127,31 +127,36 @@
         
           <tr>
             <td class="number-cell">1.11</td>
-            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+            <td class="title-cell"><a href="steps.html" >Steps</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
             <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
@@ -281,7 +286,7 @@
   <h1 class="section-header"><a class="anchor-target" name="pipelines" href="#pipelines"></a><span class="section-number">1.6 </span>Pipelines</h1>
   
 
-  <p>A pipeline is the result of configuring <a href="jobs.html">Jobs</a> and <a href="resources.html">Resources</a> together. When you configure a pipeline, it takes on a life of its own, to continuously detect resource versions and automatically queue new builds for jobs as they have new available inputs.</p><p>Pipelines are configured via <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a> or the <a href="jobs.html#set-pipeline-step"><code>set_pipeline</code> step</a> as declarative <a href="config-basics.html#intro-to-yaml">YAML files</a> which conform to the following schema:</p><div class="schema">
+  <p>A pipeline is the result of configuring <a href="jobs.html">Jobs</a> and <a href="resources.html">Resources</a> together. When you configure a pipeline, it takes on a life of its own, to continuously detect resource versions and automatically queue new builds for jobs as they have new available inputs.</p><p>Pipelines are configured via <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a> or the <a href="set-pipeline-step.html#set-pipeline"><code>set_pipeline</code> step</a> as declarative <a href="config-basics.html#intro-to-yaml">YAML files</a> which conform to the following schema:</p><div class="schema">
   <h2 class="schema-header"><a class="anchor-target" name="schema.pipeline" href="#schema.pipeline"></a><code>pipeline</code> schema</h2>
 
   <div class="toggleable schema-attribute required">
@@ -698,7 +703,7 @@ jobs:
 </div><div class="example">
   <h3>Chaining Jobs</h3>
 
-  <p>Promoting resources to downstream jobs is done by setting <a href="jobs.html#schema.step.get-step.passed"><code>get</code> step <strong><code>passed</code></strong></a> on a <a href="jobs.html#get-step"><code>get</code> step</a>.</p><p>Note that nothing in <code>unit</code> says anything about triggering <code>build</code>. Job definitions are self-contained; they describe their dependencies and where they come from, which results in a dependency flow that Concourse pushes forward.</p><pre><code class="language-yaml">---
+  <p>Promoting resources to downstream jobs is done by setting <a href="get-step.html#schema.get.passed"><code>get</code> step <strong><code>passed</code></strong></a> on a <a href="get-step.html"><code>get</code> step</a>.</p><p>Note that nothing in <code>unit</code> says anything about triggering <code>build</code>. Job definitions are self-contained; they describe their dependencies and where they come from, which results in a dependency flow that Concourse pushes forward.</p><pre><code class="language-yaml">---
 resources:
 - name: booklit
   type: git

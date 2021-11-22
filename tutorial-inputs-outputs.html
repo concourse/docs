@@ -129,31 +129,36 @@
         
           <tr>
             <td class="number-cell">1.11</td>
-            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+            <td class="title-cell"><a href="steps.html" >Steps</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
             <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
@@ -259,7 +264,7 @@
   <h2 class="section-header"><a class="anchor-target" name="overview" href="#overview"></a>Overview</h2>
   
 
-  <p>This section is going to go over how to pass data between different <a href="jobs.html#steps">steps</a> in a <a href="jobs.html">job</a>. We&#39;ll continue building on our <code>hello-world.yml</code> pipeline.</p><p>In the previous section we learned that <a href="jobs.html#steps">steps</a> are where we tell Concourse what to run <em>(i.e. run my tests, run this bash script, build this image, etc.)</em>. We are going to expand on the concept of <a href="jobs.html#steps">steps</a> and show you how to pass artifacts/files between <a href="tasks.html">tasks</a>.</p>
+  <p>This section is going to go over how to pass data between different <a href="steps.html">steps</a> in a <a href="jobs.html">job</a>. We&#39;ll continue building on our <code>hello-world.yml</code> pipeline.</p><p>In the previous section we learned that <a href="steps.html">steps</a> are where we tell Concourse what to run <em>(i.e. run my tests, run this bash script, build this image, etc.)</em>. We are going to expand on the concept of <a href="steps.html">steps</a> and show you how to pass artifacts/files between <a href="tasks.html">tasks</a>.</p>
 
   
     
@@ -271,7 +276,7 @@
   <h2 class="section-header"><a class="anchor-target" name="what-are-inputs-and-outputs" href="#what-are-inputs-and-outputs"></a>What are inputs and outputs?</h2>
   
 
-  <p>The simple answer is that inputs and outputs are directories that get passed between steps. We&#39;ll refer to both inputs and outputs as <strong>artifacts</strong>.</p><p>Let&#39;s start exploring how artifacts work by adding a <a href="tasks.html#schema.task.outputs"><code class="schema-attribute-name"><bold>task<wbr />.outputs</bold></code></a> to our <code>hello-world-task</code>.</p><pre><code class="language-yaml">jobs:
+  <p>The simple answer is that inputs and outputs are directories that get passed between steps. We&#39;ll refer to both inputs and outputs as <strong>artifacts</strong>.</p><p>Let&#39;s start exploring how artifacts work by adding a <a href="tasks.html#schema.task-config.outputs"><code class="schema-attribute-name"><bold>task-config<wbr />.outputs</bold></code></a> to our <code>hello-world-task</code>.</p><pre><code class="language-yaml">jobs:
 - name: hello-world-job
   plan:
   - task: hello-world-task
@@ -386,11 +391,11 @@ succeeded</code></pre></p><p>With the above pipeline we can see that the file ma
 
   <p>As Concourse is running the steps in your job, it is creating a list of <strong>named artifacts</strong>. Let&#39;s see what that looks like for the pipeline we just ran.</p><ul>
 
-  <li><p>Concourse runs the task step <code>hello-world-task</code> with <a href="tasks.html#schema.task.outputs">output</a> <code>the-artifact</code></p><blockquote class="aside"><p>Concourse creates an empty artifact, assigns it the name <code>the-artifact</code>, and mounts it inside the task container.</p></blockquote></li>
+  <li><p>Concourse runs the task step <code>hello-world-task</code> with <a href="tasks.html#schema.task-config.outputs">output</a> <code>the-artifact</code></p><blockquote class="aside"><p>Concourse creates an empty artifact, assigns it the name <code>the-artifact</code>, and mounts it inside the task container.</p></blockquote></li>
 
-  <li><p>Concourse runs the task step <code>read-the-artifact</code> with <a href="tasks.html#schema.task.inputs">input</a> <code>the-artifact</code></p><blockquote class="aside"><p>Concourse looks up, in its list of artifacts for the build, for an artifact named <code>the-artifact</code>, and mounts it inside the task container. If no input with that name is found then the build would fail.</p></blockquote></li>
+  <li><p>Concourse runs the task step <code>read-the-artifact</code> with <a href="tasks.html#schema.task-config.inputs">input</a> <code>the-artifact</code></p><blockquote class="aside"><p>Concourse looks up, in its list of artifacts for the build, for an artifact named <code>the-artifact</code>, and mounts it inside the task container. If no input with that name is found then the build would fail.</p></blockquote></li>
 
-</ul><p>The next section will introduce you to the concept of <a href="resources.html">Resources</a>.</p><blockquote class="aside"><p>If you have any feedback for this tutorial please share it in <a href="https://github.com/concourse/concourse/discussions/7353">this Github discussion</a></p></blockquote>
+</ul><p>The next section will introduce you to the concept of <a href="resources.html">Resources</a>.</p><blockquote class="aside"><p>If you have any feedback for this tutorial please share it in <a href="https://github.com/concourse/concourse/discussions/7353">this GitHub discussion</a></p></blockquote>
 
   
     

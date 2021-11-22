@@ -129,31 +129,36 @@
         
           <tr>
             <td class="number-cell">1.11</td>
-            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+            <td class="title-cell"><a href="steps.html" >Steps</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="operation.html"  class="active">Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html"  class="active">Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
             <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
@@ -169,49 +174,49 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.14</span><a href="operation.html"  class="active">Operation</a>
+        <span class="section-number">1.15</span><a href="operation.html"  class="active">Operation</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.14.1</td>
+            <td class="number-cell">1.15.1</td>
             <td class="title-cell"><a href="metrics.html" >Metrics</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.2</td>
+            <td class="number-cell">1.15.2</td>
             <td class="title-cell"><a href="tracing.html" >Tracing</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.3</td>
+            <td class="number-cell">1.15.3</td>
             <td class="title-cell"><a href="encryption.html"  class="self">Encryption</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.4</td>
+            <td class="number-cell">1.15.4</td>
             <td class="title-cell"><a href="creds.html" >Credential Management</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.5</td>
+            <td class="number-cell">1.15.5</td>
             <td class="title-cell"><a href="container-placement.html" >Container Placement</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.6</td>
+            <td class="number-cell">1.15.6</td>
             <td class="title-cell"><a href="opa.html" >Open Policy Agent Integration</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.7</td>
+            <td class="number-cell">1.15.7</td>
             <td class="title-cell"><a href="global-resources.html" >Global Resources (experimental)</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.8</td>
+            <td class="number-cell">1.15.8</td>
             <td class="title-cell"><a href="administration.html" >Administration</a></td>
           </tr>
         
@@ -227,29 +232,29 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.14.3</span><a href="encryption.html"  class="self">Encryption</a>
+        <span class="section-number">1.15.3</span><a href="encryption.html"  class="self">Encryption</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.14.3.1</td>
+            <td class="number-cell">1.15.3.1</td>
             <td class="title-cell"><a href="encryption.html#whats-encrypted" >What&#39;s encrypted?</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.3.2</td>
+            <td class="number-cell">1.15.3.2</td>
             <td class="title-cell"><a href="encryption.html#enabling-encryption" >Enabling Encryption</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.3.3</td>
+            <td class="number-cell">1.15.3.3</td>
             <td class="title-cell"><a href="encryption.html#rotating-the-encryption-key" >Rotating the Encryption Key</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.3.4</td>
+            <td class="number-cell">1.15.3.4</td>
             <td class="title-cell"><a href="encryption.html#disabling-encryption" >Disabling Encryption</a></td>
           </tr>
         
@@ -267,10 +272,10 @@
         <div class="page-content">
           <div class="section" id="section_encryption">
   
-  <h1 class="section-header"><a class="anchor-target" name="encryption" href="#encryption"></a><span class="section-number">1.14.3 </span>Encryption</h1>
+  <h1 class="section-header"><a class="anchor-target" name="encryption" href="#encryption"></a><span class="section-number">1.15.3 </span>Encryption</h1>
   
 
-  <p>Automating everything means authorizing something to automate many things. This makes CI systems a high-risk target for security leaks.</p><p>Concourse pipelines are loaded with credentials: resources are configured with private keys, tasks are given credentials to servers they integrate via <a href="creds.html">credential manager variables</a>, <a href="jobs.html#schema.step.task-step.vars"><code>task</code> step <strong><code>vars</code></strong></a>, or <a href="jobs.html#schema.step.task-step.params"><code>task</code> step <strong><code>params</code></strong></a>, etc. If someone gets their hands on your config, they have access to everything.</p><p>To mitigate this, Concourse supports encrypting sensitive information before it reaches the database. This way the plaintext credentials only exist in memory for as long as they need to, and if someone gains access to your database, they can&#39;t so easily gain the keys to the kingdom.</p><p>We strongly encourage anyone running Concourse to configure encryption. Going further, it&#39;s best to have Concourse not store the credentials in the first place, in which case you may want to configure <a href="creds.html">credential management</a> as well.</p>
+  <p>Automating everything means authorizing something to automate many things. This makes CI systems a high-risk target for security leaks.</p><p>Concourse pipelines are loaded with credentials: resources are configured with private keys, tasks are given credentials to servers they integrate via <a href="creds.html">credential manager variables</a>, <a href="task-step.html#schema.task.vars"><code>task</code> step <strong><code>vars</code></strong></a>, or <a href="task-step.html#schema.task.params"><code>task</code> step <strong><code>params</code></strong></a>, etc. If someone gets their hands on your config, they have access to everything.</p><p>To mitigate this, Concourse supports encrypting sensitive information before it reaches the database. This way the plaintext credentials only exist in memory for as long as they need to, and if someone gains access to your database, they can&#39;t so easily gain the keys to the kingdom.</p><p>We strongly encourage anyone running Concourse to configure encryption. Going further, it&#39;s best to have Concourse not store the credentials in the first place, in which case you may want to configure <a href="creds.html">credential management</a> as well.</p>
 
   
     
@@ -285,9 +290,9 @@
 
   <li><p>Resource type <a href="resource-types.html#schema.resource_type.source"><code class="schema-attribute-name"><bold>resource_type<wbr />.source</bold></code></a>s, for the same reason as above, though this is probably a less common use case.</p></li>
 
-  <li><p>Pipeline <a href="jobs.html#schema.step.task-step.vars"><code>task</code> step <strong><code>vars</code></strong></a> and <a href="jobs.html#schema.step.task-step.params"><code>task</code> step <strong><code>params</code></strong></a>, in case they contain sensitive information such as usernames and/or passwords.</p></li>
+  <li><p>Pipeline <a href="task-step.html#schema.task.vars"><code>task</code> step <strong><code>vars</code></strong></a> and <a href="task-step.html#schema.task.params"><code>task</code> step <strong><code>params</code></strong></a>, in case they contain sensitive information such as usernames and/or passwords.</p></li>
 
-  <li><p>Put step <a href="jobs.html#schema.step.put-step.params"><code>put</code> step <strong><code>params</code></strong></a> and get step <a href="jobs.html#schema.step.get-step.params"><code>get</code> step <strong><code>params</code></strong></a> are also encrypted, even though they rarely should contain credentials (they&#39;re usually in <a href="resources.html#schema.resource.source"><code class="schema-attribute-name"><bold>resource<wbr />.source</bold></code></a>).</p></li>
+  <li><p>Put step <a href="put-step.html#schema.put.params"><code>put</code> step <strong><code>params</code></strong></a> and get step <a href="get-step.html#schema.get.params"><code>get</code> step <strong><code>params</code></strong></a> are also encrypted, even though they rarely should contain credentials (they&#39;re usually in <a href="resources.html#schema.resource.source"><code class="schema-attribute-name"><bold>resource<wbr />.source</bold></code></a>).</p></li>
 
   <li><p>Team auth configurations, as they often contain things like GitHub or other oAuth client secrets.</p></li>
 
@@ -353,7 +358,7 @@
               prev:
 
               
-              <span class="section-number">1.14.2</span>
+              <span class="section-number">1.15.2</span>
               
 
               <a href="tracing.html">Tracing</a>
@@ -365,7 +370,7 @@
               next:
 
               
-              <span class="section-number">1.14.4</span>
+              <span class="section-number">1.15.4</span>
               
 
               <a href="creds.html">Credential Management</a>

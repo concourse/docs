@@ -127,31 +127,36 @@
         
           <tr>
             <td class="number-cell">1.11</td>
-            <td class="title-cell"><a href="tasks.html"  class="self">Tasks</a></td>
+            <td class="title-cell"><a href="steps.html" >Steps</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+            <td class="title-cell"><a href="tasks.html"  class="self">Tasks</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
             <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
@@ -167,19 +172,19 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.11</span><a href="tasks.html"  class="self">Tasks</a>
+        <span class="section-number">1.12</span><a href="tasks.html"  class="self">Tasks</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.11.1</td>
+            <td class="number-cell">1.12.1</td>
             <td class="title-cell"><a href="tasks.html#running-tasks" >Running tasks with <code>fly execute</code></a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.11.2</td>
+            <td class="number-cell">1.12.2</td>
             <td class="title-cell"><a href="tasks.html#task-environment" >Task runtime environment</a></td>
           </tr>
         
@@ -201,7 +206,7 @@
       
       <tr>
         <td class="number-cell"><code>#</code></td>
-        <td class="title-cell"><a href="tasks.html#schema.task"><strong><code>task</code></strong> schema</a></td>
+        <td class="title-cell"><a href="tasks.html#schema.task-config"><strong><code>task-config</code></strong> schema</a></td>
       </tr>
       
       <tr>
@@ -236,7 +241,7 @@
       
       <tr>
         <td class="number-cell"><code>#</code></td>
-        <td class="title-cell"><a href="tasks.html#schema.task.platform"><code class="schema-attribute-name"><bold>task<wbr />.platform</bold></code></a></td>
+        <td class="title-cell"><a href="tasks.html#schema.task-config.platform"><code class="schema-attribute-name"><bold>task-config<wbr />.platform</bold></code></a></td>
       </tr>
       
       <tr>
@@ -261,7 +266,7 @@
       
       <tr>
         <td class="number-cell"><code>#</code></td>
-        <td class="title-cell"><a href="tasks.html#schema.task.image_resource"><code class="schema-attribute-name"><bold>task<wbr />.image_resource</bold></code></a></td>
+        <td class="title-cell"><a href="tasks.html#schema.task-config.image_resource"><code class="schema-attribute-name"><bold>task-config<wbr />.image_resource</bold></code></a></td>
       </tr>
       
       <tr>
@@ -281,7 +286,7 @@
       
       <tr>
         <td class="number-cell"><code>#</code></td>
-        <td class="title-cell"><a href="tasks.html#schema.task.inputs"><code class="schema-attribute-name"><bold>task<wbr />.inputs</bold></code></a></td>
+        <td class="title-cell"><a href="tasks.html#schema.task-config.inputs"><code class="schema-attribute-name"><bold>task-config<wbr />.inputs</bold></code></a></td>
       </tr>
       
       <tr>
@@ -296,7 +301,7 @@
       
       <tr>
         <td class="number-cell"><code>#</code></td>
-        <td class="title-cell"><a href="tasks.html#schema.task.outputs"><code class="schema-attribute-name"><bold>task<wbr />.outputs</bold></code></a></td>
+        <td class="title-cell"><a href="tasks.html#schema.task-config.outputs"><code class="schema-attribute-name"><bold>task-config<wbr />.outputs</bold></code></a></td>
       </tr>
       
       <tr>
@@ -306,12 +311,12 @@
       
       <tr>
         <td class="number-cell"><code>#</code></td>
-        <td class="title-cell"><a href="tasks.html#schema.task.caches"><code class="schema-attribute-name"><bold>task<wbr />.caches</bold></code></a></td>
+        <td class="title-cell"><a href="tasks.html#schema.task-config.caches"><code class="schema-attribute-name"><bold>task-config<wbr />.caches</bold></code></a></td>
       </tr>
       
       <tr>
         <td class="number-cell"><code>#</code></td>
-        <td class="title-cell"><a href="tasks.html#schema.task.params"><code class="schema-attribute-name"><bold>task<wbr />.params</bold></code></a></td>
+        <td class="title-cell"><a href="tasks.html#schema.task-config.params"><code class="schema-attribute-name"><bold>task-config<wbr />.params</bold></code></a></td>
       </tr>
       
       <tr>
@@ -336,12 +341,12 @@
       
       <tr>
         <td class="number-cell"><code>#</code></td>
-        <td class="title-cell"><a href="tasks.html#schema.task.run"><code class="schema-attribute-name"><bold>task<wbr />.run</bold></code></a></td>
+        <td class="title-cell"><a href="tasks.html#schema.task-config.run"><code class="schema-attribute-name"><bold>task-config<wbr />.run</bold></code></a></td>
       </tr>
       
       <tr>
         <td class="number-cell"><code>#</code></td>
-        <td class="title-cell"><a href="tasks.html#schema.task.rootfs_uri"><code class="schema-attribute-name"><bold>task<wbr />.rootfs_uri</bold></code></a></td>
+        <td class="title-cell"><a href="tasks.html#schema.task-config.rootfs_uri"><code class="schema-attribute-name"><bold>task-config<wbr />.rootfs_uri</bold></code></a></td>
       </tr>
       
       <tr>
@@ -356,7 +361,7 @@
       
       <tr>
         <td class="number-cell"><code>#</code></td>
-        <td class="title-cell"><a href="tasks.html#schema.task.container_limits"><code class="schema-attribute-name"><bold>task<wbr />.container_limits</bold></code></a></td>
+        <td class="title-cell"><a href="tasks.html#schema.task-config.container_limits"><code class="schema-attribute-name"><bold>task-config<wbr />.container_limits</bold></code></a></td>
       </tr>
       
 
@@ -364,7 +369,7 @@
   
     
       <tr>
-        <td class="number-cell">1.11.1</td>
+        <td class="number-cell">1.12.1</td>
         <td class="title-cell"><a href="tasks.html#running-tasks" >Running tasks with <code>fly execute</code></a></td>
       </tr>
       
@@ -375,7 +380,7 @@
 
     
       <tr>
-        <td class="number-cell">1.11.2</td>
+        <td class="number-cell">1.12.2</td>
         <td class="title-cell"><a href="tasks.html#task-environment" >Task runtime environment</a></td>
       </tr>
       
@@ -397,35 +402,35 @@
         <div class="page-content">
           <div class="section" id="section_tasks">
   
-  <h1 class="section-header"><a class="anchor-target" name="tasks" href="#tasks"></a><span class="section-number">1.11 </span>Tasks</h1>
+  <h1 class="section-header"><a class="anchor-target" name="tasks" href="#tasks"></a><span class="section-number">1.12 </span>Tasks</h1>
   
 
-  <p>The smallest configurable unit in a Concourse pipeline is a single task. A task can be thought of as a function from <a href="tasks.html#schema.task.inputs"><code class="schema-attribute-name"><bold>task<wbr />.inputs</bold></code></a> to <a href="tasks.html#schema.task.outputs"><code class="schema-attribute-name"><bold>task<wbr />.outputs</bold></code></a> that can either succeed or fail.</p><p>Going a bit further, ideally tasks are <em>pure</em> functions: given the same set of inputs, it should either always succeed with the same outputs or always fail. This is entirely up to your script&#39;s level of discipline, however. Flaky tests or dependencies on the internet are the most common source of impurity.</p><p>Once you have a running Concourse deployment, you can start configuring your tasks and executing them interactively from your terminal with the <a href="fly.html">Fly</a> commandline tool.</p><p>Once you&#39;ve figured out your task&#39;s configuration, you can reuse it for a <a href="jobs.html">Job</a> in your <a href="pipelines.html">Pipeline</a>.</p><p>Conventionally a task&#39;s configuration is placed in the same repository as the code it&#39;s testing, possibly under some <code>ci</code> directory.</p><p>A task&#39;s configuration specifies the following:</p><div class="schema">
-  <h2 class="schema-header"><a class="anchor-target" name="schema.task" href="#schema.task"></a><code>task</code> schema</h2>
+  <p>The smallest configurable unit in a Concourse pipeline is a single task. A task can be thought of as a function from <a href="tasks.html#schema.task-config.inputs"><code class="schema-attribute-name"><bold>task-config<wbr />.inputs</bold></code></a> to <a href="tasks.html#schema.task-config.outputs"><code class="schema-attribute-name"><bold>task-config<wbr />.outputs</bold></code></a> that can either succeed or fail.</p><p>Going a bit further, ideally tasks are <em>pure</em> functions: given the same set of inputs, it should either always succeed with the same outputs or always fail. This is entirely up to your script&#39;s level of discipline, however. Flaky tests or dependencies on the internet are the most common source of impurity.</p><p>Once you have a running Concourse deployment, you can start configuring your tasks and executing them interactively from your terminal with the <a href="fly.html">Fly</a> commandline tool.</p><p>Once you&#39;ve figured out your task&#39;s configuration, you can reuse it for a <a href="jobs.html">Job</a> in your <a href="pipelines.html">Pipeline</a>.</p><p>Conventionally a task&#39;s configuration is placed in the same repository as the code it&#39;s testing, possibly under some <code>ci</code> directory.</p><p>A task&#39;s configuration specifies the following:</p><div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.task-config" href="#schema.task-config"></a><code>task-config</code> schema</h2>
 
   <div class="toggleable schema-attribute required">
-  <input id="toggle-schema.task.platform" type="checkbox" class="toggle" />
-  <label for="toggle-schema.task.platform" class="toggle-title">
-    <a id="schema.task.platform"></a>
+  <input id="toggle-schema.task-config.platform" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task-config.platform" class="toggle-title">
+    <a id="schema.task-config.platform"></a>
 
-    <code><a class="attribute-name" href="#schema.task.platform">platform</a>: <span class="attribute-type"><span class="schema-scalar">linux</span> | <span class="schema-scalar">darwin</span> | <span class="schema-scalar">windows</span></span></code>
+    <code><a class="attribute-name" href="#schema.task-config.platform">platform</a>: <span class="attribute-type"><span class="schema-scalar">linux</span> | <span class="schema-scalar">darwin</span> | <span class="schema-scalar">windows</span></span></code>
   </label>
 
   <div class="toggle-content attribute-content">
     <p>The platform the task should run on. This determines the pool of workers that the task can run against.</p><p>Technically any string value is allowed so long as a worker advertises the same platform, but in practice only <code>linux</code>, <code>darwin</code>, and <code>windows</code> are in use.</p>
   </div>
 </div><div class="toggleable schema-attribute required">
-  <input id="toggle-schema.task.image_resource" type="checkbox" class="toggle" />
-  <label for="toggle-schema.task.image_resource" class="toggle-title">
-    <a id="schema.task.image_resource"></a>
+  <input id="toggle-schema.task-config.image_resource" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task-config.image_resource" class="toggle-title">
+    <a id="schema.task-config.image_resource"></a>
 
-    <code><a class="attribute-name" href="#schema.task.image_resource">image_resource</a>: <span class="attribute-type"><a href="tasks.html#schema.anonymous_resource"><strong>anonymous_resource</strong></a></span></code>
+    <code><a class="attribute-name" href="#schema.task-config.image_resource">image_resource</a>: <span class="attribute-type"><a href="tasks.html#schema.anonymous_resource"><strong>anonymous_resource</strong></a></span></code>
   </label>
 
   <div class="toggle-content attribute-content">
-    <p>The container image to run with, as provided by an anonymous <a href="resources.html">resource</a> definition.</p><p>Whenever the task runs, the anonymous resource will be <code>check</code>ed to discover the latest version available. The image will then be fetched onto the worker, if necessary, just prior to running the task.</p><p>To use an image provided by a previous step within your build plan, set <a href="jobs.html#schema.step.task-step.image"><code>task</code> step <strong><code>image</code></strong></a> on the <a href="jobs.html#task-step"><code>task</code> step</a> instead.</p><blockquote class="aside"><p><strong>NOTE:</strong> This field is only required for tasks targeting the <a href="tasks.html#schema.task.platform">Linux platform</a>. This field will be ignored for Windows and Darwin workers. Windows containers are currently not supported and Darwin does not have native containers. The task will run inside a clean temporary directory on the Windows/Darwin worker with any inputs and outputs copied into the same directory. Any dependencies should be pre-installed on the worker.</p></blockquote><div class="toggleable example">
-  <input id="toggle-97b5bc66b7412781afa95141cc265ac44e75a66b" type="checkbox" class="toggle" />
-  <label for="toggle-97b5bc66b7412781afa95141cc265ac44e75a66b" class="toggle-title">Using the <code>golang</code> Docker image</label>
+    <p>The container image to run with, as provided by an anonymous <a href="resources.html">resource</a> definition.</p><p>Whenever the task runs, the anonymous resource will be <code>check</code>ed to discover the latest version available. The image will then be fetched onto the worker, if necessary, just prior to running the task.</p><p>To use an image provided by a previous step within your build plan, set <a href="task-step.html#schema.task.image"><code>task</code> step <strong><code>image</code></strong></a> on the <a href="task-step.html"><code>task</code> step</a> instead.</p><blockquote class="aside"><p><strong>NOTE:</strong> This field is only required for tasks targeting the <a href="tasks.html#schema.task-config.platform">Linux platform</a>. This field will be ignored for Windows and Darwin workers. Windows containers are currently not supported and Darwin does not have native containers. The task will run inside a clean temporary directory on the Windows/Darwin worker with any inputs and outputs copied into the same directory. Any dependencies should be pre-installed on the worker.</p></blockquote><div class="toggleable example">
+  <input id="toggle-461a576b1284b5c560cab9c763a43e89a7d4eb44" type="checkbox" class="toggle" />
+  <label for="toggle-461a576b1284b5c560cab9c763a43e89a7d4eb44" class="toggle-title">Using the <code>golang</code> Docker image</label>
   <div class="toggle-content">
     <p>The following task config will use the <a href="https://hub.docker.com/_/golang"><code>golang</code> Docker image</a> to run <code>go version</code>:</p><pre><code class="language-yaml">platform: linux
 
@@ -488,15 +493,15 @@ run:
 </div>
   </div>
 </div><div class="toggleable schema-attribute optional">
-  <input id="toggle-schema.task.inputs" type="checkbox" class="toggle" />
-  <label for="toggle-schema.task.inputs" class="toggle-title">
-    <a id="schema.task.inputs"></a>
+  <input id="toggle-schema.task-config.inputs" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task-config.inputs" class="toggle-title">
+    <a id="schema.task-config.inputs"></a>
 
-    <code><a class="attribute-name" href="#schema.task.inputs">inputs</a>: <span class="attribute-type">[<a href="tasks.html#schema.input"><strong>input</strong></a>]</span></code>
+    <code><a class="attribute-name" href="#schema.task-config.inputs">inputs</a>: <span class="attribute-type">[<a href="tasks.html#schema.input"><strong>input</strong></a>]</span></code>
   </label>
 
   <div class="toggle-content attribute-content">
-    <p>The set of artifacts used by task, determining which artifacts will be available in the current directory when the task runs.</p><p>These are satisfied by <a href="jobs.html#get-step"><code>get</code> step</a>s or <a href="tasks.html#schema.task.outputs"><code class="schema-attribute-name"><bold>task<wbr />.outputs</bold></code></a> of a previous task. These can also be provided by <code>-i</code> with <a href="tasks.html#running-tasks"><code>fly execute</code></a>.</p><p>If any required inputs are missing at run-time, then the task will error immediately.</p><div class="schema">
+    <p>The set of artifacts used by task, determining which artifacts will be available in the current directory when the task runs.</p><p>These are satisfied by <a href="get-step.html"><code>get</code> step</a>s or <a href="tasks.html#schema.task-config.outputs"><code class="schema-attribute-name"><bold>task-config<wbr />.outputs</bold></code></a> of a previous task. These can also be provided by <code>-i</code> with <a href="tasks.html#running-tasks"><code>fly execute</code></a>.</p><p>If any required inputs are missing at run-time, then the task will error immediately.</p><div class="schema">
   <h2 class="schema-header"><a class="anchor-target" name="schema.input" href="#schema.input"></a><code>input</code> schema</h2>
 
   <div class="toggleable schema-attribute required">
@@ -536,15 +541,15 @@ run:
 </div>
   </div>
 </div><div class="toggleable schema-attribute optional">
-  <input id="toggle-schema.task.outputs" type="checkbox" class="toggle" />
-  <label for="toggle-schema.task.outputs" class="toggle-title">
-    <a id="schema.task.outputs"></a>
+  <input id="toggle-schema.task-config.outputs" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task-config.outputs" class="toggle-title">
+    <a id="schema.task-config.outputs"></a>
 
-    <code><a class="attribute-name" href="#schema.task.outputs">outputs</a>: <span class="attribute-type">[<a href="tasks.html#schema.output"><strong>output</strong></a>]</span></code>
+    <code><a class="attribute-name" href="#schema.task-config.outputs">outputs</a>: <span class="attribute-type">[<a href="tasks.html#schema.output"><strong>output</strong></a>]</span></code>
   </label>
 
   <div class="toggle-content attribute-content">
-    <p>The artifacts produced by the task.</p><p>Each output configures a directory to make available to later steps in the <a href="jobs.html#steps">build plan</a>. The directory will be automatically created before the task runs, and the task should place any artifacts it wants to export in the directory.</p><div class="schema">
+    <p>The artifacts produced by the task.</p><p>Each output configures a directory to make available to later steps in the <a href="steps.html">build plan</a>. The directory will be automatically created before the task runs, and the task should place any artifacts it wants to export in the directory.</p><div class="schema">
   <h2 class="schema-header"><a class="anchor-target" name="schema.output" href="#schema.output"></a><code>output</code> schema</h2>
 
   <div class="toggleable schema-attribute required">
@@ -573,11 +578,11 @@ run:
 </div>
   </div>
 </div><div class="toggleable schema-attribute optional">
-  <input id="toggle-schema.task.caches" type="checkbox" class="toggle" />
-  <label for="toggle-schema.task.caches" class="toggle-title">
-    <a id="schema.task.caches"></a>
+  <input id="toggle-schema.task-config.caches" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task-config.caches" class="toggle-title">
+    <a id="schema.task-config.caches"></a>
 
-    <code><a class="attribute-name" href="#schema.task.caches">caches</a>: <span class="attribute-type">[<a href="tasks.html#schema.cache"><strong>cache</strong></a>]</span></code>
+    <code><a class="attribute-name" href="#schema.task-config.caches">caches</a>: <span class="attribute-type">[<a href="tasks.html#schema.cache"><strong>cache</strong></a>]</span></code>
   </label>
 
   <div class="toggle-content attribute-content">
@@ -599,22 +604,22 @@ run:
 </div>
   </div>
 </div><div class="toggleable schema-attribute optional">
-  <input id="toggle-schema.task.params" type="checkbox" class="toggle" />
-  <label for="toggle-schema.task.params" class="toggle-title">
-    <a id="schema.task.params"></a>
+  <input id="toggle-schema.task-config.params" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task-config.params" class="toggle-title">
+    <a id="schema.task-config.params"></a>
 
-    <code><a class="attribute-name" href="#schema.task.params">params</a>: <span class="attribute-type"><a href="config-basics.html#schema.env-vars"><strong>env-vars</strong></a></span></code>
+    <code><a class="attribute-name" href="#schema.task-config.params">params</a>: <span class="attribute-type"><a href="config-basics.html#schema.env-vars"><strong>env-vars</strong></a></span></code>
   </label>
 
   <div class="toggle-content attribute-content">
-    <p>A key-value mapping of string keys and values that are exposed to the task via environment variables.</p><p>Pipelines can override these params by setting <a href="jobs.html#schema.step.task-step.params"><code>task</code> step <strong><code>params</code></strong></a> on the <a href="jobs.html#task-step"><code>task</code> step</a>. This is a common method of providing credentials to a task.</p>
+    <p>A key-value mapping of string keys and values that are exposed to the task via environment variables.</p><p>Pipelines can override these params by setting <a href="task-step.html#schema.task.params"><code>task</code> step <strong><code>params</code></strong></a> on the <a href="task-step.html"><code>task</code> step</a>. This is a common method of providing credentials to a task.</p>
   </div>
 </div><div class="toggleable schema-attribute required">
-  <input id="toggle-schema.task.run" type="checkbox" class="toggle" />
-  <label for="toggle-schema.task.run" class="toggle-title">
-    <a id="schema.task.run"></a>
+  <input id="toggle-schema.task-config.run" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task-config.run" class="toggle-title">
+    <a id="schema.task-config.run"></a>
 
-    <code><a class="attribute-name" href="#schema.task.run">run</a>: <span class="attribute-type"><a href="tasks.html#schema.command"><strong>command</strong></a></span></code>
+    <code><a class="attribute-name" href="#schema.task-config.run">run</a>: <span class="attribute-type"><a href="tasks.html#schema.command"><strong>command</strong></a></span></code>
   </label>
 
   <div class="toggle-content attribute-content">
@@ -669,22 +674,22 @@ run:
 </div>
   </div>
 </div><div class="toggleable schema-attribute optional">
-  <input id="toggle-schema.task.rootfs_uri" type="checkbox" class="toggle" />
-  <label for="toggle-schema.task.rootfs_uri" class="toggle-title">
-    <a id="schema.task.rootfs_uri"></a>
+  <input id="toggle-schema.task-config.rootfs_uri" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task-config.rootfs_uri" class="toggle-title">
+    <a id="schema.task-config.rootfs_uri"></a>
 
-    <code><a class="attribute-name" href="#schema.task.rootfs_uri">rootfs_uri</a>: <span class="attribute-type"><a href="config-basics.html#schema.string"><strong>string</strong></a></span></code>
+    <code><a class="attribute-name" href="#schema.task-config.rootfs_uri">rootfs_uri</a>: <span class="attribute-type"><a href="config-basics.html#schema.string"><strong>string</strong></a></span></code>
   </label>
 
   <div class="toggle-content attribute-content">
-    <p>A string specifying the rootfs uri of the container, as interpreted by your worker&#39;s Garden backend.</p><p><a href="tasks.html#schema.task.image_resource"><code class="schema-attribute-name"><bold>task<wbr />.image_resource</bold></code></a> is the preferred way to specify base image. You should only use this if you have no other option and you really know what you&#39;re doing.</p>
+    <p>A string specifying the rootfs uri of the container, as interpreted by your worker&#39;s Garden backend.</p><p><a href="tasks.html#schema.task-config.image_resource"><code class="schema-attribute-name"><bold>task-config<wbr />.image_resource</bold></code></a> is the preferred way to specify base image. You should only use this if you have no other option and you really know what you&#39;re doing.</p>
   </div>
 </div><div class="toggleable schema-attribute optional">
-  <input id="toggle-schema.task.container_limits" type="checkbox" class="toggle" />
-  <label for="toggle-schema.task.container_limits" class="toggle-title">
-    <a id="schema.task.container_limits"></a>
+  <input id="toggle-schema.task-config.container_limits" type="checkbox" class="toggle" />
+  <label for="toggle-schema.task-config.container_limits" class="toggle-title">
+    <a id="schema.task-config.container_limits"></a>
 
-    <code><a class="attribute-name" href="#schema.task.container_limits">container_limits</a>: <span class="attribute-type"><a href="tasks.html#schema.container_limits"><strong>container_limits</strong></a></span></code>
+    <code><a class="attribute-name" href="#schema.task-config.container_limits">container_limits</a>: <span class="attribute-type"><a href="tasks.html#schema.container_limits"><strong>container_limits</strong></a></span></code>
   </label>
 
   <div class="toggle-content attribute-content">
@@ -700,7 +705,12 @@ run:
   </label>
 
   <div class="toggle-content attribute-content">
-    <p>The maximum amount of CPU available to the task container, measured in shares. 0 means unlimited.</p>
+    <p>The maximum amount of CPU available to the task container, measured in shares. 0 means unlimited.</p><p>CPU shares are relative to the CPU shares of other containers on a worker. For example, if you have two containers both with a CPU limit of 2 shares then each container will get 50% of the CPU&#39;s time.</p><pre><code class="language-">Container A: 2 shares - 50% CPU
+Container B: 2 shares - 50% CPU
+Total CPU shares declared: 4</code></pre><p>If you introduce another container then the number of CPU time per container changes. CPU shares are relative to each other. <pre><code class="language-">Container A: 2 shares - 25% CPU
+Container B: 2 shares - 25% CPU
+Container C: 4 shares - 50% CPU
+Total CPU shares declared: 8</code></pre></p>
   </div>
 </div><div class="toggleable schema-attribute optional">
   <input id="toggle-schema.container_limits.memory" type="checkbox" class="toggle" />
@@ -740,7 +750,7 @@ run:
   <input id="toggle-3e2549dbb0e4e84631bbdd416b5556e27ff22355" type="checkbox" class="toggle" />
   <label for="toggle-3e2549dbb0e4e84631bbdd416b5556e27ff22355" class="toggle-title">Producing outputs from a task</label>
   <div class="toggle-content">
-    <p>A task can configure <a href="tasks.html#schema.task.outputs"><code class="schema-attribute-name"><bold>task<wbr />.outputs</bold></code></a> to produce artifacts that can then be propagated to a <a href="jobs.html#put-step"><code>put</code> step</a> or another <a href="jobs.html#task-step"><code>task</code> step</a> in the same plan. They can also be downloaded with <a href="tasks.html#running-tasks"><code>fly execute</code></a> by passing <code>-o</code>.</p><pre><code class="language-yaml">---
+    <p>A task can configure <a href="tasks.html#schema.task-config.outputs"><code class="schema-attribute-name"><bold>task-config<wbr />.outputs</bold></code></a> to produce artifacts that can then be propagated to a <a href="put-step.html"><code>put</code> step</a> or another <a href="task-step.html"><code>task</code> step</a> in the same plan. They can also be downloaded with <a href="tasks.html#running-tasks"><code>fly execute</code></a> by passing <code>-o</code>.</p><pre><code class="language-yaml">---
 platform: linux
 
 image_resource: # ...
@@ -759,7 +769,7 @@ set -e -u -x
 export GOPATH=$PWD/project-src
 
 go build -o built-project/my-project \
-  github.com/concourse/my-project</code></pre><p>...this task could then be used in a <a href="jobs.html#steps">build plan</a> like so:</p><pre><code class="language-yaml">plan:
+  github.com/concourse/my-project</code></pre><p>...this task could then be used in a <a href="steps.html">build plan</a> like so:</p><pre><code class="language-yaml">plan:
 - get: project-src
 - task: build-bin
   file: project-src/ci/build.yml
@@ -795,7 +805,7 @@ npm install
   <input id="toggle-3aa0db94142151b23eb277ddf8bb8bf55d9d2b86" type="checkbox" class="toggle" />
   <label for="toggle-3aa0db94142151b23eb277ddf8bb8bf55d9d2b86" class="toggle-title">Using an image from a private Docker registry</label>
   <div class="toggle-content">
-    <p>The following external task uses an image from a private registry. Assuming the CA is configured properly on the workers, SSL should Just Work™.</p><p>External tasks are now fully interpolated using <a href="creds.html">credential manager variables</a> and <a href="jobs.html#schema.step.task-step.vars"><code>task</code> step <strong><code>vars</code></strong></a>, so you can use template variables in an external task:</p><pre><code class="language-yaml">---
+    <p>The following external task uses an image from a private registry. Assuming the CA is configured properly on the workers, SSL should Just Work™.</p><p>External tasks are now fully interpolated using <a href="creds.html">credential manager variables</a> and <a href="task-step.html#schema.task.vars"><code>task</code> step <strong><code>vars</code></strong></a>, so you can use template variables in an external task:</p><pre><code class="language-yaml">---
 platform: linux
 
 image_resource:
@@ -820,7 +830,7 @@ run:
   <ol class="toc">
   
     <li>
-      <span class="section-number">1.11.1</span>
+      <span class="section-number">1.12.1</span>
       <a href="tasks.html#running-tasks">Running tasks with <code>fly execute</code></a>
 
       
@@ -829,7 +839,7 @@ run:
     </li>
   
     <li>
-      <span class="section-number">1.11.2</span>
+      <span class="section-number">1.12.2</span>
       <a href="tasks.html#task-environment">Task runtime environment</a>
 
       
@@ -853,7 +863,7 @@ run:
   <input id="toggle-b56665b124db029db6b069a5c2f73da19909824f" type="checkbox" class="toggle" />
   <label for="toggle-b56665b124db029db6b069a5c2f73da19909824f" class="toggle-title">Providing multiple inputs</label>
   <div class="toggle-content">
-    <p>Tasks in Concourse can take multiple inputs. Up until now we&#39;ve just been submitting a single input (our current working directory) that has the same name as the directory.</p><p>Tasks must specify the inputs that they require as <a href="tasks.html#schema.task.inputs"><code class="schema-attribute-name"><bold>task<wbr />.inputs</bold></code></a>. For <code>fly</code> to upload these inputs you can use the <code>-i</code> or <code>--input</code> arguments with name and path pairs. For example:</p><pre><code class="language-bash">$ fly -t example execute \
+    <p>Tasks in Concourse can take multiple inputs. Up until now we&#39;ve just been submitting a single input (our current working directory) that has the same name as the directory.</p><p>Tasks must specify the inputs that they require as <a href="tasks.html#schema.task-config.inputs"><code class="schema-attribute-name"><bold>task-config<wbr />.inputs</bold></code></a>. For <code>fly</code> to upload these inputs you can use the <code>-i</code> or <code>--input</code> arguments with name and path pairs. For example:</p><pre><code class="language-bash">$ fly -t example execute \
     --config build-stemcell.yml \
     --input code=. \
     --input stemcells=../stemcells</code></pre><p>This would work together with a <code>build-stemcell.yml</code> if its <code>inputs:</code> section was as follows:</p><pre><code class="language-yaml">inputs:
@@ -873,7 +883,7 @@ run:
   <input id="toggle-2e46a698de65b5e796e557ccf7905d30cce72e3c" type="checkbox" class="toggle" />
   <label for="toggle-2e46a698de65b5e796e557ccf7905d30cce72e3c" class="toggle-title">Using an image from a job in your pipeline with <code>--image</code></label>
   <div class="toggle-content">
-    <p>When using <code>--inputs-from</code> as above, you can additionally specify which input to use as the task&#39;s image by passing <code>--image input-name</code>.</p><p>For example, the following pipeline fetches an image via a <a href="jobs.html#get-step"><code>get</code> step</a> and uses it for <a href="jobs.html#schema.step.task-step.image"><code>task</code> step <strong><code>image</code></strong></a>:</p><pre><code class="language-yaml">resources:
+    <p>When using <code>--inputs-from</code> as above, you can additionally specify which input to use as the task&#39;s image by passing <code>--image input-name</code>.</p><p>For example, the following pipeline fetches an image via a <a href="get-step.html"><code>get</code> step</a> and uses it for <a href="task-step.html#schema.task.image"><code>task</code> step <strong><code>image</code></strong></a>:</p><pre><code class="language-yaml">resources:
 - name: my-repo
   type: git
   source: {uri: https://example.com}
@@ -919,7 +929,7 @@ jobs:
     <p>Task config files can contain <a href="vars.html">Vars</a> which can can be set during <code>fly execute</code> by using the <code>-v</code>, <code>-y</code> and <code>-l</code> flags:</p><pre><code class="language-bash">fly -t example execute --config tests.yml \
   -l vars.yml \
   -v some_string=&#34;Hello World!&#34; \
-  -y some_bool=true</code></pre><p>Any variables not satisfied via the above flags will be deferred to the configured <a href="creds.html">credential manager</a>.</p><p>To satisfy these vars when running the task in a pipeline, see <a href="jobs.html#schema.step.task-step.vars"><code>task</code> step <strong><code>vars</code></strong></a>.</p>
+  -y some_bool=true</code></pre><p>Any variables not satisfied via the above flags will be deferred to the configured <a href="creds.html">credential manager</a>.</p><p>To satisfy these vars when running the task in a pipeline, see <a href="task-step.html#schema.task.vars"><code>task</code> step <strong><code>vars</code></strong></a>.</p>
   </div>
 </div><div class="toggleable example">
   <input id="toggle-747c85ef4bbb300b7591f7e0da39f7e5adaa61d5" type="checkbox" class="toggle" />
@@ -939,7 +949,7 @@ jobs:
   <h2 class="section-header"><a class="anchor-target" name="task-environment" href="#task-environment"></a>Task runtime environment</h2>
   
 
-  <p>A task runs in a new container every time, using the image provided by <a href="tasks.html#schema.task.image_resource"><code class="schema-attribute-name"><bold>task<wbr />.image_resource</bold></code></a> as its base filesystem (i.e. <code>/</code>).</p><p>The command specified by <a href="tasks.html#schema.task.run"><code class="schema-attribute-name"><bold>task<wbr />.run</bold></code></a> will be executed in a working directory containing each of the <a href="tasks.html#schema.task.inputs"><code class="schema-attribute-name"><bold>task<wbr />.inputs</bold></code></a>. If any input is missing, the task will not run (and the container will not even be created).</p><p>The working directory will also contain empty directories for each of the <a href="tasks.html#schema.task.outputs"><code class="schema-attribute-name"><bold>task<wbr />.outputs</bold></code></a>. The task must place artifacts in the output directories for them to be exported. This meshes well with build tools with configurable destination paths.</p><blockquote class="aside"><p>If your build tools don&#39;t support output paths, you can configure an input and output with the same path. The directory will be populated by the input, and any changes made to the directory will propagate downstream as an output.</p></blockquote><p>Any <a href="jobs.html#schema.step.task-step.params"><code>task</code> step <strong><code>params</code></strong></a> configured will be set in the environment for the task&#39;s command, along with any environment variables provided by the task&#39;s image (i.e. <code>ENV</code> rules from your <code>Dockerfile</code>).</p><p>The user the command runs as is determined by the image. If you&#39;re using a Docker image, this will be the user set by a <code>USER</code> rule in your <code>Dockerfile</code>, or <code>root</code>, if not specified.</p><p>Another relevant bit of configuration is <a href="jobs.html#schema.step.task-step.privileged"><code>task</code> step <strong><code>privileged</code></strong></a>, which determines whether the user the task runs as will have full privileges (primarily when running as <code>root</code>). This is intentionally <em>not</em> configurable by the task itself, to prevent privilege escalation by submitting pull requests to repositories that contain task configs.</p><p>Putting all this together, the following task config:</p><pre><code class="language-yaml">---
+  <p>A task runs in a new container every time, using the image provided by <a href="tasks.html#schema.task-config.image_resource"><code class="schema-attribute-name"><bold>task-config<wbr />.image_resource</bold></code></a> as its base filesystem (i.e. <code>/</code>).</p><p>The command specified by <a href="tasks.html#schema.task-config.run"><code class="schema-attribute-name"><bold>task-config<wbr />.run</bold></code></a> will be executed in a working directory containing each of the <a href="tasks.html#schema.task-config.inputs"><code class="schema-attribute-name"><bold>task-config<wbr />.inputs</bold></code></a>. If any input is missing, the task will not run (and the container will not even be created).</p><p>The working directory will also contain empty directories for each of the <a href="tasks.html#schema.task-config.outputs"><code class="schema-attribute-name"><bold>task-config<wbr />.outputs</bold></code></a>. The task must place artifacts in the output directories for them to be exported. This meshes well with build tools with configurable destination paths.</p><blockquote class="aside"><p>If your build tools don&#39;t support output paths, you can configure an input and output with the same path. The directory will be populated by the input, and any changes made to the directory will propagate downstream as an output.</p></blockquote><p>Any <a href="task-step.html#schema.task.params"><code>task</code> step <strong><code>params</code></strong></a> configured will be set in the environment for the task&#39;s command, along with any environment variables provided by the task&#39;s image (i.e. <code>ENV</code> rules from your <code>Dockerfile</code>).</p><p>The user the command runs as is determined by the image. If you&#39;re using a Docker image, this will be the user set by a <code>USER</code> rule in your <code>Dockerfile</code>, or <code>root</code>, if not specified.</p><p>Another relevant bit of configuration is <a href="task-step.html#schema.task.privileged"><code>task</code> step <strong><code>privileged</code></strong></a>, which determines whether the user the task runs as will have full privileges (primarily when running as <code>root</code>). This is intentionally <em>not</em> configurable by the task itself, to prevent privilege escalation by submitting pull requests to repositories that contain task configs.</p><p>Putting all this together, the following task config:</p><pre><code class="language-yaml">---
 platform: linux
 
 image_resource:
@@ -991,7 +1001,7 @@ go version go1.6 linux/amd64
 ./some/custom/path
 ./some/custom/path/bar
 ./some-output
-&#43; touch some-output/my-built-artifact</code></pre><p>...and propagate <code>my-built-artifact</code> to any later <a href="jobs.html#task-step"><code>task</code> step</a>s or <a href="jobs.html#put-step"><code>put</code> step</a>s that reference the <code>some-output</code> artifact, in the same way that this task had <code>some-input</code> as an input.</p>
+&#43; touch some-output/my-built-artifact</code></pre><p>...and propagate <code>my-built-artifact</code> to any later <a href="task-step.html"><code>task</code> step</a>s or <a href="put-step.html"><code>put</code> step</a>s that reference the <code>some-output</code> artifact, in the same way that this task had <code>some-input</code> as an input.</p>
 
   
     
@@ -1007,10 +1017,10 @@ go version go1.6 linux/amd64
               prev:
 
               
-              <span class="section-number">1.10</span>
+              <span class="section-number">1.11</span>
               
 
-              <a href="jobs.html">Jobs</a>
+              <a href="steps.html">Steps</a>
             </div>
           
 
@@ -1019,7 +1029,7 @@ go version go1.6 linux/amd64
               next:
 
               
-              <span class="section-number">1.12</span>
+              <span class="section-number">1.13</span>
               
 
               <a href="builds.html">Builds</a>

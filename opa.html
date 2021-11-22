@@ -129,31 +129,36 @@
         
           <tr>
             <td class="number-cell">1.11</td>
-            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+            <td class="title-cell"><a href="steps.html" >Steps</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="operation.html"  class="active">Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html"  class="active">Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
             <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
@@ -169,49 +174,49 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.14</span><a href="operation.html"  class="active">Operation</a>
+        <span class="section-number">1.15</span><a href="operation.html"  class="active">Operation</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.14.1</td>
+            <td class="number-cell">1.15.1</td>
             <td class="title-cell"><a href="metrics.html" >Metrics</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.2</td>
+            <td class="number-cell">1.15.2</td>
             <td class="title-cell"><a href="tracing.html" >Tracing</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.3</td>
+            <td class="number-cell">1.15.3</td>
             <td class="title-cell"><a href="encryption.html" >Encryption</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.4</td>
+            <td class="number-cell">1.15.4</td>
             <td class="title-cell"><a href="creds.html" >Credential Management</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.5</td>
+            <td class="number-cell">1.15.5</td>
             <td class="title-cell"><a href="container-placement.html" >Container Placement</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.6</td>
+            <td class="number-cell">1.15.6</td>
             <td class="title-cell"><a href="opa.html"  class="self">Open Policy Agent Integration</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.7</td>
+            <td class="number-cell">1.15.7</td>
             <td class="title-cell"><a href="global-resources.html" >Global Resources (experimental)</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.8</td>
+            <td class="number-cell">1.15.8</td>
             <td class="title-cell"><a href="administration.html" >Administration</a></td>
           </tr>
         
@@ -227,24 +232,24 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.14.6</span><a href="opa.html"  class="self">Open Policy Agent Integration</a>
+        <span class="section-number">1.15.6</span><a href="opa.html"  class="self">Open Policy Agent Integration</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.14.6.1</td>
+            <td class="number-cell">1.15.6.1</td>
             <td class="title-cell"><a href="opa.html#configure-opa" >Configuring Concourse</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.6.2</td>
+            <td class="number-cell">1.15.6.2</td>
             <td class="title-cell"><a href="opa.html#writing-opa-rules" >Writing OPA Rules</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.6.3</td>
+            <td class="number-cell">1.15.6.3</td>
             <td class="title-cell"><a href="opa.html#special-actions" >Special Actions</a></td>
           </tr>
         
@@ -262,7 +267,7 @@
         <div class="page-content">
           <div class="section" id="section_opa">
   
-  <h1 class="section-header"><a class="anchor-target" name="opa" href="#opa"></a><span class="section-number">1.14.6 </span>Open Policy Agent Integration</h1>
+  <h1 class="section-header"><a class="anchor-target" name="opa" href="#opa"></a><span class="section-number">1.15.6 </span>Open Policy Agent Integration</h1>
   
 
   <blockquote class="aside"><p>The <a href="https://www.openpolicyagent.org/docs/latest/">Open Policy Agent</a> (OPA, pronounced “oh-pa”) is an open source, general-purpose policy engine that unifies policy enforcement across the stack.</p></blockquote><p>OPA allows you to create arbitrary rules within Concourse without having to add a new feature to Concourse. You could even recreate Concourse&#39;s <a href="user-roles.html">RBAC system</a> using OPA.</p><p>More likely use-cases are to enforce rules your organization may have, such as not using certain container images or disallowing the use of privileged workloads. With OPA you can be as general or fine-grained as you want, enforcing these rules at the team or pipeline level.</p><p>The next few sections explain how to <a href="opa.html#configure-opa">configure Concourse</a> to talk to an OPA server and how to <a href="opa.html#writing-opa-rules">write OPA rules</a> for Concourse.</p>
@@ -418,7 +423,7 @@ deny[&#34;cannot use privileged resource types&#34;] {
   <h3 class="section-header"><a class="anchor-target" name="setpipeline" href="#setpipeline"></a><code>SetPipeline</code></h3>
   
 
-  <p>This action occurs whenever a <a href="jobs.html#set-pipeline-step"><code>set_pipeline</code> step</a> is run. The JSON payload for this action will contain the pipeline config in JSON format under the <code>data</code> key:</p><pre><code class="language-json">{
+  <p>This action occurs whenever a <a href="set-pipeline-step.html"><code>set_pipeline</code> step</a> is run. The JSON payload for this action will contain the pipeline config in JSON format under the <code>data</code> key:</p><pre><code class="language-json">{
   &#34;input&#34;: {
     &#34;service&#34;: &#34;concourse&#34;,
     &#34;cluster_name&#34;: &#34;dev&#34;,
@@ -471,7 +476,7 @@ deny[&#34;cannot use privileged resource types&#34;] {
               prev:
 
               
-              <span class="section-number">1.14.5</span>
+              <span class="section-number">1.15.5</span>
               
 
               <a href="container-placement.html">Container Placement</a>
@@ -483,7 +488,7 @@ deny[&#34;cannot use privileged resource types&#34;] {
               next:
 
               
-              <span class="section-number">1.14.7</span>
+              <span class="section-number">1.15.7</span>
               
 
               <a href="global-resources.html">Global Resources (experimental)</a>

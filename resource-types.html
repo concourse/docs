@@ -127,31 +127,36 @@
         
           <tr>
             <td class="number-cell">1.11</td>
-            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+            <td class="title-cell"><a href="steps.html" >Steps</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
             <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
@@ -261,7 +266,7 @@
   <h1 class="section-header"><a class="anchor-target" name="resource-types" href="#resource-types"></a><span class="section-number">1.9 </span>Resource Types</h1>
   
 
-  <p>Each resource in a pipeline has a <code>type</code>. The resource&#39;s type determines what versions are detected, the bits that are fetched when the resource&#39;s <a href="jobs.html#get-step"><code>get</code> step</a> runs, and the side effect that occurs when the resource&#39;s <a href="jobs.html#put-step"><code>put</code> step</a> runs.</p><p>Concourse comes with a few &#34;core&#34; resource types to cover common use cases like <code>git</code> and <code>s3</code> - the rest are developed and supported by the Concourse community. An exhaustive list of all resource types is available in the <a href="https://resource-types.concourse-ci.org">Resource Types catalog</a>.</p><p>A pipeline&#39;s resource types are listed under <a href="pipelines.html#schema.pipeline.resource_types"><code class="schema-attribute-name"><bold>pipeline<wbr />.resource_types</bold></code></a> with the following schema:</p><div class="schema">
+  <p>Each resource in a pipeline has a <code>type</code>. The resource&#39;s type determines what versions are detected, the bits that are fetched when the resource&#39;s <a href="get-step.html"><code>get</code> step</a> runs, and the side effect that occurs when the resource&#39;s <a href="put-step.html"><code>put</code> step</a> runs.</p><p>Concourse comes with a few &#34;core&#34; resource types to cover common use cases like <code>git</code> and <code>s3</code> - the rest are developed and supported by the Concourse community. An exhaustive list of all resource types is available in the <a href="https://resource-types.concourse-ci.org">Resource Types catalog</a>.</p><p>A pipeline&#39;s resource types are listed under <a href="pipelines.html#schema.pipeline.resource_types"><code class="schema-attribute-name"><bold>pipeline<wbr />.resource_types</bold></code></a> with the following schema:</p><div class="schema">
   <h2 class="schema-header"><a class="anchor-target" name="schema.resource_type" href="#schema.resource_type"></a><code>resource_type</code> schema</h2>
 
   <div class="toggleable schema-attribute required">
@@ -273,7 +278,7 @@
   </label>
 
   <div class="toggle-content attribute-content">
-    <p>The name of the resource type. This should be short and simple. This name will be referenced by <a href="pipelines.html#schema.pipeline.resources"><code class="schema-attribute-name"><bold>pipeline<wbr />.resources</bold></code></a> defined within the same pipeline, and <a href="tasks.html#schema.task.image_resource"><code class="schema-attribute-name"><bold>task<wbr />.image_resource</bold></code></a>s used by tasks running in the pipeline.</p><p>Pipeline-provided resource types can override the core resource types by specifying the same name.</p>
+    <p>The name of the resource type. This should be short and simple. This name will be referenced by <a href="pipelines.html#schema.pipeline.resources"><code class="schema-attribute-name"><bold>pipeline<wbr />.resources</bold></code></a> defined within the same pipeline, and <a href="tasks.html#schema.task-config.image_resource"><code class="schema-attribute-name"><bold>task-config<wbr />.image_resource</bold></code></a>s used by tasks running in the pipeline.</p><p>Pipeline-provided resource types can override the core resource types by specifying the same name.</p>
   </div>
 </div><div class="toggleable schema-attribute required">
   <input id="toggle-schema.resource_type.type" type="checkbox" class="toggle" />
@@ -339,7 +344,7 @@
   </label>
 
   <div class="toggle-content attribute-content">
-    <p><em>Default <code>[]</code>.</em> A list of tags to determine which workers the checks will be performed on. You&#39;ll want to specify this if the source is internal to a worker&#39;s network, for example. See also <a href="jobs.html#schema.step.tags"><code class="schema-attribute-name"><bold>step<wbr />.tags</bold></code></a>.</p>
+    <p><em>Default <code>[]</code>.</em> A list of tags to determine which workers the checks will be performed on. You&#39;ll want to specify this if the source is internal to a worker&#39;s network, for example. See also <a href="tags-step.html#schema.tags"><code class="schema-attribute-name"><bold>tags</bold></code></a>.</p>
   </div>
 </div><div class="toggleable schema-attribute optional">
   <input id="toggle-schema.resource_type.defaults" type="checkbox" class="toggle" />

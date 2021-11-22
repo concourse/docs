@@ -127,31 +127,36 @@
         
           <tr>
             <td class="number-cell">1.11</td>
-            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+            <td class="title-cell"><a href="steps.html" >Steps</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
             <td class="title-cell"><a href="internals.html"  class="self">Internals</a></td>
           </tr>
         
@@ -167,29 +172,29 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.16</span><a href="internals.html"  class="self">Internals</a>
+        <span class="section-number">1.17</span><a href="internals.html"  class="self">Internals</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.16.1</td>
+            <td class="number-cell">1.17.1</td>
             <td class="title-cell"><a href="internals.html#basic-architecture" >Basic architecture</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.16.2</td>
+            <td class="number-cell">1.17.2</td>
             <td class="title-cell"><a href="internals.html#component-atc" >ATC: web UI &amp; build scheduler</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.16.3</td>
+            <td class="number-cell">1.17.3</td>
             <td class="title-cell"><a href="internals.html#component-tsa" >TSA: worker registration &amp; forwarding</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.16.4</td>
+            <td class="number-cell">1.17.4</td>
             <td class="title-cell"><a href="internals.html#architecture-worker" >Workers Architecture</a></td>
           </tr>
         
@@ -214,7 +219,7 @@
   
     
       <tr>
-        <td class="number-cell">1.16.1</td>
+        <td class="number-cell">1.17.1</td>
         <td class="title-cell"><a href="internals.html#basic-architecture" >Basic architecture</a></td>
       </tr>
       
@@ -225,7 +230,7 @@
 
     
       <tr>
-        <td class="number-cell">1.16.2</td>
+        <td class="number-cell">1.17.2</td>
         <td class="title-cell"><a href="internals.html#component-atc" >ATC: web UI &amp; build scheduler</a></td>
       </tr>
       
@@ -234,7 +239,7 @@
 
     
       <tr>
-        <td class="number-cell">1.16.3</td>
+        <td class="number-cell">1.17.3</td>
         <td class="title-cell"><a href="internals.html#component-tsa" >TSA: worker registration &amp; forwarding</a></td>
       </tr>
       
@@ -245,7 +250,7 @@
 
     
       <tr>
-        <td class="number-cell">1.16.4</td>
+        <td class="number-cell">1.17.4</td>
         <td class="title-cell"><a href="internals.html#architecture-worker" >Workers Architecture</a></td>
       </tr>
       
@@ -253,7 +258,7 @@
   
     
       <tr>
-        <td class="number-cell">1.16.4.1</td>
+        <td class="number-cell">1.17.4.1</td>
         <td class="title-cell"><a href="internals.html#worker-lifecycle" >The worker lifecycle</a></td>
       </tr>
       
@@ -303,7 +308,7 @@
         <div class="page-content">
           <div class="section" id="section_internals">
   
-  <h1 class="section-header"><a class="anchor-target" name="internals" href="#internals"></a><span class="section-number">1.16 </span>Internals</h1>
+  <h1 class="section-header"><a class="anchor-target" name="internals" href="#internals"></a><span class="section-number">1.17 </span>Internals</h1>
   
 
   <p>This section provides a deeper understanding of some of the concepts surrounding Concourse.</p><p>An understanding of the basics of Concourse concepts, such as pipelines, jobs, etc, is recommended as parts of this section might assume a level of knowledge from them. This section is not necessary for using Concourse but are more for experienced users that want to dig deeper into how Concourse works.</p><div class="table-of-contents">
@@ -314,7 +319,7 @@
   <ol class="toc">
   
     <li>
-      <span class="section-number">1.16.1</span>
+      <span class="section-number">1.17.1</span>
       <a href="internals.html#basic-architecture">Basic architecture</a>
 
       
@@ -323,7 +328,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.16.2</span>
+      <span class="section-number">1.17.2</span>
       <a href="internals.html#component-atc">ATC: web UI &amp; build scheduler</a>
 
       
@@ -331,7 +336,7 @@
   <ol class="toc">
   
     <li>
-      <span class="section-number">1.16.2.1</span>
+      <span class="section-number">1.17.2.1</span>
       <a href="checker.html">Resource Checker</a>
 
       
@@ -340,7 +345,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.16.2.2</span>
+      <span class="section-number">1.17.2.2</span>
       <a href="scheduler.html">Build Scheduler</a>
 
       
@@ -349,7 +354,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.16.2.3</span>
+      <span class="section-number">1.17.2.3</span>
       <a href="build-tracker.html">Build Tracker</a>
 
       
@@ -358,7 +363,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.16.2.4</span>
+      <span class="section-number">1.17.2.4</span>
       <a href="garbage-collector.html">Garbage Collector</a>
 
       
@@ -372,7 +377,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.16.3</span>
+      <span class="section-number">1.17.3</span>
       <a href="internals.html#component-tsa">TSA: worker registration &amp; forwarding</a>
 
       
@@ -381,7 +386,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.16.4</span>
+      <span class="section-number">1.17.4</span>
       <a href="internals.html#architecture-worker">Workers Architecture</a>
 
       
@@ -389,7 +394,7 @@
   <ol class="toc">
   
     <li>
-      <span class="section-number">1.16.4.1</span>
+      <span class="section-number">1.17.4.1</span>
       <a href="internals.html#worker-lifecycle">The worker lifecycle</a>
 
       
@@ -436,7 +441,7 @@
   <ol class="toc">
   
     <li>
-      <span class="section-number">1.16.2.1</span>
+      <span class="section-number">1.17.2.1</span>
       <a href="checker.html">Resource Checker</a>
 
       
@@ -445,7 +450,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.16.2.2</span>
+      <span class="section-number">1.17.2.2</span>
       <a href="scheduler.html">Build Scheduler</a>
 
       
@@ -454,7 +459,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.16.2.3</span>
+      <span class="section-number">1.17.2.3</span>
       <a href="build-tracker.html">Build Tracker</a>
 
       
@@ -463,7 +468,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.16.2.4</span>
+      <span class="section-number">1.17.2.4</span>
       <a href="garbage-collector.html">Garbage Collector</a>
 
       
@@ -587,7 +592,7 @@
               prev:
 
               
-              <span class="section-number">1.15</span>
+              <span class="section-number">1.16</span>
               
 
               <a href="observation.html">Observation</a>

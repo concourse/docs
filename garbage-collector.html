@@ -131,31 +131,36 @@
         
           <tr>
             <td class="number-cell">1.11</td>
-            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+            <td class="title-cell"><a href="steps.html" >Steps</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
             <td class="title-cell"><a href="internals.html"  class="active">Internals</a></td>
           </tr>
         
@@ -171,29 +176,29 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.16</span><a href="internals.html"  class="active">Internals</a>
+        <span class="section-number">1.17</span><a href="internals.html"  class="active">Internals</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.16.1</td>
+            <td class="number-cell">1.17.1</td>
             <td class="title-cell"><a href="internals.html#basic-architecture" >Basic architecture</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.16.2</td>
+            <td class="number-cell">1.17.2</td>
             <td class="title-cell"><a href="internals.html#component-atc"  class="active">ATC: web UI &amp; build scheduler</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.16.3</td>
+            <td class="number-cell">1.17.3</td>
             <td class="title-cell"><a href="internals.html#component-tsa" >TSA: worker registration &amp; forwarding</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.16.4</td>
+            <td class="number-cell">1.17.4</td>
             <td class="title-cell"><a href="internals.html#architecture-worker" >Workers Architecture</a></td>
           </tr>
         
@@ -216,22 +221,22 @@
         <table>
         
           <tr>
-            <td class="number-cell">1.16.2.1</td>
+            <td class="number-cell">1.17.2.1</td>
             <td class="title-cell"><a href="checker.html" >Resource Checker</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.16.2.2</td>
+            <td class="number-cell">1.17.2.2</td>
             <td class="title-cell"><a href="scheduler.html" >Build Scheduler</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.16.2.3</td>
+            <td class="number-cell">1.17.2.3</td>
             <td class="title-cell"><a href="build-tracker.html" >Build Tracker</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.16.2.4</td>
+            <td class="number-cell">1.17.2.4</td>
             <td class="title-cell"><a href="garbage-collector.html"  class="self">Garbage Collector</a></td>
           </tr>
         
@@ -253,7 +258,7 @@
         <div class="page-content">
           <div class="section" id="section_garbage-collector">
   
-  <h1 class="section-header"><a class="anchor-target" name="garbage-collector" href="#garbage-collector"></a><span class="section-number">1.16.2.4 </span>Garbage Collector</h1>
+  <h1 class="section-header"><a class="anchor-target" name="garbage-collector" href="#garbage-collector"></a><span class="section-number">1.17.2.4 </span>Garbage Collector</h1>
   
 
   <p>Concourse runs everything in isolated environments by creating fresh containers and volumes to ensure things can safely run in a repeatable environment, isolated from other workloads running on the same worker.</p><p>This introduces a new problem of knowing when Concourse should remove these containers and volumes. Safely identifying things for removal and then getting rid of them, releasing their resources, is the process of <em>garbage collection</em>.</p>
@@ -301,7 +306,7 @@
               prev:
 
               
-              <span class="section-number">1.16.2.3</span>
+              <span class="section-number">1.17.2.3</span>
               
 
               <a href="build-tracker.html">Build Tracker</a>

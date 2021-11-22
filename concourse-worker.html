@@ -129,31 +129,36 @@
         
           <tr>
             <td class="number-cell">1.11</td>
-            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+            <td class="title-cell"><a href="steps.html" >Steps</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
             <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
@@ -702,7 +707,7 @@ sudo -E concourse worker</code></pre><p>Note that the worker must be run as <cod
   <h3 class="section-header"><a class="anchor-target" name="tagging-workers" href="#tagging-workers"></a>Tagging Workers</h3>
   
 
-  <p>If there&#39;s something special about your worker and you&#39;d like to target builds at it specifically, you can configure tags like so:</p><pre><code class="language-bash">CONCOURSE_TAG=&#34;tag-1,tag-2&#34;</code></pre><p>A tagged worker is taken out of the default placement logic. Tagged workers will not be used for any untagged <a href="jobs.html#steps">Steps</a>.</p><p>To run build steps on a tagged worker, specify the <a href="jobs.html#schema.step.tags"><code class="schema-attribute-name"><bold>step<wbr />.tags</bold></code></a> on any particular step in your <a href="jobs.html">job</a>.</p><p>To perform resource <code>check</code>s on on a tagged worker, specify <a href="resources.html#schema.resource.tags"><code>tags</code></a> on the resource declaration.</p>
+  <p>If there&#39;s something special about your worker and you&#39;d like to target builds at it specifically, you can configure tags like so:</p><pre><code class="language-bash">CONCOURSE_TAG=&#34;tag-1,tag-2&#34;</code></pre><p>A tagged worker is taken out of the default placement logic. Tagged workers will not be used for any untagged <a href="steps.html">Steps</a>.</p><p>To run build steps on a tagged worker, specify the <a href="tags-step.html#schema.tags"><code class="schema-attribute-name"><bold>tags</bold></code></a> on any particular step in your <a href="jobs.html">job</a>.</p><p>To perform resource <code>check</code>s on on a tagged worker, specify <a href="resources.html#schema.resource.tags"><code>tags</code></a> on the resource declaration.</p>
 
   
     
@@ -773,7 +778,7 @@ HTTP timeout for the full duration of health checking. (default: 5s)</code></pre
   <h4 class="section-header"><a class="anchor-target" name="bundled-resource-types" href="#bundled-resource-types"></a>Bundled Resource Types</h4>
   
 
-  <p>Workers come prepackaged with a bundle of resource types. They are included in the tarball from the <a href="https://github.com/concourse/concourse/releases">Github release page</a> and are part of the <a href="https://hub.docker.com/r/concourse/concourse">concourse/concourse image</a>.</p><p>To view the resource types available on a worker run:</p><pre><code class="language-bash">fly workers --details</code></pre><p>If you want more details, like the version number of each resource, you can run:</p><pre><code class="language-bash">fly curl api/v1/workers</code></pre>
+  <p>Workers come prepackaged with a bundle of resource types. They are included in the tarball from the <a href="https://github.com/concourse/concourse/releases">GitHub release page</a> and are part of the <a href="https://hub.docker.com/r/concourse/concourse">concourse/concourse image</a>.</p><p>To view the resource types available on a worker run:</p><pre><code class="language-bash">fly workers --details</code></pre><p>If you want more details, like the version number of each resource, you can run:</p><pre><code class="language-bash">fly curl api/v1/workers</code></pre>
 
   
     

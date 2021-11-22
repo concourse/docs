@@ -131,31 +131,36 @@
         
           <tr>
             <td class="number-cell">1.11</td>
-            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+            <td class="title-cell"><a href="steps.html" >Steps</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="how-to-guides.html"  class="active">How-To Guides</a></td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html"  class="active">How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
             <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
@@ -171,24 +176,24 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.13</span><a href="how-to-guides.html"  class="active">How-To Guides</a>
+        <span class="section-number">1.14</span><a href="how-to-guides.html"  class="active">How-To Guides</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.13.1</td>
+            <td class="number-cell">1.14.1</td>
             <td class="title-cell"><a href="pipeline-guides.html" >Pipeline Guides</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.13.2</td>
+            <td class="number-cell">1.14.2</td>
             <td class="title-cell"><a href="git-guides.html" >Git Guides</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.13.3</td>
+            <td class="number-cell">1.14.3</td>
             <td class="title-cell"><a href="container-image-guides.html"  class="active">Container Image Guides</a></td>
           </tr>
         
@@ -204,19 +209,19 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.13.3</span><a href="container-image-guides.html"  class="active">Container Image Guides</a>
+        <span class="section-number">1.14.3</span><a href="container-image-guides.html"  class="active">Container Image Guides</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.13.3.1</td>
+            <td class="number-cell">1.14.3.1</td>
             <td class="title-cell"><a href="building-and-pushing-an-image.html" >Building and Pushing an Image</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.13.3.2</td>
+            <td class="number-cell">1.14.3.2</td>
             <td class="title-cell"><a href="building-an-image-and-using-it-in-a-task.html"  class="self">Building an Image and Using it in a Task</a></td>
           </tr>
         
@@ -238,7 +243,7 @@
         <div class="page-content">
           <div class="section" id="section_building-an-image-and-using-it-in-a-task">
   
-  <h1 class="section-header"><a class="anchor-target" name="building-an-image-and-using-it-in-a-task" href="#building-an-image-and-using-it-in-a-task"></a><span class="section-number">1.13.3.2 </span>Building an Image and Using it in a Task</h1>
+  <h1 class="section-header"><a class="anchor-target" name="building-an-image-and-using-it-in-a-task" href="#building-an-image-and-using-it-in-a-task"></a><span class="section-number">1.14.3.2 </span>Building an Image and Using it in a Task</h1>
   
 
   <p>This guide will show you how to build and use an image within one <a href="jobs.html">job</a> without pushing the image to an external image registry like Docker Hub.</p>
@@ -297,7 +302,7 @@ jobs:
   <h2 class="section-header"><a class="anchor-target" name="use-the-image" href="#use-the-image"></a>Use the Image</h2>
   
 
-  <p>Next we want to add a second task to this job which will use the image generated from the first task as its container image. To use the image from the previous step add the top-level <a href="jobs.html#schema.step.task-step.image">image</a> key to the <a href="jobs.html#schema.step.task-step.task">task step</a>.</p><p><div class="titled-codeblock">
+  <p>Next we want to add a second task to this job which will use the image generated from the first task as its container image. To use the image from the previous step add the top-level <a href="task-step.html#schema.task.image">image</a> key to the <a href="task-step.html#schema.task.task">task step</a>.</p><p><div class="titled-codeblock">
   <div class="codeblock-title">
     <code>build-and-use-image.yml</code>
   </div>
@@ -349,7 +354,7 @@ jobs:
               prev:
 
               
-              <span class="section-number">1.13.3.1</span>
+              <span class="section-number">1.14.3.1</span>
               
 
               <a href="building-and-pushing-an-image.html">Building and Pushing an Image</a>
@@ -361,7 +366,7 @@ jobs:
               next:
 
               
-              <span class="section-number">1.14</span>
+              <span class="section-number">1.15</span>
               
 
               <a href="operation.html">Operation</a>

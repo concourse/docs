@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=775" />
+<title>in_parallel step - Concourse CI</title>
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/pipeline.css" />
+<link rel="stylesheet" type="text/css" href="css/iosevka.css" />
+<link rel="stylesheet" type="text/css" href="css/booklit.css" />
+<link rel="stylesheet" type="text/css" href="css/prism.css" />
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link href="https://fonts.googleapis.com/css?family=Barlow:400,400i,700|Roboto+Slab:300,400,700" rel="stylesheet" />
+<script src="js/search.js"></script>
+<script async type="text/javascript" src="js/prism.js"></script>
+<script data-goatcounter="https://concourse.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  </head>
+  <body>
+    
+
+<div class="page-top">
+  <nav class="top-nav">
+    <a class="top-link logo-link" href="/"><img src="images/logo-white.svg" />Concourse</a>
+    
+    <a class="top-link active" href="docs.html">Docs</a>
+    
+    <a class="top-link" href="examples.html">Examples</a>
+    
+    <a class="top-link" href="project.html">Project</a>
+    
+    <a class="top-link" href="ecosystem.html">Ecosystem</a>
+    
+    <a class="top-link" href="https://resource-types.concourse-ci.org">Resource Types</a>
+    <a class="top-link" href="https://blog.concourse-ci.org">blog</a>
+    <a class="top-link" href="https://github.com/concourse/concourse/discussions">discuss</a>
+
+    <div id="search"></div>
+
+    <script type="text/javascript">
+      var app = Elm.Main.init({
+        node: document.getElementById('search')
+      });
+
+      app.ports.emitSearchTerm.subscribe(function(term) {
+        goatcounter.count({
+          path: "search:" + term,
+          title: "user searched: " + term,
+          event: true
+        });
+      });
+    </script>
+  </nav>
+</div>
+
+    <div class="page-body">
+      <div class="page-nav">
+        
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1</span><a href="docs.html"  class="active">Docs</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.1</td>
+            <td class="title-cell"><a href="getting-started.html" >Getting Started</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.2</td>
+            <td class="title-cell"><a href="install.html" >Install</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.3</td>
+            <td class="title-cell"><a href="auth.html" >Auth &amp; Teams</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.4</td>
+            <td class="title-cell"><a href="fly.html" >The <code>fly</code> CLI</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.5</td>
+            <td class="title-cell"><a href="config-basics.html" >Config Basics</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.6</td>
+            <td class="title-cell"><a href="pipelines.html" >Pipelines</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.7</td>
+            <td class="title-cell"><a href="vars.html" >Vars</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.8</td>
+            <td class="title-cell"><a href="resources.html" >Resources</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.9</td>
+            <td class="title-cell"><a href="resource-types.html" >Resource Types</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.10</td>
+            <td class="title-cell"><a href="jobs.html" >Jobs</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11</td>
+            <td class="title-cell"><a href="steps.html"  class="active">Steps</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.12</td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.13</td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14</td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.15</td>
+            <td class="title-cell"><a href="operation.html" >Operation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
+            <td class="title-cell"><a href="internals.html" >Internals</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+  <div class="context">
+    <nav>
+      <div class="top">
+        <span class="section-number">1.11</span><a href="steps.html"  class="active">Steps</a>
+      </div>
+
+      <div class="children">
+        <table>
+        
+          <tr>
+            <td class="number-cell">1.11.1</td>
+            <td class="title-cell"><a href="get-step.html" ><code>get</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.2</td>
+            <td class="title-cell"><a href="put-step.html" ><code>put</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.3</td>
+            <td class="title-cell"><a href="task-step.html" ><code>task</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.4</td>
+            <td class="title-cell"><a href="set-pipeline-step.html" ><code>set_pipeline</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.5</td>
+            <td class="title-cell"><a href="load-var-step.html" ><code>load_var</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.6</td>
+            <td class="title-cell"><a href="in-parallel-step.html"  class="self"><code>in_parallel</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.7</td>
+            <td class="title-cell"><a href="do-step.html" ><code>do</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.8</td>
+            <td class="title-cell"><a href="try-step.html" ><code>try</code> step</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.11.9</td>
+            <td class="title-cell"><a href="modifier-and-hook-steps.html" >Modifier And Hook Steps</a></td>
+          </tr>
+        
+        </table>
+      </div>
+    </nav>
+  </div>
+  
+
+  
+
+  
+
+
+
+<div class="context">
+  <div class="Top">
+    On this page:
+  </div>
+
+  <div class="children anchors">
+    <table>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="in-parallel-step.html#schema.in_parallel_config"><strong><code>in_parallel_config</code></strong> schema</a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="in-parallel-step.html#schema.in-parallel.in_parallel"><code>in_parallel</code> step <strong><code>in_parallel</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="in-parallel-step.html#schema.in_parallel_config.steps"><code>in_parallel</code> step <strong><code>steps</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="in-parallel-step.html#schema.in_parallel_config.limit"><code>in_parallel</code> step <strong><code>limit</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="in-parallel-step.html#schema.in_parallel_config.fail_fast"><code>in_parallel</code> step <strong><code>fail_fast</code></strong></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="in-parallel-step.html#in-parallel"><code>in_parallel</code> step</a></td>
+      </tr>
+      
+
+      
+  
+    
+  
+
+    </table>
+  </div>
+</div>
+
+      </div>
+
+      <div class="body-content">
+        <div class="page-content">
+          <div class="section" id="section_in-parallel-step">
+  
+  <h1 class="section-header"><a class="anchor-target" name="in-parallel-step" href="#in-parallel-step"></a><span class="section-number">1.11.6 </span><code>in_parallel</code> step</h1>
+  
+
+  <div class="schema-group">
+  <a id="in-parallel"></a>
+  <p>Performs the given steps in parallel. If any sub-steps in a <code>parallel</code> result in a failure or error, the parallel step as a whole is considered to have failed or errored. Expand each section below for more details and examples. <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.in-parallel.in_parallel" type="checkbox" class="toggle" />
+  <label for="toggle-schema.in-parallel.in_parallel" class="toggle-title">
+    <a id="schema.in-parallel.in_parallel"></a>
+
+    <code><a class="attribute-name" href="#schema.in-parallel.in_parallel">in_parallel</a>: <span class="attribute-type">[<a href="steps.html#schema.step"><strong>step</strong></a>] | <a href="in-parallel-step.html#schema.in_parallel_config"><strong>in_parallel_config</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>Steps are either configured as a array or within an <a href="in-parallel-step.html#schema.in_parallel_config"><strong><code>in_parallel_config</code></strong> schema</a>.</p><div class="toggleable example">
+  <input id="toggle-d6f57e0d7f1f1e7302d67e099d9d1fb665e27f9d" type="checkbox" class="toggle" />
+  <label for="toggle-d6f57e0d7f1f1e7302d67e099d9d1fb665e27f9d" class="toggle-title">Fetching artifacts in parallel</label>
+  <div class="toggle-content">
+    <p>Using the <code>in_parallel</code> step where possible is the easiest way to speeding up a builds.</p><p>It is often used to fetch all dependent resources together at the start of a build plan:</p><pre><code class="language-yaml">jobs:
+- name: get-in-parallel
+  plan:
+  - in_parallel:
+    - get: ci
+    - get: repo
+    - get: code
+
+
+resources:
+- name: repo
+  type: mock
+- name: code
+  type: mock
+- name: ci
+  type: mock</code></pre>
+  </div>
+</div><div class="toggleable example">
+  <input id="toggle-7de39581510339e5ade6ad95f28778b0b1155210" type="checkbox" class="toggle" />
+  <label for="toggle-7de39581510339e5ade6ad95f28778b0b1155210" class="toggle-title">Running a build matrix</label>
+  <div class="toggle-content">
+    <p>If any step in the <code>in_parallel</code> fails, the build will fail, making it useful for build matrices:</p><pre><code class="language-yaml">plan:
+- get: some-repo
+- in_parallel:
+  - task: unit-windows
+    file: some-repo/ci/windows.yml
+  - task: unit-linux
+    file: some-repo/ci/linux.yml
+  - task: unit-darwin
+    file: some-repo/ci/darwin.yml</code></pre>
+  </div>
+</div>
+  </div>
+</div> <div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.in_parallel_config" href="#schema.in_parallel_config"></a><code>in_parallel_config</code> schema</h2>
+
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.in_parallel_config.steps" type="checkbox" class="toggle" />
+  <label for="toggle-schema.in_parallel_config.steps" class="toggle-title">
+    <a id="schema.in_parallel_config.steps"></a>
+
+    <code><a class="attribute-name" href="#schema.in_parallel_config.steps">steps</a>: <span class="attribute-type">[<a href="steps.html#schema.step"><strong>step</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The steps to perform in parallel. <div class="toggleable example">
+  <input id="toggle-509051e6aa588e5508ed973c630763d021be84e4" type="checkbox" class="toggle" />
+  <label for="toggle-509051e6aa588e5508ed973c630763d021be84e4" class="toggle-title">Fetching artifacts in parallel</label>
+  <div class="toggle-content">
+    <p>Using the <code>in_parallel</code> step where possible is the easiest way to speeding up a builds.</p><p>It is often used to fetch all dependent resources together at the start of a build plan:</p><pre><code class="language-yaml">jobs:
+- name: get-in-parallel
+  plan:
+  - in_parallel:
+      limit: 2
+      fail_fast: false
+      steps:
+      - get: ci
+      - get: repo
+      - get: code
+
+
+resources:
+- name: repo
+  type: mock
+- name: code
+  type: mock
+- name: ci
+  type: mock</code></pre>
+  </div>
+</div></p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.in_parallel_config.limit" type="checkbox" class="toggle" />
+  <label for="toggle-schema.in_parallel_config.limit" class="toggle-title">
+    <a id="schema.in_parallel_config.limit"></a>
+
+    <code><a class="attribute-name" href="#schema.in_parallel_config.limit">limit</a>: <span class="attribute-type"><a href="config-basics.html#schema.number"><strong>number</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default unlimited.</em> A sempahore which limits the parallelism when executing the steps in a <code>in_parallel</code> step. When set, the number of running steps will not exceed the limit.</p><p>When not specified, <code>in_parallel</code> will execute all steps immediately. <div class="toggleable example">
+  <input id="toggle-cd7a65379db446c9067777cf4aaa94ce288009ef" type="checkbox" class="toggle" />
+  <label for="toggle-cd7a65379db446c9067777cf4aaa94ce288009ef" class="toggle-title">Limiting parallelism</label>
+  <div class="toggle-content">
+    <p>Using <code>limit</code> is useful for performing parallel execution of a growing number of tasks without overloading your workers. In the example below, two tasks will be run in parallel and in order until all steps have been executed:</p><pre><code class="language-yaml">jobs:
+- name: limit-in-parallel
+  plan:
+  - get: examples
+  - in_parallel:
+      limit: 2
+      steps:
+      - task: print-date
+        file: examples/tasks/print-date.yml
+      - task: hello-world
+        file: examples/tasks/hello-world.yml
+      - task: print-var
+        file: examples/tasks/print-var.yml
+        vars:
+          my-var: hello
+          second-var: good-bye
+
+
+resources:
+- name: examples
+  type: git
+  source:
+    uri: https://github.com/concourse/examples.git</code></pre>
+  </div>
+</div></p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.in_parallel_config.fail_fast" type="checkbox" class="toggle" />
+  <label for="toggle-schema.in_parallel_config.fail_fast" class="toggle-title">
+    <a id="schema.in_parallel_config.fail_fast"></a>
+
+    <code><a class="attribute-name" href="#schema.in_parallel_config.fail_fast">fail_fast</a>: <span class="attribute-type"><a href="config-basics.html#schema.boolean"><strong>boolean</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>false</code>.</em> When enabled the parallel step will fail fast by returning as soon as any sub-step fails. This means that running steps will be interrupted and pending steps will no longer be scheduled.</p>
+  </div>
+</div>
+</div></p>
+</div>
+
+  
+    
+  
+</div>
+
+          <nav class="prev-next">
+          
+            <div class="prev">
+              prev:
+
+              
+              <span class="section-number">1.11.5</span>
+              
+
+              <a href="load-var-step.html"><code>load_var</code> step</a>
+            </div>
+          
+
+          
+            <div class="next">
+              next:
+
+              
+              <span class="section-number">1.11.7</span>
+              
+
+              <a href="do-step.html"><code>do</code> step</a>
+            </div>
+          
+          </nav>
+        </div>
+
+        <div class="page-aside"></div>
+      </div>
+    </div>
+
+    <ul class="improve-docs">
+      <li><img src="images/icons/github-box.svg" /> <a href="https://github.com/concourse/docs">help improve this site</a></li>
+      <li><img src="images/booklit.svg" /> powered by <a href="https://vito.github.io/booklit">Booklit</a></li>
+    </ul>
+  </body>
+</html>

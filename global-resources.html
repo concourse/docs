@@ -129,31 +129,36 @@
         
           <tr>
             <td class="number-cell">1.11</td>
-            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
+            <td class="title-cell"><a href="steps.html" >Steps</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.12</td>
-            <td class="title-cell"><a href="builds.html" >Builds</a></td>
+            <td class="title-cell"><a href="tasks.html" >Tasks</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.13</td>
-            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
+            <td class="title-cell"><a href="builds.html" >Builds</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14</td>
-            <td class="title-cell"><a href="operation.html"  class="active">Operation</a></td>
+            <td class="title-cell"><a href="how-to-guides.html" >How-To Guides</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15</td>
-            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+            <td class="title-cell"><a href="operation.html"  class="active">Operation</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.16</td>
+            <td class="title-cell"><a href="observation.html" >Observation</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.17</td>
             <td class="title-cell"><a href="internals.html" >Internals</a></td>
           </tr>
         
@@ -169,49 +174,49 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.14</span><a href="operation.html"  class="active">Operation</a>
+        <span class="section-number">1.15</span><a href="operation.html"  class="active">Operation</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.14.1</td>
+            <td class="number-cell">1.15.1</td>
             <td class="title-cell"><a href="metrics.html" >Metrics</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.2</td>
+            <td class="number-cell">1.15.2</td>
             <td class="title-cell"><a href="tracing.html" >Tracing</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.3</td>
+            <td class="number-cell">1.15.3</td>
             <td class="title-cell"><a href="encryption.html" >Encryption</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.4</td>
+            <td class="number-cell">1.15.4</td>
             <td class="title-cell"><a href="creds.html" >Credential Management</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.5</td>
+            <td class="number-cell">1.15.5</td>
             <td class="title-cell"><a href="container-placement.html" >Container Placement</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.6</td>
+            <td class="number-cell">1.15.6</td>
             <td class="title-cell"><a href="opa.html" >Open Policy Agent Integration</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.7</td>
+            <td class="number-cell">1.15.7</td>
             <td class="title-cell"><a href="global-resources.html"  class="self">Global Resources (experimental)</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.8</td>
+            <td class="number-cell">1.15.8</td>
             <td class="title-cell"><a href="administration.html" >Administration</a></td>
           </tr>
         
@@ -227,19 +232,19 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.14.7</span><a href="global-resources.html"  class="self">Global Resources (experimental)</a>
+        <span class="section-number">1.15.7</span><a href="global-resources.html"  class="self">Global Resources (experimental)</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.14.7.1</td>
+            <td class="number-cell">1.15.7.1</td>
             <td class="title-cell"><a href="global-resources.html#benefits-of-global-resources" >Benefits of Global Resources</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.14.7.2</td>
+            <td class="number-cell">1.15.7.2</td>
             <td class="title-cell"><a href="global-resources.html#risks-and-side-effects" >Risks and Side Effects</a></td>
           </tr>
         
@@ -257,7 +262,7 @@
         <div class="page-content">
           <div class="section" id="section_global-resources">
   
-  <h1 class="section-header"><a class="anchor-target" name="global-resources" href="#global-resources"></a><span class="section-number">1.14.7 </span>Global Resources (experimental)</h1>
+  <h1 class="section-header"><a class="anchor-target" name="global-resources" href="#global-resources"></a><span class="section-number">1.15.7 </span>Global Resources (experimental)</h1>
   
 
   <p>Concourse v5.0 contains an experimental feature known as &#34;global resources&#34;. It is enabled by passing the <code>--enable-global-resources</code> flag to the <code>concourse web</code> command.</p><p>The basic concept of global resources is to share detected resource versions between all resources that have the same <a href="resources.html#schema.resource.type"><code class="schema-attribute-name"><bold>resource<wbr />.type</bold></code></a> and <a href="resources.html#schema.resource.source"><code class="schema-attribute-name"><bold>resource<wbr />.source</bold></code></a> configuration.</p><p>Before v5.0.0, each pipeline resource had its own version history, associated to the resource by name. This meant that multiple pipelines with the same resource configs would redundantly collect the same version and metadata information.</p><p>With v5.0.0&#39;s experimental &#39;global resources&#39; feature, resource versions are instead associated to an anonymous &#39;resource config&#39; i.e. its <a href="resources.html#schema.resource.type"><code class="schema-attribute-name"><bold>resource<wbr />.type</bold></code></a> and <a href="resources.html#schema.resource.source"><code class="schema-attribute-name"><bold>resource<wbr />.source</bold></code></a>.</p>
@@ -369,7 +374,7 @@
               prev:
 
               
-              <span class="section-number">1.14.6</span>
+              <span class="section-number">1.15.6</span>
               
 
               <a href="opa.html">Open Policy Agent Integration</a>
@@ -381,7 +386,7 @@
               next:
 
               
-              <span class="section-number">1.14.8</span>
+              <span class="section-number">1.15.8</span>
               
 
               <a href="administration.html">Administration</a>
