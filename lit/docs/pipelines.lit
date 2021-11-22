@@ -9,7 +9,7 @@ life of its own, to continuously detect resource versions and automatically
 queue new builds for jobs as they have new available inputs.
 
 Pipelines are configured via \reference{fly-set-pipeline} or the
-\reference{set-pipeline-step} as declarative \reference{intro-to-yaml}{YAML
+\reference{set-pipeline} as declarative \reference{intro-to-yaml}{YAML
 files} which conform to the following schema:
 
 \schema{pipeline}{
@@ -188,7 +188,7 @@ files} which conform to the following schema:
 
   \example{Chaining Jobs}{
     Promoting resources to downstream jobs is done by setting
-    \reference{schema.step.get-step.passed} on a \reference{get-step}{\code{get} step}.
+    \reference{schema.get.passed} on a \reference{get-step}{\code{get} step}.
 
     Note that nothing in \code{unit} says anything about triggering
     \code{build}. Job definitions are self-contained; they describe their

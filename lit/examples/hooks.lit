@@ -24,11 +24,11 @@ job.
 	}{
 		\reference{schema.job.on_abort}
 	}{
-		\reference{schema.step.on_success}
+		\reference{schema.on_success}
 	}{
-		\reference{schema.step.on_failure}
+		\reference{schema.on_failure}
 	}{
-		\reference{schema.step.on_abort}
+		\reference{schema.on_abort}
 	}{
 		\reference{jobs}
 	}{

@@ -75,9 +75,9 @@
   \inline-header{A more complicated example...}
 
   Jobs can depend on other jobs by configuring
-  \reference{schema.step.get-step.passed}{\code{passed}} constraints. The
-  resulting chain of jobs and resources is a dependency graph that continuously
-  pushes your project forward, from source code to production.
+  \reference{schema.get.passed}{\code{passed}} constraints. The resulting chain
+  of jobs and resources is a dependency graph that continuously pushes your
+  project forward, from source code to production.
 
   \include-template{pipeline-image}
 

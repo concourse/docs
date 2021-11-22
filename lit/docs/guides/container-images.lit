@@ -124,7 +124,7 @@
 
     Next we will add
     \link{concourse-examples}{https://github.com/concourse/examples} as an
-    \reference{schema.task.inputs}{input} to the build task to ensure the
+    \reference{schema.task-config.inputs}{input} to the build task to ensure the
     artifact from the \reference{get-step}{get step} (where our \code{Dockerfile}
     is fetched) is mounted in our \code{build-image} step.
 
@@ -400,8 +400,8 @@
     Next we want to add a second task to this job which will use the image
     generated from the first task as its container image. To use the image from
     the previous step add the top-level
-    \reference{schema.step.task-step.image}{image} key to the
-    \reference{schema.step.task-step.task}{task step}.
+    \reference{schema.task.image}{image} key to the
+    \reference{schema.task.task}{task step}.
 
     \titled-codeblock{build-and-use-image.yml}{yaml}{{
     resources: ...  # omitting for brevity

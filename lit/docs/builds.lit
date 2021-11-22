@@ -38,7 +38,7 @@ sure you intercept while it's running, if you want to debug.
 
   Rerun builds are ordered chronologically after the original build, rather
   than becoming a new "latest" build. Similarly, when the scheduler is
-  resolving \reference{schema.step.get-step.passed}{\code{passed}} constraints
+  resolving \reference{schema.get.passed}{\code{passed}} constraints
   that reference a job with rerun builds, those rerun builds are
   processed in this same order. This ensures that the versions, which made it
   through a rerun build, do not become the new "latest versions". Instead, they
@@ -157,7 +157,7 @@ sure you intercept while it's running, if you want to debug.
   current build's task, even as the "current build" changes.
 
   The working directory and any relevant environment variables (e.g. those
-  having come from \reference{schema.step.task-step.params}) used by the original process will
+  having come from \reference{schema.task.params}) used by the original process will
   also be used for the process run by intercept.
 }
 
