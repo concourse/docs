@@ -277,10 +277,10 @@ Creating docs_concourse_1 ... done</code></pre><p>Concourse will be running at <
   </div>
 
   <pre><code class="language-bash"># MacOS
-% curl &#39;http://localhost:8080/api/v1/cli?arch=amd64&amp;platform=darwin&#39; -o fly \
+$ curl &#39;http://localhost:8080/api/v1/cli?arch=amd64&amp;platform=darwin&#39; -o fly \
     &amp;&amp; chmod &#43;x ./fly &amp;&amp; mv ./fly /usr/local/bin/
 # Linux
-% curl &#39;http://localhost:8080/api/v1/cli?arch=amd64&amp;platform=linux&#39; -o fly \
+$ curl &#39;http://localhost:8080/api/v1/cli?arch=amd64&amp;platform=linux&#39; -o fly \
     &amp;&amp; chmod &#43;x ./fly &amp;&amp; mv ./fly /usr/local/bin/
 
 $ fly -t tutorial login -c http://localhost:8080 -u test -p test
