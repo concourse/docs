@@ -414,13 +414,14 @@
   incorrectly the resource will print a message that will be visible on its
   resource page for you to debug.
 
-  You can also use \code{fly} to view the status by running \code{fly builds}
-  and filtering for \code{check}'s to see the result of the last check.
+  If you want to debug a check container the easiest way to do that will be to
+  start a shell session in the container using \reference{fly-intercept}. You
+  can pass in the URL to the resources page to start a shell session on the
+  resource container.
 
   \codeblock{}{{
-  $ fly -t tutorial builds | grep check
-  id   name                    status     start
-  106  hello-world/repo/check  succeeded  2021-04-10@12:00:20-0400
+  $ fly -t tutorial intercept -u http://localhost:8080/teams/main/pipelines/hello-world/resources/every-1min
+  root@f5bf10f9-6a95-46e6-4e44-63594dace2e0:/tmp/build/check#
   }}
 }
 
