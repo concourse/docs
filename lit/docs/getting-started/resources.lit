@@ -458,9 +458,9 @@
       # specify branch because it's required for the put step
       branch: master
       private_key: |
-      -----BEGIN OPENSSH PRIVATE KEY-----
-      ...
-      -----END OPENSSH PRIVATE KEY-----
+        -----BEGIN OPENSSH PRIVATE KEY-----
+        ...
+        -----END OPENSSH PRIVATE KEY-----
 
   jobs:
   - name: hello-world-job
@@ -494,9 +494,9 @@
       uri: git@github.com:concourse/examples.git
       branch: master
       private_key: |
-      -----BEGIN OPENSSH PRIVATE KEY-----
-      ...
-      -----END OPENSSH PRIVATE KEY-----
+        -----BEGIN OPENSSH PRIVATE KEY-----
+        ...
+        -----END OPENSSH PRIVATE KEY-----
 
   jobs:
   - name: hello-world-job
@@ -559,9 +559,9 @@
       uri: git@github.com:concourse/examples.git
       branch: master
       private_key: |
-      -----BEGIN OPENSSH PRIVATE KEY-----
-      ...
-      -----END OPENSSH PRIVATE KEY-----
+        -----BEGIN OPENSSH PRIVATE KEY-----
+        ...
+        -----END OPENSSH PRIVATE KEY-----
 
   jobs:
   - name: hello-world-job
