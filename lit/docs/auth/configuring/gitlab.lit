@@ -62,7 +62,7 @@ model.
   \codeblock{bash}{{{
   $ fly set-team -n my-team \
       --gitlab-user my-gitlab-user \
-      --gitlab-team my-team
+      --gitlab-group my-group
   }}}
 
   ...or via \code{--config} for \reference{setting-roles}{setting user roles}:
@@ -72,8 +72,7 @@ model.
   - name: member
     gitlab:
       users: ["my-gitlab-login"]
-      orgs: ["my-org"]
-      teams: ["my-other-org:my-team"]
+      groups: ["my-gitlab-group"]
   }}}
 
   \section{
