@@ -87,7 +87,7 @@ quite involved.
     default, the templates used are:
 
     \codeblock{bash}{{{
-    CONCOURSE_VAULT_LOOKUP_TEMPLATES=/{{.Team}}/{{.Pipeline}}/{{.Secret}},/{{.Team}}/{{.Secret}}
+    CONCOURSE_VAULT_LOOKUP_TEMPLATES=/{{.Team}}/{{.Pipeline}}/{{.Secret}}/{{.Team}}/{{.Secret}}
     }}}
 
     When secrets are to be looked up, these are evaluated subject to the
@@ -98,7 +98,7 @@ quite involved.
 
     \codeblock{bash}{{{
     CONCOURSE_VAULT_PATH_PREFIX=/secrets
-    CONCOURSE_VAULT_LOOKUP_TEMPLATES=/{{.Team}}/concourse/{{.Pipeline}}/{{.Secret}},/{{.Team}}/concourse/{{.Secret}},/common/{{.Secret}}
+    CONCOURSE_VAULT_LOOKUP_TEMPLATES=/{{.Team}}/concourse/{{.Pipeline}}/{{.Secret}}/{{.Team}}/concourse/{{.Secret}}/common/{{.Secret}}
     }}}
 
     and \code{((password))} is used in team \code{myteam} and pipeline
