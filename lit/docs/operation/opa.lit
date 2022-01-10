@@ -34,7 +34,7 @@ Concourse} to talk to an OPA server and how to
 
     \italic{Example:} \code{http://opa-endpoint.com/v1/data/concourse/decision}
   }{
-    \code{CONCOURSE_POLICY_CHECK_FILTER_HTTP_METHODS}: API http methods to go
+    \code{CONCOURSE_POLICY_CHECK_FILTER_HTTP_METHOD}: API http methods to go
     through policy check. You will need to make sure these match up with an API
     action in the next two configuration options.
 
