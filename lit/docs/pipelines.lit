@@ -173,7 +173,7 @@ files} which conform to the following schema:
       - name: booklit
         type: git
         source:
-          uri: https://github.com/vito/booklit
+          uri: https://github.com/concourse/booklit
           branch: master
 
       jobs:
@@ -201,7 +201,7 @@ files} which conform to the following schema:
       - name: booklit
         type: git
         source:
-          uri: https://github.com/vito/booklit
+          uri: https://github.com/concourse/booklit
           branch: master
 
       jobs:

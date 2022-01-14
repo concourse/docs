@@ -180,7 +180,7 @@ with the following schema.
     \codeblock{yaml}{{{
     name: booklit
     type: git
-    source: {uri: "https://github.com/vito/booklit"}
+    source: {uri: "https://github.com/concourse/booklit"}
     }}}
 
     This could be passed to a job via a \reference{get-step} with
@@ -191,7 +191,7 @@ with the following schema.
     resources:
     - name: booklit
       type: git
-      source: {uri: "https://github.com/vito/booklit"}
+      source: {uri: "https://github.com/concourse/booklit"}
 
     jobs:
     - name: unit
