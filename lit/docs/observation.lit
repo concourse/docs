@@ -44,12 +44,12 @@ your pipelines.
   This can be used to annotate your READMEs with a build status badge like so:
 
   \codeblock{md}{{{
-  ![CI](https://ci.concourse-ci.org/api/v1/teams/main/pipelines/booklit/jobs/unit/badge)
+  ![CI](https://ci.concourse-ci.org/api/v1/teams/main/pipelines/concourse/jobs/unit/badge)
   }}}
 
   ...which should render the following:
 
-  \image{https://ci.concourse-ci.org/api/v1/teams/main/pipelines/booklit/jobs/unit/badge}
+  \image{https://ci.concourse-ci.org/api/v1/teams/main/pipelines/concourse/jobs/unit/badge}
 }
 
 \section{

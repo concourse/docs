@@ -41,7 +41,7 @@
     resources:
     - name: booklit
       type: git
-      source: {uri: "https://github.com/vito/booklit"}
+      source: {uri: "https://github.com/concourse/booklit"}
 
     jobs:
     - name: unit
@@ -82,7 +82,7 @@
   \include-template{pipeline-image}
 
   \italic{This particular pipeline can be found in the \link{Booklit
-  repository}{https://github.com/vito/booklit/blob/8741a4ca3116dcf24c30fedfa78e4aadcaff178a/ci/pipeline.yml}.}
+  repository}{https://github.com/concourse/booklit/blob/8741a4ca3116dcf24c30fedfa78e4aadcaff178a/ci/pipeline.yml}.}
 
   \splash-example{CI under source control}{
     All configuration and administration is done using \reference{fly-cli}{the
@@ -139,7 +139,7 @@
     executing build 1 at http://localhost:8080/builds/1
     initializing
     booklit: 4.74 MiB/s 0s
-    running gopath/src/github.com/vito/booklit/ci/test
+    running gopath/src/github.com/concourse/booklit/ci/test
     fetching dependencies...
     installing ginkgo...
     running tests...
