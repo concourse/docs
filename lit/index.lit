@@ -188,13 +188,17 @@
     out of the box, but you could just as easily bring your own into your
     pipeline by setting the \reference{schema.pipeline.resource_types} field.
 
+{-
     To see what resource types are available, check out the \link{Resource Types
     catalog}{https://resource-types.concourse-ci.org}!
+-}
   }
 }
 
 \split-sections
 
 \include-section{./beginners.lit}
+{- \include-section{./admins.lit} -}
 \include-section{./users.lit}
+
 \include-section{./references.lit}
