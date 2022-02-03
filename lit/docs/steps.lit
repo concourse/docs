@@ -1382,7 +1382,7 @@ by configuring \reference{schema.on_failure} or
       \schema{in_parallel_config}{
         Instead of passing in a list of steps to \code{in_parallel} you can
         pass in the following fields. The list of steps will fall under the
-        \code{steps} field. \
+        \code{steps} field.
         \required-attribute{steps}{[step]}{
           The steps to perform in parallel.
           \example-toggle{Fetching artifacts in parallel}{
