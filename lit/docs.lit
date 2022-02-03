@@ -3,7 +3,6 @@
 \use-plugin{concourse-docs}
 
 
-\include-section{./docs/builds.lit}
 \include-section{./docs/how-to-guides.lit}
 
 \split-sections
