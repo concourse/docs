@@ -1,9 +1,0 @@
-\title{Docs}{docs}
-
-\use-plugin{concourse-docs}
-
-
-\include-section{./docs/how-to-guides.lit}
-
-\split-sections
-\table-of-contents

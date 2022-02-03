@@ -672,8 +672,6 @@
   own. Here are some other parts of the site to help you take off with Concourse:
 
   \list{
-    \reference{how-to-guides} - Contains tips for writing pipelines and examples of common pipeline workflows
-  }{
     Check out all the reference documentation:
     \list{\reference{jobs}}{\reference{tasks}}{\reference{resources}}{\reference{resource-types}}
   }{

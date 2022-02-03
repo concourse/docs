@@ -56,3 +56,6 @@ the "big picture" as the mental model sets in.
 \include-section{users/config.lit}
 \include-section{users/builds.lit}
 \include-section{users/managing-pipelines.lit}
+\include-section{users/pipeline-guides.lit}
+\include-section{users/git.lit}
+\include-section{users/container-images.lit}

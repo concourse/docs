@@ -197,7 +197,6 @@
 
 \include-section{./beginners.lit}
 \include-section{./users.lit}
-\include-section{./docs.lit}
 \include-section{./examples.lit}
 \include-section{./project.lit}
 \include-section{./ecosystem.lit}
