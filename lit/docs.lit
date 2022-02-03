@@ -4,7 +4,6 @@
 
 
 \include-section{./docs/config.lit}
-\include-section{./docs/vars.lit}
 \include-section{./docs/builds.lit}
 \include-section{./docs/how-to-guides.lit}
 \include-section{./docs/operation.lit}
