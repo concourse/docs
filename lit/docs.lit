@@ -5,7 +5,6 @@
 
 \include-section{./docs/config.lit}
 \include-section{./docs/vars.lit}
-\include-section{./docs/resources.lit}
 \include-section{./docs/jobs.lit}
 \include-section{./docs/steps.lit}
 \include-section{./docs/tasks.lit}
