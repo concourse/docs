@@ -24,5 +24,6 @@ Contains a reference of:
 \include-section{./references/steps.lit}
 \include-section{./references/auth.lit}
 \include-section{./references/operation.lit}
+\include-section{./references/observation.lit}
 
 \include-section{./references/internals.lit}

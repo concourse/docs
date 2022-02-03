@@ -6,7 +6,6 @@
 \include-section{./docs/config.lit}
 \include-section{./docs/builds.lit}
 \include-section{./docs/how-to-guides.lit}
-\include-section{./docs/observation.lit}
 
 \split-sections
 \table-of-contents
