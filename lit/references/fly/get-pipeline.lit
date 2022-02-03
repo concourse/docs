@@ -1,0 +1,16 @@
+\title{\code{fly get-pipeline}}{fly-get-pipeline}
+\use-plugin{concourse-docs}
+
+Fly can be used to fetch and update the configuration for your pipelines. This
+is achieved by using the \reference{fly-get-pipeline} and
+\reference{fly-set-pipeline} commands. For example, to fetch the current
+configuration of your \code{my-pipeline} Concourse pipeline and print it on
+\code{STDOUT} run the following:
+
+\codeblock{bash}{{
+$ fly -t example get-pipeline --pipeline my-pipeline
+}}
+
+To get JSON instead of YAML you can use the \code{-j} or \code{--json}
+argument. This can be useful when inspecting your config with
+\link{jq}{http://stedolan.github.io/jq/}.

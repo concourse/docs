@@ -1,0 +1,13 @@
+\title{\code{fly edit-target}}{fly-edit-target}
+\use-plugin{concourse-docs}
+
+To modify a target's name, team, or URL, run:
+
+\codeblock{bash}{{
+$ fly -t example edit-target \\
+    --target-name new-name \\
+    --concourse-url https://ci.example.com \\
+    --team-name my-team
+}}
+
+Each flag is optional - only the specified flags will be changed.

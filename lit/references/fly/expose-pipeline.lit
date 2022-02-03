@@ -1,0 +1,25 @@
+\title{\code{fly expose-pipeline}}{fly-expose-pipeline}
+\use-plugin{concourse-docs}
+
+By default, newly configured pipelines are only visible to the pipeline's
+team. To make a pipeline viewable by other teams and unauthenticated users,
+run:
+
+\codeblock{bash}{{
+$ fly -t example expose-pipeline --pipeline my-pipeline
+}}
+
+This feature is useful if you're using Concourse for an open source project
+and you'd like your community to be able to see into your build pipeline.
+
+To undo this change, see \reference{fly-hide-pipeline}.
+
+Exposing a pipeline reveals basically everything except for build output and
+resource metadata.
+
+To expose a resource's metadata, \reference{schema.resource.public} must be set to
+\code{true}.
+
+To expose a job's build output, \reference{schema.job.public} must be set to
+\code{true}. This will also reveal resource metadata for any
+\reference{get-step} or \reference{put-step}s in the build output.

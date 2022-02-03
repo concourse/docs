@@ -176,7 +176,6 @@ A pipeline's resource types are listed under
 }
 
 \split-sections
-\table-of-contents
 
 \include-section{./resource-types/implementing.lit}
 \include-section{./resource-types/managing.lit}

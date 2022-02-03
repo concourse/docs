@@ -1,0 +1,58 @@
+\title{\aux{The }\code{fly} CLI}{fly}{fly-cli}
+\use-plugin{concourse-docs}
+\split-sections
+
+The first step to getting started with Concourse is to install the \code{fly}
+CLI tool. You can download \code{fly} from any Concourse installation. There
+are download links for common platforms in the bottom right hand corner of the
+main page.
+
+Throughout the Concourse documentation we'll stick to the long-form name of
+every command and flag. Once you've learned what the commands do, you may want
+to consult \code{fly -h} to learn the short forms.
+
+\section{
+  \title{Global options}
+
+  {-
+  tomschr: maybe this could be a bit more verbose. For example,
+  some code examples to show the effect.
+  -}
+
+  \definitions{
+    \definition{\code{-t}, \code{--target=}}{Concourse target name}
+  }{
+    \definition{\code{--version}}{Print the version of Fly and exit}
+  }{
+    \definition{\code{--verbose}}{Print API requests and responses}
+  }{
+    \definition{\code{--print-table-headers}}{Print table headers even for redirected output}
+  }
+}
+
+
+\table-of-contents
+
+\include-section{fly/archive-pipeline.lit}
+\include-section{fly/completion.lit}
+\include-section{fly/delete-target.lit}
+\include-section{fly/destroy-pipeline.lit}
+\include-section{fly/edit-target.lit}
+\include-section{fly/expose-pipeline.lit}
+\include-section{fly/format-pipeline.lit}
+\include-section{fly/get-pipeline.lit}
+\include-section{fly/hide-pipeline.lit}
+\include-section{fly/login.lit}
+\include-section{fly/logout.lit}
+\include-section{fly/instance-groups.lit}
+\include-section{fly/order-pipeline.lit}
+\include-section{fly/pause-pipeline.lit}
+\include-section{fly/pipelines.lit}
+\include-section{fly/rename-pipeline.lit}
+\include-section{fly/set-pipeline.lit}
+\include-section{fly/status.lit}
+\include-section{fly/sync.lit}
+\include-section{fly/targets.lit}
+\include-section{fly/unpause-pipeline.lit}
+\include-section{fly/userinfo.lit}
+\include-section{fly/validate-pipeline.lit}

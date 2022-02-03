@@ -1,0 +1,10 @@
+\title{\code{fly targets}}{fly-targets}
+\use-plugin{concourse-docs}
+
+To see what targets are currently known to \code{fly}, run:
+
+\codeblock{bash}{{
+$ fly targets
+}}
+
+This will show each target's name, URL, and when its token expires.

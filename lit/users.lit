@@ -1,0 +1,6 @@
+\title{Users}{users}
+\use-plugin{concourse-docs}
+
+Anything for advanced users
+
+\include-section{users/managing-pipelines.lit}

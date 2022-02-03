@@ -1,0 +1,17 @@
+\title{\code{fly archive-pipeline}}{fly-archive-pipeline}
+\use-plugin{concourse-docs}
+
+A pipeline can be archived via fly. This means that the pipeline will be paused
+and hidden from the web UI. The pipeline config will be deleted (so any secrets or
+interpolated \reference{vars} will be removed) while the build logs will be retained.
+
+\codeblock{bash}{{
+$ fly -t example archive-pipeline -p pipeline-1
+}}
+
+To unarchive a pipeline, simply set the pipeline again with the same name
+using \reference{fly-set-pipeline}. If a job in the new pipeline has the same name
+as a job in the archived pipeline, the old build logs for that job will be restored.
+
+Note that because the config is deleted, \reference{fly-get-pipeline} will no
+longer work for archived pipelines.

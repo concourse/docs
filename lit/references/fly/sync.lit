@@ -1,0 +1,15 @@
+\title{\code{fly sync}}{fly-sync}
+\use-plugin{concourse-docs}
+
+Occasionally we add additional features to \code{fly} or make changes to the
+communication between it and Concourse's API server. To make sure you're
+running the latest and greatest version that works with the Concourse you
+are targeting we provide a command called \code{sync} that will update your
+local \code{fly}. It can be used like so:
+
+\codeblock{bash}{{
+$ fly -t example sync
+}}
+
+The \code{fly} command will also warn you if it notices that your CLI version
+is out of sync with the server.

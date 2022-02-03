@@ -1,0 +1,11 @@
+\title{\code{fly hide-pipeline}}{fly-hide-pipeline}
+\use-plugin{concourse-docs}
+
+If you realize that you've made a terrible mistake in
+\reference{fly-expose-pipeline}{exposing your pipeline}, you can run:
+
+\codeblock{bash}{{
+$ fly -t example hide-pipeline --pipeline my-pipeline
+}}
+
+If you're panicking you can run the command's short form, \code{hp}, instead.

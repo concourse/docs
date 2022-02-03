@@ -1,0 +1,20 @@
+\title{\code{fly order-pipelines}}{fly-order-pipelines}
+\use-plugin{concourse-docs}
+
+To configure the ordering of pipelines, run:
+
+\codeblock{bash}{{
+$ fly -t example order-pipelines \\
+    --pipeline pipeline-1 \\
+    --pipeline pipeline-2 \\
+    --pipeline pipeline-3
+}}
+
+Note that this command only ensures that the given pipelines are in the given
+order. If there are other pipelines that you haven't included in the command,
+they may appear in-between, before, or after the given set.
+
+\warn{
+If you want to reorder instanced pipelines within an individual instance
+group, you should use the \reference{fly-order-instanced-pipelines} command.
+}

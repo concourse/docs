@@ -1,0 +1,19 @@
+\title{\code{fly delete-target}}{fly-delete-target}
+\use-plugin{concourse-docs}
+
+When logging out just isn't enough, a target can be completely removed from
+\code{~/.flyrc} by running:
+
+\codeblock{bash}{{
+$ fly -t example delete-target
+}}
+
+To delete \italic{all} targets, run:
+
+\codeblock{bash}{{
+$ fly delete-target -a
+}}
+
+Note: These two variations are mutually exclusive. If the target parameter
+\code{-t} and all parameter \code{-a} are both specified, an error will
+occur.

@@ -1,0 +1,10 @@
+\title{\code{fly rename-pipeline}}{fly-rename-pipeline}
+\use-plugin{concourse-docs}
+
+To rename a pipeline, run:
+
+\codeblock{bash}{{
+$ fly -t example rename-pipeline \\
+    --old-name my-pipeline \\
+    --new-name my-cool-pipeline
+}}

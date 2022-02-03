@@ -1,0 +1,12 @@
+\title{\code{fly validate-pipeline}}{fly-validate-pipeline}
+\use-plugin{concourse-docs}
+
+To validate a local pipeline configuration without submitting it to Concourse,
+run \code{validate-pipeline}:
+
+\codeblock{bash}{{
+$ fly validate-pipeline --config pipeline.yml
+}}
+
+By default, pipeline errors will cause \code{validate-pipeline} to fail, but
+warnings won't. To fail on both errors and warnings, pass the `--strict` flag.

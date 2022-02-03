@@ -1,0 +1,10 @@
+\title{\code{fly unpause-pipeline}}{fly-unpause-pipeline}
+\use-plugin{concourse-docs}
+
+To unpause a pipeline, run:
+
+\codeblock{bash}{{
+$ fly -t example unpause-pipeline --pipeline my-pipeline
+}}
+
+This will resume job scheduling and resource checking.

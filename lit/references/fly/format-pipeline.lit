@@ -1,0 +1,12 @@
+\title{\code{fly format-pipeline}}{fly-format-pipeline}
+\use-plugin{concourse-docs}
+
+To format a pipeline config in a "canonical" form (i.e. keys are in normal
+order, with \code{name} first for example), run:
+
+\codeblock{bash}{{
+$ fly format-pipeline --config pipeline.yml
+}}
+
+This will print the formatted pipeline config to \code{stdout}. To update the
+file in-place, pass \code{--write/-w}.

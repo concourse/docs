@@ -1,0 +1,11 @@
+\title{\code{fly pipelines}}{fly-pipelines}
+\use-plugin{concourse-docs}
+
+To list the currently-configured pipelines and their paused state, run:
+
+\codeblock{bash}{{
+$ fly -t example pipelines
+}}
+
+By default, archived pipelines are not included in the output of this command.
+To view archived pipelines, provide \code{--include-archived} flag.

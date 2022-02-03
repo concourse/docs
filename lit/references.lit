@@ -1,0 +1,19 @@
+\title{References}{references}
+\use-plugin{concourse-docs}
+\split-sections
+
+This page is a collection of all references.
+
+
+{-
+Contains a reference of:
+
+* fly CLI commands
+* Syntax and format of the Concourse YAML file
+* API
+* Resource types
+-}
+
+\include-section{./references/fly.lit}
+\include-section{./references/resource-types.lit}
+\include-section{./references/pipelines.lit}

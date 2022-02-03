@@ -1,0 +1,19 @@
+\title{\code{fly completion}}{fly-completion}
+\use-plugin{concourse-docs}
+
+Fly can output autocomplete configuration for some shells. For
+example, you can add an entry to your \code{.bashrc} like this:
+
+\codeblock{bash}{{
+source <(fly completion --shell bash)
+}}
+
+or, using the \code{/etc/bash_completion.d} directory:
+
+\codeblock{bash}{{
+$ fly completion --shell bash > /etc/bash_completion.d/fly
+}}
+
+Note that, unlike other fly commands, this command does not interact with a
+remote server so you do not need to provide the \code{-t} or \code{--target}
+flag.

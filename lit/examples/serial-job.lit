@@ -17,7 +17,7 @@ You can also set the \reference{schema.job.max_in_flight} value to 1 to disable 
 }
 
 \section{
-	\title{References}{references}
+	\title{See also}
 
 	\list{
 		\reference{jobs}

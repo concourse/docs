@@ -1,0 +1,11 @@
+\title{\code{fly pause-pipeline}}{fly-pause-pipeline}
+\use-plugin{concourse-docs}
+
+To pause a pipeline, run:
+
+\codeblock{bash}{{
+$ fly -t example pause-pipeline --pipeline my-pipeline
+}}
+
+This will prevent jobs from being scheduled and stop the periodic checking
+for new versions of resources. Builds that are in-flight will still finish.

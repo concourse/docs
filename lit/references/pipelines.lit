@@ -134,11 +134,6 @@ files} which conform to the following schema:
   }
 }
 
-\table-of-contents
-
-\include-section{pipelines/configuring.lit}
-\include-section{pipelines/managing.lit}
-\include-section{pipelines/instance-groups.lit}
 
 \right-side{Examples}{
   \example{Hello, world!}{

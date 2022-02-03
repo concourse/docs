@@ -1,0 +1,9 @@
+\title{\code{fly userinfo}}{fly-userinfo}
+\use-plugin{concourse-docs}
+
+To check what user you're logged in as, as well as which teams you are
+currently authenticated to and which roles within each team you have, run:
+
+\codeblock{bash}{{
+$ fly -t example userinfo
+}}
