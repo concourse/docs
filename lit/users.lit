@@ -53,4 +53,5 @@ the "big picture" as the mental model sets in.
 }
 
 \include-section{users/install.lit}
+\include-section{users/config.lit}
 \include-section{users/managing-pipelines.lit}
