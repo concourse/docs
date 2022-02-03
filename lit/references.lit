@@ -23,5 +23,6 @@ Contains a reference of:
 \include-section{./references/tasks.lit}
 \include-section{./references/steps.lit}
 \include-section{./references/auth.lit}
+\include-section{./references/operation.lit}
 
 \include-section{./references/internals.lit}
