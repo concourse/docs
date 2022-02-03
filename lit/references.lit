@@ -19,6 +19,7 @@ Contains a reference of:
 \include-section{./references/resource-types.lit}
 \include-section{./references/pipelines.lit}
 \include-section{./references/tasks.lit}
+\include-section{./references/steps.lit}
 \include-section{./references/auth.lit}
 
 \include-section{./references/internals.lit}
