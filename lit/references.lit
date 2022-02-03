@@ -18,6 +18,7 @@ Contains a reference of:
 \include-section{./references/resources.lit}
 \include-section{./references/resource-types.lit}
 \include-section{./references/pipelines.lit}
+\include-section{./references/jobs.lit}
 \include-section{./references/tasks.lit}
 \include-section{./references/steps.lit}
 \include-section{./references/auth.lit}
