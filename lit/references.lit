@@ -17,3 +17,4 @@ Contains a reference of:
 \include-section{./references/fly.lit}
 \include-section{./references/resource-types.lit}
 \include-section{./references/pipelines.lit}
+\include-section{./references/internals.lit}
