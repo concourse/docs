@@ -1,0 +1,33 @@
+\title{\code{fly watch}}{fly-watch}
+\use-plugin{concourse-docs}
+
+Concourse emits streaming colored logs on the website, but it can be helpful
+to have the logs available to the command line (e.g. so that they can be
+processed by other commands).
+
+The \code{watch} command can be used to do just this. You can also view
+builds that are running in your pipeline, or builds that have already
+finished.
+
+Note that unlike \reference{fly-execute}, killing \code{fly watch} via
+\code{SIGINT} or \code{SIGTERM} will \italic{not} abort the build.
+
+To watch the most recent one-off build, just run \code{fly watch} with no
+arguments. To watch a specific build (one-off or no), pass \code{--build}
+with the ID of the build to watch. This ID is available at the start of
+\reference{fly-execute}'s output or by browsing to the builds list in the web
+UI.
+
+By using the \code{--job} and \code{--build} flags you can pick out a
+specific build of a job to watch. For example, the following command will
+either show the archived logs for an old build, if it has finished running, or
+it will stream the current logs, if the build is still in progress.
+
+\codeblock{bash}{{
+$ fly -t example watch --job my-pipeline/tests --build 52
+}}
+
+If the \code{--job} flag is specified and \code{--build} is omitted, the most
+recent build of the specified job will be selected.
+
+If there is a mismatch between the \code{fly} and \code{web} versions, it is possible to run into \code{failed to parse next event: unknown event type} error. The \code{--ignore-event-parsing-errors} flag can be passed to ignore such errors. 

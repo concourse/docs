@@ -1,0 +1,65 @@
+\title{\code{fly intercept}}{fly-intercept}
+\use-plugin{concourse-docs}
+
+Sometimes it's helpful to connect to the machine where tasks run. This way you
+can either profile or inspect tasks, or see the state of the machine at the
+end of a run. Due to Concourse running tasks in containers on remote
+machines this would typically be hard to access.
+
+To this end, there is a \code{fly intercept} command that will give you an
+interactive shell inside the specified container. Containers are identified
+by a few things, so you may need to specify a few flags to hone down the
+results. If there are multiple containers that the flags could refer to, an
+interactive prompt will show up allowing you to disambiguate.
+
+For example, running the following will run a task and then enter the
+finished task's container:
+
+\codeblock{bash}{{
+$ fly -t example execute
+$ fly -t example intercept --step build
+}}
+
+\aside{
+When intercepting a task running on a Windows worker, you will need to
+specifically tell fly to to run \code{powershell}:
+
+\codeblock{bash}{{
+$ fly -t example intercept powershell
+}}
+}
+
+Containers are around for a short time after a build finishes in order to
+allow people to intercept them.
+
+You can also intercept builds that were run in your pipeline. By using
+\code{--job}, \code{--build}, and \code{--step} you can intercept a specific
+step from a build of a job in your pipeline. These flags also have short
+forms, like so:
+
+\codeblock{bash}{{
+$ fly -t example intercept -j some-pipeline/some-job -b some-build -s some-step
+}}
+
+Note that \code{--build} can be omitted, and will default to the most recent
+build of the job. One-off builds can be reached by passing in their build ID
+to \code{--build} which can be found on the build list page.
+
+The \code{--step} flag can also be omitted; this will let you pick the step
+interactively, if you don't know the exact name.
+
+Resource checking containers can also be intercepted with \code{--check} or
+\code{-c}:
+
+\codeblock{bash}{{
+$ fly -t example intercept --check some-pipeline/some-resource
+}}
+
+A specific command can also be given, e.g. \code{fly intercept ps auxf} or
+\code{fly intercept htop}. This allows for patterns such as \code{watch fly
+intercept ps auxf}, which will continuously show the process tree of the
+current build's task, even as the "current build" changes.
+
+The working directory and any relevant environment variables (e.g. those
+having come from \reference{schema.task.params}) used by the original process will
+also be used for the process run by intercept.

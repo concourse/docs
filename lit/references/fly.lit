@@ -35,7 +35,9 @@ to consult \code{fly -h} to learn the short forms.
 
 \include-section{fly/_template.lit}
 
+\include-section{fly/abort-build.lit}
 \include-section{fly/archive-pipeline.lit}
+\include-section{fly/builds.lit}
 \include-section{fly/completion.lit}
 \include-section{fly/delete-target.lit}
 \include-section{fly/destroy-pipeline.lit}
@@ -44,6 +46,7 @@ to consult \code{fly -h} to learn the short forms.
 \include-section{fly/format-pipeline.lit}
 \include-section{fly/get-pipeline.lit}
 \include-section{fly/hide-pipeline.lit}
+\include-section{fly/intercept.lit}
 \include-section{fly/login.lit}
 \include-section{fly/logout.lit}
 \include-section{fly/instance-groups.lit}
@@ -58,3 +61,4 @@ to consult \code{fly -h} to learn the short forms.
 \include-section{fly/unpause-pipeline.lit}
 \include-section{fly/userinfo.lit}
 \include-section{fly/validate-pipeline.lit}
+\include-section{fly/watch.lit}

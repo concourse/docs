@@ -1,0 +1,11 @@
+\title{\code{fly abort-build}}{fly-abort-build}
+\use-plugin{concourse-docs}
+
+To abort a build of a job, run:
+
+\codeblock{bash}{{
+$ fly -t example abort-build --job my-pipeline/my-job --build 3
+}}
+
+This will cancel build \code{3} of the \code{my-job} job in the
+\code{my-pipeline} pipeline.

@@ -1,0 +1,24 @@
+\title{\code{fly builds}}{fly-builds}
+\use-plugin{concourse-docs}
+
+To list the most recent builds, run:
+
+\codeblock{bash}{{
+$ fly -t example builds
+}}
+
+To list the builds of a job, run:
+
+\codeblock{bash}{{
+$ fly -t example builds -j pipeline-name/job-name
+}}
+
+This can be useful for periodically monitoring the state of a job. The output
+also works well with tools like \code{awk} and \code{grep}.
+
+By default the most recent 50 builds are shown. To see more builds, use
+the \code{-c} flag, like so:
+
+\codeblock{bash}{{
+$ fly -t example builds -c 100
+}}
