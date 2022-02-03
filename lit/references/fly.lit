@@ -12,7 +12,7 @@ every command and flag. Once you've learned what the commands do, you may want
 to consult \code{fly -h} to learn the short forms.
 
 \section{
-  \title{Global options}
+  \title{Global options}{fly-global-options}
 
   {-
   tomschr: maybe this could be a bit more verbose. For example,
@@ -32,6 +32,8 @@ to consult \code{fly -h} to learn the short forms.
 
 
 \table-of-contents
+
+\include-section{fly/_template.lit}
 
 \include-section{fly/archive-pipeline.lit}
 \include-section{fly/completion.lit}
