@@ -195,6 +195,7 @@
 
 \split-sections
 
+\include-section{./beginners.lit}
 \include-section{./docs.lit}
 \include-section{./examples.lit}
 \include-section{./project.lit}
