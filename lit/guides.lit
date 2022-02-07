@@ -1,4 +1,4 @@
-\title{Users}{users}
+\title{Guides}{guides}
 \use-plugin{concourse-docs}
 \split-sections
 
@@ -52,13 +52,13 @@ the "big picture" as the mental model sets in.
 
 }
 
-\include-section{users/install.lit}
-\include-section{users/config.lit}
-\include-section{users/builds.lit}
-\include-section{users/managing-pipelines.lit}
-\include-section{users/pipeline-guides.lit}
-\include-section{users/git.lit}
-\include-section{users/container-images.lit}
-\include-section{users/examples.lit}
-\include-section{users/project.lit}
-\include-section{users/ecosystem.lit}
+\include-section{guides/install.lit}
+\include-section{guides/config.lit}
+\include-section{guides/builds.lit}
+\include-section{guides/managing-pipelines.lit}
+\include-section{guides/pipeline-guides.lit}
+\include-section{guides/git.lit}
+\include-section{guides/container-images.lit}
+\include-section{guides/examples.lit}
+\include-section{guides/project.lit}
+\include-section{guides/ecosystem.lit}

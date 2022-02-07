@@ -9,7 +9,7 @@ Each example contains a pipeline YAML snippet which can be copy-pasted to a
 local file and configured on your instance via \reference{fly-set-pipeline}.
 From there you may want to poke around and try changing parts of the
 configuration to learn how things work. All the available knobs to turn are
-covered in the \reference{users}.
+covered in the \reference{guides}.
 
 \include-section{./examples/hello-world.lit}
 \include-section{./examples/serial-job.lit}

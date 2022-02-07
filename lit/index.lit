@@ -198,7 +198,6 @@
 \split-sections
 
 \include-section{./start.lit}
-{- \include-section{./admins.lit} -}
-\include-section{./users.lit}
-
+\include-section{./guides.lit}
+\include-section{./concepts.lit}
 \include-section{./references.lit}
