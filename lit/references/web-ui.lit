@@ -1,0 +1,59 @@
+\title{Web UI}{web-ui}
+
+\use-plugin{concourse-docs}
+
+TODO: image of dashboard
+
+\section{
+\title{Purpose}
+  The purpose of the Web UI is to provide an easy to understand, (mostly)
+  read-only view of the state of all your pipelines.
+}
+
+\section{
+\title{Views}
+
+  \section{
+  \title{Dashboard}
+    TODO: using search bar to filter, switching to high density view, favoriting pipelines
+    \link{\diagram{images/web-ui/web-ui-dashboard.png}{100%}}{images/web-ui/web-ui-dashboard.png}
+    High-density view:
+    \link{\diagram{images/web-ui/web-ui-high-density.png}{100%}}{images/web-ui/web-ui-high-density.png}
+  }
+
+  \section{
+  \title{Pipeline Overview}
+    TODO: page that shows pipeline and groups within the pipeline
+    \link{\diagram{images/web-ui/web-ui-pipeline-overview.png}{100%}}{images/web-ui/web-ui-pipeline-overview.png}
+  }
+
+  \section{
+  \title{Build Logs}
+    TODO: page that shows logs for builds
+    \link{\diagram{images/web-ui/web-ui-job-build-logs.png}{100%}}{images/web-ui/web-ui-job-build-logs.png}
+  }
+
+  \section{
+  \title{Resource Versions}{web-view-resource-versions}
+    TODO: page that shows versions of a resource. Where you can pin or disable a version
+    \link{\diagram{images/web-ui/web-ui-resource-details.png}{100%}}{images/web-ui/web-ui-resource-details.png}
+  }
+}
+
+\section{
+\title{Actions You Can Take}
+  Even though the Web UI is mostly read-only, there are the actions you can do
+  from the Web UI.
+
+  \list{
+    Pause/Unpause \reference{pipelines} and/or \reference{jobs}
+  }{
+    Trigger \reference{jobs}
+  }{
+    Trigger a resource check
+  }{
+    Pin or disable a resource version
+  }{
+    Comment on a build
+  }
+}
