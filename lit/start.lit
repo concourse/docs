@@ -1,0 +1,7 @@
+\title{Start}
+
+\use-plugin{concourse-docs}
+
+
+\include-section{./start/getting-started.lit}
+\include-section{./start/whats-next.lit}

@@ -197,7 +197,7 @@
 
 \split-sections
 
-\include-section{./beginners.lit}
+\include-section{./start.lit}
 {- \include-section{./admins.lit} -}
 \include-section{./users.lit}
 

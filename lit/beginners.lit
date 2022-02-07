@@ -1,7 +1,0 @@
-\title{Beginners}
-
-\use-plugin{concourse-docs}
-
-
-\include-section{./beginners/getting-started.lit}
-\include-section{./beginners/whats-next.lit}
