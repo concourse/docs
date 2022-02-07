@@ -15,6 +15,7 @@ Contains a reference of:
 -}
 
 \include-section{./references/fly.lit}
+\include-section{./references/web-ui.lit}
 \include-section{./references/resources.lit}
 \include-section{./references/resource-types.lit}
 \include-section{./references/vars.lit}
