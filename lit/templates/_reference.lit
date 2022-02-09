@@ -1,0 +1,25 @@
+{-
+#### Reference template
+
+This is still a big foggy and needs to be adapted to
+a specific example.
+
+Partely from https://documentation.divio.com/reference/:
+
+* have one job: describe
+* describe specific settings
+* should be austere and to the point
+* does NOT explain basic concepts or how to achieve common tasks
+* very consistent between different references of the same type
+
+-}
+
+\title{The reference}{the_reference}
+\use-plugin{concourse-docs}
+
+\section{
+    \title{About <REFERENCE_TOPIC>}
+
+    Give a short introduction
+}
+

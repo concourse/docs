@@ -1,0 +1,48 @@
+{-
+#### Concept template
+
+Whereas a task is quite rigid in its structure, a concept can be more
+flexible.
+
+* explains abstract ideas
+* explains meaning or benefit
+* can stay when specifications change
+* support understanding of tasks
+* are read for background information
+
+
+Usual structures for a concept can be:
+
+* Overview
+* [...]
+* Next steps
+* Further reading (optional)
+-}
+
+\title{The concept}{the_concept}
+\use-plugin{concourse-docs}
+
+\section{
+    \title{Overview}
+
+    Introduces the concept, sets the stage. Explains the importance
+    and the benefits.
+}
+
+{- Add here other sections to structure the concept
+   into managable and disgestable slices
+ -}
+
+\section{
+    \title{Next steps}
+
+    Gives the reader recommendations what is the next logical
+    topic to read.
+}
+
+\section{
+    \title{Further reading}
+
+    Optional. Makes the reader aware of related concepts or
+    tasks which gives more in-depth knowledge.
+}

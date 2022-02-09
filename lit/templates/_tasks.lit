@@ -1,0 +1,67 @@
+{-
+#### Task template
+
+Questions to answer (not all are probably needed):
+
+* What is the goal?
+* What tasks does the user need to perform to accomplish the goal?
+* Who performs the task?
+  - Physical:
+  - Audience:
+  - Experience:
+  - Role:
+  - Authority:
+* When and under what conditions is the task performed?
+  - Requirements:
+  - Limitations:
+  - Environment:
+* What are the potential distractions to accomplishing the goal?
+  - Troubleshooting:
+  - Alternative paths:
+  - Exception path:
+* What does the user need to know about the task?
+  - Duration:
+  - Complexity:
+  - Frequency:
+* What is the sequence of tasks?
+* What is the expected result?
+
+-}
+\title{Using abc}{task_ID}
+\omit-children-from-table-of-contents
+\single-page
+
+{-
+Add a short(!) description. It can contain:
+
+* An overview/goal of the procedure
+* The benefits or importance of the task
+* Brief conceptual information or link to a
+  concept topic
+* Complexity, duration, or frequency of the task
+-}
+
+\section{
+    \title{Prerequisites/Before you begin}
+
+    Describe what the users needs to know or what conditions needs to
+    be met, for example, in terms of software or hardware.
+}
+
+\section{
+    \title{Procedure}
+
+    Add the ordered steps that the user needs to execute.
+}
+
+\section{
+  \title{Result}
+
+  Describe the expected result.
+}
+
+\section{
+  \title{Related information}
+
+  Link to other useful tasks or references.
+}

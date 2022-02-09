@@ -1,5 +1,5 @@
 {-
-This is a reference template for a fly command
+### Reference template for a fly subcommand
 
 To add a new command, copy this template and
 name the new file according to the command.
@@ -14,10 +14,9 @@ Here is a short checklist that needs to be changed:
 * List all options and a short explanation.
 * Describe possible errors
 * Give some helpful examples.
-  If it makes sense, add command and its output.
+  If it makes sense, add commands and their outputs.
 * Add references to related commands in the
   "See also" section
-
 -}
 
 \title{Template: \code{fly foo}}{fly-foo}
