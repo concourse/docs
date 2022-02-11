@@ -84,7 +84,7 @@
   \reference{steps}{step} within a pipeline:
 
   \list{
-      \code{/opt/resource/check} - implicitly ran when a
+      \code{/opt/resource/check} - implicitly run when a
       \reference{jobs}{job} contains a \reference{get-step}{get step}.
       Should return the latest version from the external system or object.
       Its responsibility is to find new versions.
