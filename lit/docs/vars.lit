@@ -169,7 +169,7 @@ configured multiple times with different parameters
     - name: booklit
       type: booklit
       source:
-        uri: https://github.com/vito/booklit
+        uri: https://github.com/concourse/booklit
         branch: ((branch))
         private_key: (("github.com".private_key))
 
@@ -215,7 +215,7 @@ configured multiple times with different parameters
             -----BEGIN RSA PRIVATE KEY-----
             # ... snipped ...
             -----END RSA PRIVATE KEY-----
-          uri: https://github.com/vito/booklit
+          uri: https://github.com/concourse/booklit
     }}}
 
     Note that we had to use \code{-y} so that the \code{trigger: true}
@@ -230,7 +230,7 @@ configured multiple times with different parameters
     - name: booklit
       type: booklit
       source:
-        uri: https://github.com/vito/booklit
+        uri: https://github.com/concourse/booklit
         branch: ((branch))
         private_key: (("github.com".private_key))
 
@@ -285,7 +285,7 @@ configured multiple times with different parameters
             -----BEGIN RSA PRIVATE KEY-----
             # ... snipped ...
             -----END RSA PRIVATE KEY-----
-          uri: https://github.com/vito/booklit
+          uri: https://github.com/concourse/booklit
     }}}
 
     Note that we had to use \code{-y} so that the \code{trigger: true}
