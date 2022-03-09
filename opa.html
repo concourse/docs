@@ -283,7 +283,7 @@
 
   <li><p><code>CONCOURSE_OPA_URL</code>: The OPA policy check endpoint. Should point to a specific <code>package/rule</code> that contains all Concourse rules for your cluster.</p><p><em>Example:</em> <code>http://opa-endpoint.com/v1/data/concourse/decision</code></p></li>
 
-  <li><p><code>CONCOURSE_POLICY_CHECK_FILTER_HTTP_METHODS</code>: API http methods to go through policy check. You will need to make sure these match up with an API action in the next two configuration options.</p><p><em>Example:</em> <code>PUT,POST</code></p></li>
+  <li><p><code>CONCOURSE_POLICY_CHECK_FILTER_HTTP_METHOD</code>: API http methods to go through policy check. You will need to make sure these match up with an API action in the next two configuration options.</p><p><em>Example:</em> <code>PUT,POST</code></p></li>
 
   <li><p><code>CONCOURSE_POLICY_CHECK_FILTER_ACTION</code>: Actions in this list will go through policy check.</p><p><em>Example:</em> <code>ListWorkers,ListContainers</code></p></li>
 

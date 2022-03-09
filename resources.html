@@ -600,10 +600,10 @@
 
   <p>The following resource definition is an example of the <a href="https://github.com/concourse/git-resource"><code>git</code> resource</a>:</p><pre><code class="language-yaml">name: booklit
 type: git
-source: {uri: &#34;https://github.com/vito/booklit&#34;}</code></pre><p>This could be passed to a job via a <a href="get-step.html"><code>get</code> step</a> with <a href="get-step.html#schema.get.trigger"><code>trigger: true</code></a> to run the tests whenever there&#39;s new code:</p><pre><code class="language-yaml">resources:
+source: {uri: &#34;https://github.com/concourse/booklit&#34;}</code></pre><p>This could be passed to a job via a <a href="get-step.html"><code>get</code> step</a> with <a href="get-step.html#schema.get.trigger"><code>trigger: true</code></a> to run the tests whenever there&#39;s new code:</p><pre><code class="language-yaml">resources:
 - name: booklit
   type: git
-  source: {uri: &#34;https://github.com/vito/booklit&#34;}
+  source: {uri: &#34;https://github.com/concourse/booklit&#34;}
 
 jobs:
 - name: unit

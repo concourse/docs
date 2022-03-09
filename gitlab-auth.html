@@ -333,12 +333,11 @@ CONCOURSE_GITLAB_CLIENT_SECRET=myclientsecret</code></pre><p>If you&#39;re confi
   
 </dl><p>For example:</p><pre><code class="language-bash">$ fly set-team -n my-team \
     --gitlab-user my-gitlab-user \
-    --gitlab-team my-team</code></pre><p>...or via <code>--config</code> for <a href="managing-teams.html#setting-roles">setting user roles</a>:</p><pre><code class="language-bash">roles:
+    --gitlab-group my-group</code></pre><p>...or via <code>--config</code> for <a href="managing-teams.html#setting-roles">setting user roles</a>:</p><pre><code class="language-bash">roles:
 - name: member
   gitlab:
     users: [&#34;my-gitlab-login&#34;]
-    orgs: [&#34;my-org&#34;]
-    teams: [&#34;my-other-org:my-team&#34;]</code></pre>
+    groups: [&#34;my-gitlab-group&#34;]</code></pre>
 
   
     
