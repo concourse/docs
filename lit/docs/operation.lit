@@ -17,5 +17,6 @@ users that are new to these concepts, we do recommend learning how to set up
 \include-section{./operation/creds.lit}
 \include-section{./operation/container-placement.lit}
 \include-section{./operation/opa.lit}
+\include-section{./operation/performance-tuning.lit}
 \include-section{./operation/global-resources.lit}
 \include-section{./operation/administration.lit}
