@@ -212,11 +212,16 @@
         
           <tr>
             <td class="number-cell">1.15.7</td>
-            <td class="title-cell"><a href="global-resources.html"  class="self">Global Resources (experimental)</a></td>
+            <td class="title-cell"><a href="performance-tuning.html" >Performance Tuning</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15.8</td>
+            <td class="title-cell"><a href="global-resources.html"  class="self">Global Resources (experimental)</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.15.9</td>
             <td class="title-cell"><a href="administration.html" >Administration</a></td>
           </tr>
         
@@ -232,19 +237,19 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.15.7</span><a href="global-resources.html"  class="self">Global Resources (experimental)</a>
+        <span class="section-number">1.15.8</span><a href="global-resources.html"  class="self">Global Resources (experimental)</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.15.7.1</td>
+            <td class="number-cell">1.15.8.1</td>
             <td class="title-cell"><a href="global-resources.html#benefits-of-global-resources" >Benefits of Global Resources</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.15.7.2</td>
+            <td class="number-cell">1.15.8.2</td>
             <td class="title-cell"><a href="global-resources.html#risks-and-side-effects" >Risks and Side Effects</a></td>
           </tr>
         
@@ -262,7 +267,7 @@
         <div class="page-content">
           <div class="section" id="section_global-resources">
   
-  <h1 class="section-header"><a class="anchor-target" name="global-resources" href="#global-resources"></a><span class="section-number">1.15.7 </span>Global Resources (experimental)</h1>
+  <h1 class="section-header"><a class="anchor-target" name="global-resources" href="#global-resources"></a><span class="section-number">1.15.8 </span>Global Resources (experimental)</h1>
   
 
   <p>Concourse v5.0 contains an experimental feature known as &#34;global resources&#34;. It is enabled by passing the <code>--enable-global-resources</code> flag to the <code>concourse web</code> command.</p><p>The basic concept of global resources is to share detected resource versions between all resources that have the same <a href="resources.html#schema.resource.type"><code class="schema-attribute-name"><bold>resource<wbr />.type</bold></code></a> and <a href="resources.html#schema.resource.source"><code class="schema-attribute-name"><bold>resource<wbr />.source</bold></code></a> configuration.</p><p>Before v5.0.0, each pipeline resource had its own version history, associated to the resource by name. This meant that multiple pipelines with the same resource configs would redundantly collect the same version and metadata information.</p><p>With v5.0.0&#39;s experimental &#39;global resources&#39; feature, resource versions are instead associated to an anonymous &#39;resource config&#39; i.e. its <a href="resources.html#schema.resource.type"><code class="schema-attribute-name"><bold>resource<wbr />.type</bold></code></a> and <a href="resources.html#schema.resource.source"><code class="schema-attribute-name"><bold>resource<wbr />.source</bold></code></a>.</p>
@@ -374,10 +379,10 @@
               prev:
 
               
-              <span class="section-number">1.15.6</span>
+              <span class="section-number">1.15.7</span>
               
 
-              <a href="opa.html">Open Policy Agent Integration</a>
+              <a href="performance-tuning.html">Performance Tuning</a>
             </div>
           
 
@@ -386,7 +391,7 @@
               next:
 
               
-              <span class="section-number">1.15.8</span>
+              <span class="section-number">1.15.9</span>
               
 
               <a href="administration.html">Administration</a>

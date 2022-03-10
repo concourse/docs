@@ -210,11 +210,16 @@
         
           <tr>
             <td class="number-cell">1.15.7</td>
-            <td class="title-cell"><a href="global-resources.html" >Global Resources (experimental)</a></td>
+            <td class="title-cell"><a href="performance-tuning.html" >Performance Tuning</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15.8</td>
+            <td class="title-cell"><a href="global-resources.html" >Global Resources (experimental)</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.15.9</td>
             <td class="title-cell"><a href="administration.html" >Administration</a></td>
           </tr>
         
@@ -596,7 +601,7 @@
   
     <li>
       <span class="section-number">1.15.7</span>
-      <a href="global-resources.html">Global Resources (experimental)</a>
+      <a href="performance-tuning.html">Performance Tuning</a>
 
       
   
@@ -604,7 +609,7 @@
   
     <li>
       <span class="section-number">1.15.7.1</span>
-      <a href="global-resources.html#benefits-of-global-resources">Benefits of Global Resources</a>
+      <a href="performance-tuning.html#the-big-caveat">The Big Caveat</a>
 
       
   
@@ -613,7 +618,176 @@
   
     <li>
       <span class="section-number">1.15.7.2</span>
-      <a href="global-resources.html#risks-and-side-effects">Risks and Side Effects</a>
+      <a href="performance-tuning.html#build-logs">Build Logs</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.15.7.2.1</span>
+      <a href="performance-tuning.html#concourse_default_build_logs_to_retain"><code>CONCOURSE_DEFAULT_BUILD_LOGS_TO_RETAIN</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.15.7.2.2</span>
+      <a href="performance-tuning.html#concourse_max_build_logs_to_retain"><code>CONCOURSE_MAX_BUILD_LOGS_TO_RETAIN</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.15.7.2.3</span>
+      <a href="performance-tuning.html#concourse_default_days_to_retain_build_logs"><code>CONCOURSE_DEFAULT_DAYS_TO_RETAIN_BUILD_LOGS</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.15.7.2.4</span>
+      <a href="performance-tuning.html#concourse_max_days_to_retain_build_logs"><code>CONCOURSE_MAX_DAYS_TO_RETAIN_BUILD_LOGS</code></a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.15.7.3</span>
+      <a href="performance-tuning.html#resource-checking">Resource Checking</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.15.7.3.1</span>
+      <a href="performance-tuning.html#concourse_resource_checking_interval"><code>CONCOURSE_RESOURCE_CHECKING_INTERVAL</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.15.7.3.2</span>
+      <a href="performance-tuning.html#concourse_resource_with_webhook_checking_interval"><code>CONCOURSE_RESOURCE_WITH_WEBHOOK_CHECKING_INTERVAL</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.15.7.3.3</span>
+      <a href="performance-tuning.html#concourse_max_checks_per_second"><code>CONCOURSE_MAX_CHECKS_PER_SECOND</code></a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.15.7.4</span>
+      <a href="performance-tuning.html#pipeline-management">Pipeline Management</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.15.7.4.1</span>
+      <a href="performance-tuning.html#concourse_pause_pipelines_after"><code>CONCOURSE_PAUSE_PIPELINES_AFTER</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.15.7.4.2</span>
+      <a href="performance-tuning.html#concourse_default_task_cpumemory_limit"><code>CONCOURSE_DEFAULT_TASK_{CPU/MEMORY}_LIMIT</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.15.7.4.3</span>
+      <a href="performance-tuning.html#concourse_default_getputtask_timeout"><code>CONCOURSE_DEFAULT_{GET/PUT/TASK}_TIMEOUT</code></a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.15.7.5</span>
+      <a href="performance-tuning.html#optimize-containers-placement">Container Placement</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.15.7.6</span>
+      <a href="performance-tuning.html#garbage-collection">Garbage Collection</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.15.7.6.1</span>
+      <a href="performance-tuning.html#concourse_gc_failed_grace_period"><code>CONCOURSE_GC_FAILED_GRACE_PERIOD</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.15.7.6.2</span>
+      <a href="performance-tuning.html#other-gc-grace-periods">Other GC Grace Periods</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.15.7.7</span>
+      <a href="performance-tuning.html#web-to-worker-ratio">Web To Worker Ratio</a>
 
       
   
@@ -627,7 +801,7 @@
   
     <li>
       <span class="section-number">1.15.8</span>
-      <a href="administration.html">Administration</a>
+      <a href="global-resources.html">Global Resources (experimental)</a>
 
       
   
@@ -635,7 +809,7 @@
   
     <li>
       <span class="section-number">1.15.8.1</span>
-      <a href="administration.html#fly-workers"><code>fly workers</code></a>
+      <a href="global-resources.html#benefits-of-global-resources">Benefits of Global Resources</a>
 
       
   
@@ -644,6 +818,37 @@
   
     <li>
       <span class="section-number">1.15.8.2</span>
+      <a href="global-resources.html#risks-and-side-effects">Risks and Side Effects</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.15.9</span>
+      <a href="administration.html">Administration</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.15.9.1</span>
+      <a href="administration.html#fly-workers"><code>fly workers</code></a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.15.9.2</span>
       <a href="administration.html#fly-prune-worker"><code>fly prune-worker</code></a>
 
       
@@ -652,7 +857,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.8.3</span>
+      <span class="section-number">1.15.9.3</span>
       <a href="administration.html#fly-land-worker"><code>fly land-worker</code></a>
 
       
@@ -661,7 +866,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.8.4</span>
+      <span class="section-number">1.15.9.4</span>
       <a href="administration.html#fly-containers"><code>fly containers</code></a>
 
       
@@ -670,7 +875,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.8.5</span>
+      <span class="section-number">1.15.9.5</span>
       <a href="administration.html#fly-volumes"><code>fly volumes</code></a>
 
       
@@ -679,7 +884,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.8.6</span>
+      <span class="section-number">1.15.9.6</span>
       <a href="administration.html#fly-curl"><code>fly curl</code></a>
 
       
