@@ -170,7 +170,7 @@ quite involved.
 
   \codeblock{hcl}{{{
     path "concourse/*" {
-      policy = "read"
+      capabilities = ["read"]
     }
   }}}
 
