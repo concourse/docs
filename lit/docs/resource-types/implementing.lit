@@ -303,3 +303,39 @@ UI, so you should make your output pretty.
   a man-in-the-middle corporate SSL proxy. (In this way it doesn't feel too
   much like the anti-pattern of hand-tuning workers.)
 }
+
+\section{
+  \title{Testing resources locally using docker}{test-resource-with-docker}
+  To test an already packaged resource (a docker image) outside concourse, you need to:
+  \ordered-list{
+    If, for instance, you are testing the \code{out} behaviour of the \code{git} resource, create a json file with \code{source} configuration of the resource and the \code{params} the \code{put} step expects. Such a file for the \code{git} resource would contain the following (or similar):
+    \codeblock{json}{{{
+      {
+        "source": {
+          "uri": "git://some-uri",
+          "branch": "develop",
+          "private_key": "..."
+        },
+        "params": {
+          "repository": ".",
+          "rebase": true
+        }
+      }
+    }}}
+    Save this file to \code{out-config.json} in your working directory.
+  }{
+    Then run the \code{/opt/resource/out} script with its inputs provided via \code{stdin} like so (using the \code{docker} cli as an example):
+    \codeblock{bash}{{{
+      docker run --rm -i -v "${PWD}:${PWD}" -w "${PWD}" concourse/git-resource /opt/resource/out . < out-config.json
+    }}}
+    \bold{This example needs modification depending on the resource you are testing and your local environment. Specifically:}
+    \ordered-list{
+      If you use the exact configuration in this example, the git resource will print an error about the format of the private key being invalid. Adjust the content \code{out-config.json} as necessary to get it working with your resource.
+    }{
+      If the resource you are testing uses \reference{resource-metadata}, you will need to provide the required metadata as environment variables to your \code{docker run} command like so:
+      \codeblock{bash}{{{
+        docker run --rm -i -e ATC_EXTERNAL_URL="https://concourse.example.com" -e BUILD_NAME=620 # ... and so on.
+      }}}
+    }
+  }
+}
