@@ -360,9 +360,19 @@ configured multiple times with different parameters
     from the \code{my-vault} var source. See \reference{var-syntax} for a
     detailed explanation of this syntax.
 
-    Currently, only two types are supported: \code{vault} and \code{dummy}. In
-    the future we want to make use of something like the \link{Prototypes (RFC
-    #37)}{https://github.com/concourse/rfcs/pull/37} so that third-party
+    Currently, only these types are supported:
+    \list{
+      \reference{vault-credential-manager}{\code{vault}}
+    }{
+      \code{dummy}
+    }{
+      \reference{aws-ssm-credential-manager}{\code{ssm}}
+    }{
+      \reference{aws-asm-credential-manager}{\code{secretmanager}} (since v7.7.0)
+    }
+
+    In the future we want to make use of something like the \link{Prototypes
+    (RFC #37)}{https://github.com/concourse/rfcs/pull/37} so that third-party
     credential managers can be used just like resource types.
 
     \schema{var_source}{
