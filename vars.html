@@ -769,7 +769,17 @@ resources:
 
   <div class="warning">
   <p><code>var_sources</code> was introduced in Concourse v5.8.0. It is considered an <strong>experimental</strong> feature until its associated <a href="https://github.com/concourse/rfcs/pull/39">RFC</a> is resolved.</p>
-</div><p>Var sources can be configured for a pipeline via <a href="pipelines.html#schema.pipeline.var_sources"><code class="schema-attribute-name"><bold>pipeline<wbr />.var_sources</bold></code></a>.</p><p>Each var source has a name which is then referenced as the <em>source-name</em> in var syntax, e.g. <code>((my-vault:test-user.username))</code> to fetch the <code>test-user</code> var from the <code>my-vault</code> var source. See <a href="vars.html#var-syntax"><code>((var))</code> syntax</a> for a detailed explanation of this syntax.</p><p>Currently, only two types are supported: <code>vault</code> and <code>dummy</code>. In the future we want to make use of something like the <a href="https://github.com/concourse/rfcs/pull/37">Prototypes (RFC #37)</a> so that third-party credential managers can be used just like resource types.</p><div class="schema">
+</div><p>Var sources can be configured for a pipeline via <a href="pipelines.html#schema.pipeline.var_sources"><code class="schema-attribute-name"><bold>pipeline<wbr />.var_sources</bold></code></a>.</p><p>Each var source has a name which is then referenced as the <em>source-name</em> in var syntax, e.g. <code>((my-vault:test-user.username))</code> to fetch the <code>test-user</code> var from the <code>my-vault</code> var source. See <a href="vars.html#var-syntax"><code>((var))</code> syntax</a> for a detailed explanation of this syntax.</p><p>Currently, only these types are supported: <ul>
+
+  <li><p><a href="vault-credential-manager.html"><code>vault</code></a></p></li>
+
+  <li><p><code>dummy</code></p></li>
+
+  <li><p><a href="aws-ssm-credential-manager.html"><code>ssm</code></a></p></li>
+
+  <li><p><a href="aws-asm-credential-manager.html"><code>secretmanager</code></a> (since v7.7.0)</p></li>
+
+</ul></p><p>In the future we want to make use of something like the <a href="https://github.com/concourse/rfcs/pull/37">Prototypes (RFC #37)</a> so that third-party credential managers can be used just like resource types.</p><div class="schema">
   <h2 class="schema-header"><a class="anchor-target" name="schema.var_source" href="#schema.var_source"></a><code>var_source</code> schema</h2>
 
   <div class="toggleable schema-attribute required">
