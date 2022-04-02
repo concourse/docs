@@ -335,7 +335,7 @@ UI, so you should make your output pretty.
   }{
     If the resource you are testing uses \reference{resource-metadata}, you will need to provide the required metadata as environment variables to your \code{docker run} command like so:
     \codeblock{bash}{{{
-      docker run --rm -i -e ATC_EXTERNAL_URL="https://concourse.example.com" -e BUILD_NAME=620 # ... and so on.
+      docker run --rm -i -e ATC_EXTERNAL_URL="https://concourse.example.com" -e BUILD_NAME=620 -v "${PWD}:${PWD}" -w "${PWD}" concourse/git-resource /opt/resource/out . < out-config.json
     }}}
   }
 }
