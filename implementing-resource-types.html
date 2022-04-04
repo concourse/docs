@@ -233,6 +233,11 @@
             <td class="title-cell"><a href="implementing-resource-types.html#resource-certs" >Certificate Propagation</a></td>
           </tr>
         
+          <tr>
+            <td class="number-cell">1.9.1.6</td>
+            <td class="title-cell"><a href="implementing-resource-types.html#test-resource-with-docker" >Testing resources locally using docker</a></td>
+          </tr>
+        
         </table>
       </div>
     </nav>
@@ -406,6 +411,42 @@ git push origin develop</code></pre><p>And output:</p><pre><code class="language
   
 
   <p>Certificates can be automatically propagated into each resource container, if the worker is configured to do so. The BOSH release configures this automatically, while the <code>concourse</code> binary must be given a <code>--certs-dir</code> flag pointing to the path containing the CA certificate bundle.</p><p>The worker&#39;s certificate directory will then be always mounted at <code>/etc/ssl/certs</code>, read-only, in each resource container created on the worker. There&#39;s no single standard path for this, so we picked one that would work out of the box in most cases.</p><p>This approach to certificate configuration is similar in mindset to the propagation of <code>http_proxy</code>/<code>https_proxy</code> - certs are kind of a baseline assumption when deploying software, so Concourse should do its best to respect it out-of-the-box, especially as they&#39;re often used in tandem with a man-in-the-middle corporate SSL proxy. (In this way it doesn&#39;t feel too much like the anti-pattern of hand-tuning workers.)</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_test-resource-with-docker">
+  
+  <h2 class="section-header"><a class="anchor-target" name="test-resource-with-docker" href="#test-resource-with-docker"></a>Testing resources locally using docker</h2>
+  
+
+  <p>To test an already packaged resource (a docker image) outside concourse, you need to: <ol>
+
+  <li><p>If, for instance, you are testing the <code>out</code> behaviour of the <code>git</code> resource, create a json file with <code>source</code> configuration of the resource and the <code>params</code> the <code>put</code> step expects. Such a file for the <code>git</code> resource would contain the following (or similar): <pre><code class="language-json">{
+  &#34;source&#34;: {
+    &#34;uri&#34;: &#34;git://some-uri&#34;,
+    &#34;branch&#34;: &#34;develop&#34;,
+    &#34;private_key&#34;: &#34;...&#34;
+  },
+  &#34;params&#34;: {
+    &#34;repository&#34;: &#34;.&#34;,
+    &#34;rebase&#34;: true
+  }
+}</code></pre> Save this file to <code>out-config.json</code> in your working directory.</p></li>
+
+  <li><p>Then run the <code>/opt/resource/out</code> script with its inputs provided via <code>stdin</code> like so (using the <code>docker</code> cli as an example): <pre><code class="language-bash">docker run --rm -i -v &#34;${PWD}:${PWD}&#34; -w &#34;${PWD}&#34; concourse/git-resource /opt/resource/out . &lt; out-config.json</code></pre></p></li>
+
+</ol> <div class="warning">
+  This example needs modification depending on the resource you are testing and your local environment. See the notes below for details.
+</div> <ol>
+
+  <li><p>If you use the exact configuration in this example, the git resource will print an error about the format of the private key being invalid. Adjust the content <code>out-config.json</code> as necessary to get it working with your resource.</p></li>
+
+  <li><p>If the resource you are testing uses <a href="implementing-resource-types.html#resource-metadata">Metadata</a>, you will need to provide the required metadata as environment variables to your <code>docker run</code> command like so: <pre><code class="language-bash">docker run --rm -i -e ATC_EXTERNAL_URL=&#34;https://concourse.example.com&#34; -e BUILD_NAME=620 -v &#34;${PWD}:${PWD}&#34; -w &#34;${PWD}&#34; concourse/git-resource /opt/resource/out . &lt; out-config.json</code></pre></p></li>
+
+</ol></p>
 
   
     
