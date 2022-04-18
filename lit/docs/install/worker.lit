@@ -827,4 +827,91 @@ decide much on its own.
       }
   }
 
+  \section{
+    \title{Configuring Peer-to-Peer Volume Streaming}
+
+    Peer-to-Peer (P2P) volume streaming enables the workers to stream volumes
+    directly to each other instead of always streaming volumes through the web
+    node(s). This can reduce the time it takes for individual steps in a job to
+    start and reduce the amount of network traffic used by the Concourse cluster.
+
+    \warn{
+      NOTE: This feature is experimental. It is not as robust as the default
+      volume streaming setup which always goes through web nodes.
+    }
+
+    \bold{Pre-Requisites}
+
+    \list{
+      All worker nodes need to be able to reach each other via IP address. This
+      usually means they are on the same LAN. You can test this by trying to
+      ping one worker from another worker. If even one worker does not meet
+      this requirement then you cannot use P2P volume streaming.
+    }{
+      The baggageclaim port (\code{7788} is the default) is open to traffic on
+      all worker nodes. You can verify the port is open and reaching the
+      baggageclaim API server by hitting the \code{/volumes} endpoint.
+
+      \code{curl http://<worker-IP-address>:7788/volumes}
+    }
+
+    To enable P2P volume streaming you need to configure some settings on the
+    web and worker nodes. Configure the worker nodes first. Configure the web
+    node(s) last.
+
+    \section{
+      \title{P2P Worker Configuration}
+
+      \list{
+        \code{CONCOURSE_BAGGAGECLAIM_BIND_IP=0.0.0.0} - \italic{Required.} The
+        worker needs to listen for traffic over \code{127.0.0.1} (to receive
+        info from the web node) as well as its LAN IP in a P2P setup. Therefore
+        we need to set the IP baggageclaim binds to to \code{0.0.0.0}.
+      }{
+        \code{CONCOURSE_BAGGAGECLAIM_P2P_INTERFACE_NAME_PATTERN=eth0} -
+        \italic{Optional.} Regular expression to match a network interface for
+        P2P streaming. This is how a worker determines its own LAN IP address,
+        by looking it up via the LAN interface specified by this flag.
+
+        You can determine the name of the LAN interface for any worker by
+        listing all network interfaces and noting which interface has the LAN
+        IP that you want the worker to use.
+
+        To view all available network interfaces on your worker:
+        \list{
+          On Linux run \code{ip addr list}
+        }{
+          On MacOS run \code{ifconfig}
+        }{
+          On Windows run \code{ipconfig}. Windows network interface names are very different from Unix device names. Example network interface names for Windows include:
+          \codeblock{}{{
+            Ethernet 4
+            Local Area Connection* 2
+            Local Area Connection* 12
+            Wi-Fi 5
+            Bluetooth Network Connection 2
+            Loopback Pseudo-Interface 1
+          }}
+        }
+      }{
+        \code{CONCOURSE_BAGGAGECLAIM_P2P_INTERFACE_FAMILY=4} -
+        \italic{Optional.} Tells the worker to use IPv4 or IPv6. Defaults to
+        \code{4} for IPv4. Set to \code{6} for IPv6.
+      }
+    }
+
+    \section{
+      \title{P2P Web Configuration}
+
+      You need to tell the web node(s) to use P2P volume streaming.
+
+      \code{CONCOURSE_ENABLE_P2P_VOLUME_STREAMING=true}
+
+      Once that flag is set and the web node is restarted, P2P volume streaming
+      will start occurring in your Concourse cluster.
+    }
+
+
+  }
+
 }
