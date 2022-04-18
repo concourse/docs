@@ -524,6 +524,37 @@
   
     </li>
   
+    <li>
+      <span class="section-number">1.2.5.4.6</span>
+      <a href="concourse-worker.html#configuring-peer-to-peer-volume-streaming">Configuring Peer-to-Peer Volume Streaming</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.2.5.4.6.1</span>
+      <a href="concourse-worker.html#p2p-worker-configuration">P2P Worker Configuration</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.2.5.4.6.2</span>
+      <a href="concourse-worker.html#p2p-web-configuration">P2P Web Configuration</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
   </ol>
   
   
@@ -1092,6 +1123,71 @@ Address: 185.199.111.153</code></pre><p>If <code>nslookup</code> times out or fa
     
   
 </div>
+    
+  
+</div>
+    
+  
+</div>
+    
+      <div class="section" id="section_configuring-peer-to-peer-volume-streaming">
+  
+  <h3 class="section-header"><a class="anchor-target" name="configuring-peer-to-peer-volume-streaming" href="#configuring-peer-to-peer-volume-streaming"></a>Configuring Peer-to-Peer Volume Streaming</h3>
+  
+
+  <p>Peer-to-Peer (P2P) volume streaming enables the workers to stream volumes directly to each other instead of always streaming volumes through the web node(s). This can reduce the time it takes for individual steps in a job to start and reduce the amount of network traffic used by the Concourse cluster.</p><div class="warning">
+  <p>NOTE: This feature is experimental. It is not as robust as the default volume streaming setup which always goes through web nodes.</p>
+</div><p><strong>Pre-Requisites</strong></p><ul>
+
+  <li><p>All worker nodes need to be able to reach each other via IP address. This usually means they are on the same LAN. You can test this by trying to ping one worker from another worker. If even one worker does not meet this requirement then you cannot use P2P volume streaming.</p></li>
+
+  <li><p>The baggageclaim port (<code>7788</code> is the default) is open to traffic on all worker nodes. You can verify the port is open and reaching the baggageclaim API server by hitting the <code>/volumes</code> endpoint.</p><p><code>curl http://&lt;worker-IP-address&gt;:7788/volumes</code></p></li>
+
+</ul><p>To enable P2P volume streaming you need to configure some settings on the web and worker nodes. Configure the worker nodes first. Configure the web node(s) last.</p>
+
+  
+    
+      <div class="section" id="section_p2p-worker-configuration">
+  
+  <h4 class="section-header"><a class="anchor-target" name="p2p-worker-configuration" href="#p2p-worker-configuration"></a>P2P Worker Configuration</h4>
+  
+
+  <ul>
+
+  <li><p><code>CONCOURSE_BAGGAGECLAIM_BIND_IP=0.0.0.0</code> - <em>Required.</em> The worker needs to listen for traffic over <code>127.0.0.1</code> (to receive info from the web node) as well as its LAN IP in a P2P setup. Therefore we need to set the IP baggageclaim binds to to <code>0.0.0.0</code>.</p></li>
+
+  <li><p><code>CONCOURSE_BAGGAGECLAIM_P2P_INTERFACE_NAME_PATTERN=eth0</code> - <em>Optional.</em> Regular expression to match a network interface for P2P streaming. This is how a worker determines its own LAN IP address, by looking it up via the LAN interface specified by this flag.</p><p>You can determine the name of the LAN interface for any worker by listing all network interfaces and noting which interface has the LAN IP that you want the worker to use.</p><p>To view all available network interfaces on your worker: <ul>
+
+  <li><p>On Linux run <code>ip addr list</code></p></li>
+
+  <li><p>On MacOS run <code>ifconfig</code></p></li>
+
+  <li><p>On Windows run <code>ipconfig</code>. Windows network interface names are very different from Unix device names. Example network interface names for Windows include: <pre><code class="language-">Ethernet 4
+Local Area Connection* 2
+Local Area Connection* 12
+Wi-Fi 5
+Bluetooth Network Connection 2
+Loopback Pseudo-Interface 1</code></pre></p></li>
+
+</ul></p></li>
+
+  <li><p><code>CONCOURSE_BAGGAGECLAIM_P2P_INTERFACE_FAMILY=4</code> - <em>Optional.</em> Tells the worker to use IPv4 or IPv6. Defaults to <code>4</code> for IPv4. Set to <code>6</code> for IPv6.</p></li>
+
+</ul>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_p2p-web-configuration">
+  
+  <h4 class="section-header"><a class="anchor-target" name="p2p-web-configuration" href="#p2p-web-configuration"></a>P2P Web Configuration</h4>
+  
+
+  <p>You need to tell the web node(s) to use P2P volume streaming.</p><p><code>CONCOURSE_ENABLE_P2P_VOLUME_STREAMING=true</code></p><p>Once that flag is set and the web node is restarted, P2P volume streaming will start occurring in your Concourse cluster.</p>
+
+  
     
   
 </div>
