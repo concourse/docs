@@ -53,6 +53,39 @@ following schema:
     and execute one-by-one, rather than executing in parallel.
   }
 
+  \optional-attribute{serial_groups}{[identifier]}{
+    \italic{Default \code{[]}.} When set to an array of arbitrary tag-like
+    strings, builds of this job and other jobs referencing the same tags will
+    be serialized.
+
+    \example-toggle{Limiting parallelism}{
+      This can be used to ensure that certain jobs do not run at the same time,
+      like so:
+
+      \codeblock{yaml}{{
+      jobs:
+      - name: job-a
+        serial_groups: [some-tag]
+      - name: job-b
+        serial_groups: [some-tag, some-other-tag]
+      - name: job-c
+        serial_groups: [some-other-tag]
+      }}
+
+      In this example, \code{job-a} and \code{job-c} can run concurrently, but
+      neither job can run builds at the same time as \code{job-b}.
+
+      The builds are executed in their order of creation, across all jobs with
+      common tags.
+    }
+  }
+
+  \optional-attribute{max_in_flight}{number}{
+    If set, specifies a maximum number of builds to run at a time. If
+    \code{serial} or \code{serial_groups} are set, they take precedence and
+    force this value to be \code{1}.
+  }
+
   \optional-attribute{build_log_retention}{build_log_retention_policy}{
     Configures the retention policy for build logs. This is useful if you have
     a job that runs often but after some amount of time the logs aren't worth
@@ -122,39 +155,6 @@ following schema:
   \optional-attribute{build_logs_to_retain}{number}{
     \italic{Deprecated.} Equivalent to setting
     \reference{schema.build_log_retention_policy.builds}{\code{job.build_log_retention.builds}}.
-  }
-
-  \optional-attribute{serial_groups}{[identifier]}{
-    \italic{Default \code{[]}.} When set to an array of arbitrary tag-like
-    strings, builds of this job and other jobs referencing the same tags will
-    be serialized.
-
-    \example-toggle{Limiting parallelism}{
-      This can be used to ensure that certain jobs do not run at the same time,
-      like so:
-
-      \codeblock{yaml}{{
-      jobs:
-      - name: job-a
-        serial_groups: [some-tag]
-      - name: job-b
-        serial_groups: [some-tag, some-other-tag]
-      - name: job-c
-        serial_groups: [some-other-tag]
-      }}
-
-      In this example, \code{job-a} and \code{job-c} can run concurrently, but
-      neither job can run builds at the same time as \code{job-b}.
-
-      The builds are executed in their order of creation, across all jobs with
-      common tags.
-    }
-  }
-
-  \optional-attribute{max_in_flight}{number}{
-    If set, specifies a maximum number of builds to run at a time. If
-    \code{serial} or \code{serial_groups} are set, they take precedence and
-    force this value to be \code{1}.
   }
 
   \optional-attribute{public}{boolean}{
