@@ -231,6 +231,16 @@
       
       <tr>
         <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="jobs.html#schema.job.serial_groups"><code class="schema-attribute-name"><bold>job<wbr />.serial_groups</bold></code></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="jobs.html#schema.job.max_in_flight"><code class="schema-attribute-name"><bold>job<wbr />.max_in_flight</bold></code></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
         <td class="title-cell"><a href="jobs.html#schema.build_log_retention_policy.days"><code class="schema-attribute-name"><bold>build_log_retention_policy<wbr />.days</bold></code></a></td>
       </tr>
       
@@ -252,16 +262,6 @@
       <tr>
         <td class="number-cell"><code>#</code></td>
         <td class="title-cell"><a href="jobs.html#schema.job.build_logs_to_retain"><code class="schema-attribute-name"><bold>job<wbr />.build_logs_to_retain</bold></code></a></td>
-      </tr>
-      
-      <tr>
-        <td class="number-cell"><code>#</code></td>
-        <td class="title-cell"><a href="jobs.html#schema.job.serial_groups"><code class="schema-attribute-name"><bold>job<wbr />.serial_groups</bold></code></a></td>
-      </tr>
-      
-      <tr>
-        <td class="number-cell"><code>#</code></td>
-        <td class="title-cell"><a href="jobs.html#schema.job.max_in_flight"><code class="schema-attribute-name"><bold>job<wbr />.max_in_flight</bold></code></a></td>
       </tr>
       
       <tr>
@@ -459,6 +459,40 @@
     <p><em>Default <code>false</code>.</em> If set to <code>true</code>, builds will queue up and execute one-by-one, rather than executing in parallel.</p>
   </div>
 </div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.job.serial_groups" type="checkbox" class="toggle" />
+  <label for="toggle-schema.job.serial_groups" class="toggle-title">
+    <a id="schema.job.serial_groups"></a>
+
+    <code><a class="attribute-name" href="#schema.job.serial_groups">serial_groups</a>: <span class="attribute-type">[<a href="config-basics.html#schema.identifier"><strong>identifier</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>[]</code>.</em> When set to an array of arbitrary tag-like strings, builds of this job and other jobs referencing the same tags will be serialized.</p><div class="toggleable example">
+  <input id="toggle-17821c1e6eeaa874a2cde83946f0ad8d35ac5826" type="checkbox" class="toggle" />
+  <label for="toggle-17821c1e6eeaa874a2cde83946f0ad8d35ac5826" class="toggle-title">Limiting parallelism</label>
+  <div class="toggle-content">
+    <p>This can be used to ensure that certain jobs do not run at the same time, like so:</p><pre><code class="language-yaml">jobs:
+- name: job-a
+  serial_groups: [some-tag]
+- name: job-b
+  serial_groups: [some-tag, some-other-tag]
+- name: job-c
+  serial_groups: [some-other-tag]</code></pre><p>In this example, <code>job-a</code> and <code>job-c</code> can run concurrently, but neither job can run builds at the same time as <code>job-b</code>.</p><p>The builds are executed in their order of creation, across all jobs with common tags.</p>
+  </div>
+</div>
+  </div>
+</div><div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.job.max_in_flight" type="checkbox" class="toggle" />
+  <label for="toggle-schema.job.max_in_flight" class="toggle-title">
+    <a id="schema.job.max_in_flight"></a>
+
+    <code><a class="attribute-name" href="#schema.job.max_in_flight">max_in_flight</a>: <span class="attribute-type"><a href="config-basics.html#schema.number"><strong>number</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>If set, specifies a maximum number of builds to run at a time. If <code>serial</code> or <code>serial_groups</code> are set, they take precedence and force this value to be <code>1</code>.</p>
+  </div>
+</div><div class="toggleable schema-attribute optional">
   <input id="toggle-schema.job.build_log_retention" type="checkbox" class="toggle" />
   <label for="toggle-schema.job.build_log_retention" class="toggle-title">
     <a id="schema.job.build_log_retention"></a>
@@ -531,40 +565,6 @@
 
   <div class="toggle-content attribute-content">
     <p><em>Deprecated.</em> Equivalent to setting <a href="jobs.html#schema.build_log_retention_policy.builds"><code>job.build_log_retention.builds</code></a>.</p>
-  </div>
-</div><div class="toggleable schema-attribute optional">
-  <input id="toggle-schema.job.serial_groups" type="checkbox" class="toggle" />
-  <label for="toggle-schema.job.serial_groups" class="toggle-title">
-    <a id="schema.job.serial_groups"></a>
-
-    <code><a class="attribute-name" href="#schema.job.serial_groups">serial_groups</a>: <span class="attribute-type">[<a href="config-basics.html#schema.identifier"><strong>identifier</strong></a>]</span></code>
-  </label>
-
-  <div class="toggle-content attribute-content">
-    <p><em>Default <code>[]</code>.</em> When set to an array of arbitrary tag-like strings, builds of this job and other jobs referencing the same tags will be serialized.</p><div class="toggleable example">
-  <input id="toggle-17821c1e6eeaa874a2cde83946f0ad8d35ac5826" type="checkbox" class="toggle" />
-  <label for="toggle-17821c1e6eeaa874a2cde83946f0ad8d35ac5826" class="toggle-title">Limiting parallelism</label>
-  <div class="toggle-content">
-    <p>This can be used to ensure that certain jobs do not run at the same time, like so:</p><pre><code class="language-yaml">jobs:
-- name: job-a
-  serial_groups: [some-tag]
-- name: job-b
-  serial_groups: [some-tag, some-other-tag]
-- name: job-c
-  serial_groups: [some-other-tag]</code></pre><p>In this example, <code>job-a</code> and <code>job-c</code> can run concurrently, but neither job can run builds at the same time as <code>job-b</code>.</p><p>The builds are executed in their order of creation, across all jobs with common tags.</p>
-  </div>
-</div>
-  </div>
-</div><div class="toggleable schema-attribute optional">
-  <input id="toggle-schema.job.max_in_flight" type="checkbox" class="toggle" />
-  <label for="toggle-schema.job.max_in_flight" class="toggle-title">
-    <a id="schema.job.max_in_flight"></a>
-
-    <code><a class="attribute-name" href="#schema.job.max_in_flight">max_in_flight</a>: <span class="attribute-type"><a href="config-basics.html#schema.number"><strong>number</strong></a></span></code>
-  </label>
-
-  <div class="toggle-content attribute-content">
-    <p>If set, specifies a maximum number of builds to run at a time. If <code>serial</code> or <code>serial_groups</code> are set, they take precedence and force this value to be <code>1</code>.</p>
   </div>
 </div><div class="toggleable schema-attribute optional">
   <input id="toggle-schema.job.public" type="checkbox" class="toggle" />
