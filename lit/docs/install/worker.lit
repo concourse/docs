@@ -296,7 +296,7 @@ decide much on its own.
   \section{
     \title{Team Workers}
 
-    If you want to isolate \bold{all workloads} for a
+    If you want to isolate \reference{complications-with-reusing-containers}{\bold{all workloads}} for a
     \reference{managing-teams}{team} then you can configure a worker to belong
     to a single team like so:
 
