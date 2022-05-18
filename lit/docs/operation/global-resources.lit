@@ -1,4 +1,4 @@
-\title{Global Resources\aux{ (experimental)}}{global-resources}
+\title{Global Resources}{global-resources}
 
 \use-plugin{concourse-docs}
 
@@ -46,7 +46,7 @@ instead associated to an anonymous 'resource config' i.e. its
     running the checks for that resource configuration.
 
     \section{
-      \title{Complications with reusing containers}
+      \title{Complications with reusing containers}{complications-with-reusing-containers}
 
       There is an exception to sharing check containers within a deployment,
       which is workers belonging to a team and workers with tags.
