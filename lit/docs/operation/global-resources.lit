@@ -1,4 +1,4 @@
-\title{Global Resources\aux{ (experimental)}}{global-resources}
+\title{Global Resources}{global-resources}
 
 \use-plugin{concourse-docs}
 
@@ -46,20 +46,21 @@ instead associated to an anonymous 'resource config' i.e. its
     running the checks for that resource configuration.
 
     \section{
-      \title{Complications with reusing containers}
+      \title{Complications with reusing containers}{complications-with-reusing-containers}
 
       There is an exception to sharing check containers within a deployment,
       which is workers belonging to a team and workers with tags.
 
       If a resource has \reference{schema.resource.tags} configured, \italic{and} the
-      resource's check interval ends up acquiring the checking lock, a new
-      container will be created on a worker matching the appropriate tags, even
-      if a check container already exists for the same resource config
-      elsewhere.
+      resource's check interval ends up acquiring the checking lock, if a check
+      container already exists with the same resource config elsewhere, it will reuse
+      the container, otherwise a container will be created on a worker matching
+      the appropriate tags.
 
       Similarly, if a team has its own workers, and their check interval ended
-      up acquiring the lock, a new container will be created on the team's
-      workers, rather than re-using a container from the shared worker pool.
+      up acquiring the lock, it will try to re-use a container with the same resource
+      config from the shared worker pool, rather than creating a new container on the
+      team's workers.
 
       This is a bit complicated to reason about and we plan to stop re-using
       \code{check} containers to simplify all of this. See \ghissue{3079} for
