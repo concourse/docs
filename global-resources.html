@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
-<title>Global Resources (experimental) - Concourse CI</title>
+<title>Global Resources - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
@@ -217,7 +217,7 @@
         
           <tr>
             <td class="number-cell">1.15.8</td>
-            <td class="title-cell"><a href="global-resources.html"  class="self">Global Resources (experimental)</a></td>
+            <td class="title-cell"><a href="global-resources.html"  class="self">Global Resources</a></td>
           </tr>
         
           <tr>
@@ -237,7 +237,7 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.15.8</span><a href="global-resources.html"  class="self">Global Resources (experimental)</a>
+        <span class="section-number">1.15.8</span><a href="global-resources.html"  class="self">Global Resources</a>
       </div>
 
       <div class="children">
@@ -267,7 +267,7 @@
         <div class="page-content">
           <div class="section" id="section_global-resources">
   
-  <h1 class="section-header"><a class="anchor-target" name="global-resources" href="#global-resources"></a><span class="section-number">1.15.8 </span>Global Resources (experimental)</h1>
+  <h1 class="section-header"><a class="anchor-target" name="global-resources" href="#global-resources"></a><span class="section-number">1.15.8 </span>Global Resources</h1>
   
 
   <p>Concourse v5.0 contains an experimental feature known as &#34;global resources&#34;. It is enabled by passing the <code>--enable-global-resources</code> flag to the <code>concourse web</code> command.</p><p>The basic concept of global resources is to share detected resource versions between all resources that have the same <a href="resources.html#schema.resource.type"><code class="schema-attribute-name"><bold>resource<wbr />.type</bold></code></a> and <a href="resources.html#schema.resource.source"><code class="schema-attribute-name"><bold>resource<wbr />.source</bold></code></a> configuration.</p><p>Before v5.0.0, each pipeline resource had its own version history, associated to the resource by name. This meant that multiple pipelines with the same resource configs would redundantly collect the same version and metadata information.</p><p>With v5.0.0&#39;s experimental &#39;global resources&#39; feature, resource versions are instead associated to an anonymous &#39;resource config&#39; i.e. its <a href="resources.html#schema.resource.type"><code class="schema-attribute-name"><bold>resource<wbr />.type</bold></code></a> and <a href="resources.html#schema.resource.source"><code class="schema-attribute-name"><bold>resource<wbr />.source</bold></code></a>.</p>
@@ -297,7 +297,7 @@
   <h4 class="section-header"><a class="anchor-target" name="complications-with-reusing-containers" href="#complications-with-reusing-containers"></a>Complications with reusing containers</h4>
   
 
-  <p>There is an exception to sharing check containers within a deployment, which is workers belonging to a team and workers with tags.</p><p>If a resource has <a href="resources.html#schema.resource.tags"><code class="schema-attribute-name"><bold>resource<wbr />.tags</bold></code></a> configured, <em>and</em> the resource&#39;s check interval ends up acquiring the checking lock, a new container will be created on a worker matching the appropriate tags, even if a check container already exists for the same resource config elsewhere.</p><p>Similarly, if a team has its own workers, and their check interval ended up acquiring the lock, a new container will be created on the team&#39;s workers, rather than re-using a container from the shared worker pool.</p><p>This is a bit complicated to reason about and we plan to stop re-using <code>check</code> containers to simplify all of this. See <a href="https://github.com/concourse/concourse/issues/3079">concourse/concourse#3079</a> for more information.</p>
+  <p>There is an exception to sharing check containers within a deployment, which is workers belonging to a team and workers with tags.</p><p>If a resource has <a href="resources.html#schema.resource.tags"><code class="schema-attribute-name"><bold>resource<wbr />.tags</bold></code></a> configured, <em>and</em> the resource&#39;s check interval ends up acquiring the checking lock, if a check container already exists with the same resource config elsewhere, it will reuse the container, otherwise a container will be created on a worker matching the appropriate tags.</p><p>Similarly, if a team has its own workers, and their check interval ended up acquiring the lock, it will try to re-use a container with the same resource config from the shared worker pool, rather than creating a new container on the team&#39;s workers.</p><p>This is a bit complicated to reason about and we plan to stop re-using <code>check</code> containers to simplify all of this. See <a href="https://github.com/concourse/concourse/issues/3079">concourse/concourse#3079</a> for more information.</p>
 
   
     
