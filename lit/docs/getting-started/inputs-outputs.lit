@@ -107,7 +107,7 @@
           type: registry-image
           source:
             repository: busybox
-        # To recieve "the-artifact", specify it as an input
+        # To receive "the-artifact", specify it as an input
         inputs:
         - name: the-artifact
         run:
