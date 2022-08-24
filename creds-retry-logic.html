@@ -312,7 +312,7 @@
   
 
   <p>When a request to the credential manager fails due to an intermittent error (e.g. a timeout or <code>connection refused</code>), Concourse will automatically try the request again up to 5 times before giving up. After all attempts fail, the error will be surfaced in the UI for the resource check or build step that initiated the request.</p><p>The retry logic can be configured by specifying the following env on the <a href="concourse-web.html"><code>web</code> node</a>:</p><pre><code class="language-bash">CONCOURSE_SECRET_RETRY_ATTEMPTS=5   # how many times to try
-CONCOURSE_SECRET_RETRY_INTERVAL=10s # how long to wait between attempts</code></pre>
+CONCOURSE_SECRET_RETRY_INTERVAL=10s # how long to wait between attempts</code></pre><p>Note for Vault credential manager: as Vault API client already does retry which has covered the retry conditions of this general secret fetching retry, if a deployment uses Vault credential manager, <code>CONCOURSE_SECRET_RETRY_ATTEMPTS</code> can be set to 0 (or a small value, like 1 or 2) in order to avoid duplicate retries.</p>
 
   
     
