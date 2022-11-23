@@ -303,6 +303,11 @@
       
         <tr>
           <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="vars.html#schema.ssm_config"><strong><code>ssm_config</code></strong> schema</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
           <td class="title-cell"><a href="vars.html#schema.dummy_config"><strong><code>dummy_config</code></strong> schema</a></td>
         </tr>
       
@@ -404,6 +409,26 @@
         <tr>
           <td class="number-cell"><code>#</code></td>
           <td class="title-cell"><a href="vars.html#vault-var-source"><code>vault</code> var source</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="vars.html#schema.var_source.ssm-var-source.type"><code>ssm</code> var source <strong><code>type</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="vars.html#schema.ssm_config.region"><code>ssm</code> var source <strong><code>region</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="vars.html#schema.var_source.ssm-var-source.config"><code>ssm</code> var source <strong><code>config</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="vars.html#ssm-var-source"><code>ssm</code> var source</a></td>
         </tr>
       
         <tr>
@@ -998,6 +1023,50 @@ resources:
 
   <div class="toggle-content attribute-content">
     <p>When retrying during authentication, start with this retry interval. The interval will increase exponentially until <code>auth_retry_max</code> is reached.</p>
+  </div>
+</div>
+</div>
+  </div>
+</div>
+</div>
+  </div>
+  
+  <div class="one-of-option">
+    <div class="schema-group">
+  <a id="ssm-var-source"></a>
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.var_source.ssm-var-source.type" type="checkbox" class="toggle" />
+  <label for="toggle-schema.var_source.ssm-var-source.type" class="toggle-title">
+    <a id="schema.var_source.ssm-var-source.type"></a>
+
+    <code><a class="attribute-name" href="#schema.var_source.ssm-var-source.type">type</a>: <span class="attribute-type"><span class="schema-scalar">ssm</span></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The <code>SSM</code> type supports configuring an <a href="https://docs.aws.amazon.com/secretsmanager/">AWS Secrets Manager</a> in a single region as a <code>((var))</code> source.</p>
+  </div>
+</div><div class="toggleable schema-attribute required">
+  <input id="toggle-schema.var_source.ssm-var-source.config" type="checkbox" class="toggle" />
+  <label for="toggle-schema.var_source.ssm-var-source.config" class="toggle-title">
+    <a id="schema.var_source.ssm-var-source.config"></a>
+
+    <code><a class="attribute-name" href="#schema.var_source.ssm-var-source.config">config</a>: <span class="attribute-type"><a href="vars.html#schema.ssm_config"><strong>ssm_config</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.ssm_config" href="#schema.ssm_config"></a><code>ssm_config</code> schema</h2>
+
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.ssm_config.region" type="checkbox" class="toggle" />
+  <label for="toggle-schema.ssm_config.region" class="toggle-title">
+    <a id="schema.ssm_config.region"></a>
+
+    <code><a class="attribute-name" href="#schema.ssm_config.region">region</a>: <span class="attribute-type"><a href="config-basics.html#schema.string"><strong>string</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The AWS region to read secrets from.</p>
   </div>
 </div>
 </div>
