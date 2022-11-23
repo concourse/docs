@@ -491,6 +491,22 @@ configured multiple times with different parameters
           }
         }
       }{
+        \schema-group{\code{ssm} var source}{ssm-var-source}{
+          \required-attribute{type}{`ssm`}{
+            The \code{SSM} type supports configuring an \link{AWS Secrets
+            Manager}{https://docs.aws.amazon.com/secretsmanager/} in a single
+            region as a \code{((var))} source.
+          }
+
+          \required-attribute{config}{ssm_config}{
+            \schema{ssm_config}{
+              \required-attribute{region}{string}{
+                The AWS region to read secrets from.
+              }
+            }
+          }
+        }
+      }{
         \schema-group{\code{dummy} var source}{dummy-var-source}{
           \required-attribute{type}{`dummy`}{
             The \code{dummy} type supports configuring a static map of vars to values.
