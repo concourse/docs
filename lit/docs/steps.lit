@@ -462,6 +462,10 @@ by configuring \reference{schema.on_failure} or
           }}}
         }
       }
+
+      \optional-attribute{no_get}{boolean}{
+        Skips the get step that usually follows the completion of the put step.
+      }
     }
   }
   \section{
