@@ -303,7 +303,8 @@
     \titled-codeblock{parallel-artifacts.yml}{yaml}{{
     busybox: &busybox #YAML anchor
       type: registry-image
-      source: {repository: busybox}
+      source:
+        repository: busybox
 
     jobs:
     - name: writing-to-the-same-output-in-parallel
@@ -446,7 +447,8 @@
     \titled-codeblock{mapping-artifacts.yml}{yaml}{{
     busybox: &busybox #YAML anchor
       type: registry-image
-      source: {repository: busybox}
+      source:
+        repository: busybox
 
     jobs:
     - name: the-job
@@ -561,7 +563,8 @@
           platform: linux
           image_resource:
             type: registry-image
-            source: {repository: busybox}
+            source:
+              repository: busybox
           outputs:
             - name: the-output
           run:
@@ -576,7 +579,8 @@
           platform: linux
           image_resource:
             type: registry-image
-            source: {repository: busybox}
+            source:
+              repository: busybox
           # this task lists the same artifact as
           # its input and output
           inputs:
@@ -595,7 +599,8 @@
           platform: linux
           image_resource:
             type: registry-image
-            source: {repository: busybox}
+            source:
+              repository: busybox
           inputs:
             - name: the-output
           run:
@@ -639,7 +644,8 @@
           platform: linux
           image_resource:
             type: registry-image
-            source: {repository: busybox}
+            source:
+              repository: busybox
           outputs:
             - name: the-output-1
             - name: the-output-2
@@ -658,7 +664,8 @@
           platform: linux
           image_resource:
             type: registry-image
-            source: {repository: busybox}
+            source:
+              repository: busybox
           # only one of the three outputs are
           # listed as inputs
           inputs:
@@ -675,7 +682,8 @@
           platform: linux
           image_resource:
             type: registry-image
-            source: {repository: busybox}
+            source:
+              repository: busybox
           # this task pulls in the other
           # two outputs, just for fun!
           inputs:
@@ -716,7 +724,8 @@
     resources:
     - name: concourse-examples
       type: git
-      source: {uri: "https://github.com/concourse/examples"}
+      source: 
+        uri: "https://github.com/concourse/examples"
 
     jobs:
     - name: get-job
@@ -729,7 +738,8 @@
           platform: linux
           image_resource:
             type: registry-image
-            source: {repository: busybox}
+            source:
+              repository: busybox
           inputs:
             - name: concourse-examples
           run:
