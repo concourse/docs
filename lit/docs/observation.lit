@@ -50,6 +50,14 @@ your pipelines.
   ...which should render the following:
 
   \image{https://ci.concourse-ci.org/api/v1/teams/main/pipelines/concourse/jobs/unit/badge}
+
+  If you want to have the image link to your pipeline/job in a README, you can make it like so:
+
+  \codeblock{html}{{{
+    <a href="https://ci.concourse-ci.org/teams/main/pipelines/concourse/jobs/unit/badge">
+      <img src="https://ci.concourse-ci.org/api/v1/teams/main/pipelines/concourse/jobs/unit/badge" alt="Concourse Pipeline Status">
+    </a>
+  }}}
 }
 
 \section{
