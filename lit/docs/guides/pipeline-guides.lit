@@ -405,7 +405,7 @@
     \codeblock{bash}{{
     fly -t tutorial set-pipeline -p parallel-artifacts -c parallel-artifacts.yml
     fly -t tutorial unpause-pipeline -p parallel-artifacts
-    fly -t tutorial trigger-job --job parallel-artifacts/writing-in-parallel --watch
+    fly -t tutorial trigger-job --job parallel-artifacts/writing-to-the-same-output-in-parallel --watch
     fly -t tutorial trigger-job --job parallel-artifacts/writing-to-the-same-output-serially --watch
     }}
   }
