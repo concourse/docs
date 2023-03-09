@@ -781,7 +781,7 @@
     By default all \reference{jobs} only run when manually triggered. That
     means a user has to run \reference{fly-trigger-job} or click the plus
     button in the web interface for a job to run. A job only runs automatically
-    if one of it's resources has the
+    if one of its resources has the
     \reference{schema.get.trigger}{\code{trigger: true}} parameter
     set.
 
