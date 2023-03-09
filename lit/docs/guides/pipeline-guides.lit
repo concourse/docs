@@ -787,7 +787,7 @@
 
     Therefore, in order to create a gated job in a pipeline you simply need to
     create a job that can only be manually triggered. That means not setting
-    \code{trigger: true} for any of the jobs \reference{get-step}{get steps}.
+    \code{trigger: true} for any of the jobs' \reference{get-step}{get steps}.
 
     \codeblock{yaml}{{
 jobs:
