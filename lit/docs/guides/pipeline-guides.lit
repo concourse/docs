@@ -243,7 +243,7 @@
               - |
                 ls -lah
                 date > ./the-output/file
-      - task: read-ouput-from-previous-step
+      - task: read-output-from-previous-step
         config:
           platform: linux
           image_resource: *busybox
@@ -340,7 +340,7 @@
                   date > ./the-output/file2
       # run this job multiple times to see which
       # previous task wins each time
-      - task: read-ouput-from-previous-step
+      - task: read-output-from-previous-step
         config:
           platform: linux
           image_resource: *busybox
@@ -351,7 +351,7 @@
             args:
               - -cx
               - |
-                ls -lah ./the-ouput
+                ls -lah ./the-output
                 echo "Get ready to error!"
                 cat ./the-output/file1 ./the-output/file2
 
@@ -383,7 +383,7 @@
               - |
                 ls -lah
                 date > ./the-output/file2
-      - task: read-ouput-from-previous-step
+      - task: read-output-from-previous-step
         config:
           platform: linux
           image_resource: *busybox
@@ -394,7 +394,7 @@
             args:
               - -cx
               - |
-                ls -lah ./the-ouput
+                ls -lah ./the-output
                 echo "Get ready to error! file1 will never exist"
                 cat ./the-output/file1 ./the-output/file2
     }}
@@ -472,7 +472,7 @@
                 ls -lah
                 date > ./the-output/file
       # this task expects the artifact `demo-disk` so no mapping is needed
-      - task: read-ouput-from-previous-step
+      - task: read-output-from-previous-step
         config:
           platform: linux
           image_resource: *busybox
@@ -594,7 +594,7 @@
               - |
                 ls -lah
                 date > ./the-output/file2
-      - task: read-ouput-from-previous-step
+      - task: read-output-from-previous-step
         config:
           platform: linux
           image_resource:
