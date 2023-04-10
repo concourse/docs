@@ -256,7 +256,8 @@ UI, so you should make your output pretty.
     \definition{\code{$BUILD_CREATED_BY}}{
       The username that created the build. By default it is not available. See
       \reference{schema.resource.expose_build_created_by}{\code{expose_build_created_by}}
-      for how to opt in.
+      for how to opt in. This metadata field is not made available to the
+      \reference{get-step}.
     }
   }{
     \definition{\code{$ATC_EXTERNAL_URL}}{
