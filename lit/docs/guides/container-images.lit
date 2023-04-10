@@ -216,7 +216,7 @@
     \title{Publish the Container Image}
 
     To push the container image add a \reference{put-step}{put step} to our job
-    plan and tell the regstry-image resource where the tarball of the container
+    plan and tell the registry-image resource where the tarball of the container
     image is.
 
     The put step will push the container image using the information defined
