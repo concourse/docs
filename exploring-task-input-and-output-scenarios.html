@@ -295,7 +295,7 @@ jobs:
           - |
             ls -lah
             date &gt; ./the-output/file
-  - task: read-ouput-from-previous-step
+  - task: read-output-from-previous-step
     config:
       platform: linux
       image_resource: *busybox
@@ -376,7 +376,7 @@ jobs:
               date &gt; ./the-output/file2
   # run this job multiple times to see which
   # previous task wins each time
-  - task: read-ouput-from-previous-step
+  - task: read-output-from-previous-step
     config:
       platform: linux
       image_resource: *busybox
@@ -387,7 +387,7 @@ jobs:
         args:
           - -cx
           - |
-            ls -lah ./the-ouput
+            ls -lah ./the-output
             echo &#34;Get ready to error!&#34;
             cat ./the-output/file1 ./the-output/file2
 
@@ -419,7 +419,7 @@ jobs:
           - |
             ls -lah
             date &gt; ./the-output/file2
-  - task: read-ouput-from-previous-step
+  - task: read-output-from-previous-step
     config:
       platform: linux
       image_resource: *busybox
@@ -430,12 +430,12 @@ jobs:
         args:
           - -cx
           - |
-            ls -lah ./the-ouput
+            ls -lah ./the-output
             echo &#34;Get ready to error! file1 will never exist&#34;
             cat ./the-output/file1 ./the-output/file2</code></pre>
 </div><p>Set and run this pipeline to see the results yourself. Save the pipeline in a file called <code>parallel-artifacts.yml</code>.</p><pre><code class="language-bash">fly -t tutorial set-pipeline -p parallel-artifacts -c parallel-artifacts.yml
 fly -t tutorial unpause-pipeline -p parallel-artifacts
-fly -t tutorial trigger-job --job parallel-artifacts/writing-in-parallel --watch
+fly -t tutorial trigger-job --job parallel-artifacts/writing-to-the-same-output-in-parallel --watch
 fly -t tutorial trigger-job --job parallel-artifacts/writing-to-the-same-output-serially --watch</code></pre>
 
   
@@ -482,7 +482,7 @@ jobs:
             ls -lah
             date &gt; ./the-output/file
   # this task expects the artifact `demo-disk` so no mapping is needed
-  - task: read-ouput-from-previous-step
+  - task: read-output-from-previous-step
     config:
       platform: linux
       image_resource: *busybox
@@ -593,7 +593,7 @@ fly -t tutorial trigger-job --job mapping-artifacts/the-job --watch</code></pre>
           - |
             ls -lah
             date &gt; ./the-output/file2
-  - task: read-ouput-from-previous-step
+  - task: read-output-from-previous-step
     config:
       platform: linux
       image_resource:

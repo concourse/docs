@@ -265,7 +265,7 @@
   <h2 class="section-header"><a class="anchor-target" name="1---a-simple-gated-pipeline" href="#1---a-simple-gated-pipeline"></a>#1 - A Simple Gated Pipeline</h2>
   
 
-  <p>By default all <a href="jobs.html">Jobs</a> only run when manually triggered. That means a user has to run <a href="jobs.html#fly-trigger-job"><code>fly trigger-job</code></a> or click the plus button in the web interface for a job to run. A job only runs automatically if one of it&#39;s resources has the <a href="get-step.html#schema.get.trigger"><code>trigger: true</code></a> parameter set.</p><p>Therefore, in order to create a gated job in a pipeline you simply need to create a job that can only be manually triggered. That means not setting <code>trigger: true</code> for any of the jobs <a href="get-step.html">get steps</a>.</p><pre><code class="language-yaml">jobs:
+  <p>By default all <a href="jobs.html">Jobs</a> only run when manually triggered. That means a user has to run <a href="jobs.html#fly-trigger-job"><code>fly trigger-job</code></a> or click the plus button in the web interface for a job to run. A job only runs automatically if one of its resources has the <a href="get-step.html#schema.get.trigger"><code>trigger: true</code></a> parameter set.</p><p>Therefore, in order to create a gated job in a pipeline you simply need to create a job that can only be manually triggered. That means not setting <code>trigger: true</code> for any of the jobs&#39; <a href="get-step.html">get steps</a>.</p><pre><code class="language-yaml">jobs:
 - name: run-automatically
   plan:
   - get: my-repo
