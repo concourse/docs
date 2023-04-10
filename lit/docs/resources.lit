@@ -106,9 +106,9 @@ with the following schema.
 
   \optional-attribute{expose_build_created_by}{boolean}{
     \italic{Default \code{false}.} If set to \code{true}, environment variable
-    \reference{resource-metadata}{\code{BUILD_CREATED_BY}} will be available
-    in the metadata of a \reference{get-step}{get step} or
-    \reference{put-step}{put step}.
+    \reference{resource-metadata}{\code{BUILD_CREATED_BY}} will be available in
+    the metadata of a \reference{put-step}{put step}. This field is not made
+    available to the \reference{get-step}.
   }
 
   \optional-attribute{tags}{[string]}{
