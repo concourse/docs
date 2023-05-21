@@ -235,6 +235,11 @@
             <td class="title-cell"><a href="time-triggered-pipeline-patterns.html" >Time Triggered Pipeline Patterns</a></td>
           </tr>
         
+          <tr>
+            <td class="number-cell">1.14.1.5</td>
+            <td class="title-cell"><a href="manual-approval-step.html" >Manual Approval Step</a></td>
+          </tr>
+        
         </table>
       </div>
     </nav>
@@ -715,7 +720,7 @@ fly -t tutorial trigger-job --job multiple-artifacts/multiple-outputs --watch</c
   <pre><code class="language-yaml">resources:
 - name: concourse-examples
   type: git
-  source: 
+  source:
     uri: &#34;https://github.com/concourse/examples&#34;
 
 jobs:

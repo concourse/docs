@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
-<title>Gated Pipeline Patterns - Concourse CI</title>
+<title>Manual Approval Step - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
@@ -227,7 +227,7 @@
         
           <tr>
             <td class="number-cell">1.14.1.3</td>
-            <td class="title-cell"><a href="gated-pipeline-patterns.html"  class="self">Gated Pipeline Patterns</a></td>
+            <td class="title-cell"><a href="gated-pipeline-patterns.html" >Gated Pipeline Patterns</a></td>
           </tr>
         
           <tr>
@@ -237,7 +237,7 @@
         
           <tr>
             <td class="number-cell">1.14.1.5</td>
-            <td class="title-cell"><a href="manual-approval-step.html" >Manual Approval Step</a></td>
+            <td class="title-cell"><a href="manual-approval-step.html"  class="self">Manual Approval Step</a></td>
           </tr>
         
         </table>
@@ -256,171 +256,74 @@
 
       <div class="body-content">
         <div class="page-content">
-          <div class="section" id="section_gated-pipeline-patterns">
+          <div class="section" id="section_manual-approval-step">
   
-  <h1 class="section-header"><a class="anchor-target" name="gated-pipeline-patterns" href="#gated-pipeline-patterns"></a><span class="section-number">1.14.1.3 </span>Gated Pipeline Patterns</h1>
-  
-
-  <p>Gated pipelines provide control for administrators and release managers on when a given software release is deployed to a tightly protected environment (e.g. production).</p><p>The execution of jobs that perform certain tasks (e.g. deployment) targeting the downstream environment beyond the &#34;gate&#34; step is done only upon either an approval coming from an external Change Control system or an explicit manual trigger of such step.</p>
-
-  
-    
-      <div class="section" id="section_1---a-simple-gated-pipeline">
-  
-  <h2 class="section-header"><a class="anchor-target" name="1---a-simple-gated-pipeline" href="#1---a-simple-gated-pipeline"></a>#1 - A Simple Gated Pipeline</h2>
+  <h1 class="section-header"><a class="anchor-target" name="manual-approval-step" href="#manual-approval-step"></a><span class="section-number">1.14.1.5 </span>Manual Approval Step</h1>
   
 
-  <p>By default all <a href="jobs.html">Jobs</a> only run when manually triggered. That means a user has to run <a href="jobs.html#fly-trigger-job"><code>fly trigger-job</code></a> or click the plus button in the web interface for a job to run. A job only runs automatically if one of its resources has the <a href="get-step.html#schema.get.trigger"><code>trigger: true</code></a> parameter set.</p><p>Therefore, in order to create a gated job in a pipeline you simply need to create a job that can only be manually triggered. That means not setting <code>trigger: true</code> for any of the jobs&#39; <a href="get-step.html">get steps</a>.</p><pre><code class="language-yaml">jobs:
-- name: run-automatically
+  <p>This is an exampe of a <a href="task-step.html"><code>task</code> step</a> you can add to your <a href="jobs.html">Jobs</a> that requires a human to approve or reject the job from running. This is probably the most minimal version of a manual approval step you can have in Concourse that doesn&#39;t require pulling in a bunch of other tech into your stack. It&#39;s definitely not the best UX since you need to use the <code>fly</code> CLI to approve the step.</p><p>Task configuration, <code>config.yml</code>: <pre><code class="language-yaml">platform: linux
+
+inputs:
+- name: repo
+
+params:
+  APPROVAL_TIMEOUT: 600 #default of 10mins
+
+run:
+  path: repo/tasks/manual-approval/run.sh</code></pre></p><p>Task script, <code>run.sh</code>: <pre><code class="language-bash">#!/usr/bin/env bash
+
+set -euo pipefail
+
+timeout=$((EPOCHSECONDS&#43;APPROVAL_TIMEOUT))
+echo -n &#34;Waiting for manual approval...&#34;
+while [[ $SECONDS -lt $timeout ]]; do
+    sleep 5
+    if [[ -f /tmp/approved ]]; then
+        break
+    fi
+    echo -n &#34;.&#34;
+done
+
+if [[ ! -f /tmp/approved ]]; then
+    echo &#34;Approval timeout reached. Aborting job.&#34;
+    exit 1
+fi</code></pre></p><p>To approve the job when it gets to this step you have to create <code>/tmp/approved</code> on the step&#39;s container. You can do that user <code>fly</code>&#39;s <code>intercept</code> command, like so (replace <code>PIPELINE/JOB</code> with the name of your pipeline and job that the step resides in):</p><pre><code class="language-bash">fly -t ci intercept --job PIPELINE/JOB --step manual-approval touch /tmp/approved</code></pre><p>Here&#39;s the step added in-line to a pipeline so you can see how it works on its own.</p><pre><code class="language-yaml">jobs:
+- name: approval
   plan:
-  - get: my-repo
-    trigger: true  # has trigger:true so automatically triggers
-  # can include more steps to run other things before hitting the gate
-
-- name: the-gate  # manually trigger this job
-  plan:
-  - get: my-repo
-    trigger: false  # redundant but guarantees the job won&#39;t run automatically
-    passed:
-      - run-automatically
-
-# runs immediately after the gate is triggered
-- name: do-more-stuff-after-the-gate
-  plan:
-  - get: my-repo
-    passed:
-      - the-gate
-    trigger: true
-  # can include more steps to run other things
-
-resources:
-- name: my-repo
-  type: git
-  source:
-    uri: https://github.com/concourse/examples.git</code></pre><a href="images/how-to-guides/pipelines/simple-gated-pipeline.png"><div class="diagram">
-  <img src="images/how-to-guides/pipelines/simple-gated-pipeline.png" alt="diagram" width="100%" />
-</div></a>
-
-  
-    
-  
-</div>
-    
-      <div class="section" id="section_2---gated-pipeline-fanning-in-and-out">
-  
-  <h2 class="section-header"><a class="anchor-target" name="2---gated-pipeline-fanning-in-and-out" href="#2---gated-pipeline-fanning-in-and-out"></a>#2 - Gated Pipeline Fanning In and Out</h2>
-  
-
-  <p>You can also use a gate as way to fan-in from multiple jobs and/or fan-out to multiple jobs as well.</p><pre><code class="language-yaml">jobs:
-# three pre-gate jobs
-- name: job-a
-  plan:
-  - get: my-repo
-    trigger: true
-- name: job-b
-  plan:
-  - get: my-repo
-    trigger: true
-- name: job-c
-  plan:
-  - get: my-repo
-    trigger: true
-
-- name: the-gate  # manually trigger this job
-  plan:
-  - get: my-repo
-    trigger: false
-    passed:  # fan-in from the three pre-gate jobs
-      - job-a
-      - job-b
-      - job-c
-
-# fan-out to three post-gate jobs
-- name: post-gate-job-a
-  plan:
-  - get: my-repo
-    trigger: true
-    passed: [the-gate]
-- name: post-gate-job-b
-  plan:
-  - get: my-repo
-    trigger: true
-    passed: [the-gate]
-- name: post-gate-job-c
-  plan:
-  - get: my-repo
-    trigger: true
-    passed: [the-gate]
-
-resources:
-- name: my-repo
-  type: git
-  source:
-    uri: https://github.com/concourse/examples.git</code></pre><a href="images/how-to-guides/pipelines/simple-gated-fan-in-fan-out.png"><div class="diagram">
-  <img src="images/how-to-guides/pipelines/simple-gated-fan-in-fan-out.png" alt="diagram" width="100%" />
-</div></a>
-
-  
-    
-  
-</div>
-    
-      <div class="section" id="section_3---a-gated-pipeline-with-notifications">
-  
-  <h2 class="section-header"><a class="anchor-target" name="3---a-gated-pipeline-with-notifications" href="#3---a-gated-pipeline-with-notifications"></a>#3 - A Gated Pipeline With Notifications</h2>
-  
-
-  <p>This pipeline shows you how you can send a notification, like an email, to notify someone that a new build of your application is ready to be shipped.</p><pre><code class="language-yaml">jobs:
-- name: build-it
-  plan:
-  - get: my-repo
-    trigger: true
-  # can add steps to build your app
-
-- name: test-it
-  plan:
-  - get: my-repo
-    trigger: true
-    passed: [build-it]
-  # can add steps to run tests
-  - put: email-release-manager
+  - task: manual-approval
     params:
-      subject: &#34;Ready to ship&#34;
-      body_text: |
-        A build is ready to be shipped!
-        Build to be shipped: ${ATC_EXTERNAL_URL}/teams/${BUILD_TEAM_NAME}/pipelines/${BUILD_PIPELINE_NAME}/jobs/${BUILD_JOB_NAME}/builds/${BUILD_NAME}
-        Link to pipeline: ${ATC_EXTERNAL_URL}/teams/${BUILD_TEAM_NAME}/pipelines/${BUILD_PIPELINE_NAME}
+      APPROVAL_TIMEOUT: 600 #10mins
+    config:
+      platform: linux
+      image_resource:
+        type: mock
+        source:
+          mirror_self: true
+      run:
+        path: bash
+        args:
+        - -c
+        - |
+          #!/usr/bin/env bash
 
-- name: ship-it
-  plan:
-  - get: my-repo
-    trigger: false
-    passed: [test-it]
+          set -euo pipefail
 
-resources:
-- name: my-repo
-  type: git
-  source:
-    uri: https://github.com/concourse/examples.git
-- name: email-release-manager
-  type: email
-  source:
-    # other required fields for this resource have been omitted
-    from: pipeline@example.com
-    to: release-manager@example.com
+          timeout=$((EPOCHSECONDS&#43;APPROVAL_TIMEOUT))
+          echo -n &#34;Waiting for manual approval...&#34;
+          while [[ $EPOCHSECONDS -lt $timeout ]]; do
+              sleep 5
+              if [[ -f /tmp/approved ]]; then
+                  break
+              fi
+              echo -n &#34;.&#34;
+          done
 
-resource_types:
-- name: email
-  type: registry-image
-  source:
-    repository: pcfseceng/email-resource</code></pre><a href="images/how-to-guides/pipelines/gated-pipeline-with-notification.png"><div class="diagram">
-  <img src="images/how-to-guides/pipelines/gated-pipeline-with-notification.png" alt="diagram" width="100%" />
-</div></a>
+          if [[ ! -f /tmp/approved ]]; then
+              echo &#34;Approval timeout reached. Aborting job.&#34;
+              exit 1
+          fi</code></pre>
 
   
-    
-  
-</div>
     
   
 </div>
@@ -431,10 +334,10 @@ resource_types:
               prev:
 
               
-              <span class="section-number">1.14.1.2</span>
+              <span class="section-number">1.14.1.4</span>
               
 
-              <a href="exploring-task-input-and-output-scenarios.html">Exploring Task Input and Output Scenarios</a>
+              <a href="time-triggered-pipeline-patterns.html">Time Triggered Pipeline Patterns</a>
             </div>
           
 
@@ -443,10 +346,10 @@ resource_types:
               next:
 
               
-              <span class="section-number">1.14.1.4</span>
+              <span class="section-number">1.14.2</span>
               
 
-              <a href="time-triggered-pipeline-patterns.html">Time Triggered Pipeline Patterns</a>
+              <a href="git-guides.html">Git Guides</a>
             </div>
           
           </nav>
