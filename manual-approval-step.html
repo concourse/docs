@@ -276,15 +276,14 @@ set -euo pipefail
 
 timeout=$((EPOCHSECONDS&#43;APPROVAL_TIMEOUT))
 echo -n &#34;Waiting for manual approval...&#34;
-while [[ $SECONDS -lt $timeout ]]; do
+until [[ -f /tmp/approved || $EPOCHSECONDS -gt $timeout ]]; do
     sleep 5
-    if [[ -f /tmp/approved ]]; then
-        break
-    fi
     echo -n &#34;.&#34;
 done
 
-if [[ ! -f /tmp/approved ]]; then
+if [[ -f /tmp/approved ]]; then
+    echo &#34;Step approved!&#34;
+else
     echo &#34;Approval timeout reached. Aborting job.&#34;
     exit 1
 fi</code></pre></p><p>To approve the job when it gets to this step you have to create <code>/tmp/approved</code> on the step&#39;s container. You can do that user <code>fly</code>&#39;s <code>intercept</code> command, like so (replace <code>PIPELINE/JOB</code> with the name of your pipeline and job that the step resides in):</p><pre><code class="language-bash">fly -t ci intercept --job PIPELINE/JOB --step manual-approval touch /tmp/approved</code></pre><p>Here&#39;s the step added in-line to a pipeline so you can see how it works on its own.</p><pre><code class="language-yaml">jobs:
@@ -310,15 +309,14 @@ fi</code></pre></p><p>To approve the job when it gets to this step you have to c
 
           timeout=$((EPOCHSECONDS&#43;APPROVAL_TIMEOUT))
           echo -n &#34;Waiting for manual approval...&#34;
-          while [[ $EPOCHSECONDS -lt $timeout ]]; do
+          until [[ -f /tmp/approved || $EPOCHSECONDS -gt $timeout ]]; do
               sleep 5
-              if [[ -f /tmp/approved ]]; then
-                  break
-              fi
               echo -n &#34;.&#34;
           done
 
-          if [[ ! -f /tmp/approved ]]; then
+          if [[ -f /tmp/approved ]]; then
+              echo &#34;Step approved!&#34;
+          else
               echo &#34;Approval timeout reached. Aborting job.&#34;
               exit 1
           fi</code></pre>
