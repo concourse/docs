@@ -1095,15 +1095,14 @@ jobs:
 
   timeout=$((EPOCHSECONDS+APPROVAL_TIMEOUT))
   echo -n "Waiting for manual approval..."
-  while [[ ${SECONDS} -lt ${timeout} ]]; do
+  until [[ -f /tmp/approved || $EPOCHSECONDS -gt $timeout ]]; do
       sleep 5
-      if [[ -f /tmp/approved ]]; then
-          break
-      fi
       echo -n "."
   done
 
-  if [[ ! -f /tmp/approved ]]; then
+  if [[ -f /tmp/approved ]]; then
+      echo "Step approved!"
+  else
       echo "Approval timeout reached. Aborting job."
       exit 1
   fi
@@ -1144,15 +1143,14 @@ jobs:
 
             timeout=$((EPOCHSECONDS+APPROVAL_TIMEOUT))
             echo -n "Waiting for manual approval..."
-            while [[ $EPOCHSECONDS -lt $timeout ]]; do
+            until [[ -f /tmp/approved || $EPOCHSECONDS -gt $timeout ]]; do
                 sleep 5
-                if [[ -f /tmp/approved ]]; then
-                    break
-                fi
                 echo -n "."
             done
 
-            if [[ ! -f /tmp/approved ]]; then
+            if [[ -f /tmp/approved ]]; then
+                echo "Step approved!"
+            else
                 echo "Approval timeout reached. Aborting job."
                 exit 1
             fi
