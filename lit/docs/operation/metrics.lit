@@ -44,6 +44,9 @@ metrics pipeline.
   metric names for your emitter of choice.
 
   \promethus-docs{{{
+    # HELP concourse_builds_latest_completed_build_status Status of Latest Completed Build. 0=Success, 1=Failed, 2=Aborted, 3=Errored.
+    # TYPE concourse_builds_latest_completed_build_status gauge
+    concourse_builds_latest_completed_build_status 0
     # HELP concourse_builds_aborted_total Total number of Concourse builds aborted.
     # TYPE concourse_builds_aborted_total counter
     concourse_builds_aborted_total 0
