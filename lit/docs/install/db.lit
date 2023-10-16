@@ -10,7 +10,7 @@ data and coordinating work in a multi-\reference{web-node} installation.
 \section{
   \title{Prerequisites}{db-prerequisites}
 
-  \link{PostgreSQL}{https://www.postgresql.org} 9.5 or above is required,
+  \link{PostgreSQL}{https://www.postgresql.org} v11 or above is required,
   though the latest available version is recommended.
 }
 
