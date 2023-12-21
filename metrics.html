@@ -338,6 +338,17 @@
 </div>
 
 <div class="toggleable metric">
+  <input id="toggle-concourse_builds_latest_completed_build_status" type="checkbox" class="toggle" checked />
+  <label for="toggle-concourse_builds_latest_completed_build_status" class="toggle-title">
+    <code><span class="metric-name">concourse_builds_latest_completed_build_status</span></code>
+    <a class="metric-type" href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a>
+  </label>
+  <div class="toggle-content">
+    Status of Latest Completed Build. 0=Success, 1=Failed, 2=Aborted, 3=Errored.
+  </div>
+</div>
+
+<div class="toggleable metric">
   <input id="toggle-concourse_builds_running" type="checkbox" class="toggle" checked />
   <label for="toggle-concourse_builds_running" class="toggle-title">
     <code><span class="metric-name">concourse_builds_running</span></code>
