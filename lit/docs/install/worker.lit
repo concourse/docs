@@ -9,7 +9,7 @@ decide much on its own.
 \table-of-contents
 
 \section{
-  \title{Prerequisites}{worker-prerequisites}
+  \title{prerequisites}{worker-prerequisites}
 
   \list{
     Linux: We test and support the following distributions. Minimum kernel
@@ -653,7 +653,7 @@ decide much on its own.
     }
 
       \section{
-        \title{Troubleshooting and fixing DNS resolution}
+        \title{Troubleshooting and fixing DNS resolution}{worker-troubleshoot-dns}
 
         \aside{
           \bold{Note}: The Guardian runtime took care of a lot of container

@@ -14,7 +14,7 @@ This guide makes the following assumptions:
   You have generated the necessary
   \reference{generating-keys}{encryption Keys}.
 }{
-  The web node will be directly exposed to the internet and can therefore
+  The Web node will be directly exposed to the internet and can therefore
   accept inbound traffic on port 443.
 }{
   The Web and Worker node are being installed on separate servers and you
@@ -27,8 +27,8 @@ This guide makes the following assumptions:
   install the CLI in \code{/use/local/concourse}, but you can choose a
   different install location.
 
-  Run the following commands to install the Concourse CLI on both your
-  Web and Worker servers:
+  Run the following commands to install the Concourse CLI. \bold{You need to do
+  this on both your Web and Worker servers.}
   \codeblock{bash}{{{
   CONCOURSE_VERSION="<select-a-concourse-version>"
   CONCOURSE_TAR="concourse.tgz"
@@ -45,12 +45,12 @@ This guide makes the following assumptions:
   PATH="$PATH:/usr/local/concourse/bin"
   }}}
 
-  You can move on to setting up the Web node.
+  You can move on to setting up the Web and  Worker servers.
 }
 
 \section{
   \title{Web Node}{systemd-web}
-  First lets create a new user and group for the web node to run as:
+  First lets create a new user and group for the Web node to run as:
 
   \codeblock{bash}{{{
   addgroup --system "concourse"
@@ -75,9 +75,18 @@ This guide makes the following assumptions:
   }
 
   Next create a file named \code{web.env} in \code{/usr/local/concourse/} that
-  will be used to configure the web node. This is where you can \reference{configuring-auth}{configure
+  will be used to configure the Web node. This is where you can \reference{configuring-auth}{configure
   authentication} to Concourse and all other settings found when you run
   \code{concourse web --help}.
+
+  Change the following values:
+  \list{
+    \code{CONCOURSE_POSTGRES_*} - Used to tell Concourse how to connect to PostgreSQL
+  }{
+    \code{CONCOURSE_EXTERNAL_URL} - The URL users will use to access the web
+    UI. A Let's Encrypt certificate will also be generated for the hostname in
+    this URL.
+  }
 
   \codeblock{}{{{
   PATH=/usr/local/concourse/bin
@@ -96,9 +105,7 @@ This guide makes the following assumptions:
   CONCOURSE_ADD_LOCAL_USER=local:local
   }}}
 
-  Set the file permissions to read-only and restricted to the \code{concourse}
-  user and group:
-
+  Set the file permissions to read-only:
   \codeblock{bash}{{{
   chmod 0444 web.env
   }}}
@@ -116,7 +123,7 @@ This guide makes the following assumptions:
 
   \codeblock{}{{{
   [Unit]
-  Description=Concourse web node
+  Description=Concourse Web node
   [Service]
   User=concourse
   Group=concourse
@@ -130,7 +137,7 @@ This guide makes the following assumptions:
   WantedBy=default.target
   }}}
 
-  Finally enable and start the web service:
+  Finally enable and start the Web service:
   \codeblock{bash}{{{
   systemctl daemon-reload
   systemctl enable concourse-web
@@ -151,5 +158,97 @@ This guide makes the following assumptions:
 
 \section{
   \title{Worker Node}{systemd-worker}
+  The Worker has to run as root so there is no user to create. We can go
+  straight to configuring the Worker.
 
+  Ensure the following keys (previously generated) are located in
+  \code{/usr/local/concourse/keys/}:
+  \list{
+    \code{tsa_host_key.pub}
+  }{
+    \code{worker_key}
+  }
+
+  Create the directory \code{/opt/concourse} where the worker will place
+  runtime artifacts. Files in this directory are temporary and are managed by
+  the worker.
+
+  Next create a file named \code{worker.env} in \code{/usr/local/concourse/}
+  that will be used to configure the Worker. To see all possible configuration
+  options run \code{concourse worker --help} and read more about
+  \reference{worker-node}{running a worker node}.
+
+  Change the following values:
+  \list{
+    \code{CONCOURSE_TSA_HOST} - This should be set to a hostname or IP that the
+    worker can use to reach the Web node, including the TSA port, which defaults
+    to port 2222.
+  }
+
+  \codeblock{}{{{
+  PATH=/usr/local/concourse/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+  CONCOURSE_NAME=worker-01
+  CONCOURSE_WORK_DIR=/opt/concourse/worker
+  CONCOURSE_TSA_HOST="<web-hostname-or-ip>:2222"
+  CONCOURSE_TSA_PUBLIC_KEY=/usr/local/concourse/keys/tsa_host_key.pub
+  CONCOURSE_TSA_WORKER_PRIVATE_KEY=/usr/local/concourse/keys/worker_key
+  CONCOURSE_RUNTIME=containerd
+  CONCOURSE_BAGGAGECLAIM_DRIVER=overlay
+  }}}
+
+  \aside{
+    If you're having issues with DNS resolution please read
+    \reference{worker-troubleshoot-dns}{this section}.
+  }
+
+  The \code{CONCOURSE_NAME} must be unique per worker. Having two workers with
+  the same name will result in a lot of weirdness.
+
+  Set the file permissions to read-only:
+  \codeblock{bash}{{{
+  chmod 0444 worker.env
+  }}}
+
+  We can now created a new Systemd Unit file at
+  \code{/etc/systemd/system/} named \code{concourse-worker.service}. Place
+  the following configuration in the unit file:
+
+  \codeblock{}{{{
+  [Unit]
+  Description=Concourse Worker
+  [Service]
+  User=root
+  Group=root
+  EnvironmentFile=/usr/local/concourse/worker.env
+  ExecStart=/usr/local/concourse/bin/concourse worker
+  Restart=on-failure
+  RestartSec=3
+  KillSignal=SIGUSR2
+  SendSIGKILL=yes
+  TimeoutStopSec=300
+  [Install]
+  WantedBy=default.target
+  }}}
+
+  Finally enable and start the Worker service:
+  \codeblock{bash}{{{
+  systemctl daemon-reload
+  systemctl enable concourse-worker
+  systemctl start concourse-worker
+  }}}
+
+  Check the status of the service:
+  \codeblock{bash}{{{
+  systemctl status concourse-worker
+  }}}
+
+  If the service isn't staying up, check the logs:
+  \codeblock{bash}{{{
+  journalctl -u concourse-worker
+  }}}
+
+  Using the \reference{fly} you should be able to see the worker successfully
+  connected to the Web node by running \code{fly workers}.
+
+  Congratulations, you've successfully deployed a Concourse cluster!
 }
