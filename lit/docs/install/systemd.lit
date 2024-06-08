@@ -2,4 +2,154 @@
 
 \use-plugin{concourse-docs}
 
-This guide will show you how to install Concourse on any Linux system running \link{Systemd}{https://github.com/systemd/systemd}.
+This guide will show you how to install Concourse on any Linux system
+running \link{Systemd}{https://github.com/systemd/systemd}.
+
+This guide makes the following assumptions:
+\ordered-list{
+  You have a PostgreSQL database running somewhere already. You created a
+  database called \code{concourse}. You've created a user for Concourse to
+  authenticate as.
+}{
+  You have generated the necessary
+  \reference{generating-keys}{encryption Keys}.
+}{
+  The web node will be directly exposed to the internet and can therefore
+  accept inbound traffic on port 443.
+}{
+  The Web and Worker node are being installed on separate servers and you
+  will figure out networking between the two servers.
+}
+
+\section{
+  \title{Install the Concourse CLI}{systemd-concourse-cli}
+  The first step is to install the \reference{concourse-cli}. We will
+  install the CLI in \code{/use/local/concourse}, but you can choose a
+  different install location.
+
+  Run the following commands to install the Concourse CLI on both your
+  Web and Worker servers:
+  \codeblock{bash}{{{
+  CONCOURSE_VERSION="<select-a-concourse-version>"
+  CONCOURSE_TAR="concourse.tgz"
+  CONCOURSE_URL="https://github.com/concourse/concourse/releases/download/v${CONCOURSE_VERSION}/concourse-${CONCOURSE_VERSION}-linux-amd64.tgz"
+  curl -L --output ./${CONCOURSE_TAR} ${CONCOURSE_URL}
+  tar xzf ./${CONCOURSE_TAR} -C /usr/local/
+  rm ./${CONCOURSE_TAR}
+  }}}
+
+  If you want to make running the Concourse CLI easier, add
+  \code{/usr/local/concourse/bin} to your \code{PATH}.
+
+  \codeblock{bash}{{{
+  PATH="$PATH:/usr/local/concourse/bin"
+  }}}
+
+  You can move on to setting up the Web node.
+}
+
+\section{
+  \title{Web Node}{systemd-web}
+  First lets create a new user and group for the web node to run as:
+
+  \codeblock{bash}{{{
+  addgroup --system "concourse"
+  adduser \
+        --system \
+        --ingroup "concourse" \
+        --no-create-home \
+        --disabled-password \
+        --disabled-login \
+        --comment "concourse web user" \
+        "concourse"
+  }}}
+
+  Next, place the following keys (previously generated) in
+  \code{/usr/local/concourse/keys/}:
+  \list{
+    \code{session_signing_key}
+  }{
+    \code{tsa_host_key}
+  }{
+    \code{worker_key.pub}
+  }
+
+  Next create a file named \code{web.env} in \code{/usr/local/concourse/} that
+  will be used to configure the web node. This is where you can \reference{configuring-auth}{configure
+  authentication} to Concourse and all other settings found when you run
+  \code{concourse web --help}.
+
+  \codeblock{}{{{
+  PATH=/usr/local/concourse/bin
+  CONCOURSE_EXTERNAL_URL=https://ci.example.com
+  CONCOURSE_ENABLE_LETS_ENCRYPT=true
+  CONCOURSE_TLS_BIND_PORT=443
+  CONCOURSE_POSTGRES_HOST=db.example.com
+  CONCOURSE_POSTGRES_USER=<user>
+  CONCOURSE_POSTGRES_PASSWORD=<password>
+  CONCOURSE_POSTGRES_DATABASE=concourse
+  CONCOURSE_SESSION_SIGNING_KEY=/usr/local/concourse/keys/session_signing_key
+  CONCOURSE_TSA_HOST_KEY=/usr/local/concourse/keys/tsa_host_key
+  CONCOURSE_TSA_AUTHORIZED_KEYS=/usr/local/concourse/keys/worker_key.pub
+  CONCOURSE_CLUSTER_NAME=Concourse
+  CONCOURSE_MAIN_TEAM_LOCAL_USER=local
+  CONCOURSE_ADD_LOCAL_USER=local:local
+  }}}
+
+  Set the file permissions to read-only and restricted to the \code{concourse}
+  user and group:
+
+  \codeblock{bash}{{{
+  chmod 0444 web.env
+  }}}
+
+  Ensure the entire \code{/usr/local/concourse} folder is owned by the
+  \code{concourse} user and group:
+
+  \codeblock{bash}{{{
+  chown -R concourse:concourse /usr/local/concourse
+  }}}
+
+  We can now created a new Systemd Unit file at
+  \code{/etc/systemd/system/} named \code{concourse-web.service}. Place
+  the following configuration in the unit file:
+
+  \codeblock{}{{{
+  [Unit]
+  Description=Concourse web node
+  [Service]
+  User=concourse
+  Group=concourse
+  EnvironmentFile=/usr/local/concourse/web.env
+  ExecStart=/usr/local/concourse/bin/concourse web
+  Restart=on-failure
+  RestartSec=3
+  KillSignal=SIGTERM
+  TimeoutStopSec=60
+  [Install]
+  WantedBy=default.target
+  }}}
+
+  Finally enable and start the web service:
+  \codeblock{bash}{{{
+  systemctl daemon-reload
+  systemctl enable concourse-web
+  systemctl start concourse-web
+  }}}
+
+  Check the status of the service:
+  \codeblock{bash}{{{
+  systemctl status concourse-web
+  }}}
+
+  If the service isn't staying up, check the logs:
+  \codeblock{bash}{{{
+  journalctl -u concourse-web
+  }}}
+
+}
+
+\section{
+  \title{Worker Node}{systemd-worker}
+
+}
