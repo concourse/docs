@@ -125,8 +125,8 @@ experienced users that want to dig deeper into how Concourse works.
 
   Workers are machines running
   \link{Garden}{https://github.com/cloudfoundry-incubator/garden} and
-  \link{Baggageclaim}{https://github.com/concourse/baggageclaim} servers and
-  registering themselves via the \reference{component-tsa}{TSA}.
+  \link{Baggageclaim}{https://github.com/concourse/concourse/tree/master/worker/baggageclaim}
+  servers and registering themselves via the \reference{component-tsa}{TSA}.
 
   \aside{
     \bold{Note}: Windows and Darwin workers also run Garden and Baggageclaim
