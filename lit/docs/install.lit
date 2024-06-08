@@ -45,3 +45,4 @@ The high-level steps to follow for installing Concourse are:
 \include-section{install/web.lit}
 \include-section{install/worker.lit}
 \include-section{install/upgrading.lit}
+\include-section{install/install-guides.lit}
