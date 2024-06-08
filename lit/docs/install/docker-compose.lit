@@ -1,0 +1,3 @@
+\title{\aux{Install Concourse with} Docker Compose}{install-docker-compose}
+
+\use-plugin{concourse-docs}

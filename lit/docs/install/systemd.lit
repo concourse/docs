@@ -1,0 +1,5 @@
+\title{\aux{Install Concourse With} Systemd}{install-systemd}
+
+\use-plugin{concourse-docs}
+
+This guide will show you how to install Concourse on any Linux system running \link{Systemd}{https://github.com/systemd/systemd}.
