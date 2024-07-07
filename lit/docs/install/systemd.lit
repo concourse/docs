@@ -8,17 +8,19 @@ running \link{Systemd}{https://github.com/systemd/systemd}.
 This guide makes the following assumptions:
 \ordered-list{
   You have a PostgreSQL database running somewhere already. You created a
-  database called \code{concourse}. You've created a user for Concourse to
+  database called \code{concourse} and created a user for Concourse to
   authenticate as.
 }{
   You have generated the necessary
   \reference{generating-keys}{encryption Keys}.
 }{
   The Web node will be directly exposed to the internet and can therefore
-  accept inbound traffic on port 443.
+  accept inbound traffic on port \code{443}.
 }{
   The Web and Worker node are being installed on separate servers and you
-  will figure out networking between the two servers.
+  will figure out networking between the two servers. The Web node needs
+  to accept ingress traffic on the TSA port (default is port \code{2222})
+  from the Worker node(s).
 }
 
 \section{
@@ -49,7 +51,7 @@ This guide makes the following assumptions:
 }
 
 \section{
-  \title{Web Node}{systemd-web}
+  \title{Setup Web Node}{systemd-web}
   First lets create a new user and group for the Web node to run as:
 
   \codeblock{bash}{{{
@@ -102,8 +104,21 @@ This guide makes the following assumptions:
   CONCOURSE_TSA_AUTHORIZED_KEYS=/usr/local/concourse/keys/worker_key.pub
   CONCOURSE_CLUSTER_NAME=Concourse
   CONCOURSE_MAIN_TEAM_LOCAL_USER=local
-  CONCOURSE_ADD_LOCAL_USER=local:local
+  CONCOURSE_ADD_LOCAL_USER=test:test
+  CONCOURSE_ENABLE_ACROSS_STEP=true
+  CONCOURSE_ENABLE_REDACT_SECRETS=true
+  CONCOURSE_ENABLE_PIPELINE_INSTANCES=true
+  CONCOURSE_ENABLE_CACHE_STREAMED_VOLUMES=true
   }}}
+
+  \aside{
+    The above file configues the web node with
+    \reference{local-auth}{local user authentication} with the username
+    and password set to \code{test}. You will probably want to configure
+    your web node with one of the other
+    \reference{configuring-auth}{authentication providers} and remove the
+    \code{*_LOCAL_USER} environment variables.
+  }
 
   Set the file permissions to read-only:
   \codeblock{bash}{{{
@@ -154,10 +169,19 @@ This guide makes the following assumptions:
   journalctl -u concourse-web
   }}}
 
+  You should then be able to access Concourse from the
+  \code{CONCOURSE_EXTERNAL_URL} you specified.
+
+  If you're using local authentication you can login using the
+  \reference{fly}.
+
+  \codeblock{bash}{{{
+  fly -t ci -c https://ci.example.com -u test -p test
+  }}}
 }
 
 \section{
-  \title{Worker Node}{systemd-worker}
+  \title{Setup Worker Node}{systemd-worker}
   The Worker has to run as root so there is no user to create. We can go
   straight to configuring the Worker.
 
@@ -178,13 +202,6 @@ This guide makes the following assumptions:
   options run \code{concourse worker --help} and read more about
   \reference{worker-node}{running a worker node}.
 
-  Change the following values:
-  \list{
-    \code{CONCOURSE_TSA_HOST} - This should be set to a hostname or IP that the
-    worker can use to reach the Web node, including the TSA port, which defaults
-    to port 2222.
-  }
-
   \codeblock{}{{{
   PATH=/usr/local/concourse/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
   CONCOURSE_NAME=worker-01
@@ -197,7 +214,7 @@ This guide makes the following assumptions:
   }}}
 
   \aside{
-    If you're having issues with DNS resolution please read
+    If your pipelines are having issues with DNS resolution please read
     \reference{worker-troubleshoot-dns}{this section}.
   }
 
