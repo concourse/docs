@@ -186,6 +186,8 @@ resources:
 jobs:
 - name: triggered-first
   public: true
+  build_log_retention:
+    builds: 20
   plan:
     - get: every-30s
       trigger: true
@@ -214,6 +216,8 @@ jobs:
           args: [&#34;Hello, world!&#34;]
 - name: triggered-second
   public: true
+  build_log_retention:
+    builds: 20
   plan:
     - get: every-30s
       passed: [triggered-first]
