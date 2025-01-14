@@ -61,22 +61,21 @@ You will be now be able to see the rendered site if you navigate to
 
 # Docs Styling
 
-You can find all of the styling assets for the Concourse website and documentation under the [`css/`](https://github.com/concourse/docs/tree/master/css) folder. 
+You can find all of the styling assets for the Concourse website and documentation under the [`css/`](./css) folder. 
 
-If you are planning to make changes to the site, [`css/booklit.css`](https://github.com/concourse/docs/blob/master/css/booklit.css) is usually a good place to start. 
+If you are planning to make changes to the site, [`css/booklit.css`](./css/booklit.css) is usually a good place to start. 
 
 # Content Layout
 
-All of the website content can be found under the [`lit/`](https://github.com/concourse/docs/tree/master/lit) folder of this repository. 
+All of the website content can be found under the [`lit/`](./lit) folder of this repository. 
 
 The content layout for the site is qute simple, and for the most part self-explanatory. If you want to change a specific page on the website you can usually jump straight to it by looking for the `.lit` version of the page. For example you can make changes to https://concourse-ci.org/fly.html by editing `lit/fly.lit`. 
 
-* **`html/docs-header.tmpl`** L1 navigation header for the Concourse website and docs.
-* **`lit/index.html`** The Concourse Homepage
-* **`lit/reference/`** This is where you'll find most of the documentation listed under https://concourse-ci.org/reference.html
-* **`lit/release-notes/`** Release notes separated by Concourse version. These `.lit` snippets are ultimately loaded into `lit/download.lit`
-* **`lit/download.lit/`** Concourse Downloads page
-* **`lit/docs/resource-types/community-resources.lit`** A listing of Concourse community-supported resources
+* [`html/docs-header.tmpl`](./html/docs-header.tmpl) L1 navigation header for the Concourse website and docs.
+* [`lit/index.lit`](./lit/index.lit) The Concourse Homepage
+* [`lit/docs/`](./lit/docs/) This is where you'll find most of the documentation listed under https://concourse-ci.org/docs.html
+
+The Resource Types live in a separate repository: [concourse/resource-types](https://github.com/concourse/resource-types).
 
 # Updating the Blog Theme
 
