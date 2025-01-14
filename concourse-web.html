@@ -16,7 +16,11 @@
 <script data-goatcounter="https://concourse.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   </head>
   <body>
-    
+    <div class="top-banner">
+  <p class="banner-text">
+    ✨ New Blog Post: <a href="https://blog.concourse-ci.org/posts/2025-01-06-concourse-2024-review/">Concourse 2024 in Review</a> ✨
+  </p>
+</div>
 
 <div class="page-top">
   <nav class="top-nav">
@@ -459,7 +463,7 @@
   <p>The <code>concourse</code> CLI can run as a <code>web</code> node via the <code>web</code> subcommand.</p><p>Before running it, let&#39;s configure a local user so we can log in:</p><pre><code class="language-bash">CONCOURSE_ADD_LOCAL_USER=myuser:mypass
 CONCOURSE_MAIN_TEAM_LOCAL_USER=myuser</code></pre><p>This will configure a single user, <code>myuser</code>, with the password <code>mypass</code>. You&#39;ll probably want to change those to sensible values, and later you may want to configure a proper auth provider - check out <a href="auth.html">Auth &amp; Teams</a> whenever you&#39;re ready.</p><p>Next, you&#39;ll need to configure the session signing key, the SSH key for the worker gateway, and the authorized worker key. Check <a href="concourse-generate-key.html">Generating Keys</a> to learn what these are and how they are created.</p><pre><code class="language-bash">CONCOURSE_SESSION_SIGNING_KEY=path/to/session_signing_key
 CONCOURSE_TSA_HOST_KEY=path/to/tsa_host_key
-CONCOURSE_TSA_AUTHORIZED_KEYS=path/to/authorized_worker_keys</code></pre><p>Finally, <code>web</code> needs to know how to reach your Postgres database. This can be set like so:</p><pre><code class="language-bash">CONCOURSE_POSTGRES_HOST=127.0.0.1 # default
+CONCOURSE_TSA_AUTHORIZED_KEYS=path/to/authorized_worker_keys.pub</code></pre><p>Finally, <code>web</code> needs to know how to reach your Postgres database. This can be set like so:</p><pre><code class="language-bash">CONCOURSE_POSTGRES_HOST=127.0.0.1 # default
 CONCOURSE_POSTGRES_PORT=5432      # default
 CONCOURSE_POSTGRES_DATABASE=atc   # default
 CONCOURSE_POSTGRES_USER=my-user

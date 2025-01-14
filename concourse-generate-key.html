@@ -16,7 +16,11 @@
 <script data-goatcounter="https://concourse.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   </head>
   <body>
-    
+    <div class="top-banner">
+  <p class="banner-text">
+    ✨ New Blog Post: <a href="https://blog.concourse-ci.org/posts/2025-01-06-concourse-2024-review/">Concourse 2024 in Review</a> ✨
+  </p>
+</div>
 
 <div class="page-top">
   <nav class="top-nav">
@@ -303,7 +307,7 @@ ssh-keygen -t rsa -b 4096 -m PEM -f ./worker_key</code></pre><p>At this point yo
   <h2 class="section-header"><a class="anchor-target" name="multiple-worker-keys" href="#multiple-worker-keys"></a>Multiple Worker Keys</h2>
   
 
-  <p>Currently you have one <code>worker_key</code>. You can use this one key-pair with multiple <a href="concourse-worker.html"><code>worker</code> node</a>s. Another good strategy is to have each worker or group of workers use a key that&#39;s unique to that one worker or group of workers.</p><p>In the second case you will end up with multiple private and public worker keys. The <a href="concourse-web.html"><code>web</code> node</a> needs to know about all of the public worker keys.  To pass all public worker keys to the <a href="concourse-web.html"><code>web</code> node</a> create a file that contains all of the worker public keys. A common name for this file is <code>authorized_worker_keys</code>. The file should look like this, with one public key per line.</p><pre><code class="language-bash">$ cat authorized_worker_keys
+  <p>Currently you have one <code>worker_key</code>. You can use this one key-pair with multiple <a href="concourse-worker.html"><code>worker</code> node</a>s. Another good strategy is to have each worker or group of workers use a key that&#39;s unique to that one worker or group of workers.</p><p>In the second case you will end up with multiple private and public worker keys. The <a href="concourse-web.html"><code>web</code> node</a> needs to know about all of the public worker keys.  To pass all public worker keys to the <a href="concourse-web.html"><code>web</code> node</a> create a file that contains all of the worker public keys. A common name for this file is <code>authorized_worker_keys.pub</code>. The file should look like this, with one public key per line.</p><pre><code class="language-bash">$ cat authorized_worker_keys.pub
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCgKtVnbGRJ7Y63QKoO&#43;loS...
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDU6lA4gSRYIc4MXzphJ2l5...
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDgNU7KBz/QQusPO52pNcea...</code></pre><p>You should now have all the necessary keys needed to deploy Web and Worker nodes.</p>
