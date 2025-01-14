@@ -40,7 +40,7 @@ as performing all pipeline scheduling. It's basically the brain of Concourse.
   \codeblock{bash}{{{
   CONCOURSE_SESSION_SIGNING_KEY=path/to/session_signing_key
   CONCOURSE_TSA_HOST_KEY=path/to/tsa_host_key
-  CONCOURSE_TSA_AUTHORIZED_KEYS=path/to/authorized_worker_keys
+  CONCOURSE_TSA_AUTHORIZED_KEYS=path/to/authorized_worker_keys.pub
   }}}
 
   Finally, \code{web} needs to know how to reach your Postgres database. This
