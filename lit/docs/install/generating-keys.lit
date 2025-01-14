@@ -78,11 +78,11 @@
   keys. The \reference{concourse-web} needs to know about all of the public
   worker keys.  To pass all public worker keys to the \reference{concourse-web}
   create a file that contains all of the worker public keys. A common name for
-  this file is \code{authorized_worker_keys}. The file should look like this,
+  this file is \code{authorized_worker_keys.pub}. The file should look like this,
   with one public key per line.
 
   \codeblock{bash}{{
-  $ cat authorized_worker_keys
+  $ cat authorized_worker_keys.pub
   ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCgKtVnbGRJ7Y63QKoO+loS...
   ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDU6lA4gSRYIc4MXzphJ2l5...
   ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDgNU7KBz/QQusPO52pNcea...
