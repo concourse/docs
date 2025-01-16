@@ -61,7 +61,7 @@ component.
     }
   }{
     \definition{\code{--cf-org=ORG_NAME}}{
-      Authorize an entire organization's members.
+      Authorize an entire organization's members. Members will need to be part of a Space inside the organization.
     }
   }{
     \definition{\code{--cf-space=ORG_NAME:SPACE_NAME}}{
