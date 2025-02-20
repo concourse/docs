@@ -119,8 +119,10 @@ A task's configuration specifies the following:
         The path where the input will be placed. If not specified, the input's
         \code{name} is used.
 
-        Paths are relative to the working directory of the task. Absolute paths
-        are not respected.
+        Paths are relative to the working directory of the task unless an
+        absolute path is given. An absolute path is any path that starts with a
+        forward slash \code{/}. We recommend only using relative paths unless
+        you have a strong technical reason to use absolute paths.
       }
 
       \optional-attribute{optional}{boolean}{
@@ -151,7 +153,10 @@ A task's configuration specifies the following:
         The path to a directory where the output will be taken from. If not
         specified, the output's \code{name} is used.
 
-        Paths are relative to the working directory of the task. Absolute paths are not respected.
+        Paths are relative to the working directory of the task unless an
+        absolute path is given. An absolute path is any path that starts with a
+        forward slash \code{/}. We recommend only using relative paths unless
+        you have a strong technical reason to use absolute paths.
       }
     }
   }
