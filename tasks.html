@@ -524,7 +524,7 @@ run:
   </label>
 
   <div class="toggle-content attribute-content">
-    <p>The path where the input will be placed. If not specified, the input&#39;s <code>name</code> is used.</p><p>Paths are relative to the working directory of the task. Absolute paths are not respected.</p>
+    <p>The path where the input will be placed. If not specified, the input&#39;s <code>name</code> is used.</p><p>Paths are relative to the working directory of the task unless an absolute path is given. An absolute path is any path that starts with a forward slash <code>/</code>. We recommend only using relative paths unless you have a strong technical reason to use absolute paths.</p>
   </div>
 </div><div class="toggleable schema-attribute optional">
   <input id="toggle-schema.input.optional" type="checkbox" class="toggle" />
@@ -572,7 +572,7 @@ run:
   </label>
 
   <div class="toggle-content attribute-content">
-    <p>The path to a directory where the output will be taken from. If not specified, the output&#39;s <code>name</code> is used.</p><p>Paths are relative to the working directory of the task. Absolute paths are not respected.</p>
+    <p>The path to a directory where the output will be taken from. If not specified, the output&#39;s <code>name</code> is used.</p><p>Paths are relative to the working directory of the task unless an absolute path is given. An absolute path is any path that starts with a forward slash <code>/</code>. We recommend only using relative paths unless you have a strong technical reason to use absolute paths.</p>
   </div>
 </div>
 </div>
