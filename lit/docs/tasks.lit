@@ -123,6 +123,8 @@ A task's configuration specifies the following:
         absolute path is given. An absolute path is any path that starts with a
         forward slash \code{/}. We recommend only using relative paths unless
         you have a strong technical reason to use absolute paths.
+
+        Any parent directory references (\code{../}) in the path will be removed.
       }
 
       \optional-attribute{optional}{boolean}{
@@ -157,6 +159,8 @@ A task's configuration specifies the following:
         absolute path is given. An absolute path is any path that starts with a
         forward slash \code{/}. We recommend only using relative paths unless
         you have a strong technical reason to use absolute paths.
+
+        Any parent directory references (\code{../}) in the path will be removed.
       }
     }
   }
