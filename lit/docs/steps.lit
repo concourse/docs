@@ -847,7 +847,8 @@ by configuring \reference{schema.on_failure} or
       \optional-attribute{hermetic}{boolean}{
         \warn{
           This setting is only supported by the \code{containerd} runtime on
-          Linux. Please contact your Concourse operator to find out what
+          Linux. For other runtimes this setting has no effect on container
+          networking. Please contact your Concourse operator to find out what
           runtime your Concourse cluster is using.
         }
 
