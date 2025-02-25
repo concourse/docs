@@ -716,69 +716,6 @@ by configuring \reference{schema.on_failure} or
         }
       }
 
-      \optional-attribute{container_limits}{container_limits}{
-        CPU and memory limits to enforce on the task container.
-
-        Note that these values, when specified, will override any limits set by
-        passing the \code{--default-task-cpu-limit} or
-        \code{--default-task-memory-limit} flags to the \code{concourse web} command.
-
-        These values will also override any configuration set on a
-        \reference{schema.task-config.container_limits}{task's config
-        \code{container_limits}}.
-
-        \optional-attribute{cpu}{number}{
-          The maximum amount of CPU available to the task container, measured in
-          shares. 0 means unlimited.
-
-          CPU shares are relative to the CPU shares of other containers on a
-          worker. For example, if you have two containers both with a CPU
-          limit of 2 shares then each container will get 50% of the CPU's time.
-
-          \codeblock{}{{{
-            Container A: 2 shares - 50% CPU
-            Container B: 2 shares - 50% CPU
-            Total CPU shares declared: 4
-          }}}
-
-          If you introduce another container then the number of CPU time per
-          container changes. CPU shares are relative to each other.
-          \codeblock{}{{{
-            Container A: 2 shares - 25% CPU
-            Container B: 2 shares - 25% CPU
-            Container C: 4 shares - 50% CPU
-            Total CPU shares declared: 8
-          }}}
-        }
-
-        \optional-attribute{memory}{number}{
-          The maximum amount of memory available to the task container, measured in
-          bytes. 0 means unlimited.
-        }
-
-        \example-toggle{Setting CPU and Memory limits}{
-          This task will only be given 10MB of memory and 2 CPU shares.
-
-          \codeblock{yaml}{{{
-            jobs:
-            - name: limited-resources
-              plan:
-              - task: constrained-task
-                container_limits:
-                  cpu: 2 # CPU shares are relative
-                  memory: 10000000 # 10MB
-                config:
-                  platform: linux
-                  image_resource:
-                    type: registry-image
-                    source: { repository: busybox }
-                  run:
-                    path: echo
-                    args: ["Hello world!"]
-          }}}
-        }
-      }
-
       \optional-attribute{params}{env-vars}{
         A map of task environment variable parameters to set, overriding those
         configured in the task's \code{config} or \code{file}.
@@ -842,6 +779,86 @@ by configuring \reference{schema.on_failure} or
                 uri: https://github.com/concourse/examples.git
           }}}
         }
+      }
+
+      \optional-attribute{container_limits}{container_limits}{
+        CPU and memory limits to enforce on the task container.
+
+        Note that these values, when specified, will override any limits set by
+        passing the \code{--default-task-cpu-limit} or
+        \code{--default-task-memory-limit} flags to the \code{concourse web} command.
+
+        These values will also override any configuration set on a
+        \reference{schema.task-config.container_limits}{task's config
+        \code{container_limits}}.
+
+        \optional-attribute{cpu}{number}{
+          The maximum amount of CPU available to the task container, measured in
+          shares. 0 means unlimited.
+
+          CPU shares are relative to the CPU shares of other containers on a
+          worker. For example, if you have two containers both with a CPU
+          limit of 2 shares then each container will get 50% of the CPU's time.
+
+          \codeblock{}{{{
+            Container A: 2 shares - 50% CPU
+            Container B: 2 shares - 50% CPU
+            Total CPU shares declared: 4
+          }}}
+
+          If you introduce another container then the number of CPU time per
+          container changes. CPU shares are relative to each other.
+          \codeblock{}{{{
+            Container A: 2 shares - 25% CPU
+            Container B: 2 shares - 25% CPU
+            Container C: 4 shares - 50% CPU
+            Total CPU shares declared: 8
+          }}}
+        }
+
+        \optional-attribute{memory}{number}{
+          The maximum amount of memory available to the task container, measured in
+          bytes. 0 means unlimited.
+        }
+
+        \example-toggle{Setting CPU and Memory limits}{
+          This task will only be given 10MB of memory and 2 CPU shares.
+
+          \codeblock{yaml}{{{
+            jobs:
+            - name: limited-resources
+              plan:
+              - task: constrained-task
+                container_limits:
+                  cpu: 2 # CPU shares are relative
+                  memory: 10000000 # 10MB
+                config:
+                  platform: linux
+                  image_resource:
+                    type: registry-image
+                    source: { repository: busybox }
+                  run:
+                    path: echo
+                    args: ["Hello world!"]
+          }}}
+        }
+      }
+
+      \optional-attribute{hermetic}{boolean}{
+        \warn{
+          This setting is only supported by the \code{containerd} runtime on
+          Linux. For other runtimes this setting has no effect on container
+          networking. Please contact your Concourse operator to find out what
+          runtime your Concourse cluster is using.
+        }
+
+        \italic{Default \code{false}.} If set to \code{true}, the task will
+        have no outbound network access. Your task will not be able to reach
+        the internet or any local network resources that aren't also inside the
+        container.
+
+        For macOS and Windows this field has no effect since workloads on
+        those machines are not containerized.
       }
 
       \optional-attribute{input_mapping}{\{input.name: identifier\}}{
