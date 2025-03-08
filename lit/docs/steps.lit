@@ -1676,12 +1676,25 @@ by configuring \reference{schema.on_failure} or
               values can run in parallel.
             }
           }
+        }
+      }
+      \optional-attribute{fail_fast}{boolean}{
+        \italic{Default \code{false}.} When enabled, the \code{across} step will
+        fail fast by returning as soon as any sub-step fails. This means that running steps
+        will be interrupted and pending steps will no longer be scheduled.
 
-          \optional-attribute{fail_fast}{boolean}{
-            \italic{Default \code{false}.} When enabled, the \code{across} step will
-            fail fast by returning as soon as any sub-step fails. This means that running steps
-            will be interrupted and pending steps will no longer be scheduled.
-          }
+        \example-toggle{Fail fast}{
+          The \code{fail_fast} key sits at the same level as the \code{across} key.
+
+          \codeblock{yaml}{{{
+          plan:
+          - across:
+            - var: var1
+              values: [a, b, c]
+            - var: var2
+              values: [1, 2]
+            fail_fast: true
+          }}}
         }
       }
       \example-toggle{Across with task step}{
