@@ -2,14 +2,14 @@
 
 \use-plugin{concourse-docs}
 
-Configuring self-contained Concourse \reference{pipelines}{pipelines} is a great
-way to try things out before diving into the deeper content.
+Setting up self-contained Concourse \reference{pipelines}{pipelines} is an excellent
+way to experiment before exploring the more comprehensive documentation.
 
-Each example contains a pipeline YAML snippet which can be copy-pasted to a
-local file and configured on your instance via \reference{fly-set-pipeline}.
-From there you may want to poke around and try changing parts of the
-configuration to learn how things work. All the available knobs to turn are
-covered in the \reference{docs}.
+Each example presents a pipeline YAML snippet which can be copied to a
+local file and deployed to your instance via \reference{fly-set-pipeline}.
+From there you can experiment and modify parts of the
+configuration to better understand how everything works. All configuration options are
+detailed in the \reference{docs}.
 
 \include-section{./examples/hello-world.lit}
 \include-section{./examples/serial-job.lit}
@@ -29,8 +29,8 @@ covered in the \reference{docs}.
 \split-sections
 \table-of-contents
 
-For a real-world example, check out \link{Concourse's own
+For a practical real-world example, examine \link{Concourse's own
 pipeline}{https://ci.concourse-ci.org/teams/main/pipelines/concourse} (and its
-\link{config}{https://github.com/concourse/ci/blob/master/pipelines/concourse.yml}):
+\link{configuration}{https://github.com/concourse/ci/blob/master/pipelines/concourse.yml}):
 
 \frame{https://ci.concourse-ci.org/teams/main/pipelines/concourse}{600px}
