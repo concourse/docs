@@ -7,7 +7,7 @@ services:
       POSTGRES_USER: concourse_user
       PGDATA: /database
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U dev"]
+      test: ["CMD-SHELL", "pg_isready -U concourse_user"]
       interval: 3s
       timeout: 3s
       retries: 5
