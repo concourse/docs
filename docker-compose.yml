@@ -6,6 +6,7 @@ services:
       POSTGRES_PASSWORD: concourse_pass
       POSTGRES_USER: concourse_user
       PGDATA: /database
+      POSTGRES_HOST_AUTH_METHOD: ${AUTH_METHOD:-trust}
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U concourse_user"]
       interval: 3s
