@@ -16,7 +16,7 @@ of a container escape.
   \title{Keeping your kernel up-to-date}
 
   Containers run in different Linux namespaces on the same Linux kernel as the
-  host system. Vulnerabilities in the kernel version you run can easily allow
+  host system. Vulnerabilities in the kernel version you run can allow
   for local privilege escalation - which in the Concourse context means allowing
   an escape from a Concourse task to full root privileges on the host.
 
