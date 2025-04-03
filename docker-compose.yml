@@ -6,13 +6,21 @@ services:
       POSTGRES_PASSWORD: concourse_pass
       POSTGRES_USER: concourse_user
       PGDATA: /database
+      POSTGRES_HOST_AUTH_METHOD: trust #for healthcheck
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U concourse_user -d concourse"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
 
   concourse:
     image: concourse/concourse
     command: quickstart
     privileged: true
     cgroup: host
-    depends_on: [concourse-db]
+    depends_on:
+      concourse-db:
+        condition: service_healthy
     ports: ["8080:8080"]
     environment:
       CONCOURSE_POSTGRES_HOST: concourse-db
@@ -27,7 +35,7 @@ services:
       CONCOURSE_CLIENT_SECRET: Y29uY291cnNlLXdlYgo=
       CONCOURSE_TSA_CLIENT_SECRET: Y29uY291cnNlLXdvcmtlcgo=
       CONCOURSE_X_FRAME_OPTIONS: allow
-      CONCOURSE_CONTENT_SECURITY_POLICY: "*"
+      CONCOURSE_CONTENT_SECURITY_POLICY: "frame-ancestors *;"
       CONCOURSE_CLUSTER_NAME: tutorial
       CONCOURSE_WORKER_CONTAINERD_DNS_SERVER: "8.8.8.8"
       # For ARM-based machine, change the Concourse runtime to "houdini"
