@@ -16,7 +16,11 @@
 <script data-goatcounter="https://concourse.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   </head>
   <body>
-    
+    <div class="top-banner">
+  <p class="banner-text">
+    🎉<a href="https://blog.concourse-ci.org/posts/2025-04-03-7-13-release-and-project-update/">v7.13.0 Release and Project Update</a> ✨
+  </p>
+</div>
 
 <div class="page-top">
   <nav class="top-nav">
@@ -2735,7 +2739,7 @@
   
     <li>
       <span class="section-number">1.15.5</span>
-      <a href="container-placement.html">Container Placement</a>
+      <a href="security-hardening.html">Security Hardening</a>
 
       
   
@@ -2743,7 +2747,7 @@
   
     <li>
       <span class="section-number">1.15.5.1</span>
-      <a href="container-placement.html#volume-locality-strategy">The <code>volume-locality</code> strategy</a>
+      <a href="security-hardening.html#keeping-your-kernel-up-to-date">Keeping your kernel up-to-date</a>
 
       
   
@@ -2752,52 +2756,7 @@
   
     <li>
       <span class="section-number">1.15.5.2</span>
-      <a href="container-placement.html#fewest-build-containers-strategy">The <code>fewest-build-containers</code> strategy</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.15.5.3</span>
-      <a href="container-placement.html#random-strategy">The <code>random</code> strategy</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.15.5.4</span>
-      <a href="container-placement.html#limit-active-tasks-strategy">The <code>limit-active-tasks</code> strategy</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.15.5.5</span>
-      <a href="container-placement.html#limit-active-containers-strategy">The <code>limit-active-containers</code> strategy</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.15.5.6</span>
-      <a href="container-placement.html#limit-active-volumes-strategy">The <code>limit-active-volumes</code> strategy</a>
-
-      
-  
-  
-    </li>
-  
-    <li>
-      <span class="section-number">1.15.5.7</span>
-      <a href="container-placement.html#chaining-placement-strategies">Chaining Placement Strategies</a>
+      <a href="security-hardening.html#locking-down-privileged-mode">Locking down privileged mode</a>
 
       
   
@@ -2811,7 +2770,7 @@
   
     <li>
       <span class="section-number">1.15.6</span>
-      <a href="opa.html">Open Policy Agent Integration</a>
+      <a href="container-placement.html">Container Placement</a>
 
       
   
@@ -2819,7 +2778,7 @@
   
     <li>
       <span class="section-number">1.15.6.1</span>
-      <a href="opa.html#configure-opa">Configuring Concourse</a>
+      <a href="container-placement.html#volume-locality-strategy">The <code>volume-locality</code> strategy</a>
 
       
   
@@ -2828,7 +2787,7 @@
   
     <li>
       <span class="section-number">1.15.6.2</span>
-      <a href="opa.html#writing-opa-rules">Writing OPA Rules</a>
+      <a href="container-placement.html#fewest-build-containers-strategy">The <code>fewest-build-containers</code> strategy</a>
 
       
   
@@ -2837,6 +2796,82 @@
   
     <li>
       <span class="section-number">1.15.6.3</span>
+      <a href="container-placement.html#random-strategy">The <code>random</code> strategy</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.15.6.4</span>
+      <a href="container-placement.html#limit-active-tasks-strategy">The <code>limit-active-tasks</code> strategy</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.15.6.5</span>
+      <a href="container-placement.html#limit-active-containers-strategy">The <code>limit-active-containers</code> strategy</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.15.6.6</span>
+      <a href="container-placement.html#limit-active-volumes-strategy">The <code>limit-active-volumes</code> strategy</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.15.6.7</span>
+      <a href="container-placement.html#chaining-placement-strategies">Chaining Placement Strategies</a>
+
+      
+  
+  
+    </li>
+  
+  </ol>
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.15.7</span>
+      <a href="opa.html">Open Policy Agent Integration</a>
+
+      
+  
+  <ol class="toc">
+  
+    <li>
+      <span class="section-number">1.15.7.1</span>
+      <a href="opa.html#configure-opa">Configuring Concourse</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.15.7.2</span>
+      <a href="opa.html#writing-opa-rules">Writing OPA Rules</a>
+
+      
+  
+  
+    </li>
+  
+    <li>
+      <span class="section-number">1.15.7.3</span>
       <a href="opa.html#special-actions">Special Actions</a>
 
       
@@ -2844,7 +2879,7 @@
   <ol class="toc">
   
     <li>
-      <span class="section-number">1.15.6.3.1</span>
+      <span class="section-number">1.15.7.3.1</span>
       <a href="opa.html#useimage"><code>UseImage</code></a>
 
       
@@ -2853,7 +2888,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.6.3.2</span>
+      <span class="section-number">1.15.7.3.2</span>
       <a href="opa.html#setpipeline"><code>SetPipeline</code></a>
 
       
@@ -2872,7 +2907,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7</span>
+      <span class="section-number">1.15.8</span>
       <a href="performance-tuning.html">Performance Tuning</a>
 
       
@@ -2880,7 +2915,7 @@
   <ol class="toc">
   
     <li>
-      <span class="section-number">1.15.7.1</span>
+      <span class="section-number">1.15.8.1</span>
       <a href="performance-tuning.html#the-big-caveat">The Big Caveat</a>
 
       
@@ -2889,7 +2924,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.2</span>
+      <span class="section-number">1.15.8.2</span>
       <a href="performance-tuning.html#build-logs">Build Logs</a>
 
       
@@ -2897,7 +2932,7 @@
   <ol class="toc">
   
     <li>
-      <span class="section-number">1.15.7.2.1</span>
+      <span class="section-number">1.15.8.2.1</span>
       <a href="performance-tuning.html#concourse_default_build_logs_to_retain"><code>CONCOURSE_DEFAULT_BUILD_LOGS_TO_RETAIN</code></a>
 
       
@@ -2906,7 +2941,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.2.2</span>
+      <span class="section-number">1.15.8.2.2</span>
       <a href="performance-tuning.html#concourse_max_build_logs_to_retain"><code>CONCOURSE_MAX_BUILD_LOGS_TO_RETAIN</code></a>
 
       
@@ -2915,7 +2950,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.2.3</span>
+      <span class="section-number">1.15.8.2.3</span>
       <a href="performance-tuning.html#concourse_default_days_to_retain_build_logs"><code>CONCOURSE_DEFAULT_DAYS_TO_RETAIN_BUILD_LOGS</code></a>
 
       
@@ -2924,7 +2959,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.2.4</span>
+      <span class="section-number">1.15.8.2.4</span>
       <a href="performance-tuning.html#concourse_max_days_to_retain_build_logs"><code>CONCOURSE_MAX_DAYS_TO_RETAIN_BUILD_LOGS</code></a>
 
       
@@ -2938,7 +2973,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.3</span>
+      <span class="section-number">1.15.8.3</span>
       <a href="performance-tuning.html#resource-checking">Resource Checking</a>
 
       
@@ -2946,7 +2981,7 @@
   <ol class="toc">
   
     <li>
-      <span class="section-number">1.15.7.3.1</span>
+      <span class="section-number">1.15.8.3.1</span>
       <a href="performance-tuning.html#concourse_resource_checking_interval"><code>CONCOURSE_RESOURCE_CHECKING_INTERVAL</code></a>
 
       
@@ -2955,7 +2990,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.3.2</span>
+      <span class="section-number">1.15.8.3.2</span>
       <a href="performance-tuning.html#concourse_resource_with_webhook_checking_interval"><code>CONCOURSE_RESOURCE_WITH_WEBHOOK_CHECKING_INTERVAL</code></a>
 
       
@@ -2964,7 +2999,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.3.3</span>
+      <span class="section-number">1.15.8.3.3</span>
       <a href="performance-tuning.html#concourse_max_checks_per_second"><code>CONCOURSE_MAX_CHECKS_PER_SECOND</code></a>
 
       
@@ -2978,7 +3013,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.4</span>
+      <span class="section-number">1.15.8.4</span>
       <a href="performance-tuning.html#pipeline-management">Pipeline Management</a>
 
       
@@ -2986,7 +3021,7 @@
   <ol class="toc">
   
     <li>
-      <span class="section-number">1.15.7.4.1</span>
+      <span class="section-number">1.15.8.4.1</span>
       <a href="performance-tuning.html#concourse_pause_pipelines_after"><code>CONCOURSE_PAUSE_PIPELINES_AFTER</code></a>
 
       
@@ -2995,7 +3030,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.4.2</span>
+      <span class="section-number">1.15.8.4.2</span>
       <a href="performance-tuning.html#concourse_default_task_cpumemory_limit"><code>CONCOURSE_DEFAULT_TASK_{CPU/MEMORY}_LIMIT</code></a>
 
       
@@ -3004,7 +3039,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.4.3</span>
+      <span class="section-number">1.15.8.4.3</span>
       <a href="performance-tuning.html#concourse_default_getputtask_timeout"><code>CONCOURSE_DEFAULT_{GET/PUT/TASK}_TIMEOUT</code></a>
 
       
@@ -3018,7 +3053,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.5</span>
+      <span class="section-number">1.15.8.5</span>
       <a href="performance-tuning.html#optimize-containers-placement">Container Placement</a>
 
       
@@ -3027,7 +3062,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.6</span>
+      <span class="section-number">1.15.8.6</span>
       <a href="performance-tuning.html#garbage-collection">Garbage Collection</a>
 
       
@@ -3035,7 +3070,7 @@
   <ol class="toc">
   
     <li>
-      <span class="section-number">1.15.7.6.1</span>
+      <span class="section-number">1.15.8.6.1</span>
       <a href="performance-tuning.html#concourse_gc_failed_grace_period"><code>CONCOURSE_GC_FAILED_GRACE_PERIOD</code></a>
 
       
@@ -3044,7 +3079,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.6.2</span>
+      <span class="section-number">1.15.8.6.2</span>
       <a href="performance-tuning.html#other-gc-grace-periods">Other GC Grace Periods</a>
 
       
@@ -3058,7 +3093,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.7</span>
+      <span class="section-number">1.15.8.7</span>
       <a href="performance-tuning.html#web-to-worker-ratio">Web To Worker Ratio</a>
 
       
@@ -3072,7 +3107,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.8</span>
+      <span class="section-number">1.15.9</span>
       <a href="global-resources.html">Global Resources</a>
 
       
@@ -3080,7 +3115,7 @@
   <ol class="toc">
   
     <li>
-      <span class="section-number">1.15.8.1</span>
+      <span class="section-number">1.15.9.1</span>
       <a href="global-resources.html#benefits-of-global-resources">Benefits of Global Resources</a>
 
       
@@ -3089,7 +3124,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.8.2</span>
+      <span class="section-number">1.15.9.2</span>
       <a href="global-resources.html#risks-and-side-effects">Risks and Side Effects</a>
 
       
@@ -3103,7 +3138,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.9</span>
+      <span class="section-number">1.15.10</span>
       <a href="administration.html">Administration</a>
 
       
@@ -3111,7 +3146,7 @@
   <ol class="toc">
   
     <li>
-      <span class="section-number">1.15.9.1</span>
+      <span class="section-number">1.15.10.1</span>
       <a href="administration.html#fly-workers"><code>fly workers</code></a>
 
       
@@ -3120,7 +3155,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.9.2</span>
+      <span class="section-number">1.15.10.2</span>
       <a href="administration.html#fly-prune-worker"><code>fly prune-worker</code></a>
 
       
@@ -3129,7 +3164,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.9.3</span>
+      <span class="section-number">1.15.10.3</span>
       <a href="administration.html#fly-land-worker"><code>fly land-worker</code></a>
 
       
@@ -3138,7 +3173,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.9.4</span>
+      <span class="section-number">1.15.10.4</span>
       <a href="administration.html#fly-containers"><code>fly containers</code></a>
 
       
@@ -3147,7 +3182,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.9.5</span>
+      <span class="section-number">1.15.10.5</span>
       <a href="administration.html#fly-volumes"><code>fly volumes</code></a>
 
       
@@ -3156,7 +3191,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.9.6</span>
+      <span class="section-number">1.15.10.6</span>
       <a href="administration.html#fly-curl"><code>fly curl</code></a>
 
       

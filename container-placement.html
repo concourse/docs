@@ -16,7 +16,11 @@
 <script data-goatcounter="https://concourse.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   </head>
   <body>
-    
+    <div class="top-banner">
+  <p class="banner-text">
+    🎉<a href="https://blog.concourse-ci.org/posts/2025-04-03-7-13-release-and-project-update/">v7.13.0 Release and Project Update</a> ✨
+  </p>
+</div>
 
 <div class="page-top">
   <nav class="top-nav">
@@ -202,26 +206,31 @@
         
           <tr>
             <td class="number-cell">1.15.5</td>
-            <td class="title-cell"><a href="container-placement.html"  class="self">Container Placement</a></td>
+            <td class="title-cell"><a href="security-hardening.html" >Security Hardening</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15.6</td>
-            <td class="title-cell"><a href="opa.html" >Open Policy Agent Integration</a></td>
+            <td class="title-cell"><a href="container-placement.html"  class="self">Container Placement</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15.7</td>
-            <td class="title-cell"><a href="performance-tuning.html" >Performance Tuning</a></td>
+            <td class="title-cell"><a href="opa.html" >Open Policy Agent Integration</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15.8</td>
-            <td class="title-cell"><a href="global-resources.html" >Global Resources</a></td>
+            <td class="title-cell"><a href="performance-tuning.html" >Performance Tuning</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15.9</td>
+            <td class="title-cell"><a href="global-resources.html" >Global Resources</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.15.10</td>
             <td class="title-cell"><a href="administration.html" >Administration</a></td>
           </tr>
         
@@ -237,44 +246,44 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.15.5</span><a href="container-placement.html"  class="self">Container Placement</a>
+        <span class="section-number">1.15.6</span><a href="container-placement.html"  class="self">Container Placement</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.15.5.1</td>
+            <td class="number-cell">1.15.6.1</td>
             <td class="title-cell"><a href="container-placement.html#volume-locality-strategy" >The <code>volume-locality</code> strategy</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.15.5.2</td>
+            <td class="number-cell">1.15.6.2</td>
             <td class="title-cell"><a href="container-placement.html#fewest-build-containers-strategy" >The <code>fewest-build-containers</code> strategy</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.15.5.3</td>
+            <td class="number-cell">1.15.6.3</td>
             <td class="title-cell"><a href="container-placement.html#random-strategy" >The <code>random</code> strategy</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.15.5.4</td>
+            <td class="number-cell">1.15.6.4</td>
             <td class="title-cell"><a href="container-placement.html#limit-active-tasks-strategy" >The <code>limit-active-tasks</code> strategy</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.15.5.5</td>
+            <td class="number-cell">1.15.6.5</td>
             <td class="title-cell"><a href="container-placement.html#limit-active-containers-strategy" >The <code>limit-active-containers</code> strategy</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.15.5.6</td>
+            <td class="number-cell">1.15.6.6</td>
             <td class="title-cell"><a href="container-placement.html#limit-active-volumes-strategy" >The <code>limit-active-volumes</code> strategy</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.15.5.7</td>
+            <td class="number-cell">1.15.6.7</td>
             <td class="title-cell"><a href="container-placement.html#chaining-placement-strategies" >Chaining Placement Strategies</a></td>
           </tr>
         
@@ -292,7 +301,7 @@
         <div class="page-content">
           <div class="section" id="section_container-placement">
   
-  <h1 class="section-header"><a class="anchor-target" name="container-placement" href="#container-placement"></a><span class="section-number">1.15.5 </span>Container Placement</h1>
+  <h1 class="section-header"><a class="anchor-target" name="container-placement" href="#container-placement"></a><span class="section-number">1.15.6 </span>Container Placement</h1>
   
 
   <p>Each <a href="steps.html">step</a> in a build is executed inside a container. The <a href="concourse-web.html"><code>web</code> node</a> distributes containers across the worker cluster depending on the configured strategy. If no workers satisfies the configured strategy, the <a href="steps.html">step</a> will block until a worker becomes available.</p>
@@ -412,10 +421,10 @@ CONCOURSE_MAX_ACTIVE_VOLUMES_PER_WORKER=100</code></pre><p>This defines a chain 
               prev:
 
               
-              <span class="section-number">1.15.4</span>
+              <span class="section-number">1.15.5</span>
               
 
-              <a href="creds.html">Credential Management</a>
+              <a href="security-hardening.html">Security Hardening</a>
             </div>
           
 
@@ -424,7 +433,7 @@ CONCOURSE_MAX_ACTIVE_VOLUMES_PER_WORKER=100</code></pre><p>This defines a chain 
               next:
 
               
-              <span class="section-number">1.15.6</span>
+              <span class="section-number">1.15.7</span>
               
 
               <a href="opa.html">Open Policy Agent Integration</a>

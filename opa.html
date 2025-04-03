@@ -16,7 +16,11 @@
 <script data-goatcounter="https://concourse.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   </head>
   <body>
-    
+    <div class="top-banner">
+  <p class="banner-text">
+    🎉<a href="https://blog.concourse-ci.org/posts/2025-04-03-7-13-release-and-project-update/">v7.13.0 Release and Project Update</a> ✨
+  </p>
+</div>
 
 <div class="page-top">
   <nav class="top-nav">
@@ -202,26 +206,31 @@
         
           <tr>
             <td class="number-cell">1.15.5</td>
-            <td class="title-cell"><a href="container-placement.html" >Container Placement</a></td>
+            <td class="title-cell"><a href="security-hardening.html" >Security Hardening</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15.6</td>
-            <td class="title-cell"><a href="opa.html"  class="self">Open Policy Agent Integration</a></td>
+            <td class="title-cell"><a href="container-placement.html" >Container Placement</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15.7</td>
-            <td class="title-cell"><a href="performance-tuning.html" >Performance Tuning</a></td>
+            <td class="title-cell"><a href="opa.html"  class="self">Open Policy Agent Integration</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15.8</td>
-            <td class="title-cell"><a href="global-resources.html" >Global Resources</a></td>
+            <td class="title-cell"><a href="performance-tuning.html" >Performance Tuning</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15.9</td>
+            <td class="title-cell"><a href="global-resources.html" >Global Resources</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.15.10</td>
             <td class="title-cell"><a href="administration.html" >Administration</a></td>
           </tr>
         
@@ -237,24 +246,24 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.15.6</span><a href="opa.html"  class="self">Open Policy Agent Integration</a>
+        <span class="section-number">1.15.7</span><a href="opa.html"  class="self">Open Policy Agent Integration</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.15.6.1</td>
+            <td class="number-cell">1.15.7.1</td>
             <td class="title-cell"><a href="opa.html#configure-opa" >Configuring Concourse</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.15.6.2</td>
+            <td class="number-cell">1.15.7.2</td>
             <td class="title-cell"><a href="opa.html#writing-opa-rules" >Writing OPA Rules</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.15.6.3</td>
+            <td class="number-cell">1.15.7.3</td>
             <td class="title-cell"><a href="opa.html#special-actions" >Special Actions</a></td>
           </tr>
         
@@ -272,7 +281,7 @@
         <div class="page-content">
           <div class="section" id="section_opa">
   
-  <h1 class="section-header"><a class="anchor-target" name="opa" href="#opa"></a><span class="section-number">1.15.6 </span>Open Policy Agent Integration</h1>
+  <h1 class="section-header"><a class="anchor-target" name="opa" href="#opa"></a><span class="section-number">1.15.7 </span>Open Policy Agent Integration</h1>
   
 
   <blockquote class="aside"><p>The <a href="https://www.openpolicyagent.org/docs/latest/">Open Policy Agent</a> (OPA, pronounced “oh-pa”) is an open source, general-purpose policy engine that unifies policy enforcement across the stack.</p></blockquote><p>OPA allows you to create arbitrary rules within Concourse without having to add a new feature to Concourse. You could even recreate Concourse&#39;s <a href="user-roles.html">RBAC system</a> using OPA.</p><p>More likely use-cases are to enforce rules your organization may have, such as not using certain container images or disallowing the use of privileged workloads. With OPA you can be as general or fine-grained as you want, enforcing these rules at the team or pipeline level.</p><p>The next few sections explain how to <a href="opa.html#configure-opa">configure Concourse</a> to talk to an OPA server and how to <a href="opa.html#writing-opa-rules">write OPA rules</a> for Concourse.</p>
@@ -481,7 +490,7 @@ deny[&#34;cannot use privileged resource types&#34;] {
               prev:
 
               
-              <span class="section-number">1.15.5</span>
+              <span class="section-number">1.15.6</span>
               
 
               <a href="container-placement.html">Container Placement</a>
@@ -493,7 +502,7 @@ deny[&#34;cannot use privileged resource types&#34;] {
               next:
 
               
-              <span class="section-number">1.15.7</span>
+              <span class="section-number">1.15.8</span>
               
 
               <a href="performance-tuning.html">Performance Tuning</a>

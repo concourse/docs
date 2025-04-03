@@ -16,7 +16,11 @@
 <script data-goatcounter="https://concourse.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   </head>
   <body>
-    
+    <div class="top-banner">
+  <p class="banner-text">
+    🎉<a href="https://blog.concourse-ci.org/posts/2025-04-03-7-13-release-and-project-update/">v7.13.0 Release and Project Update</a> ✨
+  </p>
+</div>
 
 <div class="page-top">
   <nav class="top-nav">
@@ -869,6 +873,7 @@ jobs:
   --containerd-cni-plugins-dir=                      Path to CNI network plugins. (default: /usr/local/concourse/bin) [$CONCOURSE_CONTAINERD_CNI_PLUGINS_DIR]
   --containerd-request-timeout=                      How long to wait for requests to Containerd to complete. 0 means no timeout. (default: 5m) [$CONCOURSE_CONTAINERD_REQUEST_TIMEOUT]
   --containerd-max-containers=                       Max container capacity. 0 means no limit. (default: 250) [$CONCOURSE_CONTAINERD_MAX_CONTAINERS]
+  --containerd-privileged-mode=                      How many privileges privileged containers get. full is equivalent to root on host. ignore means no extra privileges. fuse-only means enough to use fuse-overlayfs. (default: full) [$CONCOURSE_CONTAINERD_PRIVILEGED_MODE]
 
 Containerd Container Networking:
   --containerd-external-ip=                          IP address to use to reach container&#39;s mapped ports. Autodetected if not specified. [$CONCOURSE_CONTAINERD_EXTERNAL_IP]

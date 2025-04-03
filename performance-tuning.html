@@ -16,7 +16,11 @@
 <script data-goatcounter="https://concourse.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   </head>
   <body>
-    
+    <div class="top-banner">
+  <p class="banner-text">
+    🎉<a href="https://blog.concourse-ci.org/posts/2025-04-03-7-13-release-and-project-update/">v7.13.0 Release and Project Update</a> ✨
+  </p>
+</div>
 
 <div class="page-top">
   <nav class="top-nav">
@@ -202,26 +206,31 @@
         
           <tr>
             <td class="number-cell">1.15.5</td>
-            <td class="title-cell"><a href="container-placement.html" >Container Placement</a></td>
+            <td class="title-cell"><a href="security-hardening.html" >Security Hardening</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15.6</td>
-            <td class="title-cell"><a href="opa.html" >Open Policy Agent Integration</a></td>
+            <td class="title-cell"><a href="container-placement.html" >Container Placement</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15.7</td>
-            <td class="title-cell"><a href="performance-tuning.html"  class="self">Performance Tuning</a></td>
+            <td class="title-cell"><a href="opa.html" >Open Policy Agent Integration</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15.8</td>
-            <td class="title-cell"><a href="global-resources.html" >Global Resources</a></td>
+            <td class="title-cell"><a href="performance-tuning.html"  class="self">Performance Tuning</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15.9</td>
+            <td class="title-cell"><a href="global-resources.html" >Global Resources</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.15.10</td>
             <td class="title-cell"><a href="administration.html" >Administration</a></td>
           </tr>
         
@@ -237,44 +246,44 @@
   <div class="context">
     <nav>
       <div class="top">
-        <span class="section-number">1.15.7</span><a href="performance-tuning.html"  class="self">Performance Tuning</a>
+        <span class="section-number">1.15.8</span><a href="performance-tuning.html"  class="self">Performance Tuning</a>
       </div>
 
       <div class="children">
         <table>
         
           <tr>
-            <td class="number-cell">1.15.7.1</td>
+            <td class="number-cell">1.15.8.1</td>
             <td class="title-cell"><a href="performance-tuning.html#the-big-caveat" >The Big Caveat</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.15.7.2</td>
+            <td class="number-cell">1.15.8.2</td>
             <td class="title-cell"><a href="performance-tuning.html#build-logs" >Build Logs</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.15.7.3</td>
+            <td class="number-cell">1.15.8.3</td>
             <td class="title-cell"><a href="performance-tuning.html#resource-checking" >Resource Checking</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.15.7.4</td>
+            <td class="number-cell">1.15.8.4</td>
             <td class="title-cell"><a href="performance-tuning.html#pipeline-management" >Pipeline Management</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.15.7.5</td>
+            <td class="number-cell">1.15.8.5</td>
             <td class="title-cell"><a href="performance-tuning.html#optimize-containers-placement" >Container Placement</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.15.7.6</td>
+            <td class="number-cell">1.15.8.6</td>
             <td class="title-cell"><a href="performance-tuning.html#garbage-collection" >Garbage Collection</a></td>
           </tr>
         
           <tr>
-            <td class="number-cell">1.15.7.7</td>
+            <td class="number-cell">1.15.8.7</td>
             <td class="title-cell"><a href="performance-tuning.html#web-to-worker-ratio" >Web To Worker Ratio</a></td>
           </tr>
         
@@ -292,7 +301,7 @@
         <div class="page-content">
           <div class="section" id="section_performance-tuning">
   
-  <h1 class="section-header"><a class="anchor-target" name="performance-tuning" href="#performance-tuning"></a><span class="section-number">1.15.7 </span>Performance Tuning</h1>
+  <h1 class="section-header"><a class="anchor-target" name="performance-tuning" href="#performance-tuning"></a><span class="section-number">1.15.8 </span>Performance Tuning</h1>
   
 
   <p>By default Concourse is configured to feel very snappy. This is good for when you are first trying out Concourse or using it on a small team with a few dozen pipelines.</p><p>When you begin trying to scale Concourse is where fires can start breaking out. This section will go over some configuration values in Concourse that you can change to make scaling easier.</p><div class="table-of-contents">
@@ -303,7 +312,7 @@
   <ol class="toc">
   
     <li>
-      <span class="section-number">1.15.7.1</span>
+      <span class="section-number">1.15.8.1</span>
       <a href="performance-tuning.html#the-big-caveat">The Big Caveat</a>
 
       
@@ -312,7 +321,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.2</span>
+      <span class="section-number">1.15.8.2</span>
       <a href="performance-tuning.html#build-logs">Build Logs</a>
 
       
@@ -320,7 +329,7 @@
   <ol class="toc">
   
     <li>
-      <span class="section-number">1.15.7.2.1</span>
+      <span class="section-number">1.15.8.2.1</span>
       <a href="performance-tuning.html#concourse_default_build_logs_to_retain"><code>CONCOURSE_DEFAULT_BUILD_LOGS_TO_RETAIN</code></a>
 
       
@@ -329,7 +338,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.2.2</span>
+      <span class="section-number">1.15.8.2.2</span>
       <a href="performance-tuning.html#concourse_max_build_logs_to_retain"><code>CONCOURSE_MAX_BUILD_LOGS_TO_RETAIN</code></a>
 
       
@@ -338,7 +347,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.2.3</span>
+      <span class="section-number">1.15.8.2.3</span>
       <a href="performance-tuning.html#concourse_default_days_to_retain_build_logs"><code>CONCOURSE_DEFAULT_DAYS_TO_RETAIN_BUILD_LOGS</code></a>
 
       
@@ -347,7 +356,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.2.4</span>
+      <span class="section-number">1.15.8.2.4</span>
       <a href="performance-tuning.html#concourse_max_days_to_retain_build_logs"><code>CONCOURSE_MAX_DAYS_TO_RETAIN_BUILD_LOGS</code></a>
 
       
@@ -361,7 +370,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.3</span>
+      <span class="section-number">1.15.8.3</span>
       <a href="performance-tuning.html#resource-checking">Resource Checking</a>
 
       
@@ -369,7 +378,7 @@
   <ol class="toc">
   
     <li>
-      <span class="section-number">1.15.7.3.1</span>
+      <span class="section-number">1.15.8.3.1</span>
       <a href="performance-tuning.html#concourse_resource_checking_interval"><code>CONCOURSE_RESOURCE_CHECKING_INTERVAL</code></a>
 
       
@@ -378,7 +387,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.3.2</span>
+      <span class="section-number">1.15.8.3.2</span>
       <a href="performance-tuning.html#concourse_resource_with_webhook_checking_interval"><code>CONCOURSE_RESOURCE_WITH_WEBHOOK_CHECKING_INTERVAL</code></a>
 
       
@@ -387,7 +396,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.3.3</span>
+      <span class="section-number">1.15.8.3.3</span>
       <a href="performance-tuning.html#concourse_max_checks_per_second"><code>CONCOURSE_MAX_CHECKS_PER_SECOND</code></a>
 
       
@@ -401,7 +410,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.4</span>
+      <span class="section-number">1.15.8.4</span>
       <a href="performance-tuning.html#pipeline-management">Pipeline Management</a>
 
       
@@ -409,7 +418,7 @@
   <ol class="toc">
   
     <li>
-      <span class="section-number">1.15.7.4.1</span>
+      <span class="section-number">1.15.8.4.1</span>
       <a href="performance-tuning.html#concourse_pause_pipelines_after"><code>CONCOURSE_PAUSE_PIPELINES_AFTER</code></a>
 
       
@@ -418,7 +427,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.4.2</span>
+      <span class="section-number">1.15.8.4.2</span>
       <a href="performance-tuning.html#concourse_default_task_cpumemory_limit"><code>CONCOURSE_DEFAULT_TASK_{CPU/MEMORY}_LIMIT</code></a>
 
       
@@ -427,7 +436,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.4.3</span>
+      <span class="section-number">1.15.8.4.3</span>
       <a href="performance-tuning.html#concourse_default_getputtask_timeout"><code>CONCOURSE_DEFAULT_{GET/PUT/TASK}_TIMEOUT</code></a>
 
       
@@ -441,7 +450,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.5</span>
+      <span class="section-number">1.15.8.5</span>
       <a href="performance-tuning.html#optimize-containers-placement">Container Placement</a>
 
       
@@ -450,7 +459,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.6</span>
+      <span class="section-number">1.15.8.6</span>
       <a href="performance-tuning.html#garbage-collection">Garbage Collection</a>
 
       
@@ -458,7 +467,7 @@
   <ol class="toc">
   
     <li>
-      <span class="section-number">1.15.7.6.1</span>
+      <span class="section-number">1.15.8.6.1</span>
       <a href="performance-tuning.html#concourse_gc_failed_grace_period"><code>CONCOURSE_GC_FAILED_GRACE_PERIOD</code></a>
 
       
@@ -467,7 +476,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.6.2</span>
+      <span class="section-number">1.15.8.6.2</span>
       <a href="performance-tuning.html#other-gc-grace-periods">Other GC Grace Periods</a>
 
       
@@ -481,7 +490,7 @@
     </li>
   
     <li>
-      <span class="section-number">1.15.7.7</span>
+      <span class="section-number">1.15.8.7</span>
       <a href="performance-tuning.html#web-to-worker-ratio">Web To Worker Ratio</a>
 
       
@@ -741,7 +750,7 @@
               prev:
 
               
-              <span class="section-number">1.15.6</span>
+              <span class="section-number">1.15.7</span>
               
 
               <a href="opa.html">Open Policy Agent Integration</a>
@@ -753,7 +762,7 @@
               next:
 
               
-              <span class="section-number">1.15.8</span>
+              <span class="section-number">1.15.9</span>
               
 
               <a href="global-resources.html">Global Resources</a>

@@ -16,7 +16,11 @@
 <script data-goatcounter="https://concourse.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   </head>
   <body>
-    
+    <div class="top-banner">
+  <p class="banner-text">
+    🎉<a href="https://blog.concourse-ci.org/posts/2025-04-03-7-13-release-and-project-update/">v7.13.0 Release and Project Update</a> ✨
+  </p>
+</div>
 
 <div class="page-top">
   <nav class="top-nav">
@@ -266,6 +270,11 @@
       
       <tr>
         <td class="number-cell"><code>#</code></td>
+        <td class="title-cell"><a href="pipelines.html#schema.display_config.background_filter"><code class="schema-attribute-name"><bold>display_config<wbr />.background_filter</bold></code></a></td>
+      </tr>
+      
+      <tr>
+        <td class="number-cell"><code>#</code></td>
         <td class="title-cell"><a href="pipelines.html#schema.pipeline.display"><code class="schema-attribute-name"><bold>pipeline<wbr />.display</bold></code></a></td>
       </tr>
       
@@ -418,7 +427,7 @@
 </div><div class="schema">
   <h2 class="schema-header"><a class="anchor-target" name="schema.display_config" href="#schema.display_config"></a><code>display_config</code> schema</h2>
 
-  <div class="toggleable schema-attribute optional">
+  <p><div class="toggleable schema-attribute optional">
   <input id="toggle-schema.display_config.background_image" type="checkbox" class="toggle" />
   <label for="toggle-schema.display_config.background_image" class="toggle-title">
     <a id="schema.display_config.background_image"></a>
@@ -427,9 +436,20 @@
   </label>
 
   <div class="toggle-content attribute-content">
-    <p>Allow users to specify a custom background image which is put at 30% opacity, grayscaled and blended into existing background. Must be an http, https, or relative URL.</p>
+    <p>Allows users to specify a custom background image for the pipeline. Must be an http, https, or relative URL.</p>
   </div>
-</div>
+</div> <div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.display_config.background_filter" type="checkbox" class="toggle" />
+  <label for="toggle-schema.display_config.background_filter" class="toggle-title">
+    <a id="schema.display_config.background_filter"></a>
+
+    <code><a class="attribute-name" href="#schema.display_config.background_filter">background_filter</a>: <span class="attribute-type"><a href="config-basics.html#schema.string"><strong>string</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>opacity(30%) grayscale(100%)</code>.</em> Allows users to specify custom <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter">CSS filters</a> that are applied to the <code>background_image</code>.</p>
+  </div>
+</div></p>
 </div>
   </div>
 </div>
