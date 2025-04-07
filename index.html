@@ -62,7 +62,7 @@
   <div class="splash-content">
     <div class="side-by-side">
       <div class="segment splash-intro">
-        <h2>Concourse is an open-source continuous thing-doer.</h2><p>Built on the simple mechanics of <a href="resources.html">resources</a>, <a href="tasks.html">tasks</a>, and <a href="jobs.html">jobs</a>, Concourse presents a general approach to automation that makes it great for <a href="https://en.wikipedia.org/wiki/Continuous_integration">CI</a>/<a href="https://en.wikipedia.org/wiki/Continuous_delivery">CD</a>.</p><p><span class="button"><a href="quick-start.html">Quick Start</a></span></p>
+        <h2>Concourse is an open-source continuous automation platform.</h2><p>Centered around the simple mechanics of <a href="resources.html">resources</a>, <a href="tasks.html">tasks</a>, and <a href="jobs.html">jobs</a>, Concourse delivers a versatile approach to automation that excels at <a href="https://en.wikipedia.org/wiki/Continuous_integration">CI</a>/<a href="https://en.wikipedia.org/wiki/Continuous_delivery">CD</a>.</p><p><span class="button"><a href="quick-start.html">Quick Start</a></span></p>
       </div>
 
       <div class="segment splash-downloads">
@@ -189,66 +189,12 @@
   </div>
 </div><div class="page-region light">
   <div class="page-content">
-    <h1>Built in the open</h2>
+    <h1>Core features</h2>
 
-    <p>Concourse&#39;s <a href="https://github.com/concourse/rfcs">RFC process</a> and <a href="https://github.com/concourse/governance">governance model</a> invite anyone to become a contributor, developing the project roadmap by collaborating in the open.</p><table class="rfcs">
-  <tr class="header">
-    <td class="rfc-col">Proposal</td>
-    <td class="title-col">Pull Request</td>
-    <td class="status-col">Status</td>
-    <td class="reactions-col">Reactions</td>
-  </tr>
-
-  
-  <tr class="rfc">
-    <td><a class="rfc-number" href="https://github.com/aoldershaw/rfcs/blob/37e80ffd776782ec4a287fdc340fd38fc2ed4608/084-services/proposal.md">RFC 84</a></td>
-    <td><a href="https://github.com/concourse/rfcs/pull/84">RFC: Services</a></td>
-    <td><span class="rfc-status open"><a href="https://github.com/concourse/rfcs/pull/84/files">open</a></span></td>
-    <td><span class="reaction"><span class="emoji">👍</span><span class="count">39</span></span><span class="reaction"><span class="emoji">👀</span><span class="count">5</span></span></td>
-  </tr>
-  
-  <tr class="rfc">
-    <td><a class="rfc-number" href="https://github.com/evanchaoli/rfcs/blob/ff26835e4bdc2a8644d19d5249c060b3d4a40a2d/064-gate/proposal.md">RFC 66</a></td>
-    <td><a href="https://github.com/concourse/rfcs/pull/66">Step &#34;gate&#34;</a></td>
-    <td><span class="rfc-status open"><a href="https://github.com/concourse/rfcs/pull/66/files">open</a></span></td>
-    <td><span class="reaction"><span class="emoji">👍</span><span class="count">13</span></span></td>
-  </tr>
-  
-  <tr class="rfc">
-    <td><a class="rfc-number" href="https://github.com/aoldershaw/rfcs/blob/14da930d4fd212e635d904916665e9d908d0f174/110-shared-webhooks/proposal.md">RFC 110</a></td>
-    <td><a href="https://github.com/concourse/rfcs/pull/110">RFC: shared webhooks</a></td>
-    <td><span class="rfc-status open"><a href="https://github.com/concourse/rfcs/pull/110/files">open</a></span></td>
-    <td><span class="reaction"><span class="emoji">👍</span><span class="count">5</span></span></td>
-  </tr>
-  
-  <tr class="rfc">
-    <td><a class="rfc-number" href="https://github.com/aoldershaw/rfcs/blob/82dc7e46359a53637eab7065a95e7433b728110e/037-prototypes/proposal.md">RFC 103</a></td>
-    <td><a href="https://github.com/concourse/rfcs/pull/103">Prototypes rev 1.1: inputs/outputs</a></td>
-    <td><span class="rfc-status open"><a href="https://github.com/concourse/rfcs/pull/103/files">open</a></span></td>
-    <td><span class="reaction"><span class="emoji">👍</span><span class="count">4</span></span></td>
-  </tr>
-  
-  <tr class="rfc">
-    <td><a class="rfc-number" href="https://github.com/dbaumgarten/concourse-rfcs/blob/938da3a50885b5a530907a2db17c52201f1821c0/139-pipeline-identity-tokens/proposal.md">RFC 139</a></td>
-    <td><a href="https://github.com/concourse/rfcs/pull/139">RFC: Pipeline Identity Tokens</a></td>
-    <td><span class="rfc-status open"><a href="https://github.com/concourse/rfcs/pull/139/files">open</a></span></td>
-    <td><span class="reaction"><span class="emoji">👍</span><span class="count">2</span></span></td>
-  </tr>
-  
-
-  <tr class="footer">
-    <td class="view-all-col" colspan="4"><a href="https://github.com/concourse/rfcs/pulls">view all open RFCs</a></td>
-  </tr>
-</table><p>Help shape Concourse into a tool that fits your needs by <a href="https://github.com/concourse/rfcs/#reviewing-rfcs">submitting feedback</a> on the RFCs listed above!</p>
-  </div>
-</div><div class="page-region light">
-  <div class="page-content">
-    <h1>Key features</h2>
-
-    <p>Concourse is designed to be <a href="https://github.com/concourse/rfcs/blob/master/DESIGN_PRINCIPLES.md">expressive, versatile, and safe</a>, remaining intuitive as the complexity of your project grows.</p><div class="side-by-side">
+    <p>Concourse is engineered to be <a href="https://github.com/concourse/rfcs/blob/master/DESIGN_PRINCIPLES.md">expressive, versatile, and secure</a>, remaining intuitive even as your project complexity grows.</p><div class="side-by-side">
 
   <div class="segment">
-    <h2>Configure as code</h2><pre><code class="language-yaml">resources:
+    <h2>Code-based configuration</h2><pre><code class="language-yaml">resources:
 - name: booklit
   type: git
   source: {uri: &#34;https://github.com/concourse/booklit&#34;}
@@ -263,7 +209,7 @@ jobs:
   </div>
 
   <div class="segment">
-    <h2>Visualize to verify</h2><svg class="pipeline-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 161 20">
+    <h2>Visual verification</h2><svg class="pipeline-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 161 20">
   <defs>
     <filter id="embiggen">
       <feMorphology operator="dilate" radius="4"></feMorphology>
@@ -305,14 +251,14 @@ jobs:
 </div><div class="side-by-side">
 
   <div class="segment">
-    <p>A Concourse <a href="pipelines.html">pipeline</a> is like a distributed, continuous <code>Makefile</code>.</p><p>Each <a href="jobs.html">job</a> has a <a href="jobs.html#schema.job.plan">build plan</a> declaring the job&#39;s input <a href="resources.html">resources</a> and what to run with them when they change.</p>
+    <p>A Concourse <a href="pipelines.html">pipeline</a> functions like a distributed, continuous <code>Makefile</code>.</p><p>Each <a href="jobs.html">job</a> contains a <a href="jobs.html#schema.job.plan">build plan</a> defining the job&#39;s input <a href="resources.html">resources</a> and what actions to perform with them when changes occur.</p>
   </div>
 
   <div class="segment">
-    <p>Your pipeline is then visualized in the web UI, taking only one click to get from a failed job to seeing why it failed.</p><p>The visualization provides a &#34;gut check&#34; feedback loop: if it <em>looks</em> wrong, it probably <em>is</em> wrong.</p>
+    <p>Your pipeline appears visualized in the web UI, requiring just one click to move from a failed job to understanding the cause of failure.</p><p>The visualization provides immediate feedback: if it <em>looks</em> wrong, it probably <em>is</em> wrong.</p>
   </div>
 
-</div><h2>A more complicated example...</h2><p>Jobs can depend on other jobs by configuring <a href="get-step.html#schema.get.passed"><code>passed</code></a> constraints. The resulting chain of jobs and resources is a dependency graph that continuously pushes your project forward, from source code to production.</p><div class="pipeline-image">
+</div><h2>A more complex example...</h2><p>Jobs can depend on other jobs through <a href="get-step.html#schema.get.passed"><code>passed</code></a> constraints. The resulting network of jobs and resources creates a dependency graph that continuously advances your project forward, from source code to production.</p><div class="pipeline-image">
   <svg class="pipeline-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 732 110">
   <style></style>
   <defs>
@@ -513,8 +459,8 @@ jobs:
     </path>
   </svg>
 </div>
-</div><p><em>This particular pipeline can be found in the <a href="https://github.com/concourse/booklit/blob/8741a4ca3116dcf24c30fedfa78e4aadcaff178a/ci/pipeline.yml">Booklit repository</a>.</em></p><h2 class="splash-title">
-  CI under source control
+</div><p><em>This pipeline example can be found in the <a href="https://github.com/concourse/booklit/blob/8741a4ca3116dcf24c30fedfa78e4aadcaff178a/ci/pipeline.yml">Booklit repository</a>.</em></p><h2 class="splash-title">
+  Source-controlled CI
 </h2>
 
 <div class="side-by-side">
@@ -527,7 +473,7 @@ $ git commit -m &#34;initial pipeline&#34;█</code></pre>
   </div>
 
   <div class="segment">
-    <p>All configuration and administration is done using <a href="fly.html">the <code>fly</code> CLI</a>.</p><p>The <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a> command pushes the config up to Concourse. Once it looks good, you can then check the file in to source control. This makes it easy to recover your project if the Concourse server burns down.</p>
+    <p>All configuration and management happens through <a href="fly.html">the <code>fly</code> CLI</a>.</p><p>The <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a> command uploads your configuration to Concourse. Once finalized, you can commit the file to source control, making it easy to recover your project if you migrate to a new Concourse server.</p>
   </div>
 </div><h2 class="splash-title">
   Reproducible, debuggable builds
@@ -546,10 +492,10 @@ root@2c15ff11:/tmp/build/0df9eea0# █</code></pre>
   </div>
 
   <div class="segment">
-    <p>Everything runs in containers, ensuring a clean environment on every run.</p><p>Each <a href="tasks.html">task</a> specifies its own image, giving it full control over its dependencies, rather than managing packages and state on your workers.</p><p>The <a href="builds.html#fly-intercept"><code>fly intercept</code></a> command will pop you right into one of your build&#39;s containers, making it easy to troubleshoot flaky builds.</p>
+    <p>Everything executes in containers, ensuring a clean environment for each run.</p><p>Every <a href="tasks.html">task</a> specifies its own image, providing complete control over its dependencies, instead of managing packages on your workers.</p><p>The <a href="builds.html#fly-intercept"><code>fly intercept</code></a> command lets you access a build&#39;s containers directly, simplifying troubleshooting of problematic builds.</p>
   </div>
 </div><h2 class="splash-title">
-  Rapid local iteration
+  Efficient local testing
 </h2>
 
 <div class="side-by-side">
@@ -566,9 +512,9 @@ running tests...
   </div>
 
   <div class="segment">
-    <p>The <a href="tasks.html#running-tasks"><code>fly execute</code></a> command lets you run a build with local changes.</p><p>This build runs in exactly the same way as it would run in your pipeline, without having to push broken commits until it works.</p><p>When a build in the pipeline fails, you can run <a href="tasks.html#running-tasks"><code>fly execute</code></a> with the <code>-j</code> flag to run a one-off build with the same inputs as the failed build. You can then replace an input with your local changes with <code>-i</code> to see if your fix is valid.</p>
+    <p>The <a href="tasks.html#running-tasks"><code>fly execute</code></a> command enables you to run builds with local modifications.</p><p>These builds execute exactly as they would in your pipeline, eliminating the need to push incomplete commits while debugging.</p><p>When a pipeline build fails, you can use <a href="tasks.html#running-tasks"><code>fly execute</code></a> with the <code>-j</code> flag to run a one-off build with the same inputs as the failed build. You can then replace an input with your local changes using <code>-i</code> to test your fix.</p>
   </div>
-</div><h2>Bring your own integrations</h2><div class="side-by-side">
+</div><h2>Custom integrations</h2><div class="side-by-side">
 
   <div class="segment">
     <pre><code class="language-yaml">resource_types:
@@ -591,7 +537,7 @@ jobs:
   </div>
 
   <div class="segment">
-    <p>Concourse does not have a complex plugin system. Instead, it focuses on a single strong abstraction: <a href="resources.html">resource</a>, which are implemented by <a href="resource-types.html">resource types</a>.</p><p>The <a href="pipelines.html#schema.pipeline.resources"><code class="schema-attribute-name"><bold>pipeline<wbr />.resources</bold></code></a> field configures external artifacts that your pipeline will monitor for changes, fetch from, and push to.</p><p>For example, a resource with type <code>git</code> refers to a git repository, which will be <code>clone</code>d in a <a href="get-step.html"><code>get</code> step</a> and <code>push</code>ed to using a <a href="put-step.html"><code>put</code> step</a>. Behind the scenes, Concourse will continuously run <code>git fetch</code> to look for new commits that jobs may want to trigger on.</p><p>At its core, Concourse knows nothing about <code>git</code>. It comes with a <a href="https://github.com/concourse/git-resource"><code>git</code> resource type</a> out of the box, but you could just as easily bring your own into your pipeline by setting the <a href="pipelines.html#schema.pipeline.resource_types"><code class="schema-attribute-name"><bold>pipeline<wbr />.resource_types</bold></code></a> field.</p><p>To see what resource types are available, check out the <a href="https://resource-types.concourse-ci.org">Resource Types catalog</a>!</p>
+    <p>Concourse doesn&#39;t rely on a complex plugin system. Instead, it focuses on a single powerful abstraction: <a href="resources.html">resource</a>, which are implemented by <a href="resource-types.html">resource types</a>.</p><p>The <a href="pipelines.html#schema.pipeline.resources"><code class="schema-attribute-name"><bold>pipeline<wbr />.resources</bold></code></a> field configures external artifacts that your pipeline will monitor for changes, retrieve, and update.</p><p>For instance, a resource with type <code>git</code> refers to a git repository, which will be <code>clone</code>d in a <a href="get-step.html"><code>get</code> step</a> and <code>push</code>ed to using a <a href="put-step.html"><code>put</code> step</a>. Behind the scenes, Concourse continuously runs <code>git fetch</code> to check for new commits that jobs might want to trigger on.</p><p>At its foundation, Concourse has no built-in knowledge of <code>git</code>. It includes a <a href="https://github.com/concourse/git-resource"><code>git</code> resource type</a> by default, but you can easily integrate your own into your pipeline through the <a href="pipelines.html#schema.pipeline.resource_types"><code class="schema-attribute-name"><bold>pipeline<wbr />.resource_types</bold></code></a> field.</p><p>To discover available resource types, check out the <a href="https://resource-types.concourse-ci.org">Resource Types catalog</a>!</p>
   </div>
 
 </div>

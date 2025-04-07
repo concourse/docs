@@ -119,7 +119,7 @@
   <h1 class="section-header"><a class="anchor-target" name="project" href="#project"></a><span class="section-number">3 </span>Project</h1>
   
 
-  <p>Concourse started as a side-project by <a href="https://github.com/vito"><code>@vito</code></a> (hi!) and <a href="https://github.com/xoebus"><code>@xoebus</code></a> in 2014. Over time Concourse has grown into a dedicated community with an <a href="https://github.com/concourse/governance">open governance model</a> and contributors from all around the world.</p>
+  <p>Concourse began as a side-project by <a href="https://github.com/vito"><code>@vito</code></a> (hi!) and <a href="https://github.com/xoebus"><code>@xoebus</code></a> in 2014. Since then, Concourse has evolved into a dedicated community with contributors from all around the world.</p>
 
   
     
@@ -130,21 +130,15 @@
 
   <ul>
 
-  <li><p>The <a href="https://github.com/concourse/concourse">Concourse repo</a> is where the main code lives, where the backlog is planned, and where bugs are reported. It is managed by the <a href="https://github.com/concourse/governance/blob/master/teams/maintainers.yml"><strong>maintainers</strong> team</a>. Another high-level view of the backlog is also available at <a href="https://project.concourse-ci.org/">project.concourse-ci.org</a></p></li>
+  <li><p>The <a href="https://github.com/concourse/concourse">Concourse repo</a> houses the main codebase, where planning happens, and where issues are tracked. It is overseen by the <a href="https://github.com/concourse/governance/blob/master/teams/maintainers.yml"><strong>maintainers</strong> team</a>.</p></li>
 
-  <li><p>The <a href="https://github.com/concourse/rfcs">RFCs repo</a> is where shiny new features are designed through collaborating in the open and collecting feedback. It is managed by the <a href="https://github.com/concourse/governance/blob/master/teams/core.yml"><strong>core</strong> team</a>.</p></li>
+  <li><p>The <a href="https://github.com/concourse/docs">Docs repo</a> contains the source for the website you&#39;re reading now! It is overseen by the <a href="https://github.com/concourse/governance/blob/master/teams/community.yml"><strong>community</strong> team</a>.</p></li>
 
-  <li><p>The <a href="https://github.com/concourse/docs">Docs repo</a> is the source for the website you&#39;re reading now! It is managed by the <a href="https://github.com/concourse/governance/blob/master/teams/community.yml"><strong>community</strong> team</a>.</p></li>
+  <li><p><a href="https://github.com/concourse/concourse/discussions">GitHub Discussions</a> are used for support, announcements, idea sharing, and general conversations.</p></li>
 
-  <li><p>The <a href="https://github.com/concourse/governance">Governance repo</a> holds the source of truth for the project&#39;s permission structure and lays the foundation for self-governing teams. It is managed jointly by the <a href="https://github.com/concourse/governance/blob/master/teams/community.yml"><strong>community</strong> team</a> and the <a href="https://github.com/concourse/governance/blob/master/teams/infrastructure.yml"><strong>infrastructure</strong> team</a>.</p></li>
+  <li><p>The <a href="https://blog.concourse-ci.org">Concourse blog</a> features tutorials and updates from the development perspective.</p></li>
 
-  <li><p><a href="https://github.com/concourse/concourse/discussions">GitHub Discussions</a> are used for support, announcements, sharing ideas, and general discussion.</p></li>
-
-  <li><p>The <a href="https://github.com/concourse/concourse/wiki"><code>concourse/concourse</code> GitHub wiki</a> contains community-curated lists of tools and tutorials and serves as a knowledge base for Concourse users and operators.</p></li>
-
-  <li><p>The <a href="https://blog.concourse-ci.org">Concourse blog</a> features tutorials and updates from the development side.</p></li>
-
-  <li><p>The <a href="https://discord.gg/MeRxXKW">Concourse Discord server</a> is a great place to chat with other contributors.</p></li>
+  <li><p>The <a href="https://discord.gg/MeRxXKW">Concourse Discord server</a> offers a great space to chat with other contributors.</p></li>
 
 </ul>
 
@@ -158,7 +152,7 @@
   <h2 class="section-header"><a class="anchor-target" name="why-make-concourse" href="#why-make-concourse"></a>Why make Concourse?</h2>
   
 
-  <p>When working on a sizable project, having a pipeline to reliably test, deploy, and publish the product is crucial for rapid iteration.</p><p>But with every CI system we used, we found ourselves constantly dealing with the same old problems: complicated configs hidden in many pages of the web UI, not knowing who changed what &amp; when, managing dependencies and state on the workers, build pollution, annoying UX...</p><p>Our project was growing larger, and with every box we checked and for every worker we hand-tweaked, the anxiety of having to do it all over again if something went wrong grew and grew. We started writing software to manage our CI instead of writing the software for the product we wanted to build.</p><p>We built Concourse to be a CI system that lets you sleep easier at night. A CI that&#39;s simple enough to fully grok and easy to manage as your project grows; in both the complexity of the product and the size of your team. We wanted to build a CI with strong abstractions and fewer things to learn, so that it can be easier to understand and so that Concourse can age gracefully.</p>
+  <p>When working on a substantial project, having a pipeline to reliably test, deploy, and publish the product is essential for rapid iteration.</p><p>But with every CI system we tried, we found ourselves repeatedly facing the same problems: complex configs buried in many pages of the web UI, uncertainty about who changed what &amp; when, managing dependencies and state on the workers, build contamination, frustrating UX...</p><p>Our project was expanding, and with every box we checked and for every worker we manually configured, the anxiety of having to rebuild everything if something failed grew increasingly. We began writing software to manage our CI instead of creating the software for the product we intended to build.</p><p>We created Concourse to be a CI system that provides peace of mind. A CI that&#39;s straightforward enough to fully understand and easy to maintain as your project grows; both in the complexity of the product and the size of your team. We aimed to build a CI with robust abstractions and fewer concepts to learn, making it easier to comprehend and allowing Concourse to evolve gracefully.</p>
 
   
     
@@ -170,7 +164,7 @@
   <h2 class="section-header"><a class="anchor-target" name="how-can-i-help" href="#how-can-i-help"></a>How can I help?</h2>
   
 
-  <p>Concourse is a free and Open Source software project that relies on the contributions of sponsors and volunteers from around the world.</p><p>If you&#39;re interested in helping out, head on over to GitHub and check out the <a href="https://github.com/concourse/concourse/blob/master/CONTRIBUTING.md">contributing docs</a>!</p>
+  <p>Concourse is a free and Open Source software project that depends on the contributions of sponsors and volunteers worldwide.</p><p>If you&#39;re interested in contributing, head over to GitHub and check out the <a href="https://github.com/concourse/concourse/blob/master/CONTRIBUTING.md">contributing docs</a>!</p>
 
   
     
@@ -182,7 +176,7 @@
   <h2 class="section-header"><a class="anchor-target" name="security-contact" href="#security-contact"></a>Report a security issue</h2>
   
 
-  <p>To report a security issue, please send an email to <a href="mailto:security@concourse-ci.org">security@concourse-ci.org</a>.</p><p>Security advisories will be published as <a href="https://github.com/concourse/concourse/security/advisories"><code>concourse/concourse</code> GitHub Security Advisories</a> and subsequently cross-posted to the <a href="https://groups.google.com/group/concourse-security">Concourse Security mailing list</a> which you may join to subscribe to security updates.</p>
+  <p>To report a security issue, please email <a href="mailto:security@concourse-ci.org">security@concourse-ci.org</a>.</p><p>Security advisories will be published as <a href="https://github.com/concourse/concourse/security/advisories"><code>concourse/concourse</code> GitHub Security Advisories</a>.</p>
 
   
     
@@ -194,13 +188,10 @@
   <h2 class="section-header"><a class="anchor-target" name="thanks" href="#thanks"></a>Thanks!</h2>
   
 
-  <p>It&#39;s been a long journey and we&#39;ve got a lot of people to thank for our continued success. We are deeply indebted to any and all who help keep this project going, but the heroic effort of the following organizations is worth giving special props.</p><dl>
+  <p>It&#39;s been a long journey and we&#39;re grateful to many people for our continued success. We are deeply indebted to all who help sustain this project, but the extraordinary efforts of the following organizations deserve special recognition.</p><dl>
   
   <dt><span style="font-size: 120%">Pivotal</span></dt>
-    <dd><p>Concourse wouldn&#39;t be what it is today without <a href="https://pivotal.io">Pivotal</a>. This goes beyond the sponsorship, which began in early 2015 - without the experiences we had and the practices we learned while working on <a href="https://cloudfoundry.org">Cloud Foundry</a> and <a href="https://bosh.io">BOSH</a>, we would have neither the technical experience nor the strong opinions that led to Concourse being born.</p></dd>
-  
-  <dt><span style="font-size: 120%">Stark &amp; Wayne</span></dt>
-    <dd><p>The <a href="https://concoursetutorial.com/">Concourse Tutorial</a> by <a href="https://www.starkandwayne.com/">Stark &amp; Wayne</a>  is probably the only reason a lot of people were able to learn Concourse. It&#39;s a great asset and does its job so well that we&#39;ve decided to basically just kill our tutorials and delegate to theirs. Thanks to Dr. Nic for writing and maintaining it, and everyone else that has helped out!</p></dd>
+    <dd><p>Concourse wouldn&#39;t be what it is today without <a href="https://pivotal.io">Pivotal</a>. This extends beyond the sponsorship, which began in early 2015 - without the experiences we gained and the practices we learned while working on <a href="https://cloudfoundry.org">Cloud Foundry</a> and <a href="https://bosh.io">BOSH</a>, we would have neither the technical expertise nor the strong opinions that led to Concourse&#39;s creation.</p></dd>
   
 </dl>
 
