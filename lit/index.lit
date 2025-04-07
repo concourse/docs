@@ -4,11 +4,11 @@
 \styled{index}
 
 \splash-intro{
-  \inline-header{Concourse is an open-source continuous thing-doer.}
+  \inline-header{Concourse is an open-source continuous automation platform.}
 
-  Built on the simple mechanics of \reference{resources}{resources},
-  \reference{tasks}{tasks}, and \reference{jobs}{jobs}, Concourse presents a
-  general approach to automation that makes it great for
+  Centered around the simple mechanics of \reference{resources}{resources},
+  \reference{tasks}{tasks}, and \reference{jobs}{jobs}, Concourse delivers a
+  versatile approach to automation that excels at
   \link{CI}{https://en.wikipedia.org/wiki/Continuous_integration}/\link{CD}{https://en.wikipedia.org/wiki/Continuous_delivery}.
 
   \button{\reference{quick-start}}
@@ -16,26 +16,13 @@
   \download-links
 }
 
-\page-region{light}{Built in the open}{
-  Concourse's \link{RFC process}{https://github.com/concourse/rfcs} and
-  \link{governance model}{https://github.com/concourse/governance} invite
-  anyone to become a contributor, developing the project roadmap by
-  collaborating in the open.
-
-  \rfcs-table{10}{ByTotalReactions}
-
-  Help shape Concourse into a tool that fits your needs by \link{submitting
-  feedback}{https://github.com/concourse/rfcs/#reviewing-rfcs} on the RFCs
-  listed above!
-}
-
-\page-region{light}{Key features}{
-  Concourse is designed to be \link{expressive, versatile, and
-  safe}{https://github.com/concourse/rfcs/blob/master/DESIGN_PRINCIPLES.md},
-  remaining intuitive as the complexity of your project grows.
+\page-region{light}{Core features}{
+  Concourse is engineered to be \link{expressive, versatile, and
+  secure}{https://github.com/concourse/rfcs/blob/master/DESIGN_PRINCIPLES.md},
+  remaining intuitive even as your project complexity grows.
 
   \side-by-side{
-    \inline-header{Configure as code}
+    \inline-header{Code-based configuration}
 
     \codeblock{yaml}{{{
     resources:
@@ -52,45 +39,44 @@
         file: booklit/ci/test.yml
     }}}
   }{
-    \inline-header{Visualize to verify}
+    \inline-header{Visual verification}
 
     \include-template{basic-pipeline-svg}
   }
 
   \side-by-side{
-    A Concourse \reference{pipelines}{pipeline} is like a distributed, continuous
+    A Concourse \reference{pipelines}{pipeline} functions like a distributed, continuous
     \code{Makefile}.
 
-    Each \reference{jobs}{job} has a \reference{schema.job.plan}{build plan}
-    declaring the job's input \reference{resources}{resources} and what to run
-    with them when they change.
+    Each \reference{jobs}{job} contains a \reference{schema.job.plan}{build plan}
+    defining the job's input \reference{resources}{resources} and what actions to perform
+    with them when changes occur.
   }{
-    Your pipeline is then visualized in the web UI, taking only one click to get
-    from a failed job to seeing why it failed.
+    Your pipeline appears visualized in the web UI, requiring just one click to move
+    from a failed job to understanding the cause of failure.
 
-    The visualization provides a "gut check" feedback loop: if it \italic{looks}
+    The visualization provides immediate feedback: if it \italic{looks}
     wrong, it probably \italic{is} wrong.
   }
 
-  \inline-header{A more complicated example...}
+  \inline-header{A more complex example...}
 
-  Jobs can depend on other jobs by configuring
-  \reference{schema.get.passed}{\code{passed}} constraints. The resulting chain
-  of jobs and resources is a dependency graph that continuously pushes your
-  project forward, from source code to production.
+  Jobs can depend on other jobs through \reference{schema.get.passed}{\code{passed}} constraints.
+  The resulting network of jobs and resources creates a dependency graph that continuously
+  advances your project forward, from source code to production.
 
   \include-template{pipeline-image}
 
-  \italic{This particular pipeline can be found in the \link{Booklit
+  \italic{This pipeline example can be found in the \link{Booklit
   repository}{https://github.com/concourse/booklit/blob/8741a4ca3116dcf24c30fedfa78e4aadcaff178a/ci/pipeline.yml}.}
 
-  \splash-example{CI under source control}{
-    All configuration and administration is done using \reference{fly-cli}{the
+  \splash-example{Source-controlled CI}{
+    All configuration and management happens through \reference{fly-cli}{the
     \code{fly} CLI}.
 
-    The \reference{fly-set-pipeline} command pushes the config up to Concourse.
-    Once it looks good, you can then check the file in to source control. This
-    makes it easy to recover your project if the Concourse server burns down.
+    The \reference{fly-set-pipeline} command uploads your configuration to Concourse.
+    Once finalized, you can commit the file to source control, making it easy to
+    recover your project if you migrate to a new Concourse server.
   }{
     \codeblock{sh}{{{
     $ fly -t ci set-pipeline -p booklit -c pipeline.yml
@@ -102,14 +88,13 @@
   }
 
   \splash-example{Reproducible, debuggable builds}{
-    Everything runs in containers, ensuring a clean environment on every run.
+    Everything executes in containers, ensuring a clean environment for each run.
 
-    Each \reference{tasks}{task} specifies its own image, giving it full control
-    over its dependencies, rather than managing packages and state on your
-    workers.
+    Every \reference{tasks}{task} specifies its own image, providing complete control
+    over its dependencies, instead of managing packages on your workers.
 
-    The \reference{fly-intercept} command will pop you right into one of your
-    build's containers, making it easy to troubleshoot flaky builds.
+    The \reference{fly-intercept} command lets you access a build's containers directly,
+    simplifying troubleshooting of problematic builds.
   }{
     \codeblock{sh}{{{
     $ fly -t ci intercept -j booklit/unit -s unit
@@ -123,16 +108,16 @@
     }}}
   }
 
-  \splash-example{Rapid local iteration}{
-    The \reference{fly-execute} command lets you run a build with local changes.
+  \splash-example{Efficient local testing}{
+    The \reference{fly-execute} command enables you to run builds with local modifications.
 
-    This build runs in exactly the same way as it would run in your pipeline,
-    without having to push broken commits until it works.
+    These builds execute exactly as they would in your pipeline, eliminating the
+    need to push incomplete commits while debugging.
 
-    When a build in the pipeline fails, you can run \reference{fly-execute} with
+    When a pipeline build fails, you can use \reference{fly-execute} with
     the \code{-j} flag to run a one-off build with the same inputs as the failed
-    build. You can then replace an input with your local changes with \code{-i}
-    to see if your fix is valid.
+    build. You can then replace an input with your local changes using \code{-i}
+    to test your fix.
   }{
     \codeblock{sh}{{{
     ~/booklit $ fly -t ci execute -c ci/test.yml
@@ -147,7 +132,7 @@
     }}}
   }
 
-  \inline-header{Bring your own integrations}
+  \inline-header{Custom integrations}
 
   \side-by-side{
     \codeblock{yaml}{{{
@@ -170,25 +155,25 @@
       - # ...
     }}}
   }{
-    Concourse does not have a complex plugin system. Instead, it focuses on a
-    single strong abstraction: \reference{resources}{resource}, which are
+    Concourse doesn't rely on a complex plugin system. Instead, it focuses on a
+    single powerful abstraction: \reference{resources}{resource}, which are
     implemented by \reference{resource-types}{resource types}.
 
     The \reference{schema.pipeline.resources} field configures external artifacts
-    that your pipeline will monitor for changes, fetch from, and push to.
+    that your pipeline will monitor for changes, retrieve, and update.
 
-    For example, a resource with type \code{git} refers to a git repository,
+    For instance, a resource with type \code{git} refers to a git repository,
     which will be \code{clone}d in a \reference{get-step} and \code{push}ed to
-    using a \reference{put-step}. Behind the scenes, Concourse will continuously
-    run \code{git fetch} to look for new commits that jobs may want to trigger
+    using a \reference{put-step}. Behind the scenes, Concourse continuously
+    runs \code{git fetch} to check for new commits that jobs might want to trigger
     on.
 
-    At its core, Concourse knows nothing about \code{git}. It comes with a
+    At its foundation, Concourse has no built-in knowledge of \code{git}. It includes a
     \link{\code{git} resource type}{https://github.com/concourse/git-resource}
-    out of the box, but you could just as easily bring your own into your
-    pipeline by setting the \reference{schema.pipeline.resource_types} field.
+    by default, but you can easily integrate your own into your pipeline through
+    the \reference{schema.pipeline.resource_types} field.
 
-    To see what resource types are available, check out the \link{Resource Types
+    To discover available resource types, check out the \link{Resource Types
     catalog}{https://resource-types.concourse-ci.org}!
   }
 }
