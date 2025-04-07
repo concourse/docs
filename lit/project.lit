@@ -34,7 +34,7 @@ around the world.
   \title{Why make Concourse?}
 
   When working on a substantial project, having a pipeline to reliably test,
-  deploy, and publish the product is essential for swift iteration.
+  deploy, and publish the product is essential for rapid iteration.
 
   But with every CI system we tried, we found ourselves repeatedly facing
   the same problems: complex configs buried in many pages of the web

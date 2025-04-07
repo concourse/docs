@@ -76,7 +76,7 @@
 
     The \reference{fly-set-pipeline} command uploads your configuration to Concourse.
     Once finalized, you can commit the file to source control, making it easy to
-    recover your project if the Concourse server fails.
+    recover your project if you migrate to a new Concourse server.
   }{
     \codeblock{sh}{{{
     $ fly -t ci set-pipeline -p booklit -c pipeline.yml
@@ -87,7 +87,7 @@
     }}}
   }
 
-  \splash-example{Consistent, debuggable builds}{
+  \splash-example{Reproducible, debuggable builds}{
     Everything executes in containers, ensuring a clean environment for each run.
 
     Every \reference{tasks}{task} specifies its own image, providing complete control
@@ -115,8 +115,8 @@
     need to push incomplete commits while debugging.
 
     When a pipeline build fails, you can use \reference{fly-execute} with
-    the \code{-j} flag to run a one-off build with identical inputs as the failed
-    build. Then replace an input with your local changes using \code{-i}
+    the \code{-j} flag to run a one-off build with the same inputs as the failed
+    build. You can then replace an input with your local changes using \code{-i}
     to test your fix.
   }{
     \codeblock{sh}{{{
