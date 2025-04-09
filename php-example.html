@@ -181,17 +181,17 @@
 
   <p><pre><code class="language-yaml">---
 resources:
-- name: larvel-websockets-git
+- name: laravel-git
   type: git
   icon: github
   source:
-    uri: https://github.com/beyondcode/laravel-websockets.git
+    uri: https://github.com/laravel/laravel.git
 
 jobs:
 - name: test
   public: true
   plan:
-  - get: larvel-websockets-git
+  - get: laravel-git
     trigger: true
   - task: run-tests
     config:
@@ -200,16 +200,20 @@ jobs:
         type: registry-image
         source: { repository: composer }
       inputs:
-        - name: larvel-websockets-git
+        - name: laravel-git
       run:
         path: /bin/sh
         args:
-          - -c
+          - -ce
           - |
-            cd larvel-websockets-git
+            cd laravel-git
 
             composer install
-            vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
+
+            cp .env.example .env
+            php artisan key:generate
+
+            vendor/bin/phpunit
 </code></pre></p>
 
   
