@@ -2,7 +2,7 @@
 
 \title{Observation}{observation}
 
-This section outlines everything you need to know for observing the state of
+This section outlines everything you need to know for monitoring the state of
 your pipelines.
 
 \section{
@@ -51,7 +51,7 @@ your pipelines.
 
   \image{https://ci.concourse-ci.org/api/v1/teams/main/pipelines/concourse/jobs/unit/badge}
 
-  If you want to have the image link to your pipeline/job in a README, you can make it like so:
+  If you want the image to link to your pipeline/job in a README, use HTML:
 
   \codeblock{html}{{{
     <a href="https://ci.concourse-ci.org/teams/main/pipelines/concourse/jobs/unit/badge">

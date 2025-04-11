@@ -7,9 +7,9 @@ what versions are detected, the bits that are fetched when the resource's
 \reference{get-step} runs, and the side effect that occurs when the resource's
 \reference{put-step} runs.
 
-Concourse comes with a few "core" resource types to cover common use cases like
+Concourse comes with several "core" resource types to cover common use cases like
 \code{git} and \code{s3} - the rest are developed and supported by the
-Concourse community. An exhaustive list of all resource types is available in
+Concourse community. A comprehensive list of all resource types is available in
 the \link{Resource Types catalog}{https://resource-types.concourse-ci.org}.
 
 A pipeline's resource types are listed under
@@ -54,24 +54,24 @@ A pipeline's resource types are listed under
     containers will be run with full capabilities, as determined by the worker
     backend the task runs on.
 
-    For Linux-based backends it typically determines whether or not the
+    For Linux-based backends, it typically determines whether or not the
     container will run in a separate user namespace, and whether the
     \code{root} user is "actual" \code{root} (if set to \code{true}) or a user
     namespaced \code{root} (if set to \code{false}, the default).
 
-    This is a gaping security hole; only configure it if the resource type needs
-    it (which should be called out in its documentation). This is not up to the
-    resource type to decide dynamically, so as to prevent privilege escalation
+    This is a significant security risk; only configure it if the resource type needs
+    it (which should be noted in its documentation). This is not up to the
+    resource type to decide dynamically, to prevent privilege escalation
     via third-party resource type exploits.
   }
 
   \optional-attribute{params}{config}{
-    Arbitrary config to pass when running the \code{get} to fetch the resource
+    Arbitrary configuration to pass when running the \code{get} to fetch the resource
     type's image.
   }
 
   \optional-attribute{check_every}{duration}{
-    \italic{Default \code{1m}.} The interval on which to check for new versions
+    \italic{Default \code{1m}.} The interval at which to check for new versions
     of the resource type. Acceptable interval options are defined by the
     \link{time.ParseDuration
     function}{https://golang.org/pkg/time/#ParseDuration}.
@@ -120,8 +120,8 @@ A pipeline's resource types are listed under
     }
 
     \example-toggle{Overriding default resource types}{
-      Since it's possible to overwrite the base resource types, it can be
-      used to give defaults to resources at the pipeline level.
+      Since it's possible to overwrite the base resource types, this can be
+      used to provide defaults to resources at the pipeline level.
 
       \codeblock{yaml}{{{
       resource_types:
@@ -150,7 +150,7 @@ A pipeline's resource types are listed under
   \reference{resource-types}{Resource Types} can be used to extend the
   functionality of your pipeline and provide deeper integrations. This
   example uses one to trigger a job whenever a new \link{Dinosaur
-  Comic}{http://www.qwantz.com} is out.
+  Comic}{http://www.qwantz.com} is published.
 
   \codeblock{yaml}{{{
     ---
@@ -162,7 +162,7 @@ A pipeline's resource types are listed under
         tag: latest
 
     resources:
-    - name: booklit-releases
+    - name: dinosaur-comics
       type: rss
       source:
         url: http://www.qwantz.com/rssfeed.php
@@ -170,7 +170,7 @@ A pipeline's resource types are listed under
     jobs:
     - name: announce
       plan:
-      - get: booklit-releases
+      - get: dinosaur-comics
         trigger: true
   }}}
 }

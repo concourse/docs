@@ -2,7 +2,7 @@
 
 \use-plugin{concourse-docs}
 
-A build is an execution of a \italic{build plan}, which is either
+A build is an execution of a \italic{build plan}, which is either:
 
 \list{
   configured as a sequence of \reference{steps}{steps} in a \reference{jobs}{job}
@@ -14,25 +14,25 @@ A build is an execution of a \italic{build plan}, which is either
 
 Containers and volumes are created as \reference{get-step}s,
 \reference{put-step}s, and \reference{task-step}s run. When a build completes
-successfully, these containers go away.
+successfully, these containers are removed.
 
-A failed build's containers and volumes are kept around so that you can debug
-the build via \reference{fly-intercept}. If the build belongs to a
-\reference{jobs}{job}, the containers will go away when the next build starts.
-If the build is a one-off, its containers will be removed immediately, so make
-sure you intercept while it's running, if you want to debug.
+For failed builds, containers and volumes are preserved to allow debugging
+via \reference{fly-intercept}. If the build belongs to a
+\reference{jobs}{job}, the containers will be removed when the next build starts.
+If the build is a one-off, its containers will be removed immediately, so make sure
+you intercept while it's running if you want to debug.
 
 \table-of-contents
 
 \section{
   \title{Rerunning a Build}{build-rerunning}
 
-  Concourse supports build rerunning, which means to run a new build using the
+  Concourse supports build rerunning, which means running a new build using the
   exact same set of input versions as the original build. There are two ways to
   rerun a build: through the web UI on the builds page and through the
-  \reference{fly-rerun-build}.
+  \reference{fly-rerun-build} command.
 
-  When a build is rerun, it will create a new build using the name of the
+  When a build is rerun, it creates a new build using the name of the
   original build with the rerun number appended to it, e.g. \code{3.1} for the
   first rerun of build \code{3}.
 
@@ -40,11 +40,11 @@ sure you intercept while it's running, if you want to debug.
   than becoming a new "latest" build. Similarly, when the scheduler is
   resolving \reference{schema.get.passed}{\code{passed}} constraints
   that reference a job with rerun builds, those rerun builds are
-  processed in this same order. This ensures that the versions, which made it
-  through a rerun build, do not become the new "latest versions". Instead, they
+  processed in this same order. This ensures that versions which made it
+  through a rerun build do not become the new "latest versions". Instead, they
   act as if the original build had succeeded at its point in the build history.
 
-  This may sound a little confusing, but the summary is that reruns should
+  This may sound a little confusing, but the key point is that reruns should
   behave as if they replace the original failed build.
 
   \section{
@@ -56,11 +56,11 @@ sure you intercept while it's running, if you want to debug.
     with.
 
     This means that if the \reference{schema.job.plan} has changed in a way
-    that is backwards-incompatible, the rerun build may error. For example, if
+    that is backwards-incompatible, the rerun build may fail. For example, if
     a new input is added, its version will not be available as the original
     build did not use it.
 
-    There are future plans to have reruns execute the exact build plan from the
+    There are plans to have reruns execute the exact build plan from the
     original build. If you are interested in tracking the progress for the
     second pass at rerunning builds - or contributing yourself! - the project
     epic is called \link{Build Lifecycle
@@ -86,7 +86,7 @@ sure you intercept while it's running, if you want to debug.
   This can be useful for periodically monitoring the state of a job. The output
   also works well with tools like \code{awk} and \code{grep}.
 
-  By default the most recent 50 builds are shown. To see more builds, use
+  By default, the most recent 50 builds are shown. To see more builds, use
   the \code{-c} flag, like so:
 
   \codeblock{bash}{{
@@ -97,16 +97,16 @@ sure you intercept while it's running, if you want to debug.
 \section{
   \title{\code{fly intercept}}{fly-intercept}
 
-  Sometimes it's helpful to connect to the machine where tasks run. This way you
-  can either profile or inspect tasks, or see the state of the machine at the
-  end of a run. Due to Concourse running tasks in containers on remote
-  machines this would typically be hard to access.
+  Sometimes it's helpful to connect to the machine where tasks run. This allows you
+  to profile or inspect tasks, or see the state of the machine at the
+  end of a run. Since Concourse runs tasks in containers on remote
+  machines, these would typically be difficult to access.
 
-  To this end, there is a \code{fly intercept} command that will give you an
+  The \code{fly intercept} command gives you an
   interactive shell inside the specified container. Containers are identified
-  by a few things, so you may need to specify a few flags to hone down the
-  results. If there are multiple containers that the flags could refer to, an
-  interactive prompt will show up allowing you to disambiguate.
+  by several attributes, so you may need to specify multiple flags to narrow down the
+  results. If there are multiple matching containers, an
+  interactive prompt will appear allowing you to select one.
 
   For example, running the following will run a task and then enter the
   finished task's container:
@@ -118,15 +118,15 @@ sure you intercept while it's running, if you want to debug.
 
   \aside{
     When intercepting a task running on a Windows worker, you will need to
-    specifically tell fly to to run \code{powershell}:
+    specifically tell fly to run \code{powershell}:
 
     \codeblock{bash}{{
     $ fly -t example intercept powershell
     }}
   }
 
-  Containers are around for a short time after a build finishes in order to
-  allow people to intercept them.
+  Containers remain available for a short time after a build finishes to
+  allow for interception.
 
   You can also intercept builds that were run in your pipeline. By using
   \code{--job}, \code{--build}, and \code{--step} you can intercept a specific
@@ -138,11 +138,11 @@ sure you intercept while it's running, if you want to debug.
   }}
 
   Note that \code{--build} can be omitted, and will default to the most recent
-  build of the job. One-off builds can be reached by passing in their build ID
-  to \code{--build} which can be found on the build list page.
+  build of the job. One-off builds can be reached by passing their build ID
+  to \code{--build}, which can be found on the build list page.
 
-  The \code{--step} flag can also be omitted; this will let you pick the step
-  interactively, if you don't know the exact name.
+  The \code{--step} flag can also be omitted; this will let you select the step
+  interactively if you don't know the exact name.
 
   Resource checking containers can also be intercepted with \code{--check} or
   \code{-c}:
@@ -157,7 +157,7 @@ sure you intercept while it's running, if you want to debug.
   current build's task, even as the "current build" changes.
 
   The working directory and any relevant environment variables (e.g. those
-  having come from \reference{schema.task.params}) used by the original process will
+  from \reference{schema.task.params}) used by the original process will
   also be used for the process run by intercept.
 }
 
@@ -178,26 +178,26 @@ sure you intercept while it's running, if you want to debug.
   \title{\code{fly watch}}{fly-watch}
 
   Concourse emits streaming colored logs on the website, but it can be helpful
-  to have the logs available to the command line (e.g. so that they can be
+  to have the logs available in the command line (e.g. so they can be
   processed by other commands).
 
-  The \code{watch} command can be used to do just this. You can also view
+  The \code{watch} command can be used for this purpose. You can view
   builds that are running in your pipeline, or builds that have already
   finished.
 
   Note that unlike \reference{fly-execute}, killing \code{fly watch} via
   \code{SIGINT} or \code{SIGTERM} will \italic{not} abort the build.
 
-  To watch the most recent one-off build, just run \code{fly watch} with no
-  arguments. To watch a specific build (one-off or no), pass \code{--build}
+  To watch the most recent one-off build, run \code{fly watch} with no
+  arguments. To watch a specific build (one-off or not), pass \code{--build}
   with the ID of the build to watch. This ID is available at the start of
   \reference{fly-execute}'s output or by browsing to the builds list in the web
   UI.
 
-  By using the \code{--job} and \code{--build} flags you can pick out a
+  By using the \code{--job} and \code{--build} flags, you can select a
   specific build of a job to watch. For example, the following command will
-  either show the archived logs for an old build, if it has finished running, or
-  it will stream the current logs, if the build is still in progress.
+  either show the archived logs for an old build if it has finished running, or
+  it will stream the current logs if the build is still in progress.
 
   \codeblock{bash}{{
   $ fly -t example watch --job my-pipeline/tests --build 52
@@ -206,5 +206,7 @@ sure you intercept while it's running, if you want to debug.
   If the \code{--job} flag is specified and \code{--build} is omitted, the most
   recent build of the specified job will be selected.
 
-  If there is a mismatch between the \code{fly} and \code{web} versions, it is possible to run into \code{failed to parse next event: unknown event type} error. The \code{--ignore-event-parsing-errors} flag can be passed to ignore such errors. 
+  If there is a mismatch between the \code{fly} and \code{web} versions, you may encounter
+  a \code{failed to parse next event: unknown event type} error. The \code{--ignore-event-parsing-errors}
+  flag can be passed to ignore such errors.
 }

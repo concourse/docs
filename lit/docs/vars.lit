@@ -5,13 +5,13 @@
 Concourse supports value substitution in YAML configuration by way of
 \code{((vars))}.
 
-Automation entails the use of all kinds of credentials. It's important to keep
+Automation involves the use of many types of credentials. It's important to keep
 these values separate from the rest of your configuration by using vars
 instead of hardcoding values. This allows your configuration to be placed
-under source control and allows credentials to be tucked safely away into a
+under source control and enables credentials to be stored safely in a
 secure credential manager like Vault instead of the Concourse database.
 
-Aside from credentials, vars may also be used for generic parameterization of
+Beyond credentials, vars may also be used for generic parameterization of
 pipeline configuration templates, allowing a single pipeline config file to be
 configured multiple times with different parameters
 - e.g. \code{((branch_name))}.
@@ -37,7 +37,7 @@ configured multiple times with different parameters
   credential. The interpretation of this value depends on the var source
   type. For example, with Vault this may be a path like \code{path/to/cred}.
   For the Kubernetes secret manager this may just be the name of a secret.
-  For credential managers which support path-based lookup, a
+  For credential managers that support path-based lookup, a
   \italic{secret-path} without a leading / may be queried relative to a
   predefined set of path prefixes. This is how the Vault credential manager
   currently works; \code{foo} will be queried under \code{/concourse/(team
@@ -47,8 +47,8 @@ configured multiple times with different parameters
   read. If omitted, the credential manager may choose to read a 'default field'
   from the fetched credential if the field exists. For example, the Vault
   credential manager will return the value of the \code{value} field if
-  present. This is useful for simple single-value credentials where typing
-  \code{((foo.value))} would feel verbose.
+  present. This is helpful for simple single-value credentials where typing
+  \code{((foo.value))} would feel redundant.
 
   The \italic{secret-path} and \italic{secret-field} may be surrounded by
   double quotes \code{"..."} if they contain special characters like \code{.}
@@ -75,10 +75,10 @@ configured multiple times with different parameters
   \code{foo: ((bar))}, whatever value \code{((bar))} resolves to will become
   the value of the \code{foo} field in the object. This can be a value of any
   type and structure: a boolean, a simple string, a multiline credential like a
-  certificate, or a complicated data structure like an array of objects.
+  certificate, or a complex data structure like an array of objects.
 
   This differs from text-based substitution in that it's impossible for a value
-  to result in broken YAML syntax, and it relieves the template author from
+  to result in broken YAML syntax, and it frees the template author from
   having to worry about things like whitespace alignment.
 
   When a \code{((var))} appears adjacent to additional string content, e.g.

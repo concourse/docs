@@ -2,24 +2,24 @@
 
 \use-plugin{concourse-docs}
 
-A Concourse installation is composed of a \reference{web-node}, a
+A Concourse installation consists of a \reference{web-node}, a
 \reference{worker-node}, and a \reference{postgresql-node}.
 
-There are many ways to deploy Concourse, depending on your personal preference.
-The \reference{quick-start} guide shows how to get Concourse up and running
+There are several ways to deploy Concourse, depending on your preference.
+The \reference{quick-start} guide shows how to get Concourse running
 quickly via Docker Compose, and there is also an official \link{Concourse Helm
 chart}{https://github.com/concourse/concourse-chart}.
 
-The documentation found here will primarily focus on the \code{concourse} CLI,
-which is the lowest common denominator, and can also be directly used if you
-want to just run Concourse yourself on real hardware or your own managed VMs.
+The documentation here primarily focuses on the \code{concourse} CLI,
+which is the lowest common denominator. You can use it directly if you want to
+run Concourse yourself on physical hardware or your own managed VMs.
 
-The high-level steps to follow for installing Concourse are:
+Follow these high-level steps to install Concourse:
 
 \ordered-list{
-  Setup a Postgres database
+  Set up a Postgres database
 }{
-  Generate Secrets for the web and worker nodes
+  Generate secrets for the web and worker nodes
 }{
   Install the web node
 }{
@@ -27,7 +27,8 @@ The high-level steps to follow for installing Concourse are:
 }
 
 \aside{
-  We don't document every configuration option for the \code{web} and \code{worker} commands. To view all flags you can run the following \code{docker} commands.
+  We don't document every configuration option for the \code{web} and \code{worker} commands.
+  To view all flags, you can run these \code{docker} commands:
 
   \codeblock{bash}{{
   docker run -t concourse/concourse web --help

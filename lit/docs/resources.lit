@@ -3,13 +3,13 @@
 \use-plugin{concourse-docs}
 \split-sections
 
-Resources are the heart and soul of Concourse. They represent all external
+Resources are the foundation of Concourse. They represent all external
 inputs to and outputs of \reference{jobs}{jobs} in the pipeline.
 
 Each resource represents a versioned artifact with an external source of truth.
 Configuring the same resource in any pipeline on any Concourse cluster will
-behave the exact same way. Concourse will continuously \code{check} each
-configured resource to discover new versions. These versions then flow through
+function in an identical way. Concourse will continuously \code{check} each
+configured resource to detect new versions. These versions then flow through
 the pipeline via \reference{get-step}s configured on \reference{jobs}.
 
 A pipeline's resources are listed under \reference{schema.pipeline.resources}
@@ -28,7 +28,7 @@ with the following schema.
 
   \required-attribute{source}{config}{
     The configuration for the resource. This varies by resource type, and is a black
-    box to Concourse; it is blindly passed to the resource at runtime.
+    box to Concourse; it is simply passed to the resource at runtime.
 
     To use \code{git} as an example, the source may contain the repo URI, the
     branch of the repo to track, and a private key to use when pushing/pulling.
@@ -43,7 +43,7 @@ with the following schema.
 
   \optional-attribute{old_name}{identifier}{
     The old name of the resource. If configured, the history of the old resource will be
-    inherited to the new one. Once the pipeline is set, this field can be
+    carried over to the new one. Once the pipeline is set, this field can be
     removed as the history has been transferred.
 
     \example-toggle{Renaming a resource}{
@@ -71,7 +71,7 @@ with the following schema.
 
   \optional-attribute{icon}{string}{
     The name of a \link{Material Design icon}{https://materialdesignicons.com/}
-    to show next to the resource name in the web UI. For example,
+    to display next to the resource name in the web UI. For example,
     \code{github}.
   }
 
@@ -113,7 +113,7 @@ with the following schema.
 
   \optional-attribute{tags}{[string]}{
     \italic{Default \code{[]}.} A list of tags to determine which workers the
-    checks will be performed on. You'll want to specify this if the source is
+    checks will be performed on. This is useful if the source is
     internal to a worker's network, for example.
 
     \warn{
@@ -128,8 +128,8 @@ with the following schema.
     version of the resource will be viewable by unauthenticated users (assuming
     the pipeline has been \reference{exposing}{exposed}).
 
-    Resource metadata should never contain credentials or secret information, but
-    this is off by default just to be safe in case users don't want to show
+    Resource metadata should never contain credentials or private information, but
+    this is off by default just to be safe in case users don't want to reveal
     things like commit messages and authors to the public.
 
     Note: even when set to \code{false}, the versions identifiers will be
@@ -139,11 +139,11 @@ with the following schema.
 
   \optional-attribute{webhook_token}{string}{
     If specified, web hooks can be sent to trigger an immediate \italic{check}
-    of the resource, specifying this value as a primitive form of
+    of the resource, using this value as a simple form of
     authentication via query params.
 
     After configuring this value, you would then configure your hook sender with
-    the following painfully long path appended to your external URL:
+    the following path appended to your external URL:
 
     \code{{
       /api/v1/teams/TEAM_NAME/pipelines/PIPELINE_NAME/resources/RESOURCE_NAME/check/webhook?webhook_token=WEBHOOK_TOKEN
@@ -214,7 +214,7 @@ with the following schema.
 
     This could be passed to a job via a \reference{get-step} with
     \reference{schema.get.trigger}{\code{trigger: true}} to run the job
-    periodically:
+    regularly:
 
     \codeblock{yaml}{{{
     resources:

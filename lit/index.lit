@@ -4,7 +4,7 @@
 \styled{index}
 
 \splash-intro{
-  \inline-header{Concourse is an open-source continuous automation platform.}
+  \inline-header{Concourse is an open-source continuous automation system written in Go.}
 
   Centered around the simple mechanics of \reference{resources}{resources},
   \reference{tasks}{tasks}, and \reference{jobs}{jobs}, Concourse delivers a
