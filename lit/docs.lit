@@ -2,7 +2,7 @@
 
 \use-plugin{concourse-docs}
 
-Concourse is a pipeline-based continuous automation system.
+Concourse is a pipeline-based continuous thing-doer.
 
 The term "pipeline" has become widespread in CI discussions, so being precise
 about what this means is important; Concourse's pipelines differ significantly
