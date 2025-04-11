@@ -5,8 +5,8 @@
 
 A pipeline is the result of configuring \reference{jobs} and
 \reference{resources} together. When you configure a pipeline, it takes on a
-life of its own, to continuously detect resource versions and automatically
-queue new builds for jobs as they have new available inputs.
+life of its own, continuously detecting resource versions and automatically
+queuing new builds for jobs as they have new available inputs.
 
 Pipelines are configured via \reference{fly-set-pipeline} or the
 \reference{set-pipeline} as declarative \reference{intro-to-yaml}{YAML
@@ -35,7 +35,7 @@ files} which conform to the following schema:
     A list of job groups to use for organizing jobs in the web UI.
 
     Groups have no functional effect on your pipeline. They are purely for
-    making it easier to grok large pipelines in the web UI.
+    making it easier to understand large pipelines in the web UI.
 
     Note: once you have added groups to your pipeline, all jobs must be in a
     group.
@@ -59,7 +59,7 @@ files} which conform to the following schema:
       This would display two tabs at the top of the home page: "test" and
       "publish".
 
-      For a real world example of how groups can be used to simplify navigation
+      For a real-world example of how groups can be used to simplify navigation
       and provide logical grouping, see the groups used at the top of the page
       in the \link{Concourse pipeline}{https://ci.concourse-ci.org}.
     }
@@ -72,8 +72,8 @@ files} which conform to the following schema:
 
       \optional-attribute{jobs}{[job.name]}{
         A list of jobs that should appear in this group. A job may
-        appear in multiple groups. Neighbours of jobs in the current group will also
-        appear on the same page in order to give context of the location of the
+        appear in multiple groups. Neighbors of jobs in the current group will also
+        appear on the same page to provide context of the location of the
         group in the pipeline.
 
         You may also use any valid \link{glob}{https://www.man7.org/linux/man-pages/man7/glob.7.html}
@@ -99,7 +99,7 @@ files} which conform to the following schema:
         \code{deploy-dev}, \code{deploy-staging}. The \code{ship} group will only match
         \code{deploy-prod}. The \code{all} group will match all jobs in the pipeline.
 
-        \warn{Note that depending on how it's used, \code{*}, \code{\{}, and
+        \warn{Note that depending on how they're used, \code{*}, \code{\{}, and
         \code{\}} have special meaning in YAML, and may need to be quoted (as
         was done in the \code{all} job above)}
       }
@@ -168,8 +168,8 @@ files} which conform to the following schema:
 
   \example{Small Go Project}{
     When it comes to real-world projects, task configs are usually stored
-    alongside the code that it's testing. This makes the pipeline a bit
-    smaller and makes the config able to change without needing to
+    alongside the code being tested. This makes the pipeline
+    more concise and allows the config to change without needing to
     reconfigure the pipeline.
 
     \codeblock{yaml}{{
@@ -231,7 +231,7 @@ files} which conform to the following schema:
     \reference{resource-types}{Resource Types} can be used to extend the
     functionality of your pipeline and provide deeper integrations. This
     example uses one to trigger a job whenever a new \link{Dinosaur
-    Comic}{http://www.qwantz.com} is out.
+    Comic}{http://www.qwantz.com} is published.
 
     \codeblock{yaml}{{{
       ---

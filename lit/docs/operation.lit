@@ -1,11 +1,11 @@
 \title{Operation}{operation}
 
-The following sections describes operator-focused features and tools that
+The following sections describe operator-focused features and tools that
 Concourse provides, such as monitoring and credential management.
 
-These concepts are not required to operate Concourse, but are for users that
+These concepts are not required to operate Concourse, but are useful for users who
 are looking to extend the capabilities of managing a Concourse deployment. For
-users that are new to these concepts, we do recommend learning how to set up
+users who are new to these concepts, we recommend learning how to set up
 \reference{creds} and \reference{encryption}.
 
 \split-sections

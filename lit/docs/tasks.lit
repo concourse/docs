@@ -3,23 +3,23 @@
 \use-plugin{concourse-docs}
 
 The smallest configurable unit in a Concourse pipeline is a single task. A task
-can be thought of as a function from \reference{schema.task-config.inputs} to
+can be viewed as a function from \reference{schema.task-config.inputs} to
 \reference{schema.task-config.outputs} that can either succeed or fail.
 
-Going a bit further, ideally tasks are \italic{pure} functions: given the same
-set of inputs, it should either always succeed with the same outputs or always
+More specifically, ideal tasks are \italic{pure} functions: given the same
+set of inputs, they should either always succeed with the same outputs or always
 fail. This is entirely up to your script's level of discipline, however. Flaky
-tests or dependencies on the internet are the most common source of impurity.
+tests or dependencies on the internet are the most common sources of impurity.
 
-Once you have a running Concourse deployment, you can start configuring your
+Once you have a running Concourse deployment, you can begin configuring your
 tasks and executing them interactively from your terminal with the
 \reference{fly-cli}{Fly} commandline tool.
 
-Once you've figured out your task's configuration, you can reuse it for a
+After you've finalized your task's configuration, you can reuse it for a
 \reference{jobs}{Job} in your \reference{pipelines}{Pipeline}.
 
-Conventionally a task's configuration is placed in the same repository as the
-code it's testing, possibly under some \code{ci} directory.
+Typically, a task's configuration is placed in the same repository as the
+code it's testing, often under a \code{ci} directory.
 
 A task's configuration specifies the following:
 
@@ -30,7 +30,7 @@ A task's configuration specifies the following:
 
     Technically any string value is allowed so long as a worker advertises the
     same platform, but in practice only \code{linux}, \code{darwin}, and
-    \code{windows} are in use.
+    \code{windows} are used.
   }
 
   \required-attribute{image_resource}{anonymous_resource}{
@@ -100,7 +100,7 @@ A task's configuration specifies the following:
   }
 
   \optional-attribute{inputs}{[input]}{
-    The set of artifacts used by task, determining which artifacts will be
+    The set of artifacts used by the task, determining which artifacts will be
     available in the current directory when the task runs.
 
     These are satisfied by \reference{get-step}s or
@@ -122,7 +122,7 @@ A task's configuration specifies the following:
         Paths are relative to the working directory of the task unless an
         absolute path is given. An absolute path is any path that starts with a
         forward slash \code{/}. We recommend only using relative paths unless
-        you have a strong technical reason to use absolute paths.
+        you have a compelling technical reason to use absolute paths.
 
         Any parent directory references (\code{../}) in the path will be removed.
       }
@@ -158,7 +158,7 @@ A task's configuration specifies the following:
         Paths are relative to the working directory of the task unless an
         absolute path is given. An absolute path is any path that starts with a
         forward slash \code{/}. We recommend only using relative paths unless
-        you have a strong technical reason to use absolute paths.
+        you have a compelling technical reason to use absolute paths.
 
         Any parent directory references (\code{../}) in the path will be removed.
       }
@@ -179,7 +179,7 @@ A task's configuration specifies the following:
     should be able to run whether or not the cache is warmed.
 
     Caches are also scoped to a particular task name inside of a pipeline's
-    job. As a consequence, if the job name, step name or cache path are
+    job. As a result, if the job name, step name or cache path are
     changed, the cache will not be used. This also means that caches do not
     exist for one-off builds.
 
@@ -199,7 +199,7 @@ A task's configuration specifies the following:
 
     Pipelines can override these params by setting
     \reference{schema.task.params} on the \reference{task-step}. This is a common
-    method of providing credentials to a task.
+    approach for providing credentials to a task.
   }
 
   \required-attribute{run}{command}{
@@ -207,8 +207,8 @@ A task's configuration specifies the following:
 
     Note that this is \italic{not} provided as a script blob, but explicit
     \code{path} and \code{args} values; this allows \code{fly} to forward
-    arguments to the script, and forces your config \code{.yml} to stay fairly
-    small.
+    arguments to the script, and keeps your config \code{.yml} relatively
+    concise.
 
     \schema{command}{
       \required-attribute{path}{file-path}{
@@ -274,7 +274,7 @@ A task's configuration specifies the following:
           Total CPU shares declared: 4
         }}}
 
-        If you introduce another container then the number of CPU time per
+        If you introduce another container then the distribution of CPU time per
         container changes. CPU shares are relative to each other.
         \codeblock{}{{{
           Container A: 2 shares - 25% CPU

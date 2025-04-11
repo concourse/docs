@@ -2,14 +2,14 @@
 
 \use-plugin{concourse-docs}
 
-Concourse configuration for things like \reference{pipelines} and
-\reference{tasks} is done through declarative
+Concourse configuration for features like \reference{pipelines} and
+\reference{tasks} is managed through declarative
 \link{YAML}{https://en.wikipedia.org/wiki/YAML} files.
 
-Concourse configuration supports basic variable substitution by way of
+Concourse configuration supports basic variable substitution using
 \reference{vars}{\code{((vars))}}. There is no built-in support for
-fancier templating constructs, e.g. loops and conditionals; users are free to
-use whatever templating system they like.
+more advanced templating constructs such as loops and conditionals; users are free to
+use whatever templating system they prefer.
 
 \table-of-contents
 

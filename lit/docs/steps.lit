@@ -66,7 +66,7 @@ by configuring \reference{schema.on_failure} or
         copy of the bits in their working directory.
 
         \example-toggle{Fetching a repo and passing it to a task}{
-          Almost every simple job will look something like this: fetch my code
+          Almost every simple job will look something like this: fetch your code
           with a \reference{get-step} and do something (run tests) with it in a
           \reference{task-step}.
 
@@ -201,7 +201,7 @@ by configuring \reference{schema.on_failure} or
           \code{lvl-2-integration}) will be passed to \code{lvl-3-production}.
 
           This is crucial to being able to implement safe "fan-in" semantics as
-          things progress through a pipeline.
+          resources progress through a pipeline.
         }
       }
 
@@ -271,7 +271,7 @@ by configuring \reference{schema.on_failure} or
         \italic{Default \code{latest}.} The version of the resource to fetch.
 
         If set to \code{latest}, scheduling will just find the latest available
-        version of a resource and use it, allowing versions to be skipped.  This is
+        version of a resource and use it, allowing versions to be skipped. This is
         usually what you want, e.g. if someone pushes 100 git commits.
 
         If set to \code{every}, builds will walk through all available versions of
@@ -294,7 +294,7 @@ by configuring \reference{schema.on_failure} or
 
     \schema-group{\code{put} step}{put}{
       \required-attribute{put}{resource.name | identifier}{
-        When the step succeeds, the version by the step will be immediately
+        When the step succeeds, the version created by the step will be immediately
         fetched via an additional implicit \reference{get-step}. This is so
         that later steps in your plan can use the artifact that was produced.
         The artifact will be available under the identifier \code{put}
@@ -370,7 +370,7 @@ by configuring \reference{schema.on_failure} or
         If configured as a list of identifiers, only the listed artifacts will
         be provided to the container.
 
-        If set to \code{detect}, the artifacts are detected based on the
+        If set to \code{detect}, the artifacts are determined based on the
         configured \reference{schema.put.params} by looking for all string values
         and using the first path segment as an identifier. (This may become the
         default in the future.)
@@ -450,7 +450,7 @@ by configuring \reference{schema.on_failure} or
           by setting \code{get_params}. For example, if you did not want a \code{put}
           step utilizing the \link{ \code{registry-image} resource
           type}{https://github.com/concourse/registry-image-resource} to download the
-          image, you would implement your \code{put} step as such:
+          image, you would implement your \code{put} step as follows:
 
           \codeblock{yaml}{{{
           plan:
@@ -480,8 +480,8 @@ by configuring \reference{schema.on_failure} or
       \reference{put-step}s to access the result of a task.
 
       \required-attribute{task}{identifier}{
-        The identifier value is just a name - short and sweet. The value is
-        shown in the web UI but otherwise has no affect on anything. This may
+        The identifier value is just a name - short and descriptive. The value is
+        shown in the web UI but otherwise has no effect on anything. This may
         change in the future; \link{RFC
         #32}{https://github.com/concourse/rfcs/pull/32} proposes that the name
         be used to reference a file within the project.
@@ -546,7 +546,7 @@ by configuring \reference{schema.on_failure} or
               public: true
               plan:
               - task: simple-task
-                config: # contains all field in a task config
+                config: # contains all fields in a task config
                   platform: linux
                   image_resource:
                     type: registry-image
@@ -637,7 +637,7 @@ by configuring \reference{schema.on_failure} or
         with escalated capabilities available on the task's platform.
 
         \warn{
-          Setting \code{privileged: true} is a gaping security hole; use wisely
+          Setting \code{privileged: true} is a significant security risk; use wisely
           and only if necessary. This is not part of the task configuration in
           order to prevent privilege escalation via pull requests changing the
           task file.
@@ -806,7 +806,7 @@ by configuring \reference{schema.on_failure} or
             Total CPU shares declared: 4
           }}}
 
-          If you introduce another container then the number of CPU time per
+          If you introduce another container then the allocation of CPU time per
           container changes. CPU shares are relative to each other.
           \codeblock{}{{{
             Container A: 2 shares - 25% CPU
@@ -961,7 +961,7 @@ by configuring \reference{schema.on_failure} or
         automatically archived in the following scenarios:
         \list{
           When the job that previously set a pipeline runs a successful build
-          which did not configure the pipeline (i.e.  the \code{set_pipeline}
+          which did not configure the pipeline (i.e. the \code{set_pipeline}
           step was removed for that specific pipeline).
         }{
           When the job is removed from its pipeline configuration (see
@@ -1100,7 +1100,7 @@ by configuring \reference{schema.on_failure} or
           }}}
         }
         \example-toggle{Configuring instance vars and vars}{
-          Both \code{instance_vars} and \code{vars} may be statically. The
+          Both \code{instance_vars} and \code{vars} may be set statically. The
           difference between the two fields is that \code{instance_vars} are
           used to identify a pipeline and render the pipeline config.
           \code{vars} are only used for rendering the pipeline config:
@@ -1131,7 +1131,7 @@ by configuring \reference{schema.on_failure} or
       \optional-attribute{vars}{vars}{
         A map of template variables to pass to the pipeline config. Unlike
         \reference{schema.set-pipeline.instance_vars}{\code{instance_vars}},
-        \code{vars} are solely used to for
+        \code{vars} are solely used for
         \reference{pipeline-static-vars}{interpolation}, and do not become a part of
         the pipeline's identifier.
 
@@ -1202,7 +1202,7 @@ by configuring \reference{schema.on_failure} or
         The \code{team} attribute can be used to specify another team.
 
         Only the \reference{main-team} is allowed to set another team's
-        pipeline.  Any team other than the \reference{main-team} using the
+        pipeline. Any team other than the \reference{main-team} using the
         \code{team} attribute will error, unless they reference their own team.
 
         \warn{
