@@ -189,9 +189,10 @@ resources:
 
 - name: node-image
   type: registry-image
+  icon: docker
   source:
     repository: node
-    tag: 18
+    tag: 22-slim
 
 jobs:
 - name: test
@@ -206,20 +207,19 @@ jobs:
       inputs:
       - name: repo
       outputs:
-      - name: dependencies
-        path: repo/node_modules
+      - name: workspace
+        path: repo
       platform: linux
       run:
         path: npm
-        args: [&#34;install&#34;]
+        args: [&#34;ci&#34;, &#34;--no-audit&#34;, &#34;--no-fund&#34;]
         dir: repo
   - task: test
     image: node-image
     config:
       inputs:
-      - name: repo
-      - name: dependencies
-        path: repo/node_modules
+      - name: workspace
+        path: repo
       platform: linux
       run:
         path: npm
