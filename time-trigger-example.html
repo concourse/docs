@@ -186,6 +186,8 @@ resources:
 jobs:
 - name: job
   public: true
+  build_log_retention:
+    builds: 50
   plan:
   - get: every-30s
     trigger: true

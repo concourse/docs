@@ -315,6 +315,8 @@ resources:
 
 jobs:
 - name: test
+  build_log_retention:
+    builds: 50
   plan:
   - in_parallel:
     - get: branch
@@ -326,6 +328,8 @@ jobs:
     params: {MODULE: apps/golang}
 
 - name: build
+  build_log_retention:
+    builds: 50
   plan:
   - in_parallel:
     - get: branch
@@ -342,6 +346,8 @@ jobs:
     params: {file: &#34;binary/my-app-*.tgz&#34;}
 
 - name: deploy
+  build_log_retention:
+    builds: 50
   plan:
   - in_parallel:
     - get: build-artifact

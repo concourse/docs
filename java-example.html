@@ -175,49 +175,44 @@
   <h2 class="section-header"><a class="anchor-target" name="configuration" href="#configuration"></a>Pipeline Configuration</h2>
   
 
-  <p><pre><code class="language-yaml">jobs:
-- name: test
-  plan:
-  - get: apache-kafka-git
-    trigger: true
-  - config:
-      caches:
-      - path: $HOME/.m2/repository
-      - path: $HOME/.gradle/caches/
-      - path: $HOME/.gradle/wrapper/
-      container_limits: {}
-      image_resource:
-        name: &#34;&#34;
-        source:
-          repository: gradle
-          tag: jdk8-slim
-        type: registry-image
-      inputs:
-      - name: apache-kafka-git
-      platform: linux
-      run:
-        args:
-        - -c
-        - |
-          java -Xmx32m -version
-          javac -J-Xmx32m -version
-
-          cd apache-kafka-git
-
-          gradle wrapper
-          ./gradlew rat
-          ./gradlew systemTestLibs
-        path: /bin/sh
-        user: root
-    task: run-tests
-  public: true
-
-resources:
-- icon: github
-  name: apache-kafka-git
+  <p><pre><code class="language-yaml">resources:
+- name: apache-kafka
+  type: git
+  icon: github
   source:
     uri: https://github.com/apache/kafka.git
-  type: git
+
+jobs:
+- name: test
+  public: true
+  build_log_retention:
+    builds: 50
+  plan:
+  - get: apache-kafka
+    trigger: true
+  - task: run-tests
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          repository: gradle
+          tag: jdk17
+      caches:
+        - path: $HOME/.m2/repository
+        - path: $HOME/.gradle/caches/
+        - path: $HOME/.gradle/wrapper/
+      inputs:
+        - name: apache-kafka
+      run:
+        user: root
+        path: /bin/sh
+        args:
+          - -ce
+          - |
+            cd apache-kafka
+
+            ./gradlew clients:test --tests RequestResponseTest
 </code></pre></p>
 
   

@@ -186,6 +186,8 @@ resources:
 jobs:
 - name: test
   public: true
+  build_log_retention:
+    builds: 50
   plan:
   - get: laravel-git
     trigger: true
