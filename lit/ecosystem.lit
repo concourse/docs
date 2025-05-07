@@ -14,6 +14,50 @@ name in alphabetical order to the list below, and help us showcase how many
 people do things continuously with Concourse.
 
 \section{
+  \title{Concourse-as-a-Service}{concourse-as-a-service}
+
+  The following organizations deliver Concourse as a fully-managed cloud solution,
+  eliminating infrastructure overhead and providing dedicated support.
+
+  \list{
+     \link{CentralCI}{https://centralci.com}
+  }
+}
+
+\section{
+  \title{Service Providers}{service-providers}
+
+  The following organizations provide various Concourse-related services, including
+  training, consulting, support and managed solutions.
+
+  \list{
+    \link{Altoros}{https://www.altoros.com}
+  }{
+    \link{anynines}{https://www.anynines.com}
+  }{
+    \link{Armakuni}{https://www.armakuni.com}
+  }{
+    \link{CentralCI}{https://centralci.com}
+  }{
+    \link{Cycloid}{https://www.cycloid.io}
+  }{
+    \link{Container Solutions}{https://www.container-solutions.com/}
+  }{
+    \link{Gstack}{https://www.gstack.io}
+  }{
+    \link{Novatec}{https://www.novatec-gmbh.de}
+  }{
+    \link{Resilient Scale}{https://www.rscale.io}
+  }{
+    \link{Stark & Wayne}{https://www.starkandwayne.com}
+  }{
+    \link{SuperOrbital}{https://www.superorbital.io}
+  }{
+    \link{VMware Tanzu Labs}{https://tanzu.vmware.com/labs}
+  }
+}
+
+\section{
   \title{Who Uses Concourse?}{who-uses-concourse}
 
   These organizations have either added themselves to this list, or whose use of
@@ -101,38 +145,5 @@ people do things continuously with Concourse.
     \link{Yahoo!}{https://www.yahoo.co.jp}
   }{
     \link{Zipcar}{https://zipcar.com/}
-  }
-}
-
-\section{
-  \title{Service Providers}{service-providers}
-
-  The following organizations provide various Concourse-related services, including
-  training, consulting, support and managed solutions.
-
-  \list{
-    \link{Altoros}{https://www.altoros.com}
-  }{
-    \link{anynines}{https://www.anynines.com}
-  }{
-    \link{Armakuni}{https://www.armakuni.com}
-  }{
-    \link{CentralCI}{https://centralci.com}
-  }{
-    \link{Cycloid}{https://www.cycloid.io}
-  }{
-    \link{Container Solutions}{https://www.container-solutions.com/}
-  }{
-    \link{Gstack}{https://www.gstack.io}
-  }{
-    \link{Novatec}{https://www.novatec-gmbh.de}
-  }{
-    \link{Resilient Scale}{https://www.rscale.io}
-  }{
-    \link{Stark & Wayne}{https://www.starkandwayne.com}
-  }{
-    \link{SuperOrbital}{https://www.superorbital.io}
-  }{
-    \link{VMware Tanzu Labs}{https://tanzu.vmware.com/labs}
   }
 }
