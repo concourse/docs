@@ -286,7 +286,7 @@ A task's configuration specifies the following:
 
       \optional-attribute{memory}{number}{
         The maximum amount of memory available to the task container, measured in
-        bytes. 0 means unlimited.
+        bytes. 0 means unlimited. Can use units such as \code{KB/MB/GB}.
       }
     }
   }
