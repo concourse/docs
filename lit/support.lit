@@ -1,0 +1,22 @@
+\title{Support}{support}
+
+\use-plugin{concourse-docs}
+
+
+\section{
+  \title{Community Support}{community-support}
+
+  You can ask the community for support either on
+  \link{Discord}{https://discord.gg/MeRxXKW} or \link{GitHub
+  Discussions}{https://github.com/concourse/concourse/discussions/categories/help-support}.
+
+}
+
+\section{
+  \title{Commercial Support}{commercial-support}
+
+  The maintainers of Concourse provide commercial support for Concourse through
+  \link{Pixel Air}{https://pixelair.io/}. If you're interested in commercial
+  support you can \link{book a call}{https://pixelair.io/contact/} with us.
+
+}

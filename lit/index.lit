@@ -184,3 +184,4 @@
 \include-section{./examples.lit}
 \include-section{./project.lit}
 \include-section{./ecosystem.lit}
+\include-section{./support.lit}
