@@ -7,11 +7,12 @@ projects and non-profit organizations. The applications of Concourse are as vari
 its user community, including CI/CD for applications, continuous delivery of
 infrastructure, release integration, test automation, and numerous other use cases!
 
-If you use Concourse, or your organization offers Concourse-related services, we'd
-appreciate hearing from you. Please \link{submit a pull
+If you use Concourse, or your organization offers Concourse-related services,
+we'd appreciate hearing from you. Please \link{submit a pull
 request}{https://github.com/concourse/docs/pulls} adding your organization's
-name in alphabetical order to the list below, and help us showcase how many
-people do things continuously with Concourse.
+name in alphabetical order to one of the lists below, and help us showcase how
+many people do things continuously with Concourse.
+
 
 \section{
   \title{Concourse-as-a-Service}{concourse-as-a-service}
@@ -25,7 +26,7 @@ people do things continuously with Concourse.
 }
 
 \section{
-  \title{Service Providers}{service-providers}
+  \title{3rd Party Service Providers}{service-providers}
 
   The following organizations provide various Concourse-related services, including
   training, consulting, support and managed solutions.
