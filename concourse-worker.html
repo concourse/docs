@@ -575,21 +575,17 @@
 
   <ul>
 
-  <li><p>Linux: We test and support the following distributions. Minimum kernel version tested is 4.4.</p><ul>
+  <li><p>Linux: We test and support the following distributions. Minimum kernel version tested is 5.4.</p><ul>
 
   <li><p>Ubuntu 22.04</p></li>
 
   <li><p>Ubuntu 24.04</p></li>
-
-  <li><p>Debian 10 (kernel 4.19)</p></li>
 
 </ul><p>Other Requirements: <ul>
 
   <li><p>User namespaces must be enabled.</p></li>
 
   <li><p>To enforce memory limits on tasks, memory &#43; swap accounting must be enabled.</p></li>
-
-  <li><p>The <a href="concourse-worker.html#guardian-runtime"><code>Guardian</code> runtime</a> only supports cgroupsV1. Use the <a href="concourse-worker.html#containerd-runtime"><code>containerd</code> runtime</a> if you want to use cgroupsV2 or <a href="https://fedoraproject.org/wiki/Changes/CGroupsV2#Upgrade.2Fcompatibility_impact">downgrade to cgroupsV1</a>.</p></li>
 
 </ul></p></li>
 
