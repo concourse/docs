@@ -16,11 +16,9 @@ decide much on its own.
     version tested is 4.4.
 
     \list{
-      Ubuntu 16.04 (kernel 4.4)
+      Ubuntu 22.04
     }{
-      Ubuntu 18.04 (kernel 5.3)
-    }{
-      Ubuntu 20.04 (kernel 5.4)
+      Ubuntu 24.04
     }{
       Debian 10 (kernel 4.19)
     }
