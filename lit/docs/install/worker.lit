@@ -13,7 +13,7 @@ decide much on its own.
 
   \list{
     Linux: We test and support the following distributions. Minimum kernel
-    version tested is 5.4.
+    version tested is 5.15.
 
     \list{
       Ubuntu 22.04
