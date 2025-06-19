@@ -13,14 +13,12 @@ decide much on its own.
 
   \list{
     Linux: We test and support the following distributions. Minimum kernel
-    version tested is 4.4.
+    version tested is 5.4.
 
     \list{
       Ubuntu 22.04
     }{
       Ubuntu 24.04
-    }{
-      Debian 10 (kernel 4.19)
     }
 
     Other Requirements:
@@ -29,11 +27,6 @@ decide much on its own.
     }{
       To enforce memory limits on tasks, memory + swap accounting must be
       enabled.
-    }{
-      The \reference{guardian-runtime} only supports cgroupsV1. Use the
-      \reference{containerd-runtime} if you want to use cgroupsV2 or
-      \link{downgrade to
-      cgroupsV1}{https://fedoraproject.org/wiki/Changes/CGroupsV2#Upgrade.2Fcompatibility_impact}.
     }
   }{
     Windows/Darwin: no special requirements (that we know of).
