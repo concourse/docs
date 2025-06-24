@@ -184,35 +184,6 @@ resources:
   source:
     uri: https://github.com/rails/rails-contributors.git
 
-task-config: &amp;task-config
-  platform: linux
-  inputs:
-    - name: rails-contributors-git
-  params:
-    RAILS_ENV: test
-    DATABASE_URL: postgresql://postgres@localhost
-  run:
-    path: /bin/bash
-    args:
-      - -c
-      - |
-        echo &#34;=== Setting up Postgres...&#34;
-        apt-get update
-        apt-get install -y postgresql libpq-dev cmake nodejs
-        cat &gt; /etc/postgresql/*/main/pg_hba.conf &lt;&lt;-EOF
-        host   all   postgres   localhost   trust
-        EOF
-        service postgresql restart
-        echo &#34;=== Project requires that we clone rails... &#34;
-        cd rails-contributors-git
-        git clone --mirror https://github.com/rails/rails
-        echo &#34;=== Installing Gems...&#34;
-        gem install -N bundler
-        bundle install
-        echo &#34;=== Running Tests...&#34;
-        bundle exec rails db:setup
-        bundle exec rails test
-
 jobs:
 - name: test
   public: true
@@ -223,10 +194,40 @@ jobs:
       trigger: true
     - task: run-tests
       config:
+        platform: linux
         image_resource:
           type: registry-image
           source: { repository: ruby, tag: 3.3.4 }
-        &lt;&lt; : *task-config
+        inputs:
+          - name: rails-contributors-git
+        params:
+          RAILS_ENV: test
+          DATABASE_URL: postgresql://postgres@localhost
+        run:
+          path: /bin/bash
+          args:
+            - -ce
+            - |
+              cd rails-contributors-git
+
+              echo &#34;=== Setting up Postgres ===&#34;
+              apt-get update
+              apt-get install -y postgresql libpq-dev cmake nodejs
+              cat &gt; /etc/postgresql/*/main/pg_hba.conf &lt;&lt;-EOF
+              host   all   postgres   localhost   trust
+              EOF
+              service postgresql restart
+
+              echo &#34;=== Project requires that we clone rails ===&#34;
+              git clone --mirror https://github.com/rails/rails.git
+
+              echo &#34;=== Installing Gems ===&#34;
+              gem install -N bundler
+              bundle install
+
+              echo &#34;=== Running Tests ===&#34;
+              bundle exec rails db:setup
+              bundle exec rails test
 </code></pre></p>
 
   
