@@ -370,7 +370,7 @@ configured multiple times with different parameters
     }{
       \reference{aws-asm-credential-manager}{\code{secretmanager}} (since v7.7.0)
     }{
-      \code{idtoken} (since v7.14.0)
+      \reference{idtoken-credential-manager}{\code{idtoken}} (since v7.14.0)
     }
 
     In the future we want to make use of something like the \link{Prototypes
@@ -540,19 +540,9 @@ configured multiple times with different parameters
                 A list of audience-values to place into the token's aud-claim.
               }
               \optional-attribute{subject_scope}{string}{
-                Determines what is put into the token's sub-claim.
+                Determines what is put into the token's sub-claim. See \reference{idtoken-subject-scope}{here} for e detailed explanation.
 
-                \list{
-                  \code{team}: sub="<team_name>"
-                }{
-                  \code{pipeline}: sub="<team_name>/<pipeline_name>"
-                }{
-                  \code{instance}: sub="<team_name>/<pipeline_name>/<instance_vars>"
-                }{
-                  \code{job}: sub="<team_name>/<pipeline_name>/<instance_vars>/<job_name>"
-                }
-
-                Note: If a path element is empty (for example because you chose \code{job} on a pipeline with no instance-vars), the empty element is still added. This is done to avoid colissions between subjects of different pipelines. 
+                Supported values: \code{team}, \code{pipeline}, \code{instance}, \code{job}.
 
                 Default \code{pipeline}.
               }
