@@ -1,0 +1,179 @@
+\title{\aux{The }IDToken credential manager}{idtoken-credential-manager}
+
+\use-plugin{concourse-docs}
+\omit-children-from-table-of-contents
+
+This idtoken credential manager is a bit special. It does not load any credentials from an external source, but instead generates \link{JWTs}{https://datatracker.ietf.org/doc/html/rfc7519} which are signed by concourse and contain information about the pipeline/job 
+that is currently running. It can NOT be used as a cluster-wide credential manager, but must instead be used as a \reference{var-sources}{var source}.
+
+These JWTs can be used to authenticate with external services via "identity federation" with the identity of the pipeline.
+
+Examples for services that support authentication via JWTs are:
+
+\list{
+  \link{Vault}{https://vaultproject.io}
+}{
+  \link{AWS}{https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers.html}
+}{
+  \link{Azure}{https://learn.microsoft.com/en-us/graph/api/resources/federatedidentitycredentials-overview?view=graph-rest-1.0}
+}
+
+
+External Services can verify if JWTs are actually issued by your Concourse, by checking the signatures on the JWTs against the public keys published by your Concourse.
+
+The public keys for verification are published as \link{JWKS}{https://datatracker.ietf.org/doc/html/rfc7517} at:
+\codeblock{bash}{{{
+https://your-concourse-server.com/.well-known/jwks.json
+}}}
+
+Concourse also has a minimal \link{OIDC Discovery Endpoint}{https://openid.net/specs/openid-connect-discovery-1_0.html}, which allows external services to auto-discover the JWKS-URL.
+
+\section{
+  \title{Usage}
+
+  You create a var-source of type \code{idtoken} with the configuration you want (see \reference{idtoken-credential-manager-config}{next chapter}) in your pipeline.
+  That var-source then exposes a single variable \code{token}, which contains the JWT and can be used in any step of your pipeline.
+
+  You can also have multiple idtoken var-sources in the same pipeline, each with different audiences, lifetimes etc.
+
+  \codeblock{bash}{{{
+  var_sources:
+  - name: myidtoken
+    type: idtoken
+    config:
+      audience: ["sts.amazonaws.com"]
+
+  jobs:
+  - name: print-creds
+    plan:
+    - task: print
+      config:
+        platform: linux
+        image_resource:
+          type: mock
+          source: {mirror_self: true}
+        run:
+          path: bash
+          args:
+          - -c
+          - |
+            echo myidtoken: ((myidtoken:token))
+  }}}
+}
+
+\section{
+  \title{Configuration}{idtoken-credential-manager-config}
+
+  You can pass several config options to the var-source to customize the generated JWTs.
+  You can for example configure the aud-claim, expiration or granularity of the sub-claim.
+  See \reference{idtoken-var-source}{here} for details.
+
+  \section{
+    \title{Subject Scope}{idtoken-subject-scope}
+
+    Some external services (like for example AWS) only perform exact-matches on a token's sub-claim and ignore most other claims.
+    To enable use-cases like for example "all pipelines of a team should be able to assume an AWS-Role", Concourse offers the option to configure how fine-granular the sub-claim's value should be.
+
+    This is configured via the \code{subject_scope} setting of the \reference{idtoken-var-source}{var-source}.
+
+    Depending of the value of \code{subject_scope}, the content of the JWT's sub-claim will differ:
+    \list{
+      \code{team}: sub="<team_name>"
+    }{
+      \code{pipeline}: sub="<team_name>/<pipeline_name>"
+    }{
+      \code{instance}: sub="<team_name>/<pipeline_name>/<instance_vars>"
+    }{
+      \code{job}: sub="<team_name>/<pipeline_name>/<instance_vars>/<job_name>"
+    }
+
+    \smaller{Note: If a path element is empty (for example because you chose \code{job} on a pipeline with no instance-vars), the empty element is still added.}
+
+    This way all your pipelines can simply get a token with \code{subject_scope="team"} and use this token to assume an AWS-Role that matches on \code{sub="yourteamname"}.
+
+  }
+
+}
+
+\section{
+  \title{Example JWT}
+
+  The generated tokens usually look something like this:
+  \code{
+    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3lvdXItY29uY291cnNlLmV4YW1wbGUuY29tIiwiZXhwIjoxNzUxMDE1NzM0LCJhdWQiOlsiYXBpOi8vQXp1cmVBRFRva2VuRXhjaGFuZ2UiXSwic3ViIjoibWFpbi9leGFtcGxlLXBpcGVsaW5lIiwidGVhbSI6Im1haW4iLCJwaXBlbGluZSI6ImV4YW1wbGUtcGlwZWxpbmUiLCJqb2IiOiJleGFtcGxlLWpvYiJ9.my7l44tH0wfz8vc6z3fMmzTMxZ8_orhjcsOti3BKSNo
+  }
+
+  And after decoding like this:
+  \codeblock{bash}{{{
+    {
+      "iss":      "https://your-concourse.example.com",
+      "exp":      1751015734,
+      "aud":      ["api://AzureADTokenExchange"],
+      "sub":      "main/example-pipeline",
+      "team":     "main",
+      "pipeline": "example-pipeline",
+      "instance_vars": {
+        "branch": "dev"
+      }
+      "job":      "example-job"
+    }
+  }}}
+
+  Here is a short explanation of the different claims:
+
+  \list{
+    \code{iss}: Who issued the token (always contains the external URL of your Concourse)
+  }{
+    \code{exp}: When the token will expire
+  }{
+    \code{aud}: Who the token is intended for. (In the above example it's for Azure's Identity Federation API)
+  }{
+    \code{team}: The team of the pipeline this token was generated for
+  }{
+    \code{pipeline}: The pipeline this token was generated for
+  }{
+    \code{job}: The name of the job (inside the pipeline) this token was generated for
+  }{
+    \code{instance_vars}: Any instance_vars for the pipeline (if it is an instanced pipeline).
+  }{
+    \code{sub}: A combination of team + pipeline + instance_vars + job. Which parts are used here is configurable, see \reference{idtoken-subject-scope}{here}.
+  }
+}
+
+\section{
+  \title{Automatic Key Rotation}{idtoken-key-rotation}
+
+  Concourse will automatically rotate the signing keys used for creating the JWTs. The default rotation period is \code{7 days}. The previously used keys are being kept around for a while (\code{24h})
+  so that verification of currently existing JWTs doesn't fail.
+
+  That behavior can be configured via the following ATC flags:
+
+  \list{
+    \code{signing-key.rotation-period}: How often to rotate the signing keys. Default: \code{7d}. 0 means don't rotate at all.
+  }{
+    \code{signing-key.grace-period}: How long to keep previously used signing keys published in the JWKs after they have been superceeded. Default: \code{24h}.
+  }{
+    \code{signing-key.check-interval}: How often to check if new keys are needed or if old ones should be removed. Default: \code{10m}
+  }
+
+}
+
+\right-side{Examples}{
+  \example{Vault}{
+
+    TODO
+
+  }
+
+  \example{AWS}{
+
+    TODO
+
+  }
+
+  \example{Azure}{
+
+    TODO
+
+  }
+}
