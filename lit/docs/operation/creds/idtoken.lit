@@ -166,9 +166,48 @@ Concourse also has a minimal \link{OIDC Discovery Endpoint}{https://openid.net/s
   }
 
   \example{AWS}{
+    AWS supports \link{federation with external identity providers}{https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers.html}. 
+    Using this you can allow identities managed by an external identity provider to perform actions in your AWS account.
 
-    TODO
+    In this scenario the external identity provider is Concourse and the identities are teams/pipelines/jobs.
+    This means you are able to grant a specific pipeline or job permissions to perform actions in AWS (like deploying something). All without managing IAM-Users or dealing
+    with long-lived credentials.
 
+    First you need to \link{create an OpenID Connect identity provider}{https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc.html} in your AWS Account.
+    As \code{Provider URL} specify the external URL of your Concourse server.
+    For \code{Audience} you can choose any string you like. Using something like \code{sts.amazonaws.com} is recommended. You have to use the same string later in the configuration of your var-source.
+
+    Next you will need to \link{create an IAM-Role that can be assumed using your JWT}{https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp_oidc.html#idp_oidc_Create}.
+    As \code{Identity Provider} choose the one you created previously.
+    Add a condition on the sub-claim with type \code{StringEquals} and value \code{yourteam/yourpipeline}. This will allow ONLY that specific pipeline (and any instanced versions of it) to assume that IAM Role using a JWT. If you use the \code{subject_scope} setting to change the contents of your sub-claim, adapt this condition accordingly!
+    In the next step you will be able to choose which AWS permissions your role will get.
+
+    Now you can use the AWS \link{AssumeRoleWithWebIdentity API operation}{https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRoleWithWebIdentity.html} to assume your role via a JWT issued by concourse.
+    The easiest way is to do this is via the \link{assume-role-with-web-identity AWS CLI command}{https://docs.aws.amazon.com/cli/latest/reference/sts/assume-role-with-web-identity.html}:
+    \codeblock{bash}{{{
+      var_sources:
+      - name: awstoken
+        type: idtoken
+        config:
+          audience: ["sts.amazonaws.com"]
+
+      jobs:
+      - name: aws-deploy
+        plan:
+        - task: print
+          config:
+            platform: linux
+            image_resource:
+              type: registry-image
+              source: { repository: amazon/aws-cli }
+            run:
+              path: bash
+              args:
+              - -c
+              - |
+                aws sts assume-role-with-web-identity --role-arn arn:aws:iam::<your_account>:role/<your_role> --web-identity-token ((awstoken:token)) > creds.json
+                echo "Now do something with the temporary credentials in creds.json"
+        }}}
   }
 
   \example{Azure}{
