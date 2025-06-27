@@ -160,8 +160,85 @@ Concourse also has a minimal \link{OIDC Discovery Endpoint}{https://openid.net/s
 
 \right-side{Examples}{
   \example{Vault}{
+    You can use JWTs to authenticate with \link{HashiCorp Vault}{https://developer.hashicorp.com/vault/docs/auth/jwt#jwt-authentication}. This way your pipelines can directly communicate with Vault and use all of it's features, beyond what Concourse's native vault-integration offers.
 
-    TODO
+    First enable the JWT auth method in your Vault Server:
+    \codeblock{bash}{{{
+      vault auth enable jwt
+    }}}
+
+    Now configure the JWT auth method to accept JWTs issued by your Concourse:
+    \codeblock{bash}{{{
+    vault write auth/jwt/config \
+      oidc_discovery_url="https://<external_url_of_your_concourse>" \
+      default_role="demo"
+    }}}
+
+    Lastly configure a "role" for JWT auth. Make sure to use the same value in your pipeline that you used for \code{bound_audiences}. \code{bound_subject} must be the sub-claim value of your JWT, if you use the \code{subject_scope} setting to change the contents of your sub-claim, adapt this accordingly!
+    \codeblock{bash}{{{
+    vault write auth/jwt/role/demo \
+      bound_subject="main/your-pipeline" \
+      bound_audiences="my-vault-server.com" \
+      policies=webapps \
+      ttl=1h
+    }}}
+
+    This role will allow the holder of a JWT with \code{aud=my-vault-server.com} and \code{sub=main/your-pipeline} to get a vault-token with the vault-policy "webapps".
+
+    Pipelines can now do the following:
+    \codeblock{bash}{{{
+      var_sources:
+      - name: vaulttoken
+        type: idtoken
+        config:
+          audience: ["my-vault-server.com"]
+
+      jobs:
+      - name: aws-deploy
+        plan:
+        - task: print
+          config:
+            platform: linux
+            image_resource:
+              type: registry-image
+              source: { repository: hashicorp/vault }
+            run:
+              path: bash
+              args:
+              - -c
+              - |
+                vault write auth/jwt/login role=demo jwt=((vaulttoken:token)) > vault-response.json
+                echo "Now do something with the token in vault-response.json"
+    }}}
+
+    You don't have to create a role and a policy for every single of your pipelines! 
+    You can use claims from the JWT with Vault's \link{policy templating}{https://developer.hashicorp.com/vault/tutorials/policies/policy-templating} feature.
+    This way you can define a policy that allows a pipeline access to all secrets it would usually have access to using Concourse's native vault-integration:
+
+    \codeblock{bash}{{{
+      path "secret/metadata/concourse/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.team }}" {
+        capabilities = ["list"]
+      }
+
+      path "secret/data/concourse/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.team }}/+" {
+        capabilities = ["read"]
+      }
+
+      path "secret/metadata/concourse/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.team }}/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.pipeline }}" {
+        capabilities = ["list"]
+      }
+
+      path "secret/metadata/concourse/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.team }}/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.pipeline }}/*" {
+        capabilities = ["read", "list"]
+      }
+
+      path "secret/data/concourse/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.team }}/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.pipeline }}/*" {
+        capabilities = ["read", "list"]
+      }
+    }}}
+    \smaller{Make sure to set \code{<JWT_ACCESSOR>} to the actual mount-accessor value of your JWT Auth method!}
+
+    With a policy like this you don't need to configure \code{bound_subject} for your JWT auth role. Every single pipeline can simply use the same role and the policy will take care that they can only access secrets ment for them.
 
   }
 
@@ -207,7 +284,7 @@ Concourse also has a minimal \link{OIDC Discovery Endpoint}{https://openid.net/s
               - |
                 aws sts assume-role-with-web-identity --role-arn arn:aws:iam::<your_account>:role/<your_role> --web-identity-token ((awstoken:token)) > creds.json
                 echo "Now do something with the temporary credentials in creds.json"
-        }}}
+    }}}
   }
 
   \example{Azure}{
