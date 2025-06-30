@@ -106,16 +106,14 @@ Concourse also has a minimal \link{OIDC Discovery Endpoint}{https://openid.net/s
   And after decoding like this:
   \codeblock{bash}{{{
     {
-      "iss":      "https://your-concourse.example.com",
-      "exp":      1751015734,
-      "aud":      ["api://AzureADTokenExchange"],
-      "sub":      "main/example-pipeline",
-      "team":     "main",
-      "pipeline": "example-pipeline",
-      "instance_vars": {
-        "branch": "dev"
-      }
-      "job":      "example-job"
+      "aud": "sts.amazonaws.com",
+      "exp": 1751282764,
+      "iat": 1751279164,
+      "iss": "https://your-concourse-server.com",
+      "job": "print-creds",
+      "pipeline": "mypipeline",
+      "sub": "main/mypipeline",
+      "team": "main"
     }
   }}}
 
@@ -176,14 +174,17 @@ Concourse also has a minimal \link{OIDC Discovery Endpoint}{https://openid.net/s
 
     Lastly configure a "role" for JWT auth. Make sure to use the same value in your pipeline that you used for \code{bound_audiences}. \code{bound_subject} must be the sub-claim value of your JWT, if you use the \code{subject_scope} setting to change the contents of your sub-claim, adapt this accordingly!
     \codeblock{bash}{{{
-    vault write auth/jwt/role/demo \
+      vault write auth/jwt/role/demo \
+      role_type="jwt"\
+      user_claim="sub" \
       bound_subject="main/your-pipeline" \
       bound_audiences="my-vault-server.com" \
       policies=webapps \
       ttl=1h
     }}}
 
-    This role will allow the holder of a JWT with \code{aud=my-vault-server.com} and \code{sub=main/your-pipeline} to get a vault-token with the vault-policy "webapps".
+    This role will allow the holder of a JWT with \code{aud=my-vault-server.com} and \code{sub=main/your-pipeline} to get a vault-token with the vault-policy "webapps". If the policy you want to assign has a different name, simply change it in the above example.
+    Make sure to adapt the value for \code{bound_subject} according to your team and pipeline name.
 
     Pipelines can now do the following:
     \codeblock{bash}{{{
@@ -194,51 +195,64 @@ Concourse also has a minimal \link{OIDC Discovery Endpoint}{https://openid.net/s
           audience: ["my-vault-server.com"]
 
       jobs:
-      - name: aws-deploy
+      - name: vault-login
         plan:
-        - task: print
+        - task: login
           config:
             platform: linux
             image_resource:
               type: registry-image
               source: { repository: hashicorp/vault }
             run:
-              path: bash
+              path: sh
               args:
               - -c
               - |
-                vault write auth/jwt/login role=demo jwt=((vaulttoken:token)) > vault-response.json
+                export VAULT_ADDR=https://my-vault-server.com
+                vault write auth/jwt/login role=demo jwt=((vaulttoken:token)) --format=json > vault-response.json
                 echo "Now do something with the token in vault-response.json"
     }}}
 
     You don't have to create a role and a policy for every single of your pipelines! 
     You can use claims from the JWT with Vault's \link{policy templating}{https://developer.hashicorp.com/vault/tutorials/policies/policy-templating} feature.
-    This way you can define a policy that allows a pipeline access to all secrets it would usually have access to using Concourse's native vault-integration:
+    This way you can define a policy that allows a pipeline read to all secrets it would usually have access to using Concourse's native vault-integration:
 
     \codeblock{bash}{{{
-      path "secret/metadata/concourse/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.team }}" {
+      path "concourse/metadata/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.team }}" {
         capabilities = ["list"]
       }
 
-      path "secret/data/concourse/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.team }}/+" {
+      path "concourse/data/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.team }}/+" {
         capabilities = ["read"]
       }
 
-      path "secret/metadata/concourse/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.team }}/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.pipeline }}" {
+      path "concourse/metadata/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.team }}/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.pipeline }}" {
         capabilities = ["list"]
       }
 
-      path "secret/metadata/concourse/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.team }}/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.pipeline }}/*" {
+      path "concourse/metadata/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.team }}/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.pipeline }}/*" {
         capabilities = ["read", "list"]
       }
 
-      path "secret/data/concourse/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.team }}/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.pipeline }}/*" {
+      path "concourse/data/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.team }}/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.pipeline }}/*" {
         capabilities = ["read", "list"]
       }
     }}}
-    \smaller{Make sure to set \code{<JWT_ACCESSOR>} to the actual mount-accessor value of your JWT Auth method!}
+    \smaller{Make sure to set \code{<JWT_ACCESSOR>} to the actual mount-accessor value of your JWT Auth method! You can use \code{vault auth list --format=json | jq -r '."jwt/".accessor'} to get the accessor for your jwt auth method.}
 
-    With a policy like this you don't need to configure \code{bound_subject} for your JWT auth role. Every single pipeline can simply use the same role and the policy will take care that they can only access secrets ment for them.
+    With a policy like this you don't need to configure \code{bound_subject} for your JWT auth role. Every single pipeline can simply use the same role and the policy will take care that they can only access secrets meant for them. However you need to explicitly configure claim to metadata mapping:
+
+    \codeblock{bash}{{{
+      vault write auth/jwt/role/demo \
+        role_type="jwt"\
+        user_claim="sub" \
+        bound_subject= \
+        bound_audiences="my-vault-server.com" \
+        policies=pipeline-new \
+        claim_mappings='team=team' \
+        claim_mappings='pipeline=pipeline' \
+        ttl=1h
+    }}}
 
   }
 
