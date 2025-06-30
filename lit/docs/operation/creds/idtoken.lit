@@ -284,7 +284,7 @@ Concourse also has a minimal \link{OIDC Discovery Endpoint}{https://openid.net/s
           audience: ["sts.amazonaws.com"]
 
       jobs:
-      - name: aws-deploy
+      - name: aws-login
         plan:
         - task: print
           config:
@@ -298,7 +298,7 @@ Concourse also has a minimal \link{OIDC Discovery Endpoint}{https://openid.net/s
               - -e
               - -c
               - |
-                aws sts assume-role-with-web-identity --role-arn arn:aws:iam::<your_account>:role/<your_role> --web-identity-token ((awstoken:token)) > creds.json
+                aws sts assume-role-with-web-identity --role-session-name Concourse --role-arn arn:aws:iam::<your_account>:role/<your_role> --web-identity-token ((awstoken:token)) > creds.json
                 echo "Now do something with the temporary credentials in creds.json"
     }}}
   }
