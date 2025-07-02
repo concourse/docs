@@ -3,10 +3,15 @@
 \use-plugin{concourse-docs}
 \omit-children-from-table-of-contents
 
-This idtoken credential manager is a bit special. It doesn't load any credentials from an external source but instead generates \link{JWTs}{https://datatracker.ietf.org/doc/html/rfc7519} which are signed by concourse and contain information about the pipeline/job 
-that is currently running. It can NOT be used as a cluster-wide credential manager, but must instead be used as a \reference{var-sources}{var source}.
+This idtoken credential manager is a bit special. It doesn't load any
+credentials from an external source but instead generates
+\link{JWTs}{https://datatracker.ietf.org/doc/html/rfc7519} which are signed by
+concourse and contain information about the pipeline/job that is currently
+running. It can NOT be used as a cluster-wide credential manager, but must
+instead be used as a \reference{var-sources}{var source}.
 
-These JWTs can be used to authenticate with external services via "identity federation" with the identity of the pipeline.
+These JWTs can be used to authenticate with external services via "identity
+federation" with the identity of the pipeline.
 
 Examples for services that support authentication via JWTs are:
 
@@ -19,22 +24,31 @@ Examples for services that support authentication via JWTs are:
 }
 
 
-External services can verify if JWTs are actually issued by your Concourse, by checking the signatures on the JWTs against the public keys published by your Concourse.
+External services can verify if JWTs are actually issued by your Concourse, by
+checking the signatures on the JWTs against the public keys published by your
+Concourse.
 
 The public keys for verification are published as \link{JWKS}{https://datatracker.ietf.org/doc/html/rfc7517} at:
 \codeblock{bash}{{{
 https://your-concourse-server.com/.well-known/jwks.json
 }}}
 
-Concourse also offers a \link{OIDC Discovery Endpoint}{https://openid.net/specs/openid-connect-discovery-1_0.html}, which allows external services to auto-discover the JWKS-URL.
+Concourse also offers a \link{OIDC Discovery
+Endpoint}{https://openid.net/specs/openid-connect-discovery-1_0.html}, which
+allows external services to auto-discover the JWKS-URL.
 
 \section{
   \title{Usage}
 
-  You create a var-source of type \code{idtoken} with the configuration you want (see \reference{idtoken-credential-manager-config}{next chapter}) in your pipeline.
-  That var-source then exposes a single variable \code{token}, which contains the JWT and can be used in any step of your pipeline.
+  You create a \reference{var-sources}{var source} of type \code{idtoken} with
+  the configuration you want (see
+  \reference{idtoken-credential-manager-config}{Configuration}) in your
+  pipeline. That var source then exposes a single variable with a single field,
+  \code{token}, which contains the JWT and can be used in any step of your
+  pipeline.
 
-  You can also have multiple idtoken var-sources in the same pipeline, each with different audiences, lifetimes etc.
+  You can also have multiple \code{idtoken} var sources in the same pipeline,
+  each with different audiences, lifetimes etc.
 
   \codeblock{bash}{{{
   var_sources:
@@ -64,32 +78,69 @@ Concourse also offers a \link{OIDC Discovery Endpoint}{https://openid.net/specs/
 \section{
   \title{Configuration}{idtoken-credential-manager-config}
 
-  You can pass several config options to the var-source to customize the generated JWTs.
-  You can for example configure the aud-claim, expiration or granularity of the sub-claim.
-  See \reference{idtoken-var-source}{here} for details.
+  You can pass several config options to the \code{idtoken} var source to
+  customize the generated JWTs. For example, you can configure the \code{aud}
+  claim, token expiration, or granularity of the \code{sub} claim. See
+  \reference{idtoken-var-source} for all config options.
 
   \section{
     \title{Subject Scope}{idtoken-subject-scope}
 
-    Some external services (like for example AWS) only perform exact-matches on a token's sub-claim and ignore most other claims.
-    To enable use-cases like for example "all pipelines of a team should be able to assume an AWS-Role", Concourse offers the option to configure how fine-granular the sub-claim's value should be.
+    Some external services (like AWS) only perform exact-matches on a token's
+    sub-claim and ignore most other claims. To enable use-cases like \italic{"all
+    pipelines of a team should be able to assume an AWS-Role"}, Concourse offers
+    the option to configure how granular the \code{sub} claim's value should be.
 
-    This is configured via the \code{subject_scope} setting of the \reference{idtoken-var-source}{var-source}.
+    This is configured via the \code{subject_scope} setting of the \reference{idtoken-var-source}.
 
-    Depending of the value of \code{subject_scope}, the content of the JWT's sub-claim will differ:
-    \list{
-      \code{team}: sub="<team_name>"
-    }{
-      \code{pipeline}: sub="<team_name>/<pipeline_name>"
-    }{
-      \code{instance}: sub="<team_name>/<pipeline_name>/<instance_vars>"
-    }{
-      \code{job}: sub="<team_name>/<pipeline_name>/<instance_vars>/<job_name>"
-    }
+    Depending on the value of \code{subject_scope}, the content of the JWT's
+    \code{sub} claim will differ:
 
-    \smaller{Note: If a path element is empty (for example because you chose \code{job} on a pipeline with no instance-vars), the empty element is still added.}
+      \table{
+        \table-row{\code{subject_scope}}{\code{sub} Value in JWT}
+       }{
+        \table-row{
+          \code{team}
+        }{
+          \code{<team_name>}
+        }
+      }{
+        \table-row{
+          \code{pipeline}
+        }{
+          \code{<team_name>/<pipeline_name>}
+        }
+      }{
+        \table-row{
+          \code{instance}
+        }{
+          \code{<team_name>/<pipeline_name>/<instance_vars>} \superscript{1}
+        }
+      }{
+        \table-row{
+          \code{job}
+        }{
+          \code{<team_name>/<pipeline_name>/<instance_vars>/<job_name>} \superscript{2}
+        }
+      }
 
-    This way all your pipelines can simply get a token with \code{subject_scope="team"} and use this token to assume an AWS-Role that matches on \code{sub="yourteamname"}.
+      \list{
+        \smaller{[1]: Instance vars are rendered as comma-separated key-value pairs.
+          E.g. \code{my-var:my-value,hello:world}
+        }
+      }{
+        \smaller{[2]: If a path element is empty (for example because you chose
+          \code{job} on a pipeline with no instance-vars), the empty element is
+          still added. E.g. \code{my-team/my-pipeline//my-job}. Note the double
+          forward-slashes between the pipeline and job name, where instance vars
+          would go.
+        }
+      }
+
+
+    This way all your pipelines can simply get a token with
+    \code{subject_scope: team} and use this token to assume an AWS-Role that
+    matches on \code{sub: "your_team_name"}.
 
   }
 
@@ -103,7 +154,7 @@ Concourse also offers a \link{OIDC Discovery Endpoint}{https://openid.net/specs/
     eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3lvdXItY29uY291cnNlLmV4YW1wbGUuY29tIiwiZXhwIjoxNzUxMDE1NzM0LCJhdWQiOlsiYXBpOi8vQXp1cmVBRFRva2VuRXhjaGFuZ2UiXSwic3ViIjoibWFpbi9leGFtcGxlLXBpcGVsaW5lIiwidGVhbSI6Im1haW4iLCJwaXBlbGluZSI6ImV4YW1wbGUtcGlwZWxpbmUiLCJqb2IiOiJleGFtcGxlLWpvYiJ9.my7l44tH0wfz8vc6z3fMmzTMxZ8_orhjcsOti3BKSNo
   }
 
-  And after decoding like this:
+  And after decoding, looks like this:
   \codeblock{bash}{{{
     {
       "aud": "sts.amazonaws.com",
@@ -132,9 +183,13 @@ Concourse also offers a \link{OIDC Discovery Endpoint}{https://openid.net/specs/
   }{
     \code{job}: The name of the job (inside the pipeline) this token was generated for
   }{
-    \code{instance_vars}: Any instance_vars for the pipeline (if it is an instanced pipeline).
+    \code{instance_vars}: Any instance vars for the pipeline (if it is an
+    instanced pipeline). Will be a comma-separated list of key-value pairs.
+    E.g. \code{hello:world,my-var:my-value}
   }{
-    \code{sub}: A combination of team + pipeline + instance_vars + job. Which parts are used here is configurable, see \reference{idtoken-subject-scope}{here}.
+    \code{sub}: A combination of team + pipeline + instance_vars + job. Which
+    parts are used here is configurable, see
+    \reference{idtoken-subject-scope}.
   }
 }
 
@@ -144,21 +199,24 @@ Concourse also offers a \link{OIDC Discovery Endpoint}{https://openid.net/specs/
   Concourse will automatically rotate the signing keys used for creating the JWTs. The default rotation period is \code{7 days}. The previously used keys are being kept around for a while (by default \code{24h})
   so that verification of currently existing JWTs doesn't fail during key rotation.
 
-  That behavior can be configured via the following ATC flags:
+  This behavior can be configured via the following ATC flags:
 
   \list{
-    \code{signing-key.rotation-period}: How often to rotate the signing keys. Default: \code{7d}. 0 means don't rotate at all.
+    \code{CONCOURSE_SIGNING_KEY_ROTATION_PERIOD}: How often to rotate the signing keys. Default: \code{7d}. A value of \code{0} means don't rotate at all.
   }{
-    \code{signing-key.grace-period}: How long to keep previously used signing keys published in the JWKs after they have been superseded. Default: \code{24h}.
+    \code{CONCOURSE_SIGNING_KEY_GRACE_PERIOD}: How long to keep previously used signing keys published in the JWKs after they have been rotated. Default: \code{24h}.
   }{
-    \code{signing-key.check-interval}: How often to check if new keys are needed or if old ones should be removed. Default: \code{10m}
+    \code{CONCOURSE_SIGNING_KEY_CHECK_INTERVAL}: How often to check if new keys are needed or if old ones should be removed. Default: \code{10m}
   }
 
 }
 
 \right-side{Examples}{
   \example{Vault}{
-    You can use JWTs to authenticate with \link{HashiCorp Vault}{https://developer.hashicorp.com/vault/docs/auth/jwt#jwt-authentication}. This way your pipelines can directly communicate with Vault and use all of it's features, beyond what Concourse's native Vault-integration offers.
+    You can use JWTs to authenticate with \link{HashiCorp
+    Vault}{https://developer.hashicorp.com/vault/docs/auth/jwt#jwt-authentication}.
+    This way your pipelines can directly communicate with Vault and use all of
+    it's features, beyond what Concourse's native Vault-integration offers.
 
     First enable the JWT auth method in your Vault Server:
     \codeblock{bash}{{{
@@ -172,7 +230,11 @@ Concourse also offers a \link{OIDC Discovery Endpoint}{https://openid.net/specs/
       default_role="demo"
     }}}
 
-    Lastly configure a role for JWT auth. Make sure to use the same value in your pipeline that you used for \italic{bound_audiences} (the best would be the URL of your Vault). \italic{bound_subject} must be the sub-claim value of your JWT, if you use the \italic{subject_scope} setting to change the contents of your sub-claim, adapt this accordingly!
+    Lastly, configure a role for JWT auth. Make sure to use the same value in
+    your pipeline that you used for \italic{bound_audiences} (the best would be
+    the URL of your Vault). \italic{bound_subject} must be the sub-claim value
+    of your JWT, if you use the \italic{subject_scope} setting to change the
+    contents of your sub-claim, adapt this accordingly!
     \codeblock{bash}{{{
       vault write auth/jwt/role/demo \
       role_type="jwt"\
@@ -183,11 +245,15 @@ Concourse also offers a \link{OIDC Discovery Endpoint}{https://openid.net/specs/
       ttl=1h
     }}}
 
-    This role will allow the holder of a JWT with \italic{aud=my-vault-server.com} and \italic{sub=main/your-pipeline} to get a Vault token with the Vault-policy "webapps". If the policy you want to assign has a different name, simply change it in the above example.
-    Make sure to adapt the value for \italic{bound_subject} according to your team and pipeline name.
+    This role will allow the holder of a JWT with
+    \code{aud: "my-vault-server.com"} and \code{sub: "main/your-pipeline"} to get
+    a Vault token with the Vault-policy \code{webapps}. If the policy you want to
+    assign has a different name, simply change it in the above example. Make
+    sure to adapt the value for \code{bound_subject} according to your team
+    and pipeline name.
 
     Pipelines can now do the following:
-    \codeblock{bash}{{{
+    \codeblock{yaml}{{{
       var_sources:
       - name: vaulttoken
         type: idtoken
@@ -210,13 +276,19 @@ Concourse also offers a \link{OIDC Discovery Endpoint}{https://openid.net/specs/
               - -c
               - |
                 export VAULT_ADDR=https://my-vault-server.com
-                vault write auth/jwt/login role=demo jwt=((vaulttoken:token)) --format=json > vault-response.json
+                vault write auth/jwt/login \
+                  role=demo \
+                  jwt=((vaulttoken:token)) \
+                  --format=json > vault-response.json
                 echo "Now do something with the token in vault-response.json"
     }}}
 
-    You don't have to create a role and a policy for every single of your pipelines! 
-    You can use claims from the JWT with Vault's \link{policy templating}{https://developer.hashicorp.com/vault/tutorials/policies/policy-templating} feature.
-    This way you can define a policy that allows a pipeline read to all the secrets it would usually have access to using Concourse's native Vault-integration:
+    You don't have to create a role and a policy for every single of your
+    pipelines! You can use claims from the JWT with Vault's \link{policy
+    templating}{https://developer.hashicorp.com/vault/tutorials/policies/policy-templating}
+    feature. This way you can define a policy that allows a pipeline read to
+    all the secrets it would usually have access to using Concourse's native
+    Vault-integration:
 
     \codeblock{bash}{{{
       path "concourse/metadata/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.team }}" {
@@ -239,9 +311,16 @@ Concourse also offers a \link{OIDC Discovery Endpoint}{https://openid.net/specs/
         capabilities = ["read", "list"]
       }
     }}}
-    \smaller{Make sure to set \italic{<JWT_ACCESSOR>} to the actual mount-accessor value of your JWT Auth method! You can use \italic{vault auth list --format=json | jq -r '."jwt/".accessor'} to get the accessor for your jwt auth method.}
+    \smaller{Make sure to set \code{<JWT_ACCESSOR>} to the actual
+      mount-accessor value of your JWT Auth method! You can use \code{vault auth
+      list --format=json | jq -r '."jwt/".accessor'} to get the accessor for your
+      jwt auth method.
+    }
 
-    With a policy like this you don't need to configure \italic{bound_subject} in your JWT auth role. Every single pipeline can simply use the same role and the policy will take care that they can only access secrets meant for them. However you need to explicitly configure claim to metadata mapping:
+    With a policy like this you don't need to configure \code{bound_subject}
+    in your JWT auth role. Every single pipeline can simply use the same role
+    and the policy will take care that they can only access secrets meant for
+    them. However you need to explicitly configure claim to metadata mapping:
 
     \codeblock{bash}{{{
       vault write auth/jwt/role/demo \
@@ -258,25 +337,43 @@ Concourse also offers a \link{OIDC Discovery Endpoint}{https://openid.net/specs/
   }
 
   \example{AWS}{
-    AWS supports \link{federation with external identity providers}{https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers.html}. 
-    Using this you can allow identities managed by an external identity provider to perform actions in your AWS account.
+    AWS supports \link{federation with external identity
+    providers}{https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers.html}.
+    Using this, you can allow identities managed by an external identity
+    provider to perform actions in your AWS account.
 
-    In this scenario the external identity provider is Concourse and the identities are teams/pipelines/jobs.
-    This means you are able to grant a specific pipeline or job permissions to perform actions in AWS (like deploying something). All without managing IAM-Users or dealing
-    with long-lived credentials.
+    In this scenario the external identity provider is Concourse and the
+    identities are teams/pipelines/jobs. This means you are able to grant a
+    specific pipeline or job permission to perform actions in AWS (like
+    deploying something), all without managing IAM users or dealing with
+    long-lived credentials.
 
-    First you need to \link{create an OpenID Connect identity provider}{https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc.html} in your AWS Account.
-    As \italic{Provider URL} specify the external URL of your Concourse server.
-    For \italic{Audience} you can choose any string you like. Using something like \italic{sts.amazonaws.com} is recommended. You have to use the same string later in the configuration of your var-source.
+    First you need to \link{create an OpenID Connect identity
+    provider}{https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc.html}
+    in your AWS Account.
+    Set \italic{Provider URL} to the external URL of your Concourse server.
+    For \italic{Audience}, you can choose any string you like, but using
+    a value like \code{sts.amazonaws.com} is recommended. You have to use the
+    same string later in the configuration of your \reference{idtoken-var-source}.
 
-    Next you will need to \link{create an IAM-Role that can be assumed using your JWT}{https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp_oidc.html#idp_oidc_Create}.
-    As \italic{Identity Provider} choose the one you created previously.
-    Add a condition on the sub-claim with type \italic{StringEquals} and value \italic{yourteam/yourpipeline}. This will allow ONLY that specific pipeline (and any instanced versions of it) to assume that IAM Role using a JWT. If you use the \italic{subject_scope} setting to change the contents of your sub-claim, adapt this condition accordingly!
+    Next you will need to \link{create an IAM-Role that can be assumed using
+    your
+    JWT}{https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp_oidc.html#idp_oidc_Create}.
+    Set \italic{Identity Provider} to the value you previously set \italic{Audience} to.
+    Add a condition on the sub-claim with type \code{StringEquals} and value
+    \code{yourteam/yourpipeline}. This will allow ONLY that specific pipeline
+    (and any instanced versions of it) to assume that IAM Role using a JWT. If
+    you use the \code{subject_scope} setting to change the contents of your
+    sub-claim, adapt this condition accordingly!
     In the next step you will be able to choose which AWS permissions your role will get.
 
-    Now you can use the AWS \link{AssumeRoleWithWebIdentity API operation}{https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRoleWithWebIdentity.html} to assume your role via a JWT issued by Concourse.
-    The easiest way is to do this is via the \link{assume-role-with-web-identity AWS CLI command}{https://docs.aws.amazon.com/cli/latest/reference/sts/assume-role-with-web-identity.html}:
-    \codeblock{bash}{{{
+    Now you can use the AWS \link{AssumeRoleWithWebIdentity API
+    operation}{https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRoleWithWebIdentity.html}
+    to assume your role via a JWT issued by Concourse. The easiest way is to do
+    this is via the \link{assume-role-with-web-identity AWS CLI
+    command}{https://docs.aws.amazon.com/cli/latest/reference/sts/assume-role-with-web-identity.html}:
+
+    \codeblock{yaml}{{{
       var_sources:
       - name: awstoken
         type: idtoken
@@ -298,23 +395,39 @@ Concourse also offers a \link{OIDC Discovery Endpoint}{https://openid.net/specs/
               - -e
               - -c
               - |
-                aws sts assume-role-with-web-identity --role-session-name Concourse --role-arn arn:aws:iam::<your_account>:role/<your_role> --web-identity-token ((awstoken:token)) > creds.json
+                aws sts assume-role-with-web-identity \
+                  --role-session-name Concourse \
+                  --role-arn arn:aws:iam::<your_account>:role/<your_role> \
+                  --web-identity-token ((awstoken:token)) > creds.json
                 echo "Now do something with the temporary credentials in creds.json"
     }}}
   }
 
   \example{Azure}{
-    Azure also supports a way to grant the holder of a JWT permissions in the Cloud. This is done via a feature called \link{Federated Credentials}{https://learn.microsoft.com/en-us/graph/api/resources/federatedidentitycredentials-overview?view=graph-rest-1.0}.
+    Azure also supports a way to grant the holder of a JWT permissions in the
+    Cloud. This is done via a feature called \link{Federated
+    Credentials}{https://learn.microsoft.com/en-us/graph/api/resources/federatedidentitycredentials-overview?view=graph-rest-1.0}.
 
-    First, \link{create an EntraID App Registration}{https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app}. This app registration will be the service principal used by your pipeline.
+    First, \link{create an EntraID App
+    Registration}{https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app}.
+    This app registration will be the service principal used by your pipeline.
 
-    Now \link{create a federated credential}{https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-create-trust?pivots=identity-wif-apps-methods-azp#other-identity-providers} for the app registration you just created.
-    As \italic{Scenario} select "Other". As \italic{Issuer} paste the URL of your Concourse server. As \italic{Type} select "Explicit subject identifier" and as \italic{Value} use \italic{<teamname>/<pipelinename>} of the pipeline that should be able to use the identity. If you use the \italic{subject_scope} setting to change the contents of your sub-claim, adapt this setting here accordingly!
+    Now \link{create a federated
+    credential}{https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-create-trust?pivots=identity-wif-apps-methods-azp#other-identity-providers}
+    for the app registration you just created.
 
-    You can now assign IAM permissions to the identity of the app registration, which define what the identity is allowed to do in your Azure subscription. You most probably already know how to do this.
+    For \italic{Scenario} select "Other". For \italic{Issuer} set it to the
+    external URL of your Concourse server. For \italic{Type} select "Explicit
+    subject identifier" and set \italic{Value} to
+    \code{<teamname>/<pipelinename>} of the pipeline that should be able to use
+    the identity. If you use the \code{subject_scope} setting to change the
+    contents of your sub-claim, change this setting here accordingly.
 
-    Your pipeline can now use the az cli to login to Azure using a JWT generated by Concourse:
-    \codeblock{bash}{{{
+    You can now assign IAM permissions to the identity of the app registration,
+    which define what the identity is allowed to do in your Azure subscription.
+
+    Your pipeline can now use the \code{az} cli to login to Azure using a JWT generated by Concourse:
+    \codeblock{yaml}{{{
       var_sources:
       - name: azuretoken
         type: idtoken
@@ -337,7 +450,10 @@ Concourse also offers a \link{OIDC Discovery Endpoint}{https://openid.net/specs/
               - -c
               - |
                 echo ((azuretoken:token))
-                az login --service-principal -u <client_id of your app registration> --tenant <tenant_id of your app registration> --federated-token ((azuretoken:token))
+                az login --service-principal \
+                  -u <client_id of your app registration> \
+                  --tenant <tenant_id of your app registration> \
+                  --federated-token ((azuretoken:token))
                 echo "You are now authenticated with Azure. Do something with it!"
     }}}
 
