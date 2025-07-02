@@ -529,7 +529,8 @@ configured multiple times with different parameters
       }{
         \schema-group{\code{idtoken} var source}{idtoken-var-source}{
           \required-attribute{type}{`idtoken`}{
-            The \code{idtoken} type issues JWTs which are signed by concourse and contain information about the currently running pipeline/job.
+            The \code{idtoken} type issues JWTs which are signed by concourse
+            and contain information about the currently running pipeline/job.
 
             These JWTs can be used to authenticate with external services.
           }
@@ -539,24 +540,21 @@ configured multiple times with different parameters
               \required-attribute{audience}{[string]}{
                 A list of audience-values to place into the token's aud-claim.
               }
-              \optional-attribute{subject_scope}{string}{
-                Determines what is put into the token's sub-claim. See \reference{idtoken-subject-scope}{here} for e detailed explanation.
+              \optional-attribute{subject_scope}{`team` | `pipeline` | `instance` | `job` | string}{
+                \italic{Default \code{pipeline}.}
 
-                Supported values: \code{team}, \code{pipeline}, \code{instance}, \code{job}.
-
-                Default \code{pipeline}.
+                Determines what is put into the token's sub-claim. See
+                \reference{idtoken-subject-scope} for a detailed explanation.
               }
               \optional-attribute{expires_in}{duration}{
                 How long the token should be valid.
 
-                Default \code{1h}. Can be at max \code{24h}.
+                \italic{Default \code{1h}.} Cannot be longer than \code{24h}.
               }
-              \optional-attribute{algorithm}{string}{
+              \optional-attribute{algorithm}{`RS256` | `ES256` | string}{
+                \italic{Default \code{RS256}.}
+
                 The signature algorithm to use for the token.
-
-                Supported values: \code{RS256}, \code{ES256}.
-
-                Default \code{RS256}.
               }
             }
           }
