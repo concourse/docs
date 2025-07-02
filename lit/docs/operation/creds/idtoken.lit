@@ -172,7 +172,7 @@ Concourse also offers a \link{OIDC Discovery Endpoint}{https://openid.net/specs/
       default_role="demo"
     }}}
 
-    Lastly configure a role for JWT auth. Make sure to use the same value in your pipeline that you used for \code{bound_audiences} (the best would be the URL of your Vault). \code{bound_subject} must be the sub-claim value of your JWT, if you use the \code{subject_scope} setting to change the contents of your sub-claim, adapt this accordingly!
+    Lastly configure a role for JWT auth. Make sure to use the same value in your pipeline that you used for \italic{bound_audiences} (the best would be the URL of your Vault). \italic{bound_subject} must be the sub-claim value of your JWT, if you use the \italic{subject_scope} setting to change the contents of your sub-claim, adapt this accordingly!
     \codeblock{bash}{{{
       vault write auth/jwt/role/demo \
       role_type="jwt"\
@@ -183,8 +183,8 @@ Concourse also offers a \link{OIDC Discovery Endpoint}{https://openid.net/specs/
       ttl=1h
     }}}
 
-    This role will allow the holder of a JWT with \code{aud=my-vault-server.com} and \code{sub=main/your-pipeline} to get a Vault token with the Vault-policy "webapps". If the policy you want to assign has a different name, simply change it in the above example.
-    Make sure to adapt the value for \code{bound_subject} according to your team and pipeline name.
+    This role will allow the holder of a JWT with \italic{aud=my-vault-server.com} and \italic{sub=main/your-pipeline} to get a Vault token with the Vault-policy "webapps". If the policy you want to assign has a different name, simply change it in the above example.
+    Make sure to adapt the value for \italic{bound_subject} according to your team and pipeline name.
 
     Pipelines can now do the following:
     \codeblock{bash}{{{
@@ -239,9 +239,9 @@ Concourse also offers a \link{OIDC Discovery Endpoint}{https://openid.net/specs/
         capabilities = ["read", "list"]
       }
     }}}
-    \smaller{Make sure to set \code{<JWT_ACCESSOR>} to the actual mount-accessor value of your JWT Auth method! You can use \code{vault auth list --format=json | jq -r '."jwt/".accessor'} to get the accessor for your jwt auth method.}
+    \smaller{Make sure to set \italic{<JWT_ACCESSOR>} to the actual mount-accessor value of your JWT Auth method! You can use \italic{vault auth list --format=json | jq -r '."jwt/".accessor'} to get the accessor for your jwt auth method.}
 
-    With a policy like this you don't need to configure \code{bound_subject} in your JWT auth role. Every single pipeline can simply use the same role and the policy will take care that they can only access secrets meant for them. However you need to explicitly configure claim to metadata mapping:
+    With a policy like this you don't need to configure \italic{bound_subject} in your JWT auth role. Every single pipeline can simply use the same role and the policy will take care that they can only access secrets meant for them. However you need to explicitly configure claim to metadata mapping:
 
     \codeblock{bash}{{{
       vault write auth/jwt/role/demo \
@@ -266,12 +266,12 @@ Concourse also offers a \link{OIDC Discovery Endpoint}{https://openid.net/specs/
     with long-lived credentials.
 
     First you need to \link{create an OpenID Connect identity provider}{https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc.html} in your AWS Account.
-    As \code{Provider URL} specify the external URL of your Concourse server.
-    For \code{Audience} you can choose any string you like. Using something like \code{sts.amazonaws.com} is recommended. You have to use the same string later in the configuration of your var-source.
+    As \italic{Provider URL} specify the external URL of your Concourse server.
+    For \italic{Audience} you can choose any string you like. Using something like \italic{sts.amazonaws.com} is recommended. You have to use the same string later in the configuration of your var-source.
 
     Next you will need to \link{create an IAM-Role that can be assumed using your JWT}{https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp_oidc.html#idp_oidc_Create}.
-    As \code{Identity Provider} choose the one you created previously.
-    Add a condition on the sub-claim with type \code{StringEquals} and value \code{yourteam/yourpipeline}. This will allow ONLY that specific pipeline (and any instanced versions of it) to assume that IAM Role using a JWT. If you use the \code{subject_scope} setting to change the contents of your sub-claim, adapt this condition accordingly!
+    As \italic{Identity Provider} choose the one you created previously.
+    Add a condition on the sub-claim with type \italic{StringEquals} and value \italic{yourteam/yourpipeline}. This will allow ONLY that specific pipeline (and any instanced versions of it) to assume that IAM Role using a JWT. If you use the \italic{subject_scope} setting to change the contents of your sub-claim, adapt this condition accordingly!
     In the next step you will be able to choose which AWS permissions your role will get.
 
     Now you can use the AWS \link{AssumeRoleWithWebIdentity API operation}{https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRoleWithWebIdentity.html} to assume your role via a JWT issued by Concourse.
@@ -309,7 +309,7 @@ Concourse also offers a \link{OIDC Discovery Endpoint}{https://openid.net/specs/
     First, \link{create an EntraID App Registration}{https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app}. This app registration will be the service principal used by your pipeline.
 
     Now \link{create a federated credential}{https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-create-trust?pivots=identity-wif-apps-methods-azp#other-identity-providers} for the app registration you just created.
-    As "Scenario" select "Other". As "Issuer" paste the URL of your Concourse server. As "Type" select "Explicit subject identifier" and as "Value" use \code{<teamname>/<pipelinename>} of the pipeline that should be able to use the identity. If you use the \code{subject_scope} setting to change the contents of your sub-claim, adapt this setting here accordingly!
+    As \italic{Scenario} select "Other". As \italic{Issuer} paste the URL of your Concourse server. As \italic{Type} select "Explicit subject identifier" and as \italic{Value} use \italic{<teamname>/<pipelinename>} of the pipeline that should be able to use the identity. If you use the \italic{subject_scope} setting to change the contents of your sub-claim, adapt this setting here accordingly!
 
     You can now assign IAM permissions to the identity of the app registration, which define what the identity is allowed to do in your Azure subscription. You most probably already know how to do this.
 
