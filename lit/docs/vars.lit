@@ -369,6 +369,8 @@ configured multiple times with different parameters
       \reference{aws-ssm-credential-manager}{\code{ssm}}
     }{
       \reference{aws-asm-credential-manager}{\code{secretmanager}} (since v7.7.0)
+    }{
+      \reference{idtoken-credential-manager}{\code{idtoken}} (since v7.14.0)
     }
 
     In the future we want to make use of something like the \link{Prototypes
@@ -520,6 +522,41 @@ configured multiple times with different parameters
             \schema{dummy_config}{
               \required-attribute{vars}{vars}{
                 A mapping of var name to var value.
+              }
+            }
+          }
+        }
+      }{
+        \schema-group{\code{idtoken} var source}{idtoken-var-source}{
+          \required-attribute{type}{`idtoken`}{
+            The \code{idtoken} type issues JWTs which are signed by concourse and contain information about the currently running pipeline/job.
+
+            These JWTs can be used to authenticate with external services.
+          }
+
+          \required-attribute{config}{idtoken_config}{
+            \schema{idtoken_config}{
+              \required-attribute{audience}{[string]}{
+                A list of audience-values to place into the token's aud-claim.
+              }
+              \optional-attribute{subject_scope}{string}{
+                Determines what is put into the token's sub-claim. See \reference{idtoken-subject-scope}{here} for e detailed explanation.
+
+                Supported values: \code{team}, \code{pipeline}, \code{instance}, \code{job}.
+
+                Default \code{pipeline}.
+              }
+              \optional-attribute{expires_in}{duration}{
+                How long the token should be valid.
+
+                Default \code{1h}. Can be at max \code{24h}.
+              }
+              \optional-attribute{algorithm}{string}{
+                The signature algorithm to use for the token.
+
+                Supported values: \code{RS256}, \code{ES256}.
+
+                Default \code{RS256}.
               }
             }
           }
