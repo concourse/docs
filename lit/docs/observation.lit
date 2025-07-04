@@ -51,6 +51,22 @@ your pipelines.
 
   \image{https://ci.concourse-ci.org/api/v1/teams/main/pipelines/concourse/jobs/unit/badge}
 
+  You can also specify a custom title for the badge with a \code{title} query parameter:
+
+  \code{{{
+  /api/v1/teams/{team}/pipelines/{pipeline}/badge?title=hello
+  }}}
+
+  or
+
+  \code{{{
+  /api/v1/teams/{team}/pipelines/{pipeline}/jobs/{job}/badge?title=hello
+  }}}
+
+  ...which should render the following:
+
+  \image{https://ci.concourse-ci.org/api/v1/teams/main/pipelines/concourse/jobs/unit/badge?title=hello}
+
   If you want to have the image link to your pipeline/job in a README, you can make it like so:
 
   \codeblock{html}{{{
