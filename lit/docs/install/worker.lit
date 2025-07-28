@@ -583,7 +583,7 @@ decide much on its own.
         }
       }{
         \table-row{
-          \italic{No equivalent CLI flag or ENV option. Configured trough garden}\code{config.ini}
+          \italic{No equivalent CLI flag or ENV option. Configured through garden}\code{config.ini}
         }{
           \code{--containerd-additional-hosts}
           \code{CONCOURSE_CONTAINERD_ADDITIONAL_HOSTS}
