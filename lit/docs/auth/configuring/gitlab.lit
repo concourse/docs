@@ -10,7 +10,14 @@ model.
   \title{Authentication}{gitlab-authentication}
 
   First you need to \link{create an OAuth application on
-  GitLab}{https://gitlab.com/profile/applications}.
+  GitLab}{https://gitlab.com/-/user_settings/applications} with the following
+  scopes:
+
+  \list{
+    \code{read_user}
+  }{
+    \code{openid}
+  }
 
   The "Authorization callback URL" must be the URL of your Concourse server
   with \code{/sky/issuer/callback} appended. This address must be reachable by
