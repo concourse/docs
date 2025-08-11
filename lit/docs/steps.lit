@@ -979,14 +979,6 @@ by configuring \reference{schema.on_failure} or
         within the current team and be created \italic{unpaused}. If set to \code{self},
         the current pipeline will update its own config.
 
-        \warn{
-          \code{set_pipeline: self} was introduced in Concourse v6.5.0. It is
-          considered an \bold{experimental} feature and may be removed at any
-          time. Contribute to the associated
-          \link{discussion}{https://github.com/concourse/concourse/discussions/5732}
-          with feedback.
-        }
-
 
         \example-toggle{One pipeline configuring another}{
           This is a way to ensure a pipeline stays up to date with its definition in
