@@ -12,6 +12,9 @@ behave the exact same way. Concourse will continuously \code{check} each
 configured resource to discover new versions. These versions then flow through
 the pipeline via \reference{get-step}s configured on \reference{jobs}.
 
+More concretely, resources are containers that run on your workers. See
+\reference{implementing-resource-types} for more details.
+
 A pipeline's resources are listed under \reference{schema.pipeline.resources}
 with the following schema.
 
