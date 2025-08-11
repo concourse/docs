@@ -15,7 +15,8 @@ following schema:
 
 \schema{job}{
   \required-attribute{name}{identifier}{
-    The name of the job. This should be short; it will show up in URLs.
+    The name of the job. This should be short; it will show up in URLs. If you
+    want to rename a job, use \reference{schema.job.old_name}.
   }
 
   \required-attribute{plan}{[step]}{
