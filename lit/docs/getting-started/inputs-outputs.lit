@@ -13,7 +13,7 @@
   tell Concourse what to run \italic{(i.e. run my tests, run this bash script,
   build this image, etc.)}. We are going to expand on the concept of
   \reference{steps}{steps} and show you how to pass artifacts/files between
-  \reference{tasks}{tasks}.
+  \reference{tasks}{tasks} using \code{inputs} and \code{outputs}.
 }
 
 \section{
@@ -36,7 +36,7 @@
           type: registry-image
           source:
             repository: busybox
-        # Add "the-artifact" to our task
+        # Adds a "the-artifact" directory to our task
         outputs:
         - name: the-artifact
         run:
@@ -67,9 +67,10 @@
 
 \section{
   \title{Passing outputs to another task}
-  To pass artifacts from one task to another, the first task must declare the
-  artifact as an output. The second task must then declare the same artifact as
-  an input. Let's update the pipeline to do the following:
+
+  To pass artifacts from one task to another, the first task must declare an
+  output. The second task must then declare an input with the exact same name.
+  Let's update the pipeline to do the following:
 
   \list{
   Have the first task create a file inside \code{the-artifact}
@@ -85,7 +86,7 @@
     - task: hello-world-task
       config:
         platform: linux
-        image_resource:
+        image_resource: &image # Declaring a YAML anchor
           type: registry-image
           source:
             repository: busybox
@@ -103,10 +104,7 @@
     - task: read-the-artifact
       config:
         platform: linux
-        image_resource:
-          type: registry-image
-          source:
-            repository: busybox
+        image_resource: *image
         # To receive "the-artifact", specify it as an input
         inputs:
         - name: the-artifact
@@ -146,13 +144,13 @@
   succeeded
   }}
 
-  With the above pipeline we can see that the file made in the first step is
-  made available in the second step. You can view the same build output from
-  the \link{web UI}{http://localhost:8080/teams/main/pipelines/hello-world}.
-  Click on the job tile to see the individual steps. Click on each step to
-  expand it and see the build logs.
+  It's a bit hard to see when the first task stops and the second one starts in
+  the terminal. Looking at the build from the web UI makes this clearer:
 
-  \frame{http://localhost:8080/teams/main/pipelines/hello-world}{500px}
+  \diagram{images/tutorial/hello-world-passing-artifacts.png}{100%}
+
+  With the above pipeline we can see that the file made in the first step is
+  made available in the second step via the \code{the-artifact}.
 }
 
 \section{
