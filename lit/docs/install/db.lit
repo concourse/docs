@@ -50,13 +50,13 @@ data and coordinating work in a multi-\reference{web-node} installation.
 
   \bold{Memory usage}: similar to CPU usage, but not quite as volatile.
 
-  \bold{Disk usage}: pipeline configurations and various bookkeeping metadata for
-  keeping track of jobs, builds, resources, containers, and volumes. In
+  \bold{Disk usage}: pipeline configurations and various bookkeeping metadata
+  for keeping track of jobs, builds, resources, containers, and volumes. In
   addition, \bold{all build logs are stored in the database}. This is the
-  primary source of disk usage. To mitigate this, users can configure
-  \reference{schema.job.build_logs_to_retain} on a job, but currently there is no
-  operator control for this setting. As a result, disk usage on the database
-  can grow arbitrarily large.
+  primary source of disk usage. To mitigate this, log retention can be defined
+  by pipeline authors by using \reference{schema.job.build_log_retention}.
+  Concourse operators can also configure a default
+  \reference{build-log-retention} policy that applies to all pipelines.
 
   \bold{Bandwidth usage}: well, it's a database, so it most definitely uses the
   network. Something important to consider here is the number of simultaneous
