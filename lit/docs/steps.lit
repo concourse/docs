@@ -1883,7 +1883,7 @@ by configuring \reference{schema.on_failure} or
       minutes.
 
       When exceeded, the step will be interrupted, with the same semantics as
-      aborting the build (except the build will be \code{failed}, not
+      aborting the build (except the build will be \code{errored}, not
       \code{aborted}, to distinguish between human intervention and timeouts being
       enforced).
 
