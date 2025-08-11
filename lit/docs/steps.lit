@@ -1561,9 +1561,10 @@ by configuring \reference{schema.on_failure} or
       Run a step multiple times with different combinations of variable values.
 
       \warn{
-        \code{across} is considered an \bold{experimental} feature, and its
-        syntax/semantics may change. To enable \code{across} for your deployment,
-        you must set the feature flag \code{CONCOURSE_ENABLE_ACROSS_STEP}.
+        The \code{across} step is not enabled by default. To enable
+        \code{across} for your deployment, you must set the feature flag
+        \code{CONCOURSE_ENABLE_ACROSS_STEP}. The \code{across} step may be
+        enabled by default in a future version of Concourse.
       }
 
       The \code{across} step can be combined with the \reference{load-var-step},
