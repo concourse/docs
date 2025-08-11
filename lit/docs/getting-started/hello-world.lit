@@ -192,9 +192,10 @@
   succeeded
   }}
 
-  \italic{The following is an iframe to
-  \link{http://localhost:8080/teams/main/pipelines/hello-world}{http://localhost:8080/teams/main/pipelines/hello-world}}
-  \frame{http://localhost:8080/teams/main/pipelines/hello-world}{500px}
+  You can also view the build from the web UI by clicking on the job and
+  expanding the \code{hello-world-task} step.
+
+  \diagram{images/tutorial/hello-world-first-build.gif}{100%}
 
   Congratulations on building your first Concourse pipeline!
 
