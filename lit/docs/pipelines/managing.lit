@@ -25,6 +25,8 @@
       --old-name my-pipeline \\
       --new-name my-cool-pipeline
   }}
+
+  All job history is retained when renaming a pipeline.
 }
 
 \section{
