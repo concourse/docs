@@ -68,6 +68,12 @@ Here's a quick example demonstrating common YAML syntax:
   pipeline less verbose. If you have the time and are interested in helping out
   with Concourse's design, feedback of this sort is welcome in \link{GitHub
   Discussions}{https://github.com/concourse/concourse/discussions}!
+
+  We do want to avoid implementing an entire YAML templating engine within
+  Concourse. We encoruage you to reach for your favourite templating tool if
+  you're eager about
+  \link{DRYing}{https://en.wikipedia.org/wiki/Don%27t_repeat_yourself} up your
+  pipelines as much as possible.
 }
 
 \section{
