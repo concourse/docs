@@ -265,7 +265,7 @@
   <h2 class="section-header"><a class="anchor-target" name="overview" href="#overview"></a>Overview</h2>
   
 
-  <p>This section is going to go over how to pass data between different <a href="steps.html">steps</a> in a <a href="jobs.html">job</a>. We&#39;ll continue building on our <code>hello-world.yml</code> pipeline.</p><p>In the previous section we learned that <a href="steps.html">steps</a> are where we tell Concourse what to run <em>(i.e. run my tests, run this bash script, build this image, etc.)</em>. We are going to expand on the concept of <a href="steps.html">steps</a> and show you how to pass artifacts/files between <a href="tasks.html">tasks</a>.</p>
+  <p>This section is going to go over how to pass data between different <a href="steps.html">steps</a> in a <a href="jobs.html">job</a>. We&#39;ll continue building on our <code>hello-world.yml</code> pipeline.</p><p>In the previous section we learned that <a href="steps.html">steps</a> are where we tell Concourse what to run <em>(i.e. run my tests, run this bash script, build this image, etc.)</em>. We are going to expand on the concept of <a href="steps.html">steps</a> and show you how to pass artifacts/files between <a href="tasks.html">tasks</a> using <code>inputs</code> and <code>outputs</code>.</p>
 
   
     
@@ -287,7 +287,7 @@
         type: registry-image
         source:
           repository: busybox
-      # Add &#34;the-artifact&#34; to our task
+      # Adds a &#34;the-artifact&#34; directory to our task
       outputs:
       - name: the-artifact
       run:
@@ -313,7 +313,7 @@ succeeded</code></pre></p><p>We can see that in the task&#39;s <a href="https://
   <h2 class="section-header"><a class="anchor-target" name="passing-outputs-to-another-task" href="#passing-outputs-to-another-task"></a>Passing outputs to another task</h2>
   
 
-  <p>To pass artifacts from one task to another, the first task must declare the artifact as an output. The second task must then declare the same artifact as an input. Let&#39;s update the pipeline to do the following:</p><ul>
+  <p>To pass artifacts from one task to another, the first task must declare an output. The second task must then declare an input with the exact same name. Let&#39;s update the pipeline to do the following:</p><ul>
 
   <li><p>Have the first task create a file inside <code>the-artifact</code></p></li>
 
@@ -325,7 +325,7 @@ succeeded</code></pre></p><p>We can see that in the task&#39;s <a href="https://
   - task: hello-world-task
     config:
       platform: linux
-      image_resource:
+      image_resource: &amp;image # Declaring a YAML anchor
         type: registry-image
         source:
           repository: busybox
@@ -343,10 +343,7 @@ succeeded</code></pre></p><p>We can see that in the task&#39;s <a href="https://
   - task: read-the-artifact
     config:
       platform: linux
-      image_resource:
-        type: registry-image
-        source:
-          repository: busybox
+      image_resource: *image
       # To receive &#34;the-artifact&#34;, specify it as an input
       inputs:
       - name: the-artifact
@@ -378,7 +375,9 @@ total 4
 drwxr-xr-x    1 root     root          4096 Feb 26 19:09 the-artifact
 &#43; cat the-artifact/message
 hello from another step!
-succeeded</code></pre></p><p>With the above pipeline we can see that the file made in the first step is made available in the second step. You can view the same build output from the <a href="http://localhost:8080/teams/main/pipelines/hello-world">web UI</a>. Click on the job tile to see the individual steps. Click on each step to expand it and see the build logs.</p><p><iframe class="frame" frameborder="0" width="100%" height="500px" src="http://localhost:8080/teams/main/pipelines/hello-world"></iframe></p>
+succeeded</code></pre></p><p>It&#39;s a bit hard to see when the first task stops and the second one starts in the terminal. Looking at the build from the web UI makes this clearer:</p><div class="diagram">
+  <img src="images/tutorial/hello-world-passing-artifacts.png" alt="diagram" width="100%" />
+</div><p>With the above pipeline we can see that the file made in the first step is made available in the second step via the <code>the-artifact</code>.</p>
 
   
     

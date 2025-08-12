@@ -283,16 +283,21 @@
         
           <tr>
             <td class="number-cell">1.15.4.7</td>
-            <td class="title-cell"><a href="creds-caching.html" >Caching credentials</a></td>
+            <td class="title-cell"><a href="idtoken-credential-manager.html" >The IDToken credential manager</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15.4.8</td>
-            <td class="title-cell"><a href="creds-redacting.html"  class="self">Redacting credentials</a></td>
+            <td class="title-cell"><a href="creds-caching.html" >Caching credentials</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.15.4.9</td>
+            <td class="title-cell"><a href="creds-redacting.html"  class="self">Redacting credentials</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.15.4.10</td>
             <td class="title-cell"><a href="creds-retry-logic.html" >Retrying failed fetches</a></td>
           </tr>
         
@@ -314,7 +319,7 @@
         <div class="page-content">
           <div class="section" id="section_creds-redacting">
   
-  <h1 class="section-header"><a class="anchor-target" name="creds-redacting" href="#creds-redacting"></a><span class="section-number">1.15.4.8 </span>Redacting credentials</h1>
+  <h1 class="section-header"><a class="anchor-target" name="creds-redacting" href="#creds-redacting"></a><span class="section-number">1.15.4.9 </span>Redacting credentials</h1>
   
 
   <p>Concourse can be configured to automatically redact credentials from build output like so:</p><pre><code class="language-bash">CONCOURSE_ENABLE_REDACT_SECRETS=true</code></pre><p>This behavior is off by default as there is likely a CPU performance overhead on the <a href="concourse-web.html"><code>web</code> node</a>s involved with enabling it. It will be on by default once we&#39;ve confirmed that it performs well enough at large scale.</p><p>When enabled, Concourse will keep track of the credential values which were used in a build. When writing build logs to the database, it will replace any occurrence of these values with the text <code>((redacted))</code>.</p><p>Say you&#39;re running a task which runs the following script:</p><pre><code class="language-bash">set -e -u -x
@@ -340,7 +345,7 @@ f572d396fae9206628714fb2ce00f72e94f2258f  some-file</code></pre><p>Going a step 
               prev:
 
               
-              <span class="section-number">1.15.4.7</span>
+              <span class="section-number">1.15.4.8</span>
               
 
               <a href="creds-caching.html">Caching credentials</a>
@@ -352,7 +357,7 @@ f572d396fae9206628714fb2ce00f72e94f2258f  some-file</code></pre><p>Going a step 
               next:
 
               
-              <span class="section-number">1.15.4.9</span>
+              <span class="section-number">1.15.4.10</span>
               
 
               <a href="creds-retry-logic.html">Retrying failed fetches</a>

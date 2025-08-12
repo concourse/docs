@@ -290,17 +290,17 @@
   <h2 class="section-header"><a class="anchor-target" name="the-heart-of-concourse" href="#the-heart-of-concourse"></a>The Heart of Concourse</h2>
   
 
-  <p>Resources are the heart of Concourse. Resources make Concourse tick and are the source of automation within all Concourse pipelines. Resources are how Concourse interacts with the outside world. Here&#39;s a short list of some things that resources can do:</p><ul>
+  <p>Resources are the heart of Concourse. Resources make Concourse tick and are the source of automation within all Concourse pipelines. Resources are how Concourse interacts with the outside world. Here&#39;s a short list of things that resources can do:</p><ul>
 
-  <li><p>You want something to run every five minutes? <a href="https://github.com/concourse/time-resource/">Time resource</a>.</p></li>
+  <li><p>Run a job every five minutes: <a href="https://github.com/concourse/time-resource/">Time resource</a>.</p></li>
 
-  <li><p>You want to run tests on every new commit to the main branch? <a href="https://github.com/concourse/git-resource">Git resource</a>.</p></li>
+  <li><p>Run tests on new commits to the main branch: <a href="https://github.com/concourse/git-resource">Git resource</a>.</p></li>
 
-  <li><p>Run unit tests on new PR&#39;s? <a href="https://github.com/telia-oss/github-pr-resource">Github-PR resource</a>.</p></li>
+  <li><p>Publish a new release of your app on Github: <a href="https://github.com/concourse/github-release-resource/">Github Release resource</a>.</p></li>
 
-  <li><p>Fetch or push the latest image of your app? <a href="https://github.com/concourse/registry-image-resource/">Registry-image resource</a></p></li>
+  <li><p>Pull or push the latest image of your app: <a href="https://github.com/concourse/registry-image-resource/">Registry-image resource</a></p></li>
 
-</ul><p>Resources can do a lot of things! The main goal of resources is to represent some external system or object in your pipeline. That external thing can then be used as a trigger for your <a href="jobs.html">Jobs</a> or your <a href="jobs.html">Jobs</a> can push back and modify the external system or object. It all depends on the resource you use and what features its author has implemented.</p><p>Resources are also how Concourse tries to stay as technology agnostic as possible. For example, Concourse doesn&#39;t care what <a href="https://en.wikipedia.org/wiki/Version_control">version control system</a> you store your code in, if you deploy apps with <a href="https://helm.sh/">Helm</a> or <a href="https://www.terraform.io/">Terraform</a>, or what language your apps are built in.  If you can put your latest and hottest tech behind the resource interface then Concourse can understand your workflow.</p><p>The Concourse team bundles a few basic resource types that come with the Linux tarball you can <a href="https://github.com/concourse/concourse/releases">download from Github</a>. You&#39;ll notice that the Linux tarball is much larger than the macOS or Windows tarball because of all the bundled resources.</p><blockquote class="aside"><p>You can find out which resources a worker has by running: <pre><code class="language-">$ fly -t tutorial workers --details</code></pre></p></blockquote><p>Resources only run on Linux workers because resources are distributed as Linux container images. There are currently no resources for macOS or Windows. Only <a href="task-step.html">task steps</a> can run on macOS or Windows workers.</p>
+</ul><p>Resources can do a lot of things! The main goal of resources is to represent some external system or object in your pipeline. That external thing can then be used as a trigger for your <a href="jobs.html">Jobs</a> or your <a href="jobs.html">Jobs</a> can push back and modify the external system or object. It all depends on the resource you use and what features its author has implemented.</p><p>Resources are also how Concourse tries to stay as technology agnostic as possible. For example: Concourse doesn&#39;t care what <a href="https://en.wikipedia.org/wiki/Version_control">version control system</a> you store your code in, if you deploy apps with <a href="https://helm.sh/">Helm</a> or <a href="https://www.terraform.io/">Terraform</a>, or what language your apps are built in.  If you can put your latest and hottest tech behind the resource interface then Concourse can understand your workflow.</p><p>The Concourse team bundles a few basic resource types that come with the Linux release that you can <a href="https://github.com/concourse/concourse/releases">download from Github</a>. You&#39;ll notice that the Linux tarball is much larger than the macOS or Windows tarball because of all the bundled resources.</p><blockquote class="aside"><p>You can find out which resources a worker has by running: <pre><code class="language-">$ fly -t tutorial workers --details</code></pre></p></blockquote><p>Resources only run on Linux workers because resources are distributed as Linux container images. There are currently no resources for macOS or Windows. Only <a href="task-step.html">task steps</a> can run on macOS or Windows workers.</p>
 
   
     
@@ -312,7 +312,7 @@
   <h2 class="section-header"><a class="anchor-target" name="versions" href="#versions"></a>Versions</h2>
   
 
-  <p>Resources represent the external system or object to Concourse by emitting <a href="config-basics.html#schema.version"><code>versions</code></a>. When a new version is emitted by a resource, that is how Concourse knows to start trigger jobs.</p><p>A version is any way that a resource can uniquely identify the state of the external system or object.</p><p>For example, the git resource emits versions based on the SHA of new commits it finds. A single version from the git resource will look like this to Concourse.</p><pre><code class="language-json">{ &#34;ref&#34;: &#34;04194bfc880c457a5b00f07db78d0532620414cc&#34; }</code></pre><p>Let&#39;s start digging into resources a bit more by going over the resource interface.</p>
+  <p>Resources represent the external system or object to Concourse by emitting <a href="config-basics.html#schema.version"><code>versions</code></a>. When a new version is emitted by a resource, that is how Concourse knows to start jobs connected to the resource.</p><p>A version is any way that a resource can uniquely identify the state of the external system or object.</p><p>For example, the git resource emits versions based on the SHA of new commits it finds. A single version from the git resource will look like this to Concourse.</p><pre><code class="language-json">{ &#34;ref&#34;: &#34;04194bfc880c457a5b00f07db78d0532620414cc&#34; }</code></pre><p>Let&#39;s start digging into resources a bit more by going over the resource interface.</p>
 
   
     
@@ -328,11 +328,11 @@
 
   <li><p><code>/opt/resource/check</code> - implicitly run when a <a href="jobs.html">job</a> contains a <a href="get-step.html">get step</a>. Should return the latest version from the external system or object. Its responsibility is to find new versions.</p></li>
 
-  <li><p><code>/opt/resource/in</code> - run in a <a href="get-step.html">get step</a>. <code>in</code> is given a specific version (generated by a <code>check</code> or <a href="put-step.html"><code>put</code> step</a>) and retrieves the files representing that version from the external system or object.</p></li>
+  <li><p><code>/opt/resource/in</code> - run in a <a href="get-step.html">get step</a>. <code>in</code> is given a specific version (generated by a <code>check</code> or <a href="put-step.html"><code>put</code> step</a>) and retrieves the files and information representing that version from the external system or object.</p></li>
 
   <li><p><code>/opt/resource/out</code> - run in a <a href="put-step.html">put step</a>. Generates a new version, usually based on some input generated by another step in the job. Depending on the resource, this may mean sending something to the external system. For the git resource, this means pushing commits to the external git repository.</p></li>
 
-</ul><p>That&#39;s a high-level overview of the resource interface. Next, we will learn how to add resources to a pipeline.</p>
+</ul><p>That&#39;s a high-level overview of the resource interface which should help you understand what&#39;s going on with resources when we start adding them to our pipeline in the next section.</p>
 
   
     

@@ -322,7 +322,7 @@
   <h2 class="section-header"><a class="anchor-target" name="fewest-build-containers-strategy" href="#fewest-build-containers-strategy"></a>The <code>fewest-build-containers</code> strategy</h2>
   
 
-  <p>When using the <code>fewest-build-containers</code> strategy, step containers are placed on the worker that has the fewest build containers (i.e. containers for other steps of other builds).</p><p>To use this strategy, set the following env var on the <a href="concourse-web.html"><code>web</code> node</a>:</p><pre><code class="language-bash">CONCOURSE_CONTAINER_PLACEMENT_STRATEGY=fewest-build-containers</code></pre>
+  <p>When using the <code>fewest-build-containers</code> strategy, step containers (<code>get</code>, <code>put</code>, <code>task</code>) are placed on the worker that has the fewest build containers (i.e. containers for other steps of other builds).</p><blockquote class="aside"><p>Containers used for resource checks are not counted because they are long-living containers that get re-used for multiple checks, and therefore consume very little resources on the worker.</p></blockquote><p>To use this strategy, set the following env var on the <a href="concourse-web.html"><code>web</code> node</a>:</p><pre><code class="language-bash">CONCOURSE_CONTAINER_PLACEMENT_STRATEGY=fewest-build-containers</code></pre>
 
   
     

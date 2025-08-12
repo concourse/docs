@@ -311,7 +311,13 @@
   <h2 class="section-header"><a class="anchor-target" name="gitlab-authentication" href="#gitlab-authentication"></a>Authentication</h2>
   
 
-  <p>First you need to <a href="https://gitlab.com/profile/applications">create an OAuth application on GitLab</a>.</p><p>The &#34;Authorization callback URL&#34; must be the URL of your Concourse server with <code>/sky/issuer/callback</code> appended. This address must be reachable by GitLab - it can&#39;t be <code>localhost</code>.</p><p>For example, Concourse&#39;s own CI server&#39;s callback URL would be:</p><pre><code class="language-bash">https://ci.concourse-ci.org/sky/issuer/callback</code></pre><p>You will be given a Client ID and a Client Secret for your new application. The client ID and secret must then be configured on the <a href="concourse-web.html"><code>web</code> node</a> by setting the following env:</p><pre><code class="language-bash">CONCOURSE_GITLAB_CLIENT_ID=myclientid
+  <p>First you need to <a href="https://gitlab.com/-/user_settings/applications">create an OAuth application on GitLab</a> with the following scopes:</p><ul>
+
+  <li><p><code>read_user</code></p></li>
+
+  <li><p><code>openid</code></p></li>
+
+</ul><p>The &#34;Authorization callback URL&#34; must be the URL of your Concourse server with <code>/sky/issuer/callback</code> appended. This address must be reachable by GitLab - it can&#39;t be <code>localhost</code>.</p><p>For example, Concourse&#39;s own CI server&#39;s callback URL would be:</p><pre><code class="language-bash">https://ci.concourse-ci.org/sky/issuer/callback</code></pre><p>You will be given a Client ID and a Client Secret for your new application. The client ID and secret must then be configured on the <a href="concourse-web.html"><code>web</code> node</a> by setting the following env:</p><pre><code class="language-bash">CONCOURSE_GITLAB_CLIENT_ID=myclientid
 CONCOURSE_GITLAB_CLIENT_SECRET=myclientsecret</code></pre><p>If you&#39;re configuring a self hosted GitLab instance, you&#39;ll also need to set the following flag:</p><pre><code class="language-bash">CONCOURSE_GITLAB_HOST=https://gitlab.example.com</code></pre><p>The GitLab host must contain a scheme and not a trailing slash.</p>
 
   

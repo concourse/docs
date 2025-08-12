@@ -330,7 +330,7 @@
   <h2 class="section-header"><a class="anchor-target" name="fly-builds" href="#fly-builds"></a><code>fly builds</code></h2>
   
 
-  <p>To list the most recent builds, run:</p><pre><code class="language-bash">$ fly -t example builds</code></pre><p>To list the builds of a job, run:</p><pre><code class="language-bash">$ fly -t example builds -j pipeline-name/job-name</code></pre><p>This can be useful for periodically monitoring the state of a job. The output also works well with tools like <code>awk</code> and <code>grep</code>.</p><p>By default the most recent 50 builds are shown. To see more builds, use the <code>-c</code> flag, like so:</p><pre><code class="language-bash">$ fly -t example builds -c 100</code></pre>
+  <p>To list the most recent builds, run:</p><pre><code class="language-bash">$ fly -t example builds</code></pre><p>To list the builds of a job, run:</p><pre><code class="language-bash">$ fly -t example builds -j pipeline-name/job-name</code></pre><p>This can be useful for periodically monitoring the state of a job. The output also works well with tools like <code>awk</code> and <code>grep</code>.</p><p>By default the most recent 50 builds are shown. To see more builds, use the <code>-c</code> flag, like so:</p><pre><code class="language-bash">$ fly -t example builds -c 100</code></pre><p>To see builds within a certain time range, you can use <code>--since</code> and <code>--until</code>. You can use one or both flags to filter builds. The flags accept a time format of <code>yyyy-mm-dd HH:mm:ss</code>.</p><pre><code class="language-bash">$ fly -t example builds --since &#39;2006-02-06 00:00:00&#39;</code></pre>
 
   
     

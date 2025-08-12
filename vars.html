@@ -314,6 +314,11 @@
       
         <tr>
           <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="vars.html#schema.idtoken_config"><strong><code>idtoken_config</code></strong> schema</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
           <td class="title-cell"><a href="vars.html#schema.var_source.name"><code class="schema-attribute-name"><bold>var_source<wbr />.name</bold></code></a></td>
         </tr>
       
@@ -450,6 +455,41 @@
         <tr>
           <td class="number-cell"><code>#</code></td>
           <td class="title-cell"><a href="vars.html#dummy-var-source"><code>dummy</code> var source</a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="vars.html#schema.var_source.idtoken-var-source.type"><code>idtoken</code> var source <strong><code>type</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="vars.html#schema.idtoken_config.audience"><code>idtoken</code> var source <strong><code>audience</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="vars.html#schema.idtoken_config.subject_scope"><code>idtoken</code> var source <strong><code>subject_scope</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="vars.html#schema.idtoken_config.expires_in"><code>idtoken</code> var source <strong><code>expires_in</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="vars.html#schema.idtoken_config.algorithm"><code>idtoken</code> var source <strong><code>algorithm</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="vars.html#schema.var_source.idtoken-var-source.config"><code>idtoken</code> var source <strong><code>config</code></strong></a></td>
+        </tr>
+      
+        <tr>
+          <td class="number-cell"><code>#</code></td>
+          <td class="title-cell"><a href="vars.html#idtoken-var-source"><code>idtoken</code> var source</a></td>
         </tr>
       
       
@@ -805,6 +845,8 @@ resources:
 
   <li><p><a href="aws-asm-credential-manager.html"><code>secretmanager</code></a> (since v7.7.0)</p></li>
 
+  <li><p><a href="idtoken-credential-manager.html"><code>idtoken</code></a> (since v7.14.0)</p></li>
+
 </ul></p><p>In the future we want to make use of something like the <a href="https://github.com/concourse/rfcs/pull/37">Prototypes (RFC #37)</a> so that third-party credential managers can be used just like resource types.</p><div class="schema">
   <h2 class="schema-header"><a class="anchor-target" name="schema.var_source" href="#schema.var_source"></a><code>var_source</code> schema</h2>
 
@@ -1114,6 +1156,83 @@ resources:
     <p>A mapping of var name to var value.</p>
   </div>
 </div>
+</div>
+  </div>
+</div>
+</div>
+  </div>
+  
+  <div class="one-of-option">
+    <div class="schema-group">
+  <a id="idtoken-var-source"></a>
+  <div class="toggleable schema-attribute required">
+  <input id="toggle-schema.var_source.idtoken-var-source.type" type="checkbox" class="toggle" />
+  <label for="toggle-schema.var_source.idtoken-var-source.type" class="toggle-title">
+    <a id="schema.var_source.idtoken-var-source.type"></a>
+
+    <code><a class="attribute-name" href="#schema.var_source.idtoken-var-source.type">type</a>: <span class="attribute-type"><span class="schema-scalar">idtoken</span></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>The <code>idtoken</code> type issues JWTs which are signed by concourse and contain information about the currently running pipeline/job.</p><p>These JWTs can be used to authenticate with external services.</p>
+  </div>
+</div><div class="toggleable schema-attribute required">
+  <input id="toggle-schema.var_source.idtoken-var-source.config" type="checkbox" class="toggle" />
+  <label for="toggle-schema.var_source.idtoken-var-source.config" class="toggle-title">
+    <a id="schema.var_source.idtoken-var-source.config"></a>
+
+    <code><a class="attribute-name" href="#schema.var_source.idtoken-var-source.config">config</a>: <span class="attribute-type"><a href="vars.html#schema.idtoken_config"><strong>idtoken_config</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <div class="schema">
+  <h2 class="schema-header"><a class="anchor-target" name="schema.idtoken_config" href="#schema.idtoken_config"></a><code>idtoken_config</code> schema</h2>
+
+  <p><div class="toggleable schema-attribute required">
+  <input id="toggle-schema.idtoken_config.audience" type="checkbox" class="toggle" />
+  <label for="toggle-schema.idtoken_config.audience" class="toggle-title">
+    <a id="schema.idtoken_config.audience"></a>
+
+    <code><a class="attribute-name" href="#schema.idtoken_config.audience">audience</a>: <span class="attribute-type">[<a href="config-basics.html#schema.string"><strong>string</strong></a>]</span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>A list of audience-values to place into the token&#39;s aud-claim.</p>
+  </div>
+</div> <div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.idtoken_config.subject_scope" type="checkbox" class="toggle" />
+  <label for="toggle-schema.idtoken_config.subject_scope" class="toggle-title">
+    <a id="schema.idtoken_config.subject_scope"></a>
+
+    <code><a class="attribute-name" href="#schema.idtoken_config.subject_scope">subject_scope</a>: <span class="attribute-type"><span class="schema-scalar">team</span> | <span class="schema-scalar">pipeline</span> | <span class="schema-scalar">instance</span> | <span class="schema-scalar">job</span> | <a href="config-basics.html#schema.string"><strong>string</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>pipeline</code>.</em></p><p>Determines what is put into the token&#39;s sub-claim. See <a href="idtoken-credential-manager.html#idtoken-subject-scope">Subject Scope</a> for a detailed explanation.</p>
+  </div>
+</div> <div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.idtoken_config.expires_in" type="checkbox" class="toggle" />
+  <label for="toggle-schema.idtoken_config.expires_in" class="toggle-title">
+    <a id="schema.idtoken_config.expires_in"></a>
+
+    <code><a class="attribute-name" href="#schema.idtoken_config.expires_in">expires_in</a>: <span class="attribute-type"><a href="config-basics.html#schema.duration"><strong>duration</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p>How long the token should be valid.</p><p><em>Default <code>1h</code>.</em> Cannot be longer than <code>24h</code>.</p>
+  </div>
+</div> <div class="toggleable schema-attribute optional">
+  <input id="toggle-schema.idtoken_config.algorithm" type="checkbox" class="toggle" />
+  <label for="toggle-schema.idtoken_config.algorithm" class="toggle-title">
+    <a id="schema.idtoken_config.algorithm"></a>
+
+    <code><a class="attribute-name" href="#schema.idtoken_config.algorithm">algorithm</a>: <span class="attribute-type"><span class="schema-scalar">RS256</span> | <span class="schema-scalar">ES256</span> | <a href="config-basics.html#schema.string"><strong>string</strong></a></span></code>
+  </label>
+
+  <div class="toggle-content attribute-content">
+    <p><em>Default <code>RS256</code>.</em></p><p>The signature algorithm to use for the token.</p>
+  </div>
+</div></p>
 </div>
   </div>
 </div>

@@ -335,7 +335,7 @@
   <h1 class="section-header"><a class="anchor-target" name="timeout-step" href="#timeout-step"></a><span class="section-number">1.11.9.2 </span><code>timeout</code> Step Modifier</h1>
   
 
-  <p>The amount of time to limit the step&#39;s execution to, e.g. <code>30m</code> for 30 minutes.</p><p>When exceeded, the step will be interrupted, with the same semantics as aborting the build (except the build will be <code>failed</code>, not <code>aborted</code>, to distinguish between human intervention and timeouts being enforced).</p><div class="toggleable schema-attribute optional">
+  <p>The amount of time to limit the step&#39;s execution to, e.g. <code>30m</code> for 30 minutes.</p><p>When exceeded, the step will be interrupted, with the same semantics as aborting the build (except the build will be <code>errored</code>, not <code>aborted</code>, to distinguish between human intervention and timeouts being enforced).</p><div class="toggleable schema-attribute optional">
   <input id="toggle-schema.timeout" type="checkbox" class="toggle" />
   <label for="toggle-schema.timeout" class="toggle-title">
     <a id="schema.timeout"></a>
