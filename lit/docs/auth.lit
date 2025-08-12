@@ -45,21 +45,24 @@ access control for future requests.
   There are a few reasons it'd be a bad idea to do otherwise:
 
   \list{
-    Any team can run builds with \reference{schema.task.privileged} tasks. A bad
-    actor in the mix could easily use this to harm your workers and your
-    cluster.
+    Any team can run builds with \reference{schema.task.privileged} tasks. A
+    bad actor in the mix could easily use this to harm your workers and your
+    cluster. You can \reference{locking-down-privileged-mode}{lock down
+    privileged mode} if you use the containerd runtime and avoid this issue all
+    together.
 
-    In the future, we'll probably have this as a flag on a team, indicating
-    whether they're permitted to run privileged builds.
   }{
     There are no networking restrictions in place, and traffic to and from the
-    workers is currently unencrypted and unauthorized. Anyone could run a task
-    that does horrible things to your worker's containers, possibly stealing
-    sensitive information.
+    worker's Garden and Baggageclaim endpoints is currently unencrypted and
+    unauthorized. Anyone could run a task that does horrible things to your
+    worker's containers, possibly stealing sensitive information.
 
     This can be remedied with configuration specified on Garden to restrict
     access to the internal network, but this is not detailed in our docs, and
     we'll probably want to find a better answer than configuration in the
     future.
+
+    You could put firewall rules in place between workers to mitigate this
+    issue as well.
   }
 }
