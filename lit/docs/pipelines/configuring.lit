@@ -2,7 +2,8 @@
 
 \use-plugin{concourse-docs}
 
-Pipelines are configured entirely via the \reference{fly-cli}. There is no GUI.
+Pipelines are configured entirely via the \reference{fly-cli} or the
+\reference{set-pipeline}. There is no GUI for configuring pipelines.
 
 \section{
   \title{\code{fly set-pipeline}}{fly-set-pipeline}
