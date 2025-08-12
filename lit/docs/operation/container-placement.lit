@@ -35,9 +35,15 @@ on the configured strategy. If no workers satisfies the configured strategy, the
 \section{
   \title{\aux{The }\code{fewest-build-containers} strategy}{fewest-build-containers-strategy}
 
-  When using the \code{fewest-build-containers} strategy, step containers are
-  placed on the worker that has the fewest build containers (i.e. containers
-  for other steps of other builds).
+  When using the \code{fewest-build-containers} strategy, step containers
+  (\code{get}, \code{put}, \code{task}) are placed on the worker that has the
+  fewest build containers (i.e. containers for other steps of other builds).
+
+  \aside{
+    Containers used for resource checks are not counted because they are
+    long-living containers that get re-used for multiple checks, and therefore
+    consume very little resources on the worker.
+  }
 
   To use this strategy, set the following env var on the \reference{web-node}:
 

@@ -508,6 +508,7 @@ decide much on its own.
           --containerd-external-ip=                          IP address to use to reach container's mapped ports. Autodetected if not specified. [$CONCOURSE_CONTAINERD_EXTERNAL_IP]
           --containerd-dns-server=                           DNS server IP address to use instead of automatically determined servers. Can be specified multiple times. [$CONCOURSE_CONTAINERD_DNS_SERVER]
           --containerd-restricted-network=                   Network ranges to which traffic from containers will be restricted. Can be specified multiple times. [$CONCOURSE_CONTAINERD_RESTRICTED_NETWORK]
+          --containerd-additional-hosts=                     Additional entries to add to /etc/hosts in containers. [$CONCOURSE_CONTAINERD_ADDITIONAL_HOSTS]
           --containerd-network-pool=                         Network range to use for dynamically allocated container subnets. (default: 10.80.0.0/16) [$CONCOURSE_CONTAINERD_NETWORK_POOL]
           --containerd-mtu=                                  MTU size for container network interfaces. Defaults to the MTU of the interface used for outbound access by the host. [$CONCOURSE_CONTAINERD_MTU]
           --containerd-allow-host-access                     Allow containers to reach the host's network. This is turned off by default. [$CONCOURSE_CONTAINERD_ALLOW_HOST_ACCESS]
@@ -579,6 +580,13 @@ decide much on its own.
         }{
           \code{--containerd-restricted-network}
           \code{CONCOURSE_CONTAINERD_RESTRICTED_NETWORK}
+        }
+      }{
+        \table-row{
+          \italic{No equivalent CLI flag or ENV option. Configured through garden}\code{config.ini}
+        }{
+          \code{--containerd-additional-hosts}
+          \code{CONCOURSE_CONTAINERD_ADDITIONAL_HOSTS}
         }
       }{
         \table-row{

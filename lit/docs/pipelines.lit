@@ -8,6 +8,9 @@ A pipeline is the result of configuring \reference{jobs} and
 life of its own, to continuously detect resource versions and automatically
 queue new builds for jobs as they have new available inputs.
 
+The name of a pipeline has a few restrictions that are outlined here:
+\reference{schema.identifier}.
+
 Pipelines are configured via \reference{fly-set-pipeline} or the
 \reference{set-pipeline} as declarative \reference{intro-to-yaml}{YAML
 files} which conform to the following schema:

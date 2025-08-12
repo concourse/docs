@@ -66,8 +66,8 @@ A pipeline's resource types are listed under
   }
 
   \optional-attribute{params}{config}{
-    Arbitrary config to pass when running the \code{get} to fetch the resource
-    type's image.
+    Arbitrary config to pass when running the \reference{get} to fetch the resource
+    type's image. This is equivalent to \reference{schema.get.params}.
   }
 
   \optional-attribute{check_every}{duration}{

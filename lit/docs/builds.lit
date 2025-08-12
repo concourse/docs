@@ -92,6 +92,14 @@ sure you intercept while it's running, if you want to debug.
   \codeblock{bash}{{
   $ fly -t example builds -c 100
   }}
+
+  To see builds within a certain time range, you can use \code{--since} and
+  \code{--until}. You can use one or both flags to filter builds. The flags
+  accept a time format of \code{yyyy-mm-dd HH:mm:ss}.
+
+  \codeblock{bash}{{
+  $ fly -t example builds --since '2006-02-06 00:00:00'
+  }}
 }
 
 \section{

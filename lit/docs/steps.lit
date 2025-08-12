@@ -979,14 +979,6 @@ by configuring \reference{schema.on_failure} or
         within the current team and be created \italic{unpaused}. If set to \code{self},
         the current pipeline will update its own config.
 
-        \warn{
-          \code{set_pipeline: self} was introduced in Concourse v6.5.0. It is
-          considered an \bold{experimental} feature and may be removed at any
-          time. Contribute to the associated
-          \link{discussion}{https://github.com/concourse/concourse/discussions/5732}
-          with feedback.
-        }
-
 
         \example-toggle{One pipeline configuring another}{
           This is a way to ensure a pipeline stays up to date with its definition in
@@ -1561,9 +1553,10 @@ by configuring \reference{schema.on_failure} or
       Run a step multiple times with different combinations of variable values.
 
       \warn{
-        \code{across} is considered an \bold{experimental} feature, and its
-        syntax/semantics may change. To enable \code{across} for your deployment,
-        you must set the feature flag \code{CONCOURSE_ENABLE_ACROSS_STEP}.
+        The \code{across} step is not enabled by default. To enable
+        \code{across} for your deployment, you must set the feature flag
+        \code{CONCOURSE_ENABLE_ACROSS_STEP}. The \code{across} step may be
+        enabled by default in a future version of Concourse.
       }
 
       The \code{across} step can be combined with the \reference{load-var-step},
@@ -1882,7 +1875,7 @@ by configuring \reference{schema.on_failure} or
       minutes.
 
       When exceeded, the step will be interrupted, with the same semantics as
-      aborting the build (except the build will be \code{failed}, not
+      aborting the build (except the build will be \code{errored}, not
       \code{aborted}, to distinguish between human intervention and timeouts being
       enforced).
 

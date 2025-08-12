@@ -94,11 +94,11 @@ just here for completeness!
   The validation rule is as follows:
 
   \codeblock{regex}{{{
-    ^[\p{Ll}\p{Lt}\p{Lm}\p{Lo}][\p{Ll}\p{Lt}\p{Lm}\p{Lo}\d\-_.]*$
+    ^[\p{Ll}\p{Lt}\p{Lm}\p{Lo}\d][\p{Ll}\p{Lt}\p{Lm}\p{Lo}\d\-_.]*$
   }}}
 
-  Where all \italic{identifier} must start with a Unicode lowercase letter,
-  followed by any number of allowed characters.
+  Where all \italic{identifier} must start with a Unicode lowercase letter or
+  number, followed by any number of allowed characters.
 
   Currently, the validation will only show as warnings. For the sake of
   future-proofing, you may want to conform to it.
