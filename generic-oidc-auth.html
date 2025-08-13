@@ -354,7 +354,7 @@ CONCOURSE_OIDC_ISSUER=https://oidc.example.com</code></pre><p>Consult <code>conc
 
   <p><div class="warning">
   When authorizing individual users, it&#39;s up to you to ensure that the <code>preferred_username</code> claim and/or the claim specified by <code>CONCOURSE_OIDC_USER_NAME_KEY</code> is unique. If they&#39;re not, then it&#39;s possible for users to impersonate each other
-</div></p><p>OIDC users and groups can be authorized for a team by passing the following flags to <a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a>:</p><dl>
+</div></p><p>OIDC users and groups can be authorized for a team by passing one or more of the following flags to <a href="managing-teams.html#fly-set-team"><code>fly set-team</code></a>:</p><dl>
   
   <dt><code>--oidc-user=USERNAME</code></dt>
     <dd><p>Authorize an individual user.</p></dd>
@@ -364,11 +364,13 @@ CONCOURSE_OIDC_ISSUER=https://oidc.example.com</code></pre><p>Consult <code>conc
   
 </dl><p>For example:</p><pre><code class="language-bash">$ fly set-team -n my-team \
     --oidc-user my-username \
-    --oidc-group my-group</code></pre><p>...or via <code>--config</code> for <a href="managing-teams.html#setting-roles">setting user roles</a>:</p><pre><code class="language-bash">roles:
+    --oidc-user another-username \
+    --oidc-group my-group \
+    --oidc-group my-other-group</code></pre><p>...or via <code>--config</code> for <a href="managing-teams.html#setting-roles">setting user roles</a>:</p><pre><code class="language-bash">roles:
 - name: member
   oidc:
-    users: [&#34;my-username&#34;]
-    groups: [&#34;my-groups&#34;]</code></pre>
+    users: [&#34;my-username&#34;, &#34;another-username&#34;]
+    groups: [&#34;my-group&#34;, &#34;my-other-group&#34;]</code></pre><p>Both users and groups are optional. You may opt to only provide privileges based on membership to a group and not to any user explicitly and vice versa.</p>
 
   
     

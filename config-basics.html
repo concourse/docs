@@ -435,7 +435,7 @@ duplicate_value: *my_anchor</code></pre><p>...is exactly equivalent to:</p><pre>
 
 duplicate_value:
   do_the_thing: true
-  with_these_values: [1, 2, 3]</code></pre><p>If you find yourself repeating configuration throughout your pipeline, it may be a sign that Concourse is missing some kind of abstraction to make your pipeline less verbose. If you have the time and are interested in helping out with Concourse&#39;s design, feedback of this sort is welcome in <a href="https://github.com/concourse/concourse/discussions">GitHub Discussions</a>!</p>
+  with_these_values: [1, 2, 3]</code></pre><p>If you find yourself repeating configuration throughout your pipeline, it may be a sign that Concourse is missing some kind of abstraction to make your pipeline less verbose. If you have the time and are interested in helping out with Concourse&#39;s design, feedback of this sort is welcome in <a href="https://github.com/concourse/concourse/discussions">GitHub Discussions</a>!</p><p>We do want to avoid implementing an entire YAML templating engine within Concourse. We encoruage you to reach for your favourite templating tool if you&#39;re eager about <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRYing</a> up your pipelines as much as possible.</p>
 
   
     
