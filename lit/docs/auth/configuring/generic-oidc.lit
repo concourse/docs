@@ -78,8 +78,8 @@ issuer URL rather than auth/token/userinfo URLs.
   \code{CONCOURSE_OIDC_USER_NAME_KEY} is unique. If they're not, then it's
   possible for users to impersonate each other}
 
-  OIDC users and groups can be authorized for a team by passing the following
-  flags to \reference{fly-set-team}:
+  OIDC users and groups can be authorized for a team by passing one or more
+  of the following flags to \reference{fly-set-team}:
 
   \definitions{
     \definition{\code{--oidc-user=USERNAME}}{
@@ -103,7 +103,9 @@ issuer URL rather than auth/token/userinfo URLs.
   \codeblock{bash}{{{
   $ fly set-team -n my-team \
       --oidc-user my-username \
-      --oidc-group my-group
+      --oidc-user another-username \
+      --oidc-group my-group \
+      --oidc-group my-other-group
   }}}
 
   ...or via \code{--config} for \reference{setting-roles}{setting user roles}:
@@ -112,9 +114,12 @@ issuer URL rather than auth/token/userinfo URLs.
   roles:
   - name: member
     oidc:
-      users: ["my-username"]
-      groups: ["my-groups"]
+      users: ["my-username", "another-username"]
+      groups: ["my-group", "my-other-group"]
   }}}
+
+  Both users and groups are optional. You may opt to only provide privileges
+  based on membership to a group and not to any user explicitly and vice versa.
 
   \section{
     \title{Configuring \code{main} Team Authorization}
