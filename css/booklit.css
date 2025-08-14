@@ -612,6 +612,9 @@ body {
 .diagram {
   text-align: center;
 }
+.video {
+  text-align: center;
+}
 .anchor-target {
   display: inline-block;
   position: absolute;

@@ -159,6 +159,7 @@
           type: registry-image
           source:
             repository: busybox # images are pulled from docker hub by default
+            tag: latest
         # The command Concourse will run inside the container
         # echo "Hello world!"
         run:
@@ -195,7 +196,7 @@
   You can also view the build from the web UI by clicking on the job and
   expanding the \code{hello-world-task} step.
 
-  \diagram{images/tutorial/hello-world-first-build.gif}{100%}
+  \video{images/tutorial/hello-world-first-build.mp4}{1280px}{720px}
 
   Congratulations on building your first Concourse pipeline!
 

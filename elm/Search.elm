@@ -1,4 +1,4 @@
-port module Main exposing (main)
+port module Search exposing (main)
 
 import Browser
 import Browser.Dom as BD

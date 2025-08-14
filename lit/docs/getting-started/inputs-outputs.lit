@@ -36,6 +36,7 @@
           type: registry-image
           source:
             repository: busybox
+            tag: latest
         # Adds a "the-artifact" directory to our task
         outputs:
         - name: the-artifact
@@ -90,6 +91,7 @@
           type: registry-image
           source:
             repository: busybox
+            tag: latest
         outputs:
         - name: the-artifact
         run:
