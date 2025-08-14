@@ -348,15 +348,19 @@
 
   <li><p>Publish our app to GitHub</p></li>
 
-</ul><p>We have a very basic app in our <a href="https://github.com/concourse/examples"><code>github.com/concourse/examples</code></a> repo that we&#39;ll use in our pipeline. You should fork this repository so you can continue following along. We&#39;re going to build the Go app under <code>apps/golang/</code> directory.</p><p>When creating a new <a href="jobs.html">Job</a> or <a href="pipelines.html">Pipeline</a>, it can be helpful to think of all the external things the job will need in order to run, and declare them as <a href="resources.html">Resources</a> in our pipeline. We know we&#39;ll need our Git repository with our app&#39;s code, so we&#39;ll declare that as a resource first.</p><p>We will use the <a href="https://github.com/concourse/git-resource/">git resource</a> to represent our Git repository. The <code>README.md</code> contains the documentation for how to use the resource.</p><pre><code class="language-yaml">resources:
-  - name: repo
-    type: git
-    source:
-      uri: https://github.com/concourse/examples.git</code></pre><blockquote class="aside"><p><strong>Git Authentication (Optional)</strong></p><p>To avoid any rate-limiting issues from GitHub, or if you&#39;re using a private Git repository, you may want to provide the <code>private_key</code> or <code>username</code>/<code>password</code> fields. You can read about both in the git resource&#39;s <a href="https://github.com/concourse/git-resource/">README</a>.</p></blockquote><p>We&#39;ve added a top-level key to our pipeline called <a href="resources.html"><code>resources</code></a>, which takes an unordered list of resouces that can be referenced by jobs in our pipeline.</p><p>When delcaring a resource, Concourse only requires you to declare the <a href="resources.html#schema.resource.name"><code>name</code></a> and <a href="resources.html#schema.resource.type"><code>type</code></a>. The <code>name</code> is how jobs will reference the resource.</p><p>Depending on the resource type you&#39;re using, the <code>source</code> will likely have one or more required fields. This is specific to each resource type, so refer to the documentation of the resource type to find out what fields are required.</p><p>Next, we can add a job that references our resource. Let&#39;s add a job to our pipeline that, for now, downloads our git repo. We&#39;ll use the <a href="get-step.html"><code>get</code> step</a> to do this.</p><pre><code class="language-yaml">resources:
+</ul><p>We have a very basic app in our <a href="https://github.com/concourse/examples"><code>github.com/concourse/examples</code></a> repo that we&#39;ll use in your pipeline. You should fork this repository so you can continue following along. We&#39;re going to build the Go app under the <code>apps/golang/</code> directory.</p><p>When creating a new <a href="jobs.html">Job</a> or <a href="pipelines.html">Pipeline</a>, it can be helpful to think of all the external things the job will need in order to run, and declare them as <a href="resources.html">Resources</a> in our pipeline. We know we&#39;ll need our Git repository with our app&#39;s code, so we&#39;ll declare that as a resource first.</p><p>We will use the <a href="https://github.com/concourse/git-resource/">git resource</a> to represent our Git repository. The <code>README.md</code> contains the documentation for how to use the resource.</p><pre><code class="language-yaml">resources:
   - name: repo
     type: git
     source:
       uri: https://github.com/concourse/examples.git
+      username: &lt;user&gt;
+      password: github_pat_...</code></pre><blockquote class="aside"><p>You&#39;ll need to generate a Personal Access Token for GitHub in order to complete this tutorial. You can make a fine-grained access token on <a href="https://github.com/settings/personal-access-tokens">this page</a>. The only permission required is <code>read-write</code> access to <code>content</code>. You may scope the token to your fork of the <code>examples</code> repository.</p></blockquote><p>We&#39;ve added a top-level key to our pipeline called <a href="resources.html"><code>resources</code></a>, which takes an unordered list of resouces that can be referenced by jobs in our pipeline.</p><p>When delcaring a resource, Concourse only requires you to declare the <a href="resources.html#schema.resource.name"><code>name</code></a> and <a href="resources.html#schema.resource.type"><code>type</code></a>. The <code>name</code> is how jobs will reference the resource.</p><p>Depending on the resource type you&#39;re using, the <code>source</code> will likely have one or more required fields. This is specific to each resource type, so refer to the documentation of the resource type to find out what fields are required.</p><p>Next, we can add a job that references our resource. Let&#39;s add a job to our pipeline that, for now, downloads our git repo. We&#39;ll use the <a href="get-step.html"><code>get</code> step</a> to do this.</p><pre><code class="language-yaml">resources:
+  - name: repo
+    type: git
+    source:
+      uri: https://github.com/concourse/examples.git
+      username: &lt;user&gt;
+      password: github_pat_...
 
 jobs:
   - name: tests
@@ -371,6 +375,8 @@ fly -t tutorial unpause-pipeline --pipeline go-app</code></pre><p>To change thin
     type: git
     source:
       uri: https://github.com/concourse/examples.git
+      username: &lt;user&gt;
+      password: github_pat_...
 
 jobs:
   - name: tests
@@ -402,6 +408,8 @@ jobs:
     type: git
     source:
       uri: https://github.com/concourse/examples.git
+      username: &lt;user&gt;
+      password: github_pat_...
 
 jobs:
   - name: tests
@@ -471,21 +479,29 @@ git push -u origin version</code></pre><p>Now we can add this as a resource in o
     type: git
     source:
       uri: https://github.com/concourse/examples.git
+      username: &lt;user&gt;
+      password: github_pat_...
 
   - name: version
     type: git
     source:
       uri: https://github.com/concourse/examples.git
-      branch: version</code></pre><p>Publishing to GitHub is also going to need another resource because it represents something external to Concourse. Let&#39;s add a third resource that will represent our release on GitHub.</p><blockquote class="aside"><p>You&#39;ll need to generate a Personal Access Token on GitHub in order to publish the release. You can make a fine-grained access token on <a href="https://github.com/settings/personal-access-tokens">this page</a>. The only permission required is <code>read-write</code> access to <code>content</code>. You may scope the token to your fork of the <code>examples</code> repository.</p></blockquote><pre><code class="language-yaml">resources:
+      username: &lt;user&gt;
+      password: github_pat_...
+      branch: version</code></pre><p>Publishing to GitHub is also going to need another resource because it represents something external to Concourse. Let&#39;s add a third resource that will represent our release on GitHub.</p><pre><code class="language-yaml">resources:
   - name: repo
     type: git
     source:
       uri: https://github.com/concourse/examples.git
+      username: &lt;user&gt;
+      password: github_pat_...
 
   - name: version
     type: git
     source:
       uri: https://github.com/concourse/examples.git
+      username: &lt;user&gt;
+      password: github_pat_...
       branch: version
 
   - name: release
@@ -541,11 +557,15 @@ git push -u origin version</code></pre><p>Now we can add this as a resource in o
     type: git
     source:
       uri: https://github.com/concourse/examples.git
+      username: &lt;user&gt;
+      password: github_pat_...
 
   - name: version
     type: git
     source:
       uri: https://github.com/concourse/examples.git
+      username: &lt;user&gt;
+      password: github_pat_...
       branch: version
 
   - name: release
