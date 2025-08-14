@@ -126,8 +126,8 @@
 
   We have a very basic app in our
   \link{\code{github.com/concourse/examples}}{https://github.com/concourse/examples}
-  repo that we'll use in our pipeline. You should fork this repository so you
-  can continue following along. We're going to build the Go app under
+  repo that we'll use in your pipeline. You should fork this repository so you
+  can continue following along. We're going to build the Go app under the
   \code{apps/golang/} directory.
 
   When creating a new \reference{jobs}{Job} or \reference{pipelines}{Pipeline},
@@ -147,15 +147,16 @@
       type: git
       source:
         uri: https://github.com/concourse/examples.git
+        username: <user>
+        password: github_pat_...
   }}
 
   \aside{
-    \bold{Git Authentication (Optional)}
-
-    To avoid any rate-limiting issues from GitHub, or if you're using a private
-    Git repository, you may want to provide the \code{private_key} or
-    \code{username}/\code{password} fields. You can read about both in the git
-    resource's \link{README}{https://github.com/concourse/git-resource/}.
+    You'll need to generate a Personal Access Token for GitHub in order to
+    complete this tutorial. You can make a fine-grained access token on
+    \link{this page}{https://github.com/settings/personal-access-tokens}. The
+    only permission required is \code{read-write} access to \code{content}. You
+    may scope the token to your fork of the \code{examples} repository.
   }
 
   We've added a top-level key to our pipeline called
@@ -182,6 +183,8 @@
       type: git
       source:
         uri: https://github.com/concourse/examples.git
+        username: <user>
+        password: github_pat_...
 
   jobs:
     - name: tests
@@ -219,6 +222,8 @@
       type: git
       source:
         uri: https://github.com/concourse/examples.git
+        username: <user>
+        password: github_pat_...
 
   jobs:
     - name: tests
@@ -283,6 +288,8 @@
       type: git
       source:
         uri: https://github.com/concourse/examples.git
+        username: <user>
+        password: github_pat_...
 
   jobs:
     - name: tests
@@ -410,11 +417,15 @@
         type: git
         source:
           uri: https://github.com/concourse/examples.git
+          username: <user>
+          password: github_pat_...
 
       - name: version
         type: git
         source:
           uri: https://github.com/concourse/examples.git
+          username: <user>
+          password: github_pat_...
           branch: version
   }}
 
@@ -422,25 +433,21 @@
   represents something external to Concourse. Let's add a third resource that
   will represent our release on GitHub.
 
-  \aside{
-    You'll need to generate a Personal Access Token on GitHub in order to
-    publish the release. You can make a fine-grained access token on \link{this
-    page}{https://github.com/settings/personal-access-tokens}. The only
-    permission required is \code{read-write} access to \code{content}. You may
-    scope the token to your fork of the \code{examples} repository.
-  }
-
   \codeblock{yaml}{{
     resources:
       - name: repo
         type: git
         source:
           uri: https://github.com/concourse/examples.git
+          username: <user>
+          password: github_pat_...
 
       - name: version
         type: git
         source:
           uri: https://github.com/concourse/examples.git
+          username: <user>
+          password: github_pat_...
           branch: version
 
       - name: release
@@ -513,11 +520,15 @@
         type: git
         source:
           uri: https://github.com/concourse/examples.git
+          username: <user>
+          password: github_pat_...
 
       - name: version
         type: git
         source:
           uri: https://github.com/concourse/examples.git
+          username: <user>
+          password: github_pat_...
           branch: version
 
       - name: release
