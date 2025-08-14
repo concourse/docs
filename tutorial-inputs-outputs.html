@@ -42,7 +42,7 @@
     <div id="search"></div>
 
     <script type="text/javascript">
-      var app = Elm.Main.init({
+      var app = Elm.Search.init({
         node: document.getElementById('search')
       });
 
@@ -291,6 +291,7 @@
         type: registry-image
         source:
           repository: busybox
+          tag: latest
       # Adds a &#34;the-artifact&#34; directory to our task
       outputs:
       - name: the-artifact
@@ -333,6 +334,7 @@ succeeded</code></pre></p><p>We can see that in the task&#39;s <a href="https://
         type: registry-image
         source:
           repository: busybox
+          tag: latest
       outputs:
       - name: the-artifact
       run:
