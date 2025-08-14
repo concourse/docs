@@ -159,6 +159,7 @@
           type: registry-image
           source:
             repository: busybox # images are pulled from docker hub by default
+            tag: latest
         # The command Concourse will run inside the container
         # echo "Hello world!"
         run:
