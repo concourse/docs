@@ -227,6 +227,18 @@ func (p Plugin) Diagram(path string, width string) booklit.Content {
 	}
 }
 
+func (p Plugin) Video(path, width, height string) booklit.Content {
+	return booklit.Styled{
+		Style:   "video",
+		Block:   true,
+		Content: booklit.String(path),
+		Partials: booklit.Partials{
+			"Width":  booklit.String(width),
+			"Height": booklit.String(height),
+		},
+	}
+}
+
 func (p Plugin) SideBySide(left, right booklit.Content) booklit.Content {
 	return booklit.Styled{
 		Style:   "side-by-side",
