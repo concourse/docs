@@ -34,9 +34,6 @@ services:
       CONCOURSE_WORKER_BAGGAGECLAIM_DRIVER: overlay
       CONCOURSE_CLIENT_SECRET: Y29uY291cnNlLXdlYgo=
       CONCOURSE_TSA_CLIENT_SECRET: Y29uY291cnNlLXdvcmtlcgo=
-      CONCOURSE_X_FRAME_OPTIONS: allow
-      CONCOURSE_CONTENT_SECURITY_POLICY: "frame-ancestors *;"
       CONCOURSE_CLUSTER_NAME: tutorial
       CONCOURSE_WORKER_CONTAINERD_DNS_SERVER: "8.8.8.8"
-      # For ARM-based machine, change the Concourse runtime to "houdini"
       CONCOURSE_WORKER_RUNTIME: "containerd"
