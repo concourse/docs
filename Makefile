@@ -1,4 +1,4 @@
-objects = js/search.js css/booklit.css css/blog.css css/prism.css css/pipeline.css blog/concourse.zip
+objects = js/search.js css/booklit.css css/blog.css css/prism.css css/pipeline.css
 
 all: $(objects)
 
@@ -7,7 +7,7 @@ all: $(objects)
 clean:
 	rm -f $(objects)
 
-js/search.js: elm/Search.elm elm/Query.elm
+js/search.js: elm/Search.elm
 	yarn run elm make --output $@ $^
 
 css/booklit.css: less/booklit.less less/*.less
@@ -21,10 +21,3 @@ css/prism.css: less/prism.less less/*.less
 
 css/pipeline.css: less/pipeline.less
 	yarn run lessc $< $@
-
-blog/concourse.zip: blog/package.json blog/*.hbs css/*.css images/* blog/partials/*.hbs
-	cp css/*.css blog/assets/css/
-	cp js/prism.js blog/assets/js/
-	cp -r images/* blog/assets/images/
-	yarn run gscan ./blog
-	cd blog && zip -r concourse.zip package.json *.hbs assets partials
