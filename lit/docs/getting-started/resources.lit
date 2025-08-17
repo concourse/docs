@@ -662,7 +662,10 @@
   own. Here are some other parts of the site to help you take off with Concourse:
 
   \list{
-    \reference{how-to-guides} - Contains tips for writing pipelines and examples of common pipeline workflows
+    \reference{how-to-guides} - Contains practical guides for
+    \reference{pipeline-guides}{working with pipelines} and examples of common
+    pipeline workflows, such as \reference{git-guides}{git} and
+    \reference{container-image-guides}{container} workflows.
   }{
     Check out all the reference documentation:
     \list{\reference{jobs}}{\reference{tasks}}{\reference{resources}}{\reference{resource-types}}
