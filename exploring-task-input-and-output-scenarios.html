@@ -222,26 +222,31 @@
         
           <tr>
             <td class="number-cell">1.14.1.1</td>
-            <td class="title-cell"><a href="common-pipeline-practices.html" >Common Pipeline Practices</a></td>
+            <td class="title-cell"><a href="managing-pipeline-configurations.html" >Managing Pipeline Configurations</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14.1.2</td>
-            <td class="title-cell"><a href="exploring-task-input-and-output-scenarios.html"  class="self">Exploring Task Input and Output Scenarios</a></td>
+            <td class="title-cell"><a href="common-pipeline-practices.html" >Common Pipeline Practices</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14.1.3</td>
-            <td class="title-cell"><a href="gated-pipeline-patterns.html" >Gated Pipeline Patterns</a></td>
+            <td class="title-cell"><a href="exploring-task-input-and-output-scenarios.html"  class="self">Exploring Task Input and Output Scenarios</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14.1.4</td>
-            <td class="title-cell"><a href="time-triggered-pipeline-patterns.html" >Time Triggered Pipeline Patterns</a></td>
+            <td class="title-cell"><a href="gated-pipeline-patterns.html" >Gated Pipeline Patterns</a></td>
           </tr>
         
           <tr>
             <td class="number-cell">1.14.1.5</td>
+            <td class="title-cell"><a href="time-triggered-pipeline-patterns.html" >Time Triggered Pipeline Patterns</a></td>
+          </tr>
+        
+          <tr>
+            <td class="number-cell">1.14.1.6</td>
             <td class="title-cell"><a href="manual-approval-step.html" >Manual Approval Step</a></td>
           </tr>
         
@@ -263,7 +268,7 @@
         <div class="page-content">
           <div class="section" id="section_exploring-task-input-and-output-scenarios">
   
-  <h1 class="section-header"><a class="anchor-target" name="exploring-task-input-and-output-scenarios" href="#exploring-task-input-and-output-scenarios"></a><span class="section-number">1.14.1.2 </span>Exploring Task Input and Output Scenarios</h1>
+  <h1 class="section-header"><a class="anchor-target" name="exploring-task-input-and-output-scenarios" href="#exploring-task-input-and-output-scenarios"></a><span class="section-number">1.14.1.3 </span>Exploring Task Input and Output Scenarios</h1>
   
 
   <p>Understanding how task inputs and outputs work in Concourse can be a little confusing initially. This guide will walk you through a few example pipelines to show you how inputs and outputs work within a single Concourse job. By the end you should understand how inputs and outputs work within the context of a single job.</p><p>To run the pipelines in the following examples yourself you can get your own Concourse running locally by following the <a href="quick-start.html">Quick Start</a> guide. Then use <a href="setting-pipelines.html#fly-set-pipeline"><code>fly set-pipeline</code></a> to see the pipelines in action.</p>
@@ -768,7 +773,7 @@ fly -t tutorial trigger-job --job get-artifact/get-job --watch</code></pre>
               prev:
 
               
-              <span class="section-number">1.14.1.1</span>
+              <span class="section-number">1.14.1.2</span>
               
 
               <a href="common-pipeline-practices.html">Common Pipeline Practices</a>
@@ -780,7 +785,7 @@ fly -t tutorial trigger-job --job get-artifact/get-job --watch</code></pre>
               next:
 
               
-              <span class="section-number">1.14.1.3</span>
+              <span class="section-number">1.14.1.4</span>
               
 
               <a href="gated-pipeline-patterns.html">Gated Pipeline Patterns</a>

@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=775" />
-<title>Manual Approval Step - Concourse CI</title>
+<title>Managing Pipeline Configurations - Concourse CI</title>
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="css/pipeline.css" />
 <link rel="stylesheet" type="text/css" href="css/iosevka.css" />
@@ -222,7 +222,7 @@
         
           <tr>
             <td class="number-cell">1.14.1.1</td>
-            <td class="title-cell"><a href="managing-pipeline-configurations.html" >Managing Pipeline Configurations</a></td>
+            <td class="title-cell"><a href="managing-pipeline-configurations.html"  class="self">Managing Pipeline Configurations</a></td>
           </tr>
         
           <tr>
@@ -247,7 +247,7 @@
         
           <tr>
             <td class="number-cell">1.14.1.6</td>
-            <td class="title-cell"><a href="manual-approval-step.html"  class="self">Manual Approval Step</a></td>
+            <td class="title-cell"><a href="manual-approval-step.html" >Manual Approval Step</a></td>
           </tr>
         
         </table>
@@ -266,72 +266,58 @@
 
       <div class="body-content">
         <div class="page-content">
-          <div class="section" id="section_manual-approval-step">
+          <div class="section" id="section_managing-pipeline-configurations">
   
-  <h1 class="section-header"><a class="anchor-target" name="manual-approval-step" href="#manual-approval-step"></a><span class="section-number">1.14.1.6 </span>Manual Approval Step</h1>
+  <h1 class="section-header"><a class="anchor-target" name="managing-pipeline-configurations" href="#managing-pipeline-configurations"></a><span class="section-number">1.14.1.1 </span>Managing Pipeline Configurations</h1>
   
 
-  <p>This is an exampe of a <a href="task-step.html"><code>task</code> step</a> you can add to your <a href="jobs.html">Jobs</a> that requires a human to approve or reject the job from running. This is probably the most minimal version of a manual approval step you can have in Concourse that doesn&#39;t require pulling in a bunch of other tech into your stack. It&#39;s definitely not the best UX since you need to use the <code>fly</code> CLI to approve the step.</p><p>Task configuration, <code>config.yml</code>: <pre><code class="language-yaml">platform: linux
-
-inputs:
-- name: repo
-
-params:
-  APPROVAL_TIMEOUT: 600 #default of 10mins
-
-run:
-  path: repo/tasks/manual-approval/run.sh</code></pre></p><p>Task script, <code>run.sh</code>: <pre><code class="language-bash">#!/usr/bin/env bash
-
-set -euo pipefail
-
-timeout=$((EPOCHSECONDS&#43;APPROVAL_TIMEOUT))
-echo -n &#34;Waiting for manual approval...&#34;
-until [[ -f /tmp/approved || $EPOCHSECONDS -gt $timeout ]]; do
-    sleep 5
-    echo -n &#34;.&#34;
-done
-
-if [[ -f /tmp/approved ]]; then
-    echo &#34;Step approved!&#34;
-else
-    echo &#34;Approval timeout reached. Aborting job.&#34;
-    exit 1
-fi</code></pre></p><p>To approve the job when it gets to this step you have to create <code>/tmp/approved</code> on the step&#39;s container. You can do that user <code>fly</code>&#39;s <code>intercept</code> command, like so (replace <code>PIPELINE/JOB</code> with the name of your pipeline and job that the step resides in):</p><pre><code class="language-bash">fly -t ci intercept --job PIPELINE/JOB --step manual-approval touch /tmp/approved</code></pre><p>Here&#39;s the step added in-line to a pipeline so you can see how it works on its own.</p><pre><code class="language-yaml">jobs:
-- name: approval
-  plan:
-  - task: manual-approval
-    params:
-      APPROVAL_TIMEOUT: 600 #10mins
-    config:
-      platform: linux
-      image_resource:
-        type: mock
-        source:
-          mirror_self: true
-      run:
-        path: bash
-        args:
-        - -c
-        - |
-          #!/usr/bin/env bash
-
-          set -euo pipefail
-
-          timeout=$((EPOCHSECONDS&#43;APPROVAL_TIMEOUT))
-          echo -n &#34;Waiting for manual approval...&#34;
-          until [[ -f /tmp/approved || $EPOCHSECONDS -gt $timeout ]]; do
-              sleep 5
-              echo -n &#34;.&#34;
-          done
-
-          if [[ -f /tmp/approved ]]; then
-              echo &#34;Step approved!&#34;
-          else
-              echo &#34;Approval timeout reached. Aborting job.&#34;
-              exit 1
-          fi</code></pre>
+  <p>When first starting with Concourse, it is common to write the pipeline and set it with <code>fly set-pipeline</code>. This works fine when initially building a pipeline or testing out some new changes. Once you&#39;re past the initial building phase though, you probably want to store your pipeline YAML files somewhere that you and others on your team can access and update the pipeline without worrying about remembering to do <code>fly set-pipeline</code> every time. A Git repository is a good place to store your pipeline YAML files, so our pipeline management conventions start with a Git repository.</p><p>Most other CI/CD tools will tell you to store your &#34;pipeline&#34; or &#34;workflow&#34; configuration files in a <code>.something</code> directory in your app&#39;s git repository. You could do that with Concourse too and create a <code>.concourse</code> directory, but Concourse does not force any convention onto you. There are <em>so many ways</em> that you could store and manage your pipeline configuration files. The most common way is to use a Git repository, but there&#39;s nothing stopping you from using a versioned S3 bucket either.</p><p>Let&#39;s cover the two most common conventions for storing pipeline configurations.</p>
 
   
+    
+      <div class="section" id="section_1-in-your-apps-git-repository">
+  
+  <h2 class="section-header"><a class="anchor-target" name="1-in-your-apps-git-repository" href="#1-in-your-apps-git-repository"></a>1) In Your App&#39;s Git Repository</h2>
+  
+
+  <p>This is what most users will be familiar with coming from other CI/CD tools. Simply make a folder in the same repository as your code. Name the folder whatever you want. Some possible names if you need inspiration:</p><ul>
+
+  <li><p><code>ci</code></p></li>
+
+  <li><p><code>concourse</code></p></li>
+
+  <li><p><code>pipelines</code></p></li>
+
+</ul><p>Then store your pipeline YAML files in that directory. Again, there&#39;s no &#34;special way&#34; that Concourse expects you to store your pipeline YAML files. Do whatever makes sense to you!</p><p>To automatically update your pipeline in Concourse with what&#39;s stored in your Git repository, use the <a href="set-pipeline-step.html"><code>set_pipeline</code> step</a> in a job. You can view an example of a pipeline updating itself <a href="https://github.com/concourse/examples/blob/main/pipelines/set-pipelines.yml#L10-L20">here in our <code>github.com/concourse/examples</code></a> repository. There are also examples on the <a href="set-pipeline-step.html"><code>set_pipeline</code> step</a> page.</p>
+
+  
+    
+  
+</div>
+    
+      <div class="section" id="section_2-in-a-different-git-repository">
+  
+  <h2 class="section-header"><a class="anchor-target" name="2-in-a-different-git-repository" href="#2-in-a-different-git-repository"></a>2) In a Different Git Repository</h2>
+  
+
+  <p>This is the most common convention that Concourse users follow, especially if your pipelines interact with multiple Git repositories. The Concourse project does this; we store all of our pipeline and task YAML files in <a href="https://github.com/concourse/ci"><code>github.com/concourse/ci</code></a>, completely separate from the main repository at <a href="https://github.com/concourse/concourse"><code>github.com/concourse/concourse</code></a> and all the <a href="https://github.com/concourse/?q=resource">resource type repositories</a>.</p><p>To automatically update your pipeline in Concourse with what&#39;s stored in your Git repository, use the <a href="set-pipeline-step.html"><code>set_pipeline</code> step</a> in a job. You can view an example of a pipeline updating itself <a href="https://github.com/concourse/examples/blob/main/pipelines/set-pipelines.yml#L10-L20">here in our <code>github.com/concourse/examples</code></a> repository. There are also examples on the <a href="set-pipeline-step.html"><code>set_pipeline</code> step</a> page.</p>
+
+  
+    
+      <div class="section" id="section_2a-parent-child-pipeline-relationships">
+  
+  <h3 class="section-header"><a class="anchor-target" name="2a-parent-child-pipeline-relationships" href="#2a-parent-child-pipeline-relationships"></a>2.A) Parent-Child Pipeline Relationships</h3>
+  
+
+  <p><blockquote class="aside">The following is also described on the <a href="set-pipeline-step.html"><code>set_pipeline</code> step</a> page.</blockquote></p><p>If you are setting multiple pipelines, or multiple instances of the same pipeline, it can be helpful to manage them from one place. Concourse allows you to use the <code>set_pipeline</code> step to create other pipelines. The <a href="set-pipeline-step.html"><code>set_pipeline</code> step</a> is not limited to updating the current pipeline.</p><p>When you use one pipeline to create other pipelines, this creates a parent-child relationship that Concourse tracks. You can see an example of this <a href="https://github.com/concourse/examples/blob/main/pipelines/set-pipelines.yml">here in <code>set-pipelines.yml</code></a>.</p><p>As long as the parent pipeline continues to set/update the child pipeline(s), the child pipeline(s) will remain active. If the parent pipeline stops updating the child pipeline(s) (e.g. you updated the parent pipeline to not set/update the child pipeline(s) anymore), Concourse will <a href="managing-pipelines.html#fly-archive-pipeline">archive the pipeline</a>. This pauses the child pipeline(s) and hides them from the web UI. The child pipeline configuration is deleted, but its build logs are retained.</p><p>If you want to fully delete a pipeline, use <a href="managing-pipelines.html#fly-destroy-pipeline"><code>fly destroy-pipeline</code></a>.</p>
+
+  
+    
+  
+</div>
+    
+  
+</div>
     
   
 </div>
@@ -342,10 +328,10 @@ fi</code></pre></p><p>To approve the job when it gets to this step you have to c
               prev:
 
               
-              <span class="section-number">1.14.1.5</span>
+              <span class="section-number">1.14.1</span>
               
 
-              <a href="time-triggered-pipeline-patterns.html">Time Triggered Pipeline Patterns</a>
+              <a href="pipeline-guides.html">Pipeline Guides</a>
             </div>
           
 
@@ -354,10 +340,10 @@ fi</code></pre></p><p>To approve the job when it gets to this step you have to c
               next:
 
               
-              <span class="section-number">1.14.2</span>
+              <span class="section-number">1.14.1.2</span>
               
 
-              <a href="git-guides.html">Git Guides</a>
+              <a href="common-pipeline-practices.html">Common Pipeline Practices</a>
             </div>
           
           </nav>
