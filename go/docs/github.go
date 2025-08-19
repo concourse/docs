@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"os"
-	"strings"
 
 	"github.com/blang/semver"
 	"github.com/lucasb-eyer/go-colorful"
@@ -158,36 +157,6 @@ func (p *Plugin) DownloadLinks() (booklit.Content, error) {
 		return nil, errors.New("no releases found!")
 	}
 
-	var linuxURL, darwinURL, windowsURL string
-	var flyLinuxURL, flyDarwinURL, flyWindowsURL string
-	for _, asset := range latestRelease.Assets.Nodes {
-		name := asset.Name
-
-		if strings.Contains(name, "concourse") && strings.Contains(name, "linux") && strings.HasSuffix(name, ".tgz") {
-			linuxURL = asset.DownloadUrl
-		}
-
-		if strings.Contains(name, "concourse") && strings.Contains(name, "darwin") && strings.HasSuffix(name, ".tgz") {
-			darwinURL = asset.DownloadUrl
-		}
-
-		if strings.Contains(name, "concourse") && strings.Contains(name, "windows") && strings.HasSuffix(name, ".zip") {
-			windowsURL = asset.DownloadUrl
-		}
-
-		if strings.Contains(name, "fly") && strings.Contains(name, "linux") && strings.HasSuffix(name, ".tgz") {
-			flyLinuxURL = asset.DownloadUrl
-		}
-
-		if strings.Contains(name, "fly") && strings.Contains(name, "darwin") && strings.HasSuffix(name, ".tgz") {
-			flyDarwinURL = asset.DownloadUrl
-		}
-
-		if strings.Contains(name, "fly") && strings.Contains(name, "windows") && strings.HasSuffix(name, ".zip") {
-			flyWindowsURL = asset.DownloadUrl
-		}
-	}
-
 	return booklit.Styled{
 		Style: "download-links",
 		Block: true,
@@ -197,13 +166,8 @@ func (p *Plugin) DownloadLinks() (booklit.Content, error) {
 		},
 		Partials: booklit.Partials{
 			"Version":         booklit.String(latestRelease.Name),
+			"VersionNumber":   booklit.String(latestVersion.String()),
 			"ReleaseNotesURL": booklit.String(latestRelease.Url),
-			"LinuxURL":        booklit.String(linuxURL),
-			"DarwinURL":       booklit.String(darwinURL),
-			"WindowsURL":      booklit.String(windowsURL),
-			"FlyLinuxURL":     booklit.String(flyLinuxURL),
-			"FlyDarwinURL":    booklit.String(flyDarwinURL),
-			"FlyWindowsURL":   booklit.String(flyWindowsURL),
 		},
 	}, nil
 }
@@ -230,12 +194,7 @@ var fillerDownloads = booklit.Styled{
 	},
 	Partials: booklit.Partials{
 		"Version":         booklit.String("vX.X.X"),
+		"VersionNumber":   booklit.String("X.X.X"),
 		"ReleaseNotesURL": booklit.String("https://github.com/concourse/concourse/releases/latest"),
-		"LinuxURL":        booklit.String("https://example.com/#linux"),
-		"DarwinURL":       booklit.String("https://example.com/#darwin"),
-		"WindowsURL":      booklit.String("https://example.com/#windows"),
-		"FlyLinuxURL":     booklit.String("https://example.com/#fly-linux"),
-		"FlyDarwinURL":    booklit.String("https://example.com/#fly-darwin"),
-		"FlyWindowsURL":   booklit.String("https://example.com/#fly-windows"),
 	},
 }
