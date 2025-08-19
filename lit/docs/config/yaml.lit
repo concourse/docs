@@ -5,6 +5,10 @@
 \link{YAML}{https://yaml.org} is a human-friendly syntax for writing
 structured documents. You can think of it as JSON without the sharp edges.
 
+If you want a slightly more in-depth overview of YAML compared to what we
+provide below, we recommend reading \link{Learn YAML in Y
+Minutes}{https://learnxinyminutes.com/yaml/}.
+
 Here's a quick example demonstrating common YAML syntax:
 
 \codeblock{yaml}{{{
