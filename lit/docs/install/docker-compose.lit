@@ -1,0 +1,163 @@
+\title{\aux{Install Concourse with} Docker Compose}{install-docker-compose}
+
+\use-plugin{concourse-docs}
+
+This guide will show you how to install Concourse on any Linux system
+using \link{Docker Compose}{https://docs.docker.com/compose/}.
+
+This guide makes the following assumptions:
+\ordered-list{
+  The host system has Docker installed already.
+}{
+  You have a PostgreSQL database running somewhere already. You created a
+  database called \code{concourse} and created a user for Concourse to
+  authenticate as.
+}{
+  You have generated the necessary
+  \reference{generating-keys}{encryption Keys}.
+}{
+  The host system the Web node will be running on is exposed to the
+  internet and can therefore accept inbound traffic on port \code{443}.
+}{
+  The Web and Worker node are being installed on separate servers and you
+  will figure out networking between the two servers. The Web node needs
+  to accept ingress traffic on the TSA port (default is port \code{2222})
+  from the Worker node(s).
+}
+
+
+\section{
+  \title{Setup Web Node}{docker-web}
+
+  You can do the following from any directory on your system. This guide
+  will assume all work is done in \code{~/concourse}.
+
+  Create a directory called \code{keys} (\code{~/concourse/keys}). Place
+  the following encryption keys inside the new directory:
+  \list{
+    \code{session_signing_key}
+  }{
+    \code{tsa_host_key}
+  }{
+    \code{worker_key.pub}
+  }
+
+  Next, create a \code{docker-compose.yml} file
+  (\code{~/concourse/docker-compose.yml}) with the following content:
+
+  \codeblock{yaml}{{{
+  services:
+    web:
+      image: docker.io/concourse/concourse:latest
+      command: web
+      restart: "unless-stopped"
+      ports:
+        - "443:8080"
+        - "2222:2222"
+      volumes:
+        - ~/concourse/keys:/concourse-keys:ro
+      environment:
+        CONCOURSE_EXTERNAL_URL: https://ci.example.com
+        CONCOURSE_ENABLE_LETS_ENCRYPT: "true"
+        CONCOURSE_SESSION_SIGNING_KEY: /concourse-keys/session_signing_key
+        CONCOURSE_TSA_AUTHORIZED_KEYS: /concourse-keys/worker_key.pub
+        CONCOURSE_TSA_HOST_KEY: /concourse-keys/tsa_host_key
+        CONCOURSE_POSTGRES_HOST: <psql hostname>
+        CONCOURSE_POSTGRES_USER: <psql user>
+        CONCOURSE_POSTGRES_PASSWORD: <psql password>
+        CONCOURSE_POSTGRES_DATABASE: concourse
+        CONCOURSE_ADD_LOCAL_USER: test:test
+        CONCOURSE_MAIN_TEAM_LOCAL_USER: test
+        CONCOURSE_CLUSTER_NAME: Concourse
+        CONCOURSE_ENABLE_ACROSS_STEP: "true"
+        CONCOURSE_ENABLE_REDACT_SECRETS: "true"
+        CONCOURSE_ENABLE_PIPELINE_INSTANCES: "true"
+        CONCOURSE_ENABLE_CACHE_STREAMED_VOLUMES: "true"
+      logging:
+        driver: local
+        options:
+          max-size: "100m"
+  }}}
+
+  \aside{
+    The above file configues the web node with
+    \reference{local-auth}{local user authentication} with the username
+    and password set to \code{test}. You will probably want to configure
+    your web node with one of the other
+    \reference{configuring-auth}{authentication providers} and remove the
+    \code{*_LOCAL_USER} environment variables.
+  }
+
+  You can start the Web node by running:
+
+  \codeblock{bash}{{{
+  docker compose up -d
+  }}}
+
+  You should then be able to access Concourse from the
+  \code{CONCOURSE_EXTERNAL_URL} you specified.
+
+  If you're using local authentication you can login using the
+  \reference{fly}.
+
+  \codeblock{bash}{{{
+  fly -t ci -c https://ci.example.com -u test -p test
+  }}}
+}
+
+\section{
+  \title{Setup Worker Node}{docker-worker}
+
+  You can do the following from any directory on your system. This guide
+  will assume all work is done in \code{~/concourse}.
+
+  Create a directory called \code{keys} (\code{~/concourse/keys}). Place
+  the following encryption keys inside the new directory:
+  \list{
+    \code{tsa_host_key.pub}
+  }{
+    \code{worker_key}
+  }
+
+  Next, create a \code{docker-compose.yml} file
+  (\code{~/concourse/docker-compose.yml}) with the following content:
+
+  \codeblock{yaml}{{{
+  services:
+    worker:
+      image: docker.io/concourse/concourse:latest
+      command: worker
+      privileged: true
+      restart: "unless-stopped"
+      stop_signal: SIGUSR2
+      volumes:
+        - ~/concourse/keys:/concourse-keys:ro
+      environment:
+        CONCOURSE_NAME: worker-01
+        CONCOURSE_RUNTIME: containerd
+        CONCOURSE_BAGGAGECLAIM_DRIVER: overlay
+        CONCOURSE_TSA_PUBLIC_KEY: /concourse-keys/tsa_host_key.pub
+        CONCOURSE_TSA_WORKER_PRIVATE_KEY: /concourse-keys/worker_key
+        CONCOURSE_TSA_HOST: <web-hostname-or-ip>:2222
+      logging:
+        driver: local
+        options:
+          max-size: "100m"
+  }}}
+
+  \aside{
+    If your pipelines are having issues with DNS resolution please read
+    \reference{worker-troubleshoot-dns}{this section}.
+  }
+
+  You can start the Worker node by running:
+
+  \codeblock{bash}{{{
+  docker compose up -d
+  }}}
+
+  Using the \reference{fly} you should be able to see the worker successfully
+  connected to the Web node by running \code{fly workers}.
+
+  Congratulations, you've successfully deployed a Concourse cluster!
+}

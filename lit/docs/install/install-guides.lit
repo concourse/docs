@@ -1,0 +1,11 @@
+\title{Install Guides}{install-guides}
+
+\use-plugin{concourse-docs}
+
+\table-of-contents
+
+\split-sections
+
+\include-section{systemd.lit}
+\include-section{docker-compose.lit}
+\include-section{helm.lit}
