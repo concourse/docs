@@ -17,7 +17,7 @@ around the world.
     tracked. It is overseen by the \team{maintainers}.
   }{
     The \link{Docs repo}{https://github.com/concourse/docs} contains the source for
-    the website you're reading now! It is overseen by the \team{community}.
+    the website you're reading now!
   }{
     \link{GitHub Discussions}{https://github.com/concourse/concourse/discussions}
     are used for support, announcements, idea sharing, and general conversations.
@@ -62,6 +62,10 @@ around the world.
   If you're interested in contributing, head over to GitHub and check out the
   \link{contributing
   docs}{https://github.com/concourse/concourse/blob/master/CONTRIBUTING.md}!
+
+  If you're able to financially contribute to the continued development of
+  Concourse, please reach out to
+  \link{Taylor}{https://github.com/taylorsilva/}.
 }
 
 \section{
