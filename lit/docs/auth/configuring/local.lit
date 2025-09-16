@@ -21,13 +21,52 @@ need.
   }}}
 
   This configures two users, \code{myuser} and \code{anotheruser}, with their
-  corresponding passwords.
+  corresponding passwords. The literal password can be provided, or a
+  \link{bcrypt}{https://en.wikipedia.org/wiki/Bcrypt} hash of the password.
 
   When local users are configured, the log-in page in the web UI will show a
   username/password prompt.
 
   Local users can also log in via \reference{fly-login} with the
   \code{--username} and \code{--password} flags.
+
+  \section{
+    \title{Bcrypt Hashing Passwords}{local-authentication}
+
+    Instead of passing in user passwords in plaintext, you can provide
+    Concourse with a bcrypt hash of the passwords.
+
+    There aren't any great CLI tools for quickly hashing passwords with bcrypt.
+    Here's a simple Go program that can do the hashing for you.
+
+    \codeblock{go}{{{
+      package main
+
+      import (
+          "fmt"
+
+          "golang.org/x/crypto/bcrypt"
+      )
+
+      func main() {
+          password := []byte("mypass")
+          hash, _ := bcrypt.GenerateFromPassword(password, 12)
+          fmt.Println(string(hash))
+      }
+    }}}
+
+    Put that in a \code{main.go} then run \code{go run main.go} and it will
+    output a hash for your password. You can run this program in the \link{Go
+    Playground}{https://go.dev/play/p/Ucv-ADJ9M0J} if you want to avoid
+    installing Go.
+
+    Hashing the passwords for the previous example, you would then set
+    \code{CONCOURSE_ADD_LOCAL_USER} to the following:
+
+    \codeblock{bash}{{{
+    CONCOURSE_ADD_LOCAL_USER='myuser:$2a$12$L8Co5QYhD..S1l9mIIVHlucvRjfte4tuymMCk9quln0H/eol16d5W,anotheruser:$2a$12$VWSSfrsTIisf96q7UVsvyOBbrcP88kh5CLtuXYSXGwnSnM3ClKxXu'
+    }}}
+  }
 }
 
 \section{
