@@ -311,9 +311,33 @@
   <h2 class="section-header"><a class="anchor-target" name="local-authentication" href="#local-authentication"></a>Authentication</h2>
   
 
-  <p>Local users are configured on the <a href="concourse-web.html"><code>web</code> node</a> by setting the following env:</p><pre><code class="language-bash">CONCOURSE_ADD_LOCAL_USER=myuser:mypass,anotheruser:anotherpass</code></pre><p>This configures two users, <code>myuser</code> and <code>anotheruser</code>, with their corresponding passwords.</p><p>When local users are configured, the log-in page in the web UI will show a username/password prompt.</p><p>Local users can also log in via <a href="fly.html#fly-login"><code>fly login</code></a> with the <code>--username</code> and <code>--password</code> flags.</p>
+  <p>Local users are configured on the <a href="concourse-web.html"><code>web</code> node</a> by setting the following env:</p><pre><code class="language-bash">CONCOURSE_ADD_LOCAL_USER=myuser:mypass,anotheruser:anotherpass</code></pre><p>This configures two users, <code>myuser</code> and <code>anotheruser</code>, with their corresponding passwords. The literal password can be provided, or a <a href="https://en.wikipedia.org/wiki/Bcrypt">bcrypt</a> hash of the password.</p><p>When local users are configured, the log-in page in the web UI will show a username/password prompt.</p><p>Local users can also log in via <a href="fly.html#fly-login"><code>fly login</code></a> with the <code>--username</code> and <code>--password</code> flags.</p>
 
   
+    
+      <div class="section" id="section_local-authentication">
+  
+  <h3 class="section-header"><a class="anchor-target" name="local-authentication" href="#local-authentication"></a>Bcrypt Hashing Passwords</h3>
+  
+
+  <p>Instead of passing in user passwords in plaintext, you can provide Concourse with a bcrypt hash of the passwords.</p><p>There aren&#39;t any great CLI tools for quickly hashing passwords with bcrypt. Here&#39;s a simple Go program that can do the hashing for you.</p><pre><code class="language-go">package main
+
+import (
+    &#34;fmt&#34;
+
+    &#34;golang.org/x/crypto/bcrypt&#34;
+)
+
+func main() {
+    password := []byte(&#34;mypass&#34;)
+    hash, _ := bcrypt.GenerateFromPassword(password, 12)
+    fmt.Println(string(hash))
+}</code></pre><p>Put that in a <code>main.go</code> then run <code>go run main.go</code> and it will output a hash for your password. You can run this program in the <a href="https://go.dev/play/p/Ucv-ADJ9M0J">Go Playground</a> if you want to avoid installing Go.</p><p>Hashing the passwords for the previous example, you would then set <code>CONCOURSE_ADD_LOCAL_USER</code> to the following:</p><pre><code class="language-bash">CONCOURSE_ADD_LOCAL_USER=&#39;myuser:$2a$12$L8Co5QYhD..S1l9mIIVHlucvRjfte4tuymMCk9quln0H/eol16d5W,anotheruser:$2a$12$VWSSfrsTIisf96q7UVsvyOBbrcP88kh5CLtuXYSXGwnSnM3ClKxXu&#39;</code></pre>
+
+  
+    
+  
+</div>
     
   
 </div>
