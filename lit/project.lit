@@ -3,10 +3,18 @@
 \use-plugin{concourse-docs}
 
 Concourse began as a side-project by
-\link{\code{@vito}}{https://github.com/vito} (hi!) and
+\link{\code{@vito}}{https://github.com/vito} and
 \link{\code{@xoebus}}{https://github.com/xoebus} in 2014. Since then, Concourse
-has evolved into a dedicated community with contributors from all
-around the world.
+has evolved into a dedicated community with contributors from all around the
+world.
+
+Concourse is a project of the \link{Cloud Foundry foundation
+(CFF)}{https://www.cloudfoundry.org/}, currently lead by \link{Taylor
+Silva}{https://github.com/taylorsilva/} and \link{Derek
+Richard}{https://github.com/drich10}. The CFF pays for the infrastructure costs
+of the project. \link{Pixel Air IO}{https://pixelair.io/}, lead by Taylor, is
+currently the main developer behind Concourse; reviewing and merging Pull
+Requests, squashing bugs, and stewarding the project and community.
 
 \section{
   \title{Where is everything?}
@@ -14,7 +22,7 @@ around the world.
   \list{
     The \link{Concourse repo}{https://github.com/concourse/concourse} houses
     the main codebase, where planning happens, and where issues are
-    tracked. It is overseen by the \team{maintainers}.
+    tracked.
   }{
     The \link{Docs repo}{https://github.com/concourse/docs} contains the source for
     the website you're reading now!
@@ -27,6 +35,16 @@ around the world.
   }{
     The \link{Concourse Discord server}{https://discord.gg/MeRxXKW} offers a great
     space to chat with other contributors.
+  }{
+    The Concourse working group charter is available in the Cloud Foundry
+    \link{community
+    repo}{https://github.com/cloudfoundry/community/blob/main/toc/working-groups/concourse.md}.
+  }{
+    The working group holds public monthly meetings. Past meetings can be viewed
+    in this \link{YouTube
+    playlist}{https://www.youtube.com/watch?v=Vamezx1SePw&list=PLhuMOCWn4P9ji8ZCY2a-FvMeT7S74-Hhm}
+    and meeting notes are
+    \link{here}{https://github.com/cloudfoundry/community/blob/main/toc/working-groups/WORKING-GROUPS.md#concourse}.
   }
 }
 
