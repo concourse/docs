@@ -1,0 +1,32 @@
+\title{Resource Types}{community-resource-types}
+
+\use-plugin{concourse-docs}
+\use-plugin{resource-type-list}
+
+These are third-party resource types made by members of the Concourse
+community. Use at your own risk!
+
+Be sure to read the \code{README} file for a resource to know what it does
+before using it.
+
+{-
+\build-resource-type-list{resource-types}
+-}
+
+\section{
+  \title{Adding to this list}
+
+  Fork the \link{\code{concourse/docs}}{https://github.com/concourse/docs}
+  repository, add a \code{.yaml} file describing your resource type in
+  \code{lit/resource-types/}, then make a pull request. Here is an example of
+  the YAML file to populate:
+
+  \codeblock{yaml}{{{
+    name: git
+    repo: https://github.com/concourse/git-resource
+    ## Add the full url of the image if it is not listed under dockerhub
+    container_image: concourse/git-resource
+    description: |
+        tracks commits in a branch of a Git repository
+  }}}
+}

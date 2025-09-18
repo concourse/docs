@@ -185,3 +185,4 @@
 \include-section{./project.lit}
 \include-section{./ecosystem.lit}
 \include-section{./support.lit}
+\include-section{./resource-types.lit}
