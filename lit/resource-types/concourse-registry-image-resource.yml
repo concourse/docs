@@ -1,0 +1,5 @@
+name: registry-image
+repo: https://github.com/concourse/registry-image-resource
+container_image: concourse/registry-image-resource
+description: |
+  a resource for images in a Docker registry

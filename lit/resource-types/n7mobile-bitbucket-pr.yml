@@ -1,0 +1,5 @@
+name: bitbucket-pr
+repo: https://github.com/n7mobile/concourse-bitbucket-pr
+container_image: n7docker/concourse-bitbucket-pr
+description: |
+    tracks pull requests on BitBucket and updates it's status

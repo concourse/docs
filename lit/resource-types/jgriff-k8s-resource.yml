@@ -1,0 +1,5 @@
+name: k8s-resource
+repo: https://github.com/jgriff/k8s-resource
+container_image: jgriff/k8s-resource
+description: |
+    tracks resources in a Kubernetes cluster

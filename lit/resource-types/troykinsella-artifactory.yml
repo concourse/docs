@@ -1,0 +1,6 @@
+name: artifactory
+repo: https://github.com/troykinsella/concourse-artifactory-resource
+container_image: troykinsella/concourse-artifactory-resource
+description: |
+  Publish artifacts, such as tarballs, to Artifactory generic repositories.
+

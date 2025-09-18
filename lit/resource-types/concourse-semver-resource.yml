@@ -1,0 +1,5 @@
+name: semver
+repo: https://github.com/concourse/semver-resource
+container_image: concourse/semver-resource
+description: |
+  automated semantic version bumping

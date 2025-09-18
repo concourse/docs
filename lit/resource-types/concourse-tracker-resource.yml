@@ -1,0 +1,5 @@
+name: tracker
+repo: https://github.com/concourse/tracker-resource
+container_image: concourse/tracker-resource
+description: |
+  pivotal tracker output resource

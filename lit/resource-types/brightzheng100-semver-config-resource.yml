@@ -1,0 +1,5 @@
+name: semver-config
+repo: https://github.com/brightzheng100/semver-config-concourse-resource
+container_image: itstarting/semver-config-concourse-resource
+description: |
+  detect desired semantic version changes and retrieve a set of semantic version-based configs from one single YAML file.

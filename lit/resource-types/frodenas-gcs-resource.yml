@@ -1,0 +1,5 @@
+name: gcs
+repo: https://github.com/frodenas/gcs-resource
+container_image: frodenas/gcs-resource
+description: |
+  Concourse resource for interacting with Google Cloud Storage

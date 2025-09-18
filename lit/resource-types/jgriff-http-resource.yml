@@ -1,0 +1,5 @@
+name: http-resource
+repo: https://github.com/jgriff/http-resource
+container_image: jgriff/http-resource
+description: |
+    Tracks resources from HTTP endpoints using custom version strategies (headers, body jq, hash, etc) from response

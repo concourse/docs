@@ -1,0 +1,6 @@
+name: artifactory-deb
+repo: https://github.com/troykinsella/concourse-artifactory-deb-resource
+container_image: troykinsella/concourse-artifactory-deb-resource
+description: |
+  Fetch from, and publish to Debian/Ubuntu apt repositories in Artifactory.
+

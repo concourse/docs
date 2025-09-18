@@ -1,0 +1,5 @@
+name: apache-directory-index
+repo: https://github.com/cloudlena/apache-directory-index-resource
+container_image: mastertinner/apache-directory-index-resource
+description: |
+  tracks changes to an Apache Directory Index (e.g. http://mirror.easyname.ch/apache/tomcat/)

@@ -1,0 +1,5 @@
+name: static
+repo: https://github.com/ktchen14/static-resource
+container_image: ktchen14/static-resource
+description: |
+  A resource to expose static information as a directory

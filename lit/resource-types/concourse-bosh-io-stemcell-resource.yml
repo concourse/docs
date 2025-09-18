@@ -1,0 +1,5 @@
+name: bosh-io-stemcell
+repo: https://github.com/concourse/bosh-io-stemcell-resource
+container_image: concourse/bosh-io-stemcell-resource
+description: |
+  tracks BOSH stemcells published on https://bosh.io

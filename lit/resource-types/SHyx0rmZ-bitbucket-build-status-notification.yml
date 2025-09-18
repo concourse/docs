@@ -1,0 +1,5 @@
+name: bitbucket-build-status
+repo: https://github.com/SHyx0rmZ/bitbucket-build-status-resource
+container_image: shyxormz/bitbucket-build-status-resource
+description: |
+  lets you update the build status for commits in Bitbucket

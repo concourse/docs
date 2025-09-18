@@ -1,0 +1,5 @@
+name: docker-compose
+repo: https://github.com/troykinsella/concourse-docker-compose-resource
+container_image: troykinsella/concourse-docker-compose-resource
+description: |
+  Use docker-compose to control Docker containers on remote hosts.

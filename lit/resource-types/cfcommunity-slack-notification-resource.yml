@@ -1,0 +1,5 @@
+name: slack-notification
+repo: https://github.com/cloudfoundry-community/slack-notification-resource
+container_image: cfcommunity/slack-notification-resource
+description: |
+  A resource for sending notifications to Slack

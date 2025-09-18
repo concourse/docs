@@ -1,0 +1,5 @@
+name: helm-chart
+repo: https://github.com/jghiloni/helm-chart-resource
+container_image: jghiloni/helm-chart-resource
+description: |
+  Download and publish helm charts from helm repositories.

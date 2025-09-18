@@ -1,0 +1,5 @@
+name: slack-alert
+repo: https://github.com/arbourd/concourse-slack-alert-resource
+container_image: arbourd/concourse-slack-alert-resource
+description: |
+  A structured Slack notification resource for Concourse

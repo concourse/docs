@@ -1,0 +1,5 @@
+name: datadog-event
+repo: https://github.com/concourse/datadog-event-resource
+container_image: concourse/datadog-event-resource
+description: |
+  Fetch or emit events to Datadog.

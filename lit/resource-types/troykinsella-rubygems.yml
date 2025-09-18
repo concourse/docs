@@ -1,0 +1,5 @@
+name: rubygems
+repo: https://github.com/troykinsella/concourse-rubygems-resource
+container_image: troykinsella/concourse-rubygems-resource
+description: |
+  Fetch and publish Ruby gem packages to a RubyGems repository.

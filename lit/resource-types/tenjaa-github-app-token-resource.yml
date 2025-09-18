@@ -1,0 +1,5 @@
+name: github-app-token
+repo: https://github.com/tenjaa/concourse-github-app-token
+container_image: tenjaa/concourse-github-app-token
+description: |
+  get an installation token for your GitHub App to access the GitHub API

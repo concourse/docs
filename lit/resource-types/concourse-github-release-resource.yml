@@ -1,0 +1,5 @@
+name: github-release
+repo: https://github.com/concourse/github-release-resource
+container_image: concourse/github-release-resource
+description: |
+  a resource for github releases

@@ -1,0 +1,5 @@
+name: phraseapp
+repo: https://github.com/tenjaa/concourse-phraseapp-resource
+container_image: tenjaa/concourse-phraseapp-resource
+description: |
+  a resource to trigger a job on changes on a PhraseApp project

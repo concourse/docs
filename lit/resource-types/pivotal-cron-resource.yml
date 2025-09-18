@@ -1,0 +1,5 @@
+name: cron
+repo: https://github.com/vmware-archive/cron-resource
+container_image: cftoolsmiths/cron-resource
+description: |
+  Implements a resource that reports new versions when the current time matches the crontab expression

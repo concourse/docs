@@ -1,0 +1,5 @@
+name: docker-image
+repo: https://github.com/concourse/docker-image-resource
+container_image: concourse/docker-image-resource
+description: |
+  a resource for docker images

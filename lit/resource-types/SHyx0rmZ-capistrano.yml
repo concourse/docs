@@ -1,0 +1,5 @@
+name: capistrano
+repo: https://github.com/SHyx0rmZ/capistrano-resource
+container_image: shyxormz/capistrano-resource
+description: |
+  enables you to run Capistrano deployments from your pipeline

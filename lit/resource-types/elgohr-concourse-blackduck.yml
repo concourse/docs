@@ -1,0 +1,5 @@
+name: blackduck
+repo: https://github.com/elgohr/concourse-blackduck
+container_image: lgohr/blackduck-resource
+description: |
+  Use Blackduck from Concourse

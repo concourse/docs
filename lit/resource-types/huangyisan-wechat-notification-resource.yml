@@ -1,0 +1,5 @@
+name: wechat-notification-resource
+repo: https://github.com/huangyisan/wechat_notification_resource
+container_image: dockerhuangyisan/wechat-notification-resource
+description: |
+    Send notification messages to WeChat

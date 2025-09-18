@@ -1,0 +1,6 @@
+name: keyval
+repo: https://github.com/cludden/concourse-keyval-resource
+## Add the full url of the image if it is not listed under dockerhub
+container_image: ghcr.io/cludden/concourse-keyval-resource
+description: |
+  a resource for passing arbitrary data between steps/jobs and curating dynamic filesystem content

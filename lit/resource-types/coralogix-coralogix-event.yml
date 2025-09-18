@@ -1,0 +1,5 @@
+name: coralogix-event
+repo: https://github.com/coralogix/eng-concourse-resource-coralogix-event
+container_image: quay.io/coralogix/eng-coralogix-event-resource
+description: |
+  Sends build events to Coralogix

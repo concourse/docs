@@ -1,0 +1,5 @@
+name: datetime-version
+repo: https://github.com/dcsg/datetime-version-resource
+container_image: dcsg/datetime-version-resource
+description: |
+  A resource to generate a date time version

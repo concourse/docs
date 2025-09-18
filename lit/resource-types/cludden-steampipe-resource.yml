@@ -1,0 +1,6 @@
+name: steampipe
+repo: https://github.com/cludden/concourse-steampipe-resource
+## Add the full url of the image if it is not listed under dockerhub
+container_image: ghcr.io/cludden/concourse-steampipe-resource
+description: |
+  a resource for implementing a wide variety of triggers and data integrations via Steampipe and its expansive plugin ecosystem

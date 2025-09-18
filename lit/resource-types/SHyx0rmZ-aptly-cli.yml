@@ -1,0 +1,5 @@
+name: aptly-cli
+repo: https://github.com/SHyx0rmZ/aptly-cli-resource
+container_image: shyxormz/aptly-cli-resource
+description: |
+  enables you to transfer packages between your job and an aptly repository

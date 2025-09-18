@@ -1,0 +1,5 @@
+name: cogito
+repo: https://github.com/Pix4D/cogito
+container_image: pix4d/cogito
+description: |
+  Cogito updates the GitHub status of a commit during a build. Simple configuration and lightweight image.

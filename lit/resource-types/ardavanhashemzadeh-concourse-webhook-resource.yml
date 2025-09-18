@@ -1,0 +1,5 @@
+name: concourse-webhook-resource
+repo: https://github.com/ardavanhashemzadeh/concourse-webhook-resource
+container_image: ardavanhashemzadeh/concourse-webhook-resource
+description: |
+  Use files in git repo to track and throttle API calls as pipeline trigger.

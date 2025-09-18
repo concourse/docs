@@ -1,0 +1,6 @@
+name: tfe
+repo: https://github.com/orstensemantics/concourse-tfe-resource
+container_image: orstensemantics/concourse-tfe-resource
+description: |
+    Create/read/update workspace variables, create/apply runs, and read root-level state
+    outputs for Hashicorp Terraform Cloud and Terraform Enterprise workspaces.

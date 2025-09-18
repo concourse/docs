@@ -1,0 +1,6 @@
+name: kubectl
+repo: https://github.com/jmkarthik/concourse-kubectl-resource
+container_image: jmkarthik/concourse-kubectl-resource
+description: |
+    Deploys resources to a Kubernetes cluster using "kubectl apply -f" command
+    

@@ -1,0 +1,5 @@
+name: github-pr-comment
+repo: https://github.com/nderjung/concourse-github-pr-comment-resource
+container_image: ndrjng/concourse-github-pr-comment-resource
+description: |
+  Monitors incoming comments on a Github Pull Request and is able to monitor for comments matching regular expressions, match comment author's association with the project, the pull request's state and any labels it has been assigned. 

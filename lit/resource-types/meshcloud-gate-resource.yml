@@ -1,0 +1,6 @@
+name: gate
+repo: https://github.com/meshcloud/gate-resource
+container_image: meshcloud/gate-resource
+description: |
+    A generic gate resource for Concourse CI.
+    Allows you to model quality gates and pipeline control flow.

@@ -1,0 +1,5 @@
+name: github-pr
+repo: https://github.com/cloudfoundry-community/github-pr-resource
+container_image: cfcommunity/github-pr-resource
+description: |
+  Let Concourse pipelines to interact with GitHub Pull Requests

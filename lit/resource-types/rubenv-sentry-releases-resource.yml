@@ -1,0 +1,5 @@
+name: sentry-releases
+repo: https://github.com/rubenv/concourse-sentry-releases-resource
+container_image: rubenv/concourse-sentry-releases-resource
+description: |
+  Manage releases in Sentry, can be used to upload sourcemaps.

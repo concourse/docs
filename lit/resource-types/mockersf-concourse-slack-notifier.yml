@@ -1,0 +1,5 @@
+name: slack-notifier
+repo: https://github.com/mockersf/concourse-slack-notifier
+container_image: mockersf/concourse-slack-notifier
+description: |
+    a structured and opinionated Slack notification resource

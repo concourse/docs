@@ -1,0 +1,4 @@
+name: github-list-repos
+repo: https://github.com/coralogix/eng-concourse-resource-github-list-repos
+container_image: quay.io/coralogix/concourse-resource-github-list-repos
+description: Lists the repositories that belong to a GitHub organization or team, but does not clone them.

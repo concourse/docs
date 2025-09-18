@@ -1,0 +1,6 @@
+name: irccat
+repo: https://github.com/haiku/irccat-resource
+container_image: haiku/irccat-resource
+description: |
+  a resource to send notifications to irc via an irccat service
+

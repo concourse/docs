@@ -1,0 +1,5 @@
+name: s3
+repo: https://github.com/concourse/s3-resource
+container_image: concourse/s3-resource
+description: |
+  Concourse resource for interacting with AWS S3

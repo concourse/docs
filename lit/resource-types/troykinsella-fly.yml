@@ -1,0 +1,5 @@
+name: fly
+repo: https://github.com/troykinsella/concourse-fly-resource
+container_image: troykinsella/concourse-fly-resource
+description: |
+  Manipulate the Concourse fly command-line client.

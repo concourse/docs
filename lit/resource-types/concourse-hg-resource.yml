@@ -1,0 +1,5 @@
+name: hg
+repo: https://github.com/concourse/hg-resource
+container_image: concourse/hg-resource
+description: |
+  Mercurial resource for Concourse

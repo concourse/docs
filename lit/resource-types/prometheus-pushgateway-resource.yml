@@ -1,0 +1,5 @@
+name: prometheus-pushgateway
+repo: https://github.com/michaellihs/prometheus-pushgateway-resource
+container_image: michaellihs/prometheus-pushgateway-resource
+description: |
+    send metrics to Prometheus Push Gateway

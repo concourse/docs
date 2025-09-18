@@ -1,0 +1,6 @@
+name: chartmuseum
+repo: https://github.com/cathive/concourse-chartmuseum-resource
+container_image: cathive/concourse-chartmuseum-resource
+description: |
+  Fetches, verifies and publishes Helm Charts from a running ChartMuseum instance.
+  Harbor works as well, since it uses ChartMuseum under the hood.

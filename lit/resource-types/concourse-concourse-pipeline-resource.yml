@@ -1,0 +1,5 @@
+name: concourse-pipeline
+repo: https://github.com/concourse/concourse-pipeline-resource
+container_image: concourse-pipeline-resource
+description: |
+  Concourse resource for interacting with concourse pipelines

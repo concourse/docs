@@ -1,0 +1,5 @@
+name: bosh-config
+repo: https://github.com/cloudfoundry-community/bosh-config-resource
+container_image: cfcommunity/bosh-config-resource
+description: |
+  A resource for interacting with configs (Cloud, Runtime, CPI, etc…) living on a Bosh server

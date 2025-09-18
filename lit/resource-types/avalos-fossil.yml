@@ -1,0 +1,5 @@
+name: fossil
+repo: https://fossil.avalos.me/fossil-concourse
+container_image: avalos/fossil-concourse-resource
+description: |
+  Tracks commits in a branch of a Fossil repository!

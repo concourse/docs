@@ -1,0 +1,5 @@
+name: hipchat-notification
+repo: https://github.com/jgriff/hipchat-notification-resource
+container_image: jgriff/hipchat-notification-resource
+description: |
+    send notification messages to HipChat

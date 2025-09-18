@@ -1,0 +1,5 @@
+name: http-jq
+repo: https://github.com/qudini/concourse-http-jq-resource
+container_image: qudini/concourse-http-jq-resource
+description: |
+  Exposing version of a resource over an HTTP endpoint and parsing it via jq into Concourse jobs

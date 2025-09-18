@@ -1,0 +1,5 @@
+name: openssl-source-code
+repo: https://github.com/gstackio/openssl-source-code-resource
+container_image: gstack/openssl-source-code-resource
+description: |
+  Concourse resource to track and fetch OpenSSL source code tarballs

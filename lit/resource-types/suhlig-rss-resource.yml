@@ -1,0 +1,5 @@
+name: rss
+repo: https://github.com/suhlig/concourse-rss-resource
+container_image: suhlig/concourse-rss-resource
+description: |
+  Tracks an RSS feed and provides the pubDate of items as new versions.

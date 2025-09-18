@@ -1,0 +1,5 @@
+name: teams-notification
+repo: https://github.com/navicore/teams-notification-resource
+container_image: navicore/teams-notification-resource
+description: |
+    resource for pipeline notifications to Microsoft Teams

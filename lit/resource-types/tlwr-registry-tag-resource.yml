@@ -1,0 +1,5 @@
+name: registry-tag
+repo: https://github.com/tlwr/registry-tag-resource
+container_image: ghcr.io/tlwr/registry-tag-resource
+description: |
+   a resource for image tags in a Docker registry

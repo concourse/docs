@@ -1,0 +1,6 @@
+name: artifacthub
+repo: https://github.com/hdisysteme/artifacthub-resource
+container_image: ghcr.io/hdisysteme/artifacthub-resource:latest
+description: |
+  Tracks and gets new versions of Helm Charts which are registered at https://artifacthub.io/
+ 

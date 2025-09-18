@@ -1,0 +1,5 @@
+name: pool
+repo: https://github.com/concourse/pool-resource
+container_image: concourse/pool-resource
+description: |
+  atomically manages the state of the world (e.g. external environments)

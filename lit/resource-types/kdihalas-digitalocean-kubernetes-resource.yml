@@ -1,0 +1,5 @@
+name: digitalocean-kubernetes-resource
+repo: https://git.sr.ht/~kdihalas/concourse-do-kubernetes-resource
+container_image: kdihalas/digitalocean-kubernetes-resource
+description: |
+  Create, update and delete Digitalocean Kubernetes Clusters.

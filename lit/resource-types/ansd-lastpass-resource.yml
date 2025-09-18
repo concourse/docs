@@ -1,0 +1,5 @@
+name: lastpass
+repo: https://github.com/ansd/lastpass-resource
+container_image: ansd/lastpass
+description: |
+  Tracks LastPass items.

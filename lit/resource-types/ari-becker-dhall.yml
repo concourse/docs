@@ -1,0 +1,4 @@
+name: dhall
+repo: https://github.com/coralogix/eng-concourse-resource-dhall
+container_image: quay.io/coralogix/eng-concourse-resource-dhall
+description: Tracks the changes in a remote Dhall expression, and makes them available locally.

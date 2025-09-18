@@ -1,0 +1,6 @@
+name: k8s
+repo: https://github.com/srinivasa-vasu/concourse-k8s
+container_image: srinivasavasu/concourse-k8s
+description: |
+  Custom K8s resource type to deploy manifests to K8s
+

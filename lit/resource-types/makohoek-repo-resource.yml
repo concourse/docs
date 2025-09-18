@@ -1,0 +1,5 @@
+name: repo
+repo: https://github.com/makohoek/repo-resource
+container_image: mkorpershoek/repo-resource
+description: |
+  Track changes for projects using (Google's) repo.

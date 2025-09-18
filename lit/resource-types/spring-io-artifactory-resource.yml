@@ -1,0 +1,5 @@
+name: artifactory
+repo: https://github.com/spring-io/artifactory-resource
+container_image: springio/artifactory-resource
+description: |
+    Check, deploy and retrieve artifacts using the "builds" and "artifact properties" Artifactory features.

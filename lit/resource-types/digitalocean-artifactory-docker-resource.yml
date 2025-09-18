@@ -1,0 +1,6 @@
+name: artifactory-docker
+repo: https://github.com/digitalocean/artifactory-docker-resource
+container_image: digitalocean/artifactory-docker-resource  
+description: |
+    Concourse resource for triggering, getting and putting new versions of docker / container image artifacts within Artifactory repositories.
+

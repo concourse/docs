@@ -1,0 +1,5 @@
+name: cf-cli
+repo: https://github.com/nulldriver/cf-cli-resource
+container_image: nulldriver/cf-cli-resource
+description: |
+  The missing link between Concourse and Cloud Foundry.  Push apps, create services, manage container networking and more!

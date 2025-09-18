@@ -1,0 +1,5 @@
+name: awx
+repo: https://github.com/mamercad/concourse-awx-resource
+container_image: quay.io/mamercad/concourse-awx-resource
+description: |
+    launches AWX job templates and workflows

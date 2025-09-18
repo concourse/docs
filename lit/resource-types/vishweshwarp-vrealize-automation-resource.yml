@@ -1,0 +1,5 @@
+name: vrealize-automation
+repo: https://github.com/vmware-archive/concourse-vrealize-automation-resource
+container_image: projects.registry.vmware.com/concourse-vra-resource/concourse-vra-resource
+description: |
+  Executes vRealize Automation pipelines

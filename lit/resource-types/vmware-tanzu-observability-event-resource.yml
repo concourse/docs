@@ -1,0 +1,5 @@
+name: observability-event
+repo: https://github.com/vmware-tanzu/observability-event-resource
+container_image: projects.registry.vmware.com/tanzu/observability-event-resource
+description: |
+  Publish events to VMware Tanzu Observability by Wavefront

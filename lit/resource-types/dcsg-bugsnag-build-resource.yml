@@ -1,0 +1,5 @@
+name: bugsnag-build
+repo: https://github.com/dcsg/bugsnag-build-resource
+container_image: dcsg/bugsnag-build-resource
+description: |
+  Notifies Bugsnag Build API of a new release

@@ -1,0 +1,5 @@
+name: rocketchat-notification
+repo: https://github.com/michaellihs/rocketchat-notification-resource
+container_image: michaellihs/rocket-notify-resource
+description: |
+    send notification messages to RocketChat

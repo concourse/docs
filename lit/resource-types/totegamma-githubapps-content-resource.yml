@@ -1,0 +1,5 @@
+name: githubapps-content-resource
+repo: https://github.com/totegamma/githubapps-content-resource
+container_image: ghcr.io/totegamma/githubapps-content-resource:master
+description: |
+  A resource for clone github private repository with GithubApps credential.

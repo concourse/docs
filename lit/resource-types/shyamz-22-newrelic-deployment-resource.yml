@@ -1,0 +1,5 @@
+name: newrelic-deployment-resource
+repo: https://github.com/shyamz-22/newrelic-deployment-resource
+container_image: shyamz22/newrelic-resource
+description: |
+  A concourse resource for adding deployment markers in New Relic

@@ -1,0 +1,5 @@
+name: sonarqube-notifier
+repo: https://github.com/elgohr/concourse-sonarqube-notifier
+container_image: lgohr/sonarqube
+description: |
+  Gets Sonarqube results

@@ -1,0 +1,5 @@
+name: key-value
+repo: https://github.com/gstackio/keyval-resource
+container_image: gstack/keyval-resource
+description: |
+  A resource that passes key-value pairs between jobs, using plain files in some directory

@@ -1,0 +1,5 @@
+name: marathon
+repo: https://github.com/ckaznocha/marathon-resource
+container_image: ckaznocha/marathon-resource
+description: |
+    deploy applications to Marathon

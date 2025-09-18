@@ -1,0 +1,5 @@
+name: maven
+repo: https://github.com/nulldriver/maven-resource
+container_image: nulldriver/maven-resource
+description: |
+  Integrate your pipeline with any Maven Repository Manager (Artifactory, Nexus, GitHub Packages, etc.)

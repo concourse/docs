@@ -1,0 +1,5 @@
+name: helm3
+repo: https://github.com/Typositoire/concourse-helm3-resource
+container_image: typositoire/concourse-helm3-resource
+description: |
+  Download and deploy Helm 3 charts to Kubernetes.

@@ -1,0 +1,5 @@
+name: rclone
+repo: https://github.com/warricksothr/concourse-rclone-resource
+container_image: sothr/concourse-rclone-resource
+description: |
+  Publish arbitrary files and directories using Rclone.

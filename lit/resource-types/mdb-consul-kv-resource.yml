@@ -1,0 +1,5 @@
+name: consul-kv
+repo: https://github.com/mdb/concourse-consul-kv-resource
+container_image: clapclapexcitement/concourse-consul-kv-resource
+description: |
+  Get or set a key/value pair in Consul's KV store.
