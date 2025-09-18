@@ -9,7 +9,7 @@ community. Use at your own risk!
 Be sure to read the \code{README} file for a resource to know what it does
 before using it.
 
-{-
+{- TODO: add List.js search bar
 \build-resource-type-list{resource-types}
 -}
 
