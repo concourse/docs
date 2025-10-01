@@ -21,3 +21,4 @@ users that are new to these concepts, we do recommend learning how to set up
 \include-section{./operation/performance-tuning.lit}
 \include-section{./operation/global-resources.lit}
 \include-section{./operation/administration.lit}
+\include-section{./operation/syslog.lit}
