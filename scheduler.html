@@ -283,13 +283,7 @@
   <h2 class="section-header"><a class="anchor-target" name="scheduling-behavior" href="#scheduling-behavior"></a>Scheduling behavior</h2>
   
 
-  <p>The scheduler will schedule a new build if any of the versions produced by the algorithm for <a href="get-step.html#schema.get.trigger"><code>trigger: true</code></a> resources is not equal to the version used by the <strong>previous build</strong> of the job.</p><p>What this means is if the algorithm runs and computes an input version, the scheduler will create a new build as long as that version is different than the previous build&#39;s version for that same input. Even if that version has been used by a build 2 months ago, the scheduler will schedule a new build as long as it has not been used by the previous build.</p><p>If there are any input versions that are different than the previous build, it will trigger a new build. This can affect some users that are using the pinning functionality to run older versions.</p><p>Let&#39;s say you have a job that takes a resource as an input. It currently has two builds, build 1 has ran with version <code>v1</code> of the resource and build 2 has ran with <code>v2</code>.</p><div class="diagram">
-  <img src="images/new-pinning-behavior-1.png" alt="diagram" width="80%" />
-</div><p>If I pin the input to an older version, a new build is produced because the pinned version <code>v1</code> is not equivalent to the version of the previous build <code>v2</code>.</p><div class="diagram">
-  <img src="images/new-pinning-behavior-3.png" alt="diagram" width="90%" />
-</div><p>Then if I unpin the version, another build would be triggered again using the latest version.</p><div class="diagram">
-  <img src="images/new-pinning-behavior-4.png" alt="diagram" width="90%" />
-</div><p>This is because after unpinning the resource, the input version for the next build becomes the latest version <code>v2</code> which is not equal to the version <code>v1</code> used by the previous build.</p><p>This is to allow the current state of the builds to always reflect the current state of the versions. That being said, this behavior can be undesirable if the goal is to only run a job using an old version. In this case, build rerunning is the better choice. If you would like to learn more about build rerunning, you can read more about it in the <a href="builds.html#build-rerunning">build rerunning section</a>.</p>
+  <p>The scheduler will schedule a new build if any of the versions produced by the algorithm for <a href="get-step.html#schema.get.trigger"><code>trigger: true</code></a> resources has not been used in any previous build of the job.</p><p>What this means is if the algorithm runs and computes an input version, the scheduler will create a new build as long as that version has not been used by any previous build&#39;s version for that same input. Even if that version has been used by a build 2 months ago, the scheduler will <strong>not</strong> schedule a new build because that version has been previously used in a build of the job.</p><p>If there are any input versions that are different from any previous build, it will trigger a new build.</p>
 
   
     
@@ -309,9 +303,9 @@
 
   <li><p>A build finishes for an upstream job (through passed constraints)</p></li>
 
-  <li><p>Enabling/Disabling a resource version</p></li>
+  <li><p>Enabling/Disabling a resource version that has not been used in a previous build</p></li>
 
-  <li><p>Pinning/Unpinning a resource version</p></li>
+  <li><p>Pinning/Unpinning a resource version that has not been used in a previous build</p></li>
 
   <li><p>Setting a pipeline</p></li>
 
