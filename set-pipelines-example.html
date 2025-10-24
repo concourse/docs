@@ -268,9 +268,9 @@ jobs:
     config:
       platform: linux
       image_resource:
-        type: registry-image
+        type: mock
         source:
-          repository: taylorsilva/carvel-ytt
+          mirror_self: true
       inputs:
       - name: concourse-examples
       outputs:
@@ -280,6 +280,7 @@ jobs:
         args:
         - -cx
         - |
+          apk add --no-progress --quiet ytt
           ytt -f ./concourse-examples/pipelines/templates/simple &gt; hello-world-rendered.yml
           ytt -f ./concourse-examples/pipelines/templates/multiple-files &gt; multi-files-rendered.yml
           mv *.yml ./pipeline/
