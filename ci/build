@@ -2,8 +2,7 @@
 
 set -e -x
 
-export GOPATH=$PWD/gopath
-export PATH=$PWD/gopath/bin:$PATH
+apk add --no-progress --quiet ytt
 
 git config --global user.email "concourseteam+concourse-github-bot@gmail.com"
 git config --global user.name "Concourse Bot"
