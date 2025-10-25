@@ -1,0 +1,234 @@
+site_name: Concourse
+site_url: https://aviator-labs.github.io/docs-ci/
+
+repo_url: https://github.com/concourse/concourse
+repo_name: concourse/concourse
+
+edit_uri: https://github.com/Aviator-Labs/docs-ci/edit/main/docs/
+
+markdown_extensions:
+  - admonition
+  - def_list
+  - tables
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      base_path:
+        - "." # Current directory
+        - "docs" # docs directory
+  - pymdownx.tabbed:
+      alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+
+exclude_docs: |
+  libs/**/*.md
+  libs/examples/apps
+  libs/examples/terraform
+  libs/examples/Dockerfiles
+  libs/examples/misc
+  libs/examples/LICENSE
+
+theme:
+  name: material
+  #  custom_dir: overrides
+  features:
+    - navigation.prune
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.indexes
+    - navigation.instant
+    - navigation.top
+    - content.code.copy
+    - attr_list
+    - md_in_html
+    - pymdownx.blocks.caption
+    - navigation.footer
+    - content.action.edit
+    - content.action.view
+
+  palette:
+    - scheme: default
+      primary: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+  logo: assets/logo-white.svg
+  favicon: assets/favicon.ico
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/concourse
+    - icon: fontawesome/brands/docker
+      link: https://hub.docker.com/u/concourse
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/MeRxXKW
+    - icon: fontawesome/brands/bluesky
+      link: https://bsky.app/profile/concourse-ci.org
+    - icon: fontawesome/solid/paper-plane
+      link: mailto:contact@concourse-ci.org
+
+nav:
+  - index.md
+  - Docs:
+      - docs/index.md
+      - Getting Started:
+          - docs/getting-started/index.md
+          - docs/getting-started/quick-start.md
+          - docs/getting-started/hello-world.md
+          - docs/getting-started/inputs-outputs.md
+          - docs/getting-started/resources.md
+      - Install:
+          - docs/install/index.md
+          - docs/install/running-postgres.md
+          - docs/install/concourse-cli.md
+          - docs/install/generating-keys.md
+          - docs/install/running-web.md
+          - docs/install/running-worker.md
+          - docs/install/upgrading-concourse.md
+      - Auth & Teams:
+          - docs/auth-and-teams/index.md
+          - docs/auth-and-teams/main-team.md
+          - Configuring Auth:
+              - docs/auth-and-teams/configuring/index.md
+              - docs/auth-and-teams/configuring/local-user.md
+              - docs/auth-and-teams/configuring/github.md
+              - docs/auth-and-teams/configuring/gitlab.md
+              - docs/auth-and-teams/configuring/bitbucket-cloud.md
+              - docs/auth-and-teams/configuring/cf-uaa.md
+              - docs/auth-and-teams/configuring/ldap.md
+              - docs/auth-and-teams/configuring/microsoft.md
+              - docs/auth-and-teams/configuring/generic-oidc.md
+              - docs/auth-and-teams/configuring/generic-oauth.md
+              - docs/auth-and-teams/configuring/generic-saml.md
+          - docs/auth-and-teams/managing-teams.md
+          - docs/auth-and-teams/user-roles.md
+          - docs/auth-and-teams/exposing.md
+          - docs/auth-and-teams/caveats.md
+      - docs/fly.md
+      - docs/config-basics.md
+      - Pipelines:
+          - docs/pipelines/index.md
+          - docs/pipelines/setting-pipelines.md
+          - docs/pipelines/managing-pipelines.md
+          - docs/pipelines/grouping-pipelines.md
+      - docs/vars.md
+      - Resources:
+          - docs/resources/index.md
+          - docs/resources/resource-versions.md
+          - docs/resources/managing-resources.md
+      - Resource Types:
+          - docs/resource-types/index.md
+          - docs/resource-types/implementing.md
+          - docs/resource-types/managing-types.md
+      - docs/jobs.md
+      - Steps:
+          - docs/steps/index.md
+          - docs/steps/get.md
+          - docs/steps/put.md
+          - docs/steps/task.md
+          - docs/steps/set-pipeline.md
+          - docs/steps/load-var.md
+          - docs/steps/in-parallel.md
+          - docs/steps/do.md
+          - docs/steps/try.md
+          - Modifiers and Hooks:
+              - docs/steps/modifier-and-hooks/index.md
+              - docs/steps/modifier-and-hooks/across.md
+              - docs/steps/modifier-and-hooks/timeout.md
+              - docs/steps/modifier-and-hooks/attempts.md
+              - docs/steps/modifier-and-hooks/tags.md
+              - docs/steps/modifier-and-hooks/on-success.md
+              - docs/steps/modifier-and-hooks/on-failure.md
+              - docs/steps/modifier-and-hooks/on-abort.md
+              - docs/steps/modifier-and-hooks/on-error.md
+              - docs/steps/modifier-and-hooks/ensure.md
+      - docs/tasks.md
+      - docs/builds.md
+      - How-To Guides:
+          - docs/how-to/index.md
+          - Pipeline Guides:
+              - docs/how-to/pipeline-guides/index.md
+              - docs/how-to/pipeline-guides/managing-pipeline-configs.md
+              - docs/how-to/pipeline-guides/common-pipeline.md
+              - docs/how-to/pipeline-guides/task-inputs-outputs.md
+              - docs/how-to/pipeline-guides/gated-pipelines.md
+              - docs/how-to/pipeline-guides/time-triggered-pipelines.md
+              - docs/how-to/pipeline-guides/manual-approval.md
+          - Git Guides:
+              - docs/how-to/git-guides/index.md
+              - docs/how-to/git-guides/basic.md
+              - docs/how-to/git-guides/multi-branch.md
+          - Container Image Guides:
+              - docs/how-to/container-image-guides/index.md
+              - docs/how-to/container-image-guides/build-push.md
+              - docs/how-to/container-image-guides/build-use.md
+      - Operation:
+          - docs/operation/index.md
+          - docs/operation/metrics.md
+          - docs/operation/tracing.md
+          - docs/operation/encryption.md
+          - Credential Management:
+              - docs/operation/creds/index.md
+              - docs/operation/creds/vault.md
+              - docs/operation/creds/credhub.md
+              - docs/operation/creds/aws-ssm.md
+              - docs/operation/creds/aws-secrets.md
+              - docs/operation/creds/kubernetes.md
+              - docs/operation/creds/conjur.md
+              - docs/operation/creds/id-token.md
+              - docs/operation/creds/caching.md
+              - docs/operation/creds/redacting.md
+              - docs/operation/creds/retrying-failed.md
+          - docs/operation/security-hardening.md
+          - docs/operation/container-placement.md
+          - docs/operation/opa-integration.md
+          - docs/operation/tuning.md
+          - docs/operation/global-resources.md
+          - docs/operation/administration.md
+      - docs/observation.md
+      - Internals:
+          - docs/internals/index.md
+          - docs/internals/checker.md
+          - docs/internals/scheduler.md
+          - docs/internals/build-tracker.md
+          - docs/internals/garbage-collector.md
+  - Examples:
+      - examples/index.md
+      - examples/hello-world.md
+      - examples/serial-job.md
+      - examples/pipeline-vars.md
+      - examples/set-pipeline.md
+      - examples/inputs-outputs.md
+      - examples/time-triggered.md
+      - examples/git-triggered.md
+      - examples/manually-triggered.md
+      - examples/job-and-task-hooks.md
+      - examples/golang-lib.md
+      - examples/rails-app.md
+      - examples/java-app.md
+      - examples/nodejs-app.md
+      - examples/php-app.md
+  - project/index.md
+  - ecosystem/index.md
+  - support/index.md
+  - Blog:
+    - blog/index.md

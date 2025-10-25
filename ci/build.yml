@@ -3,17 +3,15 @@ platform: linux
 
 image_resource:
   type: registry-image
-  source: {repository: golang}
+  source:
+    repository: 3.14-alpine3.21
 
 inputs:
-- name: docs
-
-caches:
-- path: gopath
+  - name: docs
 
 outputs:
-- name: built-docs
-  path: docs
+  - name: built-docs
+    path: docs
 
 params:
   ANALYTICS_ID:

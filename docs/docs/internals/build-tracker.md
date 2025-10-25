@@ -1,0 +1,7 @@
+---
+title: Build Tracker
+---
+
+The build tracker is the component that runs the execution of a build. It picks up any started builds, which can be
+orphaned builds (builds that an ATC started but did not finish) or builds that have just been scheduled. There is one
+build tracker per ATC, which runs on an interval that is defaulted to 10 seconds.

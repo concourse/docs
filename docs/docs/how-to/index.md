@@ -1,0 +1,8 @@
+---
+title: How-To Guides
+---
+
+The following pages are guides that show how to accomplish certain workflows within Concourse. Most of the guides will
+use specific images, but you are in no way limited to or forced to use these images to accomplish the same task. There
+are many ways to accomplish the same thing in Concourse, so don't let these guides limit you in what you think is
+possible with Concourse.
