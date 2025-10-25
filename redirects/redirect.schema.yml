@@ -1,0 +1,88 @@
+#@data/values-schema
+---
+
+docs:
+  top_level:
+    root: "docs"
+    routes:
+      - from: ""
+        to: ""
+        html_only: false
+  getting_started:
+    root: "docs/getting-started"
+    routes:
+      - from: ""
+        to: ""
+  install:
+    root: "docs/install"
+    routes:
+      - from: ""
+        to: ""
+  auth:
+    root: "docs/auth-and-teams"
+    routes:
+      - from: ""
+        to: ""
+  pipelines:
+    root: "docs/pipelines"
+    routes:
+      - from: ""
+        to: ""
+  resources:
+    root: "docs/resources"
+    routes:
+      - from: ""
+        to: ""
+  resource_types:
+    root: "docs/resource-types"
+    routes:
+      - from: ""
+        to: ""
+  steps:
+    root: "docs/steps"
+    routes:
+      - from: ""
+        to: ""
+  how_to:
+    root: "docs/how-to"
+    routes:
+      - from: ""
+        to: ""
+  operation:
+    root: "docs/operation"
+    routes:
+      - from: ""
+        to: ""
+  internals:
+    root: "docs/internals"
+    routes:
+      - from: ""
+        to: ""
+
+examples:
+  root: "examples"
+  routes:
+    - from: ""
+      to: ""
+      html_only: false
+
+project:
+  root: "project"
+  routes:
+    - from: ""
+      to: ""
+      html_only: true
+
+ecosystem:
+  root: "ecosystem"
+  routes:
+    - from: ""
+      to: ""
+      html_only: true
+
+support:
+  root: "support"
+  routes:
+    - from: ""
+      to: ""
+      html_only: true

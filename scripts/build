@@ -4,11 +4,8 @@ set -e -u
 
 cd $(dirname $0)/..
 
-go install github.com/vito/booklit/cmd/booklit@latest
+pip install mkdocs-material mkdocs-redirects
 
-booklit -i lit/index.lit -o . \
-  --save-search-index \
-  --html-templates html/ \
-  --plugin github.com/concourse/docs/go/docs \
-  --plugin github.com/concourse/docs/go/resource-type-list \
-  "$@"
+ytt -f mkdocs.template.yml -f redirects > mkdocs.yml
+
+mkdocs build
