@@ -14,6 +14,111 @@ Check out the [docs](https://github.com/concourse/git-resource) for the git reso
 
 ## Fetching a Repository
 
+Here is how you fetch the contents of a git repository and use it in a task.
+
+```yaml
+resources:
+  - name: concourse-examples
+    type: git
+    icon: github
+    source:
+      uri: https://github.com/concourse/examples
+
+jobs:
+  - name: read-the-readme
+    plan:
+      - get: concourse-examples
+      - task: cat-readme
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source:
+              repository: busybox
+          inputs: # pass concourse-examples into this task step
+            - name: concourse-examples
+          run:
+            path: cat
+            args: [ "concourse-examples/README.md" ]
+```
+
 ## Creating Commits and Tags
 
+Here's a simple way to create a commit using a bash script.
+
+```yaml
+resources:
+  - name: repo-main
+    type: git
+    icon: github
+    source:
+      uri: https://github.com/user/my-repo
+      branch: main
+
+jobs:
+  - name: create-a-commit
+    plan:
+      - get: repo-main
+      - task: commit-and-tag
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source:
+              repository: gitea/gitea # use any image that has the git cli
+          inputs:
+            - name: repo-main
+          outputs:
+            # to pass the commit to the following steps specify
+            # the "repo-main" as an output as well
+            - name: repo-main
+          run:
+            path: sh
+            args:
+              - -cx
+              # this is just a bash script
+              - |
+                cd repo-main
+                # edit a file / make a change
+                date +%Y-%m-%d > todays-date
+                git add ./todays-date
+                git commit -m "Add todays date"
+                git tag v0.1.6
+      # push commit and tag
+      - put: repo-main
+        params:
+          # specify the "repo-main" artifact as the location
+          repository: repo-main
+```
+
 ## Merging Branches
+
+Here is how you can merge two branches. Common if you are
+using [gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) and need to merge a `dev`
+branch into `main` every so often.
+
+```yaml
+resources:
+  - name: repo-main
+    type: git
+    icon: github
+    source:
+      uri: https://github.com/user/my-repo
+      branch: main
+
+  - name: repo-dev
+    type: git
+    icon: github
+    source:
+      uri: https://github.com/user/my-repo
+      branch: dev
+
+jobs:
+  - name: merge-dev-into-main
+    plan:
+      - get: repo-dev
+      - put: repo-main
+        params:
+          repository: repo-dev
+          merge: true
+```
