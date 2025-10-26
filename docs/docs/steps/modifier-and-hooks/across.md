@@ -16,7 +16,7 @@ the [`set_pipeline` step](../set-pipeline.md), and [instanced pipelines](../../p
 maintain a dynamically sized group of related pipelines.
 
 More fields are also available for variable interpolation with the across step.
-See [Across Step & Dynamic Vars](../../vars.md#across-step--dynamic-vars) for details.
+See [Across Step & Dynamic Vars](../../vars.md#across-step-dynamic-vars) for details.
 
 !!! note
 
