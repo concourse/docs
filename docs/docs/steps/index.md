@@ -11,7 +11,7 @@ A build plan is a sequence of steps:
 * the [`get` step](get.md) fetches a [resource](../resources/index.md)
 * the [`put` step](put.md) updates a [resource](../resources/index.md)
 * the [`set_pipeline` step](set-pipeline.md) configures a [pipeline](../pipelines/index.md)
-* the [`load_var` step](load-var.md) loads a value into a [local var](../vars.md#the--var-source)
+* the [`load_var` step](load-var.md) loads a value into a [local var](../vars.md#local-var)
 * the [`in_parallel` step](in-parallel.md) runs steps in parallel
 * the [`do` step](do.md) runs steps in sequence
 * the [`across` step](modifier-and-hooks/across.md) modifier runs a step multiple times; once for each combination of

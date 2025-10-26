@@ -19,7 +19,7 @@ The full syntax for vars is `((`_`source-name:secret-path.secret-field`_`))`.
 The optional _source-name_ identifies the [var source](#var-sources-experimental) from which the value will be read. If
 omitted (along with the `:` delimiter), the [cluster-wide credential manager](#the-cluster-wide-credential-manager) will
 be used, or the value may be provided [statically](#static-vars). The special name `.` refers to
-the [local var source](#the--var-source), while any other name refers to a [var source](#var-sources-experimental).
+the [local var source](#local-var), while any other name refers to a [var source](#var-sources-experimental).
 
 The required _secret-path_ identifies the location of the credential. The interpretation of this value depends on the
 var source type. For example, with Vault this may be a path like `path/to/cred`. For the Kubernetes secret manager this
@@ -36,7 +36,7 @@ The _secret-path_ and _secret-field_ may be surrounded by double quotes `"..."` 
 like `.` and `:`. For instance, `((source:"my.secret"."field:1"))` will set the _secret-path_ to `my.secret` and the
 _secret-field_ to `field:1`.
 
-## The "`.`" var source
+## The "`.`" var source {: #local-var }
 
 The special var source name `.` refers to a "local var source."
 
