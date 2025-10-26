@@ -4,7 +4,7 @@ set -e -u
 
 cd $(dirname $0)/..
 
-pip install mkdocs-material mkdocs-redirects
+pip install mkdocs-material mkdocs-redirects mkdocs-glightbox
 
 ytt -f mkdocs.template.yml -f redirects > mkdocs.yml
 

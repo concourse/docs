@@ -23,3 +23,7 @@ documentation.
 
 ## Prerequisites
 
+Required Dependencies:
+
+- ytt by Carvel
+- 

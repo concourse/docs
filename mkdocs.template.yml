@@ -7,6 +7,7 @@ INHERIT: base.yml
 
 plugins:
   - search
+  - glightbox
   - blog:
       blog_dir: blog
       post_url_date_format: yyyy-MM-dd
