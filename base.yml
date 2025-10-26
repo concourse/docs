@@ -36,7 +36,6 @@ exclude_docs: |
   libs/**/*.md
   libs/examples/apps
   libs/examples/terraform
-  libs/examples/Dockerfiles
   libs/examples/misc
   libs/examples/LICENSE
 
