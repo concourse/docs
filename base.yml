@@ -72,9 +72,22 @@ theme:
   logo: assets/logo-white.svg
   favicon: assets/favicon.ico
 
+copyright: >-
+  Copyright &copy; 2025 The Linux Foundation &trade; –
+  <a href="#__consent">Change cookie settings</a>
+
 extra:
   analytics:
     provider: goattracker
+  consent:
+    title: Cookie consent
+    description: >-
+      We use cookies to recognize your repeated visits. With your consent, you're helping us to
+      make our documentation better.
+    cookies:
+      analytics:
+        name: Goat Tracker Analytics
+        checked: true
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/concourse
@@ -232,4 +245,4 @@ nav:
   - ecosystem/index.md
   - support/index.md
   - Blog:
-    - blog/index.md
+      - blog/index.md
