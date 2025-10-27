@@ -7,8 +7,8 @@ title: Quick Start
 Concourse is distributed as a single concourse binary, making it easy to run just about anywhere, especially with
 Docker.
 
-If you'd like to get Concourse running somewhere quickly so you can start to kick the tires, the easiest way is to use
-our [docker-compose.yml](https://concourse-ci.org/docker-compose.yml):
+If you'd like to get Concourse running somewhere quickly, so you can start to kick the tires, the easiest way is to use
+our [docker-compose.yml](../../docker-compose.yml):
 
 ```
 $ curl -O https://concourse-ci.org/docker-compose.yml
@@ -26,7 +26,7 @@ username/password as `test`/`test`.
 
 ## Install Fly
 
-Next, install the [`fly` CLI](https://concourse-ci.org/fly.html) by downloading it from the web UI. If you're on
+Next, install the [`fly` CLI](../fly.md) by downloading it from the web UI. If you're on
 version >=v7.14.0 of Concourse, you can visit [http://localhost:8080/download-fly](http://localhost:8080/download-fly).
 
 Otherwise, you can follow these steps to install fly for your OS:
@@ -46,6 +46,7 @@ Otherwise, you can follow these steps to install fly for your OS:
     chmod +x ./fly
     mv ./fly /usr/local/bin/
     ```
+
 === "Windows (Powershell)"
 
     ``` ps1 linenums="1"
@@ -56,7 +57,7 @@ Otherwise, you can follow these steps to install fly for your OS:
     Invoke-WebRequest $concourseURL -OutFile "${concoursePath}\fly.exe"
     ```
 
-Use [fly login](https://concourse-ci.org/fly.html#fly-login) to log into your local Concourse as the `test` user:
+Use [`fly login`](../fly.md#fly-login) to log into your local Concourse as the `test` user:
 
 ```
 fly -t tutorial login -c http://localhost:8080 -u test -p test
@@ -71,7 +72,7 @@ target saved
 ```
 
 You'll notice that every fly command in this tutorial has to have
-the [target (-t tutorial)](https://concourse-ci.org/fly.html#fly-targets) specified. This is annoying when you only have
+the [target (`-t tutorial`)](../fly.md#fly-targets) specified. This is annoying when you only have
 one Concourse to target, but it helps ensure you don't trigger a job on the wrong Concourse instance. It will save you
 from hurting yourself!
 
