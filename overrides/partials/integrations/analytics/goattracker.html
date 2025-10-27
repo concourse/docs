@@ -1,13 +1,22 @@
-<script>
-    /* Wait for page to load and application to mount */
-    document.addEventListener("DOMContentLoaded", function () {
-        location$.subscribe(function (url) {
-            window.goatcounter.count({
-                path: url.pathname + url.search + url.hash,
+<script id="__analytics">
+    function __md_analytics() {
+        /* Wait for page to load and application to mount */
+        document.addEventListener("DOMContentLoaded", function () {
+            location$.subscribe(function (url) {
+                window.goatcounter.count({
+                    path: url.pathname + url.search + url.hash,
+                })
             })
         })
-    })
-</script>
 
-<script data-goatcounter="https://concourse.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
+        /* Create script tag */
+        let script = document.createElement("script");
+        script.async = true;
+        script.src = "//gc.zgo.at/count.js";
+        script.dataset.goatcounter = "https://concourse.goatcounter.com/count";
+
+        /* Inject script tag */
+        let container = document.getElementById("__analytics")
+        container.insertAdjacentElement("afterend", script)
+    }
+</script>
