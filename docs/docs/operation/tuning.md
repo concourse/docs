@@ -2,40 +2,148 @@
 title: Performance Tuning
 ---
 
+By default, Concourse is configured to feel very snappy. This is good for when you are first trying out Concourse or
+using it on a small team with a few dozen pipelines.
+
+When you begin trying to scale Concourse is where fires can start breaking out. This section will go over some
+configuration values in Concourse that you can change to make scaling easier.
+
 ## The Big Caveat
+
+Track [Metrics](metrics.md)! Everything you read next could be all for nothing if you don't have metrics to track where
+the bottlenecks are in your Concourse system. We highly suggest tracking metrics so you have a clear before and after
+picture for any changes you make and to clearly see if you're moving things in the right direction.
 
 ## Build Logs
 
+Is the size of your database growing dramatically? Can't keep up with the storage costs? Then you should probably
+configure some default log retention settings.
+
+By default, Concourse will not delete any of your logs from your pipelines. You have to opt in to having Concourse
+automatically delete build logs for you. You can set a time-based retention policy and/or a policy based on the number
+of logs a job generates.
+
 ### `CONCOURSE_DEFAULT_BUILD_LOGS_TO_RETAIN`
+
+Determines how many build logs to retain per job by default. If you set this to `10` then any jobs in your pipelines
+that have more than ten builds will have the extra logs for those builds deleted.
+
+Users can override this value in their pipelines.
 
 ### `CONCOURSE_MAX_BUILD_LOGS_TO_RETAIN`
 
+Determines how many build logs to retain per job. Users cannot override this setting.
+
 ### `CONCOURSE_DEFAULT_DAYS_TO_RETAIN_BUILD_LOGS`
+
+Determines how old build logs have to be before they are deleted. Setting this to a value like `10` will result in any
+build logs older than 10 days to be deleted.
+
+Users can override this value in their pipelines.
 
 ### `CONCOURSE_MAX_DAYS_TO_RETAIN_BUILD_LOGS`
 
+Determines how old build logs have to be before they are deleted. Users cannot override this setting in their pipelines.
+
 ## Resource Checking
+
+By default, Concourse checks any given resource every ~1min. This makes Concourse feel snappy when you first start using
+it. Once you start trying to scale though the amount of checks can begin to feel aggressive. The following settings can
+help you reduce the load caused by resource checking.
 
 ### `CONCOURSE_RESOURCE_CHECKING_INTERVAL`
 
+This is where the default value for 1min checks comes from. Changing this value changes the default checking interval
+for all resources. Users can override this value when defining a resource with the [
+`resource.check_every`](../resources/index.md#resource-schema) field.
+
 ### `CONCOURSE_RESOURCE_WITH_WEBHOOK_CHECKING_INTERVAL`
+
+Same as the previous var but only applies to resources with webhooks. Could use this to disable resource checking of
+resources that use webhooks by setting it to a large value like `99h`.
 
 ### `CONCOURSE_MAX_CHECKS_PER_SECOND`
 
+Maximum number of checks that can be started per second. This will be calculated as
+`(# of resources)/(resource checking interval)`. If you're finding that too many resource checks are running at once and
+consuming a lot of resources on your workers then you can use this var to reduce the overall load.
+
+A value of `-1` will remove this maximum limit of checks per second.
+
 ## Pipeline Management
+
+Here are some flags you can set on the web node to help manage the amount of resources pipelines consume. These flags
+are mostly about ensuring pipelines don't run forever without good reason.
 
 ### `CONCOURSE_PAUSE_PIPELINES_AFTER`
 
+This flag takes a number representing the number of days since a pipeline last ran before it's automatically paused. So
+specifying `90` means any pipelines that last ran 91 days ago will be automatically paused.
+
+For large instances it can be common for users to set a pipeline and then forget about it. The pipeline may never run
+another job again and be forgotten forever. Even if the jobs in the pipeline never run Concourse will still be running
+resource checks for that pipeline, if any resources are defined. By setting this flag you can ensure that any pipelines
+that meet this criteria will be automatically paused and not consume resources long-term. For some large instances this
+can mean up to 50% of pipelines eventually being paused.
+
 ### `CONCOURSE_DEFAULT_TASK_{CPU/MEMORY}_LIMIT`
+
+Global defaults for CPU and memory you can set. Only applies to tasks, not resource containers (`check/get/put` steps).
+You can read more about how to set these limits on the [`task` step `container_limits`](../steps/task.md) page.
+
+Users can override these values in their pipelines.
 
 ### `CONCOURSE_DEFAULT_{GET/PUT/TASK}_TIMEOUT`
 
+Global defaults for how long the mentioned step takes to execute. Useful if you're finding your users write pipelines
+with tasks that get stuck or never end. Ensures that every build eventually finishes.
+
+Users can override these values in their pipelines.
+
 ## Container Placement
+
+If you find that workers keep crashing due to high CPU and/or memory usage then you could try specifying a custom
+container placement strategy or strategy chain. The [Container Placement](container-placement.md) page has some examples
+of container placement strategy chains you can use.
 
 ## Garbage Collection
 
+When jobs fail or error out in Concourse their resources are not immediately cleaned up. The container and storage space
+remain on a worker for some period of time before they get garbage collected. If you want to make the garbage collector
+more aggressive you can change the following settings on your web node:
+
 ### `CONCOURSE_GC_FAILED_GRACE_PERIOD`
+
+This env var only applies to containers where the job failed and has the longest grace period among all the other GC
+grace periods. It has a default value of `120h` (five days).
+
+The reason the default value is so long is so users don't feel rushed to investigate their failed job. A job can fail
+over a weekend and users can investigate the failed jobs containers when they come back on Monday.
+
+Failed containers get GC as soon as a new build of the job is kicked off. So you don't have to worry about failed
+containers always hanging around for five days. They'll only hang around for that long if they're the most recent build
+of a job.
+
+If you notice a lot of containers and volumes hanging around that are tied to failed jobs you can try reducing this
+setting to fewer days or even a few hours.
 
 ### Other GC Grace Periods
 
+Depending on what a container was used for and its exit condition, there are various flags you can adjust to make
+Concourse GC these resources faster or slower. The following env vars cover the cases where you probably don't need the
+container hanging around for very long. They have a default value of `5m`.
+
+* `CONCOURSE_GC_ONE_OFF_GRACE_PERIOD` - Period after which one-off build containers will be garbage-collected
+* `CONCOURSE_GC_MISSING_GRACE_PERIOD` - Period after which containers and volumes that were created but went missing
+  from the worker will be garbage-collected
+* `CONCOURSE_GC_HIJACK_GRACE_PERIOD`- Period after which hijacked containers will be garbage-collected
+
 ## Web To Worker Ratio
+
+This is anecdotal, and you should adjust based on your metrics of your web nodes. A starting ratio of web to workers is
+1:6; one web instance for every six workers.
+
+The core Concourse team runs two web nodes and 16 workers, a 1:8 ratio. We can get away with this lower web to worker
+ratio because we don't have that many users actively interacting with the web UI on a daily basis; less than 10 active
+users. Since we're only one team using the instance we have fewer pipelines than an instance supporting multiple teams
+would.
