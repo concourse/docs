@@ -2,18 +2,105 @@
 title: Global Resources
 ---
 
+!!! warning "Experimental Feature"
+
+    Global Resources is an experimental feature introduced in Concourse v5.0 . It is enabled by passing the 
+    `--enable-global-resources` flag to the `concourse web` command.
+
+The basic concept of global resources is to share detected resource versions between all resources that have the same
+`resource.type` and `resource.source` configuration.
+
+Before v5.0.0, each pipeline resource had its own version history, associated to the resource by name. This meant that
+multiple pipelines with the same resource configs would redundantly collect the same version and metadata information.
+
+With v5.0.0's experimental 'global resources' feature, resource versions are instead associated to an
+anonymous '[resource config](../resources/index.md#resource-schema)' i.e. its `resource.type` and `resource.source`.
+
 ## Benefits of Global Resources
 
 ### Fewer resource `check`s to perform
 
+With global resources, all resources that have the same configuration will share the same version history and share only
+one checking interval. This reduces load on the worker and on the external services that the resources point to.
+
+For example, prior to global resources if there were three resources with the same configuration between three team's
+pipelines it would result in three check containers performing three resource checks every minute to fetch the versions.
+
+With global resources, this configuration will result in only one check container and one resource check every minute to
+fetch versions for all the resources.
+
+Since there will be only one resource check for all resources that have the same configuration, the resource that has
+the shortest [`resource.check_every`](../resources/index.md#resource-schema) configured will result in its pipeline
+running the checks for that resource configuration.
+
 #### Complications with reusing containers
+
+There is an exception to sharing check containers within a deployment, which is workers belonging to a team and workers
+with tags.
+
+If a resource has [`resource.tags`](../resources/index.md#resource-schema) configured, and the resource's check interval
+ends up acquiring the checking lock, if a check container already exists with the same resource config elsewhere, it
+will reuse the container, otherwise a container will be created on a worker matching the appropriate tags.
+
+Similarly, if a team has its own workers, and their check interval ended up acquiring the lock, it will try to re-use a
+container with the same resource config from the shared worker pool, rather than creating a new container on the team's
+workers.
+
+This is a bit complicated to reason about, and we plan to stop re-using `check` containers to simplify all of this.
+See [concourse/concourse#3079](https://github.com/concourse/concourse/issues/3079) for more information.
 
 ### Reducing redundant data
 
+The majority of Concourse resources will benefit from having versions shared globally because most resource versions
+have an external source of truth.
+
+For example, a `check` for the [`git` resource](https://github.com/concourse/git-resource) that pulls in the
+`concourse/concourse` repository will always return the same set of versions as an equivalent resource pointing to the
+same repository. By consolidating the `check`s and the versions, there will essentially only be one set of versions
+collected from the repository and saved into the database.
+
 ### Reliable Resource Version History
+
+Prior to global resources, a resource's version history was directly associated to the resource name. This meant that
+any changes to a resource's configuration without changing its name would basically append the versions from the new
+configuration after the old versions, which are no longer accurate to the current configuration.
+
+Global resources instead associates the resource versions to the resource's `resource.type` and `resource.source`.
+Therefore, whenever a resource definition changes, the versions will "reset" and change along with it, resulting in
+truthful and reliable version histories.
 
 ## Risks and Side Effects
 
 ### Sharing versions doesn't work well for all resource types
 
+Sharing versions isn't always a good idea. For example, the [
+`time` resource](https://github.com/concourse/time-resource) is often used to generate versions on an interval so that
+jobs can fire periodically. If version history were to be shared for all users with e.g. a 10-minute interval, that
+would lead to a thundering herd of builds storming your workers, leading to load spikes and a lot of unhappy builds.
+
+We are working toward a solution to the [`time` resource](https://github.com/concourse/time-resource)'s thundering herd
+problem - namely, to not model time as a resource, and instead model it as a [
+`var_source`](../vars.md#var_source-schema). We are tracking progress toward this goal
+in [concourse/concourse#5815](https://github.com/concourse/concourse/issues/5815).
+
+Another case where version history shouldn't be shared is when resources "automagically" learn their auth credentials
+using things like IAM roles. In these cases, the credentials aren't in the `resource.source`. If version history were to
+be shared, anyone could configure the same `source:`, not specifying any credentials, and see the version history
+discovered by some other pipeline that ran its checks on workers that had access via IAM roles.
+
+For this reason, any resource types that acquire credentials outside of `source:` should not share version history.
+Granted, the user won't be able to fetch these versions, but it's still an information leak.
+
+IAM roles are a bit of a thorn in our side when it comes to designing features like this. We're planning on introducing
+support for them in a way that doesn't have this problem
+in [concourse/concourse#3023](https://github.com/concourse/concourse/issues/3023).
+
 ### Intercepting check containers is no longer safe
+
+Now that `check` containers are shared across teams, it would be dangerous to allow anyone
+to [`fly intercept`](../builds.md#fly-intercept) to `check` containers. For this reason, this capability is limited
+to [admin users](../auth-and-teams/user-roles.md#concourse-admin).
+
+We recognize that this will make it a bit more difficult for end users to debug things like failing checks. We plan to
+improve this by introducing a way to provision a _new_ `check` container to facilitate debugging.
+See [concourse/concourse#3344](https://github.com/concourse/concourse/issues/3344) for more information.
