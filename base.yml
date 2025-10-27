@@ -42,21 +42,20 @@ exclude_docs: |
 
 theme:
   name: material
-  #  custom_dir: overrides
+  custom_dir: overrides
   features:
-    - navigation.prune
-    - navigation.tabs
-    - navigation.tabs.sticky
-    - navigation.indexes
-    - navigation.instant
-    - navigation.top
-    - content.code.copy
-    - attr_list
-    - md_in_html
-    - pymdownx.blocks.caption
-    - navigation.footer
-    - content.action.edit
-    - content.action.view
+    - navigation.tabs         # Top-level tabs
+    - navigation.tabs.sticky  # Keep tabs visible
+    - navigation.indexes      # Section index pages
+    - navigation.instant      # SPA-like navigation
+    - navigation.top          # Back to top button
+    - navigation.footer       # Previous/next links
+    - content.action.edit     # Edit Page in GitHub
+    - content.action.view     # View raw Page in GitHub
+    - content.code.copy       # Copy code
+    - attr_list               # Attribute Lists
+    - md_in_html              # Markdown in HTML
+    - pymdownx.blocks.caption # Caption
 
   palette:
     - scheme: default
@@ -74,6 +73,8 @@ theme:
   favicon: assets/favicon.ico
 
 extra:
+  analytics:
+    provider: goattracker
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/concourse
