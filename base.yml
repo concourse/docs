@@ -6,6 +6,10 @@ repo_name: concourse/concourse
 
 edit_uri: https://github.com/Aviator-Labs/docs-ci/edit/main/docs/
 
+watch:
+  - docs
+  - overrides
+
 markdown_extensions:
   - admonition
   - def_list
@@ -43,6 +47,8 @@ exclude_docs: |
 theme:
   name: material
   custom_dir: overrides
+  font: 
+    text: Roboto Slab
   features:
     - navigation.tabs         # Top-level tabs
     - navigation.tabs.sticky  # Keep tabs visible

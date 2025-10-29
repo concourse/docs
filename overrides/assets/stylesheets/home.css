@@ -1,0 +1,64 @@
+
+body {
+  background-image: url('../images/concourse-pattern.svg');
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.centered-section {
+  position: relative;
+  /* left: 50%; */
+  top: 30%;
+  width: 90%;
+  /* transform: translate(-50%, -50%); */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.2
+  ); 
+  border-radius: 8px; 
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.9);
+  text-align: center;
+  /* padding: 140px 70px; */
+  margin-top: 200px;
+  padding-left: 20px;
+}
+
+.side-by-side {
+    display: grid;
+    margin-bottom: 1em;
+    grid-template-columns: 48% 48%;
+    grid-gap: 0 4%;
+    padding-top: 140px;
+}
+
+.side-by-side .segment {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 10px;
+}
+
+.splash-intro {
+  background-color: aqua;  
+}
+
+.splash-intro p {
+  font-size: 1rem;
+}
+.splash-intro h1 {
+  font-size: xx-large;
+}
+
+.right-flex {
+  background-color: blueviolet;
+}
+
