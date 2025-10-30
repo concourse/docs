@@ -30,7 +30,7 @@ body {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.9);
     text-align: center;
     display: grid;
-    grid-template-columns: 48% 48%;
+    grid-template-columns: 1fr 1fr;
     grid-gap: 0 4%;
     padding: 3em 1.5em;
     margin-left: 1.5em;
@@ -54,6 +54,7 @@ body {
 
 .splash-intro h1 {
     font-size: xx-large;
+    font-weight: bold;
     color: #efeeee;
 }
 
@@ -62,20 +63,89 @@ body {
     color: #efeeee;
 }
 
-.splash-intro > * > .text-links {
+.splash-intro > * > .text-links:hover {
     color: #efeeee;
-}
-
-.right-flex {
-    background-color: blueviolet;
-}
-
-.right-flex .grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
 }
 
 .quick-start {
     width: fit-content;
     flex-grow: 0;
+}
+
+.splash-downloads {
+    background: #2ecc71;
+    justify-self: stretch;
+    position: relative;
+}
+
+.split-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: absolute;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #ddd
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.md-button.download-dropdown-btn:hover {
+    border-left: 1px solid white
+}
+
+.download-btn, .download-dropdown-btn {
+    height: 3em;
+}
+
+.download-dropdown-btn {
+    width: fit-content;
+}
+
+.md-button.download-btn {
+    border-radius: 1em 0 0 1em;
+}
+
+.md-button.download-dropdown-btn {
+    border-radius: 0 1em 1em 0;
+    border-left: 1px solid white
+}
+
+.download-ctr {
+    display: grid;
+    grid-template-columns: 0.75fr 1.25fr;
+}
+
+@media screen and (max-width: 1219px) { /* Example breakpoint for tablets */
+    .side-by-side, .download-ctr {
+        grid-template-columns: 1fr; /* Two equal columns */
+    }
 }
