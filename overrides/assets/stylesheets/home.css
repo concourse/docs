@@ -30,10 +30,8 @@ body {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.9);
     text-align: center;
     display: grid;
-    /*margin-bottom: 1em;*/
     grid-template-columns: 48% 48%;
     grid-gap: 0 4%;
-    /*padding-top: 140px;*/
     padding: 3em 1.5em;
     margin-left: 1.5em;
     margin-right: 1.5em;
@@ -47,7 +45,6 @@ body {
 }
 
 .splash-intro {
-    /*background-color: aqua;*/
     color: #efeeee;
 }
 
@@ -60,12 +57,12 @@ body {
     color: #efeeee;
 }
 
-.splash-intro a {
+.splash-intro > * > .text-links {
     text-decoration: underline !important;
     color: #efeeee;
 }
 
-.splash-intro a:hover {
+.splash-intro > * > .text-links {
     color: #efeeee;
 }
 
@@ -76,4 +73,9 @@ body {
 .right-flex .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
+}
+
+.quick-start {
+    width: fit-content;
+    flex-grow: 0;
 }
