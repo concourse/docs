@@ -7,6 +7,7 @@
 {% block content %}
 
 <link rel="stylesheet" href="assets/stylesheets/home.css"/>
+<script src="assets/javascripts/home.js"></script>
 <div class="centered-section">
     <div class="side-by-side">
         <div class="segment splash-intro">
@@ -21,29 +22,67 @@
                 /
                 <a class="text-links" href="https://en.wikipedia.org/wiki/Continuous_delivery">CD</a>.
             </p>
-            <a
-                    href="docs/getting-started/quick-start/"
-                    class="md-button md-button--primary quick-start"
-            > Quick Start </a>
+            <a href="docs/getting-started/quick-start/" class="md-button md-button--primary quick-start">
+                Quick Start
+            </a>
         </div>
-        <div class="segment right-flex">
-            <div class="grid">
-                <p>Download the Latest Release</p>
-                <button class="md-button md-button--primary"> v7.14.2</button>
-            </div>
-            <div class="grid">
-                <div>
-                    <pre>concourse</pre>
-                    cli
+        <div class="segment splash-downloads">
+            <div class="splash-split">
+                <h1>Version {{ config.extra.version }}</h1>
+                <div id="windows-specific-content">
+                    <p>This content is visible only on Windows.</p>
+                    <div>
+
+                    </div>
                 </div>
-                <button class="md-button md-button--primary">Button</button>
-            </div>
-            <div class="grid">
-                <div>
-                    <pre>concourse</pre>
-                    cli
+
+                <div id="mac-specific-content">
+                    <div class="download-ctr">
+                        <p>concourse server</p>
+                        <div>
+                            <a class="md-button md-button--primary download-btn"
+                               href="https://github.com/concourse/concourse/releases/download/v{{ config.extra.version }}/concourse-{{ config.extra.version }}-darwin-arm64.tgz">Download</a>
+                            <div class="dropdown">
+                                <button class="md-button md-button--primary download-dropdown-btn" type="button">
+                                    <span class="twemoji">
+                                        .tgz (Apple)
+                                        {% include ".icons/material/chevron-down.svg" %}
+                                    </span>
+                                </button>
+                                <div class="dropdown-content">
+                                    <a href="https://github.com/concourse/concourse/releases/download/v{{ config.extra.version }}/concourse-{{ config.extra.version }}-darwin-arm64.tgz">.tgz
+                                        (Apple)</a>
+                                    <a href="https://github.com/concourse/concourse/releases/download/v{{ config.extra.version }}/concourse-{{ config.extra.version }}-darwin-amd64.tgz">.tgz
+                                        (Intel)</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="download-ctr">
+                        <p>fly CLI</p>
+                        <div>
+                            <a class="md-button md-button--primary download-btn"
+                               href="https://github.com/concourse/concourse/releases/download/v{{ config.extra.version }}/fly-{{ config.extra.version }}-darwin-arm64.tgz">Download</a>
+                            <div class="dropdown">
+                                <button class="md-button md-button--primary download-dropdown-btn" type="button">
+                                    <span class="twemoji">
+                                        .tgz (Apple)
+                                        {% include ".icons/material/chevron-down.svg" %}
+                                    </span>
+                                </button>
+                                <div class="dropdown-content">
+                                    <a href="https://github.com/concourse/concourse/releases/download/v{{ config.extra.version }}/fly-{{ config.extra.version }}-darwin-arm64.tgz">.tgz
+                                        (Apple)</a>
+                                    <a href="https://github.com/concourse/concourse/releases/download/v{{ config.extra.version }}/fly-{{ config.extra.version }}-darwin-amd64.tgz">.tgz
+                                        (Intel)</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-                <button class="md-button md-button--primary">Button</button>
             </div>
         </div>
     </div>
