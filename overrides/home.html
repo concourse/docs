@@ -1,23 +1,44 @@
-{% extends "main.html" %} {% block tabs %} {{ super() }}
-<link rel="stylesheet" href="assets/stylesheets/home.css" />
+{% extends "main.html" %}
+{% block tabs %}
+{{ super() }}
+
+{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="assets/stylesheets/home.css"/>
 <div class="centered-section">
-  <div class="side-by-side">
-    <div class="segment splash-intro">
-      <h1>Concourse is an open-source continuous thing-doer.</h1>
-      <p>
-        Centered around the simple mechanics of
-        <a href="https://concourse-ci.org/resources.html">resources</a>,
-        <a href="https://concourse-ci.org/tasks.html">tasks</a>, and
-        <a href="https://concourse-ci.org/jobs.html">jobs</a>, Concourse
-        delivers a versatile approach to automation that excels at
-        <a href="https://en.wikipedia.org/wiki/Continuous_integration">CI</a>/<a
-          href="https://en.wikipedia.org/wiki/Continuous_delivery"
-          >CD</a
-        >.
-      </p>
+    <div class="side-by-side">
+        <div class="segment splash-intro">
+            <h1>Concourse is an open-source continuous thing-doer.</h1>
+            <p>
+                Centered around the simple mechanics of
+                <a href="docs/resources">resources</a>,
+                <a href="docs/tasks">tasks</a>, and
+                <a href="docs/jobs">jobs</a>, Concourse
+                delivers a versatile approach to automation that excels at
+                <a href="https://en.wikipedia.org/wiki/Continuous_integration">CI</a>/<a
+                    href="https://en.wikipedia.org/wiki/Continuous_delivery">CD</a>.
+            </p>
+        </div>
+        <div class="segment right-flex">
+            <div class="grid">
+                <p>Download the Latest Release</p>
+                <button class="md-button md-button--primary"> v7.14.2 </button>
+            </div>
+                <div class="grid">
+                    <div><pre>concourse</pre> cli</div>
+                    <button class="md-button md-button--primary">Button</button>
+                </div>
+                <div class="grid">
+                    <div><pre>concourse</pre> cli</div>
+                    <button class="md-button md-button--primary">Button</button>
+                </div>
+        </div>
     </div>
-    <div class="segment right-flex"><h1>Concourse</h1></div>
-  </div>
 </div>
-{% endblock %} {% block content %}{% endblock %} {% block footer %}{% endblock
-%}
+
+{% endblock %}
+
+{% block footer %}
+{% endblock%}
