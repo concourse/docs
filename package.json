@@ -1,0 +1,21 @@
+{
+  "type": "module",
+  "scripts": {
+    "build:scss": "sass --style=compressed src/mwc-theme.scss overrides/assets/stylesheets/mwc-theme.css",
+    "build:mwc": "rollup -c rollup.config.mwc.js",
+    "build": "npm run build:scss && npm run build:mwc && mkdocs build",
+    "start": "npm run build:scss && npm run build:mwc && mkdocs serve --livereload"
+  },
+  "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^7.1.0",
+    "@material/web": "^2.4.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "rollup": "^4.52.5",
+    "sass": "^1.93.3",
+    "typescript": "^5.9.3"
+  }
+}

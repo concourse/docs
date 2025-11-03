@@ -164,3 +164,7 @@ cython_debug/
 *.iml
 
 mkdocs.yml
+/node_modules/
+
+overrides/assets/javascripts/*.min.js*
+overrides/assets/stylesheets/*.css*
