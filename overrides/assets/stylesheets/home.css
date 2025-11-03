@@ -73,7 +73,7 @@ body {
 }
 
 .splash-downloads {
-    background: #2ecc71;
+    /*background: #2ecc71;*/
     justify-self: stretch;
     position: relative;
 }
