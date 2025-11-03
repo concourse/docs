@@ -37,6 +37,13 @@ markdown_extensions:
         kwds:
           case: lower
 
+extra_css:
+  # ⬅️ Add your custom MWC theme CSS
+  - assets/stylesheets/mwc-theme.css
+
+extra_javascript:
+  - assets/javascripts/mwc-bundle.min.js
+
 exclude_docs: |
   libs/**/*.md
   libs/examples/apps
@@ -65,12 +72,12 @@ theme:
 
   palette:
     - scheme: default
-      primary: blue
+      primary: custom
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - scheme: slate
-      primary: blue
+      primary: custom
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
