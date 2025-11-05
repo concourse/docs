@@ -34,73 +34,61 @@
         </div>
         <div class="segment splash-downloads">
             <div class="splash-split">
-                <h1>Version {{ config.extra.version }}</h1>
+                <div>
+                    <div class="std-flex-box">
+                        <h3 id="release-text">Download the latest release:</h3>
 
-                <md-tabs id="osPrimaryTags">
-                    <md-primary-tab id="macos-dl" aria-controls="panel-macos" active>
-                        <md-icon slot="icon">
-                            <fa-icon icon="windows"></fa-icon>
-                        </md-icon>
-                        MacOS
-                    </md-primary-tab>
-
-                    <md-primary-tab id="windows-dl" aria-controls="panel-windows">
-                        <i slot="icon" class="fa-windows"></i>
-                        Windows
-                    </md-primary-tab>
-
-                    <md-primary-tab id="linux-dl" aria-controls="panel-linux">
-                        <i slot="icon" class="fa-linux"></i>
-                        Linux
-                    </md-primary-tab>
-                </md-tabs>
-
-                <div id="panel-macos" role="tabpanel" aria-labelledby="macos-dl">
-<!--                    <h2>Content for Tab One</h2>-->
-<!--                    <p>This is the first tab's content. It is visible by default.</p>-->
-
-                    <md-tabs>
-                        <md-secondary-tab id="macos-concourse-dl" aria-controls="panel-macos-concourse">
-                            Concourse
-                        </md-secondary-tab>
-
-                        <md-secondary-tab id="macos-fly-dl" aria-controls="panel-macos-fly">
-                            Fly
-                        </md-secondary-tab>
-                    </md-tabs>
-
+                        <div>
+                            <a href="https://github.com/concourse/concourse/releases/tag/v{{ config.extra.version }}">
+                                <md-elevated-button>
+                                    v{{ config.extra.version }}
+                                    <md-icon slot="icon">sell</md-icon>
+                                </md-elevated-button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
+                <div>
+                    <div class="std-flex-box">
+                        <div>
+                            <code>concourse</code> server:
+                        </div>
 
-                <div id="panel-windows" role="tabpanel" aria-labelledby="windows-dl" hidden>
-<!--                    <h2>Content for Tab Two</h2>-->
-<!--                    <p>This content is initially hidden and will appear when Tab Two is selected.</p>-->
-                    <md-tabs>
-                        <md-secondary-tab id="windows-concourse-dl" aria-controls="panel-windows-concourse">
-                            Concourse
-                        </md-secondary-tab>
+                        <div>
+                            <md-filled-select class="tool-select">
+                                <md-select-option selected aria-label="blank">Download Concourse</md-select-option>
+                                <md-select-option value="apple">
+                                    <div slot="headline">Apple</div>
+                                </md-select-option>
+                                <md-select-option value="apricot">
+                                    <div slot="headline">Apricot</div>
+                                </md-select-option>
+                            </md-filled-select>
+                        </div>
 
-                        <md-secondary-tab id="windows-fly-dl" aria-controls="panel-windows-fly">
-                            Fly
-                        </md-secondary-tab>
-                    </md-tabs>
+                    </div>
+
+                    <div class="std-flex-box">
+                        <div>
+                            <code>fly</code> CLI:
+                        </div>
+
+                        <div>
+                            <md-filled-select class="tool-select">
+                                <md-select-option selected aria-label="blank">Download fly</md-select-option>
+                                <md-select-option value="apple">
+                                    <div slot="headline">Apple</div>
+                                </md-select-option>
+                                <md-select-option value="apricot">
+                                    <div slot="headline">Apricot</div>
+                                </md-select-option>
+                            </md-filled-select>
+                        </div>
+
+                    </div>
                 </div>
 
-                <div id="panel-linux" role="tabpanel" aria-labelledby="linux-dl" hidden>
-                    <br/>
-<!--                    <h2>Content for Tab Three</h2>-->
-<!--                    <p>This content is initially hidden and will appear when Tab Three is selected.</p>-->
-
-                    <md-tabs>
-                        <md-secondary-tab id="linux-concourse-dl" aria-controls="panel-linux-concourse">
-                            Concourse
-                        </md-secondary-tab>
-
-                        <md-secondary-tab id="linux-fly-dl" aria-controls="panel-linux-fly">
-                            Fly
-                        </md-secondary-tab>
-                    </md-tabs>
-                </div>
             </div>
         </div>
     </div>
