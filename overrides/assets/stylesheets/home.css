@@ -73,7 +73,7 @@ body {
 }
 
 .splash-downloads {
-    /*background: #2ecc71;*/
+    background: #2a2929;
     justify-self: stretch;
     position: relative;
 }
@@ -144,8 +144,35 @@ body {
     grid-template-columns: 0.75fr 1.25fr;
 }
 
+.std-flex-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em;
+}
+
+.std-flex-box > div > .tool-select {
+    width: 17em;
+    height: 2em;
+}
+
+#release-text {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.splash-split {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    margin: 1.5em 1em;
+    color: white;
+}
+
 @media screen and (max-width: 1219px) { /* Example breakpoint for tablets */
     .side-by-side, .download-ctr {
         grid-template-columns: 1fr; /* Two equal columns */
     }
 }
+
