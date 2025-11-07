@@ -99,6 +99,8 @@ custom_dir = "overrides"
 #
 favicon = "assets/favicon.ico"
 
+logo = "assets/logo-white.svg"
+
 # Zensical supports more than 60 different languages. This means that the
 # labels and tooltips that Zensical's templates produce are translated.
 # The "language" option allows you to set the language used. This language
@@ -244,11 +246,13 @@ features = [
 # - https://zensical.org/docs/setup/colors/
 # ----------------------------------------------------------------------------
 [[project.theme.palette]]
+primary = "custom"
 scheme = "default"
 toggle.icon = "material/brightness-7"
 toggle.name = "Switch to dark mode"
 
 [[project.theme.palette]]
+primary = "custom"
 scheme = "slate"
 toggle.icon = "material/brightness-4"
 toggle.name = "Switch to light mode"
@@ -259,7 +263,7 @@ toggle.name = "Switch to light mode"
 # of suitably licensed fonts. There are options for a normal text font and for
 # a monospaced font used in code blocks.
 # ----------------------------------------------------------------------------
-#[project.theme.font]
+[project.theme.font]
 text = "Roboto Slab"
 code = "Jetbrains Mono"
 
@@ -302,6 +306,9 @@ description = """
 [project.extra.consent.cookies]
 analytics.name = "Goat Tracker Analytics"
 #checked = true
+
+[[project.nav]]
+Home = "index.md"
 
 [[project.nav]]
 Docs = [
