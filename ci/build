@@ -29,6 +29,8 @@ pushd docs
     mv site/{.,}* .
     rmdir site
 
+    echo "concourse-ci.org" > CNAME
+
     git add -A
     git commit --allow-empty -m "build"
   fi
