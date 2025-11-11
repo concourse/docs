@@ -24,7 +24,7 @@ pushd docs
     git checkout gh-pages
     git rm -rf .
 
-    rm -rf .venv/ node_modules/ env/ .cache/ overrides/ docs/ .idea/ docs/libs/examples/apps
+    rm -rf .venv/ node_modules/ env/ .cache/ overrides/ docs/ .idea/ docs/libs/examples/apps/
 
     mv site/{.,}* .
     rmdir site
