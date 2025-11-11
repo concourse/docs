@@ -16,6 +16,7 @@ pushd docs
 
   # Remove apps before build
   rm -rf docs/libs/examples/apps/
+  rm -rf docs/libs/examples/**/*.md
 
   # Create site directory
   npm run build
