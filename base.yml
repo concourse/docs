@@ -6,6 +6,10 @@ repo_name: concourse/concourse
 
 edit_uri: https://github.com/Aviator-Labs/docs-ci/edit/main/docs/
 
+watch:
+  - docs
+  - overrides
+
 markdown_extensions:
   - admonition
   - def_list
@@ -33,6 +37,12 @@ markdown_extensions:
         kwds:
           case: lower
 
+extra_css:
+  - assets/stylesheets/mwc-theme.css
+
+extra_javascript:
+  - assets/javascripts/mwc-bundle.min.js
+
 exclude_docs: |
   libs/**/*.md
   libs/examples/apps
@@ -43,6 +53,8 @@ exclude_docs: |
 theme:
   name: material
   custom_dir: overrides
+  font: 
+    text: Roboto Slab
   features:
     - navigation.tabs         # Top-level tabs
     - navigation.tabs.sticky  # Keep tabs visible
@@ -59,12 +71,12 @@ theme:
 
   palette:
     - scheme: default
-      primary: blue
+      primary: custom
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - scheme: slate
-      primary: blue
+      primary: custom
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
@@ -99,9 +111,12 @@ extra:
       link: https://bsky.app/profile/concourse-ci.org
     - icon: fontawesome/solid/paper-plane
       link: mailto:contact@concourse-ci.org
+  version: 7.14.2
+
+not_in_nav: |
+  index.md
 
 nav:
-  - index.md
   - Docs:
       - docs/index.md
       - Getting Started:
