@@ -10,7 +10,7 @@ git config --global user.name "Concourse Bot"
 # Change to the docs repo
 pushd docs
   # Install dependencies
-  pip install zensical nodeenv
+  pip install mkdocs-material mkdocs-redirects mkdocs-glightbox nodeenv
   nodeenv env --node=22.21.1
   npm ci
 
