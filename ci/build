@@ -13,8 +13,6 @@ pushd docs
     git fetch origin gh-pages
 
     ref=$(git rev-parse HEAD)
-    git checkout --orphan gh-pages
-    git rm -rf .
   fi
 
   # Install dependencies
@@ -29,6 +27,12 @@ pushd docs
   cp .well-known site/.well-known
 
   if [ -e .git ]; then
+    git checkout --orphan gh-pages
+    git rm -rf .
+
+    mv site/* .
+    rmdir site
+
     git add -A
     git commit --allow-empty -m "build"
   fi
