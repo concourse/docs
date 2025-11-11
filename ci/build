@@ -7,14 +7,6 @@ git config --global user.name "Concourse Bot"
 
 # Change to the docs repo
 pushd docs
-  if [ -e .git ] && git remote | grep origin >/dev/null; then
-    # undo single-branch clone and fetch gh-pages
-    git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
-    git fetch origin gh-pages
-
-    ref=$(git rev-parse HEAD)
-  fi
-
   # Install dependencies
   pip install zensical nodeenv
   nodeenv env --node=22.21.1
@@ -24,11 +16,13 @@ pushd docs
   npm run build
 
   # Copy well-known for BlueSky
-  cp .well-known site/.well-known
+  cp -R .well-known site/.well-known
 
   if [ -e .git ]; then
     git checkout --orphan gh-pages
     git rm -rf .
+
+    rm -rf .venv/ node_modules/ env/ .cache/ overrides/ docs/ .idea/
 
     mv site/* .
     rmdir site
