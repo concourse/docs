@@ -4,7 +4,8 @@ platform: linux
 image_resource:
   type: registry-image
   source:
-    repository: 3.14-alpine3.21
+    repository: python
+    tag: 3.14-alpine3.21
 
 inputs:
   - name: docs
