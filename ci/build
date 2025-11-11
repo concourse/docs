@@ -2,6 +2,8 @@
 
 set -e -x
 
+apk add git
+
 git config --global user.email "concourseteam+concourse-github-bot@gmail.com"
 git config --global user.name "Concourse Bot"
 
