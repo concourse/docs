@@ -24,7 +24,7 @@ pushd docs
 
     rm -rf .venv/ node_modules/ env/ .cache/ overrides/ docs/ .idea/
 
-    mv site/* .
+    mv site/{.,}* .
     rmdir site
 
     git add -A
