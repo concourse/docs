@@ -4,8 +4,10 @@ set -e -u
 
 cd $(dirname $0)/..
 
-pip install mkdocs-material mkdocs-redirects mkdocs-glightbox
+pip install zensical nodeenv
 
-ytt -f mkdocs.template.yml -f redirects > mkdocs.yml
+nodeenv env --node=22.21.1
 
-mkdocs build
+npm ci
+
+npm run build

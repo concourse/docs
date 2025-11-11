@@ -5,7 +5,7 @@
     "build:scss": "sass --style=compressed src/mwc-theme.scss overrides/assets/stylesheets/mwc-theme.css",
     "build:mwc": "rollup -c rollup.config.mwc.js",
     "build:all": "npm run build:scss && npm run build:mwc",
-    "build": "npm run build:all && mkdocs build",
+    "build": "npm run build:all && zensical build",
     "start": "npm run build:all && zensical serve"
   },
   "dependencies": {
