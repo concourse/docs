@@ -22,12 +22,12 @@ site_description = "Concourse is an open-source continuous thing-doer"
 # The site_url is the canonical URL for your site. When building online
 # documentation you should set this.
 # Read more: https://zensical.org/docs/setup/basics/#site_url
-site_url = "https://aviator-labs.github.io/docs-ci/"
+site_url = "https://concourse-ci.org"
 
 repo_url = "https://github.com/concourse/concourse"
 repo_name = "concourse/concourse"
 
-edit_uri = "https://github.com/Aviator-Labs/docs-ci/edit/main/docs/"
+edit_uri = "https://github.com/concourse/docs/edit/main/docs/"
 
 # The copyright notice appears in the page footer and can contain an HTML
 # fragment.
@@ -502,3 +502,22 @@ link = "https://bsky.app/profile/concourse-ci.org"
 [[project.extra.social]]
 icon = "fontawesome/solid/paper-plane"
 link = "mailto:contact@concourse-ci.org"
+
+[project.markdown_extensions.pymdownx.details]
+
+[project.markdown_extensions.pymdownx.emoji]
+emoji_index = "zensical.extensions.emoji.twemoji"
+emoji_generator = "zensical.extensions.emoji.to_svg"
+
+[project.markdown_extensions.pymdownx.highlight]
+anchor_linenums = true
+pygments_lang_class = true
+line_spans = "__span"
+
+[project.markdown_extensions.pymdownx.inlinehilite]
+[project.markdown_extensions.pymdownx.snippets]
+base_path = [".", "docs"]
+
+[project.markdown_extensions.pymdownx.superfences]
+[project.markdown_extensions.pymdownx.tabbed]
+alternate_style = true
