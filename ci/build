@@ -14,6 +14,9 @@ pushd docs
   nodeenv env --node=22.21.1
   npm ci
 
+  # Remove apps before build
+  rm -rf docs/libs/examples/apps/
+
   # Create site directory
   npm run build
 
@@ -24,7 +27,7 @@ pushd docs
     git checkout gh-pages
     git rm -rf .
 
-    rm -rf .venv/ node_modules/ env/ .cache/ overrides/ docs/ .idea/ docs/libs/examples/apps/
+    rm -rf venv/ node_modules/ env/ .cache/ overrides/ docs/ .idea/
 
     mv site/{.,}* .
     rmdir site
