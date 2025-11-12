@@ -862,6 +862,7 @@ jobs:
   --containerd-bin=                                  Path to a containerd executable (non-absolute names get resolved from $PATH). [$CONCOURSE_CONTAINERD_BIN]
   --containerd-init-bin=                             Path to an init executable (non-absolute names get resolved from $PATH). (default: /usr/local/concourse/bin/init) [$CONCOURSE_CONTAINERD_INIT_BIN]
   --containerd-cni-plugins-dir=                      Path to CNI network plugins. (default: /usr/local/concourse/bin) [$CONCOURSE_CONTAINERD_CNI_PLUGINS_DIR]
+  --containerd-log-level                             Minimum level of logs to see. (default: info) [$CONCOURSE_CONTAINERD_LOG_LEVEL]
   --containerd-request-timeout=                      How long to wait for requests to Containerd to complete. 0 means no timeout. (default: 5m) [$CONCOURSE_CONTAINERD_REQUEST_TIMEOUT]
   --containerd-max-containers=                       Max container capacity. 0 means no limit. (default: 250) [$CONCOURSE_CONTAINERD_MAX_CONTAINERS]
   --containerd-privileged-mode=                      How many privileges privileged containers get. full is equivalent to root on host. ignore means no extra privileges. fuse-only means enough to use fuse-overlayfs. (default: full) [$CONCOURSE_CONTAINERD_PRIVILEGED_MODE]
