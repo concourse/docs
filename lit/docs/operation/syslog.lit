@@ -1,0 +1,367 @@
+\title{Syslog Integration}{syslog}
+
+\use-plugin{concourse-docs}
+
+Concourse supports forwarding build event logs ('draining') to external syslog servers, enabling centralized log management, compliance auditing, and integration with enterprise logging infrastructure. When configured, Concourse will stream build events to your syslog server in RFC 5424 format.
+
+\section{
+  \title{Enabling Syslog Draining}
+
+  To enable syslog draining, configure at minimum the syslog address and transport on the \reference{web-node}:
+
+  \codeblock{bash}{{{
+  concourse web \
+    --syslog-address syslog.example.com:514 \
+    --syslog-transport tcp
+  }}}
+
+  Or using environment variables:
+
+  \codeblock{bash}{{{
+  CONCOURSE_SYSLOG_ADDRESS=syslog.example.com:514
+  CONCOURSE_SYSLOG_TRANSPORT=tcp
+  }}}
+
+  \warn{Both \code{--syslog-address} and \code{--syslog-transport} must be configured. Setting only an address without a transport will cause the web node to fail on startup.}
+
+  Once configured, the syslog drainer will periodically check for builds that haven't been sent to syslog yet and forward their event streams.
+}
+
+\section{
+  \title{Configuration Options}
+
+  \section{
+    \title{\code{--syslog-address}}
+
+    Remote syslog server address with port. This is required to enable syslog draining.
+
+    \italic{Example:} \code{syslog.example.com:514} or \code{10.0.0.5:514}
+
+    Environment variable: \code{CONCOURSE_SYSLOG_ADDRESS}
+  }
+
+  \section{
+    \title{\code{--syslog-transport}}
+
+    Transport protocol for syslog messages. Required when \code{--syslog-address} is set.
+
+    Supported values:
+    \list{
+      \code{tcp} - TCP connection
+    }{
+      \code{udp} - UDP connection
+    }{
+      \code{tls} - TLS-encrypted TCP connection
+    }
+
+    Environment variable: \code{CONCOURSE_SYSLOG_TRANSPORT}
+  }
+
+  \section{
+    \title{\code{--syslog-hostname}}
+
+    Client hostname that will be included in syslog messages to identify the source Concourse instance.
+
+    \italic{Default:} \code{atc-syslog-drainer}
+
+    Environment variable: \code{CONCOURSE_SYSLOG_HOSTNAME}
+  }
+
+  \section{
+    \title{\code{--syslog-drain-interval}}
+
+    How frequently to check for new build logs to send to the syslog server.
+
+    \italic{Default:} \code{30s}
+
+    \italic{Example values:} \code{30s}, \code{5m}, \code{1h}
+
+    Environment variable: \code{CONCOURSE_SYSLOG_DRAIN_INTERVAL}
+  }
+
+  \section{
+    \title{\code{--syslog-ca-cert}}
+
+    When using \code{tls} transport, specify paths to PEM-encoded CA certificate files to verify the syslog server's SSL certificate. Can be specified multiple times.
+
+    \codeblock{bash}{{{
+    concourse web \
+      --syslog-address secure-syslog.example.com:6514 \
+      --syslog-transport tls \
+      --syslog-ca-cert /etc/concourse/ca-cert1.pem \
+      --syslog-ca-cert /etc/concourse/ca-cert2.pem
+    }}}
+
+    Environment variable: \code{CONCOURSE_SYSLOG_CA_CERT} (can be specified multiple times)
+  }
+}
+
+\section{
+  \title{TLS Configuration}
+
+  For secure log transmission over TLS:
+
+  \codeblock{bash}{{{
+  concourse web \
+    --syslog-address secure-syslog.example.com:6514 \
+    --syslog-transport tls \
+    --syslog-ca-cert /etc/ssl/certs/syslog-ca.pem \
+    --syslog-hostname concourse-prod
+  }}}
+
+  The drainer will use the system's certificate pool and append any additional CA certificates specified with \code{--syslog-ca-cert}. If any certificate file cannot be read or parsed, the web node will fail to start.
+}
+
+\section{
+  \title{Message Format}
+
+  Syslog messages follow RFC 5424 format:
+
+  \codeblock{text}{{{
+  <134>1 2024-03-15T10:30:45.123456Z atc-syslog-drainer pipeline.job.build-123.step-id - - [concourse@0 eventId="event-123"] Log message content
+  }}}
+
+  Each message includes:
+  \list{
+    \bold{Priority}: Always \code{134} (LOG_USER | LOG_INFO)
+  }{
+    \bold{Version}: Always \code{1} (RFC 5424 version)
+  }{
+    \bold{Timestamp}: RFC 5424 format with microsecond precision
+  }{
+    \bold{Hostname}: Configured hostname (from \code{--syslog-hostname})
+  }{
+    \bold{App-name}: Build tag identifying pipeline/job/build/step
+  }{
+    \bold{Structured data}: \code{[concourse@0 eventId="..."]} with event ID
+  }{
+    \bold{Message}: The actual log content with newlines, carriage returns, and null bytes replaced with spaces
+  }
+
+  \warn{Message sanitization: All newline characters (\code{\\n}), carriage returns (\code{\\r}), and null bytes (\code{\\x00}) in log messages are replaced with spaces to ensure RFC 5424 compliance.}
+}
+
+\section{
+  \title{How It Works}
+
+  The syslog drainer operates as a background component that:
+
+  \ordered-list{
+    Runs every \code{--syslog-drain-interval} (default 30 seconds)
+  }{
+    Queries the database for "drainable" builds (builds where \code{drained = false})
+  }{
+    For each drainable build:
+    \ordered-list{
+      Establishes a connection to the configured syslog server
+    }{
+      Fetches the build's event stream from the beginning
+    }{
+      Processes each event sequentially, converting it to a syslog message
+    }{
+      Sends non-empty messages to the syslog server
+    }{
+      If any transmission fails, stops processing and returns an error
+    }{
+      On successful completion, marks the build as \code{drained = true} in the database
+    }{
+      Closes the syslog connection
+    }
+  }{
+    Waits for the next interval
+  }
+
+  \warn{Error handling: If sending any event fails, the drainer stops processing that build immediately and leaves it marked as undrained. The build will be retried in the next drain cycle.}
+
+  Events that produce empty messages are skipped and not sent to the syslog server.
+}
+
+\section{
+  \title{Event Types}
+
+  The drainer processes all Concourse build events and converts them to syslog messages:
+
+  \list{
+    \bold{initialize}: \code{initializing}
+  }{
+    \bold{initialize-get}: \code{get initializing}
+  }{
+    \bold{initialize-put}: \code{put initializing}
+  }{
+    \bold{initialize-check}: \code{check initializing [check_name]}
+  }{
+    \bold{initialize-task}: \code{task initializing}
+  }{
+    \bold{selected-worker}: \code{selected worker: [worker_name]}
+  }{
+    \bold{streaming-volume}: \code{streaming volume [volume] from worker [source_worker]}
+  }{
+    \bold{waiting-for-streamed-volume}: \code{waiting for volume [volume] to be streamed by another step}
+  }{
+    \bold{start-task}: \code{running [command with args]}
+  }{
+    \bold{log}: The actual log output from the task
+  }{
+    \bold{finish-get}: \code{get \{"version": ..., "metadata": ...\}} (JSON format)
+  }{
+    \bold{finish-put}: \code{put \{"version": ..., "metadata": ...\}} (JSON format)
+  }{
+    \bold{error}: The error message
+  }{
+    \bold{status}: The build status string (e.g., "succeeded", "failed")
+  }
+
+  For \code{start-task} events, the message includes the full command being executed (path + arguments).
+
+  For \code{finish-get} and \code{finish-put} events, version and metadata are JSON-encoded.
+}
+
+\section{
+  \title{Integration Examples}
+
+  \section{
+    \title{Basic TCP to rsyslog}
+
+    \codeblock{bash}{{{
+    concourse web \
+      --syslog-address rsyslog.internal:514 \
+      --syslog-transport tcp \
+      --syslog-hostname concourse-prod
+    }}}
+  }
+
+  \section{
+    \title{Secure TLS to Splunk}
+
+    \codeblock{bash}{{{
+    concourse web \
+      --syslog-address splunk-hec.example.com:6514 \
+      --syslog-transport tls \
+      --syslog-ca-cert /etc/ssl/splunk-ca.pem \
+      --syslog-hostname concourse-prod \
+      --syslog-drain-interval 10s
+    }}}
+  }
+
+  \section{
+    \title{UDP for High-Volume/Low-Criticality Logs}
+
+    \codeblock{bash}{{{
+    concourse web \
+      --syslog-address syslog.example.com:514 \
+      --syslog-transport udp \
+      --syslog-drain-interval 1m
+    }}}
+
+    \warn{UDP transport may result in lost messages under high load or network issues. Use TCP or TLS for critical audit logging.}
+  }
+
+  \section{
+    \title{BOSH Deployment}
+
+    For BOSH deployments, configure in your deployment manifest:
+
+    \codeblock{yaml}{{{
+    instance_groups:
+    - name: web
+      jobs:
+      - name: web
+        properties:
+          syslog:
+            address: syslog.example.com:514
+            transport: tcp
+            hostname: concourse-prod
+            drain_interval: 30s
+            ca_certs:
+            - |
+              -----BEGIN CERTIFICATE-----
+              MIIDQTCCAimgAwIBAgITBmyfz...
+              -----END CERTIFICATE-----
+    }}}
+  }
+}
+
+\section{
+  \title{Performance Considerations}
+
+  \list{
+    \bold{Drain interval} - Lower values (e.g., \code{10s}) provide more real-time log forwarding but increase database queries. Higher values (e.g., \code{1m}) reduce load but increase log delivery latency.
+  }{
+    \bold{Network bandwidth} - Large builds with verbose output will consume bandwidth between Concourse and your syslog server. Consider network capacity when setting the drain interval.
+  }{
+    \bold{Database impact} - Each drain cycle queries for undrained builds and updates their status. On busy clusters, consider a longer drain interval.
+  }{
+    \bold{Connection overhead} - The drainer creates a new connection for each drain cycle. For high-frequency draining, ensure your syslog server can handle the connection rate.
+  }{
+    \bold{Error resilience} - Failed transmissions leave builds undrained for retry. Monitor for accumulating undrained builds which may indicate network or syslog server issues.
+  }
+}
+
+\section{
+  \title{Troubleshooting}
+
+  \section{
+    \title{Verifying Configuration}
+
+    Check that the web node started successfully with syslog draining:
+
+    \codeblock{bash}{{{
+    # Check web node logs for syslog drainer initialization
+    grep -i "syslog\|drainer" /var/log/concourse/web.log
+
+    # Verify the component is configured (look for ComponentSyslogDrainer)
+    curl http://web-node:8080/api/v1/info
+    }}}
+  }
+
+  \section{
+    \title{Testing Connectivity}
+
+    \codeblock{bash}{{{
+    # Test TCP/UDP connectivity
+    nc -zv syslog.example.com 514
+
+    # Test TLS connection
+    openssl s_client -connect syslog.example.com:6514 -CAfile /path/to/ca.pem
+
+    # Send a test message manually
+    echo "<134>1 $(date -Iseconds) test-host test - - Test message" | nc syslog.example.com 514
+    }}}
+  }
+
+  \section{
+    \title{Common Issues}
+
+    \list{
+      \bold{Web node fails to start} - Ensure both \code{--syslog-address} and \code{--syslog-transport} are set
+    }{
+      \bold{No logs appearing in syslog} - Check network connectivity, verify the transport matches your syslog server configuration
+    }{
+      \bold{TLS handshake failures} - Verify CA certificates are correct, readable, and the syslog server's certificate is valid
+    }{
+      \bold{Incomplete log transmission} - Check for network interruptions; remember that any transmission failure stops processing for that build
+    }{
+      \bold{Accumulating undrained builds} - Query database: \code{SELECT COUNT(*) FROM builds WHERE drained = false}
+    }{
+      \bold{High database load} - Increase \code{--syslog-drain-interval} to reduce query frequency
+    }{
+      \bold{Missing events} - Some events may produce empty messages which are intentionally skipped
+    }
+  }
+
+  \section{
+    \title{Monitoring}
+
+    Monitor the syslog drainer through:
+
+    \list{
+      \bold{Web logs} - Look for \code{syslog.drainer} log entries for errors
+    }{
+      \bold{Database} - Query \code{SELECT COUNT(*), drained FROM builds GROUP BY drained} to monitor drain progress
+    }{
+      \bold{Syslog server} - Monitor incoming connection rates and message counts from the configured hostname
+    }{
+      \bold{Metrics} - If metrics are configured, monitor database query rates and connection failures
+    }
+  }
+}
