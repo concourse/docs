@@ -171,7 +171,7 @@ allows external services to auto-discover the JWKS-URL.
   Here is a short explanation of the different claims:
 
   \list{
-    \code{iss}: Who issued the token (always contains the external URL of your Concourse)
+    \code{iss}: Who issued the token. Contains the OIDC issuer URL if \code{--oidc-issuer-url} is configured, otherwise the external URL of your Concourse.
   }{
     \code{exp}: When the token will expire
   }{
@@ -211,6 +211,32 @@ allows external services to auto-discover the JWKS-URL.
 
 }
 
+\section{
+  \title{Configuring a Separate OIDC Issuer}{idtoken-oidc-issuer}
+
+  By default, Concourse uses the \code{--external-url} as the OIDC issuer in generated tokens. You can configure a separate OIDC issuer URL using the \code{--oidc-issuer-url} flag:
+
+  \codeblock{bash}{{{
+  concourse web \
+    --external-url https://concourse.internal.example.com \
+    --oidc-issuer-url https://oidc.example.com
+  }}}
+
+  When \code{--oidc-issuer-url} is configured:
+  \list{
+    The \code{iss} claim in generated JWT tokens will contain the OIDC issuer URL instead of the external URL
+  }{
+    The OIDC discovery endpoints (\code{/.well-known/openid-configuration} and \code{/.well-known/jwks.json}) will return the OIDC issuer URL
+  }{
+    Your Concourse web UI and API continue to use the external URL
+  }
+
+  This is useful for private network deployments where you want to serve OIDC discovery from a separate public endpoint while keeping your Concourse instance private.
+
+  \warn{When the signing keys rotate, Concourse immediately uses the new key for signing tokens. If your OIDC issuer URL is out of sync with Concourse's JWKS, token verification will fail. The recommended approach is to use a reverse proxy that forwards requests to your private Concourse in real-time, eliminating sync delays during key rotation.}
+
+}
+
 \right-side{Examples}{
   \example{Vault}{
     You can use JWTs to authenticate with \link{HashiCorp
@@ -223,10 +249,10 @@ allows external services to auto-discover the JWKS-URL.
       vault auth enable jwt
     }}}
 
-    Now configure the JWT auth method to accept JWTs issued by your Concourse:
+    Now configure the JWT auth method to accept JWTs issued by your Concourse (use your \code{--oidc-issuer-url} if configured, otherwise your external URL - see \reference{idtoken-oidc-issuer}):
     \codeblock{bash}{{{
     vault write auth/jwt/config \
-      oidc_discovery_url="https://<external_url_of_your_concourse>" \
+      oidc_discovery_url="https://<external_url_or_oidc_issuer_url>" \
       default_role="demo"
     }}}
 
@@ -351,7 +377,7 @@ allows external services to auto-discover the JWKS-URL.
     First you need to \link{create an OpenID Connect identity
     provider}{https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc.html}
     in your AWS Account.
-    Set \italic{Provider URL} to the external URL of your Concourse server.
+    Set \italic{Provider URL} to the external URL of your Concourse server (or the \code{--oidc-issuer-url} if you're using a separate OIDC issuer - see \reference{idtoken-oidc-issuer}).
     For \italic{Audience}, you can choose any string you like, but using
     a value like \code{sts.amazonaws.com} is recommended. You have to use the
     same string later in the configuration of your \reference{idtoken-var-source}.
@@ -417,7 +443,7 @@ allows external services to auto-discover the JWKS-URL.
     for the app registration you just created.
 
     For \italic{Scenario} select "Other". For \italic{Issuer} set it to the
-    external URL of your Concourse server. For \italic{Type} select "Explicit
+    external URL of your Concourse server (or the \code{--oidc-issuer-url} if you're using a separate OIDC issuer - see \reference{idtoken-oidc-issuer}). For \italic{Type} select "Explicit
     subject identifier" and set \italic{Value} to
     \code{<teamname>/<pipelinename>} of the pipeline that should be able to use
     the identity. If you use the \code{subject_scope} setting to change the
