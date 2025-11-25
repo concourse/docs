@@ -1048,9 +1048,13 @@ by configuring \reference{schema.on_failure} or
         at the time the pipeline is set, use \reference{schema.task.vars} as well.
 
         \warn{
-          \reference{instanced-pipelines}{Instance pipelines} are experimental
-          and need to be enabled by setting the
-          \code{--enable-pipeline-instances} flag on the \reference{web-node}.
+          Prior to v8.0.0 of Concourse,
+          \reference{instanced-pipelines}{Instance pipelines} were experimental
+          and not enabled by default. If your Concourse is < v8.0.0 you need to
+          enable instance pipelines by setting the
+          \code{--enable-pipeline-instances}
+          (\code{CONCOURSE_ENABLE_PIPELINE_INSTANCES=true}) on the
+          \reference{web-node}.
         }
 
         \example-toggle{Configuring instance vars}{

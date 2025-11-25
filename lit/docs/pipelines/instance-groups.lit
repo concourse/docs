@@ -3,12 +3,12 @@
 \use-plugin{concourse-docs}
 
 \warn{
-  Instanced Pipelines/Instance Groups are currently experimental, and are
-  subject to change.
-
-  To experiment with Instanced Pipelines on your deployment, you need to set
-  the feature flag \code{--enable-pipeline-instances}
-  (\code{CONCOURSE_ENABLE_PIPELINE_INSTANCES=true})
+  Prior to v8.0.0 of Concourse, Instanced Pipelines/Instance Groups were
+  experimental and not enabled by default. If your Concourse is < v8.0.0 you
+  need to enable instance pipelines by setting the the feature flag
+  \code{--enable-pipeline-instances}
+  (\code{CONCOURSE_ENABLE_PIPELINE_INSTANCES=true}) on the
+  \reference{web-node}.
 }
 
 Although pipelines operate independently of one another, it's not uncommon to
