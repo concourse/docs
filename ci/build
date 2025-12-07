@@ -12,6 +12,9 @@ pushd docs
   # Install dependencies
   pip install mkdocs-material mkdocs-redirects mkdocs-glightbox nodeenv
   nodeenv env --node=22.21.1
+
+  source env/bin/activate
+
   npm ci
 
   # Remove apps before build

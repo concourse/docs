@@ -118,7 +118,8 @@ And after decoding, looks like this:
 
 Here is a short explanation of the different claims:
 
-* `iss`: Who issued the token (always contains the external URL of your Concourse)
+* `iss`: Who issued the token. Contains the OIDC issuer URL if `--oidc-issuer-url` is configured, otherwise the external
+  URL of your Concourse.
 * `exp`: When the token will expire
 * `aud`: Who the token is intended for. (In the above example it's for Azure's Identity Federation API)
 * `team`: The team of the pipeline this token was generated for
@@ -144,6 +145,33 @@ This behavior can be configured via the following ATC flags:
 * `CONCOURSE_SIGNING_KEY_CHECK_INTERVAL`: How often to check if new keys are needed or if old ones should be removed.
   Default: `10m`
 
+## Configuring a Separate OIDC Issuer
+
+By default, Concourse uses the `--external-url`  as the OIDC issuer in generated tokens. You can configure a separate
+OIDC issuer URL using the `--oidc-issuer-url` flag:
+
+```shell
+concourse web \
+    --external-url https://concourse.internal.example.com \
+    --oidc-issuer-url https://oidc.example.com
+```
+
+When `--oidc-issuer-url` is configured:
+
+* The `iss` claim in generated JWT tokens will contain the OIDC issuer URL instead of the external URL
+* The OIDC discovery endpoints (`/.well-known/openid-configuration` and `/.well-known/jwks.json`) will return the OIDC
+  issuer URL
+* Your Concourse web UI and API continue to use the external URL
+
+This is useful for private network deployments where you want to serve OIDC discovery from a separate public endpoint
+while keeping your Concourse instance private.
+
+!!! warning
+
+    When the signing keys rotate, Concourse immediately uses the new key for signing tokens. If your OIDC issuer URL is 
+    out of sync with Concourse's JWKS, token verification will fail. The recommended approach is to use a reverse proxy 
+    that forwards requests to your private Concourse in real-time, eliminating sync delays during key rotation.
+
 ## Examples
 
 ### Vault
@@ -159,11 +187,12 @@ First enable the JWT auth method in your Vault Server:
 vault auth enable jwt
 ```
 
-Now configure the JWT auth method to accept JWTs issued by your Concourse:
+Now configure the JWT auth method to accept JWTs issued by your Concourse (use your `--oidc-issuer-url` if configured,
+otherwise your external URL - see [Configuring a Separate OIDC Issuer](#configuring-a-separate-oidc-issuer)):
 
 ```shell
 vault write auth/jwt/config \
-  oidc_discovery_url="https://<external_url_of_your_concourse>" \
+  oidc_discovery_url="https://<external_url_or_oidc_issuer_url>" \
   default_role="demo"
 ```
 
@@ -277,9 +306,10 @@ without managing IAM users or dealing with long-lived credentials.
 
 First you need
 to [create an OpenID Connect identity provider](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc.html)
-in your AWS Account. Set _Provider URL_ to the external URL of your Concourse server. For _Audience_, you can choose any
-string you like, but using a value like `sts.amazonaws.com` is recommended. You have to use the same string later in the
-configuration of your [`idtoken` var source](../../vars.md#id-token).
+in your AWS Account. Set _Provider URL_ to the external URL of your Concourse server  (or the `--oidc-issuer-url` if
+you're using a separate OIDC issuer - see [Configuring a Separate OIDC Issuer](#configuring-a-separate-oidc-issuer)).
+For _Audience_, you can choose any string you like, but using a value like `sts.amazonaws.com` is recommended. You have
+to use the same string later in the configuration of your [`idtoken` var source](../../vars.md#id-token).
 
 Next you will need
 to [create an IAM-Role that can be assumed using your JWT](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp_oidc.html#idp_oidc_Create).
@@ -334,10 +364,12 @@ This app registration will be the service principal used by your pipeline.
 Now [create a federated credential](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-create-trust?pivots=identity-wif-apps-methods-azp#other-identity-providers)
 for the app registration you just created.
 
-For _Scenario_ select "Other". For Issuer set it to the external URL of your Concourse server. For _Type_ select "
-Explicit subject identifier" and set _Value_ to `<teamname>/<pipelinename>` of the pipeline that should be able to use
-the identity. If you use the `subject_scope` setting to change the contents of your sub-claim, change this setting here
-accordingly.
+For _Scenario_ select "Other". For Issuer set it to the external URL of your Concourse server (or the
+`--oidc-issuer-url` if you're using a separate OIDC issuer -
+see [Configuring a Separate OIDC Issuer](#configuring-a-separate-oidc-issuer)).
+For _Type_ select "Explicit subject identifier" and set _Value_ to `<teamname>/<pipelinename>` of the pipeline that
+should be able to use the identity. If you use the `subject_scope` setting to change the contents of your sub-claim,
+change this setting here accordingly.
 
 You can now assign IAM permissions to the identity of the app registration, which define what the identity is allowed to
 do in your Azure subscription.
