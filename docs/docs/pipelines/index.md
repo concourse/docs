@@ -15,24 +15,24 @@ declarative [YAML files](../config-basics.md#intro-to-yaml) which conform to the
 
 ## `pipeline` schema
 
-??? warning "**jobs**: `[`**[job](../jobs.md#job-schema)**`]`"
+??? warning "**`jobs`**: [`[job]`](../jobs.md#job-schema)"
 
     A set of [jobs](../jobs.md) for the pipeline to continuously schedule. At least one job is required for 
     a pipeline to be valid.
 
-??? info "**resources**: `[`**resource**`]`"
+??? info "`resources`: [`[resource]`](../resources/index.md#resource-schema)"
 
     A set of resources for the pipeline to continuously check.
 
-??? info "**resource_types**: `[`**resource_type**`]`"
+??? info "`resource_types`: [`[resource_type]`](../resource-types/index.md#resource_type-schema)"
 
     A set of resource types for resources within the pipeline to use.
 
-??? info "**var_sources**: `[`**var_source**`]`"
+??? info "`var_sources`: [`[var_source]`](../vars.md#var_source-schema)"
 
     A set of Var sources for the pipeline to use.
 
-??? info "**groups**: `[`**group**`]`"
+??? info "`groups`: `[group]`"
 
     A list of job groups to use for organizing jobs in the web UI.
 
@@ -103,7 +103,7 @@ declarative [YAML files](../config-basics.md#intro-to-yaml) which conform to the
             Depending on how it's used, *, {, and } have special meaning in YAML, and may need to be quoted 
             (as was done in the all job above)
 
-??? info "**display**: **display_config**"
+??? info "`display`: `display_config`"
 
     !!! warning "Experimental Feature"
         

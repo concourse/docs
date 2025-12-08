@@ -20,3 +20,7 @@ $primary: #2094f3;
   --md-ref-typeface-brand: 'Roboto Slab';
   --md-ref-typeface-plain: 'Roboto Slab';
 }
+
+.md-typeset .admonition, .md-typeset details {
+  font-size: .8rem;
+}
