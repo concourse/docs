@@ -46,7 +46,7 @@ export function populateSelect(
     "https://github.com/concourse/concourse/releases/download/" +
     gitInformation.version;
 
-  if (element.childElementCount == 6) {
+  if (element.childElementCount == (releases.length + 1)) {
     return;
   }
 
