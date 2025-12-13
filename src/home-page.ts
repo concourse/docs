@@ -58,6 +58,12 @@ export function homePageLogic(
 
     if (concourseSelect != null) {
       populateSelect(gitInformation, concourseSelect, "concourse", releases);
+
+      fromEvent(concourseSelect, "change")
+        .pipe(map((event) => (event.target as HTMLSelectElement).value))
+        .subscribe((value) => {
+          window.location.href = value;
+        });
     }
     if (flySelect != null) {
       populateSelect(gitInformation, flySelect, "fly", releases);
