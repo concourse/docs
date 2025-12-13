@@ -9,12 +9,14 @@
     "start": "npm run build:all && mkdocs serve --livereload"
   },
   "dependencies": {
-    "@material/web": "^2.4.1"
+    "@material/web": "^2.4.1",
+    "rxjs": "^7.8.2"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.3.0",
+    "prettier": "^3.7.4",
     "rollup": "^4.52.5",
     "sass": "^1.93.3",
     "typescript": "^5.9.3"

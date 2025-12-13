@@ -1,100 +1,88 @@
-{% extends "main.html" %}
-{% block tabs %}
-{{ super() }}
+{% extends "main.html" %} {% block tabs %} {{ super() }} {% endblock %} {% block
+content %}
 
-{% endblock %}
-
-{% block content %}
-
-<link rel="stylesheet" href="assets/stylesheets/home.css"/>
-<link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+<link rel="stylesheet" href="assets/stylesheets/home.css" />
+<link
+  href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
+  rel="stylesheet"
+/>
 <div class="centered-section">
-    <div class="side-by-side">
-        <div class="segment splash-intro">
-            <h1>Concourse is an open-source continuous thing-doer.</h1>
-            <p>
-                Centered around the simple mechanics of
-                <a class="text-links" href="docs/resources">resources</a>,
-                <a class="text-links" href="docs/tasks">tasks</a>, and
-                <a class="text-links" href="docs/jobs">jobs</a>, Concourse
-                delivers a versatile approach to automation that excels at
-                <a class="text-links" href="https://en.wikipedia.org/wiki/Continuous_integration">CI</a>
-                /
-                <a class="text-links" href="https://en.wikipedia.org/wiki/Continuous_delivery">CD</a>.
-            </p>
+  <div class="side-by-side" id="side-by-side">
+    <div class="segment splash-intro">
+      <h1>Concourse is an open-source continuous thing-doer.</h1>
+      <p>
+        Centered around the simple mechanics of
+        <a class="text-links" href="docs/resources">resources</a>,
+        <a class="text-links" href="docs/tasks">tasks</a>, and
+        <a class="text-links" href="docs/jobs">jobs</a>, Concourse delivers a
+        versatile approach to automation that excels at
+        <a
+          class="text-links"
+          href="https://en.wikipedia.org/wiki/Continuous_integration"
+          >CI</a
+        >
+        /
+        <a
+          class="text-links"
+          href="https://en.wikipedia.org/wiki/Continuous_delivery"
+          >CD</a
+        >.
+      </p>
+
+      <div>
+        <a href="docs/getting-started/quick-start/">
+          <md-filled-button id="quick-start">
+            Quick Start
+            <md-icon slot="icon">chevron_forward</md-icon>
+          </md-filled-button>
+        </a>
+      </div>
+    </div>
+    <div id="splash-downloads" class="segment splash-downloads">
+      <div class="splash-split">
+        <div>
+          <div class="std-flex-box">
+            <h3 id="release-text">Download the latest release:</h3>
 
             <div>
-                <a href="docs/getting-started/quick-start/">
-                    <md-filled-button id="quick-start">
-                        Quick Start
-                        <md-icon slot="icon">chevron_forward</md-icon>
-                    </md-filled-button>
-                </a>
+              <a id="release-btn-ref">
+                <md-elevated-button>
+                  <span id="release-btn-span"></span>
+                  <md-icon slot="icon">sell</md-icon>
+                </md-elevated-button>
+              </a>
             </div>
+          </div>
         </div>
-        <div class="segment splash-downloads">
-            <div class="splash-split">
-                <div>
-                    <div class="std-flex-box">
-                        <h3 id="release-text">Download the latest release:</h3>
 
-                        <div>
-                            <a href="https://github.com/concourse/concourse/releases/tag/v{{ config.extra.version }}">
-                                <md-elevated-button>
-                                    v{{ config.extra.version }}
-                                    <md-icon slot="icon">sell</md-icon>
-                                </md-elevated-button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+        <div>
+          <div class="std-flex-box">
+            <div><code>concourse</code> server:</div>
 
-                <div>
-                    <div class="std-flex-box">
-                        <div>
-                            <code>concourse</code> server:
-                        </div>
-
-                        <div>
-                            <md-filled-select class="tool-select">
-                                <md-select-option selected aria-label="blank">Download Concourse</md-select-option>
-                                <md-select-option value="apple">
-                                    <div slot="headline">Apple</div>
-                                </md-select-option>
-                                <md-select-option value="apricot">
-                                    <div slot="headline">Apricot</div>
-                                </md-select-option>
-                            </md-filled-select>
-                        </div>
-
-                    </div>
-
-                    <div class="std-flex-box">
-                        <div>
-                            <code>fly</code> CLI:
-                        </div>
-
-                        <div>
-                            <md-filled-select class="tool-select">
-                                <md-select-option selected aria-label="blank">Download fly</md-select-option>
-                                <md-select-option value="apple">
-                                    <div slot="headline">Apple</div>
-                                </md-select-option>
-                                <md-select-option value="apricot">
-                                    <div slot="headline">Apricot</div>
-                                </md-select-option>
-                            </md-filled-select>
-                        </div>
-
-                    </div>
-                </div>
-
+            <div>
+              <md-filled-select class="tool-select" id="concourse-select">
+                <md-select-option selected aria-label="blank"
+                  >Download Concourse</md-select-option
+                >
+              </md-filled-select>
             </div>
+          </div>
+
+          <div class="std-flex-box">
+            <div><code>fly</code> CLI:</div>
+
+            <div>
+              <md-filled-select class="tool-select" id="fly-select">
+                <md-select-option selected aria-label="blank"
+                  >Download fly</md-select-option
+                >
+              </md-filled-select>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
-{% endblock %}
-
-{% block footer %}
-{% endblock%}
+{% endblock %} {% block footer %} {% endblock%}
