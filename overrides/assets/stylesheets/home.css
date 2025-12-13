@@ -78,6 +78,11 @@ body {
     position: relative;
 }
 
+/* Initially set downloads to hidden */
+.segment.splash-downloads {
+    display: none;
+}
+
 .split-header {
     display: flex;
     flex-direction: row;
@@ -170,7 +175,8 @@ body {
     color: white;
 }
 
-@media screen and (max-width: 1219px) { /* Example breakpoint for tablets */
+@media screen and (max-width: 1219px) {
+    /* Example breakpoint for tablets */
     .side-by-side, .download-ctr {
         grid-template-columns: 1fr; /* Two equal columns */
     }
