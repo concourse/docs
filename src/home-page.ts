@@ -1,4 +1,4 @@
-import { populateSelect, setVersionDisplayFromSource } from "./helpers";
+import {populateSelect, setLatestDisplayFromSource, setVersionDisplayFromSource} from "./helpers";
 import { fromEvent, map } from "rxjs";
 
 const releases: ReleaseInfo[] = [
@@ -35,16 +35,22 @@ export function homePageLogic(
 ) {
   const splashDownloads: HTMLElement | null =
     document.getElementById("splash-downloads");
+  const downloadBtn: HTMLElement | null =
+    document.getElementById("release-btn-ref-no-cookie");
   const sideBySide: HTMLElement | null =
     document.getElementById("side-by-side");
 
   if (gitInformation == null) {
-    if (splashDownloads != null && sideBySide != null) {
+    if (splashDownloads != null && sideBySide != null && downloadBtn != null) {
       splashDownloads.style.display = "none";
+      downloadBtn.style.display = "block";
       sideBySide.style.gridTemplateColumns = "1fr";
+
+      setLatestDisplayFromSource(document);
     }
-  } else if (splashDownloads != null && sideBySide != null) {
+  } else if (splashDownloads != null && sideBySide != null && downloadBtn != null) {
     splashDownloads.style.display = "flex";
+    downloadBtn.style.display = "none";
     sideBySide.style.gridTemplateColumns = "1fr 1fr";
 
     setVersionDisplayFromSource(gitInformation, document);

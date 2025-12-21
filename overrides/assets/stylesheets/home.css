@@ -175,6 +175,12 @@ body {
     color: white;
 }
 
+.quick-start-download {
+    display: flex;
+    justify-content: space-between;
+    width: 18rem;
+}
+
 @media screen and (max-width: 1219px) {
     /* Example breakpoint for tablets */
     .side-by-side, .download-ctr {
