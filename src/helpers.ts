@@ -36,6 +36,24 @@ export function setVersionDisplayFromSource(
   }
 }
 
+export function setLatestDisplayFromSource(
+  document: Document,
+) {
+  const releaseURL: string = "https://github.com/concourse/concourse/releases/latest";
+
+  const releaseBtnRef: HTMLElement | null =
+    document.getElementById("release-btn-ref-no-cookie");
+  const releaseBtnSpan: HTMLElement | null =
+    document.getElementById("release-btn-span-no-cookie");
+
+  if (releaseBtnRef != null) {
+    releaseBtnRef.setAttribute("href", releaseURL);
+  }
+  if (releaseBtnSpan != null) {
+    releaseBtnSpan.innerText = "Latest release";
+  }
+}
+
 export function populateSelect(
   gitInformation: GitInfo,
   element: HTMLSelectElement,
