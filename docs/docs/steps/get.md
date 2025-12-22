@@ -189,7 +189,8 @@ Fetches a version of a [resource](../resources/index.md). Expand each section be
 
 ??? info "**`trigger`**: [`boolean`](../config-basics.md#boolean-schema)"
 
-    _Default `false`_. If set to `true`, new builds of the job will be automatically created when a new version for this input becomes available.
+    _Default `false`_. If set to `true`, new builds of the job will be automatically created when a new version for this
+    input becomes available.
     
     !!! note
     

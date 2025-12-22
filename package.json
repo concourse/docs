@@ -6,7 +6,7 @@
     "build:mwc": "rollup -c rollup.config.mwc.js",
     "build:all": "npm run build:scss && npm run build:mwc && npm run build:ytt",
     "build": "npm run build:all && mkdocs build",
-    "start": "npm run build:all && mkdocs serve --livereload"
+    "start": "npm run build:all && mkdocs serve --livereload --clean"
   },
   "dependencies": {
     "@material/web": "^2.4.1",
