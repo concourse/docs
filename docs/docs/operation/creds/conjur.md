@@ -17,13 +17,13 @@ The ATC's configuration specifies the following:
 
 : Environment variable `CONCOURSE_CONJUR_APPLIANCE_URL`.
 
-**`aws-secretsmanager-secret-key`**: string
+**`conjur-account`**: string
 
-: The secret key that corresponds to the access key defined above.
+: The Conjur account.
 
 : Environment variable `CONCOURSE_CONJUR_ACCOUNT`.
 
-**`aws-secretsmanager-session-token`**: string
+**`conjur-authn-login`**: string
 
 : A valid Conjur host username.
 

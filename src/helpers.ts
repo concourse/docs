@@ -36,15 +36,16 @@ export function setVersionDisplayFromSource(
   }
 }
 
-export function setLatestDisplayFromSource(
-  document: Document,
-) {
-  const releaseURL: string = "https://github.com/concourse/concourse/releases/latest";
+export function setLatestDisplayFromSource(document: Document) {
+  const releaseURL: string =
+    "https://github.com/concourse/concourse/releases/latest";
 
-  const releaseBtnRef: HTMLElement | null =
-    document.getElementById("release-btn-ref-no-cookie");
-  const releaseBtnSpan: HTMLElement | null =
-    document.getElementById("release-btn-span-no-cookie");
+  const releaseBtnRef: HTMLElement | null = document.getElementById(
+    "release-btn-ref-no-cookie",
+  );
+  const releaseBtnSpan: HTMLElement | null = document.getElementById(
+    "release-btn-span-no-cookie",
+  );
 
   if (releaseBtnRef != null) {
     releaseBtnRef.setAttribute("href", releaseURL);
@@ -64,7 +65,7 @@ export function populateSelect(
     "https://github.com/concourse/concourse/releases/download/" +
     gitInformation.version;
 
-  if (element.childElementCount == (releases.length + 1)) {
+  if (element.childElementCount == releases.length + 1) {
     return;
   }
 
