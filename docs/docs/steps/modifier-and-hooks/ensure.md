@@ -8,3 +8,22 @@ A hook step to execute after the parent step regardless of whether the parent st
 will also be executed if the build was aborted and its parent step was interrupted.
 
 If the parent step succeeds and the ensured step fails, the overall step fails.
+
+??? info "`ensure`: [`step`](../index.md)"
+
+    ??? example "Releasing a lock"
+
+        The following build plan acquires a lock and then `ensure`s that the lock is released.
+
+        ```yaml
+        plan:
+          - put: some-lock
+            params:
+              acquire: true
+          - task: integration
+            file: foo/integration.yml
+            ensure:
+              put: some-lock
+              params:
+                release: some-lock
+        ```
