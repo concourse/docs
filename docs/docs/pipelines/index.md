@@ -10,8 +10,8 @@ The name of a pipeline has a few restrictions that are outlined here: [
 `identifier` schema](../config-basics.md#identifier-schema).
 
 Pipelines are configured via [`fly set-pipeline`](setting-pipelines.md#fly-set-pipeline) or the [
-`set_pipeline` step](https://concourse-ci.org/set-pipeline-step.html#set-pipeline) as
-declarative [YAML files](../config-basics.md#intro-to-yaml) which conform to the following schema:
+`set_pipeline` step](../steps/set-pipeline.md) as declarative [YAML files](../config-basics.md#intro-to-yaml) which 
+conform to the following schema:
 
 ## `pipeline` schema
 

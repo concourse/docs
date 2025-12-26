@@ -7,11 +7,11 @@ title: The main team
 Out of the box, Concourse comes with a single team called `main`.
 
 The `main` team is an _admin_ team, meaning members (specifically, users with
-the [owner](https://concourse-ci.org/user-roles.html#team-owner-role) role) can create and update other teams. Currently
+the [owner](user-roles.md#owner-role) role) can create and update other teams. Currently,
 there is no way to promote a team to become an admin team, so `main` is a special-case.
 
 The `main` team is different in that all flags normally passed to [
-`fly set-team`](https://concourse-ci.org/managing-teams.html#fly-set-team) are instead passed to the `concourse web`
+`fly set-team`](managing-teams.md#fly-set-team) are instead passed to the `concourse web`
 command, prefixed with `--main-team-`. The values set in these flags take effect whenever the `web` node starts up. This
 is done so that you can't get locked out.
 
