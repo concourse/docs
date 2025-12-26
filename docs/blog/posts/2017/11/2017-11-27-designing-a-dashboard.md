@@ -13,7 +13,7 @@ David Goddard of the Pivotal Buildpacks team.
 
 <!-- more -->
 
-![](assets/2017-11-27-designing-a-dashboard-01.png)
+![](../assets/2017-11-27-designing-a-dashboard-01.png)
 /// caption
 Concourse pipelines (left) Datadog and Concourse Summary (right) https://github.com/dgodd/concourse-summary
 ///
@@ -41,7 +41,7 @@ in our interviews.
 * Users want to understand the state of all their teams
 * Users recognize their pipelines by their shape in the UI
 
-![](assets/2017-11-27-designing-a-dashboard-02.png)
+![](../assets/2017-11-27-designing-a-dashboard-02.png)
 /// caption
 [Realtimeboard](https://realtimeboard.com/app/board/o9J_k0EAilo=/)
 ///
@@ -61,7 +61,7 @@ that the shape of a pipeline would be identifying, it was more important for the
 Based on the feedback we collected we began to prioritize our insights and frame our solution. We proceeded to
 brainstorm and sketch ideas for a prototype experiment.
 
-![](assets/2017-11-27-designing-a-dashboard-03.webp)
+![](../assets/2017-11-27-designing-a-dashboard-03.webp)
 /// caption
 Early Dashboard prototype
 ///
@@ -78,12 +78,12 @@ Alex Suraci, co-creator of Concourse, had been working on a UI experiment, based
 like something we could expand upon. I hypothesized that by removing the resources from this view and stripping down the
 thumbnail to just jobs we could provide the user with just enough information for ‘at a glance’ triaging.
 
-![](assets/2017-11-27-designing-a-dashboard-04.webp)
+![](../assets/2017-11-27-designing-a-dashboard-04.webp)
 /// caption
 Alex’s pipeline treemap algorithm experiment
 ///
 
-![](assets/2017-11-27-designing-a-dashboard-05.webp)
+![](../assets/2017-11-27-designing-a-dashboard-05.webp)
 /// caption
 Thumbnail compression of the pipeline for the Concourse Dashboard
 ///
@@ -96,7 +96,7 @@ quick way to test this design with “realistic” pipeline configurations at sc
 an internally managed multi-tenant instance of Concourse [called Wings](2017-11-20-earning-our-wings.md). We use Wings
 as a sandbox for new features, so I paired with an engineer to do a lightweight implementation for Wings.
 
-![](assets/2017-11-27-designing-a-dashboard-06.webp)
+![](../assets/2017-11-27-designing-a-dashboard-06.webp)
 
 Since our initial rollout of the dashboard on Wings in September 2017, we have undergone at least 3 major revisions of
 the dashboard based on the feedback we had received from teams within Pivotal. Our next step was to incorporate this
