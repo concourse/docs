@@ -1,10 +1,11 @@
 ---
 title: 'Sneak Peek: Spatial Resources'
 date: 2017-11-01
+authors:
+  - ruiva
 ---
 
-{{< image src="/images/downloaded_images/Sneak-Peek--Spatial-Resources/1-agN3JPhVv4Fyfvp-2VQsRQ.png" alt="An early
-visualization of Spatial Resources" width="100%" >}}
+![](assets/2017-11-01-spacial-resources.png)
 
 <!-- more -->
 
@@ -34,8 +35,7 @@ with the Concourse philosophy™:
 
 ### Would you like to know more?
 
-{{< image src="/images/downloaded_images/Sneak-Peek--Spatial-Resources/1-9vFBBZBYtFvCxsDnoMZszw.jpeg" alt="" width="
-100%" >}}
+![](assets/2017-11-01-spacial-resources-know-more.jpeg)
 
 There’s a few ways you can get involved as the Concourse team continues to build out spaces:
 

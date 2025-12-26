@@ -2,16 +2,15 @@
 title: How the Concourse Team Organize Issues
 date: 2017-10-03
 categories:
-- product-update
+  - product-update
+authors:
+  - ruiva
 ---
-
-{{< image src="/images/downloaded_images/How-the-Concourse-Team-Organize-Issues/1--19t4s8wuBf9tUCiluO_mQ.png" alt=""
-width="20%" >}}
-
-<!-- more -->
 
 As the Concourse team continues to grow in size and in the # of incoming issues, the team has been experimenting with
 new ways of managing our backlog. So far we have tried three different setups:
+
+<!-- more -->
 
 1. GitHub
    issues + [Customs](https://github.com/vito/customs)/[Tracksuit](https://github.com/vito/tracksuit) + [Pivotal Tracker](https://www.pivotaltracker.com/)
@@ -50,8 +49,7 @@ Concourse codebase.
 
 ### GitHub Projects
 
-{{< image src="/images/downloaded_images/How-the-Concourse-Team-Organize-Issues/1-5wA-RflsG_zFAyYMw0O95w.png" alt="A
-snapshot of the Concourse UX project" width="100%">}}
+![A snapshot of the Concourse UX project](assets/2017-10-03-github-issues.png)
 
 Our Concourse Projects manifest themselves as GitHub Projects in the Concourse GitHub organization. Annoyingly, GitHub
 doesn’t (yet?) allow us to share these projects publicly.
