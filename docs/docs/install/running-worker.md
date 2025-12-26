@@ -82,7 +82,7 @@ resources, and in-flight builds you want to run. It makes sense to scale them up
 
 * External traffic to arbitrary locations as a result of periodic resource checking and running builds
 * External traffic to the `web` node's configured external URL when downloading the inputs for a [
-  `fly execute`](https://concourse-ci.org/tasks.html#running-tasks)
+  `fly execute`](../tasks.md#running-tasks-with-fly-execute)
 * External traffic to the `web` node's TSA port (`2222`) for registering the worker
 * If P2P streaming is enabled there will be traffic to other workers.
 
@@ -95,18 +95,18 @@ resources, and in-flight builds you want to run. It makes sense to scale them up
 ## Operating a `worker` node
 
 The `worker` nodes are designed to be stateless and as interchangeable as
-possible. [Tasks](https://concourse-ci.org/tasks.html) and [Resources](https://concourse-ci.org/resources.html) bring
+possible. [Tasks](../tasks.md) and [Resources](../resources/index.md) bring
 their own Docker images, so you should never have to install dependencies on the worker. Windows and Darwin workers are
 the exception to this. Any dependencies should be pre-installed on Windows and Darwin workers.
 
-In Concourse, all important data is represented by [Resources](https://concourse-ci.org/resources.html), so the workers
+In Concourse, all important data is represented by [Resources](../resources/index.md), so the workers
 themselves are dispensable. Any data in the work-dir is ephemeral and should go away when the worker machine is
 removed - it should not be persisted between worker VM or container re-creates.
 
 ### Scaling Workers
 
 More workers should be added to accommodate more pipelines. To know when this is necessary you should probably set
-up [Metrics](https://concourse-ci.org/metrics.html) and keep an eye on container counts. If average container count
+up [Metrics](../operation/metrics.md) and keep an eye on container counts. If average container count
 starts to approach 200 or so per worker, you should probably add another worker. Load average is another metric to keep
 an eye on.
 
@@ -125,7 +125,7 @@ pipelines are running. Anecdotally though, we have seen that a lot of smaller wo
 better than a few large workers (vertical scaling).
 
 Again, this is not an absolute answer! You will have to test this out against the workloads your pipelines demand and
-adjust based on the [Metrics](https://concourse-ci.org/metrics.html) that you are tracking.
+adjust based on the [Metrics](../operation/metrics.md) that you are tracking.
 
 ### Worker Heartbeating & Stalling
 
@@ -134,7 +134,7 @@ hasn't checked in after a while, possibly due to a network error, being overload
 transition its state to `stalled` and new workloads will not be scheduled on that worker until it recovers.
 
 If the worker remains in this state and cannot be recovered, it can be removed using the [
-`fly prune-worker`](https://concourse-ci.org/administration.html#fly-prune-worker) command.
+`fly prune-worker`](../operation/administration.md#fly-prune-worker) command.
 
 ### Restarting a Worker
 
@@ -199,19 +199,19 @@ CONCOURSE_TAG="tag-1,tag-2"
 ```
 
 A tagged worker is taken out of the default placement logic. Tagged workers will not be used for any
-untagged [Steps](https://concourse-ci.org/steps.html).
+untagged [Steps](../steps/index.md).
 
-To run build steps on a tagged worker, specify the [`tags`](https://concourse-ci.org/tags-step.html#schema.tags) on any
-particular step in your [job](https://concourse-ci.org/jobs.html).
+To run build steps on a tagged worker, specify the [`tags`](../steps/modifier-and-hooks/tags.md) on any
+particular step in your [job](../jobs.md).
 
 To perform resource `check`s on a tagged worker, specify [
-`tags`](https://concourse-ci.org/resources.html#schema.resource.tags) on the resource declaration.
+`tags`](../resources/index.md#resource-schema) on the resource declaration.
 
 ### Team Workers
 
 If you want to isolate [**all workloads
-**](https://concourse-ci.org/global-resources.html#complications-with-reusing-containers) for
-a [team](https://concourse-ci.org/managing-teams.html) then you can configure a worker to belong to a single team like
+**](../operation/global-resources.md#complications-with-reusing-containers) for
+a [team](../auth-and-teams/managing-teams.md) then you can configure a worker to belong to a single team like
 so:
 
 ```properties
@@ -244,7 +244,7 @@ has will land on either:
 
 The worker will automatically listen on port `8888` as its healthcheck endpoint. It will return a `HTTP 200` status code
 with an empty body on a successful check. A successful check means the worker can reach
-the [Garden and BaggageClaim servers](https://concourse-ci.org/internals.html#architecture-worker).
+the [Garden and BaggageClaim servers](../internals/index.md#workers-architecture).
 
 The healthcheck endpoint is configurable through three variables:
 
@@ -466,7 +466,7 @@ special `127.x.x.x` DNS resolver (e.g. `systemd-resolved`).
 When the runtime copies the `resolv.conf` over, it removes these entries as they won't be reachable from the container's
 network namespace. As a result, your containers may not have any valid nameservers configured.
 
-To diagnose this problem you can [`fly intercept`](https://concourse-ci.org/builds.html#fly-intercept) into a failing
+To diagnose this problem you can [`fly intercept`](../builds.md#fly-intercept) into a failing
 container and check which nameservers are in `/etc/resolv.conf`:
 
 ```shell
@@ -509,7 +509,7 @@ The Guardian and containerd runtimes can have their DNS servers configured with 
     dns-server = 8.8.4.4
     ```
 
-To verify this solves your problem you can [`fly intercept`](https://concourse-ci.org/builds.html#fly-intercept) into a
+To verify this solves your problem you can [`fly intercept`](../builds.md#fly-intercept) into a
 container and check which nameservers are in `/etc/resolv.conf`:
 
 ```shell
@@ -562,7 +562,7 @@ the LAN address of the VM as the DNS server and allow the containers to reach th
     and DNS proxy to understand the implications of using `allow-host-access`
 
 To validate whether the changes have taken effect, you can [
-`fly intercept`](https://concourse-ci.org/builds.html#fly-intercept) into any container and check `/etc/resolv.conf`
+`fly intercept`](../builds.md#fly-intercept) into any container and check `/etc/resolv.conf`
 once again:
 
 ```shell
