@@ -503,5 +503,5 @@ See [Credential Management](operation/creds/index.md) for more information.
 !!! note
 
     In the future we would like to introduce support for multiple cluster-wide var sources, configured using the 
-    [`var_source` schema](#varsource-schema), and begin deprecating the [cluster-wide credential 
+    [`var_source` schema](#var_source-schema), and begin deprecating the [cluster-wide credential 
     manager](#the-cluster-wide-credential-manager).

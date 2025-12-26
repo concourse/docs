@@ -27,7 +27,7 @@ We'll try to minimize this kind of thing in the future.
 
 Lastly, you will want to overwrite the contents of `concourse/fly-assets` with the contents from
 the [GitHub release tarball](https://github.com/concourse/concourse/releases) so users can [
-`fly sync`](https://concourse-ci.org/fly.html#fly-sync) to the correct version.
+`fly sync`](../fly.md#fly-sync) to the correct version.
 
 ## Upgrading the Worker Node
 
@@ -42,7 +42,7 @@ directories:
 
 * `concourse/bin/...` - Other binaries like `gdn`, `runc`, and `containerd` are in this directory
 * `concourse/resource-types/...` - The location of the
-  default [resource-types](https://concourse-ci.org/resource-types.html) included with each Concourse release
+  default [resource-types](../resource-types/index.md) included with each Concourse release
 
 ### Darwin and Windows Workers
 

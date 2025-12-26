@@ -25,7 +25,7 @@ CONCOURSE_MAIN_TEAM_LOCAL_USER=myuser
 
 This will configure a single user, `myuser`, with the password `mypass`. You'll probably want to change those to
 sensible values, and later you may want to configure a proper auth provider - check
-out [Auth & Teams](https://concourse-ci.org/auth.html) whenever you're ready.
+out [Auth & Teams](../auth-and-teams/index.md) whenever you're ready.
 
 Next, you'll need to configure the session signing key, the SSH key for the worker gateway, and the authorized worker
 key. Check [Generating Keys](generating-keys.md) to learn what these are and how they are created.
@@ -62,7 +62,7 @@ All logs will be emitted to `stdout`, with any panics or lower-level errors bein
 
 ### Resource utilization
 
-CPU usage: peaks during pipeline scheduling, primarily when scheduling [Jobs](https://concourse-ci.org/jobs.html).
+CPU usage: peaks during pipeline scheduling, primarily when scheduling [Jobs](../jobs.md).
 Mitigated by adding more `web` nodes. In this regard, `web` nodes can be considered compute-heavy more than anything
 else at large scale.
 
@@ -72,7 +72,7 @@ an eye on it.
 Disk usage: none
 
 Bandwidth usage: aside from handling external traffic, the `web` node will at times have to stream bits out from one
-worker and into another while executing [Steps](https://concourse-ci.org/steps.html).
+worker and into another while executing [Steps](../steps/index.md).
 
 Highly available: `yes`; web nodes can all be configured the same (aside from `--peer-address`) and placed behind a load
 balancer. Periodic tasks like garbage-collection will not be duplicated for each node.
@@ -90,9 +90,9 @@ Outbound traffic:
 Inbound traffic:
 
 * `worker` connects to the TSA on port `2222` for registration
-* `worker` downloads inputs from the ATC during [`fly execute`](https://concourse-ci.org/tasks.html#running-tasks) via
+* `worker` downloads inputs from the ATC during [`fly execute`](../tasks.md#running-tasks-with-fly-execute) via
   its external URL
-* external traffic to the ATC API via the web UI and [`fly` CLI](https://concourse-ci.org/fly.html)
+* external traffic to the ATC API via the web UI and [`fly` CLI](../fly.md)
 
 ## Operating a `web` node
 
@@ -223,9 +223,9 @@ URL accessible by your Concourse users. If you don't set this property, logging 
 default value of `127.0.0.1`.
 
 If your web node(s) will be behind a load balancer or reverse proxy then you will need to ensure connections made by [
-`fly intercept`](https://concourse-ci.org/builds.html#fly-intercept) are properly handled by upgrading the connection.
+`fly intercept`](../builds.md#fly-intercept) are properly handled by upgrading the connection.
 Here is a sample nginx configuration that upgrades connections made by
-[`fly intercept`](https://concourse-ci.org/builds.html#fly-intercept).
+[`fly intercept`](../builds.md#fly-intercept).
 
 ```nginx linenums="1"
 server {
@@ -277,7 +277,7 @@ CONCOURSE_ENABLE_LETS_ENCRYPT=true
 !!! warning
 
     Concourse's Let's Encrypt integration works by storing the TLS certificate and key in the database, so it is 
-    imperative that you enable [database encryption](https://concourse-ci.org/encryption.html) as well.
+    imperative that you enable [database encryption](../operation/encryption.md) as well.
 
 By default, Concourse will reach out
 to [Let's Encrypt's ACME CA directory](https://acme-v02.api.letsencrypt.org/directory). An alternative URL can be
@@ -312,7 +312,7 @@ With these settings, Concourse will keep the latest 50 builds for each job. If a
 days, all of those builds will be retained until 14 days after they ran.
 
 Some jobs have differing retention requirements - you can configure [
-`build_log_retention_policy` schema](https://concourse-ci.org/jobs.html#schema.build_log_retention_policy) on a
+`build_log_retention_policy` schema](../jobs.md#job-schema) on a
 job-by-job basis.
 
 You can also configure Concourse with maximum values for build log retention policies to prevent jobs from retaining
@@ -324,9 +324,9 @@ CONCOURSE_MAX_DAYS_TO_RETAIN_BUILD_LOGS=30
 ```
 
 With these settings, [
-`build_log_retention_policy.builds`](https://concourse-ci.org/jobs.html#schema.build_log_retention_policy.builds) is
+`build_log_retention_policy.builds`](../jobs.md#job-schema) is
 capped at 100, and [
-`build_log_retention_policy.days`](https://concourse-ci.org/jobs.html#schema.build_log_retention_policy.days) is capped
+`build_log_retention_policy.days`](../jobs.md#job-schema) is capped
 at 30.
 
 ### Enabling audit logs

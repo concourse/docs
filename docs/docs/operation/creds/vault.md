@@ -18,7 +18,7 @@ CONCOURSE_VAULT_CA_CERT=path/to/ca.crt
 ```
 
 You'll also need to configure how the `web` node authenticates with Vault -
-see [Authenticating with Vault](https://concourse-ci.org/vault-credential-manager.html#authenticating-with-vault) for
+see [Authenticating with Vault](#authenticating-with-vault) for
 more details as that step is quite involved.
 
 ## Credential lookup rules
@@ -276,7 +276,7 @@ want to set to determine the lifecycle of its issued tokens:
 
 : This determines the policies (comma-separated) to set on each token. Be sure to set one that has access to the secrets
 path -
-see [Configuring the secrets engine](https://concourse-ci.org/vault-credential-manager.html#configuring-the-secrets-engine)
+see [Configuring the secrets engine](#configuring-the-secrets-engine)
 for more information.
 
 `ttl=duration`

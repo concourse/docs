@@ -41,7 +41,7 @@ your deployment and the amount of traffic it's handling increases, and scale acc
 **Disk usage**: pipeline configurations and various bookkeeping metadata for keeping track of jobs, builds, resources,
 containers, and volumes. In addition, **all build logs are stored in the database**. This is the primary source of disk
 usage. To mitigate this, log retention can be defined by pipeline authors by using [
-`job.build_log_retention`](https://concourse-ci.org/jobs.html#schema.job.build_log_retention). Concourse operators can
+`job.build_log_retention`](../jobs.md#job-schema). Concourse operators can
 also configure a default [Build log retention](running-web.md#build-log-retention) policy that applies to all pipelines.
 
 **Bandwidth usage**: well, it's a database, so it most definitely uses the network. Something important to consider here
