@@ -66,8 +66,8 @@ one last blaze of glory. Sorry about that.
 
 Some of you have submitted RFCs and haven't received much feedback yet. I'm really sorry about that.
 
-With v6.0 out and with the dust settling on the ["v10" roadmap](../2019/2019-07-17-core-roadmap-towards-v10.md), I am going
-to shift my role towards shepherding RFCs and getting back to writing code rather than endlessly planning and
+With v6.0 out and with the dust settling on the ["v10" roadmap](../../2019/07/2019-07-17-core-roadmap-towards-v10.md), 
+I am going to shift my role towards shepherding RFCs and getting back to writing code rather than endlessly planning and
 prioritizing. It's been a long time! This will also eliminate the conflict-of-interest where I author RFCs and then
 prioritize them while neglecting others. Definitely not a trend that I want to continue.
 

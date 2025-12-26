@@ -14,7 +14,7 @@ interval can quickly turn into 4 or 5.
 Owing to the missed round-up, and in hopes of burning through the backlog more quickly so that interested contributors
 may volunteer for merged RFCs, I'm going to expand the scope of this post to include more RFCs than the last one -
 primarily by proposing that we merge ones that are nearly certain for
-the [v10 roadmap](../2019/2019-07-17-core-roadmap-towards-v10.md).
+the [v10 roadmap](../../2019/07/2019-07-17-core-roadmap-towards-v10.md).
 
 ## Merged RFCs
 
@@ -52,9 +52,9 @@ Quite a few RFCs have had some pretty interesting discussions or developments si
   like approval and manual gating in a pipeline should be expressed in a Concoursey way - if you have thoughts on this,
   please chime in!
 - [RFC #37: prototypes](https://github.com/concourse/rfcs/pull/37) is the RFC for the "Prototypes" concept introduced in
-  the [Re-inventing resource types](../2019/2019-10-15-reinventing-resource-types.md) blog post. The latest revision
-  introduces encryption, which will enable Prototypes to implement credential managers. If you are a resource type
-  author or if you have a security background, please give it a look!
+  the [Re-inventing resource types](../../2019/10/2019-10-15-reinventing-resource-types.md) blog post. The latest
+  revision introduces encryption, which will enable Prototypes to implement credential managers. If you are a resource 
+  type author or if you have a security background, please give it a look!
 - [RFC #32: projects](https://github.com/concourse/rfcs/pull/32) now has a pretty radical new question: can Projects
   replace Teams in order to provide more complete cluster config automation? If you've ever had a need for automating
   team configuration, or if you have a thirst for GitOps, this should be a pretty interesting conversation!

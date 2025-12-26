@@ -46,7 +46,7 @@ dependency of your application (e.g. Postgres, MySQL).
 For the container image that contains your application you should have that built in a
 previous [step](https://concourse-ci.org/jobs.html#schema.step)
 or [job](https://concourse-ci.org/pipelines.html#schema.pipeline.jobs). You
-can [build and publish an image](2020-06-19-how-to-build-and-publish-a-container-image.md) using
+can [build and publish an image](../06/2020-06-19-how-to-build-and-publish-a-container-image.md) using
 the [oci-build task](https://github.com/vito/oci-build-task).
 
 To ensure Docker doesn't try to fetch the images itself you can use [
