@@ -32,7 +32,7 @@ conform to the following schema:
 
     A set of Var sources for the pipeline to use.
 
-??? info "`groups`: `[group]`"
+??? info "`groups`: [`[group]`](#group_config-schema)"
 
     A list of job groups to use for organizing jobs in the web UI.
 
@@ -103,7 +103,7 @@ conform to the following schema:
             Depending on how it's used, *, {, and } have special meaning in YAML, and may need to be quoted 
             (as was done in the all job above)
 
-??? info "`display`: `display_config`"
+??? info "`display`: [`display_config`](#display_config-schema)"
 
     !!! warning "Experimental Feature"
         
