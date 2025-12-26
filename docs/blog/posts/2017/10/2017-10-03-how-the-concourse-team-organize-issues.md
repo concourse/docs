@@ -49,7 +49,7 @@ Concourse codebase.
 
 ### GitHub Projects
 
-![A snapshot of the Concourse UX project](assets/2017-10-03-github-issues.png)
+![A snapshot of the Concourse UX project](../assets/2017-10-03-github-issues.png)
 
 Our Concourse Projects manifest themselves as GitHub Projects in the Concourse GitHub organization. Annoyingly, GitHub
 doesn’t (yet?) allow us to share these projects publicly.

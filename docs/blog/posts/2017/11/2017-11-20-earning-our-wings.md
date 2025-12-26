@@ -39,7 +39,7 @@ We mitigated the debugging and monitoring risks early on in the process of setti
 advantage of our existing deployed [metrics infrastructure](../../../docs/operation/metrics.md), the team configured the
 ATC, Workers and Database instances to report their stats to InfluxDB.
 
-![](assets/2017-11-20-earning-our-wings-01.png)
+![](../assets/2017-11-20-earning-our-wings-01.png)
 /// caption
 Grafana dashboards on metrics.concourse.ci
 ///
@@ -94,7 +94,7 @@ and Concourse should support them.
 Since its more a “continuous thing do-er” than it is an opinionated CI/CD platform, we wanted users to let loose on out
 a large Concourse deployment, and experiment, which led to some interesting pipelines:
 
-![](assets/2017-11-20-earning-our-wings-02.png)
+![](../assets/2017-11-20-earning-our-wings-02.png)
 /// caption
 162 resources used by 2 tasks
 ///
@@ -133,7 +133,7 @@ was to define and track Service-Level Objectives for Wings.
 Following the practices learned by working closely with Google’s Customer Reliability Engineering (CRE) initiative for
 Pivotal Cloud Foundry, the CloudOps team helped us define the targets we want to meet, based on key user-facing actions.
 
-![](assets/2017-11-20-earning-our-wings-03.webp)
+![](../assets/2017-11-20-earning-our-wings-03.webp)
 /// caption
 Wings’ SLO Targets
 ///
@@ -142,7 +142,7 @@ To monitor these objectives as Service Level Indicators (SLIs), we created a set
 perform the user facing action and report back it’s success. These monitoring pipelines were hosted on a separate
 Concourse deployment and reported up to a [Datadog](https://www.datadoghq.com/) a dashboard for office-wide visibility.
 
-![](assets/2017-11-20-earning-our-wings-04.png)
+![](../assets/2017-11-20-earning-our-wings-04.png)
 /// caption
 Wing’s first month of SLO availability
 ///
@@ -162,7 +162,7 @@ SLI (view Build History), we discovered a few issues:
 In addition to a few more optimizations, our Wings instance runs a lot smoother, which is reflected by our SLIs
 Dashboard.
 
-![](assets/2017-11-20-earning-our-wings-05.png)
+![](../assets/2017-11-20-earning-our-wings-05.png)
 /// caption
 Hitting 3 out of our 5 SLO targets in the month of November 2017
 ///

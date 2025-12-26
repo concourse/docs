@@ -5,7 +5,7 @@ authors:
   - jamesma
 ---
 
-![](assets/2017-10-26-build-page-improvements.gif)
+![](../assets/2017-10-26-build-page-improvements.gif)
 
 <!-- more -->
 
