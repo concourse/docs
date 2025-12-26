@@ -1,10 +1,11 @@
 ---
 title: Build Page Improvements
 date: 2017-10-26
+authors:
+  - ruiva
 ---
 
-{{< image src="/images/downloaded_images/Build-Page-Improvements/1-vjvvVZAw9nO4yRrveU0Ojg.gif" alt="GIF demoing build
-page changes" width="50%" >}}
+![](assets/2017-10-26-build-page-improvements.gif)
 
 <!-- more -->
 
