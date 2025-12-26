@@ -33,7 +33,7 @@ The following RFCs have been given the `resolution/merge` label:
   pipelines together under a single identifier, further breaking down each instance by a set of associated vars.
 
 Both of these RFCs are key components to our plan for Git branch/PR pipeline automation, as described in
-the [v10 blog post](../2019/2019-07-17-core-roadmap-towards-v10.md).
+the [v10 blog post](../../2019/07/2019-07-17-core-roadmap-towards-v10.md).
 
 Per the [resolution process](https://github.com/concourse/rfcs/blob/master/README.md#resolution), if there are no
 objections or significant changes in the 2 weeks after this post is published, they will be merged! 🚀

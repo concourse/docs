@@ -173,7 +173,7 @@ _Resources v2 is the first major revision of the resource interface since Concou
 very carefully. I think we're finally ready to go._
 
 **UPDATE: Just kidding! This proposal has been superceded by something even more
-general: [Prototypes](2019-10-15-reinventing-resource-types.md)! ([RFC #37](https://github.com/concourse/rfcs/blob/master/037-prototypes/proposal.md))
+general: [Prototypes](../10/2019-10-15-reinventing-resource-types.md)! ([RFC #37](https://github.com/concourse/rfcs/blob/master/037-prototypes/proposal.md))
 **
 
 The v2 interface brings long-awaited polish to the interface: it renames `in` and `out` to `get` and `put` to match

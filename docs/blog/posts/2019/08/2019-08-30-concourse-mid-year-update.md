@@ -28,7 +28,7 @@ at 4213 stars, a 52% increase in popularity from this time last year.
 
 In case you missed it, Alex wrote out a great blog post that outlines our long term vision for Concourse. It's got a
 breakdown of some exciting new features, from references to Spaces, the new Algorithm, Concourse Projects, etc. You can
-read more about it here [2019-07-17-core-roadmap-towards-v10.md](2019-07-17-core-roadmap-towards-v10.md)
+read more about it here [2019-07-17-core-roadmap-towards-v10.md](../07/2019-07-17-core-roadmap-towards-v10.md)
 
 ## Concourse Project Planning
 

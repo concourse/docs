@@ -19,8 +19,9 @@ With the four(!) RFCs from the last round-up now merged, it's time to move on to
 ## RFCs ready to merge 🤞
 
 - [RFC #37: Prototypes](https://github.com/concourse/rfcs/pull/37) is finally ready to go! For (much) further reading,
-  check out the [Re-inventing resource types](../2019/2019-10-15-reinventing-resource-types.md) blog post. The importance
-  of this RFC really cannot be overstated; it will be the most significant change to Concourse since its creation.
+  check out the [Re-inventing resource types](../../2019/10/2019-10-15-reinventing-resource-types.md) blog post. The
+  importance of this RFC really cannot be overstated; it will be the most significant change to Concourse since its
+  creation.
 - [RFC #38: Resource Prototypes](https://github.com/concourse/rfcs/pull/38) demonstrates how the Prototype protocol may
   be used to implement the next generation of resource prototypes (formerly resource types) and gain long-requested
   functionality along the way.

@@ -53,8 +53,8 @@ the [backlog](https://github.com/concourse/resource-types-website/projects/1)). 
 information about each resource type on the cards (including GitHub stars and resource type actions), as well as
 improved search and sorting.
 
-We also have an eye on the V10 roadmap and can see [prototypes](../2019/2019-10-15-reinventing-resource-types.md) on the
-horizon.
+We also have an eye on the V10 roadmap and can see [prototypes](../../2019/10/2019-10-15-reinventing-resource-types.md)
+on the horizon.
 
 In the spirit of the open-source project that it is, we’d also love feedback to inform our roadmap. So if you have
 feedback, we’d love to hear it. The best way to reach us is to either drop us a line in #resource-types

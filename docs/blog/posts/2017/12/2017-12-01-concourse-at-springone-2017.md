@@ -7,7 +7,10 @@ authors:
   - jamesma
 ---
 
-![](../assets/2017-12-01-spring-one.png)
+![](assets/2017-12-01-spring-one.png)
+/// caption
+by Pivotal
+///
 
 [Topher Bullock](https://medium.com/u/58876cdc2180), [Lindsay Auchinachie](https://medium.com/u/84b937bda3b6), [Alex Suraci](https://medium.com/u/263a63b2f209)
 and I will be traveling to San Francisco next week to attend

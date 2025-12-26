@@ -5,7 +5,7 @@ categories:
 - roadmap
 ---
 
-Before the paint completely dries on the [v10 roadmap](2019-07-17-core-roadmap-towards-v10.md), there is one last
+Before the paint completely dries on the [v10 roadmap](../07/2019-07-17-core-roadmap-towards-v10.md), there is one last
 big unknown I want to explore in case it brings more clarity to our direction: generic tasks.
 
 <!-- more -->
@@ -137,7 +137,7 @@ This is fraught with peril:
   re-triggering ([#413](http://github.com/concourse/concourse/issues/413)), but that won't help with triggering builds
   for an "older" PR that hasn't run yet.
 
-This pain is the main source of motivation for the [v10 roadmap](2019-07-17-core-roadmap-towards-v10.md), which
+This pain is the main source of motivation for the [v10 roadmap](../07/2019-07-17-core-roadmap-towards-v10.md), which
 introduces all the required components to dynamically set a pipeline for each pull request instead - each with a
 resource representing only one pull request, as Concourse intended.
 
@@ -255,7 +255,7 @@ to use as resource types.
 Let's hone in on the reason why resource types don't work for every use case: they have a particular set of actions
 which have particular semantics because they're built for a particular Concourse use case: resources.
 
-The [v10 roadmap](2019-07-17-core-roadmap-towards-v10.md#rfc-24-resources-v2)
+The [v10 roadmap](../07/2019-07-17-core-roadmap-towards-v10.md#rfc-24-resources-v2)
 introduced [RFC #24](https://github.com/concourse/rfcs/pull/24), a "generalized resource" interface which supports
 `check`, `get`, `put`, and `delete` actions while avoiding resource terminology like "version" and "source" so that it
 can be used for other workflows. It's kind of a strange middle ground: it's limited to resource-y actions while avoiding

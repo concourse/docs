@@ -370,5 +370,5 @@ and [registry-image resource](https://github.com/concourse/registry-image-resour
 configuration options.
 
 If you had trouble following how the artifacts get passed between the steps of a job then read our other blog post
-about [task inputs and outputs](2020-05-25-introduction-to-task-inputs-and-outputs.md).
+about [task inputs and outputs](../05/2020-05-25-introduction-to-task-inputs-and-outputs.md).
 
