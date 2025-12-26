@@ -311,51 +311,187 @@ used just like resource types.
 
     === "Vault"
     
-        ??? warning "type: `vault`"
+        ??? warning "**`type`**: `vault`"
     
             The `vault` type supports configuring a [Vault](https://www.vaultproject.io/) server as a `((var))` source.
 
-        ??? warning "config: vault_config"
+        ??? warning "**`config`**: [`vault_config`](#vault_config-schema)"
+
+            ### `vault_config` schema
+
+            ??? warning "**`url`**: [`string`](config-basics.md#string-schema)"
+            
+                The URL of the Vault API.
+
+            ??? info "**`ca_cert`**: [`string`](config-basics.md#string-schema)"
+
+                The PEM encoded contents of a CA certificate to use when connecting to the API.
+
+            ??? info "**`path_prefix`**: [`string`](config-basics.md#string-schema)"
+
+                _Default `/concourse`_. A prefix under which to look for all credential values.
+
+                See [Changing the path prefix](operation/creds/vault.md#changing-the-path-prefix) for more information.
+
+            ??? info "**`lookup_templates`**: [`[string]`](config-basics.md#string-schema)"
+
+                _Default `["/{{.Team}}/{{.Pipeline}}/{{.Secret}}", "/{{.Team}}/{{.Secret}}"]`_.
+
+                A list of path templates to be expanded in a team and pipeline context subject to the `path_prefix` and 
+                `namespace`.
+
+                See [Changing the path templates](operation/creds/vault.md#changing-the-path-templates) for more 
+                information.
+
+            ??? info "**`shared_path`**: [`string`](config-basics.md#string-schema)"
+
+                An additional path under which credentials will be looked up.
+
+                See [Configuring a shared path](operation/creds/vault.md#configuring-a-shared-path) for more 
+                information.
+
+            ??? info "**`namespace`**: [`string`](config-basics.md#string-schema)"
+
+                A [Vault namespace](https://www.vaultproject.io/docs/enterprise/namespaces/index.html) to operate under.
+
+            ??? info "**`client_cert`**: [`string`](config-basics.md#string-schema)"
+
+                A PEM encoded client certificate, for use with TLS based auth.
+
+                See [Using the `cert` auth backend](operation/creds/vault.md#using-the-cert-auth-backend) for more 
+                information.
+
+            ??? info "**`client_key`**: [`string`](config-basics.md#string-schema)"
+
+                A PEM encoded client key, for use with TLS based auth.
+
+                See [Using the `cert` auth backend](operation/creds/vault.md#using-the-cert-auth-backend) for more 
+                information.
+
+            ??? info "**`server_name`**: [`string`](config-basics.md#string-schema)"
+
+                The expected name of the server when connecting through TLS.
+
+            ??? info "**`insecure_skip_verify`**: [`boolean`](config-basics.md#boolean-schema)"
+
+                Skip TLS validation. Not recommended. Don't do it. No really, don't.
+
+            ??? info "**`client_token`**: [`string`](config-basics.md#string-schema)"
+
+                Authenticate via a periodic client token.
+
+                See [Using a periodic token](operation/creds/vault.md#using-a-periodic-token) for more information.
+
+            ??? info "**`auth_backend`**: [`string`](config-basics.md#string-schema)"
+
+                Authenticate using an auth backend, e.g. `cert` or `approle`.
+
+                See [Using the `approle` auth backend](operation/creds/vault.md#using-the-approle-auth-backend) or 
+                [Using the `cert` auth backend](operation/creds/vault.md#using-the-cert-auth-backend) for more 
+                information.
+
+            ??? info "**`auth_params`**: [`env-vars`](config-basics.md#env-vars-schema)" 
+
+                A key-value map of parameters to pass during authentication.
+
+                See [Using the `approle` auth backend](operation/creds/vault.md#using-the-approle-auth-backend) for more
+                information.
+
+            ??? info "**`auth_max_ttl`**: [`duration`](config-basics.md#duration-schema)" 
+
+                Maximum duration to elapse before forcing the client to log in again.
+
+            ??? info "**`auth_retry_max`**: [`duration`](config-basics.md#duration-schema)" 
+
+                When failing to authenticate, give up after this amount of time.
+
+            ??? info "**`auth_retry_initial`**: [`duration`](config-basics.md#duration-schema)"
+
+                When retrying during authentication, start with this retry interval. The interval will increase 
+                exponentially until `auth_retry_max` is reached.
     
     === "Dummy"
     
-        ??? warning "type: `dummy`"
+        ??? warning "**`type`**: `dummy`"
 
             The `dummy` type supports configuring a static map of vars to values.
 
             This is really only useful if you have no better alternative for credential management but still have 
             sensitive values that you would like to [redact](operation/creds/redacting.md) them from build output.
 
-        ??? warning "config: dummy_config"
+        ??? warning "**`config`**: [`dummy_config`](#dummy_config-schema)"
+
+            ### `dummy_config` schema
+
+            ??? warning "**`vars`**: [`vars`](config-basics.md#vars-schema)"
+
+                A mapping of var name to var value.
     
     === "SSM"
     
-        ??? warning "type: `ssm`"
+        ??? warning "**`type`**: `ssm`"
 
             The `SSM` type supports configuring an [AWS Systems Manager](https://aws.amazon.com/systems-manager/) 
             in a single region as a `((var))` source.
     
-        ??? warning "config: ssm_config"
+        ??? warning "**`config`**: [`ssm_config`](#ssm_config-schema)"
+
+            ### `ssm_config` schema
+
+            ??? warning "**`region`**: [`string`](config-basics.md#string-schema)"
+
+                The AWS region to read secrets from.
     
     === "Secrets Manager"
     
-        ??? warning "type: `secretsmanager`"
+        ??? warning "**`type`**: `secretsmanager`"
 
             The `secretsmanager` type supports configuring an [AWS Secrets 
             Manager](https://aws.amazon.com/secrets-manager/) in a single region as a `((var))` source.
     
-        ??? warning "config: secretsmanager_config"
+        ??? warning "**`config`**: [`secretsmanager_config`](#secretsmanager_config-schema)"
     
+            ### `secretsmanager_config` schema
+
+            ??? warning "**`region`**: [`string`](config-basics.md#string-schema)"
+
+                The AWS region to read secrets from.
+
     === "ID Token"
     
-        ??? warning "type: `idtoken`"
+        ??? warning "**`type`**: `idtoken`"
 
             The `idtoken` type issues JWTs which are signed by concourse and contain information about the currently 
             running pipeline/job.
 
             These JWTs can be used to authenticate with external services.
     
-        ??? warning "config: idtoken_config"
+        ??? warning "**`config`**: [`idtoken_config`](#idtoken_config-schema)"
+
+            ### `idtoken_config` schema
+
+            ??? warning "**`audience`**: [`[string]`](config-basics.md#string-schema)"
+
+                A list of audience-values to place into the token's aud-claim.
+
+            ??? info "**`subject_scope`**: `team` | `pipeline` | `instance` | `job` | [`string`](config-basics.md#string-schema)"
+            
+                _Default `pipeline`_.
+
+                Determines what is put into the token's sub-claim. See 
+                [Subject Scope](operation/creds/id-token.md#subject-scope) for a detailed explanation.
+
+            ??? info "**`expires_in`**: [`duration`](config-basics.md#duration-schema)"
+
+                _Default `1h`_. Cannot be longer than `24h`.
+
+                How long the token should be valid.
+
+            ??? info "**`algorithm`**: `RS256` | `ES256` | [`string`](config-basics.md#string-schema)"
+
+                _Default `RS256`_.
+
+                The signature algorithm to use for the token.
 
 ### The cluster-wide credential manager
 
