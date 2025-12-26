@@ -1,9 +1,17 @@
 authors:
-  taylorsilva:
+  tsilva:
     name: Taylor Silva
     description: Maintainer
     avatar: https://github.com/taylorsilva.png
-  ruiva:
-    name: Rui Yang
-    description: Former Maintainer
-    avatar: https://media.licdn.com/dms/image/v2/C5603AQFGY-Hm8Jc0KA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1516549738550?e=1768435200&v=beta&t=IaL-Vw8XKj6DmgutxS3xOu411bEUgRZIIXmdiwl8rew
+  jamesma:
+    name: James Ma
+    description: Former Product Manager
+    avatar: https://miro.medium.com/v2/resize:fill:176:176/2*5LAj0RMtEpmKoWu5JZ_izg.jpeg
+  tbullock:
+    name: Topher Bullock
+    description: Former Editor
+    avatar: https://miro.medium.com/v2/resize:fill:176:176/1*lqzgDf65Rxt1KV0FkoK3YQ.jpeg
+  lauchinachie:
+    name: Lindsay Auchinachie
+    description: Former Product Designer
+    avatar: https://miro.medium.com/v2/resize:fill:176:176/1*mlen1LB-MqZKkj5PdMAQ_Q@2x.jpeg

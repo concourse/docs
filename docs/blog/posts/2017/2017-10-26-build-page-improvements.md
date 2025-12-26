@@ -2,7 +2,7 @@
 title: Build Page Improvements
 date: 2017-10-26
 authors:
-  - ruiva
+  - jamesma
 ---
 
 ![](assets/2017-10-26-build-page-improvements.gif)

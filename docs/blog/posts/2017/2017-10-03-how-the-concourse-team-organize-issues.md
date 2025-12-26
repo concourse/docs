@@ -4,7 +4,7 @@ date: 2017-10-03
 categories:
   - product-update
 authors:
-  - ruiva
+  - jamesma
 ---
 
 As the Concourse team continues to grow in size and in the # of incoming issues, the team has been experimenting with
