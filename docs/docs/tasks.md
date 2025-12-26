@@ -20,6 +20,245 @@ some `ci` directory.
 
 A task's configuration specifies the following:
 
+## `task-config` schema
+
+??? warning "**`platform`**: `linux` | `darwin` | `windows`"
+
+    The platform the task should run on. This determines the pool of workers that the task can run against.
+
+    Technically any string value is allowed so long as a worker advertises the same platform, but in practice only 
+    `linux`, `darwin`, and `windows` are in use.
+
+??? warning "**`in_parallel`**: [`anonymous_resource`](#anonymous_resource-schema)"
+
+    The container image to run with, as provided by an anonymous [resource](resources/index.md) definition.
+
+    Whenever the task runs, the anonymous resource will be `check`ed to discover the latest version available. The image
+    will then be fetched onto the worker, if necessary, just prior to running the task.
+
+    To use an image provided by a previous step within your build plan, set `task` step `image` on the 
+    [`task` step](steps/task.md) instead.
+
+    !!! note
+
+        This field is only required for tasks targeting the Linux platform. This field will be ignored for Windows and 
+        Darwin workers. Windows containers are currently not supported and Darwin does not have native containers. The 
+        task will run inside a clean temporary directory on the Windows/Darwin worker with any inputs and outputs copied
+        into the same directory. Any dependencies should be pre-installed on the worker.
+
+    ??? example "Using the `golang` Docker image"
+
+        The following task config will use the [`golang` Docker image](https://hub.docker.com/_/golang) to run 
+        `go version`:
+
+        ```yaml
+        platform: linux
+        
+        image_resource:
+          type: registry-image
+          source:
+            repository: golang
+        
+        run:
+          path: go
+          args:
+            - version
+        ```
+
+    ### `anonymous_resource` schema
+
+    ??? warning "**`type`**: [`resource_type.name`](resource-types/index.md#resource_type-schema)"
+
+        The type of the resource. Usually `registry-image`.
+
+        You can use any resource type that returns a filesystem in the correct format: a `/rootfs` directory containing 
+        a full filesystem, and a `metadata.json` file containing.
+
+    ??? warning "**`source`**: [`config`](config-basics.md#config-schema)"
+
+        The configuration for the resource; see [`resource.source`](resources/index.md#resource-schema).
+
+    ??? info "**`params`**: [`config`](config-basics.md#config-schema)"
+
+        A map of arbitrary configuration to forward to the resource. Refer to the resource type's documentation to see 
+        what it supports.
+
+    ??? info "**`version`**: [`version`](config-basics.md#version-schema)"
+
+        A specific version of the resource to fetch. This should be a map with string keys and values. If not specified,
+        the latest version will be fetched.
+
+??? info "**`inputs`**: [`[input]`](#input-schema)"
+
+    The set of artifacts used by task, determining which artifacts will be available in the current directory when the 
+    task runs.
+
+    These are satisfied by [`get` steps](steps/get.md) or `task-config.outputs` of a previous task. These can also be 
+    provided by `-i` with [`fly execute`](#running-tasks-with-fly-execute).
+
+    If any required inputs are missing at run-time, then the task will error immediately.
+
+    ### `input` schema
+
+    ??? warning "**`name`**: [`identifier`](config-basics.md#identifier-schema)"
+
+        The name of the input.
+
+    ??? info "**`path`**: [`dir-path`](config-basics.md#dir-path-schema)"
+
+        The path where the input will be placed. If not specified, the input's `name` is used.
+
+        Paths are relative to the working directory of the task unless an absolute path is given. An absolute path is 
+        any path that starts with a forward slash `/`. We recommend only using relative paths unless you have a strong 
+        technical reason to use absolute paths.
+
+        Any parent directory references (`../`) in the path will be removed.
+
+    ??? info "**`optional`**: [`boolean`](config-basics.md#boolean-schema)"
+
+        _Default `false`_. If `true`, then the input is not required by the task. The task may run even if this input is
+        missing.
+
+        An `optional` input that is missing will not appear in the current directory of the running task.
+
+??? info "**`outputs`**: [`[output]`](#output-schema)"
+
+    The artifacts produced by the task.
+
+    Each output configures a directory to make available to later steps in the [build plan](steps/index.md). The 
+    directory will be automatically created before the task runs, and the task should place any artifacts it wants to 
+    export in the directory.
+
+    ### `output` schema
+
+    ??? warning "**`name`**: [`identifier`](config-basics.md#identifier-schema)"
+
+        The name of the output. The contents under `path` will be made available to the rest of the plan under this
+        name.
+
+    ??? info "**`path`**: [`dir-path`](config-basics.md#dir-path-schema)"
+
+        The path to a directory where the output will be taken from. If not specified, the output's `name` is used.
+
+        Paths are relative to the working directory of the task unless an absolute path is given. An absolute path is 
+        any path that starts with a forward slash `/`. We recommend only using relative paths unless you have a strong 
+        technical reason to use absolute paths.
+
+        Any parent directory references (`../`) in the path will be removed.
+
+??? info "**`caches`**: [`[cache]`](#cache-schema)"
+
+    The cached directories shared between task runs.
+
+    On the task's first run, all cache directories will be empty. It is the responsibility of the task to populate these
+    directories with any artifacts to be cached. On subsequent runs, the cached directories will contain those 
+    artifacts.
+
+    Caches are scoped to the worker the task is run on, so you will not get a cache hit when subsequent builds run on 
+    different workers. This also means that caching is not intended to share state between workers, and your task should
+    be able to run whether or not the cache is warmed.
+
+    Caches are also scoped to a particular task name inside of a pipeline's job. As a consequence, if the job name, step
+    name or cache path are changed, the cache will not be used. This also means that caches do not exist for one-off 
+    builds.
+
+    ### `cache` schema
+
+    ??? warning "**`path`**: [`dir-path`](config-basics.md#dir-path-schema)"
+
+        The path to a directory to be cached.
+
+        Paths are relative to the working directory of the task. Absolute paths are not respected.
+
+??? info "**`params`**: [`env-vars`](config-basics.md#env-vars-schema)"
+
+    A key-value mapping of string keys and values that are exposed to the task via environment variables.
+
+    Pipelines can override these params by setting [`task` step `params`](steps/task.md) on the `task` step. This is a 
+    common method of providing credentials to a task.
+
+??? warning "**`run`**: [`command`](#command-schema)"
+
+    The command to execute in the container.
+
+    !!! note
+
+        This is not provided as a script blob, but explicit `path` and `args` values; this allows `fly` to forward 
+        arguments to the script, and forces your config `.yml` to stay fairly small.
+
+    ### `command` schema
+
+    ??? warning "**`path`**: [`file-path`](config-basics.md#file-path-schema)"
+
+        The name of or path to the executable to run.
+
+        `path` is relative to the working directory. If `dir` is specified to set the working directory, then `path` is 
+        relative to it.
+
+        This is commonly a path to a script provided by one of the task's inputs, e.g. `my-resource/scripts/test`. It 
+        could also be a command like `bash` (respecting standard `$PATH` lookup rules), or an absolute path to a file to
+        execute, e.g. `/bin/bash`.
+
+    ??? info "**`args`**: [`[string]`](config-basics.md#string-schema)"
+
+        Arguments to pass to the command. Note that when executed with `fly`, any arguments passed to 
+        [`fly execute`](#running-tasks-with-fly-execute) are appended to this array.
+
+    ??? info "**`dir`**: [`dir-path`](config-basics.md#dir-path-schema)"
+        
+        A directory, relative to the initial working directory, to set as the working directory when running the script.
+
+    ??? info "**`user`**: [`string`](config-basics.md#string-schema)"
+
+        Explicitly set the user to run as. If not specified, this defaults to the user configured by the task's image. 
+        If not specified there, it's up to the Garden backend, and may be e.g. `root` on Linux.
+
+??? info "**`rootfs_uri`**: [`string`](config-basics.md#string-schema)"
+
+    A string specifying the rootfs uri of the container, as interpreted by your worker's Garden backend.
+
+    `task-config.image_resource` is the preferred way to specify base image. You should only use this if you have no 
+    other option and you really know what you're doing.
+
+??? info "**`container_limits`**: [`container_limits`](#container_limits-schema)"
+
+    CPU and memory limits to enforce on the task container.
+
+    !!! note
+
+        These values, when specified, will override any limits set by passing the `--default-task-cpu-limit` or 
+        `--default-task-memory-limit` flags to the `concourse web` command.
+
+    ### `container_limits` schema
+
+    ??? info "**`cpu`**: [`number`](config-basics.md#number-schema)"
+
+        The maximum amount of CPU available to the task container, measured in shares. 0 means unlimited.
+
+        CPU shares are relative to the CPU shares of other containers on a worker. For example, if you have two 
+        containers both with a CPU limit of 2 shares then each container will get 50% of the CPU's time.
+
+        ```text
+        Container A: 2 shares - 50% CPU
+        Container B: 2 shares - 50% CPU
+        Total CPU shares declared: 4
+        ```
+
+        If you introduce another container then the number of CPU time per container changes. CPU shares are 
+        relative to each other.
+
+        ```text
+        Container A: 2 shares - 25% CPU
+        Container B: 2 shares - 25% CPU
+        Container C: 4 shares - 50% CPU
+        Total CPU shares declared: 8
+        ```
+
+    ??? info "**`memory`**: [`number`](config-basics.md#number-schema)"
+
+        The maximum amount of memory available to the task container, measured in bytes. 0 means unlimited. Can use 
+        units such as `KB/MB/GB`.
+
 ??? example "Testing a Ruby app"
 
     This configuration specifies that the task must run with the `ruby:2.1` Docker image with a `my-app` input, and when 
@@ -150,8 +389,6 @@ A task's configuration specifies the following:
       path: my-app/scripts/test
       args: [ "Hello, world!", "((myparam))" ]
     ```
-
-## `task-config` schema
 
 ## Running tasks with `fly execute`
 
