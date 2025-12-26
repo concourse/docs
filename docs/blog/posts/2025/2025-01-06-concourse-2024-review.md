@@ -2,7 +2,7 @@
 title: Concourse 2024 in Review
 date: 2025-01-06
 authors:
-  - taylorsilva
+  - tsilva
 ---
 
 Hey Concourse community, it’s been a while since a blog post was made. My name is Taylor Silva and I’m the current lead

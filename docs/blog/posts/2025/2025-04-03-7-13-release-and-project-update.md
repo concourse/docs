@@ -2,7 +2,7 @@
 title: v7.13.0 Release and Project Update
 date: 2025-04-03
 authors:
-  - taylorsilva
+  - tsilva
 ---
 
 First minor release of 2025! This release is FULL of bug fixes, performance improvements, and even a few new features.

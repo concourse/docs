@@ -4,7 +4,7 @@ date: 2017-12-01
 categories:
   - product-update
 authors:
-  - ruiva
+  - jamesma
 ---
 
 ![](assets/2017-12-01-spring-one.png)

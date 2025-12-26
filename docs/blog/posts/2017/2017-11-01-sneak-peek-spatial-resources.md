@@ -2,7 +2,7 @@
 title: 'Sneak Peek: Spatial Resources'
 date: 2017-11-01
 authors:
-  - ruiva
+  - jamesma
 ---
 
 ![](assets/2017-11-01-spacial-resources.png)

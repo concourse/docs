@@ -5,7 +5,7 @@ date: 2017-09-29
 categories:
   - product-update
 authors:
-  - ruiva
+  - jamesma
 ---
 
 In 2014 the Concourse CI project started with just two engineers; Alex Suraci and Chris Brown. At the time, both Alex
