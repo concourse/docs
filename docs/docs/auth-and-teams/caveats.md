@@ -7,7 +7,7 @@ who you're allowing access into your Concourse cluster.
 
 There are a few reasons it'd be a bad idea to do otherwise:
 
-* Any team can run builds with [`task` step **`privileged`**](../steps/task.md#task-step) tasks. A bad actor in the mix
+* Any team can run builds with [`task` step `privileged`](../steps/task.md#task-step) tasks. A bad actor in the mix
   could easily use this to harm your workers and your cluster. You
   can [lock down privileged mode](../operation/security-hardening.md#locking-down-privileged-mode) if you
   use the containerd runtime and avoid this issue all together.
