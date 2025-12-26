@@ -13,9 +13,9 @@ and [Jobs](jobs.md), which interact with them. Concourse pipelines function as d
 also reduces risk, making it simpler for projects to recover from CI disruptions.
 
 [Resources](resources/index.md) like the [`git` resource](https://github.com/concourse/git-resource) and [
-`s3`](https://github.com/concourse/s3-resource) resource are used to express source code, dependencies, deployments, and
+`s3` resource](https://github.com/concourse/s3-resource) are used to express source code, dependencies, deployments, and
 other external states. This interface also models more abstract concepts like scheduled or interval triggers, via
-the [time resource](https://github.com/concourse/time-resource).
+the [`time` resource](https://github.com/concourse/time-resource).
 
 [Resource Types](resource-types/index.md) are defined within the pipeline itself, making the pipelines more
 self-sufficient while keeping Concourse lean and versatile without needing a complex plugin system.
