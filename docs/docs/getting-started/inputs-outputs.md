@@ -4,13 +4,13 @@ title: Inputs and Outputs
 
 ## Overview
 
-This section is going to go over how to pass data between different [steps](https://concourse-ci.org/steps.html) in
-a [job](https://concourse-ci.org/jobs.html). We'll continue building on our `hello-world.yml` pipeline.
+This section is going to go over how to pass data between different [steps](../steps/index.md) in
+a [job](../jobs.md). We'll continue building on our `hello-world.yml` pipeline.
 
-In the previous section we learned that [steps](https://concourse-ci.org/steps.html) are where we tell Concourse what to
+In the previous section we learned that [steps](../steps/index.md) are where we tell Concourse what to
 run (_i.e. run my tests, run this bash script, build this image, etc._). We are going to expand on the concept
-of [steps](https://concourse-ci.org/steps.html) and show you how to pass artifacts/files
-between [tasks](https://concourse-ci.org/tasks.html) using `inputs` and `outputs`.
+of [steps](../steps/index.md) and show you how to pass artifacts/files
+between [tasks](../tasks.md) using `inputs` and `outputs`.
 
 ## What are inputs and outputs
 
@@ -18,7 +18,7 @@ The simple answer is that inputs and outputs are directories that get passed bet
 and outputs as **artifacts**.
 
 Let's start exploring how artifacts work by adding
-a [`task-config.outputs`](https://concourse-ci.org/tasks.html#schema.task-config.outputs) to our `hello-world-task`.
+a [`task-config.outputs`](../tasks.md#task-config-schema) to our `hello-world-task`.
 
 ```yaml
 jobs:
@@ -148,21 +148,21 @@ As Concourse is running the steps in your job, it is creating a list of **named 
 like for the pipeline we just ran.
 
 * Concourse runs the task step `hello-world-task`
-  with [output](https://concourse-ci.org/tasks.html#schema.task-config.outputs) `the-artifact`
+  with [output](../tasks.md#task-config-schema) `the-artifact`
 
 !!! note ""
 
     Concourse creates an empty artifact, assigns it the name `the-artifact`, and mounts it inside the task container.
 
 * Concourse runs the task step `read-the-artifact`
-  with [input](https://concourse-ci.org/tasks.html#schema.task-config.inputs) `the-artifact`
+  with [input](../tasks.md#task-config-schema) `the-artifact`
 
 !!! note ""
 
     Concourse looks up, in its list of artifacts for the build, for an artifact named `the-artifact`, and mounts 
     it inside the task container. If no input with that name is found then the build would fail.
 
-The next section will introduce you to the concept of [Resources](https://concourse-ci.org/resources.html).
+The next section will introduce you to the concept of [Resources](../resources/index.md).
 
 !!! note
 

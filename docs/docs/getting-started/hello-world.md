@@ -11,27 +11,27 @@ the pipeline we will pause to explain the core pieces of the pipeline.
 
 Let's first answer: **what is a pipeline made up from?**
 
-The simplest Concourse [pipeline](https://concourse-ci.org/pipelines.html) is made of two objects:
+The simplest Concourse [pipeline](../pipelines/index.md) is made of two objects:
 
 - An unordered list of Jobs which contains...
 - An ordered list of Steps
 
 If you've used other pipeline building tools in the past, then what you think of as a pipeline is probably most similar
-to a [job](https://concourse-ci.org/jobs.html) in Concourse.
+to a [job](../jobs.md) in Concourse.
 
 For our `Hello World!` pipeline we will need **one job** with **one step**. This is the smallest pipeline you can make
 in Concourse. The single step is what will print `Hello World!` to the console.
 
 Create and open a new file called `hello-world.yml`. Inside that file let's add the first top-level
-key, [jobs](https://concourse-ci.org/jobs.html).
+key, [jobs](../jobs.md).
 
 ```yaml
 jobs:
 ```
 
-The jobs key is where we define the list of [jobs](https://concourse-ci.org/jobs.html) that should make up our pipeline.
+The jobs key is where we define the list of [jobs](../jobs.md) that should make up our pipeline.
 The order of the jobs does not matter. **The order of jobs does not define the structure of the pipeline.** We'll get
-into pipeline structure and job ordering later when we talk about [Resources](https://concourse-ci.org/resources.html)
+into pipeline structure and job ordering later when we talk about [Resources](../resources/index.md)
 and passed constraints.
 
 ## Add a job
@@ -43,10 +43,10 @@ jobs:
   - name: hello-world-job
 ```
 
-Awesome, we have a [job](https://concourse-ci.org/jobs.html) named `hello-world-job`! Now we need to add
-a [`step`](https://concourse-ci.org/steps.html) to our job. To define a list
-of [steps](https://concourse-ci.org/steps.html) a job should execute, we need to add
-the [plan](https://concourse-ci.org/jobs.html#schema.job.plan) key to our job.
+Awesome, we have a [job](../jobs.md) named `hello-world-job`! Now we need to add
+a [`step`](../steps/index.md) to our job. To define a list
+of [steps](../steps/index.md) a job should execute, we need to add
+the [plan](../jobs.md#job-schema) key to our job.
 
 ```yaml
 jobs:
@@ -56,9 +56,9 @@ jobs:
 
 ## Add a Step
 
-Unlike [jobs](https://concourse-ci.org/jobs.html), the order of [steps](https://concourse-ci.org/steps.html) **does
-matter!** Concourse will run the [steps](https://concourse-ci.org/steps.html) in the order that they are listed. Let's
-_carefully_ place a [task step](https://concourse-ci.org/task-step.html#schema.task.task) as the first (and only) step
+Unlike [jobs](../jobs.md), the order of [steps](../steps/index.md) **does
+matter!** Concourse will run the [steps](../steps/index.md) in the order that they are listed. Let's
+_carefully_ place a [task step](../steps/task.md) as the first (and only) step
 in our job.
 
 ```yaml
@@ -69,7 +69,7 @@ jobs:
 ```
 
 Fantastic! Now we need to tell Concourse _how_ to run our task step. We do that by providing
-a [task config](https://concourse-ci.org/tasks.html#schema.task-config).
+a [task config](../tasks.md#task-config-schema).
 
 ```yaml
 jobs:
@@ -84,7 +84,7 @@ At this point we are going to pause to explain steps a bit more.
 ## What is a step?
 
 A step is a single container running on a [Concourse worker](../install/running-worker.md).
-Each [step](https://concourse-ci.org/steps.html) in a [job plan](https://concourse-ci.org/jobs.html#schema.job.plan)
+Each [step](../steps/index.md) in a [job plan](../jobs.md#job-schema)
 runs in its own container. You can run anything you want inside the container (_i.e. run my tests, run this bash script,
 build this image, etc._).
 
@@ -112,8 +112,8 @@ Let's answer the previous three questions for our `hello-world-task`:
 - **What command to run inside the container**
     - `echo "Hello world!"`
 
-You can view the [task documentation](https://concourse-ci.org/tasks.html) to see all configurable options for tasks.
-For now, you can add the following [task config](https://concourse-ci.org/tasks.html#schema.task-config) to the step.
+You can view the [task documentation](../tasks.md) to see all configurable options for tasks.
+For now, you can add the following [task config](../tasks.md#task-config-schema) to the step.
 
 ```yaml
 jobs:
@@ -140,7 +140,7 @@ jobs:
 ## Run the pipeline
 
 That's the whole pipeline! You can now set it, unpause, and trigger it using
-the [fly cli](https://concourse-ci.org/fly.html). You can then view it from
+the [fly cli](../fly.md). You can then view it from
 the [web ui](http://localhost:8080/teams/main/pipelines/hello-world/jobs/hello-world-job).
 
 ```shell

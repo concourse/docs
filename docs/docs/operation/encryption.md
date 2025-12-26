@@ -44,7 +44,7 @@ Notably, the following things are NOT encrypted:
   initially as it would introduce a performance burden for what is not as much of an obvious win.
 * Resource versions. These should never contain credentials, and are often meaningless on their own.
 * Resource metadata. These are visible to anyone if your pipeline
-  is [exposed](https://concourse-ci.org/managing-pipelines.html#fly-expose-pipeline), and should never contain
+  is [exposed](../pipelines/managing-pipelines.md#fly-expose-pipeline), and should never contain
   credentials.
 * Pipeline names, job names, etc. - anything else that is not a high-risk target for credential leakage, as opposed to
   regular information leaks.

@@ -16,7 +16,7 @@ containers then you may want to [get started with Docker](https://docs.docker.co
 this tutorial.
 
 It will also help if you know how to read YAML. We have a
-quick [Intro to YAML](https://concourse-ci.org/config-basics.html#intro-to-yaml) if you're not familiar with the syntax.
+quick [Intro to YAML](../config-basics.md#intro-to-yaml) if you're not familiar with the syntax.
 
 !!! note
 

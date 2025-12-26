@@ -88,9 +88,8 @@ YAML has some weird parts. For example, all the following terms are acceptable b
 `no`, `on`, `off`.
 
 YAML is also whitespace-sensitive. For the most part, this is really handy because it keeps you from having to count
-curly-braces in deeply nested parts of configuration such as [
-`job.plan`](https://concourse-ci.org/jobs.html#schema.job.plan). Sometimes, though, it can be hard to keep track of the
-correct indentation level.
+curly-braces in deeply nested parts of configuration such as [`job.plan`](jobs.md#job-schema). Sometimes, though, it can
+be hard to keep track of the correct indentation level.
 
 ## Basic Schemas
 
@@ -209,6 +208,5 @@ The following is an array of versions:
 
 Note that in the last example we took special care to quote the number.
 
-In many scenarios where a version can be specified, e.g. [`get` step
-`version`](https://concourse-ci.org/get-step.html#schema.get.version), only a subset of the full set of fields is
-necessary. The latest version matching the fields specified will be chosen.
+In many scenarios where a version can be specified, e.g. [`get` step `version`](steps/get.md#get-step), only a subset of
+the full set of fields is necessary. The latest version matching the fields specified will be chosen.
