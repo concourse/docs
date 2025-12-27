@@ -3,6 +3,8 @@ title: Re-inventing resource types
 date: 2019-10-15
 categories:
 - roadmap
+authors:
+  - asuraci
 ---
 
 Before the paint completely dries on the [v10 roadmap](../07/2019-07-17-core-roadmap-towards-v10.md), there is one last

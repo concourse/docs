@@ -4,6 +4,8 @@ title: Concourse Update (Feb 26 — Mar2)
 date: 2018-03-02
 categories:
 - product-update
+authors:
+  - jamesma
 ---
 
 After some wrestling with our production pipelines last week we managed to release a patch update in the form

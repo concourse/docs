@@ -4,6 +4,8 @@ title: Concourse Update (April 9–13)
 date: 2018-04-13
 categories:
   - product-update
+authors:
+  - jamesma
 ---
 
 Concourse v3.11.0 came out today! Go get

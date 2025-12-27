@@ -3,6 +3,8 @@ title: Concourse Update (May 28 — June 1)
 date: 2018-06-01
 categories:
   - product-update
+authors:
+  - jamesma
 ---
 
 {{< image src="/images/downloaded_images/Concourse-Update--May-28---June-1-/1-kJxF-3MOSqElyItFT2ec-A.png" alt="" width="

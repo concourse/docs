@@ -3,6 +3,8 @@ title: Concourse Update (Nov 5–9)
 date: 2018-11-09
 categories:
 - product-update
+authors:
+  - jamesma
 ---
 
 {{< image src="/images/downloaded_images/Concourse-Update--Nov-5-9-/1-JcXgBDqfq8Lwc4WNwyJgQg.jpeg" alt="" width="

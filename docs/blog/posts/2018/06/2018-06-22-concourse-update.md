@@ -3,6 +3,8 @@ title: Concourse Update (Jun 18–22)
 date: 2018-06-22
 categories:
   - product-update
+authors:
+  - jamesma
 ---
 
 {{< image src="/images/downloaded_images/Concourse-Update--Jun-18-22-/0-iPsCYY5ob7h-bSKD.jpg" alt="" width="100%" >}}

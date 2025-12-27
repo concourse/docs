@@ -3,6 +3,8 @@ title: Concourse Update (Jun 11–15)
 date: 2018-06-15
 categories:
   - product-update
+authors:
+  - jamesma
 ---
 
 This was a post-release week, so we spent a lot of time merging in new code from the Users track, fixing our pipelines,

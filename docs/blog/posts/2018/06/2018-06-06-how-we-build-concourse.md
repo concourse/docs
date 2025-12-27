@@ -1,6 +1,8 @@
 ---
 title: How We Build Concourse
 date: 2018-06-06
+authors:
+  - jamesma
 ---
 
 Building on some of our previous posts on the Concourse team mechanics¹, I wanted to spend some time going over how we

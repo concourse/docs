@@ -3,6 +3,8 @@ title: Concourse Update (Aug 7–10)
 date: 2018-08-10
 categories:
 - roadmap
+authors:
+  - jamesma
 ---
 
 {{< image src="/images/downloaded_images/Concourse-Update--Aug-7-10-/1-QBeLayNVacbJGgBW-BhGSw.jpeg" alt="" width="

@@ -3,6 +3,8 @@ title: Concourse Update (May 22–25)
 date: 2018-05-25
 categories:
   - product-update
+authors:
+  - jamesma
 ---
 
 It was a short week for us here in Canada, but we had a few interesting updates:

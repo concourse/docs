@@ -2,7 +2,9 @@
 title: Concourse Updates (Jan 29 — Feb 2, 2018)
 date: 2018-02-02
 categories:
-- product-update
+  - product-update
+authors:
+  - jamesma
 ---
 
 As a Product Manager at Pivotal, one of my responsibilities is to write weekly updates to let Pivots know what the

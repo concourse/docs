@@ -4,6 +4,8 @@ title: Concourse Update (Jun 25–29)
 date: 2018-06-29
 categories:
   - product-update
+authors:
+  - jamesma
 ---
 
 {{< image src="/images/downloaded_images/Concourse-Update--Jun-25-29-/1-eGvw-f2AjgJvsWN9pdikBg.gif" alt="" width="

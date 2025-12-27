@@ -3,6 +3,8 @@ title: Concourse Update (Mar 5–9)
 date: 2018-03-09
 categories:
 - product-update
+authors:
+  - jamesma
 ---
 
 Whelp, that felt like a long week. If you haven’t heard the news by now you should definitely

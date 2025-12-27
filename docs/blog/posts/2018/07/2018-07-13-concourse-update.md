@@ -4,6 +4,8 @@ title: Concourse Update (Jul 9–13)
 date: 2018-07-13
 categories:
   - product-update
+authors:
+  - jamesma
 ---
 
 {{< image src="/images/downloaded_images/Concourse-Update--Jul-9-13-/1-AuH8VYkniNetbpZtRBjTuA.png" alt="DARK" width="

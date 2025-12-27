@@ -15,3 +15,19 @@ authors:
     name: Lindsay Auchinachie
     description: Former Product Designer
     avatar: https://miro.medium.com/v2/resize:fill:176:176/1*mlen1LB-MqZKkj5PdMAQ_Q@2x.jpeg
+  asuraci:
+    name: Alex Suraci
+    description: Former Maintainer
+    avatar: https://miro.medium.com/v2/resize:fill:176:176/0*5n6v62RnSgnAg5-g.
+  sfoerster:
+    name: Scott Foerster
+    description: Former Product Manager
+    avatar: https://miro.medium.com/v2/resize:fill:176:176/1*f1LDUdRKRA778HQy5fhJHQ.jpeg
+  dforde:
+    name: Dwayne Forde
+    description: Former Pivotal Director of Engineering
+    avatar: https://miro.medium.com/v2/resize:fill:176:176/1*BAN8obD49GiYvKCXymJ4Gg.jpeg
+  jwinters:
+    name: Joshua Winters
+    description: Former Developer
+    avatar: https://avatars.githubusercontent.com/u/1072233?v=4

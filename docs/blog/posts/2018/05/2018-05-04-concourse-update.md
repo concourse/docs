@@ -3,6 +3,8 @@ title: Concourse Update (April 30 — May 4)
 date: 2018-05-04
 categories:
   - product-update
+authors:
+  - jamesma
 ---
 
 I’ve gotten some questions about Freedom Friday from some readers after last week’s update. Well it turns out

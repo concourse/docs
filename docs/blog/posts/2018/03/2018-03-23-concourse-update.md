@@ -3,6 +3,8 @@ title: Concourse Update (April 19–23)
 date: 2018-03-23
 categories:
   - product-update
+authors:
+  - jamesma
 ---
 
 Hi folks,

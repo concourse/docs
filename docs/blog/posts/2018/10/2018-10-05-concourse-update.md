@@ -3,6 +3,8 @@ title: Concourse Update (Oct 1–5)
 date: 2018-10-05
 categories:
 - product-update
+authors:
+  - jamesma
 ---
 
 [Alex Suraci](https://medium.com/u/263a63b2f209) is still tackling the chores on our One Big Repo

@@ -1,6 +1,10 @@
 ---
 title: We’re switchin’ domains.
-date: 2018-03-08
+date:
+  created: 2018-03-08
+  updated: 2018-03-09
+authors:
+  - asuraci
 ---
 
 **(UPDATE March 9 @ ~10 AM: The old domain appears to now be hosting a very old snapshot of our website. This is either
