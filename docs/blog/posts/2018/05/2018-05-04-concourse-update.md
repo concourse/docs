@@ -8,8 +8,8 @@ authors:
 ---
 
 I’ve gotten some questions about Freedom Friday from some readers after last week’s update. Well it turns out
-that[Topher Bullock](https://medium.com/u/58876cdc2180) wrote a great article about it this week; you read up on it
-here: [https://medium.com/concourse-ci/freedom-fridays-319204dea834](https://medium.com/concourse-ci/freedom-fridays-319204dea834)
+that [Topher Bullock](https://medium.com/u/58876cdc2180) wrote a great article about it this week; you read up on it
+here: [FREEdom Fridays](2018-05-01-freedom-fridays.md)
 
 <!-- more -->
 
@@ -23,12 +23,17 @@ On to the update:
 We’ve been building out some of the frontend code for representing Spaces as part
 of [#2131](https://github.com/concourse/concourse/issues/2131). You can see some of the early visualizations below:
 
-{{< image src="/images/downloaded_images/Concourse-Update--April-30---May-4-/1-K13pFduQtcsPeX3VH6crQQ.png" alt=""
-width="100%" >}}
-{{< image src="/images/downloaded_images/Concourse-Update--April-30---May-4-/1-_ndF5rSNwVlKJWTj2_vxUQ.png" alt=""
-width="100%" >}}
-{{< image src="/images/downloaded_images/Concourse-Update--April-30---May-4-/1-kBELwDyhYQwPchw7J-O0eQ.png" alt=""
-width="100%" >}}
+![](assets/2018-05-04-concourse-update-01.png)
+/// caption
+///
+
+![](assets/2018-05-04-concourse-update-02.png)
+/// caption
+///
+
+![](assets/2018-05-04-concourse-update-03.png)
+/// caption
+///
 
 We now have the capability of testing Space end-to-end i.e. write the yml -\> fly sp -\> check out the web
 visualization.
