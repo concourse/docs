@@ -1,6 +1,8 @@
 ---
 title: The Great Process Update of 2018
 date: 2018-12-20
+authors:
+  - asuraci
 ---
 
 ### Or, “why we haven’t shipped any new features since September.”

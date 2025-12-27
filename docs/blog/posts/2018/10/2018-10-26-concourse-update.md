@@ -3,6 +3,8 @@ title: Concourse Update (Oct 22–26)
 date: 2018-10-26
 categories:
 - product-update
+authors:
+  - jamesma
 ---
 
 {{< image src="/images/downloaded_images/Concourse-Update--Oct-22-26-/1-MnGUtwM_fDCZBeKhYrlwqA.jpeg" alt="MGI

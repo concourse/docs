@@ -1,6 +1,8 @@
 ---
 title: Concourse RBAC Preview
 date: 2018-11-23
+authors:
+  - jamesma
 ---
 
 {{< image src="/images/downloaded_images/Concourse-RBAC-Preview/0-oy1M_w9ksoAje2LR.jpg" width="50%" >}}

@@ -3,6 +3,8 @@ title: Concourse Update (Sept 24–28)
 date: 2018-09-28
 categories:
 - product-update
+authors:
+  - jamesma
 ---
 
 {{< image src="/images/downloaded_images/Concourse-Update--Sept-24-28-/1-hrYofU4YBkZ9SWkt4fUPZA.jpeg" alt="Reppin’

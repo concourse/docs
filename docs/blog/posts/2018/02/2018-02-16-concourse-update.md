@@ -4,6 +4,8 @@ title: Concourse Update (Feb 12–16)
 date: 2018-02-16
 categories:
   - product-update
+authors:
+  - jamesma
 ---
 
 If you haven’t heard the news by now, we released Concourse v3.9.0 this week 🎉🎉🎉! Two of the top-line features in this

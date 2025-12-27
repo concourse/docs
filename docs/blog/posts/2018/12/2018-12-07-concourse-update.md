@@ -3,6 +3,8 @@ title: Concourse Update (Dec 3–7)
 date: 2018-12-07
 categories:
 - product-update
+authors:
+  - jamesma
 ---
 
 {{< image src="/images/downloaded_images/Concourse-Update--Dec-3-7-/1-9QGCZafW4o8rGIVxN4QvYA.jpeg" alt="Stephen A.

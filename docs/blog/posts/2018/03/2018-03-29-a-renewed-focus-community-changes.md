@@ -2,6 +2,8 @@
 layout: post
 title: A renewed focus & community changes
 date: 2018-03-29
+authors:
+  - asuraci
 ---
 
 Phew, we’ve been busy for the past couple of months! There’s a lot to give y’all an update on.

@@ -3,6 +3,8 @@ title: Concourse 2018 Year in Review
 date: 2018-12-12
 categories:
   - product-update
+authors:
+  - jamesma
 ---
 
 {{< image src="/images/downloaded_images/Concourse-2018-Year-in-Review/1-pzx9yhOYi-XyEFUgqnxBfw.jpeg" alt="Bernal

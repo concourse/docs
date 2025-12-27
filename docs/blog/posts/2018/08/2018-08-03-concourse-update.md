@@ -3,6 +3,8 @@ title: Concourse Update (July 30 — Aug 3)
 date: 2018-08-03
 categories:
   - product-update
+authors:
+  - jamesma
 ---
 
 {{< image src="/images/downloaded_images/Concourse-Update--July-30---Aug-3-/1--syJtPB3nj0x2z8AVEh7zA.png" alt="" width="

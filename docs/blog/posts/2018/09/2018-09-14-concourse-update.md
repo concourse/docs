@@ -3,6 +3,8 @@ title: Concourse Update (Sept 10 — Sept 14)
 date: 2018-09-14
 categories:
 - product-update
+authors:
+  - jamesma
 ---
 
 {{< image src="/images/downloaded_images/Concourse-Update--Sept-10---Sept-14-/1-oJ9JKLsPYwX6YtLNEibR0w.png" alt="Let us

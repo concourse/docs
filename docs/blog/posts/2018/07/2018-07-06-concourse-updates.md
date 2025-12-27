@@ -3,6 +3,8 @@ title: Concourse Updates (July 3–6)
 date: 2018-07-06
 categories:
   - product-update
+authors:
+  - jamesma
 ---
 
 {{< image src="/images/downloaded_images/Concourse-Updates--July-3-6-/0-BrjbFvtgpagi0Ag3.png" alt="Concourse, beavers,

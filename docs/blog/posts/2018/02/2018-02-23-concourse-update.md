@@ -4,6 +4,8 @@ title: Concourse Update (Feb 20–23)
 date: 2018-02-23
 categories:
   - product-update
+authors:
+  - jamesma
 ---
 
 Monday, Feb 19 was [Family Day](https://en.wikipedia.org/wiki/Family_Day_%28Canada%29) for us here in Canada, so its

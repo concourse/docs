@@ -3,6 +3,8 @@ title: Concourse Update (Oct 15–19)
 date: 2018-10-19
 categories:
 - product-update
+authors:
+  - jamesma
 ---
 
 {{< image src="/images/downloaded_images/Concourse-Update--Oct-15-19-/1-Y05yilBhjLQKwCftw39ZVw.jpeg" alt="Torontonians

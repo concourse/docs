@@ -3,6 +3,8 @@ title: Concourse Update (May 7–11)
 date: 2018-05-11
 categories:
   - product-update
+authors:
+  - jamesma
 ---
 
 Hi folks,

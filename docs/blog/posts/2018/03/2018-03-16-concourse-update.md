@@ -3,6 +3,8 @@ title: Concourse Update (Mar 12–16)
 date: 2018-03-16
 categories:
   - product-update
+authors:
+  - jamesma
 ---
 
 Its been a first week in a long time where we were back to full strength and fully co-located. It was nice!

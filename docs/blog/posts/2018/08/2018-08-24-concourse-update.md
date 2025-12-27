@@ -3,6 +3,8 @@ title: Concourse Update (August 20–24)
 date: 2018-08-24
 categories:
   - product-update
+authors:
+  - jamesma
 ---
 
 {{< image src="/images/downloaded_images/Concourse-Update--August-20-24-/0-9tKyl-ikt-ttbS_z.jpg" alt="Logs and

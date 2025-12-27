@@ -3,6 +3,8 @@ title: Concourse Updates (April 2–6)
 date: 2018-04-06
 categories:
   - product-update
+authors:
+  - jamesma
 ---
 
 If you haven’t done so already please check out [Alex Suraci](https://medium.com/u/263a63b2f209)’s recent update post
