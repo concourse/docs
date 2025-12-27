@@ -8,7 +8,7 @@ authors:
 ---
 
 If you haven’t done so already please check out [Alex Suraci](https://medium.com/u/263a63b2f209)’s recent update post
-on “[A renewed focus & community changes](https://medium.com/concourse-ci/a-renewed-focus-community-changes-cbab8200ea05)”.
+on “[A renewed focus & community changes](../03/2018-03-29-a-renewed-focus-community-changes.md)”.
 It covers all the recent changes that we’ve been making; starting with the new styling of
 the [website](https://concourse-ci.org/), our new [discussion forum](https://discuss.concourse-ci.org/), and our
 migration to [Discord chat](https://discordapp.com/invite/MeRxXKW).

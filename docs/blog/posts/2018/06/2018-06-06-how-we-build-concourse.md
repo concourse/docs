@@ -5,7 +5,7 @@ authors:
   - jamesma
 ---
 
-Building on some of our previous posts on the Concourse team mechanics¹, I wanted to spend some time going over how we
+Building on some of our previous posts on the Concourse team mechanics[^1], I wanted to spend some time going over how we
 actually _build_ Concourse.
 
 <!-- more -->
@@ -85,6 +85,6 @@ the [RFCs repo](https://github.com/concourse/rfcs/pulls).
 In my next blog post, I plan on covering _what_ the core team is working on, how we make those decisions, and how we are
 working to make those plans more obvious
 
-¹ see The [Concourse Crew](https://medium.com/concourse-ci/the-concourse-crew-2017-fce7daeffe52)
-and[How the Concourse Team Organizes Issues](https://medium.com/concourse-ci/how-the-concourse-team-organize-issues-9393f3d4151a)
+[^1]: See The [Concourse Crew](../../2017/09/2017-09-29-the-concourse-crew-2017.md)
+and [How the Concourse Team Organizes Issues](../../2017/10/2017-10-03-how-the-concourse-team-organize-issues.md)
 

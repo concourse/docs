@@ -11,7 +11,7 @@ Hi folks,
 
 [Joshua Winters](https://medium.com/u/d6d52be6c4b0) has spent a lot of time refactoring Concourse so that it can finally
 support Users. We’re finally at a point where we can share some our work with you, so I’d really encourage you to check
-out his recent blog post [Oh, Auth](https://medium.com/concourse-ci/oh-auth-f4fe68438171)
+out his recent blog post [Oh, Auth](2018-05-11-oh-auth.md)
 
 <!-- more -->
 

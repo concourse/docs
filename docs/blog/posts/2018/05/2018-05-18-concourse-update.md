@@ -9,14 +9,13 @@ authors:
 
 In case you missed it, I’d encourage you to check out some of the recent posts
 from [Shashwathi Reddy](https://medium.com/u/bca2c0ffce5e)
-on “[My first month on Concourse](https://medium.com/concourse-ci/my-first-month-on-concourse-a75f72d21487)”
-and [Joshua Winters](https://medium.com/u/d6d52be6c4b0) regarding upcoming changes to our
-authentication; “[Oh, Auth](https://medium.com/concourse-ci/oh-auth-f4fe68438171)”. We’d love to hear your feedback!
+on “[My first month on Concourse](2018-05-14-my-first-month.md)” and [Joshua Winters](https://medium.com/u/d6d52be6c4b0)
+regarding upcoming changes to our authentication; “[Oh, Auth](2018-05-11-oh-auth.md)”. We’d love to hear your feedback!
 
 <!-- more -->
 
-Heads up: the Concourse team will be taking Monday May 21st off
-for [Victoria Day](https://en.wikipedia.org/wiki/Victoria_Day)holiday.
+Heads up: the Concourse team will be taking Monday, May 21st off
+for [Victoria Day](https://en.wikipedia.org/wiki/Victoria_Day) holiday.
 
 And now, on to the update:
 

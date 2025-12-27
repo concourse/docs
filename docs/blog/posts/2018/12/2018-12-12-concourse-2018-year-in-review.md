@@ -14,15 +14,15 @@ Saborio" width="100%" >}}
 
 2018 has been an action-packed year for us. We saw a major
 release ([Concourse 4.0.0](https://concourse-ci.org/download.html#v400)) with a lot of new
-features: [new auth connectors and users](https://medium.com/concourse-ci/oh-auth-f4fe68438171), [dashboard](https://medium.com/concourse-ci/designing-a-dashboard-for-concourse-fe2e03248751), [distributed GC](https://medium.com/concourse-ci/distributed-garbage-collection-ae3867ab5438)
-and other runtime improvements. At the same time our team grew from 3 engineering pairs at the start of 2018 to 8
-engineering pairs and an additional PM (👋 [Scott Foerster](https://medium.com/u/86d0fa097bb9)) working on Concourse OSS
-and supporting Concourse for PCF.
+features: [new auth connectors and users](../05/2018-05-11-oh-auth.md), [dashboard][dashboard],
+[distributed GC](../06/2018-06-04-distributed-garbage-collection.md) and other runtime improvements. At the same time
+our team grew from 3 engineering pairs at the start of 2018 to 8 engineering pairs and an additional PM (
+👋 [Scott Foerster](https://medium.com/u/86d0fa097bb9)) working on Concourse OSS and supporting Concourse for PCF.
 
 ## By the Numbers
 
 - 13 releases of Concourse
-- 1 TLD snafu leading to[our domain change](https://medium.com/concourse-ci/were-switchin-domains-5597dcd0b48b)
+- 1 TLD snafu leading to [our domain change](../03/2018-03-08-we-re-switchin-domains.md)
 - 1 new website design
 - 2 new ways to contact us ([Discord](https://discord.gg/MeRxXKW), [Discuss](https://discuss.concourse-ci.org/))
 - 1,070 members on Concourse Discord, 45 members in #contributors
@@ -33,14 +33,16 @@ and supporting Concourse for PCF.
 
 ## Most Popular Posts
 
-We started this blog in Sept of last year. Since then we’ve had thousands of readers over 70 posts. The top 5 most
+We started this blog in Sept of last year. Since then, we’ve had thousands of readers over 70 posts. The top 5 most
 popular posts are:
 
-- [Designing a Dashboard for Concourse](https://medium.com/concourse-ci/designing-a-dashboard-for-concourse-fe2e03248751)
-- [Getting Started with Concourse on macOS](https://medium.com/me/stats/post/fb3a49a8e6b4)
-- [Earning our Wings](https://medium.com/me/stats/post/a0c307fa73e6)
-- [Concourse Pipeline UI Explained](https://medium.com/concourse-ci/concourse-pipeline-ui-explained-87dfeea83553)
-- [Sneak Peek: Spatial Resources](https://medium.com/concourse-ci/sneak-peek-spatial-resources-d0eed9bb3fa)
+- [Designing a Dashboard for Concourse][dashboard]
+- [Getting Started with Concourse on macOS](../04/2018-04-28-getting-started-macos.md)
+- [Earning our Wings](../../2017/11/2017-11-20-earning-our-wings.md)
+- [Concourse Pipeline UI Explained](../08/2018-08-17-pipeline-ui-explained.md)
+- [Sneak Peek: Spatial Resources](../../2017/11/2017-11-01-sneak-peek-spatial-resources.md)
+
+[dashboard]: ../../2017/11/2017-11-27-designing-a-dashboard.md
 
 ## Thanks to our Contributors
 

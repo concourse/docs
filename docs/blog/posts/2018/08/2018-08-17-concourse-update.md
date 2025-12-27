@@ -20,7 +20,7 @@ Going to switch things up this week and start with some interesting community ne
   our [PSA: the Great Code Restructing of 2018](https://discuss.concourse-ci.org/t/psa-the-great-code-restructing-of-2018/543)
 - [Lindsay Auchinachie](https://medium.com/u/84b937bda3b6) wrote up a blog post describing some of the visual elements
   of the Concourse pipeline view in a blog post
-  titled [Concourse Pipeline UI Explained](https://medium.com/concourse-ci/concourse-pipeline-ui-explained-87dfeea83553)
+  titled [Concourse Pipeline UI Explained](2018-08-17-pipeline-ui-explained.md)
 - marco-m has been updating a “concourse-in-a-box” formula that comes with a s3-compatible-store and a Vault. Check it
   out here: [https://github.com/marco-m/concourse-ci-formula](https://github.com/marco-m/concourse-ci-formula)
 - [concourse-up](https://github.com/EngineerBetter/concourse-up) is a Concourse quick-start tool created created by our

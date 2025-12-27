@@ -2,14 +2,14 @@
 title: Concourse Update (Mar 5–9)
 date: 2018-03-09
 categories:
-- product-update
+  - product-update
 authors:
   - jamesma
 ---
 
 Whelp, that felt like a long week. If you haven’t heard the news by now you should definitely
 read [Alex Suraci](https://medium.com/u/263a63b2f209)’s
-post [regarding our domain](https://medium.com/concourse-ci/were-switchin-domains-5597dcd0b48b).
+post [regarding our domain](2018-03-08-we-re-switchin-domains.md).
 
 <!-- more -->
 

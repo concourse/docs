@@ -265,10 +265,10 @@ A-Team/owner local:Zordon none
 A-Team/viewer local:Alpha none
 ```
 
-..where you’ll find the output is now updated to list each team/role combination and its associated users/groups.
+... where you’ll find the output is now updated to list each team/role combination and its associated users/groups.
 
 ## Further Reading
 
-- [Oh, Auth by Josh Winters](https://medium.com/concourse-ci/oh-auth-f4fe68438171)
-- [Concourse RBAC Preview](https://medium.com/concourse-ci/concourse-rbac-preview-8e07616ddc47).
-- [Concourse Auth & Teams docs](https://concourse-ci.org/auth.html)
+- [Oh, Auth by Josh Winters](../../2018/05/2018-05-11-oh-auth.md)
+- [Concourse RBAC Preview](../../2018/11/2018-11-23-concourse-rbac-preview.md).
+- [Concourse Auth & Teams docs](../../../../docs/auth-and-teams/index.md)

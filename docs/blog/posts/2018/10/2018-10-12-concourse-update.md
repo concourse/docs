@@ -12,7 +12,7 @@ Smithsonian National Air and Space Museum in Washington D.C." width="100%" >}}
 
 <!-- more -->
 
-The results of the [Concourse 2018 Community survey](https://medium.com/concourse-ci/2018-community-survey-ddff90bdc35b)
+The results of the [Concourse 2018 Community survey](2018-10-12-2018-community-survey.md)
 is out! Thanks to everyone who took the time to fill it out; and to [Scott Foerster](https://medium.com/u/86d0fa097bb9)
 and [Lindsay Auchinachie](https://medium.com/u/84b937bda3b6) for sifting through the data.
 
