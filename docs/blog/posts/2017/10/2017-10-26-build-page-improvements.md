@@ -6,6 +6,8 @@ authors:
 ---
 
 ![](assets/2017-10-26-build-page-improvements.gif)
+/// caption
+///
 
 <!-- more -->
 

@@ -24,9 +24,9 @@ As far as I can tell, our registrar just didn’t do the one thing it’s suppos
 the money, bumped the expiry date on the website, and…apparently stopped there. They had literally one job and they
 didn’t do it.
 
-{{< youtube src="https://www.youtube.com/embed/4T2GmGSNvaM?start=39" >}}
+<iframe width="1720" height="711" src="https://www.youtube.com/embed/A-brgkkjnHc" title="Seinfeld - Car Reservation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-So some Joe Schmoe out of Macedonia went ahead and registered it somewhere else, presumeably to act as part of some spam
+So some Joe Schmoe out of Macedonia went ahead and registered it somewhere else, presumably to act as part of some spam
 network (the only thing set up were MX records). We contacted the new registrar’s abuse email and they basically told us
 that the domain was registered normally, not transferred, and must have been available. And that there is nothing they
 can do.

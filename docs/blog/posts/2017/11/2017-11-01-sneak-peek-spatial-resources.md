@@ -39,6 +39,8 @@ with the Concourse philosophy™:
 ### Would you like to know more?
 
 ![](assets/2017-11-01-spacial-resources-know-more.jpeg)
+/// caption
+///
 
 There’s a few ways you can get involved as the Concourse team continues to build out spaces:
 

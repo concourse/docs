@@ -1,7 +1,7 @@
 authors:
   tsilva:
     name: Taylor Silva
-    description: Maintainer
+    description: Lead Maintainer
     avatar: https://github.com/taylorsilva.png
   jamesma:
     name: James Ma
@@ -31,3 +31,19 @@ authors:
     name: Joshua Winters
     description: Former Developer
     avatar: https://avatars.githubusercontent.com/u/1072233?v=4
+  sreddy:
+    name: Shashwathi Reddy
+    description: Former Developer
+    avatar: https://miro.medium.com/v2/resize:fill:176:176/1*UyL2svGIixMjkLcakEweSg@2x.jpeg
+  speinado:
+    name: Sam Peinado
+    description: Former Product Designer
+    avatar: https://miro.medium.com/v2/resize:fill:176:176/2*PueUUrdy9MHlIPE4PlVG2Q.jpeg
+  saman:
+    name: Saman
+    description: Former Developer
+    avatar: https://miro.medium.com/v2/resize:fill:176:176/1*j203XDYKr71dIrnlheGLsA.jpeg
+  jghiloni:
+    name: Josh Ghiloni
+    description: Former Advisory Solutions Architect
+    avatar: https://miro.medium.com/v2/resize:fill:176:176/0*HVrSyOucp03aSbdt.jpg
