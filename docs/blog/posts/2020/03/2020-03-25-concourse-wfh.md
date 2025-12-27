@@ -13,7 +13,7 @@ stack and day to day workflow.
 ## Concourse team composition
 
 At VMware (formerly Pivotal Software), there are fourteen engineers and five product folks working on
-the[Concourse CI project](https://github.com/concourse/concourse/) full time. We all care deeply about the software
+the [Concourse CI project](https://github.com/concourse/concourse/) full time. We all care deeply about the software
 we're building, and put a great deal of effort and consideration into _how we build software_ in order to be as
 effective as possible.
 

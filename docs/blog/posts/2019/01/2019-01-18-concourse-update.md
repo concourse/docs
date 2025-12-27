@@ -3,6 +3,8 @@ title: Concourse Update (Jan 14–18)
 date: 2019-01-18
 categories:
 - product-update
+authors:
+  - jamesma
 ---
 
 {{< image src="/images/downloaded_images/Concourse-Update--Jan-14-18-/1-6MKC6FrHvi5u_9yZCklyeA.png" alt="for context...
