@@ -7,8 +7,10 @@ authors:
   - jamesma
 ---
 
-{{< image src="/images/downloaded_images/Concourse-Updates--July-3-6-/0-BrjbFvtgpagi0Ag3.png" alt="Concourse, beavers,
-poutine and maple syrup" width="100%" >}}
+![](assets/2018-07-06-concourse-updates-01.png)
+/// caption
+Concourse, beavers, poutine and maple syrup
+///
 
 <!-- more -->
 
@@ -36,7 +38,7 @@ Here’s also a few interesting reminders:
 
 Anyways, on to the update:
 
-**UX**
+## UX
 
 - Fixed some minor UI issues across the
   board: [#2333](https://github.com/concourse/concourse/issues/2333), [#2313](https://github.com/concourse/concourse/issues/2313), [#2291](https://github.com/concourse/concourse/issues/2291),
@@ -44,10 +46,12 @@ Anyways, on to the update:
 - Continued our work in routing Dashboard page to the Home page
   in [#2282](https://github.com/concourse/concourse/issues/2282). This, however, has turned into a bit of a scope creep
   and we are now upgrading the entire UI to use the new dark theme:
-  {{< image src="/images/downloaded_images/Concourse-Updates--July-3-6-/1-Xp51wHexBz5wx1GcqaCvwA.png" alt="" width="
-  50%" >}}
+  
+![](assets/2018-07-06-concourse-updates-02.png)
+/// caption
+///
 
-**Core**
+## Core
 
 - Discovered some additional backward incompatibilities with the new user-based auth that would be _super annoying_ to
   deal with; so we have addressed some of them
