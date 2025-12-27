@@ -8,13 +8,12 @@ authors:
   - jamesma
 ---
 
-{{< image src="/images/downloaded_images/Concourse-Update--Jul-16-20-/1-CIxNgJ_FKbnacEpUI588nw.jpeg" alt="" width="
-100%" >}}
+![](assets/2018-07-20-concourse-update-01.jpeg)
 
 <!-- more -->
 
-This week, the Concourse team went out to Portland to attend OSCON
-2018. [Topher Bullock](https://medium.com/u/58876cdc2180) gave a great intro to Concourse in the Open Source track. We
+This week, the Concourse team went out to Portland to attend OSCON 2018.
+[Topher Bullock](https://medium.com/u/58876cdc2180) gave a great intro to Concourse in the Open Source track. We
 even met some of the Concourse fans in person!
 
 In other news, we’ve begun to sketch out what RBAC might look like in Concourse. Please check
@@ -22,7 +21,7 @@ out [#2389](https://github.com/concourse/concourse/issues/2389) when you have so
 
 On to the update:
 
-**UX**
+## UX
 
 - Team has been working on adding drag and drop re-arranging for the dashboard
   in [#2364](https://github.com/concourse/concourse/issues/2364)
@@ -30,11 +29,11 @@ On to the update:
   has no pipelines. We will be addressing this in [#2382](https://github.com/concourse/concourse/issues/2382)
 - Play/pause pipeline on the dashboard is mostly completed but was missing functionality when a search filter was
   applied; so I had to reject that story for review in [#2365](https://github.com/concourse/concourse/issues/2365)
-- [Lindsay Auchinachie](https://medium.com/u/84b937bda3b6) has also been entering some new UI polish issues to co-incide
+- [Lindsay Auchinachie](https://medium.com/u/84b937bda3b6) has also been entering some new UI polish issues to coincide
   with our new dark
   theme: [#2370](https://github.com/concourse/concourse/issues/2370), [#2385](https://github.com/concourse/concourse/issues/2385), [#2387](https://github.com/concourse/concourse/issues/2387), [#2361](https://github.com/concourse/concourse/issues/2361)
 
-**Core**
+## Core
 
 - Picked up some stories related our migrations, see [#2380](https://github.com/concourse/concourse/issues/2380)
   and [#2074](https://github.com/concourse/concourse/issues/2074)
@@ -44,14 +43,14 @@ On to the update:
 - Reminder to check out and comment on
   the [Resources v2](https://github.com/vito/rfcs/blob/resources-v2/01-resources-v2/proposal.md) proposal!
 
-**Integrations**
+## Integrations
 
 - We closed [#215](https://github.com/concourse/docker-image-resource/issues/215) in the docker-image-resource recently
   after we discovered a regression with a newer version of Docker. This seems to only affect large-scale Concourse
   installations that have reliability issues accessing and connecting to their local registries. A short-term fix is to
   target older versions of the docker-image-resource
 
-**Runtime**
+## Runtime
 
 - Addressed [#1516](https://github.com/concourse/concourse/issues/1516), wherein Concourse doesn’t run any jobs if Vault
   misconfigured

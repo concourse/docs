@@ -2,13 +2,15 @@
 title: Concourse Update (Jul 23–27)
 date: 2018-07-27
 categories:
-- product-update
+  - product-update
 authors:
   - jamesma
 ---
 
-{{< image src="/images/downloaded_images/Concourse-Update--Jul-23-27-/1-tfhJwBRSLe9wrc2-a7MwpQ.png" alt="Concourse v4
-Dashboard" width="100%" >}}
+![](assets/2018-07-27-concourse-update-01.png)
+/// caption
+Concourse v4 Dashboard
+///
 
 <!-- more -->
 
@@ -30,8 +32,9 @@ changes [backwards compatible](https://github.com/concourse/concourse/issues/221
 changes were significant enough to warrant a bump in the major version. PLEASE _PLEASE **PLEASE**_ refer to our release
 notes for all the breaking changes before executing your upgrade!
 
-{{< image src="/images/downloaded_images/Concourse-Update--Jul-23-27-/1-A7zDAYYisJzHjZldrxqneg.gif" alt="" width="
-50%" >}}
+![](assets/2018-07-27-concourse-update-02.gif)
+/// caption
+///
 
 The second big change you’ll notice in 4.0.0 is that the home (/) route now takes you to the dashboard. We’ve also
 propagated the new colour scheme to the rest of the app and tightened up the fonts throughout the app.
@@ -46,4 +49,4 @@ So, what’s next? We’re focusing on three key areas:
   into Concourse
 - [Role based access control](https://github.com/concourse/rfcs/pull/6). That’s right, we’re finally doing it. Please
   read the RFC for this change. You can also find a copy of our initial permission
-  matrix[here](https://docs.google.com/spreadsheets/d/1np3hyJy3mVRfB2gcgKykz3QTQg5qEj28QgK523SEmao/edit#gid=0)
+  matrix [here](https://docs.google.com/spreadsheets/d/1np3hyJy3mVRfB2gcgKykz3QTQg5qEj28QgK523SEmao/edit#gid=0)

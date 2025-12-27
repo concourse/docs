@@ -8,8 +8,10 @@ authors:
   - jamesma
 ---
 
-{{< image src="/images/downloaded_images/Concourse-Update--Jul-9-13-/1-AuH8VYkniNetbpZtRBjTuA.png" alt="DARK" width="
-100%" >}}
+![](assets/2018-07-13-concourse-update-01.png)
+/// caption
+DARK
+///
 
 <!-- more -->
 
@@ -24,7 +26,7 @@ and grab a Concourse sticker!
 
 On to the update:
 
-**UX**
+## UX
 
 - Fixed some resource alerting errors on the pipeline [#2333](https://github.com/concourse/concourse/issues/2333)
 - Moved dashboard to home [#2282](https://github.com/concourse/concourse/issues/2282)
@@ -32,18 +34,18 @@ On to the update:
 - Worked on dragging to re-order pipelines on the dashboard [#2364](https://github.com/concourse/concourse/issues/2333)
 - Updated and propagated the new colours across the app [#2370](https://github.com/concourse/concourse/issues/2370)
 
-**Core**
+## Core
 
 - Added health check APIs to verify credential managers are properly
   configured [#2216](https://github.com/concourse/concourse/issues/2216)
 - Even more db optimizations! yay!
 
-**Runtime**
+## Runtime
 
 - Picked up an oldie but a goodie: Concourse should support imposing limits on container
   resources [#787](https://github.com/concourse/concourse/issues/787)
 
-**Operations**
+## Operations
 
 - Started to move our stemcells onto the
   new [Xenial stemcells](https://github.com/concourse/concourse-bosh-deployment/issues/71)
