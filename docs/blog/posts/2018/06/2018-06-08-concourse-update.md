@@ -7,8 +7,9 @@ authors:
   - jamesma
 ---
 
-{{< image src="/images/downloaded_images/Concourse-Update--June-4-8-/1-XZfbfSSmYOJi2Ujc1uDP7Q.png" alt="" width="
-100%" >}}
+![](assets/2018-06-08-concourse-update-01.png)
+/// caption
+///
 
 <!-- more -->
 
@@ -26,25 +27,24 @@ posts like this in hopes of giving you more insight into the internals of the Co
 
 And now, on to the update; starting with a note on [RFCs](https://github.com/concourse/rfcs):
 
-**RFCs**
+## RFCs
 
 - We’re looking for feedback on how to improve our existing implementation of credential management. You can read more
   about it in [issue #5](https://github.com/concourse/rfcs/issues/5).
 - The RFC around [Resources v2](https://github.com/concourse/rfcs/pull/1)is moving along with some new changes. Thanks
   to all the reviewers ([itsdalmo](https://github.com/itsdalmo), [cwlbraa](https://github.com/cwlbraa)
   and [dprotaso](https://github.com/dprotaso)). I’d **REALLY** encourage ya’ll to read
-  the [full proposal](https://github.com/vito/rfcs/blob/resources-v2/01-resources-v2/proposal.md)and provide your
+  the [full proposal](https://github.com/vito/rfcs/blob/resources-v2/001-resources-v2/proposal.md) and provide your
   inputs; since we’ll be relying on these changes for new features like Spatial Resources.
 
-**UX**
+## UX
 
 - We’re seriously, absolutely, most definitely tacking the slow performance on the build
   page [#1543](https://github.com/concourse/concourse/issues/1543#issuecomment-394449918)
 - Spatial Resource testing continues! Here’s a peek at our most recent iteration:
-  {{< image src="/images/downloaded_images/Concourse-Update--June-4-8-/1-C8RdmEmjBxrG5pzamGDMSg.png" alt="" width="
-  100%" >}}
+  ![](assets/2018-06-08-concourse-update-02.png)
 
-**Core**
+## Core
 
 - Now that 3.14.1 is out, we’re now ready to rebase and merge in our Users change and prime that for release in 3.15.0.
   Testing begins next week after we finish getting everything merged in

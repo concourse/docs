@@ -7,8 +7,9 @@ authors:
   - jamesma
 ---
 
-{{< image src="/images/downloaded_images/Concourse-Update--May-28---June-1-/1-kJxF-3MOSqElyItFT2ec-A.png" alt="" width="
-100%" >}}
+![](assets/2018-06-01-concourse-update-01.png)
+/// caption
+///
 
 <!-- more -->
 
@@ -19,29 +20,33 @@ our discussion at GitHub issue [#2236](https://github.com/concourse/concourse/is
 
 Now, on to the update
 
-**Runtime**
+## Runtime
 
 We were able to successfully test our distributed volume GC collection code on our Wings environment this week. Overall
 we’ve seen a significant drop in Database Queries and a ~10% decrease in Web CPU usage.
 
-{{< image src="/images/downloaded_images/Concourse-Update--May-28---June-1-/1-GfBC0PNc6p2DOiGAbcxKnA.png" alt="" width="
-100%" >}}
-{{< image src="/images/downloaded_images/Concourse-Update--May-28---June-1-/1-n8Ea93MfUmDIGaPLtdU37Q.png" alt="" width="
-100%" >}}
+![](assets/2018-06-01-concourse-update-02.png)
+/// caption
+///
+
+![](assets/2018-06-01-concourse-update-03.png)
+/// caption
+///
 
 Notice how the Database Queries now look like a sawtooth; this is a result of our new “mark and sweep” GC strategy on
 workers.
 
-**Core**
+## Core
 
 In an effort to make our new Users work backwards compatible and downgrade-able, we spent a good chunk of this week
 figuring out down-migrations. The conversation around this, and the compromises we’ve had to make can be found in Josh’s
 follow up comment [here](https://github.com/concourse/concourse/issues/1888#issuecomment-392958566)
 
-**UX**
+## UX
 
-{{< image src="/images/downloaded_images/Concourse-Update--May-28---June-1-/1-VzHW0teV3e1DfrqcYWc_-w.png" alt="" width="
-100%" >}}
+![](assets/2018-06-01-concourse-update-04.png)
+/// caption
+///
 
 Check out the new breadcrumbs and responsive groups on our [prod environment](https://ci.concourse-ci.org/)!
 

@@ -7,7 +7,9 @@ authors:
   - jamesma
 ---
 
-{{< image src="/images/downloaded_images/Concourse-Update--Jun-18-22-/0-iPsCYY5ob7h-bSKD.jpg" alt="" width="100%" >}}
+![](assets/2018-06-22-concourse-update-01.jpg)
+/// caption
+///
 
 <!-- more -->
 
@@ -17,7 +19,7 @@ operating Concourse a scale…and we ate a lot of Lobster!
 
 On to the update:
 
-**UX:**
+## UX
 
 - Made some improvements to the build page in issue [#1543](https://github.com/concourse/concourse/issues/1543) that
   we’re hoping to test soon on our internal Concourse. You can read into some more of the details in
@@ -28,7 +30,7 @@ On to the update:
   issue [#2282](https://github.com/concourse/concourse/issues/2282)) by adding Logout to the dashboard page
   in [#1663](https://github.com/concourse/concourse/issues/1663)
 
-**Core**
+## Core
 
 - Continued our struggle to finish off Users work with some fixes to migrations and breakages to our own testing
   pipeline

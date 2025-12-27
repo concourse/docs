@@ -8,8 +8,9 @@ authors:
   - jamesma
 ---
 
-{{< image src="/images/downloaded_images/Concourse-Update--Jun-25-29-/1-eGvw-f2AjgJvsWN9pdikBg.gif" alt="" width="
-25%" >}}
+![](assets/2018-06-29-concourse-update-01.gif)
+/// caption
+///
 
 <!-- more -->
 
@@ -19,12 +20,12 @@ possible. This week, we were able to do our first large-scale upgrade test again
 well and we were able to find a few more areas of polish before we push this feature. You can find our updated list of
 future incompatibilities in GitHub issue [#2218](https://github.com/concourse/concourse/issues/2218). Having considered
 the nature of the breaking changes, the next update of Concourse with Users will push us
-into[4.0.0](https://github.com/concourse/concourse/issues/2218#issuecomment-401078612)!!!
+into [4.0.0](https://github.com/concourse/concourse/issues/2218#issuecomment-401078612)!!!
 
 I also wanted to take this time to give a big **thank you** to all of the participants in our spatial resource
 interview. If you’re curious to see the results of our research please read up
 on [Lindsay Auchinachie](https://medium.com/u/84b937bda3b6)’s post
-here:[Designing for Space in Concourse](2018-06-28-designing-for-space.md)
+here: [Designing for Space in Concourse](2018-06-28-designing-for-space.md)
 
 If you’d like to get your hands on Space as soon as possible, then I’d encourage you to also read and comment on our
 Resources v2 [RFC](https://github.com/concourse/rfcs/pull/1). [Alex Suraci](https://medium.com/u/263a63b2f209) made some
@@ -49,5 +50,6 @@ _Edit_
 I ALMOST FORGOT! We also improved build page performance [#1543](https://github.com/concourse/concourse/issues/1543)! In
 some instances we reduced the page load time from 25s to only 5s:
 
-{{< image src="/images/downloaded_images/Concourse-Update--Jun-25-29-/1-KEWandpQWRWRFcBvLRwbog.jpeg" alt="" width="
-100%" >}}
+![](assets/2018-06-29-concourse-update-02.jpeg)
+/// caption
+///
