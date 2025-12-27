@@ -20,11 +20,15 @@ here: [https://github.com/concourse/concourse/issues](https://github.com/concour
 For issues regarding the Concourse website and documentation, you can find the backlog
 here: [https://github.com/concourse/docs](https://github.com/concourse/docs)
 
-Concourse resources, both the ones [included with Concourse](https://concourse-ci.org/included-resources.html) and the
-ones that are[community made](https://concourse-ci.org/community-resources.html), live in their own repositories.
+Concourse resources, both the ones [included with Concourse](https://resource-types.concourse-ci.org/) and the
+ones that are [community made](https://resource-types.concourse-ci.org/), live in their own repositories.
 Issues, bugs and features should be reported against the resource’s GitHub issues repo.
 
 ### Triage, Review and Prioritization
+
+![](assets/2018-06-06-how-we-build-concourse-01.png)
+/// caption
+///
 
 We do our best to review and triage new issues that come into the Concourse repository on a daily basis. Triaging an
 issue requires us to:
