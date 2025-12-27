@@ -3,9 +3,11 @@ title: 'Core roadmap: towards v10'
 date: 2019-07-17
 categories:
 - roadmap
+authors:
+  - asuraci
 ---
 
-_A long-term roadmap for the core design of [Concourse](../../../index.md), a general-purpose CI/CD tool._
+_A long-term roadmap for the core design of [Concourse](../../../../index.md), a general-purpose CI/CD tool._
 
 <!-- more -->
 

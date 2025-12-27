@@ -4,6 +4,8 @@ title: Concourse Update (July 21 2019)
 date: 2019-06-21
 categories:
 - product-update
+authors:
+  - jamesma
 ---
 
 The Concourse team had the opportunity to visit some Concourse users out in Montreal last week. We had a blast meeting

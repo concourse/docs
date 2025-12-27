@@ -1,6 +1,8 @@
 ---
 title: Concourse Mid-year Update
 date: 2019-08-30
+authors:
+  - jamesma
 ---
 
 Phew, it's been a while. I got lots of info to cover so let's just get right into it

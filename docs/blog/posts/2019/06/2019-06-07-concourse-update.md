@@ -3,6 +3,8 @@ title: Concourse Update June 7
 date: 2019-06-07
 categories:
 - product-update
+authors:
+  - jamesma
 ---
 
 ...and we’re back! Apologies for the lack of updates lately. I’ve just come back from some time off and work travel has

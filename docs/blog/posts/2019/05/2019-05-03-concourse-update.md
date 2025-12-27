@@ -3,6 +3,8 @@ title: Concourse Update April 29–3
 date: 2019-05-03
 categories:
 - product-update
+authors:
+  - jamesma
 ---
 
 In case you missed it, we’ve made some tweaks to the structure of the website. I’m happy to report

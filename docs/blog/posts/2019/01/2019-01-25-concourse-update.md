@@ -4,6 +4,8 @@ title: Concourse Update (Jan 21–25)
 date: 2019-01-25
 categories:
   - product-update
+authors:
+  - jamesma
 ---
 
 {{< image src="/images/downloaded_images/Concourse-Update--Jan-21-25-/1-t_CkNyt-IVxZrxMiARCJLQ.jpeg" alt="Dennis Jarvis"

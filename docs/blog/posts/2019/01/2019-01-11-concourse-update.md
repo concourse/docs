@@ -3,6 +3,8 @@ title: Concourse Update (Jan 7–11)
 date: 2019-01-11
 categories:
 - product-update
+authors:
+  - jamesma
 ---
 
 {{< image src="/images/downloaded_images/Concourse-Update--Jan-7-11-/1-xc1d4AtxzZanyNVDiEPrvg.jpeg" width="50%" >}}
