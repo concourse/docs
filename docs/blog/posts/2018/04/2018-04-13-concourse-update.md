@@ -27,10 +27,12 @@ can find some articles about it on the Cloud Foundry blog:
 - [https://www.cloudfoundry.org/blog/5-cloud-foundry-summit-sessions-developers-build-cicd-practice/](https://www.cloudfoundry.org/blog/5-cloud-foundry-summit-sessions-developers-build-cicd-practice/)
 - [https://content.pivotal.io/blog/dialing-platform-ops-to-eleven-5-cloud-foundry-summit-sessions-that-operators-shouldnt-miss?\_lrsc=96881456-a782-4c9e-999a-3be986b65b16&utm\_source=employee-social&utm\_medium=twitter&utm\_campaign=employee\_advocacy](https://content.pivotal.io/blog/dialing-platform-ops-to-eleven-5-cloud-foundry-summit-sessions-that-operators-shouldnt-miss?_lrsc=96881456-a782-4c9e-999a-3be986b65b16&utm_source=employee-social&utm_medium=twitter&utm_campaign=employee_advocacy)
 
-Fun fact: we got some new stickers printed up and we’ll be handing some out at Summit:
+Fun fact: we got some new stickers printed up, and we’ll be handing some out at Summit:
 
-{{< image src="/images/downloaded_images/Concourse-Update--April-9-13-/1-cS-JeBD00f0h7vhlpYTE7w.png" alt="" width="
-20%" >}}
+![](assets/2018-04-13-concourse-update-01.png)
+/// caption
+///
 
-{{< image src="/images/downloaded_images/Concourse-Update--April-9-13-/1-thrSlXnAzYewzqirHjukWA.png" alt="Whee!" width="
-20%" >}}
+![](assets/2018-04-13-concourse-update-02.png)
+/// caption
+///

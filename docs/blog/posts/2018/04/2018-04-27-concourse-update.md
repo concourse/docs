@@ -7,8 +7,9 @@ authors:
   - jamesma
 ---
 
-{{< image src="/images/downloaded_images/Concourse-Update--April-23-27-/1-1T4dM1zWpCx5NvHFnhK2Lw.jpeg" alt="" width="
-100%" >}}
+![](assets/2018-04-27-concourse-update-01.jpeg)
+/// caption
+///
 
 <!-- more -->
 

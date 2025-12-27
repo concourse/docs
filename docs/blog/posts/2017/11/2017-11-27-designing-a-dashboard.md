@@ -97,6 +97,8 @@ an internally managed multi-tenant instance of Concourse [called Wings](2017-11-
 as a sandbox for new features, so I paired with an engineer to do a lightweight implementation for Wings.
 
 ![](assets/2017-11-27-designing-a-dashboard-06.webp)
+/// caption
+///
 
 Since our initial rollout of the dashboard on Wings in September 2017, we have undergone at least 3 major revisions of
 the dashboard based on the feedback we had received from teams within Pivotal. Our next step was to incorporate this
