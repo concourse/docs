@@ -13,7 +13,7 @@ authors:
 
 <!-- more -->
 
-If you’ve been following along with our [Auth changes](https://medium.com/concourse-ci/oh-auth-f4fe68438171), you’ll
+If you’ve been following along with our [Auth changes](../05/2018-05-11-oh-auth.md), you’ll
 know that we’ve been doing a lot of work behind the scenes to make the upgrade into this new world as seamless as
 possible. This week, we were able to do our first large-scale upgrade test against our Wings instance. The upgrade went
 well and we were able to find a few more areas of polish before we push this feature. You can find our updated list of
@@ -24,7 +24,7 @@ into[4.0.0](https://github.com/concourse/concourse/issues/2218#issuecomment-4010
 I also wanted to take this time to give a big **thank you** to all of the participants in our spatial resource
 interview. If you’re curious to see the results of our research please read up
 on [Lindsay Auchinachie](https://medium.com/u/84b937bda3b6)’s post
-here:[Designing for Space in Concourse](https://medium.com/concourse-ci/designing-for-space-in-concourse-3037344644c6)
+here:[Designing for Space in Concourse](2018-06-28-designing-for-space.md)
 
 If you’d like to get your hands on Space as soon as possible, then I’d encourage you to also read and comment on our
 Resources v2 [RFC](https://github.com/concourse/rfcs/pull/1). [Alex Suraci](https://medium.com/u/263a63b2f209) made some

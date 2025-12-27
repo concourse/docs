@@ -14,7 +14,7 @@ authors:
 
 Right off the bat I’d like to give a shoutout to [Jamie Klassen](https://medium.com/u/f0f4a8a2fbb8) and his new post
 about the upcoming feature for pinning resources. You can check it out the new post
-here:[https://medium.com/concourse-ci/resource-page-explained-eb99cf256fb5](https://medium.com/concourse-ci/resource-page-explained-eb99cf256fb5)
+here: [Resource Page Explained](2018-11-09-resource-page-explained.md)
 
 I also wanted to mention that the Github Pull Request that was maintained by JT
 Archie ([https://github.com/jtarchie/github-pullrequest-resource](https://github.com/jtarchie/github-pullrequest-resource))
@@ -42,7 +42,7 @@ On to the update:
 **UX**
 
 - Pinning versions on resources. Make sure you read our write-up on
-  it [here](https://medium.com/concourse-ci/resource-page-explained-eb99cf256fb5)!
+  it [here](2018-11-09-resource-page-explained.md)!
 
 **Core**
 

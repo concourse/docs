@@ -17,7 +17,7 @@ fixes. I’d encourage you to read through the full list of changes on
 our [Downloads page.](https://concourse-ci.org/download.html#v400)
 
 Why did this release warrant a bump in the major version? Well, if you’ve been following
-along [closely](https://medium.com/concourse-ci/oh-auth-f4fe68438171) you’ll know that we had just finished our new auth
+along [closely](../05/2018-05-11-oh-auth.md) you’ll know that we had just finished our new auth
 work in 4.0.0. Users are now central to the authentication flows, **not** teams. Practically speaking, the user-centric
 auth flow means that you won’t need to re-login to see pipelines in other teams that you already have access to!
 Underneath the hood though, _“We’re leveraging CoreOS’s Dex project for all the moving parts, which already supports a

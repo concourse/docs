@@ -12,7 +12,7 @@ authors:
 <!-- more -->
 
 As I mentioned last week I’ve been doing story acceptance in our dev environments for the
-upcoming [RBAC](https://medium.com/concourse-ci/concourse-rbac-preview-8e07616ddc47) feature. The team’s been working
+upcoming [RBAC](2018-11-23-concourse-rbac-preview.md) feature. The team’s been working
 through some of the new issues that come out of that to give some final polish on to the release.
 
 Something that I haven’t talked too much about in the past weeks is our work on

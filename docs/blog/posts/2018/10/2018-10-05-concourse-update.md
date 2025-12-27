@@ -17,7 +17,7 @@ unblock ourselves from releasing updates.
 In other news, Concourse engineer [Saman Alvi](https://medium.com/u/d40e22ec1cfa) wrote up a short article on her
 experience pairing with a product designer during a discovery into
 the [PivNet resource](https://github.com/pivotal-cf/pivnet-resource); check it
-out: [Design & Dev Pairing: What we learned during a one week technical discovery](https://medium.com/concourse-ci/design-dev-pairing-what-we-learned-during-a-one-week-technical-discovery-f9dfb4c35cd5).
+out: [Design & Dev Pairing: What we learned during a one week technical discovery](2018-10-05-design-dev-pairing.md).
 
 Finally, the Concourse team will be taking Monday, Oct 5 off to
 celebrate [Thanksgiving](https://en.wikipedia.org/wiki/Thanksgiving_%28Canada%29). We’ll see you all next week!

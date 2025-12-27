@@ -13,7 +13,7 @@ authors:
 
 It was a relatively light week this week due to some vacations. I did, however, get a chance to do some acceptance work
 on our upcoming feature for role-based access control in Concourse. You can read more about how that’ll work in
-our [feature preview post](https://medium.com/concourse-ci/concourse-rbac-preview-8e07616ddc47).
+our [feature preview post](2018-11-23-concourse-rbac-preview.md).
 
 On to the update:
 

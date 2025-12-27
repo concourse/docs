@@ -50,9 +50,9 @@ We’ve tightened up the navigation and expanded some sections of of our docs, c
 There’s also been some interesting blog posts about Concourse from around the interwebs…and not all of them were written
 by me!
 
-- [An Overview of Authorization in Concourse 3, 4 and 5](https://medium.com/concourse-ci/an-overview-of-authorization-in-concourse-3-4-and-5-7128cca36194)
+- [An Overview of Authorization in Concourse 3, 4 and 5](../03/2019-03-08-an-overview-of-authorization-in-concourse-3-4-and-5.md)
   is a useful overview of auth across 3 major versions of Concourse
-- [Installing Concourse 5.0 on Kubernets using Helm](https://medium.com/concourse-ci/installing-concourse-5-0-on-pivotal-container-service-using-helm-9f20e4e1b8bf)
+- [Installing Concourse 5.0 on Kubernetes using Helm](../03/2019-03-29-concourse-on-pcf.md)
   is a great two-part overview of getting PKS installed and using the Concourse helm chart
 - [Building Go code, with and without Go modules, with Concourse](https://www.orsolabs.com/post/building-go-code-with-concourse/)
 - Aptomi described how to

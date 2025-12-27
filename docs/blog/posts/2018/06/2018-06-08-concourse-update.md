@@ -14,14 +14,14 @@ authors:
 
 Big release this week! After lots internal load testing on Wings we finally felt comfortable releasing Concourse 3.14.0.
 In addition to the
-new [Distributed Garbage Collection](https://medium.com/concourse-ci/distributed-garbage-collection-ae3867ab5438),
+new [Distributed Garbage Collection](2018-06-04-distributed-garbage-collection.md),
 breadcrumbs, responsive groups,
 and [Windows worker](https://github.com/concourse/concourse-bosh-deployment/blob/master/cluster/operations/windows-worker.yml),
 we have 14 new features a whole bunch of bug fixes. But wait! Don’t download that one;
-get [Concourse v3.14.1 i](https://concourse-ci.org/download.html#v3141)nstead.
+get [Concourse v3.14.1](https://concourse-ci.org/download.html#v3141) instead.
 
 A few other updates. First, be sure to check out my write up
-on [How We Build Concourse](https://medium.com/concourse-ci/how-we-build-concourse-dd15939d92f2). I plan on writing more
+on [How We Build Concourse](2018-06-06-how-we-build-concourse.md). I plan on writing more
 posts like this in hopes of giving you more insight into the internals of the Concourse team. Hope you like it!
 
 And now, on to the update; starting with a note on [RFCs](https://github.com/concourse/rfcs):
