@@ -147,13 +147,13 @@ feedback on the how Space will impact their workflow.
 
 <div style="display: grid; grid-template-columns: 33.96% 30.33% 35.71%; column-gap: 10px" markdown>
 <div markdown>
-![Caption 1](assets/2018-06-28-designing-for-space-09.png)
+![](assets/2018-06-28-designing-for-space-09.png)
 </div>
 <div markdown>
-![Caption 2](assets/2018-06-28-designing-for-space-10.png)
+![](assets/2018-06-28-designing-for-space-10.png)
 </div>
 <div markdown>
-![Caption 3](assets/2018-06-28-designing-for-space-11.png)
+![](assets/2018-06-28-designing-for-space-11.png)
 </div>
 </div>
 
