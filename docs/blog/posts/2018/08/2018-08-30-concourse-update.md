@@ -5,10 +5,14 @@ categories:
 - product-update
 authors:
   - jamesma
+links:
+  - blog/posts/2018/08/2018-08-30-build-page-explained.md
 ---
 
-{{< image src="/images/downloaded_images/Concourse-Update--Aug-27-31-/0-39sBwa4rlBwJYlH4.jpg" alt="Photo courtesy of the
-CNE" width="100%" >}}
+![](assets/2018-08-30-concourse-update-01.jpg)
+/// caption
+Photo courtesy of the CNE
+///
 
 <!-- more -->
 
@@ -21,26 +25,26 @@ On to the updates:
 
 - Concourse 4.1.0 will be out…soon! We’ve begun the process of accepting all stories and deploying our pre-release
   version onto the internal test environments. If you’re curious as to what new features/bug fixes are coming out in
-  this release, you can get an at-a-glace view in our [Milestones page](https://project.concourse-ci.org/milestones).You
-  can expect the official release to come out very soon :D
+  this release, you can get an at-a-glace view in our [Milestones page](https://project.concourse-ci.org/milestones). 
+  You can expect the official release to come out very soon :D
 - [Lindsay Auchinachie](https://medium.com/u/84b937bda3b6) wrote another entry in her Concourse UI Explained series;
-  this time covering the [Concourse Build page](https://medium.com/@lauchinachie_78613/4f92824c98f1).
+  this time covering the [Concourse Build page](2018-08-30-build-page-explained.md).
 - The Concourse mono-repo is coming! You can read more about the change in
   issue [#2534](https://github.com/concourse/concourse/issues/2534). Work on this will continue the moment we release
   4.1.0
 
-**UX**
+## UX
 
 - Worked on some UI improvements to help users distinguish between teams they belong to vs exposed
   pipelines [#2427](https://github.com/concourse/concourse/issues/2427)
 
-**Core**
+## Core
 
 - Continued refactoring work on [#2386](https://github.com/concourse/concourse/issues/2386)
 - Worked on discussion regarding a PR from GitHub user [edtan](https://github.com/edtan) to resolve
   issue [#2511](https://github.com/concourse/concourse/issues/2511)
 
-**Runtime**
+## Runtime
 
 - Since there didn’t seem to be any strong opinions on how we managed log outputting
   in [#2104](https://github.com/concourse/concourse/issues/2104), we’ve decided to move forward with some reasonable

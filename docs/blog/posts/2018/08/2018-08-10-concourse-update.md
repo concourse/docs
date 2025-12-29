@@ -7,8 +7,9 @@ authors:
   - jamesma
 ---
 
-{{< image src="/images/downloaded_images/Concourse-Update--Aug-7-10-/1-QBeLayNVacbJGgBW-BhGSw.jpeg" alt="" width="
-35%" >}}
+![](assets/2018-08-10-concourse-update-01.jpeg)
+/// caption
+///
 
 <!-- more -->
 
@@ -21,13 +22,13 @@ slowing down on UX to focus on regressions and UI polish for existing screens.
 
 On to the update:
 
-**Core**
+## Core
 
 - Continued our work on “pinning” a version of a resource across the pipeline.
   Completed [#2439](https://github.com/concourse/concourse/issues/2439) but still
   have [#2386](https://github.com/concourse/concourse/issues/2386) in flight
 
-**Runtime**
+## Runtime
 
 - Wrapping up work around streaming build logs to an external
   target [#2104](https://github.com/concourse/concourse/issues/2104)
@@ -36,7 +37,7 @@ On to the update:
 - Picked up the issue for adding a configurable timeout for resource and resource type
   checks [#2352](https://github.com/concourse/concourse/issues/2352)
 
-**Operations**
+## Operations
 
 - In our continued exploration of k8s Helm Chart for Concourse, we’re looking into how we might auto-magically generate
   helm chart parameters [#2472](https://github.com/concourse/concourse/issues/2472)
