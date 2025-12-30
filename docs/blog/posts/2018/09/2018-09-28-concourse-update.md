@@ -7,8 +7,10 @@ authors:
   - jamesma
 ---
 
-{{< image src="/images/downloaded_images/Concourse-Update--Sept-24-28-/1-hrYofU4YBkZ9SWkt4fUPZA.jpeg" alt="Reppin’
-Concourse at Spring One Platform" width="60%" >}}
+![](assets/2018-09-28-concourse-update-01.jpg)
+/// caption
+Reppin’ Concourse at Spring One Platform
+///
 
 <!-- more -->
 
@@ -22,13 +24,17 @@ the interesting talks to check out are:
   and [Spinnaker and the Distributed Monorepo](https://springoneplatform.io/2018/sessions/spinnaker-and-the-distributed-monorepo)
 - ...and of
   course [Draupnir: A story about Managing Concourse in the Enterprise](https://springoneplatform.io/2018/sessions/draupnir-a-story-about-managing-concourse-in-the-enterprise)
-  {{< image src="/images/downloaded_images/Concourse-Update--Sept-24-28-/1-syqGOwSEdWFE5CvrkZT-Kg.jpeg" alt="Concourse ❤
-  Spring &amp; PCF" width="60%" >}}
+
+![](assets/2018-09-28-concourse-update-02.jpg)
+/// caption
+Concourse ❤ Spring & PCF
+///
 
 And now, on to the update:
 
-{{< image src="/images/downloaded_images/Concourse-Update--Sept-24-28-/1-kTNsddsROpolUBj1oiJ6Mg.png" alt="" width="
-50%" >}}
+![](assets/2018-09-28-concourse-update-03.png)
+/// caption
+///
 
 You’ll notice that our main pipelines are paused. This is because [Alex Suraci](https://medium.com/u/263a63b2f209) is
 working away on [#2534](https://github.com/concourse/concourse/issues/2534), refactoring our main pipeline to support
@@ -39,8 +45,10 @@ In addition to refactoring the pipeline, [Alex Suraci](https://medium.com/u/263a
 developer/contributor workflows under our new mono-repo. You can find the new updated information
 in [CONTRIBUTING.md](https://github.com/concourse/concourse/blob/master/.github/CONTRIBUTING.md).
 
-{{< image src="/images/downloaded_images/Concourse-Update--Sept-24-28-/1-f2DIMOJRMC4Cm8YG-iWGXw.png" alt="Bugs…or
-features?!" width="100%" >}}
+![](assets/2018-09-28-concourse-update-04.png)
+/// caption
+Bugs... or features?!
+///
 
 You’ll also notice that we ask whether you are reporting a bug or a new feature when creating issues. This will (
 hopefully) help get our backlog more organized and reduce the up-front triaging!
