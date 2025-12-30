@@ -7,8 +7,10 @@ authors:
   - jamesma
 ---
 
-{{< image src="/images/downloaded_images/Concourse-Update--Sept-10---Sept-14-/1-oJ9JKLsPYwX6YtLNEibR0w.png" alt="Let us
-know if you’d be interested in Concourse swag" width="100%" >}}
+![](assets/2018-09-14-concourse-update-01.png)
+/// caption
+Let us know if you’d be interested in Concourse swag
+///
 
 <!-- more -->
 
@@ -20,7 +22,7 @@ thread [Concourse merchandising](https://discuss.concourse-ci.org/t/concourse-me
 **Please also take some time to fill out our** [**2018 Concourse Community survey
 **](https://docs.google.com/forms/u/1/d/e/1FAIpQLScWHuP130rJAcqBJhQtyIUCqbMcY4Qj0beHtfOnWEQugWSuUw/viewform). Your
 feedback is really valuable to us and the information you provide will help us plan the future of Concourse. We only
-have a handful of responses so far and we’d like to get more before we publish the results!
+have a handful of responses so far, and we’d like to get more before we publish the results!
 
 On to the update:
 
