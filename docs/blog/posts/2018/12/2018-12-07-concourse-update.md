@@ -2,13 +2,16 @@
 title: Concourse Update (Dec 3–7)
 date: 2018-12-07
 categories:
-- product-update
+  - product-update
 authors:
   - jamesma
 ---
 
-{{< image src="/images/downloaded_images/Concourse-Update--Dec-3-7-/1-9QGCZafW4o8rGIVxN4QvYA.jpeg" alt="Stephen A.
-Wolfe" width="75%" >}}
+![](assets/2018-12-07-concourse-update-01.jpg)
+/// caption
+photo
+credit [Stephen A. Wolfe](https://www.flickr.com/photos/swolfe/6087220940/in/photolist-agUAHb-bEVVhq-8gLyR8-8rEtXL-8rrhed-Tm51eT-6SVAJx-2mtEjC-aFpVxR-qduB2E-kycioV-HSh5KB-pQJrAv-28T85Ae-pBGDhM-4YoGhh-4ZjsBS-8qDTRv-jG9zxL-x31HNn-8VNLY8-iZ5jfX-3K6FnP-ea2UpF-4t7oR8-23bvuGU-7A5s9Q-b7ky1D-3u77x-qHWLGh-cPH89o-7RKMXV-dFwyxU-ktiz9n-F3w6o-7RP3gs-pkbNsk-jN8WWo-dbdGGh-qUYJ1a-nNeqR6-nRcf2Q-6SzdNE-9KuaJw-cmJa3q-cbBTe9-aFkWh9-7iCwxE-8rmAtz-2bgr15E)
+///
 
 <!-- more -->
 
@@ -23,8 +26,8 @@ coming days!
 
 If you’re attending [KubeCon](https://events.linuxfoundation.org/events/kubecon-cloudnativecon-north-america-2018/) next
 week I’d encourage you to check out the talk
-on [Using Concourse as a CI/CD Tool for Your Knative Ap](https://cfdayna18.sched.com/event/I7YM/using-concourse-as-a-cicd-tool-for-your-knative-app-dale-wick-divya-dadlani-pivotal#)
-p. Concourse engineer Divya Dadlani will be co-speaker on this talk and if you ask nicely; she might give you one of our
+on [Using Concourse as a CI/CD Tool for Your Knative App](https://cfdayna18.sched.com/event/I7YM/using-concourse-as-a-cicd-tool-for-your-knative-app-dale-wick-divya-dadlani-pivotal#).
+Concourse engineer Divya Dadlani will be co-speaker on this talk and if you ask nicely; she might give you one of our
 fancy Concourse stickers. You should also check out Fairfax Media’s talk
 on [Cloud Native Transformation](https://kccna18.sched.com/event/Grb7/cloud-native-transformation-pavel-nikolov-matt-hope-fairfax-media)
 too, I hear they use a lot of Concourse!
@@ -35,18 +38,18 @@ another awesome year of Concourse.
 
 On to the update:
 
-**API**
+## API
 
 - Resolved [#2887](https://github.com/concourse/concourse/issues/2887)
 
-**UX**
+## UX
 
 - Fixed a bug that happens when you try to log out from
   Concourse [#2884](https://github.com/concourse/concourse/issues/2884)
-- Fixed an issue with Fly where using -c on set-team with RBAC will fail silently if you use a badly-formed
-  file[#2904](https://github.com/concourse/concourse/issues/2904)
-- Fixed an issue regarding the output of fly teams -d [#2880](https://github.com/concourse/concourse/issues/2880)
+- Fixed an issue with Fly where using `-c` on `set-team` with RBAC will fail silently if you use a badly-formed
+  file [#2904](https://github.com/concourse/concourse/issues/2904)
+- Fixed an issue regarding the output of `fly teams -d` [#2880](https://github.com/concourse/concourse/issues/2880)
 
-**Runtime**
+## Runtime
 
 - Slightly better scheduling [#2577](https://github.com/concourse/concourse/issues/2577)
