@@ -5,6 +5,7 @@ authors:
   - lauchinachie
 links:
   - blog/posts/2018/08/2018-08-17-pipeline-ui-explained.md
+  - blog/posts/2018/11/2018-11-09-resource-page-explained.md
 ---
 
 Continuing on our [Concourse UI Explained](2018-08-17-pipeline-ui-explained.md) series, this week we are taking a look

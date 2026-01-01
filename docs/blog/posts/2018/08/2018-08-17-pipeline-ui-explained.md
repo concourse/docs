@@ -3,6 +3,9 @@ title: Concourse Pipeline UI Explained
 date: 2018-08-17
 authors:
   - lauchinachie
+links:
+  - blog/posts/2018/08/2018-08-30-build-page-explained.md
+  - blog/posts/2018/11/2018-11-09-resource-page-explained.md
 ---
 
 The Concourse UI is continuously growing and improving, and the goal of this article is to surface the latest design
