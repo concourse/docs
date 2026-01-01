@@ -7,8 +7,10 @@ authors:
   - jamesma
 ---
 
-{{< image src="/images/downloaded_images/Concourse-Update--Oct-15-19-/1-Y05yilBhjLQKwCftw39ZVw.jpeg" alt="Torontonians
-typically overreact when they get their first snowfall of the year. Its just a bit of frost ya’ll" width="50%" >}}
+![](assets/2018-10-19-concourse-update-01.jpg)
+/// caption
+Torontonians typically overreact when they get their first snowfall of the year. Its just a bit of frost ya’ll
+///
 
 <!-- more -->
 
@@ -36,16 +38,17 @@ Neat.
 
 On to the update:
 
-**API**
+## API
 
-{{< image src="/images/downloaded_images/Concourse-Update--Oct-15-19-/1-I0qcGZPL9DOugmQ6eC_xVQ.png" alt="" width="
-40%" >}}
+![](assets/2018-10-19-concourse-update-02.png)
+/// caption
+///
 
 - We finished RBAC!
 - Fixed an issue where Users who are not assigned to teams aren’t able to
   login [#2670](https://github.com/concourse/concourse/issues/2670)
 
-**UX**
+## UX
 
 - Working on finalizing the fix to [#2414](https://github.com/concourse/concourse/issues/2414), which we thought was
   implemented but found that it didn’t work on Linux and Windows machines
@@ -54,15 +57,15 @@ On to the update:
 - Picked up the corresponding UI story for pinning resources in the Web
   UI [#2508](https://github.com/concourse/concourse/issues/2508)
 
-**Core**
+## Core
 
 - SPACE ([#1202](https://github.com/concourse/concourse/issues/1202)
   and [#2651](https://github.com/concourse/concourse/issues/2651))
 
-**Runtime**
+## Runtime
 
 - Picked up some work on improving volume streaming [#2676](https://github.com/concourse/concourse/issues/2676)
 
-**Operations**
+## Operations
 
 - Working on emitting more metrics for locks held in DB [#2674](https://github.com/concourse/concourse/issues/2674)
