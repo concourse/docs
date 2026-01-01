@@ -1,10 +1,10 @@
 site_name: Concourse
-site_url: https://aviator-labs.github.io/docs-ci/
+site_url: https://concourse-ci.org/
 
 repo_url: https://github.com/concourse/concourse
 repo_name: concourse/concourse
 
-edit_uri: https://github.com/Aviator-Labs/docs-ci/edit/docs-rewrite/docs/
+edit_uri: https://github.com/concourse/docs/blob/master/docs/
 
 watch:
   - docs
