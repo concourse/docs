@@ -4,19 +4,21 @@ title: A New Hangar For Resource Types
 date: 2020-01-24
 ---
 
-{{< image src="/images/downloaded_images/Strategic-Plan_Page_13_Image_0001-750.jpg" alt="The inside of an airplane
-hangar" width="100%" >}}
+![](assets/2020-01-24-a-new-hangar-for-resource-types-2-01.jpg)
+/// caption
+The inside of an airplane hangar
 
 _Photo:_ [_National Parks
 Service_](https://www.nps.gov/subjects/aviation/images/Strategic-Plan_Page_13_Image_0001-750.jpg)
+///
+
+<!-- more -->
 
 The [idea to build a dedicated resource types catalog](https://github.com/concourse/concourse/issues/191) has been
 long-discussed. We’d like to announce that the idea has come to fruition: the new
 Concourse [resource types catalog](https://resource-types.concourse-ci.org/) is wheels up!
 
-<!-- more -->
-
-The catalog lists Concourse [resource types](https://concourse-ci.org/resource-types.html) that have recently been
+The catalog lists Concourse [resource types](../../../../docs/resource-types/index.md) that have recently been
 submitted to the [resource types GitHub repo](https://github.com/concourse/resource-types). Originally, resource types
 were listed on a [GitHub wiki](https://github.com/concourse/concourse/wiki/Resource-Types) page. While the wiki page
 listed resource types, it didn’t provide much information about each resource. The resource types catalog will provide
@@ -42,7 +44,7 @@ some of this process using Concourse!
 If you’ve gotten this far, have taken a quick look at the catalog, and are wondering why there is no “_resource type for
 x_”, it’s a great opportunity to add your own! There are already some helpful walkthroughs from other community members
 on writing resource
-types ([Implementing a Resource Type](https://concourse-ci.org/implementing-resource-types.html), [Developing a Custom Concourse Resource](https://content.pivotal.io/blog/developing-a-custom-concourse-resource), [How to Make a Concourse Resource Type](http://www.mikeball.info/blog/how-to-make-a-concourse-resource-type/))
+types ([Implementing a Resource Type](../../../../docs/resource-types/implementing.md), [Developing a Custom Concourse Resource](https://content.pivotal.io/blog/developing-a-custom-concourse-resource), [How to Make a Concourse Resource Type](http://www.mikeball.info/blog/how-to-make-a-concourse-resource-type/))
 which are a great place to start.
 
 ## What’s Next?
@@ -57,6 +59,6 @@ We also have an eye on the V10 roadmap and can see [prototypes](../../2019/10/20
 on the horizon.
 
 In the spirit of the open-source project that it is, we’d also love feedback to inform our roadmap. So if you have
-feedback, we’d love to hear it. The best way to reach us is to either drop us a line in #resource-types
+feedback, we’d love to hear it. The best way to reach us is to either drop us a line in `#resource-types`
 on [Discord](https://discord.gg/cShhjvr) or submit an issue against
 the [GitHub repository](https://github.com/concourse/resource-types-website/issues/new).

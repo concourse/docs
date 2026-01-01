@@ -37,9 +37,9 @@ The following RFCs have been given the `resolution/merge` label:
   feature, which was also introduced experimentally in v5.8. This feature is a key component to v10 - it unblocks
   spatial pipelines, per-job timed triggers, and per-pipeline credential management configuration.
 - [RFC #27: var steps](https://github.com/concourse/rfcs/pull/27) is behind the [
-  `load_var` step](https://concourse-ci.org/jobs.html#load-var-step) (shipped experimentally in v6.0), and also
-  introduces a `get_var` step which can theoretically be used to implement per-job trigger intervals. This RFC builds on
-  the var sources concept described in RFC #39.
+  `load_var` step](../../../../docs/steps/load-var.md) (shipped experimentally in v6.0), and also introduces a `get_var`
+  step which can theoretically be used to implement per-job trigger intervals. This RFC builds on the var sources
+  concept described in RFC #39.
 
 Per the [resolution process](https://github.com/concourse/rfcs/blob/master/README.md#resolution), if there are no
 objections or significant changes in the 2 weeks after this post is published, they will be merged! 🚀
@@ -53,7 +53,7 @@ Quite a few RFCs have had some pretty interesting discussions or developments si
   please chime in!
 - [RFC #37: prototypes](https://github.com/concourse/rfcs/pull/37) is the RFC for the "Prototypes" concept introduced in
   the [Re-inventing resource types](../../2019/10/2019-10-15-reinventing-resource-types.md) blog post. The latest
-  revision introduces encryption, which will enable Prototypes to implement credential managers. If you are a resource 
+  revision introduces encryption, which will enable Prototypes to implement credential managers. If you are a resource
   type author or if you have a security background, please give it a look!
 - [RFC #32: projects](https://github.com/concourse/rfcs/pull/32) now has a pretty radical new question: can Projects
   replace Teams in order to provide more complete cluster config automation? If you've ever had a need for automating

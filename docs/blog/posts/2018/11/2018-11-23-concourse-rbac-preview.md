@@ -14,8 +14,8 @@ CC0, [https://commons.wikimedia.org/w/index.php?curid=17686969](https://commons.
 <!-- more -->
 
 One of the big themes for Concourse in 2018 has
-been [Users](https://concourse-ci.org/download.html#v400), [multiple auth connectors](https://concourse-ci.org/install.html#auth-config),
-and role-based access control (
+been [Users](https://concourse-ci.org/download.html#v400), 
+[multiple auth connectors](../../../../docs/auth-and-teams/index.md), and role-based access control (
 aka [RBAC](https://github.com/pivotal-jwinters/rfcs/blob/proposal/rbac/03-rbac/proposal.md)). With RBAC in the final
 phases of development, I wanted to give you a preview of some of the functionality that you can expect in our upcoming
 release; Concourse 5.0
@@ -26,8 +26,8 @@ Concourse 5.0 will come with 4 roles: Concourse Admin, Team Owner, Team Member, 
 
 ### Concourse Admin
 
-A Concourse Admin is the same as today’s [admin user](https://concourse-ci.org/main-team.html). Members of `main` team
-will automatically be Concourse Admins* and have the ability to administrate teams with `fly`: `set-team`,
+A Concourse Admin is the same as today’s [admin user](../../../../docs/auth-and-teams/main-team.md). Members of `main` 
+team will automatically be Concourse Admins* and have the ability to administrate teams with `fly`: `set-team`,
 `destroy-team`, `rename-team`, and `teams`. Given that all Concourse Admins must be a member of the main team, all
 Concourse Admins must have at least one other role; and that should typically be the Team Owner role.
 

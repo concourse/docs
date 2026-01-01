@@ -53,7 +53,7 @@ Server Version: 18.03.1-ce
 
 ## Setup Concourse
 
-Grab the [quickstart Docker Compose file](https://concourse-ci.org/docker-compose.yml) provided by Concourse and save it
+Grab the [quickstart Docker Compose file](../../../../docker-compose.yml) provided by Concourse and save it
 as `docker-compose.yml`.
 
 ```shell

@@ -53,7 +53,7 @@ and making it a lot faster to find what you want at the same time.
 Another area where we can clearly improve is by adding more detail to the dashboard. Users are requesting more options
 for adding notes, tracking an audit trail of actions in the UI, clearer and more detailed error messages, and more
 statistical information like build duration and lead times. We’ll be looking at the possibilities in this space over the
-coming months. If you have ideas, start a [Discussion on Github](https://github.com/concourse/concourse/discussions).
+coming months. If you have ideas, start a [Discussion on GitHub](https://github.com/concourse/concourse/discussions).
 
 ### Runtime Improvements 📈
 
@@ -88,7 +88,9 @@ documentation around topics like autoscaling, tracing, and build statistics, amo
 
 ### How long have you used Concourse?
 
-{{< image src="/images/2020/05/Screen-Shot-2020-05-14-at-11.24.35-AM-1.png" width="100%" >}}
+![](assets/2020-05-14-community-survey-2020-results-01.png)
+/// caption
+///
 
 Most of the people who responded indicated they had been using Concourse for one year or less. It's great to see that
 more people are picking up and experimenting with Concourse with each new release, and it's just as exciting to see that
@@ -99,16 +101,20 @@ different parts of the product.
 
 ### Other CI/CD tools used
 
-{{< image src="/images/2020/05/Screen-Shot-2020-05-14-at-11.24.03-AM-1.png" width="100%" >}}
+![](assets/2020-05-14-community-survey-2020-results-02.png)
+/// caption
+///
 
 Another dimension that's helpful to understand is the related experiences that each survey respondent is equipped with.
 When looking at other CI/CD tools that our community employs, **Jenkins** is still the top dog, accounting for nearly
-30% of the tools mentioned. **Github Actions** has seen a rise in adoption since its initial release, and Travis,
+30% of the tools mentioned. **GitHub Actions** has seen a rise in adoption since its initial release, and Travis,
 Gitlab, Bitbucket, and CircleCI are all fairly common options as well.
 
 ### How did you find out about Concourse?
 
-{{< image src="/images/2020/05/Screen-Shot-2020-05-14-at-11.22.53-AM.png" width="100%" >}}
+![](assets/2020-05-14-community-survey-2020-results-03.png)
+/// caption
+///
 
 Pivotal Software (now VMware) has been Concourse's largest supporter since the project's inception. In previous years,
 it was common to see more than half of respondents say they were introduced to Concourse CI through a Pivotal Labs
@@ -125,9 +131,11 @@ We'd love to grow that _Conference or Meetup_ section in 2020 - who's up for a r
 
 ### Why use Concourse?
 
-{{< image src="/images/2020/05/Screen-Shot-2020-05-14-at-11.24.16-AM.png" width="100%" >}}
+![](assets/2020-05-14-community-survey-2020-results-04.png)
+/// caption
+///
 
-When asked about the very important _ **why** _ behind their Concourse usage, concerns about **Open Source** tooling and
+When asked about the very important _**why**_ behind their Concourse usage, concerns about **Open Source** tooling and
 **flexibility** were top of mind. The special emphasis that Concourse put on **reproducibility** and **user interface**
 also ranked highly, along with Concourse's **scalability** and overall feature set. Scalability is always a huge concern
 for the team, as we see enterprise customers frequently testing the limits of their tooling (sometimes with hundreds of
@@ -136,7 +144,9 @@ is a commitment we're not planning on straying from any time soon.
 
 ### Concourse Versions
 
-{{< image src="/images/2020/05/Screen-Shot-2020-05-14-at-11.53.24-AM.png" width="100%" >}}
+![](assets/2020-05-14-community-survey-2020-results-05.png)
+/// caption
+///
 
 We released the survey _just_ as v6.0.0 of Concourse was being finalized, so it was only close to the end that we
 started to see people upgrading to v6. We're thrilled, nonetheless, to see so many people had already upgraded to
@@ -144,19 +154,23 @@ v5.8.x. Together, versions v5.8.x and v5.7.x represented the majority of survey 
 responses for any other version.
 
 To those 12 users who are still on v4.x.x and 7 users still on v3.x.x, feel free
-to[get in touch on the Concourse Discord](https://discord.gg/MeRxXKW) if you need any help upgrading! You can find all
-of the wonderful reasons to upgrade in the[release notes](https://github.com/concourse/concourse/releases), and we'll
+to [get in touch on the Concourse Discord](https://discord.gg/MeRxXKW) if you need any help upgrading! You can find all
+of the wonderful reasons to upgrade in the [release notes](https://github.com/concourse/concourse/releases), and we'll
 write blog articles in the coming months highlighting some of the latest and greatest new features and optimizations, as
 well as some upcoming enhancements on our roadmap.
 
 ### Scale
 
-{{< image src="/images/2020/05/Screen-Shot-2020-05-14-at-11.23.29-AM.png" width="100%" >}}
+![](assets/2020-05-14-community-survey-2020-results-06.png)
+/// caption
+///
 
 The data gathered shows that the majority of respondents are working with Concourses organized with fewer teams. And
 when it comes to users...
 
-{{< image src="/images/2020/05/Screen-Shot-2020-05-14-at-11.23.48-AM.png" width="100%" >}}
+![](assets/2020-05-14-community-survey-2020-results-07.png)
+/// caption
+///
 
 ... we see a lot of smaller Concourse instances of under 10 users. There are also a few examples of large, enterprise
 scale deployments of 100+ users over 50+ teams. On the Concourse team, we frequently reach out to enterprise customers
@@ -164,11 +178,13 @@ for special feedback on more massive implementation concerns. We also survey and
 community to make sure we're building solutions that scale _down_ to single users and small teams.
 
 If you'd like to add your voice, feel free to join in on
-the[Concourse Discussions](https://github.com/concourse/concourse/discussions) board.
+the [Concourse Discussions](https://github.com/concourse/concourse/discussions) board.
 
 ### Deployment Method
 
-{{< image src="/images/2020/05/Screen-Shot-2020-05-14-at-11.22.23-AM.png" width="100%" >}}
+![](assets/2020-05-14-community-survey-2020-results-08.png)
+/// caption
+///
 
 **Docker** remains the most frequently used deployment method, but the margins are slowly shrinking, and there's more
 even distribution across other popular options than we've seen in past years.
@@ -179,7 +195,9 @@ user base.
 
 ### Concourse Usage Style
 
-{{< image src="/images/2020/05/Screen-Shot-2020-05-14-at-11.24.53-AM.png" width="100%" >}}
+![](assets/2020-05-14-community-survey-2020-results-09.png)
+/// caption
+///
 
 This year we asked about our users' usage style - specifically, what sort of development scenarios they were using
 Concourse to facilitate. Concourse remains an **Infrastructure Automation** powerhouse, and a similar number of users
@@ -187,7 +205,9 @@ are using it to perform **CI for web development** and **deploying software** as
 
 ### Workloads
 
-{{< image src="/images/2020/05/Screen-Shot-2020-05-14-at-11.57.17-AM.png" width="100%" >}}
+![](assets/2020-05-14-community-survey-2020-results-10.png)
+/// caption
+///
 
 **Linux workloads** represent the vast majority for the Concourse community. We're also paying attention to special
 concerns for those running **Windows** and **Darwin** workloads, however this knowledge will help us prioritize fixes to
@@ -195,8 +215,10 @@ help the largest group of users possible.
 
 ### Preferred IAAS
 
-{{< image src="/images/2020/05/Screen-Shot-2020-05-14-at-1.10.07-PM.png" alt="" width="100%" >}}
-_Note: RMDH is remotely-managed dedicated hardware_
+![](assets/2020-05-14-community-survey-2020-results-11.png)
+/// caption
+Note: RMDH is remotely-managed dedicated hardware
+///
 
 Finally, when asked about their preferred IAAS, **AWS** takes the top position again for the third year in a row. We
 consistently see a strong vSphere presence from enterprise customers, but it's really interesting to see the variety of
@@ -217,7 +239,7 @@ Of course, we want to make sure that we’re developing the right features, prio
 and validating that each step we take has been made in the right direction. In the upcoming months we’ll be
 consolidating all of these ideas into a new high level roadmap that sets out quarterly milestones for the team.
 
-Keep watch on the [Github discussions page](https://github.com/concourse/concourse/discussions), this blog,
+Keep watch on the [GitHub discussions page](https://github.com/concourse/concourse/discussions), this blog,
 and [the Concourse Twitter feed](https://twitter.com/concourseci) for more updates, and don’t forget
-to[join the conversation on Discord](https://discord.gg/MeRxXKW).
+to [join the conversation on Discord](https://discord.gg/MeRxXKW).
 

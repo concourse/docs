@@ -2,13 +2,15 @@
 title: "Concourse Update (\U0001F937-April 1, 2019)"
 date: 2019-04-01
 categories:
-- product-update
+  - product-update
 authors:
   - jamesma
 ---
 
-{{< image src="/images/downloaded_images/Concourse-Update-----April-1--2019-/1-Z49uzJr_wqYlpCGLBpnoXQ.jpeg" alt="Some
-airport somewhere... waiting" width="50%" >}}
+![](assets/2019-04-01-concourse-update-01.jpg)
+/// caption
+Some airport somewhere...waiting
+///
 
 <!-- more -->
 
@@ -36,14 +38,22 @@ Be warned, there are some breaking changes in this release as well; so make sure
 read [all](https://concourse-ci.org/download.html#v500-note-1) [of](https://concourse-ci.org/download.html#v500-note-2)[the](https://concourse-ci.org/download.html#v500-note-3) [release](https://concourse-ci.org/download.html#v500-note-4) [notes](https://concourse-ci.org/download.html#v500-note-5) [before](https://concourse-ci.org/download.html#v500-note-6)
 you upgrade!
 
-You’ll also notice that we recently gave the [Concourse homepage](https://concourse-ci.org/)a small makeover as well.
-We’ve tightened up the navigation and expanded some sections of of our docs, check it out:
+You’ll also notice that we recently gave the [Concourse homepage](../../../../index.md) a small makeover as well.
+We’ve tightened up the navigation and expanded some sections of our docs, check it out:
 
-- Expanded docs on[Credential Management](https://concourse-ci.org/creds.html) with Vault and AWS SSM
-- More info on the new [Container Placement](https://concourse-ci.org/container-placement.html) strategies
-- A primer on the new [Global Resources](https://concourse-ci.org/global-resources.html) feature
-- Our spiffy new [Examples](https://concourse-ci.org/learning.html#examples) section, which gives you a side-by-side
+- Expanded docs on[Credential Management][creds] with Vault and AWS SSM
+- More info on the new [Container Placement][placement] strategies
+- A primer on the new [Global Resources][global] feature
+- Our spiffy new [Examples][examples] section, which gives you a side-by-side
   comparison of a pipeline and the yml that made it
+
+[creds]: ../../../../docs/operation/creds/index.md
+
+[placement]: ../../../../docs/operation/container-placement.md
+
+[global]: ../../../../docs/operation/global-resources.md
+
+[examples]: ../../../../examples/index.md
 
 ## Interesting Blog Posts
 
@@ -67,7 +77,9 @@ by me!
 
 ## Concourse Swag
 
-<figure class="kg-card kg-image-card"><img src="/assets/images/downloaded_images/Concourse-Update-----April-1--2019-/1-7Ox9ZUESMtTgP-wCg5gaww.png" class="kg-image" alt loading="lazy"></figure>
+![](assets/2019-04-01-concourse-update-02.png)
+/// caption
+///
 
 We have swag! With the help of the team at Pivotal we’ve listed our first Concourse-branded sweater under
 the [official Pivotal apparel store](https://store.pivotal.io/collections/all-products/products/pivotal-unisex-crewneck-sweatshirt).
@@ -85,15 +97,16 @@ A few notes:
 The Concourse team will be attending CF Summit NA 2019 this week in Philadelphia, so come by the Pivotal booth and say
 hi to the team!
 
-I’ll also be attending a the ConcourseCI Bay Area User Group meetup on April 11th in Palo Alto. The title of the meetup
+I’ll also be attending the ConcourseCI Bay Area User Group meetup on April 11th in Palo Alto. The title of the meetup
 is [“Kubernetes Deployments with Concourse CI and Spinnaker”](https://www.meetup.com/concourse/events/259904171/). Come
-check it out if you’re in the bay area!
+check it out if you’re in the Bay Area!
 
 ## Milestones and Interesting RFCs
 
 [Alex Suraci](https://medium.com/u/263a63b2f209) has been experimenting with re-organizing our backlog of epics by using
 the GitHub Projects feature. You can see our current list of epics in the
-concourse/concourse[project list](https://github.com/concourse/concourse/projects). The big things we’re working on are:
+`concourse/concourse` [project list](https://github.com/concourse/concourse/projects). The big things we’re working on
+are:
 
 - Spatial Resource
 - API refactoring
@@ -107,15 +120,18 @@ The team is evaluating Concourse + [Tekton CD](https://github.com/tektoncd/pipel
 
 ## Thanks to our Community 🙏
 
-Finally, I wanted to give shout outs to our growing community of Concourse fans and followers. In early 2019 the
+Finally, I wanted to give shout-outs to our growing community of Concourse fans and followers. In early 2019 the
 Concourse team made two changes to our contributor workflow: we switched over to a looser Contributors License
-Agreement (CLA) and the core team moved towards a PR-based workflow. Since then we’ve seen a lot more engagement on the
+Agreement (CLA) and the core team moved towards a PR-based workflow. Since then, we’ve seen a lot more engagement on the
 work that we’ve doing, and we’ve also started to see a lot of new PRs coming in!
 
-<figure class="kg-card kg-image-card kg-card-hascaption"><img src="/assets/images/downloaded_images/Concourse-Update-----April-1--2019-/1-mPK8DgHmIv36A0Z6pNebjg.png" class="kg-image" alt loading="lazy"><figcaption># of PRs opened over time against concourse/concourse and other key resources</figcaption></figure>
+![](assets/2019-04-01-concourse-update-03.png)
+/// caption
+\# of PRs opened over time against concourse/concourse and other key resources
+///
 
-In 2018, we saw 263 PRs opened against concourse/concourse and its core resources. As of today we already have more than
-160 PRs opened by non-Pivots! Some notable PRs that I wanted to
+In 2018, we saw 263 PRs opened against `concourse/concourse` and its core resources. As of today we already have more
+than 160 PRs opened by non-Pivots! Some notable PRs that I wanted to
 
 - [#3580 Add parallel Step](https://github.com/concourse/concourse/pull/3580)
 - [#3163 [POC] Super nasty rendering of jobs that needs manual triggering](https://github.com/concourse/concourse/pull/3163)
