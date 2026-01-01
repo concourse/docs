@@ -273,7 +273,7 @@ A-Team/viewer local:Alpha none
 
 [auth]: ../../../../docs/auth-and-teams/index.md
 
-[admin]: ../../../../docs/auth-and-teams/user-roles#concourse-admin
+[admin]: ../../../../docs/auth-and-teams/user-roles.md#concourse-admin
 
 [managing]: ../../../../docs/auth-and-teams/managing-teams.md#setting-user-roles
 
