@@ -10,7 +10,9 @@ Howdy, and welcome to our first RFC round-up! 🤠
 
 <!-- more -->
 
-{{< image src="/images/2020/05/image.png" width="40%" >}}
+![](assets/2020-05-06-rfc-roundup-01.png)
+/// caption
+///
 
 For those unaware, [Concourse RFCs](https://github.com/concourse/rfcs#concourse-rfcs) are a process for proposing and
 collaborating on improvements to core Concourse functionality, including pipeline behavior, new step types, new operator
@@ -43,10 +45,10 @@ objections or significant changes in the 2 weeks after this post is published, t
 These two RFCs are nearing completion, but have some outstanding questions:
 
 - [RFC #39: var sources](https://github.com/concourse/rfcs/pull/39) is the RFC behind the [experimental
-  `var_sources:` feature](https://concourse-ci.org/vars.html#var-sources) introduced in v5.8.0. The main question is
+  `var_sources:` feature](../../../../docs/vars.md#var-sources-experimental) introduced in v5.8.0. The main question is
   around whether and how it may be used to replace the cluster-wide credential manager configuration.
 - [RFC #31: `set_pipeline` step](https://github.com/concourse/rfcs/pull/31) is mostly implemented already,
-  also [shipped experimentally](https://concourse-ci.org/jobs.html#schema.step.set-pipeline-step.set_pipeline) in
+  also [shipped experimentally](../../../../docs/steps/set-pipeline.md) in
   v5.8.0. The remaining question is around whether to support `set_pipeline: self` - this is a point of contention as
   there may be a better pattern for that sort of thing in the
   future ([hint](https://github.com/concourse/rfcs/pull/32)).

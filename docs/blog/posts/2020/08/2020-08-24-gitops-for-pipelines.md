@@ -12,8 +12,8 @@ pipelines!
 
 <!-- more -->
 
-For consistency we will refer to the pipeline that contains all the `set_pipeline` steps as the **parent pipeline**. The
-pipelines created by the `set_pipeline` steps will be called **child pipelines**.
+For consistency, we will refer to the pipeline that contains all the `set_pipeline` steps as the **parent pipeline**.
+The pipelines created by the `set_pipeline` steps will be called **child pipelines**.
 
 _Scroll to the bottom to see the final pipeline template
 or [click here](https://github.com/concourse/examples/blob/master/pipelines/set-pipelines.yml). What follows is a
@@ -22,15 +22,15 @@ detailed explanation of how the parent pipeline works along with git and automat
 ## Prerequisites
 
 To run the pipelines in this blog post for yourself you can get your own Concourse running locally by following
-the [Quick Start guide](https://concourse-ci.org/quick-start.html).
+the [Quick Start guide](../../../../docs/getting-started/quick-start.md).
 
 You will also need to fork the [github.com/concourse/examples](https://github.com/concourse/examples) repo and replace
-`USERNAME` with your github username in the below examples. We will continue to refer to the repo as
+`USERNAME` with your GitHub username in the below examples. We will continue to refer to the repo as
 `concourse/examples`. Once you have forked the repo clone it locally onto your machine and `cd` into the repo.
 
-```shell-session
-$ git clone git@github.com:USERNAME/examples.git
-$ cd examples
+```shell
+git clone git@github.com:USERNAME/examples.git
+cd examples
 ```
 
 ## Create the Parent Pipeline
@@ -39,12 +39,12 @@ Inside your fork of `concourse/examples` that you have cloned locally, create a 
 inside the `pipelines` folder. This is the pipeline that we are going to be building. We will refer to this pipeline as
 the _parent pipeline_.
 
-```shell-session
-$ touch ./pipelines/reconfigure-pipelines.yml
+```shell
+touch ./pipelines/reconfigure-pipelines.yml
 ```
 
 Like the `fly set-pipeline` command, the `set_pipeline` step needs a YAML file containing a pipeline configuration. We
-will use the concourse/examples repo as the place to store our pipelines and thankfully it already contains many
+will use the concourse/examples repo as the place to store our pipelines, and thankfully it already contains many
 pipelines! Let's add the repo as a resource to our parent pipeline.
 
 ```yaml
@@ -97,9 +97,9 @@ jobs:
         file: concourse-examples/pipelines/hello-world.yml
 ```
 
-Let's commit what we have so far and push it to github.
+Let's commit what we have so far and push it to GitHub.
 
-```shell-session
+```shell
 $ git add pipelines/reconfigure-pipelines.yml
 $ git commit -m "add reconfigure-pipelines"
 $ git push -u origin head
@@ -110,7 +110,7 @@ $ git push -u origin head
 Now we have a [chicken or the egg](https://en.wikipedia.org/wiki/Chicken_or_the_egg) problem, except in this case we
 know our parent pipeline comes first! Let's set our pipeline with `fly` and execute the `configure-pipelines` job.
 
-```shell-session
+```console
 $ fly -t local set-pipeline \
   -p reconfigure-pipelines \
   -c pipelines/reconfigure-pipelines.yaml
@@ -130,14 +130,17 @@ $ fly -t local trigger-job \
 
 Once the job is done running you should see two pipelines, `reconfigure-pipelines` and `hello-world`.
 
-{{< image src="/images/2020/08/hello-world.png" alt="Concourse dashboard showing two pipelines" width="100%" >}}
+![](assets/2020-08-24-gitops-for-pipelines-01.png)
+/// caption
+Concourse dashboard showing two pipelines
+///
 
 Now any changes you make to the `hello-world` pipeline will be updated automatically in Concourse once it picks up the
 commit with your changes.
 
 ## Pipelines Setting Themselves
 
-Our parent pipeline is setting and updating one other pipeline now but it has one glaring limitation: it doesn't set
+Our parent pipeline is setting and updating one other pipeline now, but it has one glaring limitation: it doesn't set
 itself. We have to `fly set-pipeline` every time we want to add a new pipeline to the `configure-pipelines` job.
 
 To resolve this we can do the following to our parent pipeline:
@@ -178,13 +181,13 @@ jobs:
 ```
 
 **Side-note** : for the `configure-self` job, you could also use the [
-`self` keyword](https://concourse-ci.org/jobs.html#schema.step.set-pipeline-step.set_pipeline), though this is labelled
-as experimental and may disappear in the future.
+`self` keyword](../../../../docs/steps/set-pipeline.md), though this is labelled as experimental and may disappear in
+the future.
 
-Lets set the parent pipeline one more time with `fly` and then we'll make commits to the repo to make all future
+Let's set the parent pipeline one more time with `fly` and then we'll make commits to the repo to make all future
 changes.
 
-```shell-session
+```console
 $ fly -t local set-pipeline \
   -p reconfigure-pipelines \
   -c pipelines/reconfigure-pipelines.yaml
@@ -196,11 +199,14 @@ apply configuration? [yN]: y
 The parent pipeline should now look like this. Now the pipeline will first update itself and then update any existing
 child pipelines.
 
-{{< image src="/images/2020/08/set-self.png" alt="parent pipeline with config-self job" width="100%" >}}
+![](assets/2020-08-24-gitops-for-pipelines-02.png)
+/// caption
+parent pipeline with config-self job
+///
 
 Let's commit our changes, which will be a no-op since we've already updated the pipeline with the latest changes.
 
-```shell-session
+```console
 $ git add pipelines/reconfigure-pipelines.yml
 $ git commit -m "add configure-self job"
 $ git push
@@ -210,7 +216,7 @@ Now comes the real fun! To add a pipeline to Concourse all we need to do is add 
 pipeline, commit it to the `concourse/examples` repo, and let the parent pipeline pick up the new commit and make the
 changes for us.
 
-Lets add the `time-triggered` pipeline to our `reconfigure-pipelines.yml` file.
+Let's add the `time-triggered` pipeline to our `reconfigure-pipelines.yml` file.
 
 ```yaml
 resources:
@@ -238,9 +244,9 @@ jobs:
         file: concourse-examples/pipelines/time-triggered.yml
 ```
 
-Commit and push the changes to github.
+Commit and push the changes to GitHub.
 
-```shell-session
+```console
 $ git add pipelines/reconfigure-pipelines.yml
 $ git commit -m "add time-triggered pipeline"
 $ git push
@@ -249,7 +255,10 @@ $ git push
 Once Concourse picks up the commit (may take up to a minute by default) you should see three pipelines on the dashboard.
 Now you never need to use `fly` to set pipelines!
 
-{{< image src="/images/2020/08/three-pipelines.png" alt="parent and child pipelines" width="100%" >}}
+![](assets/2020-08-24-gitops-for-pipelines-03.png)
+/// caption
+parent and child pipelines
+///
 
 ## Detour: A Future Alternative of Setting Pipelines
 
@@ -271,8 +280,8 @@ Now let's get back on track and talk about the last step in a pipeline's lifecyc
 ## Automatically Archiving Pipelines
 
 Having Concourse automatically set pipelines for you is great but that only covers half of the lifecycle that a pipeline
-can go through. Some pipelines stay around forever and get continously updated. Other pipelines may only be around for a
-small amount of time and then be deleted or archived.
+can go through. Some pipelines stay around forever and get continuously updated. Other pipelines may only be around for
+a small amount of time and then be deleted or archived.
 
 Thanks to [RFC #33](https://github.com/concourse/rfcs/pull/33) you can now archive pipelines and have Concourse *
 *automatically archive** pipelines for you as well. You've been able to archive pipelines using `fly` since Concourse
@@ -311,7 +320,7 @@ jobs:
         file: concourse-examples/pipelines/time-triggered.yml
 ```
 
-Commit and push the changes to github.
+Commit and push the changes to GitHub.
 
 ```shell-session
 $ git add pipelines/reconfigure-pipelines.yml
@@ -323,9 +332,8 @@ After a few seconds the pipeline should disappear from the dashboard (unless you
 
 With automatic archiving the entire lifecycle of your pipelines can now be managed with a git repo and a few commits.
 
-I suggest checking out the documentation for [
-`set_pipeline`](https://concourse-ci.org/jobs.html#schema.step.set-pipeline-step.set_pipeline) to see all the other
-fields available for the step, like `team` and `vars`!
+I suggest checking out the documentation for [`set_pipeline`](../../../../docs/steps/set-pipeline.md) to see all the
+other fields available for the step, like `team` and `vars`!
 
 ## The Parent Pipeline Template (tl;dr)
 

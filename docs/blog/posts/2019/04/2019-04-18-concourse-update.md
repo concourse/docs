@@ -7,16 +7,20 @@ authors:
   - jamesma
 ---
 
-{{< image src="/images/downloaded_images/Concourse-Update--April-8-18-/1-gTTAFBV8KHzEL0CV-I-_kA.jpeg" alt="Roman
-Alekseenkov from Aptomi giving a talk on Concourse at the Bay Area User Group" width="50%" >}}
+![](assets/2019-04-18-concourse-update-01.jpg)
+/// caption
+Roman Alekseenkov from Aptomi giving a talk on Concourse at the Bay Area User Group
+///
 
 <!-- more -->
 
-Sorry for missing the update last week. I was travelling out to the Bay area to attend the ConcourseCI Bay Area User
+Sorry for missing the update last week. I was travelling out to the Bay Area to attend the ConcourseCI Bay Area User
 Group. For those who missed it, you can find a recording of the
 event [here](https://www.youtube.com/watch?v=1RRZHPlTkXs). On to the update.
 
-{{< image src="/images/downloaded_images/Concourse-Update--April-8-18-/1-QqwW-_RArz5a_sprZC7PZw.png" width="100%" >}}
+![](assets/2019-04-18-concourse-update-02.png)
+/// caption
+///
 
 In case you missed it, Concourse 5.1.0 is out! It’s got icons on resources, better garbage collection, `on_error` on
 pipelines, and much more! As usual, you can read the full list of new

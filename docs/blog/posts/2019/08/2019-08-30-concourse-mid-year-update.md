@@ -16,14 +16,18 @@ change is in line with our objectives of being open and transparent with our com
 good thing to do because that's what most OSS projects do. Since then we've noticed a noticeable uptick in PRs opened by
 non-Concourse core contributors across our repos:
 
-{{< image src="/images/2019/08/Screen-Shot-2019-08-30-at-10.12.17-AM-2.png" width="100%" >}}
+![](assets/2019-08-30-concourse-mid-year-update-01.png)
+/// caption
+///
 
 And while our peak period seemed to be concentrated at the beginning of the year, we're still seeing steady
 contributions through the summer months
 
-{{< image src="/images/2019/08/Screen-Shot-2019-08-30-at-10.13.09-AM.png" width="100%" >}}
+![](assets/2019-08-30-concourse-mid-year-update-02.png)
+/// caption
+///
 
-The Concourse project also hit another big milestone: we now have over **4000 Github stars**! As of today we're sitting
+The Concourse project also hit another big milestone: we now have over **4000 GitHub stars**! As of today we're sitting
 at 4213 stars, a 52% increase in popularity from this time last year.
 
 ## Concourse v10
@@ -34,7 +38,9 @@ read more about it here [2019-07-17-core-roadmap-towards-v10.md](../07/2019-07-1
 
 ## Concourse Project Planning
 
-{{< image src="/images/2019/08/Screen-Shot-2019-08-30-at-10.27.27-AM.png" width="100%" >}}
+![](assets/2019-08-30-concourse-mid-year-update-03.png)
+/// caption
+///
 
 There's been some big changes to how we organize and visualize each track of work now. If you take a peek in the project
 board [https://project.concourse-ci.org](https://project.concourse-ci.org/) you'll see now that each of our tracks are

@@ -137,12 +137,11 @@ dusting things off and upgrading things. Here's a quick rundown of the other exc
 * The experimental warning seen during the `set_pipeline` step is now gone. It's interface and current behaviour are
   considered stable.
 * Modernization of the Go codebase, mostly removing usage of deprecated Go functions and other similar improvements.
-*
-The [registry-image](https://github.com/concourse/registry-image-resource), [s3](https://github.com/concourse/s3-resource),
-and [semver](https://github.com/concourse/semver-resource) resources have been updated to use v2 of the AWS Go SDK.
-While making this change I've also changed the authentication behaviour when these resources are interacting with AWS.
-They will now use the default authentication chain that the AWS SDK uses. This means these resource types can now use
-the Concourse Worker's IAM role and static credentials are no longer required to use these resources.
+* The [registry-image](https://github.com/concourse/registry-image-resource), [s3](https://github.com/concourse/s3-resource),
+  and [semver](https://github.com/concourse/semver-resource) resources have been updated to use v2 of the AWS Go SDK.
+  While making this change I've also changed the authentication behaviour when these resources are interacting with AWS.
+  They will now use the default authentication chain that the AWS SDK uses. This means these resource types can now use
+  the Concourse Worker's IAM role and static credentials are no longer required to use these resources.
 * [@mariash](https://github.com/mariash) enabled cgroupv2 support for the Guardian runtime, enabling the use of the
   Guardian runtime on newer kernel versions.
 * I updated Concourse's seccomp profile to include newer syscalls, bringing it inline with the default seccomp profile

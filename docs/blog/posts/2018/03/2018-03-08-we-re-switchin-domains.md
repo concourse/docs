@@ -44,7 +44,7 @@ It seems like the registrar messed up so badly that there’s not much leverage 
 it back, I don’t really want to deal with something like this again in the future. Luckily, before we got too big I went
 ahead and registered concourse-ci.org, .net, and .com in case something like this happened.
 
-So here‘s our new home: [https://concourse-ci.org](https://concourse-ci.org)
+So here's our new home: [https://concourse-ci.org](../../../../index.md)
 
 I’d already been considering this switch for a while (anticipating trouble with .ci), but a more graceful transition
 would have been nice. Unfortunately there is a ton of material pointing to the old website, and it’ll probably take time

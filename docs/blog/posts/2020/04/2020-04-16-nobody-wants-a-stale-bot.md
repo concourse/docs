@@ -8,7 +8,7 @@ Hasta la vista, stale bot.
 
 <!-- more -->
 
-{{< youtube src="https://www.youtube.com/embed/0Kug8mJ8WiM?start=110&amp;feature=oembed" >}}
+<iframe width="1897" height="772" src="https://www.youtube.com/embed/0Kug8mJ8WiM" title="Terminator 2 T1000 Death l 4K 3D Remastered" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## tl;dr:
 
@@ -47,7 +47,7 @@ engagement more clearly. Issues are concrete; they will be prioritized and finis
 in a perfect world – by a volunteer from the community. Discussions on the other hand are at an earlier stage in the
 process.
 
-Discussions on the `concourse` repo will be used for for questions and support. These can be more open-ended than bug
+Discussions on the `concourse` repo will be used for questions and support. These can be more open-ended than bug
 reports – there may indeed be a bug, but there might also just be an answer or a better approach. The outcome of these
 discussions may be a bug report, an improvement to the docs, an answer to the question, or perhaps a new Discussion on
 the `rfcs` repo.
@@ -84,7 +84,7 @@ goal is to dramatically shorten the feedback cycle time and not leave anyone han
 ## What about discuss.concourse-ci.org?
 
 These changes make [our forums](https://discuss.concourse-ci.org) a little (ok a lot) redundant. Once the Discussions
-feature feels solid I plan to shut the forums down down and centralize our community in GitHub (in addition to Discord
+feature feels solid I plan to shut the forums down and centralize our community in GitHub (in addition to Discord
 for real-time chat).
 
 ## What's happening with VMware?

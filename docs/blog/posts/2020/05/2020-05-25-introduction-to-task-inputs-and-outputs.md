@@ -14,17 +14,16 @@ should understand how inputs and outputs work within the context of a single job
 
 Let's define some jargon first.
 
-- **step** : A [step](https://concourse-ci.org/jobs.html#steps) is a container running code within the context of a
-  Concourse job. A [step](https://concourse-ci.org/jobs.html#steps) may have inputs and/or outputs, or neither.
-- **Job plan** : A list of [step](https://concourse-ci.org/jobs.html#steps)s that a job will execute when triggered.
-- **Inputs and Outputs** : These are directories. Within Concourse they're generically referred to as **artifacts**.
+- **step** : A [step][step] is a container running code within the context of a
+  Concourse job. A [step][step] may have inputs and/or outputs, or neither.
+- **Job plan** : A list of [step][step]s that a job will execute when triggered.
+- **Inputs and Outputs** : These are directories. Within Concourse, they're generically referred to as **artifacts**.
   These artifacts are mounted in a **step**'s container under a directory with _some-name_. You, as a writer of
   Concourse pipelines, have control over what the name of your artifacts will be. If you're coming from the Docker
   world, artifact is synonymous with [volumes](https://docs.docker.com/storage/volumes/).
 
 To run the pipelines in the following examples yourself you can get your own Concourse running locally by following
-the [Quick Start guide](https://concourse-ci.org/quick-start.html). Then use [
-`fly set-pipeline`](https://concourse-ci.org/setting-pipelines.html) to see the pipelines in action.
+the [Quick Start guide][quick]. Then use [`fly set-pipeline`][set_pipeline] to see the pipelines in action.
 
 Concourse pipelines contain a lot of information. Within each pipeline YAML there are comments to help bring specific
 lines to your attention.
@@ -32,8 +31,7 @@ lines to your attention.
 ## Example One - Two Tasks
 
 This pipeline will show us how to create outputs and pass outputs as inputs to the
-next [step](https://concourse-ci.org/jobs.html#steps)(s) in
-a [job plan](https://concourse-ci.org/jobs.html#schema.job.plan).
+next [step][step]\(s) in a [job plan][job].
 
 This pipeline has two tasks. The first task outputs a file with the date. The second task reads and prints the contents
 of the file from the first task.
@@ -84,29 +82,35 @@ jobs:
 
 Here's a visual graphic of what happens when the above job is executed.
 
-{{< image src="/images/2020/05/example-one-10.gif" width="100%" >}}
+![](assets/2020-05-25-introduction-to-task-inputs-and-outputs-01.gif)
+/// caption
+///
 
 ## Example Two - Two tasks with the same output, who wins?
 
 This example is to satisfy the curiosity cat inside all of us! Never do this in real life because you're definitely
 going to hurt yourself!
 
-There are two jobs in this pipeline. The first job has two [step](https://concourse-ci.org/jobs.html#steps)s; both steps
+There are two jobs in this pipeline. The first job has two [step][step]s; both steps
 will produce an artifact named `the-output` in parallel. If you run the `writing-to-the-same-output-in-parallel` job
 multiple times you'll see the file in `the-output` folder changes depending on which of the parallel tasks finished
 last. Here's a visualization of the first job.
 
-{{< image src="/images/2020/05/example-two-parallel.gif" width="100%" >}}
+![](assets/2020-05-25-introduction-to-task-inputs-and-outputs-02.gif)
+/// caption
+///
 
 The second job is a serial version of the first job. In this job the second task always wins because it's the last task
 that outputs `the-output`, so only `file2` will be in `the-output` directory in the
-last [step](https://concourse-ci.org/jobs.html#steps) in
-the [job plan](https://concourse-ci.org/jobs.html#schema.job.plan).
+last [step][step] in
+the [job plan][job].
 
-{{< image src="/images/2020/05/example-two-serial.gif" width="100%" >}}
+![](assets/2020-05-25-introduction-to-task-inputs-and-outputs-03.gif)
+/// caption
+///
 
 This pipeline illustrates that you could accidentally overwrite the output from a
-previous [step](https://concourse-ci.org/jobs.html#steps) if you're not careful with the names of your outputs.
+previous [step][step] if you're not careful with the names of your outputs.
 
 ```yaml
 jobs:
@@ -216,32 +220,31 @@ jobs:
 
 ## Example Three - Input/Output Name Mapping
 
-Sometimes the names of inputs and outputs don't match, or they do match and you don't want them overwriting each other,
-like in the previous example. That's when [
-`input_mapping`](https://concourse-ci.org/jobs.html#schema.step.task-step.input_mapping) and [
-`output_mapping`](https://concourse-ci.org/jobs.html#schema.step.task-step.output_mapping) become helpful. Both of these
-features map the inputs/outputs in the task's config to some artifact name in
-the [job plan](https://concourse-ci.org/jobs.html#schema.job.plan).
+Sometimes the names of inputs and outputs don't match, or they do match, and you don't want them overwriting each other,
+like in the previous example. That's when [`input_mapping`][job] and [`output_mapping`][job] become helpful. Both of
+these features map the inputs/outputs in the task's config to some artifact name in the [job plan][job].
 
 This pipeline has one job with four tasks.
 
 The first task outputs a file with the date to the `the-output` directory. `the-output` is mapped to the new name
-`demo-disk`. &nbsp;The artifact `demo-disk` is now available in the rest of
-the [job plan](https://concourse-ci.org/jobs.html#schema.job.plan) for
-future [step](https://concourse-ci.org/jobs.html#steps)s to take as inputs. The remaining steps do this in various ways.
+`demo-disk`. The artifact `demo-disk` is now available in the rest of
+the [job plan][job] for
+future [step][step]s to take as inputs. The remaining steps do this in various ways.
 
 The second task reads and prints the contents of the file under the new name `demo-disk`.
 
 The third task reads and prints the contents of the file under another name, `generic-input`. The `demo-disk` artifact
-in the [job plan](https://concourse-ci.org/jobs.html#schema.job.plan) is mapped to `generic-input`.
+in the [job plan][job] is mapped to `generic-input`.
 
 The fourth task tries to use the artifact named `the-output` as its input. This task fails to even start because there
 was no artifact with the name `the-output` available in
-the [job plan](https://concourse-ci.org/jobs.html#schema.job.plan); it was remapped to `demo-disk`.
+the [job plan][job]; it was remapped to `demo-disk`.
 
 Here's a visualization of the job.
 
-{{< image src="/images/2020/05/example-three-1.gif" width="100%" >}}
+![](assets/2020-05-25-introduction-to-task-inputs-and-outputs-04.gif)
+/// caption
+///
 
 Here's the pipeline YAML for you to run on your local Concourse.
 
@@ -397,7 +400,9 @@ jobs:
 
 Here's a visualization of the job.
 
-{{< image src="/images/2020/05/example-four.gif" width="100%" >}}
+![](assets/2020-05-25-introduction-to-task-inputs-and-outputs-05.gif)
+/// caption
+///
 
 ## Example Five - Multiple Outputs
 
@@ -469,13 +474,15 @@ jobs:
 
 Here's a visualization of the above job.
 
-{{< image src="/images/2020/05/example-five.gif" width="100%" >}}
+![](assets/2020-05-25-introduction-to-task-inputs-and-outputs-06.gif)
+/// caption
+///
 
 ## Example Six - Get Steps
 
 The majority of Concourse pipelines have at least one resource, which means they have at least
-one [get step](https://concourse-ci.org/jobs.html#get-step). Using a get step in a job makes an artifact with the name
-of the get step available for later steps in the [job plan](https://concourse-ci.org/jobs.html#schema.job.plan) to
+one [get step][get]. Using a get step in a job makes an artifact with the name
+of the get step available for later steps in the [job plan][job] to
 consume as inputs.
 
 ```yaml
@@ -509,7 +516,18 @@ jobs:
 
 Here's a visualization for the above job.
 
-{{< image src="/images/2020/05/example-six.gif" width="100%" >}}
+![](assets/2020-05-25-introduction-to-task-inputs-and-outputs-07.gif)
+/// caption
+///
 
 I hope you found these example helpful with figuring out how inputs and outputs work within a single Concourse job.
 
+[quick]: ../../../../docs/getting-started/quick-start.md
+
+[step]: ../../../../docs/steps/index.md
+
+[get]: ../../../../docs/steps/get.md
+
+[job]: ../../../../docs/jobs.md
+
+[set_pipeline]: ../../../../docs/pipelines/setting-pipelines.md#fly-set-pipeline

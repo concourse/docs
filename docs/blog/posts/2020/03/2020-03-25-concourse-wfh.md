@@ -63,8 +63,10 @@ applications that help us work in a comfortable, fun, efficient manner.
 First and foremost, we have a perpetual group [Zoom](https://zoom.us/) meeting set up that everybody on the team hangs
 out in throughout the workday.
 
-{{< image src="/images/2020/03/Screen-Shot-2020-03-20-at-12.08.28-PM.png" alt="A typical workday in the Concourse
-hangar." width="100%" >}}
+![](assets/2020-03-25-concourse-wfh-01.png)
+/// caption
+A typical workday in the Concourse hangar.
+///
 
 Having one single room might be unconventional, but negates the need to constantly jump in and out of different Zoom
 meetings, and all of the confusion that can create. It's tied to a easy-to-remember URL that makes it painless to join
@@ -82,8 +84,10 @@ We were already using Discord for our open source community's text-based chat, b
 effective voice communications. The Concourse team uses a series of private voice channels (named after famous aircraft,
 of course ✈️) that we can join and depart with a single click.
 
-{{< image src="/images/2020/03/Screen-Shot-2020-03-23-at-1.56.04-PM.png" alt="Pairs of engineers working in audio
-channels on Discord" width="20%" >}}
+![](assets/2020-03-25-concourse-wfh-02.png)
+/// caption
+Pairs of engineers working in audio channels on Discord
+///
 
 This makes it easy to navigate for pair programming, impromptu meetings, or general chat and attention-getting. There’s
 even a #water-cooler channel that acts as the defacto hangout spot! With this system you can see who is paired up in the
@@ -104,7 +108,7 @@ can just grab someone's attention and start talking immediately instead.
 ## Remote Pairing
 
 Remote pairing is one area of our work process that is still up in the air. The Concourse team
-practices [pair programming](https://en.wikipedia.org/wiki/Pair_programming) everyday, and trying to do that remotely
+practices [pair programming](https://en.wikipedia.org/wiki/Pair_programming) every day, and trying to do that remotely
 can be challenging at times. We’ve tried the following methods of pair programming, with each having different strengths
 and weaknesses for different situations.
 
@@ -136,8 +140,10 @@ session.
 This article has been heavy on technological solutions and workflow, but another thing worth mentioning is how positive
 and encouraging the team's attitude has been during the pandemic.
 
-{{< image src="/images/2020/03/Screen-Shot-2020-03-19-at-10.41.42-AM-1.png" alt="Concourse engineers, best engineers."
-width="100%" >}}
+![](assets/2020-03-25-concourse-wfh-03.png)
+/// caption
+Concourse engineers, best engineers.
+///
 
 Even isolated to our respective homes, we've seen everyone step up to keep each other happy and healthy, and to keep
 work moving at a sustainable pace. I won't go into detail about all the memes, inside jokes, guitar solos, Zoom virtual

@@ -12,17 +12,17 @@ Phew, we’ve been busy for the past couple of months! There’s a lot to give y
 
 ## New website
 
-First off, [check out our new website](https://concourse-ci.org)! We’ve completely redesigned it and redone how we
+First off, [check out our new website](../../../../index.md)! We’ve completely redesigned it and redone how we
 organize the documentation, in hopes that it’ll be much easier to find what you’re looking for.
 
 We also hope that the new style, language, and tone will feel a bit more inclusive and humble. For example, we got rid
 of the “Concourse vs.” section — the effort it took to keep that up-to-date is better spent elsewhere. Use whatever dang
 tool you want! Our old site, as pretty as it was, felt a bit too much like we were trying to sell a finished product.
 
-We’ve added an [“About” page](https://concourse-ci.org/about.html) which provides all the background and motivation you
+We’ve added an [“About” page](../../../../project/index.md) which provides all the background and motivation you
 should need to get a good idea of who we are and what we’re about. There’s also
-a [“Contribute” section](https://concourse-ci.org/contribute.html) which contains reference material for developers as
-well as general guidance. We’re also fleshing out an [“Operation” section](https://concourse-ci.org/operation.html)
+a [“Contribute” section](../../../../project/index.md) which contains reference material for developers as
+well as general guidance. We’re also fleshing out an [“Operation” section](../../../../docs/operation/index.md)
 which should help out those who are deploying Concourse for the first time or managing it at scale.
 
 In addition to these new sections, we’ve also consolidated many pages and simplified the organization. There are now
@@ -30,8 +30,8 @@ top-level sections for all the “things” you’ll be working with (Pipelines,
 schema right up-front with examples to the side. This should make the docs much more effective when used as a reference.
 
 Search is back, and we’ve made a lot better than it was before its unceremonious removal. Try searching “imgrespar” and
-you’ll find image\_resource.params. It’s not full-text, but there’s always Google for that. I tried but it’s pretty slow
-and janky.
+you’ll find `image_resource.params`. It’s not full-text, but there’s always Google for that. I tried but it’s pretty 
+slow and janky.
 
 ## Community platform changes
 

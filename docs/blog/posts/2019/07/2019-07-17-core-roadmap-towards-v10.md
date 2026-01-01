@@ -2,7 +2,7 @@
 title: 'Core roadmap: towards v10'
 date: 2019-07-17
 categories:
-- roadmap
+  - roadmap
 authors:
   - asuraci
 ---
@@ -20,8 +20,8 @@ concepts. The design of these concepts should make good practices feel intuitive
 Coming up with these designs can be very challenging. There are many different workflows and patterns across the
 software industry, and they each have to be deeply understood in order to know what the good and bad practices are.
 
-This post provides a bit of insight into what we've been up to with Concourse's core design - chiefly regarding '
-spaces', which has become a bit of a white whale on our roadmap.
+This post provides a bit of insight into what we've been up to with Concourse's core design - chiefly regarding
+'spaces', which has become a bit of a white whale on our roadmap.
 
 There are a lot of words here - sorry! If you just want to skim, I've added a single-paragraph summary under each
 roadmap entry.
@@ -33,26 +33,22 @@ process or just provide feedback, please check them out and submit a PR review! 
 
 1. [Where is 'spaces'?](#where-is-spaces)
 2. [Where are we now?](#where-are-we-now)
-
-- [Issue #3602: a new algorithm](#issue-3602-a-new-algorithm)
-- [Issue #413: build re-triggering](#issue-413-build-re-triggering)
-
+    - [Issue #3602: a new algorithm](#issue-3602-a-new-algorithm)
+    - [Issue #413: build re-triggering](#issue-413-build-re-triggering)
 3. [Where are we going?](#where-are-we-going)
-
-- [RFC #24: resources v2](#rfc-24-resources-v2)
-- [RFC #26: artifact resources](#rfc-26-artifact-resources)
-- [RFC #31: `set_pipeline` step](#rfc-31-set_pipeline-step)
-- [RFC #32: projects](#rfc-32-projects)
-- [RFC #33: archiving pipelines](#rfc-33-archiving-pipelines)
-- [RFC #34: instanced pipelines](#rfc-34-instanced-pipelines)
-- [RFC #29: spatial resources](#rfc-29-spatial-resources)
-- [RFC #27: trigger resources](#rfc-27-trigger-resources)
-- [RFC #28: notification resources](#rfc-28-notification-resources)
-
+    - [RFC #24: resources v2](#rfc-24-resources-v2)
+    - [RFC #26: artifact resources](#rfc-26-artifact-resources)
+    - [RFC #31: `set_pipeline` step](#rfc-31-set_pipeline-step)
+    - [RFC #32: projects](#rfc-32-projects)
+    - [RFC #33: archiving pipelines](#rfc-33-archiving-pipelines)
+    - [RFC #34: instanced pipelines](#rfc-34-instanced-pipelines)
+    - [RFC #29: spatial resources](#rfc-29-spatial-resources)
+    - [RFC #27: trigger resources](#rfc-27-trigger-resources)
+    - [RFC #28: notification resources](#rfc-28-notification-resources)
 4. [What comes after all this?](#what-comes-after-all-this)
 5. [Thanks!](#thanks)
 
-# Where is 'spaces'?
+## Where is 'spaces'?
 
 For those of you not familiar with [spaces](https://github.com/concourse/concourse/issues/1707), it was a big ol'
 feature that enabled the following workflows:
@@ -76,13 +72,16 @@ But as time went on it became terrifying. It was a double-or-nothing bet. Either
 spaces' didn't make sense at all. I tried to carve out work that could be done before fully committing to spaces, but it
 didn't make the monolithic feature any less monolithic.
 
-{{< image src="/images/2019/07/scaredy-cat-2.gif" alt="me vs the space dragon" width="25%" >}}
+![](assets/2019-07-17-core-roadmap-towards-v10-01.gif)
+/// caption
 
-# Where are we now?
+///
+
+## Where are we now?
 
 First off, I want to give a quick update on a couple of big things that you can expect in v6.0:
 
-## [Issue #3602](https://github.com/concourse/concourse/issues/3602): a new algorithm
+### [Issue #3602](https://github.com/concourse/concourse/issues/3602): a new algorithm
 
 _We are re-designing the algorithm used for determining the candidate input versions for a job. The new approach will
 rely less on brute force and will perform better with large installations._
@@ -95,12 +94,12 @@ multiple inputs depend on the same job:
 
 ```yaml
 plan:
-- get: foo
-  passed: [foo-unit, integration]
-- get: bar
-  passed: [bar-unit, integration]
-- get: baz
-  passed: [integration]
+  - get: foo
+    passed: [ foo-unit, integration ]
+  - get: bar
+    passed: [ bar-unit, integration ]
+  - get: baz
+    passed: [ integration ]
 ```
 
 In Concourse, this means "give me versions of `foo`, `bar`, and `baz` that have passed through `integration` _together
@@ -132,7 +131,7 @@ We've been testing the old and new algorithm in two separate environments, each 
 We're making a few final touches as we to get as much performance out of the new algorithm as possible, since we don't
 tend to touch it often. Once we're finished, we'll jump straight to...:
 
-## [Issue #413](https://github.com/concourse/concourse/issues/413): build re-triggering
+### [Issue #413](https://github.com/concourse/concourse/issues/413): build re-triggering
 
 _The new algorithm changes the behavior for today's pinning-based flow for re-triggering a build, so we're going to
 implement proper support for build re-triggering and ship these two features together in v6.0._
@@ -158,7 +157,7 @@ build's order.
 Another benefit to implementing re-triggering soon is that folks using a pull request resource will have a much easier
 time re-triggering failed pull requests, without having to wait on the rest of the roadmap (i.e. 'spaces').
 
-# Where are we going?
+## Where are we going?
 
 So, going back to the 'spaces' initiative. The pieces really started to fall into place over the past few months, and I
 think I've arrived at a roadmap that accomplishes all of the goals of 'spaces' but in a significantly more Concourse-y
@@ -169,7 +168,7 @@ be delivered in any order. As we complete them, a bigger picture will start to t
 
 Let's jump right in!
 
-## [RFC #24](https://github.com/concourse/rfcs/pull/24): resources v2
+### [RFC #24](https://github.com/concourse/rfcs/pull/24): resources v2
 
 _Resources v2 is the first major revision of the resource interface since Concourse's inception. It's a step to take
 very carefully. I think we're finally ready to go._
@@ -199,7 +198,7 @@ Now that 'spaces' is gone from the interface, the actual change in the interface
 result, Concourse pipelines will be able to use v1 and v2 resources side-by-side for all the same functionality. This
 way we can move forward with pipeline-level resource features without fragmenting the resource ecosystem!
 
-## [RFC #26](https://github.com/concourse/rfcs/pull/26): artifact resources
+### [RFC #26](https://github.com/concourse/rfcs/pull/26): artifact resources
 
 _Artifact resources are an interpretation of the generic resource interface that maps to today's usage of the resource
 interface._
@@ -225,7 +224,7 @@ many [knobs](https://github.com/concourse/concourse/wiki/Anti-Patterns#knobs) to
 This RFC will provide a backwards-compatible transition path to artifact resources. Check
 out [RFC #26](https://github.com/concourse/rfcs/pull/26) for more details!
 
-## [RFC #31](https://github.com/concourse/rfcs/pull/31): `set_pipeline` step
+### [RFC #31](https://github.com/concourse/rfcs/pull/31): `set_pipeline` step
 
 _The first step on our journey towards 'spaces' is to introduce a simple, but critical piece of the puzzle:
 a `set_pipeline` step._
@@ -234,12 +233,12 @@ The `set_pipeline` step is used like so:
 
 ```yaml
 jobs:
-- name: bootstrap
-  plan:
-  - get: ci
-    trigger: true
-  - set_pipeline: concourse
-    file: ci/pipelines/concourse.yml
+  - name: bootstrap
+    plan:
+      - get: ci
+        trigger: true
+      - set_pipeline: concourse
+        file: ci/pipelines/concourse.yml
 ```
 
 This job will configure a `concourse` pipeline within the job's team. The pipeline will be automatically unpaused, and
@@ -255,14 +254,14 @@ problems:
 With the `set_pipeline` step, both of these problems immediately go away and pipelines start to feel a more first-class
 rather than just being the tip of the abstraction iceberg.
 
-## [RFC #32](https://github.com/concourse/rfcs/pull/32): projects
+### [RFC #32](https://github.com/concourse/rfcs/pull/32): projects
 
 Ok, I promised to provide a tl;dr for each roadmap entry, but projects can't really be summed up that easily. This is
 the most impactful feature on this roadmap.
 
-- _A "project" is a new concept bootstrapped by two existing ones: a [resource](https://concourse-ci.org/resources.html)
+- _A "project" is a new concept bootstrapped by two existing ones: a [resource][resources]
   from which to continuously load the project's config, which specifies
-  a [build plan](https://concourse-ci.org/steps.html) to execute whenever the project resource changes._
+  a [build plan][build] to execute whenever the project resource changes._
 - _Projects act as a namespace for pipelines, and provide a long-requested workflow for automating their configuration.
   As the roadmap goes on, this workflow becomes more and more powerful._
 - _Projects allow you to define project-wide resources which let you clean up duplicate definitions across your
@@ -270,15 +269,19 @@ the most impactful feature on this roadmap.
 - _Projects also define project-wide tasks, which remove the need to thread a resource through all your jobs just to
   have the task configs to execute, and finally gives meaning to task names (the `x` in `task: x`)._
 
+[resources]: ../../../../docs/resources/index.md
+
+[build]: ../../../../docs/builds.md
+
 A project's build plan can be used for anything you want. Small projects could use the build plan to run tests and/or
 perform various steps in a single build - a workflow more familiar to users of other CI systems:
 
 ```yaml
 name: ci
 plan:
-- get: booklit
-  trigger: true
-- task: unit
+  - get: booklit
+    trigger: true
+  - task: unit
 ```
 
 Larger projects could use the build plan to execute `set_pipeline` steps. Concourse has long encouraged users to keep
@@ -288,7 +291,7 @@ users would often forget to check in their changes. Projects will fix that:
 ```yaml
 name: ci
 plan:
-- set_pipeline: booklit
+  - set_pipeline: booklit
 ```
 
 Small projects may start without pipelines and start using pipelines as they grow. Our original slogan, 'CI that scales
@@ -299,14 +302,16 @@ side-projects.
 This feature will have far-reaching implications for Concourse, so it won't be sneaking in quietly. I've
 opened [RFC #32](https://github.com/concourse/rfcs/pull/32) and would really appreciate feedback!
 
-## [RFC #33](https://github.com/concourse/rfcs/pull/33): archiving pipelines
+### [RFC #33](https://github.com/concourse/rfcs/pull/33): archiving pipelines
 
 _Archiving pipelines is a way to soft-delete a pipeline while still being able to peruse the build history for a
 pipeline you no longer want._
 
 Well, after that bombshell this one's pretty easy to explain. Let's take a look at our own Concourse team's pipelines:
 
-{{< image src="/images/2019/07/Screenshot-from-2019-07-16-11-49-33.png" width="100%" >}}
+![](assets/2019-07-17-core-roadmap-towards-v10-02.png)
+/// caption
+///
 
 Look at all that cruft! So many old, paused or bit-rotting pipelines which I really don't care about anymore but don't
 really have the heart to delete. That `old-concourse` pipeline served us well for years - it has sentimental value. In
@@ -320,7 +325,7 @@ There's already an open pull request for this: [#2518](https://github.com/concou
 to [@tkellen](https://github.com/tkellen)! The ball has been in our court for a while to figure out the UI/UX, so we're
 just going to submit a new RFC and work out all the details.
 
-## [RFC #34](https://github.com/concourse/rfcs/pull/34): instanced pipelines
+### [RFC #34](https://github.com/concourse/rfcs/pull/34): instanced pipelines
 
 _Instanced pipelines group together pipelines which share a common template configured with different `((vars))`. They
 provide a simple two-level hierarchy and automatic archiving of instances which are no longer needed._
@@ -333,12 +338,12 @@ Pipeline instances are created using the `set_pipeline` step like so:
 
 ```yaml
 plan:
-- set_pipeline: branch
-  instance_vars:
-    branch: feature/projects
-- set_pipeline: branch
-  instance_vars:
-    branch: feature/new-algorithm
+  - set_pipeline: branch
+    instance_vars:
+      branch: feature/projects
+  - set_pipeline: branch
+    instance_vars:
+      branch: feature/new-algorithm
 ```
 
 At the end of a build which uses `set_pipeline`, all instances of the named pipelines which were not configured by the
@@ -346,7 +351,7 @@ build will be automatically archived.
 
 Check out [RFC #34](https://github.com/concourse/rfcs/pull/34) for more details!
 
-## [RFC #29](https://github.com/concourse/rfcs/pull/29): spatial resources
+### [RFC #29](https://github.com/concourse/rfcs/pull/29): spatial resources
 
 _Spatial resources are resources whose `check` monitors spatial change, not change over time. Two common examples are
 the set of branches or open pull requests for a repo. The `across` step allows a build to process each 'space' and
@@ -365,12 +370,12 @@ Let's first look at a simple use case, which is to execute a task across many va
 
 ```yaml
 plan:
-# ...
-- across: supported-go-versions
-  as: go
-  do:
-  - task: unit
-    image: go
+  # ...
+  - across: supported-go-versions
+    as: go
+    do:
+      - task: unit
+        image: go
 ```
 
 In this case, imagine we have a `supported-go-versions` resource whose `check` returns a config fragment for each tag
@@ -381,30 +386,30 @@ When nested, the `across` step enables dynamic build matrices:
 
 ```yaml
 plan:
-# ...
-- across: supported-go-versions
-  as: go
-  do: # needed so we can define another 'across'
-  - across: other-things
-    as: some-input
-    task: unit
-    image: go
+  # ...
+  - across: supported-go-versions
+    as: go
+    do: # needed so we can define another 'across'
+      - across: other-things
+        as: some-input
+        task: unit
+        image: go
 ```
 
 When used with `set_pipeline` and instanced pipelines, it enables dynamic _pipeline_ matrices:
 
 ```yaml
 plan:
-- across: repo-branches
-  as: repo-branch
-  set_pipeline: branch
-  instance_vars:
-    branch_name: ((repo-branch.name))
+  - across: repo-branches
+    as: repo-branch
+    set_pipeline: branch
+    instance_vars:
+      branch_name: ((repo-branch.name))
 ```
 
 (Assuming we provide the ability to access fields of an artifact with `((vars))`.)
 
-## [RFC #27](https://github.com/concourse/rfcs/pull/27): trigger resources
+### [RFC #27](https://github.com/concourse/rfcs/pull/27): trigger resources
 
 _Trigger resources allow jobs to specify parameters that can trigger new builds but don't have anything to fetch - they
 just propagate config fragments to the build._
@@ -419,10 +424,10 @@ Rough sketch:
 
 ```yaml
 jobs:
-- name: smoke-test
-  plan:
-  - param: 10m
-    trigger: true
+  - name: smoke-test
+    plan:
+      - param: 10m
+        trigger: true
 ```
 
 Semantically, `param` is similar to `get` but with one key difference: there is no central version history. Rather than
@@ -439,10 +444,10 @@ Here's one idea of what that may look like, where the config fragments returned 
 
 ```yaml
 plan:
-- param: environment
-- task: smoke-test
-  vars:
-    environment: ((environment.name))
+  - param: environment
+  - task: smoke-test
+    vars:
+      environment: ((environment.name))
 ```
 
 Another interesting use case would be to use it as a `instance_fragment` with the `set_pipeline` step.
@@ -450,7 +455,7 @@ Another interesting use case would be to use it as a `instance_fragment` with th
 This idea is pretty half-baked - I've been mainly focusing on the 'spatial resources' idea. Follow along in
 the [RFC #27](https://github.com/concourse/rfcs/pull/27) and help the idea develop!
 
-## [RFC #28](https://github.com/concourse/rfcs/pull/28): notification resources
+### [RFC #28](https://github.com/concourse/rfcs/pull/28): notification resources
 
 _Notification resources will allow you to monitor the flow of a resource through your pipeline and emit build status
 notifications (e.g. Slack alerts, GitHub commit status) without having to sprinkle `put` steps all over your pipeline._
@@ -462,12 +467,21 @@ If so, you're probably aware of how ugly it can make your pipelines, both in YAM
 
 A simple pipeline quickly turns into a mess of boxes and lines:
 
-{{< image src="/images/2019/07/before-notifications-1.png" width="100%" >}}
-{{< image src="/images/2019/07/after-notifications.png" alt="a simple pipeline before and after notifications were
-added" width="100%" >}}
+<div style="display: grid; grid-template-columns: 60.5% 39.5%; column-gap: 10px" markdown>
+<div markdown>
+![](assets/2019-07-17-core-roadmap-towards-v10-03.png)
+</div>
+<div markdown>
+![](assets/2019-07-17-core-roadmap-towards-v10-04.png)
+</div>
+</div>
+
+/// caption
+a simple pipeline before and after notifications were added
+///
 
 Not only is it a lot of manual work to copy-paste those `on_success` and `on_failure` hooks, when you finally configure
-it it really ruins the signal-to-noise ratio of the pipeline UI.
+it, it really ruins the signal-to-noise ratio of the pipeline UI.
 
 So, the plan for notification resources is to leverage _composition_, a pattern set forth in
 the [Resources v2 RFC (#24)](https://github.com/concourse/rfcs/pull/24). Instead of annotating every single job, you
@@ -480,7 +494,7 @@ This way you don't have to update all of your jobs, and notifications don't clut
 This idea is _also_ a bit half-baked - follow along in [RFC #28](https://github.com/concourse/rfcs/pull/28) when you
 have time!
 
-# What comes after all this?
+## What comes after all this?
 
 I dunno.
 
@@ -501,7 +515,7 @@ We will continue to listen to user feedback and improve Concourse. Our goal is f
 prevent anti-patterns that we can identify in workflows across the industry. Thankfully patterns don't change as
 frequently as tools do.
 
-## Thanks!
+### Thanks!
 
 Everything I've outlined here comes from years of feedback through all of your GitHub issues, forum posts, and
 conversations in Discord (or Slack for you OGs). I'm very thankful for those of you that have stuck around and helped us

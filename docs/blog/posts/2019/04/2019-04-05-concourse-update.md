@@ -7,8 +7,10 @@ authors:
   - jamesma
 ---
 
-{{< image src="/images/downloaded_images/Concourse-Update--April-1-5-/1-nZQ4xbWXguDpNQzLEkcJcA.jpeg" alt="Concourse in
-action at the CF Summit 2019 Grape Up booth" width="50%" >}}
+![](assets/2019-04-05-concourse-update-01.jpg)
+/// caption
+Concourse in action at the CF Summit 2019 Grape Up booth
+///
 
 <!-- more -->
 
@@ -29,8 +31,10 @@ On to the update.
 
 ## Coming Soon: Concourse 5.1.0
 
-{{< image src="/images/downloaded_images/Concourse-Update--April-1-5-/1-dEssJTEo9_VnNszNDUj6gQ.png" alt="Icons on
-resources" width="100%" >}}
+![](assets/2019-04-05-concourse-update-02.png)
+/// caption
+Icons on resources
+///
 
 We’re in the process of polishing up some items that we weren’t quite able to zfit into the 5.0.0 release. There’s been
 also some interesting new features and new PRs that you can look forward to in 5.1.0 as well:
@@ -42,6 +46,6 @@ also some interesting new features and new PRs that you can look forward to in 5
 - There’s been a great de-coupling of the API from the runtime &
   scheduler [#3307](https://github.com/concourse/concourse/pull/3307). This is a refactor and cleanup that brings us
   closer to an API that we’d be happy to publish and support.
-- Introduced an on\_error option to allow outside sources to be notified of CI
+- Introduced an `on_error` option to allow outside sources to be notified of CI
   failure [#3652](https://github.com/concourse/concourse/pull/3652) thanks to
   contributor [amanw](https://github.com/amanw)

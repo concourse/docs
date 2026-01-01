@@ -1,13 +1,15 @@
 ---
 title: Concourse 2024 in Review
-date: 2025-01-06
+date: 
+  created: 2025-01-06
+  updated: 2025-05-14
 authors:
   - tsilva
 ---
 
-Hey Concourse community, it’s been a while since a blog post was made. My name is Taylor Silva and I’m the current lead
-maintainer of the project. I have fallen into this role for historical (was on the Concourse team at Pivotal starting in
-2019) and personal reasons (still using Concourse at my day job). I really like using Concourse and I haven't found
+Hey Concourse community, it’s been a while since a blog post was made. My name is Taylor Silva, and I’m the current lead
+maintainer of the project. I have fallen into this role for historical (was on the Concourse team at Pivotal starting
+in 2019) and personal reasons (still using Concourse at my day job). I really like using Concourse and I haven't found
 another tool that works as well as Concourse does, that's why I've stuck around.
 
 <!-- more -->
@@ -74,8 +76,8 @@ There might also be a v8 release this year to bundle together some larger change
 runtime to containerd. There's also a milestone for this.
 
 I am also going to declare **Issue Bankruptcy**. There are over 700 issues in the
-main [concourse/concourse](https://github.com/concourse/concourse/) repo which is completely unmanageable. I want to get
-the number of open issues down to less than 100. I will keep more recent ones open and anything that's an obvious
+main [`concourse/concourse`](https://github.com/concourse/concourse/) repo which is completely unmanageable. I want to
+get the number of open issues down to less than 100. I will keep more recent ones open and anything that's an obvious
 feature request or bug that could reasonably be done open as well. If I can't grok the issue within a few seconds of
 looking at it, it's getting closed.
 

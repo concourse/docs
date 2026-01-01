@@ -60,7 +60,7 @@ resources:
 ```
 
 Every resource definition has a `type` and a `source`. The _type_ denotes the resource type - i.e. the implementation of
-the [Concourse resource interface](https://concourse-ci.org/implementing-resource-types.html) to use. The _source_
+the [Concourse resource interface](../../../../docs/resource-types/implementing.md) to use. The _source_
 represents the location of the resource, i.e. the source of versions. This configuration is interpreted by the resource
 type, and is a black box to Concourse.
 
@@ -96,7 +96,7 @@ way down!
 A resource type that fits the original design of resources implements the following semantics:
 
 - `check` queries the external source of truth to find new versions of the object.
-- `in` reads from the external source of truth and and always produces the same bits for the same version and `params`.
+- `in` reads from the external source of truth and always produces the same bits for the same version and `params`.
 - `out` writes to the external source of truth if necessary based on the given bits and `params`. Any version emitted by
   `out` can also be found by `check`.
 
@@ -107,7 +107,10 @@ the event of a conflict.
 
 ## When is a resource type not a _resource_ type?
 
-{{< image src="/images/2019/10/image-3.png" alt="the treachery of container images" width="40%" >}}
+![](assets/2019-10-15-reinventing-resource-types-01.png)
+/// caption
+the treachery of container images
+///
 
 Resource types should always implement `check` and `in`. Being able to find and fetch versions is what makes a resource
 a [resource](https://www.merriam-webster.com/dictionary/resource). Some resource types, however, only implement `out`.
@@ -252,7 +255,9 @@ to use as resource types.
 
 ## Bridging the gap
 
-{{< image src="/images/2019/10/image-1.png" width="100%" >}}
+![](assets/2019-10-15-reinventing-resource-types-02.png)
+/// caption
+///
 
 Let's hone in on the reason why resource types don't work for every use case: they have a particular set of actions
 which have particular semantics because they're built for a particular Concourse use case: resources.
@@ -274,7 +279,9 @@ After much deliberation, I decided to call these things **prototypes**. This nam
 object-oriented languages like JavaScript, [Self](http://www.selflanguage.org/), and [Io](https://iolanguage.org/).
 Conveniently enough, it still has "type" in the name, so all those `type:` fields on resources still make sense!
 
-{{< image src="/images/2019/10/image-2.png" width="100%" >}}
+![](assets/2019-10-15-reinventing-resource-types-03.png)
+/// caption
+///
 
 The next change in my fork of RFC #24 was to adjust the terminology. Now that the interface was so open-ended, I wanted
 to build a solid mental model so that prototype authors would have an idea of how prototypes are meant to be designed. I
@@ -350,8 +357,8 @@ using a `put` step, with no abstractions being abused and no surprising behavior
 ## How does this impact the roadmap?
 
 Through all of this, the only thing I've really added to the roadmap is the `run` step. Everything else is a lateral
-move; instead of using 'generalized resources' for spatial resources, notifications, and triggers, we would use '
-prototypes' instead.
+move; instead of using 'generalized resources' for spatial resources, notifications, and triggers, we would use 
+'prototypes' instead.
 
 I think the larger impact will be on future roadmaps. With a more flexible model at our disposal we can shorten the path
 from identifying a common workflow and implementing richer pipeline semantics for it. Concourse becomes a "language of

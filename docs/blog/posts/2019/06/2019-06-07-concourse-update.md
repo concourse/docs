@@ -2,15 +2,20 @@
 title: Concourse Update June 7
 date: 2019-06-07
 categories:
-- product-update
+  - product-update
 authors:
   - jamesma
 ---
 
-...and we’re back! Apologies for the lack of updates lately. I’ve just come back from some time off and work travel has
-taken up a lot of my time. I’m back in Toronto now so let’s get back into it.
+![](assets/2019-06-07-concourse-update-01.jpg)
+/// caption
+YYZ on a cloudy day
+///
 
 <!-- more -->
+
+...and we’re back! Apologies for the lack of updates lately. I’ve just come back from some time off and work travel has
+taken up a lot of my time. I’m back in Toronto now so let’s get back into it.
 
 ## Release Engineering & Concourse 5.3.0
 
@@ -57,8 +62,8 @@ We have two RFCs in flight, please take some time to read through the changes:
   types with concourse. The change would require Concourse to pull the base resource types on-demand at runtime. This is
   required for moving establishing a more generic storage interface.
 
-You’ll also note that we’ve created a architecture-rfcs repo. This repository is reserved for internal RFCs that should
-not directly impact a Concourse user.
+You’ll also note that we’ve created a `architecture-rfcs` repo. This repository is reserved for internal RFCs that
+should not directly impact a Concourse user.
 
 ## Duty Free
 
@@ -68,7 +73,7 @@ highlight community resources and other re-usable Concourse artifacts for our co
 resources through the [Resources page in our wiki](https://github.com/concourse/concourse/wiki/Resource-Types), but a
 dedicated Concourse Duty Free site would have a lot more pizzaz.
 
-We’ve always wanted to build Duty Free but we were never been able to figure out how to slot it into our work schedule.
+We’ve always wanted to build Duty Free, but we were never able to figure out how to slot it into our work schedule.
 Thankfully, the Pivotal team out in Dublin had some time and offered to help kick-start the project for us. We’re still
 in the very early stages of development and design, but you can follow along the project on their GitHub repo
-here: [concourse/dutyfree](https://github.com/concourse/dutyfree)
+here: [`concourse/dutyfree`](https://github.com/concourse/dutyfree)

@@ -10,8 +10,8 @@ So you want to run Docker in Concourse? Well this is the guide for you!
 
 <!-- more -->
 
-Let' clarify what it is we want to do. **We want to be able to run `docker-compose` inside a task in Concourse to bring
-up our application along side some other services (i.e. Redis, Postgres, MySQL, etc.).**
+Let's clarify what it is we want to do. **We want to be able to run `docker-compose` inside a task in Concourse to bring
+up our application alongside some other services (i.e. Redis, Postgres, MySQL, etc.).**
 
 Thankfully this challenge has been solved by the community! There are a few "Docker-in-Docker" images designed to run in
 Concourse that are maintained by the community. Here's a short list made from a cursory search, in no particular order:
@@ -28,8 +28,8 @@ bits of information that are useful to know when using these task images.
 
 ## Privileged Tasks
 
-Running Docker inside Concourse requires the [task step](https://concourse-ci.org/jobs.html#schema.step.task-step.task)
-to be [privileged](https://concourse-ci.org/jobs.html#schema.step.task-step.privileged) because Docker needs access to
+Running Docker inside Concourse requires the [task step](../../../../docs/steps/task.md)
+to be [privileged](../../../../docs/steps/task.md) because Docker needs access to
 the hosts cgroup filesystem in order to create containers.
 
 You can verify this by looking at the bash scripts for each of the above images which all take inspiration from
@@ -44,10 +44,10 @@ should externalize these as [image resources](https://github.com/concourse/regis
 dependency of your application (e.g. Postgres, MySQL).
 
 For the container image that contains your application you should have that built in a
-previous [step](https://concourse-ci.org/jobs.html#schema.step)
-or [job](https://concourse-ci.org/pipelines.html#schema.pipeline.jobs). You
+previous [step](../../../../docs/steps/index.md)
+or [job](../../../../docs/jobs.md). You
 can [build and publish an image](../06/2020-06-19-how-to-build-and-publish-a-container-image.md) using
-the [oci-build task](https://github.com/vito/oci-build-task).
+the [oci-build task](https://github.com/concourse/oci-build-task).
 
 To ensure Docker doesn't try to fetch the images itself you can use [
 `docker load`](https://docs.docker.com/engine/reference/commandline/load/) and [
