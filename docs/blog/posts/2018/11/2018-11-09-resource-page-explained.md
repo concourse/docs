@@ -2,7 +2,7 @@
 title: Concourse Resource Page Explained
 date: 2018-11-09
 authors:
-  - lauchinachie
+  - jklassen
 links:
   - blog/posts/2018/08/2018-08-17-pipeline-ui-explained.md
   - blog/posts/2018/08/2018-08-30-build-page-explained.md
