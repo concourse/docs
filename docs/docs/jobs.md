@@ -136,10 +136,6 @@ A pipeline's jobs are listed under [`pipeline.jobs`](pipelines/index.md#pipeline
         where f means failed and s means succeeded, then builds 2 and 3 will be reaped, because it retains 5 build logs,
         and at least 1 succeeded build log. Default is 0.
 
-??? info "**`build_logs_to_retain`**: [`number`](config-basics.md#number-schema)"
-
-    _Deprecated_. Equivalent to setting [`job.build_log_retention.builds`](#build_log_retention_policy-schema).
-
 ??? info "`public`: [`boolean`](config-basics.md#boolean-schema)"
 
     _Default `false`_. If set to `true`, the build log of this job will be viewable by unauthenticated users. 
