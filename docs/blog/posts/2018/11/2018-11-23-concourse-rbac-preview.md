@@ -5,7 +5,11 @@ authors:
   - jamesma
 ---
 
-{{< image src="/images/downloaded_images/Concourse-RBAC-Preview/0-oy1M_w9ksoAje2LR.jpg" width="50%" >}}
+![](assets/2018-11-23-concourse-rbac-preview-01.jpg)
+/// caption
+By Danpaluska — Own work,
+CC0, [https://commons.wikimedia.org/w/index.php?curid=17686969](https://commons.wikimedia.org/w/index.php?curid=17686969)
+///
 
 <!-- more -->
 
@@ -22,12 +26,12 @@ Concourse 5.0 will come with 4 roles: Concourse Admin, Team Owner, Team Member, 
 
 ### Concourse Admin
 
-A Concourse Admin is the same as today’s [admin user](https://concourse-ci.org/main-team.html). Members of main team
-will automatically be Concourse Admins* and have the ability to administrate teams with fly: set-team, destroy-team,
-rename-team, and teams. Given that all Concourse Admins must be a member of the main team, all Concourse Admins must
-have at least one other role; and that should typically be the Team Owner role.
+A Concourse Admin is the same as today’s [admin user](https://concourse-ci.org/main-team.html). Members of `main` team
+will automatically be Concourse Admins* and have the ability to administrate teams with `fly`: `set-team`,
+`destroy-team`, `rename-team`, and `teams`. Given that all Concourse Admins must be a member of the main team, all
+Concourse Admins must have at least one other role; and that should typically be the Team Owner role.
 
-_* There’s an open issue to restrict this grant to Team Owners on main
+_* There’s an open issue to restrict this grant to Team Owners on `main`
 in [#2846](https://github.com/concourse/concourse/issues/2846)_
 
 ### Team Owner
@@ -44,21 +48,21 @@ changing the auth configurations of their team.
 ### Team Viewer
 
 Team Viewer is also a new role that gives users “read-only” access to a team. This locks everything down, preventing
-users from doing a set-pipeline or hijack.
+users from doing a `set-pipeline` or `hijack`.
 
 ### Other Roles
 
-We considered other role types while developing this feature; including roles that would specifically prevent intercept
-and abort. We ultimately decided that our current configuration made more sense for the first release of RBAC.
-Ultimately every organization will have different needs for their access control, so we are also planning for a future
-where users can supply their own customized roles & permissions matrix.
+We considered other role types while developing this feature; including roles that would specifically prevent
+`intercept` and `abort`. We ultimately decided that our current configuration made more sense for the first release of
+RBAC. Ultimately every organization will have different needs for their access control, so we are also planning for a
+future where users can supply their own customized roles & permissions matrix.
 
 ### Full Roles Breakdown
 
 For a full list of each role’s allowed actions you can reference our handy permission matrix on Google
 Sheets [here](https://docs.google.com/spreadsheets/d/1np3hyJy3mVRfB2gcgKykz3QTQg5qEj28QgK523SEmao/edit#gid=1437859537).
 
-## Configuring Roles with fly
+## Configuring Roles with `fly`
 
 Now that we’ve gone over the new roles, we can do a quick overview of how we can go about setting users & roles on
 teams.
@@ -67,23 +71,23 @@ teams.
 
 By default, if no configuration is provided the user is given theTeam Owner role:
 
-```shell-session
+```shell
 fly -t dev set-team -n PowerRangers --local-user=Zordon
 ```
 
 This behaviour also applies to groups as well, so be careful!
 
-```shell-session
+```shell
 fly -t dev set-team -n A-Team \
   --github-team=MightyMorphin:PowerRangers
 ```
 
 ### Specifying Roles with `-c`
 
-Roles must be specified in a separate configuration file using the -c
+Roles must be specified in a separate configuration file using the `-c`
 
-```shell-session
-    fly -t dev set-team -n PowerTeam -c ./team.yml
+```shell
+fly -t dev set-team -n PowerTeam -c ./team.yml
 ```
 
 `team.yml`:
@@ -103,9 +107,9 @@ roles:
 
 ### Inspecting Roles Configuration
 
-Once you’ve set the team configuration you can verify it using the details flag on fly teams:
+Once you’ve set the team configuration you can verify it using the details flag on `fly teams`:
 
-```shell-session
+```shell
 fly -t dev teams -d
 
 name users groups
@@ -114,14 +118,14 @@ A-Team/owner local:Zordon none
 A-Team/viewer local:Alpha none
 ```
 
-...where you’ll find the output is now updated to list each team/role combination and its associated users/groups.
+...where you’ll find the output is now updated to list each `team/role` combination and its associated users/groups.
 
 ## What’s left?
 
 And that’s RBAC in a nutshell! We’re really excited to get this in your hands in our upcoming release of Concourse.
 There’s only a few more issues that we want to finish off before releasing this feature, specifically:
 
-- [#2846](https://github.com/concourse/concourse/issues/2846) Admin users should be restricted to members of the main
-  team with the owner role. This is so you don’t get weird cases of a Team Viewer on main getting Admin access
+- [#2846](https://github.com/concourse/concourse/issues/2846) Admin users should be restricted to members of the `main`
+  team with the `owner` role. This is so you don’t get weird cases of a Team Viewer on `main` getting Admin access
 - [#2843](https://github.com/concourse/concourse/issues/2843) Dashboard team labels updated to display User Role. We
   need this otherwise users on the Web UI have no idea what they can / can’t do

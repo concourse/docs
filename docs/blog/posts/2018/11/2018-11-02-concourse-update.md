@@ -1,5 +1,5 @@
 ---
-title: Concourse Update (Oct 29— Nov 2)
+title: Concourse Update (Oct 29 — Nov 2)
 date: 2018-11-02
 categories:
 - product-update
@@ -7,8 +7,10 @@ authors:
   - jamesma
 ---
 
-{{< image src="/images/downloaded_images/Concourse-Update--Oct-29--Nov-2-/1-7C_nS91OafAnN5DWBtN4SA.jpeg" alt="The
-Concourse team’s big yoga ball has returned to its rightful home" width="50%" >}}
+![](assets/2018-11-02-concourse-update-01.jpg)
+/// caption
+The Concourse team’s big yoga ball has returned to its rightful home
+///
 
 <!-- more -->
 
@@ -18,27 +20,27 @@ rebalancing [#2748](https://github.com/concourse/concourse/pull/2748). The numbe
 
 On to the update:
 
-### API
+## API
 
 - We’re deep into investigations around our API documentation and management strategy. Our current investigation work is
   captured in [#2739](https://github.com/concourse/concourse/issues/2739) but the original request comes
   from [#1122](https://github.com/concourse/concourse/issues/1122)
 
-### Core
+## Core
 
 - SPACCEEEE [#2651](https://github.com/concourse/concourse/pull/2651)
 
-### UX
+## UX
 
 - Continuing our work on supporting pinning of versions on resources from the UI. You can see some of our progress
   on [#2508](https://github.com/concourse/concourse/pull/2508)
 
-### Runtime
+## Runtime
 
 - Continuing our work on [#2676](https://github.com/concourse/concourse/pull/2676)
   and [#1266](https://github.com/concourse/concourse/pull/1266)
 
-### Operations
+## Operations
 
 - Adding jobs to our pipeline to better support the Concourse Helm
   Chart [#2743](https://github.com/concourse/concourse/pull/2743)
