@@ -5,9 +5,10 @@ authors:
   - asuraci
 ---
 
-### Or, “why we haven’t shipped any new features since September.”
-
-{{< image src="/images/downloaded_images/The-Great-Process-Update-of-2018/1-Fdk1aihMwmllUR7HOBp2kg.jpeg" width="80%" >}}
+![](assets/2018-12-20-the-great-process-update-of-2018-01.jpg)
+/// caption
+Source: [pixabay.com](https://pixabay.com/en/hangar-jet-aircraft-fighter-81779/)
+///
 
 <!-- more -->
 
@@ -23,8 +24,7 @@ make our future releases even better and bring more depth to our culture and eco
 ## A newly minted process for RFCs
 
 We’ve finally established a process for submitting and accepting RFCs! Head over to
-the [concourse/rfcs](https://github.com/concourse/rfcs)[repo](https://github.com/concourse/rfcs) if you want to check it
-out.
+the [`concourse/rfcs` repo](https://github.com/concourse/rfcs) if you want to check it out.
 
 This new process enables anyone in the community to have a big impact on Concourse’s direction. I’m really looking
 forward to seeing where this goes. We’ll be posting status updates for RFCs on this blog to notify the community of RFCs
@@ -52,8 +52,8 @@ it may have been hindering more than helping.
 So, we’re abandoning the CLA process and instead adopting
 the [Developer Certificate of Origin (“DCO”)](https://developercertificate.org) process. This process is much more
 lightweight, only requiring pull request authors to include a “Signed-off-by:” line in each commit, which can be done
-via git commit -s. More information on this is available
-in [CONTRIBUTING.md](https://github.com/concourse/concourse/blob/master/CONTRIBUTING.md#signing-your-work).
+via `git commit -s`. More information on this is available
+in [`CONTRIBUTING.md`](https://github.com/concourse/concourse/blob/master/CONTRIBUTING.md#signing-your-work).
 
 ## Completing the Great Project Restructuring of 2018
 
@@ -63,14 +63,14 @@ revamp of how we develop, build, test, and ship Concourse. We knew this would be
 would prevent us from shipping for a while, but we really had to bite the bullet at some point.
 
 The focal point of this restructuring: almost all of Concourse’s code now lives in one
-big [concourse](https://github.com/concourse/concourse)[monorepo](https://github.com/concourse/concourse), using the
+big [`concourse`](https://github.com/concourse/concourse)[monorepo](https://github.com/concourse/concourse), using the
 new [Go 1.11 module system](https://github.com/golang/go/wiki/Modules) to track dependencies. We’ve replaced our
 BOSH-centric development and pipeline workflow with a Docker-based workflow which is more intuitive and has a much
 faster feedback cycle.
 
-This means you can now git clone the [Concourse repo](https://github.com/concourse/concourse) and get a cluster built
-from source and running in single command: docker-compose up. It’s never been easier to make changes and test them out
-locally. Check out the new [CONTRIBUTING.](https://github.com/concourse/concourse/blob/master/CONTRIBUTING.md)md for
+This means you can now `git clone` the [Concourse repo](https://github.com/concourse/concourse) and get a cluster built
+from source and running in single command: `docker-compose up`. It’s never been easier to make changes and test them out
+locally. Check out the new [`CONTRIBUTING.md`](https://github.com/concourse/concourse/blob/master/CONTRIBUTING.md) for
 more information!
 
 This change kicked off a ripple effect that improved a ton of things about the developer, contributor, and operator
@@ -78,18 +78,18 @@ experience:
 
 - Now that all the code is together in one repo, cross-cutting changes can now be submitted as a single pull request! 🎊
   Pull requests now trigger acceptance tests too, which is something we couldn’t really do easily before.
-- Resources are now versioned and shipped independently from Concourse versions. Each resource is published as
-  concourse/\<name\>-resource with appropriate tags (e.g. 1.2.3, 1.2, 1, latest, dev). This means you can refer to
-  specific versions when necessary by using resource\_types: in your pipeline. A core set of resource types will still
-  be shipped with Concourse, at whichever version they were when the release was frozen.
-- The concourse repo is no longer a BOSH release; we’ve split it out
+- Resources are now versioned and shipped independently of Concourse versions. Each resource is published as
+  `concourse/<name>-resource` with appropriate tags (e.g. `1.2.3`, `1.2`, `1`, `latest`, `dev`). This means you can
+  refer to specific versions when necessary by using `resource_types:` in your pipeline. A core set of resource types
+  will still be shipped with Concourse, at whichever version they were when the release was frozen.
+- The `concourse` repo is no longer a BOSH release; we’ve split it out
   into [its own repository](https://github.com/concourse/concourse-bosh-release) instead. The new BOSH release simply
   wraps the binary distribution, rather than building from source. This reduces the surface area for support and removes
   any discrepancies between the platforms — everything just uses the binary now! This also makes deploying the BOSH
   release faster because there’s not much to compile.
-- We’ve changed how the concourse executable is packaged. We’re switching to a .tgz format containing the binary and its
-  dependencies, rather than a self-extracting “all-in-one” binary. This results in way fewer moving parts and
-  dramatically reduces concourse worker start-up time.
+- We’ve changed how the `concourse` executable is packaged. We’re switching to a `.tgz` format containing the binary and
+  its dependencies, rather than a self-extracting “all-in-one” binary. This results in way fewer moving parts and
+  dramatically reduces `concourse worker` start-up time.
 
 ## Where are we now?
 

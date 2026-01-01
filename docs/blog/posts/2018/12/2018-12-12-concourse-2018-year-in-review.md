@@ -7,8 +7,11 @@ authors:
   - jamesma
 ---
 
-{{< image src="/images/downloaded_images/Concourse-2018-Year-in-Review/1-pzx9yhOYi-XyEFUgqnxBfw.jpeg" alt="Bernal
-Saborio" width="100%" >}}
+![](assets/2018-12-12-concourse-2018-year-in-review-01.jpg)
+/// caption
+Photo
+credit [Bernal Saborio](https://www.flickr.com/photos/44073224@N04/33616176114/in/photolist-TdxFZm-SH8WTm-2aqo6yg-z82QBm-6KmCaX-9gH3cA-eofDz2-a1Bjoc-PGXk5-74SiMs-5oB8F5-LzZL6b-FwZGKw-ckJ6QN-4pQ5vX-p377Wz-5sN1xV-R29mRu-qkru2a-7gK4pz-a5338m-FN2fGd-c3Meeu-dBqXMh-eww76-6LpBQj-PC1XEc-VrRUsj-pfPYtp-25K9jxH-a1wRsH-cGBE2w-qiF18P-TW5GWL-fasLv2-h48sj6-a1zJv5-a1wRK8-fgA4q2-fgeN6o-oDRQsh-aHxyxB-hTFK5t-fh7uuQ-59SLQv-27kDjy3-fgeNdw-nyhiv-SRrwhV-fh7uHq)
+///
 
 <!-- more -->
 
@@ -71,8 +74,8 @@ S[ergueiFedorov](https://github.com/SergueiFedorov)
 [**concourse/s3-resource:
 **](https://github.com/concourse/s3-resource/graphs/contributors?from=2018-01-01&to=2018-12-12&type=c) [ghostsquad](https://github.com/ghostsquad), [talset](https://github.com/talset), [46bit](https://github.com/46bit), [bandesz](https://github.com/bandesz), [ruurdk](https://github.com/ruurdk)
 
-…and many more. Special thanks to all the contributors who’ve built new resources for Concourse in 2018, contributed to
-the health of resources and also took over old resources.
+...and many more. Special thanks to all the contributors who’ve built new resources for Concourse in 2018, contributed
+to the health of resources and also took over old resources.
 
 ## See you in 2019!
 
