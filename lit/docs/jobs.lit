@@ -153,11 +153,6 @@ following schema:
     }
   }
 
-  \optional-attribute{build_logs_to_retain}{number}{
-    \italic{Deprecated.} Equivalent to setting
-    \reference{schema.build_log_retention_policy.builds}{\code{job.build_log_retention.builds}}.
-  }
-
   \optional-attribute{public}{boolean}{
     \italic{Default \code{false}.} If set to \code{true}, the build log of this
     job will be viewable by unauthenticated users. Unauthenticated users will
