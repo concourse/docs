@@ -465,10 +465,10 @@ decide much on its own.
     The worker can be run with multiple container runtimes -
     \link{containerd}{https://github.com/containerd/containerd/},
     \link{Guardian}{https://github.com/cloudfoundry/guardian}, and
-    \link{Houdini}{https://github.com/vito/houdini} (an experimental and the
-    only runtime for Darwin and Windows). Only \code{containerd} and
-    \code{Guardian} are meant for production use. \code{Guardian} is the
-    default runtime for Concourse.
+    \link{Houdini}{https://github.com/concourse/houdini} (the only runtime for Darwin
+    and Windows). Only \code{containerd} and \code{Guardian} are meant for
+    production use on Linux workers. \code{containerd} is the default runtime
+    for Concourse.
 
     \aside{
       \bold{Note about architecture}: The web node (ATC) talks to all 3
@@ -486,9 +486,15 @@ decide much on its own.
     \section{
       \title{\code{containerd} runtime}
 
-      To use the \code{containerd} runtime manually set the \code{--runtime}
-      (\code{CONCOURSE_RUNTIME}) to \code{containerd} on the \code{concourse
-      worker} command.
+      Containerd is currently the default runtime for Concourse. It can also be
+      set by setting the \code{--runtime} (\code{CONCOURSE_RUNTIME}) flag to
+      \code{containerd} on the \code{concourse worker} command.
+
+      \warn{
+        Prior to v8.0.0 of Concourse, \code{containerd} was NOT the default
+        runtime. \code{guardian} is the default runtime for all versions prior
+        to v8.0.0.
+      }
 
       The following is a list of the \code{containerd} runtime specific flags
       for Concourse that can be set. They are all optional and have default
@@ -619,9 +625,15 @@ decide much on its own.
     \section{
       \title{\code{Guardian} runtime}
 
-      Guardian is currently the default runtime for Concourse. It can also be
-      set by setting the \code{--runtime} flag to \code{guardian} on the
-      \code{concourse worker} command.
+      To use the \code{guardian} runtime manually set the \code{--runtime}
+      (\code{CONCOURSE_RUNTIME}) to \code{guardian} on the \code{concourse
+      worker} command.
+
+      \warn{
+        Prior to v8.0.0 of Concourse, \code{guardian} was the default runtime.
+        All versions of Concourse >= v8.0.0 now use \code{containerd} as the
+        default runtime.
+      }
 
       The \code{concourse worker} command automatically configures and runs
       \code{Guardian} using the \code{gdn} binary, but depending on the
