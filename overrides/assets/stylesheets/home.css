@@ -1,0 +1,190 @@
+
+body {
+    background-image: url('../images/concourse-pattern.svg');
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.centered-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.side-by-side {
+    background-color: rgba(
+            255,
+            255,
+            255,
+            0.2
+    );
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.9);
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0 4%;
+    padding: 3em 1.5em;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+}
+
+.side-by-side .segment {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding: 10px;
+}
+
+.splash-intro {
+    color: #efeeee;
+}
+
+.splash-intro p {
+    font-size: 1rem;
+}
+
+.splash-intro h1 {
+    font-size: xx-large;
+    font-weight: bold;
+    color: #efeeee;
+}
+
+.splash-intro > * > .text-links {
+    text-decoration: underline !important;
+    color: #efeeee;
+}
+
+.splash-intro > * > .text-links:hover {
+    color: #efeeee;
+}
+
+.quick-start {
+    width: fit-content;
+    flex-grow: 0;
+}
+
+.splash-downloads {
+    background: #2a2929;
+    justify-self: stretch;
+    position: relative;
+}
+
+/* Initially set downloads to hidden */
+.segment.splash-downloads {
+    display: none;
+}
+
+.split-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: absolute;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #ddd
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.md-button.download-dropdown-btn:hover {
+    border-left: 1px solid white
+}
+
+.download-btn, .download-dropdown-btn {
+    height: 3em;
+}
+
+.download-dropdown-btn {
+    width: fit-content;
+}
+
+.md-button.download-btn {
+    border-radius: 1em 0 0 1em;
+}
+
+.md-button.download-dropdown-btn {
+    border-radius: 0 1em 1em 0;
+    border-left: 1px solid white
+}
+
+.download-ctr {
+    display: grid;
+    grid-template-columns: 0.75fr 1.25fr;
+}
+
+.std-flex-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em;
+}
+
+.std-flex-box > div > .tool-select {
+    width: 17em;
+    height: 2em;
+}
+
+#release-text {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.splash-split {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    margin: 1.5em 1em;
+    color: white;
+}
+
+.quick-start-download {
+    display: flex;
+    justify-content: space-between;
+    width: 18rem;
+}
+
+@media screen and (max-width: 1219px) {
+    /* Example breakpoint for tablets */
+    .side-by-side, .download-ctr {
+        grid-template-columns: 1fr; /* Two equal columns */
+    }
+}
+

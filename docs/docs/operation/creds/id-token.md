@@ -1,0 +1,407 @@
+---
+title: The IDToken credential manager
+---
+
+This idtoken credential manager is a bit special. It doesn't load any credentials from an external source but instead
+generates [JWTs](https://datatracker.ietf.org/doc/html/rfc7519) which are signed by concourse and contain information
+about the pipeline/job that is currently running. It can NOT be used as a cluster-wide credential manager, but must
+instead be used as a [var source](../../vars.md#var-sources-experimental).
+
+These JWTs can be used to authenticate with external services via "identity federation" with the identity of the
+pipeline.
+
+Examples for services that support authentication via JWTs are:
+
+* [Vault](https://vaultproject.io/)
+* [AWS](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers.html)
+* [Azure](https://learn.microsoft.com/en-us/graph/api/resources/federatedidentitycredentials-overview?view=graph-rest-1.0)
+
+External services can verify if JWTs are actually issued by your Concourse, by checking the signatures on the JWTs
+against the public keys published by your Concourse.
+
+The public keys for verification are published as [JWKS](https://datatracker.ietf.org/doc/html/rfc7517) at:
+
+```
+https://your-concourse-server.com/.well-known/jwks.json
+```
+
+Concourse also offers a [OIDC Discovery Endpoint](https://openid.net/specs/openid-connect-discovery-1_0.html), which
+allows external services to auto-discover the JWKS-URL.
+
+## Usage
+
+You create a [var source](../../vars.md#var-sources-experimental) of type `idtoken` with the configuration you want (
+see [Configuration](#configuration)) in your pipeline. That var source then exposes a single variable with a single
+field, token, which contains the JWT and can be used in any step of your pipeline.
+
+You can also have multiple `idtoken` var sources in the same pipeline, each with different audiences, lifetimes etc.
+
+```yaml
+var_sources:
+  - name: myidtoken
+    type: idtoken
+    config:
+      audience: [ "sts.amazonaws.com" ]
+
+jobs:
+  - name: print-creds
+    plan:
+      - task: print
+        config:
+          platform: linux
+          image_resource:
+            type: mock
+            source: { mirror_self: true }
+          run:
+            path: bash
+            args:
+              - -c
+              - |
+                echo myidtoken: ((myidtoken:token))
+```
+
+## Configuration
+
+You can pass several config options to the `idtoken` var source to customize the generated JWTs. For example, you can
+configure the `aud` claim, token expiration, or granularity of the `sub` claim.
+See [`idtoken` var source](../../vars.md#id-token) for all config options.
+
+### Subject Scope
+
+Some external services (like AWS) only perform exact-matches on a token's sub-claim and ignore most other claims. To
+enable use-cases like "_all pipelines of a team should be able to assume an AWS-Role_", Concourse offers the option to
+configure how granular the `sub` claim's value should be.
+
+This is configured via the `subject_scope` setting of the [`idtoken` var source](../../vars.md#id-token).
+
+Depending on the value of `subject_scope`, the content of the JWT's `sub` claim will differ:
+
+| `subject_scope` | `sub` Value in JWT                                           |
+|-----------------|--------------------------------------------------------------|
+| `team`          | `<team_name>`                                                |
+| `pipeline`      | `<team_name>/<pipeline_name>`                                |
+| `instance`      | `<team_name>/<pipeline_name>/<instance_vars>`[^1]            |
+| `job`           | `<team_name>/<pipeline_name>/<instance_vars>/<job_name>`[^2] |
+
+[^1]: Instance vars are rendered as comma-separated key-value pairs. e.g. `my-var:my-value,hello:world`
+[^2]:
+
+    If a path element is empty (for example because you chose `job` on a pipeline with no instance-vars), the empty 
+    element is still added. e.g. `my-team/my-pipeline//my-job`. Note the double forward-slashes between the pipeline and
+    job name, where instance vars would go.
+
+This way all your pipelines can simply get a token with `subject_scope: team` and use this token to assume an AWS-Role
+that matches on `sub: "your_team_name"`.
+
+## Example JWT
+
+The generated tokens usually look something like this:
+
+```
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3lvdXItY29uY291cnNlLmV4YW1wbGUuY29tIiwiZXhwIjoxNzUxMDE1NzM0LCJhdWQiOlsiYXBpOi8vQXp1cmVBRFRva2VuRXhjaGFuZ2UiXSwic3ViIjoibWFpbi9leGFtcGxlLXBpcGVsaW5lIiwidGVhbSI6Im1haW4iLCJwaXBlbGluZSI6ImV4YW1wbGUtcGlwZWxpbmUiLCJqb2IiOiJleGFtcGxlLWpvYiJ9.my7l44tH0wfz8vc6z3fMmzTMxZ8_orhjcsOti3BKSNo
+```
+
+And after decoding, looks like this:
+
+```json
+{
+  "aud": "sts.amazonaws.com",
+  "exp": 1751282764,
+  "iat": 1751279164,
+  "iss": "https://your-concourse-server.com",
+  "job": "print-creds",
+  "pipeline": "mypipeline",
+  "sub": "main/mypipeline",
+  "team": "main"
+}
+```
+
+Here is a short explanation of the different claims:
+
+* `iss`: Who issued the token. Contains the OIDC issuer URL if `--oidc-issuer-url` is configured, otherwise the external
+  URL of your Concourse.
+* `exp`: When the token will expire
+* `aud`: Who the token is intended for. (In the above example it's for Azure's Identity Federation API)
+* `team`: The team of the pipeline this token was generated for
+* `pipeline`: The pipeline this token was generated for
+* `job`: The name of the job (inside the pipeline) this token was generated for
+* `instance_vars`: Any instance vars for the pipeline (if it is an instanced pipeline). Will be a comma-separated list
+  of key-value pairs. e.g. `hello:world,my-var:my-value`
+* `sub`: A combination of team + pipeline + instance_vars + job. Which parts are used here is configurable,
+  see [Subject Scope](#subject-scope).
+
+## Automatic Key Rotation
+
+Concourse will automatically rotate the signing keys used for creating the JWTs. The default rotation period
+is `7 days`. The previously used keys are being kept around for a while (by default `24h`) so that verification of
+currently existing JWTs doesn't fail during key rotation.
+
+This behavior can be configured via the following ATC flags:
+
+* `CONCOURSE_SIGNING_KEY_ROTATION_PERIOD`: How often to rotate the signing keys. Default: `7d`. A value of `0` means
+  don't rotate at all.
+* `CONCOURSE_SIGNING_KEY_GRACE_PERIOD`: How long to keep previously used signing keys published in the JWKs after they
+  have been rotated. Default: `24h`.
+* `CONCOURSE_SIGNING_KEY_CHECK_INTERVAL`: How often to check if new keys are needed or if old ones should be removed.
+  Default: `10m`
+
+## Configuring a Separate OIDC Issuer
+
+By default, Concourse uses the `--external-url`  as the OIDC issuer in generated tokens. You can configure a separate
+OIDC issuer URL using the `--oidc-issuer-url` flag:
+
+```shell
+concourse web \
+    --external-url https://concourse.internal.example.com \
+    --oidc-issuer-url https://oidc.example.com
+```
+
+When `--oidc-issuer-url` is configured:
+
+* The `iss` claim in generated JWT tokens will contain the OIDC issuer URL instead of the external URL
+* The OIDC discovery endpoints (`/.well-known/openid-configuration` and `/.well-known/jwks.json`) will return the OIDC
+  issuer URL
+* Your Concourse web UI and API continue to use the external URL
+
+This is useful for private network deployments where you want to serve OIDC discovery from a separate public endpoint
+while keeping your Concourse instance private.
+
+!!! warning
+
+    When the signing keys rotate, Concourse immediately uses the new key for signing tokens. If your OIDC issuer URL is 
+    out of sync with Concourse's JWKS, token verification will fail. The recommended approach is to use a reverse proxy 
+    that forwards requests to your private Concourse in real-time, eliminating sync delays during key rotation.
+
+## Examples
+
+### Vault
+
+You can use JWTs to authenticate
+with [HashiCorp Vault](https://developer.hashicorp.com/vault/docs/auth/jwt#jwt-authentication). This way your pipelines
+can directly communicate with Vault and use all of its features, beyond what Concourse's native Vault-integration
+offers.
+
+First enable the JWT auth method in your Vault Server:
+
+```shell
+vault auth enable jwt
+```
+
+Now configure the JWT auth method to accept JWTs issued by your Concourse (use your `--oidc-issuer-url` if configured,
+otherwise your external URL - see [Configuring a Separate OIDC Issuer](#configuring-a-separate-oidc-issuer)):
+
+```shell
+vault write auth/jwt/config \
+  oidc_discovery_url="https://<external_url_or_oidc_issuer_url>" \
+  default_role="demo"
+```
+
+Lastly, configure a role for JWT auth. Make sure to use the same value in your pipeline that you used for
+_bound_audiences_ (the best would be the URL of your Vault). _bound_subject_ must be the sub-claim value of your JWT, if
+you use the _subject_scope_ setting to change the contents of your sub-claim, adapt this accordingly!
+
+```shell
+vault write auth/jwt/role/demo \
+  role_type="jwt"\
+  user_claim="sub" \
+  bound_subject="main/your-pipeline" \
+  bound_audiences="my-vault-server.com" \
+  policies=webapps \
+  ttl=1h
+```
+
+This role will allow the holder of a JWT with aud: "`my-vault-server.com`" and sub: "`main/your-pipeline`" to get a
+Vault token with the Vault-policy `webapps`. If the policy you want to assign has a different name, simply change it in
+the above example. Make sure to adapt the value for `bound_subject` according to your team and pipeline name.
+
+Pipelines can now do the following:
+
+```yaml
+var_sources:
+  - name: vaulttoken
+    type: idtoken
+    config:
+      audience: [ "my-vault-server.com" ]
+
+jobs:
+  - name: vault-login
+    plan:
+      - task: login
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source: { repository: hashicorp/vault }
+          run:
+            path: sh
+            args:
+              - -e
+              - -c
+              - |
+                export VAULT_ADDR=https://my-vault-server.com
+                vault write auth/jwt/login \
+                  role=demo \
+                  jwt=((vaulttoken:token)) \
+                  --format=json > vault-response.json
+                echo "Now do something with the token in vault-response.json"
+```
+
+You don't have to create a role and a policy for every single of your pipelines! You can use claims from the JWT with
+Vault's [policy templating](https://developer.hashicorp.com/vault/tutorials/policies/policy-templating) feature. This
+way you can define a policy that allows a pipeline read to all the secrets it would usually have access to using
+Concourse's native Vault-integration:
+
+```hcl
+path "concourse/metadata/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.team }}" {
+  capabilities = ["list"]
+}
+
+path "concourse/data/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.team }}/+" {
+  capabilities = ["read"]
+}
+
+path "concourse/metadata/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.team }}/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.pipeline }}" {
+  capabilities = ["list"]
+}
+
+path "concourse/metadata/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.team }}/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.pipeline }}/*" {
+  capabilities = ["read", "list"]
+}
+
+path "concourse/data/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.team }}/{{ identity.entity.aliases.<JWT_ACCESSOR>.metadata.pipeline }}/*" {
+  capabilities = ["read", "list"]
+}
+```
+
+!!! note
+
+    Make sure to set `<JWT_ACCESSOR>` to the actual mount-accessor value of your JWT Auth method! You can use `vault 
+    auth list --format=json | jq -r '."jwt/".accessor'` to get the accessor for your jwt auth method.
+
+With a policy like this you don't need to configure `bound_subject` in your JWT auth role. Every single pipeline can
+simply use the same role and the policy will take care that they can only access secrets meant for them. However, you
+need to explicitly configure claim to metadata mapping:
+
+```shell
+vault write auth/jwt/role/demo \
+  role_type="jwt"\
+  user_claim="sub" \
+  bound_subject= \
+  bound_audiences="my-vault-server.com" \
+  policies=pipeline-new \
+  claim_mappings='team=team' \
+  claim_mappings='pipeline=pipeline' \
+  ttl=1h
+```
+
+### AWS
+
+AWS
+supports [federation with external identity providers](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers.html).
+Using this, you can allow identities managed by an external identity provider to perform actions in your AWS account.
+
+In this scenario the external identity provider is Concourse and the identities are teams/pipelines/jobs. This means you
+are able to grant a specific pipeline or job permission to perform actions in AWS (like deploying something), all
+without managing IAM users or dealing with long-lived credentials.
+
+First you need
+to [create an OpenID Connect identity provider](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc.html)
+in your AWS Account. Set _Provider URL_ to the external URL of your Concourse server  (or the `--oidc-issuer-url` if
+you're using a separate OIDC issuer - see [Configuring a Separate OIDC Issuer](#configuring-a-separate-oidc-issuer)).
+For _Audience_, you can choose any string you like, but using a value like `sts.amazonaws.com` is recommended. You have
+to use the same string later in the configuration of your [`idtoken` var source](../../vars.md#id-token).
+
+Next you will need
+to [create an IAM-Role that can be assumed using your JWT](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp_oidc.html#idp_oidc_Create).
+Set _Identity Provider_ to the value you previously set _Audience_ to. Add a condition on the sub-claim with
+type `StringEquals` and value `yourteam/yourpipeline`. This will allow ONLY that specific pipeline (and any instanced
+versions of it) to assume that IAM Role using a JWT. If you use the `subject_scope` setting to change the contents of
+your sub-claim, adapt this condition accordingly! In the next step you will be able to choose which AWS permissions your
+role will get.
+
+Now you can use
+the [AWS AssumeRoleWithWebIdentity API operation](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRoleWithWebIdentity.html)
+to assume your role via a JWT issued by Concourse. The easiest way is to do this is via
+the [assume-role-with-web-identity AWS CLI command](https://docs.aws.amazon.com/cli/latest/reference/sts/assume-role-with-web-identity.html):
+
+```yaml
+var_sources:
+  - name: awstoken
+    type: idtoken
+    config:
+      audience: [ "sts.amazonaws.com" ]
+
+jobs:
+  - name: aws-login
+    plan:
+      - task: print
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source: { repository: amazon/aws-cli }
+          run:
+            path: bash
+            args:
+              - -e
+              - -c
+              - |
+                aws sts assume-role-with-web-identity \
+                  --role-session-name Concourse \
+                  --role-arn arn:aws:iam::<your_account>:role/<your_role> \
+                  --web-identity-token ((awstoken:token)) > creds.json
+                echo "Now do something with the temporary credentials in creds.json"
+```
+
+### Azure
+
+Azure also supports a way to grant the holder of a JWT permissions in the Cloud. This is done via a feature
+called [Federated Credentials](https://learn.microsoft.com/en-us/graph/api/resources/federatedidentitycredentials-overview?view=graph-rest-1.0).
+
+First, [create an EntraID App Registration](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app).
+This app registration will be the service principal used by your pipeline.
+
+Now [create a federated credential](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-create-trust?pivots=identity-wif-apps-methods-azp#other-identity-providers)
+for the app registration you just created.
+
+For _Scenario_ select "Other". For Issuer set it to the external URL of your Concourse server (or the
+`--oidc-issuer-url` if you're using a separate OIDC issuer -
+see [Configuring a Separate OIDC Issuer](#configuring-a-separate-oidc-issuer)).
+For _Type_ select "Explicit subject identifier" and set _Value_ to `<teamname>/<pipelinename>` of the pipeline that
+should be able to use the identity. If you use the `subject_scope` setting to change the contents of your sub-claim,
+change this setting here accordingly.
+
+You can now assign IAM permissions to the identity of the app registration, which define what the identity is allowed to
+do in your Azure subscription.
+
+Your pipeline can now use the `az cli` to log in to Azure using a JWT generated by Concourse:
+
+```yaml
+var_sources:
+  - name: azuretoken
+    type: idtoken
+    config:
+      audience: [ "api://AzureADTokenExchange" ]
+
+jobs:
+  - name: azure-deploy
+    plan:
+      - task: login
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source: { repository: mcr.microsoft.com/azure-cli }
+          run:
+            path: bash
+            args:
+              - -e
+              - -c
+              - |
+                echo ((azuretoken:token))
+                az login --service-principal \
+                  -u <client_id of your app registration> \
+                  --tenant <tenant_id of your app registration> \
+                  --federated-token ((azuretoken:token))
+                echo "You are now authenticated with Azure. Do something with it!"
+```

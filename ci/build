@@ -2,31 +2,47 @@
 
 set -e -x
 
-export GOPATH=$PWD/gopath
-export PATH=$PWD/gopath/bin:$PATH
+apk add git
 
 git config --global user.email "concourseteam+concourse-github-bot@gmail.com"
 git config --global user.name "Concourse Bot"
 
+# Change to the docs repo
 pushd docs
-  if [ -e .git ] && git remote | grep origin >/dev/null; then
-    # undo single-branch clone and fetch gh-pages
-    git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
-    git fetch origin gh-pages
+  # Install dependencies
+  pip install mkdocs-material mkdocs-redirects mkdocs-glightbox nodeenv
+  nodeenv env --node=22.21.1
 
-    ref=$(git rev-parse HEAD)
-    git checkout gh-pages
-    git pull
-    git merge --no-edit $ref
+  source env/bin/activate
 
-    # clear out old content
-    git rm *.html || true
-    git rm search_index.json || true
-  fi
+  npm ci
 
-  ./scripts/build
+  # Remove apps before build
+  rm -rf docs/libs/examples/apps/
+  rm -rf docs/libs/examples/**/*.md
+
+  # Create site directory
+  npm run build
+
+  # Copy well-known for BlueSky
+  cp -R .well-known site/.well-known
 
   if [ -e .git ]; then
+    git checkout gh-pages
+    git rm -rf .
+
+    rm -rf venv/ node_modules/ env/ .cache/ overrides/ docs/ .idea/
+
+    mv site/{.,}* .
+    rmdir site
+
+    # Create CNAME file
+    echo -n "concourse-ci.org" > CNAME
+
+    # Create robots.txt file
+    echo "User-agent: *" > robots.txt
+    echo -n "Disallow: /single-page.html" >> robots.txt
+
     git add -A
     git commit --allow-empty -m "build"
   fi

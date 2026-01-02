@@ -1,0 +1,53 @@
+authors:
+  tsilva:
+    name: Taylor Silva
+    description: Lead Maintainer
+    avatar: https://github.com/taylorsilva.png
+  jamesma:
+    name: James Ma
+    description: Former Product Manager
+    avatar: https://miro.medium.com/v2/resize:fill:176:176/2*5LAj0RMtEpmKoWu5JZ_izg.jpeg
+  tbullock:
+    name: Topher Bullock
+    description: Former Editor
+    avatar: https://miro.medium.com/v2/resize:fill:176:176/1*lqzgDf65Rxt1KV0FkoK3YQ.jpeg
+  lauchinachie:
+    name: Lindsay Auchinachie
+    description: Former Product Designer
+    avatar: https://miro.medium.com/v2/resize:fill:176:176/1*mlen1LB-MqZKkj5PdMAQ_Q@2x.jpeg
+  asuraci:
+    name: Alex Suraci
+    description: Former Maintainer
+    avatar: https://miro.medium.com/v2/resize:fill:176:176/0*5n6v62RnSgnAg5-g.
+  sfoerster:
+    name: Scott Foerster
+    description: Former Product Manager
+    avatar: https://miro.medium.com/v2/resize:fill:176:176/1*f1LDUdRKRA778HQy5fhJHQ.jpeg
+  dforde:
+    name: Dwayne Forde
+    description: Former Pivotal Director of Engineering
+    avatar: https://miro.medium.com/v2/resize:fill:176:176/1*BAN8obD49GiYvKCXymJ4Gg.jpeg
+  jwinters:
+    name: Joshua Winters
+    description: Former Developer
+    avatar: https://avatars.githubusercontent.com/u/1072233?v=4
+  sreddy:
+    name: Shashwathi Reddy
+    description: Former Developer
+    avatar: https://miro.medium.com/v2/resize:fill:176:176/1*UyL2svGIixMjkLcakEweSg@2x.jpeg
+  speinado:
+    name: Sam Peinado
+    description: Former Product Designer
+    avatar: https://miro.medium.com/v2/resize:fill:176:176/2*PueUUrdy9MHlIPE4PlVG2Q.jpeg
+  saman:
+    name: Saman
+    description: Former Developer
+    avatar: https://miro.medium.com/v2/resize:fill:176:176/1*j203XDYKr71dIrnlheGLsA.jpeg
+  jghiloni:
+    name: Josh Ghiloni
+    description: Former Advisory Solutions Architect
+    avatar: https://miro.medium.com/v2/resize:fill:176:176/0*HVrSyOucp03aSbdt.jpg
+  jklassen:
+    name: Jamie Klassen
+    description: Former Developer
+    avatar: https://miro.medium.com/v2/resize:fill:176:176/1*A0rDiQ_1AnFlJi5HBIHabA.jpeg

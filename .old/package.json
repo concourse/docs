@@ -1,0 +1,21 @@
+{
+  "name": "docs-search",
+  "version": "0.0.1",
+  "repository": "https://github.com/concourse/docs",
+  "author": "Alex Suraci <suraci.alex@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "build": "make"
+  },
+  "dependencies": {
+    "elm": "0.19.1-6",
+    "gscan": "^5.0.0",
+    "less": "^3.9.0"
+  },
+  "devDependencies": {
+    "elm-format": "^0.8.8",
+    "elm-oracle": "^1.1.1"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+}

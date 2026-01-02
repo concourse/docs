@@ -1,0 +1,299 @@
+#@data/values
+---
+
+docs:
+  top_level:
+    routes:
+      - from: docs
+        to: index
+        html_only: true
+      - from: fly
+        to: fly
+      - from: config-basics
+        to: config-basics
+      - from: vars
+        to: vars
+      - from: jobs
+        to: jobs
+      - from: tasks
+        to: tasks
+      - from: builds
+        to: builds
+      - from: observation
+        to: observation
+
+  getting_started:
+    routes:
+      - from: getting-started
+        to: index
+      - from: quick-start
+        to: quick-start
+      - from: tutorial-hello-world
+        to: hello-world
+      - from: tutorial-inputs-outputs
+        to: inputs-outputs
+      - from: tutorials-resources
+        to: resources
+  install:
+    routes:
+      - from: install
+        to: index
+      - from: postgresql-node
+        to: running-postgres
+      - from: concourse-cli
+        to: concourse-cli
+      - from: concourse-generate-key
+        to: generating-keys
+      - from: concourse-web
+        to: running-web
+      - from: concourse-worker
+        to: running-worker
+      - from: upgrading-concourse
+        to: upgrading-concourse
+  auth:
+    routes:
+      - from: auth
+        to: index
+      - from: main-team
+        to: main-team
+
+      - from: configuring-auth
+        to: configuring/index
+      - from: local-auth
+        to: configuring/local-user
+      - from: github-auth
+        to: configuring/github
+      - from: gitlab-auth
+        to: configuring/gitlab
+      - from: bitbucket-cloud-auth
+        to: configuring/bitbucket-cloud
+      - from: cf-uaa-auth
+        to: configuring/cf-uaa
+      - from: ldap-auth
+        to: configuring/ldap
+      - from: microsoft-auth
+        to: configuring/microsoft
+      - from: generic-oidc-auth
+        to: configuring/generic-oidc
+      - from: generic-oauth
+        to: configuring/generic-oauth
+      - from: generic-saml-auth
+        to: configuring/generic-saml
+
+      - from: managing-teams
+        to: managing-teams
+      - from: user-roles
+        to: user-roles
+      - from: exposing
+        to: exposing
+      - from: teams-caveats
+        to: caveats
+
+  pipelines:
+    routes:
+      - from: pipelines
+        to: index
+      - from: setting-pipelines
+        to: setting-pipelines
+      - from: managing-pipelines
+        to: managing-pipelines
+      - from: instanced-pipelines
+        to: grouping-pipelines
+  resources:
+    routes:
+      - from: resources
+        to: index
+      - from: resource-versions
+        to: resource-versions
+      - from: managing-resources
+        to: managing-resources
+  resource_types:
+    routes:
+      - from: resource-types
+        to: index
+      - from: implementing-resource-types
+        to: implementing
+      - from: managing-resource-types
+        to: managing-types
+  steps:
+    routes:
+      - from: steps
+        to: index
+      - from: get-step
+        to: get
+      - from: put-step
+        to: put
+      - from: task-step
+        to: task
+      - from: set-pipeline-step
+        to: set-pipeline
+      - from: load-var-step
+        to: load-var
+      - from: in-parallel-step
+        to: in-parallel
+      - from: do-step
+        to: do
+      - from: try-step
+        to: try
+      - from: modifier-and-hook-steps
+        to: modifier-and-hooks/index
+      - from: across-step
+        to: modifier-and-hooks/across
+      - from: timeout-step
+        to: modifier-and-hooks/timeout
+      - from: attempts-step
+        to: modifier-and-hooks/attempts
+      - from: tags-step
+        to: modifier-and-hooks/tags
+      - from: on-success-step
+        to: modifier-and-hooks/on-success
+      - from: on-failure-hook
+        to: modifier-and-hooks/on-failure
+      - from: on-abort-hook
+        to: modifier-and-hooks/on-abort
+      - from: on-error-hook
+        to: modifier-and-hooks/on-error
+      - from: ensure-hook
+        to: modifier-and-hooks/ensure
+  how_to:
+    routes:
+      - from: how-to-guides
+        to: index
+
+      - from: pipeline-guides
+        to: pipeline-guides/index
+      - from: managing-pipeline-configurations
+        to: pipeline-guides/managing-pipeline-configs
+      - from: common-pipeline-practices
+        to: pipeline-guides/common-pipeline
+      - from: exploring-task-input-and-output-scenarios
+        to: pipeline-guides/task-inputs-outputs
+      - from: gated-pipeline-patterns
+        to: pipeline-guides/gated-pipelines
+      - from: time-triggered-pipeline-patterns
+        to: pipeline-guides/time-triggered-pipelines
+      - from: manual-approval-step
+        to: pipeline-guides/manual-approval
+
+      - from: git-guides
+        to: git-guides/index
+      - from: basic-git-operations
+        to: git-guides/basic
+      - from: multi-branch-workflows
+        to: git-guides/multi-branch
+
+      - from: container-image-guides
+        to: container-image-guides/index
+      - from: building-and-pushing-an-image
+        to: container-image-guides/build-push
+      - from: building-an-image-and-using-it-in-a-task
+        to: container-image-guides/build-use
+
+  operation:
+    routes:
+      - from: operation
+        to: index
+      - from: metrics
+        to: metrics
+      - from: tracing
+        to: tracing
+      - from: encryption
+        to: encryption
+
+      - from: creds
+        to: creds/index
+      - from: vault-credential-manager
+        to: creds/vault
+      - from: credhub-credential-manager
+        to: creds/credhub
+      - from: aws-ssm-credential-manager
+        to: creds/aws-ssm
+      - from: aws-asm-credential-manager
+        to: creds/aws-secrets
+      - from: kubernetes-credential-manager
+        to: creds/kubernetes
+      - from: conjur-credential-manager
+        to: creds/conjur
+      - from: idtoken-credential-manager
+        to: creds/id-token
+      - from: creds-caching
+        to: creds/caching
+      - from: creds-redacting
+        to: creds/redacting
+      - from: creds-retry-logic
+        to: creds/retrying-failed
+
+      - from: security-hardening
+        to: security-hardening
+      - from: container-placement
+        to: container-placement
+      - from: opa
+        to: opa-integration
+      - from: performance-tuning
+        to: tuning
+      - from: global-resources
+        to: global-resources
+      - from: administration
+        to: administration
+
+  internals:
+    routes:
+      - from: internals
+        to: index
+      - from: checker
+        to: checker
+      - from: scheduler
+        to: scheduler
+      - from: build-tracker
+        to: build-tracker
+      - from: garbage-collector
+        to: garbage-collector
+
+examples:
+  routes:
+    - from: examples
+      to: index
+      html_only: true
+    - from: hello-world-example
+      to: hello-world
+    - from: serial-job-example
+      to: serial-job
+    - from: pipeline-vars-example
+      to: pipeline-vars
+    - from: set-pipelines-example
+      to: set-pipeline
+    - from: task-inputs-outputs-example
+      to: inputs-outputs
+    - from: time-trigger-example
+      to: time-triggered
+    - from: git-trigger-example
+      to: git-triggered
+    - from: manual-trigger-example
+      to: manually-triggered
+    - from: hooks-example
+      to: job-and-task-hooks
+    - from: golang-library-example
+      to: golang-lib
+    - from: rails-example
+      to: rails-app
+    - from: java-example
+      to: java-app
+    - from: nodejs-example
+      to: nodejs-app
+    - from: php-example
+      to: php-app
+
+project:
+  routes:
+    - from: project
+      to: index
+
+ecosystem:
+  routes:
+    - from: ecosystem
+      to: index
+
+support:
+  routes:
+    - from: support
+      to: index

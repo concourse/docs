@@ -1,0 +1,33 @@
+#!/bin/bash
+
+set -e -x
+
+export GOPATH=$PWD/gopath
+export PATH=$PWD/gopath/bin:$PATH
+
+git config --global user.email "concourseteam+concourse-github-bot@gmail.com"
+git config --global user.name "Concourse Bot"
+
+pushd docs
+  if [ -e .git ] && git remote | grep origin >/dev/null; then
+    # undo single-branch clone and fetch gh-pages
+    git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+    git fetch origin gh-pages
+
+    ref=$(git rev-parse HEAD)
+    git checkout gh-pages
+    git pull
+    git merge --no-edit $ref
+
+    # clear out old content
+    git rm *.html || true
+    git rm search_index.json || true
+  fi
+
+  ./scripts/build
+
+  if [ -e .git ]; then
+    git add -A
+    git commit --allow-empty -m "build"
+  fi
+popd
