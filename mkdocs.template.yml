@@ -1,0 +1,32 @@
+#@ load("@ytt:template", "template")
+#@ load("@ytt:data", "data")
+
+#@ load("redirect.helper.star", "generateRoutes")
+
+INHERIT: base.yml
+
+plugins:
+  - search
+  - glightbox
+  - blog:
+      blog_dir: blog
+      post_url_date_format: yyyy-MM-dd
+      post_url_format: "{date}-{slug}"
+  - redirects:
+      #@ docs = data.values.docs
+      redirect_maps:
+        top-docs: #@ template.replace(generateRoutes(docs.top_level))
+        getting-started: #@ template.replace(generateRoutes(docs.getting_started))
+        install: #@ template.replace(generateRoutes(docs.install))
+        auth: #@ template.replace(generateRoutes(docs.auth))
+        pipelines: #@ template.replace(generateRoutes(docs.pipelines))
+        resources: #@ template.replace(generateRoutes(docs.resources))
+        resource-types: #@ template.replace(generateRoutes(docs.resource_types))
+        steps: #@ template.replace(generateRoutes(docs.steps))
+        how-to: #@ template.replace(generateRoutes(docs.how_to))
+        operation: #@ template.replace(generateRoutes(docs.operation))
+        internals: #@ template.replace(generateRoutes(docs.internals))
+        examples: #@ template.replace(generateRoutes(data.values.examples))
+        project: #@ template.replace(generateRoutes(data.values.project))
+        ecosystem: #@ template.replace(generateRoutes(data.values.ecosystem))
+        support: #@ template.replace(generateRoutes(data.values.support))

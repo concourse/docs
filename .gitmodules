@@ -1,0 +1,3 @@
+[submodule "docs/libs/examples"]
+	path = docs/libs/examples
+	url = https://github.com/concourse/examples.git
