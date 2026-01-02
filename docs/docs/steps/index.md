@@ -76,7 +76,7 @@ connected by the resource.
 
 If any step in the build plan fails, the build will fail and subsequent steps
 will not be executed. Additional steps may be configured to run after failure by
-configuring [`on_failure`](modifier-and-hook/on-failure.md) or
-[`ensure`](modifier-and-hook/ensure.md) (or the job equivalents,
+configuring [`on_failure`](modifier-and-hooks/on-failure.md) or
+[`ensure`](modifier-and-hooks/ensure.md) (or the job equivalents,
 [`job.on_failure`](../jobs.md) and [`job.ensure`](../jobs.md)) using [Hooks and
-Modifiers](modifier-and-hooks).
+Modifiers](modifier-and-hooks/index.md).
