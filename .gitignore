@@ -44,7 +44,7 @@ venv.bak/
 
 # mkdocs documentation
 /site
-
+# generated from mkdocs.template.yml
 mkdocs.yml
 /node_modules/
 
