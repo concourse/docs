@@ -73,3 +73,10 @@ from the build plan.
 When viewing the job in the pipeline, resources that are used as `get` steps appear as inputs, and resources that are
 used in `put` steps appear as outputs. Jobs are rendered downstream of any jobs they reference in `passed` constraints,
 connected by the resource.
+
+If any step in the build plan fails, the build will fail and subsequent steps
+will not be executed. Additional steps may be configured to run after failure by
+configuring [`on_failure`](modifier-and-hook/on-failure.md) or
+[`ensure`](modifier-and-hook/ensure.md) (or the job equivalents,
+[`job.on_failure`](../jobs.md) and [`job.ensure`](../jobs.md)) using [Hooks and
+Modifiers](modifier-and-hooks).

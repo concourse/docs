@@ -2,10 +2,6 @@
 title: Modifiers and Hooks
 ---
 
-If any step in the build plan fails, the build will fail and subsequent steps will not be executed. Additional steps may
-be configured to run after failure by configuring [`on_failure`](on-failure.md) or [`ensure`](ensure.md) (or the job 
-equivalents, `job.on_failure` and `job.ensure`) using Hooks and Modifiers.
-
 <div class="grid cards" markdown>
 
 -  Across
