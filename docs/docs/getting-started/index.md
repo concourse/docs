@@ -1,5 +1,7 @@
 ---
 title: Getting Started
+search:
+  exclude: true
 ---
 
 This tutorial will guide you through the basics of creating Concourse pipelines. You will use a local instance of
@@ -25,4 +27,3 @@ quick [Intro to YAML](../config-basics.md#intro-to-yaml) if you're not familiar 
 
     If you get stuck at any point, you can try asking for help on our [Discord server](https://discord.gg/MeRxXKW) 
     in the #need-help channel.
-

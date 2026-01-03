@@ -1,5 +1,7 @@
 ---
 title: Inputs and Outputs
+search:
+  exclude: true
 ---
 
 ## Overview

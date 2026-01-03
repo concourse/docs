@@ -1,5 +1,7 @@
 ---
 title: Hello World Pipeline
+search:
+  exclude: true
 ---
 
 ## Creating a Pipeline
