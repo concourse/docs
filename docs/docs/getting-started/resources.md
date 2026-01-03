@@ -1,5 +1,7 @@
 ---
 title: Resources
+search:
+  exclude: true
 ---
 
 ## The Heart of Concourse

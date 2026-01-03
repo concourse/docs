@@ -1,5 +1,7 @@
 ---
 title: Hello World pipeline
+search:
+  exclude: true
 hide:
   - toc
 ---

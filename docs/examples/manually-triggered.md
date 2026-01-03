@@ -1,5 +1,7 @@
 ---
 title: Manually triggered job example
+search:
+  exclude: true
 hide:
   - toc
 ---
