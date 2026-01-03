@@ -1,5 +1,7 @@
 ---
 title: git-triggered job example
+search:
+  exclude: true
 hide:
   - toc
 ---

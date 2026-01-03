@@ -1,5 +1,7 @@
 ---
 title: Steps
+search:
+  exclude: true
 ---
 
 Each [job](../jobs.md) has a single build plan configured as [`job.plan`](../jobs.md#job-schema). A build plan is a 

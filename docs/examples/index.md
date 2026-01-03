@@ -1,5 +1,7 @@
 ---
 title: Examples
+search:
+  exclude: true
 hide:
   - toc
 ---

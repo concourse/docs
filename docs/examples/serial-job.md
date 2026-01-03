@@ -1,5 +1,7 @@
 ---
 title: Serial job example
+search:
+  exclude: true
 hide:
   - toc
 ---
