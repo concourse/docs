@@ -1,5 +1,7 @@
 ---
 title: Quick Start
+search:
+  exclude: true
 ---
 
 ## Docker Compose Concourse

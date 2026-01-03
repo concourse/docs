@@ -1,5 +1,7 @@
 ---
 title: time-triggered job example
+search:
+  exclude: true
 hide:
   - toc
 ---

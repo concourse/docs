@@ -1,5 +1,7 @@
 ---
 title: PHP application testing example
+search:
+  exclude: true
 hide:
   - toc
 ---
