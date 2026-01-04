@@ -19,7 +19,7 @@ body {
 }
 
 .feature-box {
-  background-color: white;
+  background-color: var(--md-default-bg-color);
   border-radius: 8px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   padding: 2em;
@@ -30,13 +30,11 @@ body {
 .feature-box h2 {
   margin-top: 0em;
   margin-bottom: 0.5em;
-  color: #333;
   font-size: 1.5rem;
   font-weight: bold;
 }
 
 .feature-box h3 {
-  color: #333;
   font-size: 1.25rem;
   font-weight: bold;
   margin-top: 1.5em;
@@ -45,7 +43,6 @@ body {
 
 .feature-box p {
   flex: 1;
-  color: #333;
   margin-top: 0em;
   margin-bottom: 1em;
 }
@@ -66,7 +63,6 @@ body {
 
 .feature-content .feature-description {
   flex: 1;
-  color: #333;
   margin-top: 1em;
   margin-bottom: 1em;
 }
@@ -90,7 +86,6 @@ body {
 }
 
 .feature-column h3 {
-  color: #333;
   font-size: 1.25rem;
   font-weight: bold;
   margin-top: 0;
@@ -126,10 +121,6 @@ body {
   width: 100%;
   height: 100%;
   min-height: 249px;
-}
-
-.feature-text {
-  color: #333;
 }
 
 .feature-text p {
