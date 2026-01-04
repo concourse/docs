@@ -6,8 +6,8 @@ hide:
   - toc
 ---
 
-Job hooks like [`job.on_success`](https://concourse-ci.org/jobs.html#schema.job.on_success) and Step hooks like [
-`on_success`](https://concourse-ci.org/on-success-step.html#schema.on_success) are available to perform actions based on
+Job hooks like [`job.on_success`](../docs/jobs.md#job-schema) and Step hooks like [
+`on_success`](../docs/steps/modifier-and-hooks/on-success.md) are available to perform actions based on
 the success, failure, or abortion of a job.
 
 <div>
@@ -25,12 +25,12 @@ the success, failure, or abortion of a job.
 
 ## References
 
-* [`job.on_success`](https://concourse-ci.org/jobs.html#schema.job.on_success)
-* [`job.on_failure`](https://concourse-ci.org/jobs.html#schema.job.on_failure)
-* [`job.on_abort`](https://concourse-ci.org/jobs.html#schema.job.on_abort)
-* [`on_success`](https://concourse-ci.org/on-success-step.html#schema.on_success)
-* [`on_failure`](https://concourse-ci.org/on-failure-hook.html#schema.on_failure)
-* [`on_abort`](https://concourse-ci.org/on-abort-hook.html#schema.on_abort)
-* [Jobs](https://concourse-ci.org/jobs.html)
-* [Steps](https://concourse-ci.org/steps.html)
-* [Tasks](https://concourse-ci.org/tasks.html)
+* [`job.on_success`](../docs/jobs.md#job-schema)
+* [`job.on_failure`](../docs/jobs.md#job-schema)
+* [`job.on_abort`](../docs/jobs.md#job-schema)
+* [`on_success`](../docs/steps/modifier-and-hooks/on-success.md)
+* [`on_failure`](../docs/steps/modifier-and-hooks/on-failure.md)
+* [`on_abort`](../docs/steps/modifier-and-hooks/on-abort.md)
+* [Jobs](../docs/jobs.md)
+* [Steps](../docs/steps/index.md)
+* [Tasks](../docs/tasks.md)

@@ -6,7 +6,7 @@ hide:
   - toc
 ---
 
-Setting the [`job.serial`](https://concourse-ci.org/jobs.html#schema.job.serial) flag restricts a job to run one build
+Setting the [`job.serial`](../docs/jobs.md#job-schema) flag restricts a job to run one build
 at a time.
 
 <div>
@@ -19,7 +19,7 @@ at a time.
 By default, jobs are run in parallel. For some use cases this might be ideal (ex. testing all incoming commits from a
 repository). For other use cases this might be less ideal (ex. deploying an application).
 
-You can also set the [`job.max_in_flight`](https://concourse-ci.org/jobs.html#schema.job.max_in_flight) value to 1 to
+You can also set the [`job.max_in_flight`](../docs/jobs.md#job-schema) value to 1 to
 disable parallel job runs.
 
 ## Pipeline Configuration
@@ -30,6 +30,6 @@ disable parallel job runs.
 
 ## References
 
-* [Jobs](https://concourse-ci.org/jobs.html)
-* [Steps](https://concourse-ci.org/steps.html)
-* [Tasks](https://concourse-ci.org/tasks.html)
+* [Jobs](../docs/jobs.md)
+* [Steps](../docs/steps/index.md)
+* [Tasks](../docs/tasks.md)

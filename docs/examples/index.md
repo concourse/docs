@@ -6,11 +6,11 @@ hide:
   - toc
 ---
 
-Setting up self-contained Concourse [pipelines](https://concourse-ci.org/pipelines.html) is an excellent way to
+Setting up self-contained Concourse [pipelines](../docs/pipelines/index.md) is an excellent way to
 experiment before exploring the more comprehensive documentation.
 
 Each example presents a pipeline YAML snippet which can be copied to a local file and deployed to your instance via [
-`fly set-pipeline`](https://concourse-ci.org/setting-pipelines.html#fly-set-pipeline). From there you can experiment and
+`fly set-pipeline`](../docs/pipelines/setting-pipelines.md#fly-set-pipeline). From there you can experiment and
 modify parts of the configuration to better understand how everything works. All configuration options are detailed in
 the [Docs](../docs/index.md).
 
