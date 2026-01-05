@@ -16,56 +16,56 @@ A build plan is a sequence of steps:
     ---
     Run a pure function of code
 
-    [:octicons-arrow-right-24: Configure](task.md)
+    [:octicons-arrow-right-24: Schema](task.md)
 
 -  Get
 
     ---
     Fetch data from a [Resource](../resources/index.md)
 
-    [:octicons-arrow-right-24: Configure](get.md)
+    [:octicons-arrow-right-24: Schema](get.md)
 
 -  Put
 
     ---
     Update data of a [Resource](../resources/index.md)
 
-    [:octicons-arrow-right-24: Configure](put.md)
+    [:octicons-arrow-right-24: Schema](put.md)
 
 -  Set Pipeline
 
     ---
     Configure a pipeline using a pipeline
 
-    [:octicons-arrow-right-24: Configure](set-pipeline.md)
+    [:octicons-arrow-right-24: Schema](set-pipeline.md)
 
 -  In Parallel
 
     ---
     Run multiple steps at a time
 
-    [:octicons-arrow-right-24: Configure](in-parallel.md)
+    [:octicons-arrow-right-24: Schema](in-parallel.md)
 
 -  Load Var
 
     ---
     Create a new variable scoped to the job
 
-    [:octicons-arrow-right-24: Configure](load-var.md)
+    [:octicons-arrow-right-24: Schema](load-var.md)
 
 -  Do
 
     ---
     Run multiple steps serially
 
-    [:octicons-arrow-right-24: Configure](do.md)
+    [:octicons-arrow-right-24: Schema](do.md)
 
 -  Try
 
     ---
     Continue regardless of outcome
 
-    [:octicons-arrow-right-24: Configure](try.md)
+    [:octicons-arrow-right-24: Schema](try.md)
 
 </div>
 

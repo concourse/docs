@@ -7,7 +7,7 @@ title: In Parallel Step
 Performs the given steps in parallel. If any sub-steps in a `parallel` result in a failure or error, the parallel step
 as a whole is considered to have failed or errored. Expand each section below for more details and examples.
 
-??? warning "**`in_parallel`**: [`[step]`](index.md) | [`in_parallel_config`](#in_parallel_config-schema)"
+??? warning "**`in_parallel`**: [`[step]`](index.md) | [`in_parallel_config`](#in_parallel_config-schema) (required)"
 
     Steps are either configured as a array or within an [`in_parallel_config` schema](#in_parallel_config-schema).
 
@@ -56,7 +56,7 @@ as a whole is considered to have failed or errored. Expand each section below fo
 Instead of passing in a list of steps to `in_parallel` you can pass in the following fields. The list of steps will fall
 under the `steps` field.
 
-??? warning "**`steps`**: [`[step]`](index.md)"
+??? warning "**`steps`**: [`[step]`](index.md) (required)"
 
     The steps to perform in parallel.
 

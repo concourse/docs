@@ -12,11 +12,11 @@ A pipeline's jobs are listed under [`pipeline.jobs`](pipelines/index.md#pipeline
 
 ## `job` schema
 
-??? warning "**`name`**: [`identifier`](config-basics.md#identifier-schema)"
+??? warning "**`name`**: [`identifier`](config-basics.md#identifier-schema) (required)"
 
     The name of the job. This should be short; it will show up in URLs. If you want to rename a job, use `job.old_name`.
 
-??? warning "`steps`: [`[step]`](steps/index.md)"
+??? warning "`steps`: [`[step]`](steps/index.md) (required)"
 
     The sequence of [steps](steps/index.md) to execute.
 

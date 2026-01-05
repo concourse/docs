@@ -6,11 +6,6 @@ title: Across Step Modifier
 
 Run a step multiple times with different combinations of variable values.
 
-!!! warning "Experimental Feature"
-
-    The `across` step is not enabled by default. To enable `across` for your deployment, you must set the feature flag 
-    `CONCOURSE_ENABLE_ACROSS_STEP`. The `across` step may be enabled by default in a future version of Concourse.
-
 The `across` step can be combined with the [`load_var` step](../load-var.md),
 the [`set_pipeline` step](../set-pipeline.md), and [instanced pipelines](../../pipelines/grouping-pipelines.md) to
 maintain a dynamically sized group of related pipelines.
@@ -28,14 +23,14 @@ See [Across Step & Dynamic Vars](../../vars.md#across-step-dynamic-vars) for det
 
     ### `across_var` schema
     
-    ??? warning "**var**: **[`identifier`](../../config-basics.md#identifier-schema)**"
+    ??? warning "**var**: **[`identifier`](../../config-basics.md#identifier-schema)** (required)"
 
         The name of the variable that will be added to the ["`.`" var source](../../vars.md#local-var). This variable 
         will only be accessible in the scope of the step - each iteration of the step gets its own scope.
 
         If a variable of the same name already exists in the parent scope, a warning will be printed.
 
-    ??? warning "**values**: **[`[value]`](../../config-basics.md#value-schema)**"
+    ??? warning "**values**: **[`[value]`](../../config-basics.md#value-schema)** (required)"
 
         The list of values that the var will iterate over when running the substep. If multiple vars are configured, all
         combinations of values across all vars will run.
@@ -159,6 +154,8 @@ See [Across Step & Dynamic Vars](../../vars.md#across-step-dynamic-vars) for det
                   - 2
             fail_fast: true
         ```
+
+## Examples
 
 ??? example "Across with task step"
 

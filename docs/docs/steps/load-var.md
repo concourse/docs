@@ -8,7 +8,7 @@ Load the value for a var at runtime from a file, making it available to subseque
 a [local build var](../vars.md#local-var) named after the given identifier. Expand each section below for more
 details and examples.
 
-??? warning "**`load_var`**: [`identifier`](../config-basics.md#identifier-schema)"
+??? warning "**`load_var`**: [`identifier`](../config-basics.md#identifier-schema) (required)"
 
     The identifier will be the name of var, available to subsequent steps as a [local build var](../vars.md#local-var).
 
@@ -45,7 +45,7 @@ details and examples.
         2.6.0
         ```
 
-??? warning "**`file`**: [`file-path`](../config-basics.md#file-path-schema)"
+??? warning "**`file`**: [`file-path`](../config-basics.md#file-path-schema) (required)"
 
     The path to a file whose content shall be read and used as the var's value.
 

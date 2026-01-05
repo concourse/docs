@@ -18,16 +18,16 @@ schema.
 
 ## `resource` schema
 
-??? warning "**`name`**: [`identifier`](../config-basics.md#identifier-schema)"
+??? warning "**`name`**: [`identifier`](../config-basics.md#identifier-schema) (required)"
 
     The name of the resource. This should be short and simple. This name will be referenced by 
     [build plans](../steps/index.md) of jobs in the pipeline.
 
-??? warning "**`type`**: [`resource_type.name`](../resource-types/index.md#resource_type-schema)"
+??? warning "**`type`**: [`resource_type.name`](../resource-types/index.md#resource_type-schema) (required)"
 
     The [resource type](../resource-types/index.md) implementing the resource.
 
-??? warning "**`source`**: [`config`](../config-basics.md#config-schema)"
+??? warning "**`source`**: [`config`](../config-basics.md#config-schema) (required)"
 
     The configuration for the resource. This varies by resource type, and is a black box to Concourse; it is blindly 
     passed to the resource at runtime.

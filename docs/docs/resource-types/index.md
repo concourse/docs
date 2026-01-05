@@ -15,7 +15,7 @@ following schema:
 
 ## `resource_type` schema
 
-??? warning "**`name`**: [`identifier`](../config-basics.md#identifier-schema)"
+??? warning "**`name`**: [`identifier`](../config-basics.md#identifier-schema) (required)"
 
     The name of the resource type. This should be short and simple. This name will be referenced by 
     [`pipeline.resources`](../pipelines/index.md#pipeline-schema) defined within the same pipeline, and 
@@ -23,7 +23,7 @@ following schema:
 
     Pipeline-provided resource types can override the core resource types by specifying the same name.
 
-??? warning "**`type`**: [`resource_type.name`](../resource-types/index.md#resource_type-schema) | [`identifier`](../config-basics.md#identifier-schema)"
+??? warning "**`type`**: [`resource_type.name`](../resource-types/index.md#resource_type-schema) | [`identifier`](../config-basics.md#identifier-schema) (required)"
 
     The type of the resource used to provide the resource type's container image.
 
@@ -33,7 +33,7 @@ following schema:
     A resource type's type can refer to other resource types, and can also use the core type that it's overriding. This 
     is useful for bringing in a newer or forked `registry-image` resource.
 
-??? warning "**`source`**: [`config`](../config-basics.md#config-schema)"
+??? warning "**`source`**: [`config`](../config-basics.md#config-schema) (required)"
 
     The configuration for the resource type's resource. This varies by resource type, and is a black box to Concourse; 
     it is blindly passed to the resource at runtime.
@@ -130,6 +130,8 @@ following schema:
 
     Alternatively, the web node can be configured to use 
     [defaults for base resource types](../install/running-web.md#configuring-defaults-for-resource-types)
+
+---
 
 ??? example "Using a `rss` resource type to subscript to RSS feeds"
 

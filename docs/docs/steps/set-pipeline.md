@@ -21,7 +21,7 @@ them one-by-one through many builds.
 See [`fly archive-pipeline`](../pipelines/managing-pipelines.md#fly-archive-pipeline) for what happens when a pipeline
 is archived.
 
-??? warning "**`set_pipline`**: [`identifier`](../config-basics.md#identifier-schema) | `self`"
+??? warning "**`set_pipline`**: [`identifier`](../config-basics.md#identifier-schema) | `self` (required)"
 
     The identifier specifies the name of the pipeline to configure. Unless `set_pipeline` step `team` is set, it will be
     configured within the current team and be created _unpaused_. If set to self, the current pipeline will update its 
@@ -49,7 +49,7 @@ is archived.
               uri: https://github.com/concourse/examples.git
         ```
 
-??? warning "**`file`**: [`file-path`](../config-basics.md#file-path-schema)"
+??? warning "**`file`**: [`file-path`](../config-basics.md#file-path-schema) (required)"
 
     The path to the pipeline's configuration file.
 

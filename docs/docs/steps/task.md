@@ -10,7 +10,7 @@ When a task completes, the artifacts specified by [`task-config.outputs`](../tas
 registered in the build's artifact namespace. This allows subsequent `task` steps and [`put` steps](put.md) to access
 the result of a task.
 
-??? warning "**`task`**: [`identifier`](../config-basics.md#identifier-schema)"
+??? warning "**`task`**: [`identifier`](../config-basics.md#identifier-schema) (required)"
 
     The identifier value is just a name - short and sweet. The value is shown in the web UI but otherwise has no effect 
     on anything. This may change in the future; [RFC #32](https://github.com/concourse/rfcs/pull/32) proposes that the 
