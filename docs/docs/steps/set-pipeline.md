@@ -92,10 +92,13 @@ is archived.
         want those variables to be determined at the time the pipeline is set, use [`task` step `vars`](task.md) as 
         well.
 
-    !!! warning "Experimental Feature"
+    !!! info
 
-        [Instance pipelines](../pipelines/grouping-pipelines.md) are experimental and need to be enabled by setting the 
-        `--enable-pipeline-instances` flag on the [`web` node](../install/running-web.md).
+        [Instance pipelines](../pipelines/grouping-pipelines.md) are not enabled
+        by default if your Concourse is on a version <v8. To enable this
+        feature, set the `--enable-pipeline-instances` flag or env var
+        `CONCOURSE_ENABLE_PIPELINE_INSTANCES` to `true` on the [`web`
+        node](../install/running-web.md).
 
     ??? example "Configuring instance vars"
 
