@@ -22,8 +22,8 @@ While you are free to create as many jobs as you'd like for your pipeline, you h
 inbetween them.
 
 These constructs give you the ability to design a pipeline that can process artifacts in many different ways
-via [Tasks](https://concourse-ci.org/tasks.html), and then store those processed artifacts externally
-via [Resources](https://concourse-ci.org/resources.html).
+via [Tasks](../docs/tasks.md), and then store those processed artifacts externally
+via [Resources](../docs/resources/index.md).
 
 ## Pipeline Configuration
 
@@ -33,7 +33,7 @@ via [Resources](https://concourse-ci.org/resources.html).
 
 ## References
 
-* [`task-config.outputs`](https://concourse-ci.org/tasks.html#schema.task-config.outputs)
-* [Jobs](https://concourse-ci.org/jobs.html)
-* [Steps](https://concourse-ci.org/steps.html)
-* [Tasks](https://concourse-ci.org/tasks.html)
+* [`task-config.outputs`](../docs/tasks.md#output)
+* [Jobs](../docs/jobs.md)
+* [Steps](../docs/steps/index.md)
+* [Tasks](../docs/tasks.md)
