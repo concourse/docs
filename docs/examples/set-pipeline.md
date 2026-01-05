@@ -23,6 +23,6 @@ You can set a static set of pipelines from another pipeline on the same team.
 
 ## References
 
-* [Jobs](https://concourse-ci.org/jobs.html)
-* [Steps](https://concourse-ci.org/steps.html)
-* [`set-pipeline` step](https://concourse-ci.org/set-pipeline-step.html)
+* [Jobs](../docs/jobs.md)
+* [Steps](../docs/steps/index.md)
+* [`set-pipeline` step](../docs/steps/set-pipeline.md)
