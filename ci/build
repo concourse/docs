@@ -1,15 +1,13 @@
 #!/bin/bash
 
-set -e -x
+set -e
 
 apk add git
 
 git config --global user.email "concourseteam+concourse-github-bot@gmail.com"
 git config --global user.name "Concourse Bot"
 
-# Change to the docs repo
 pushd docs
-  # Install dependencies
   pip install mkdocs-material mkdocs-redirects mkdocs-glightbox nodeenv
   nodeenv env --node=22.21.1
 
@@ -36,10 +34,8 @@ pushd docs
     mv site/{.,}* .
     rmdir site
 
-    # Create CNAME file
     echo -n "concourse-ci.org" > CNAME
 
-    # Create robots.txt file
     echo "User-agent: *" > robots.txt
     echo -n "Disallow: /single-page.html" >> robots.txt
 
