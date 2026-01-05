@@ -20,7 +20,7 @@ this tutorial.
 It will also help if you know how to read YAML. We have a
 quick [Intro to YAML](../config-basics.md#intro-to-yaml) if you're not familiar with the syntax.
 
-!!! note
+!!! question "Have Feedback?"
 
     If you have any feedback for this tutorial please share it in 
     [this GitHub discussion](https://github.com/concourse/concourse/discussions/7353).
