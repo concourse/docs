@@ -356,10 +356,12 @@ jobs:
 
 ### Configuring Runtimes
 
-The worker can be run with multiple container
-runtimes - [containerd](https://github.com/containerd/containerd/), [Guardian](https://github.com/cloudfoundry/guardian),
-and [Houdini](https://github.com/vito/houdini) (an experimental and the only runtime for Darwin and Windows). Only
-`containerd` and `Guardian` are meant for production use. `Guardian` is the default runtime for Concourse.
+The worker can be run with multiple container runtimes -
+[containerd](https://github.com/containerd/containerd/),
+[Guardian](https://github.com/cloudfoundry/guardian), and
+[Houdini](https://github.com/vito/houdini) (the only runtime for Darwin and
+Windows). Only `containerd` and `Guardian` are meant for production use on Linux workers.
+`containerd` is the default runtime for Concourse.
 
 !!! note "Note about Architecture"
 
@@ -372,8 +374,14 @@ and [Houdini](https://github.com/vito/houdini) (an experimental and the only run
 
 #### `containerd` runtime
 
-To use the `containerd` runtime manually set the `--runtime` (`CONCOURSE_RUNTIME`) to `containerd` on the
+`containerd` is currently the default runtime for Concourse. It can also be set
+by setting the `--runtime` (`CONCOURSE_RUNTIME`) to `containerd` on the
 `concourse worker` command.
+
+!!! info
+    Prior to v8 of Concourse, `containerd` was NOT the default
+    runtime. `guardian` is the default runtime for all versions prior
+    to v8.
 
 The following is a list of the `containerd` runtime specific flags for Concourse that can be set. They are all optional
 and have default values.
@@ -428,8 +436,13 @@ If you are transitioning from `Guardian` to `containerd` you will need to conver
 
 #### `Guardian` runtime
 
-Guardian is currently the default runtime for Concourse. It can also be set by setting the `--runtime` flag to
+To use the `guardian` runtime, set the `--runtime` flag to
 `guardian` on the `concourse worker` command.
+
+!!! info
+    Prior to v8 of Concourse, `guardian` was the default runtime.
+    All versions of Concourse >= v8 now use `containerd` as the
+    default runtime.
 
 The `concourse worker` command automatically configures and runs `Guardian` using the `gdn` binary, but depending on the
 environment you're running Concourse in, you may need to pop open the hood and configure a few things.
@@ -602,11 +615,6 @@ requiring host access be enabled).
 Peer-to-Peer (P2P) volume streaming enables the workers to stream volumes directly to each other instead of always
 streaming volumes through the web node(s). This can reduce the time it takes for individual steps in a job to start and
 reduce the amount of network traffic used by the Concourse cluster.
-
-!!! warning "Experimental Feature"
-
-    This feature is experimental. It is not as robust as the default volume streaming setup which always goes 
-    through web nodes.
 
 **Pre-Requisites**
 

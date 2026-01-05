@@ -62,32 +62,32 @@ All logs will be emitted to `stdout`, with any panics or lower-level errors bein
 
 ### Resource utilization
 
-CPU usage: peaks during pipeline scheduling, primarily when scheduling [Jobs](../jobs.md).
+**CPU usage**: peaks during pipeline scheduling, primarily when scheduling [Jobs](../jobs.md).
 Mitigated by adding more `web` nodes. In this regard, `web` nodes can be considered compute-heavy more than anything
 else at large scale.
 
-Memory usage: not very well classified at the moment as it's not generally a concern. Give it a few gigabytes and keep
+**Memory usage**: not very well classified at the moment as it's not generally a concern. Give it a few gigabytes and keep
 an eye on it.
 
-Disk usage: none
+**Disk usage**: none
 
-Bandwidth usage: aside from handling external traffic, the `web` node will at times have to stream bits out from one
+**Bandwidth usage**: aside from handling external traffic, the `web` node will at times have to stream bits out from one
 worker and into another while executing [Steps](../steps/index.md).
 
-Highly available: `yes`; web nodes can all be configured the same (aside from `--peer-address`) and placed behind a load
+**Highly available**: `yes`; web nodes can all be configured the same (aside from `--peer-address`) and placed behind a load
 balancer. Periodic tasks like garbage-collection will not be duplicated for each node.
 
-Horizontally scalable: yes; they will coordinate workloads using the database, resulting in less work for each node and
+**Horizontally scalable**: yes; they will coordinate workloads using the database, resulting in less work for each node and
 thus lower CPU usage.
 
-Outbound traffic:
+**Outbound traffic**:
 
 * `db` on its configured port for persistence
 * `db` on its configured port for locking and coordinating in a multi-`web` node deployment
 * other `web` nodes (possibly itself) on an [ephemeral port](https://en.wikipedia.org/wiki/Ephemeral_port) when a worker
   is forwarded through the web node's TSA
 
-Inbound traffic:
+**Inbound traffic**:
 
 * `worker` connects to the TSA on port `2222` for registration
 * `worker` downloads inputs from the ATC during [`fly execute`](../tasks.md#running-tasks-with-fly-execute) via
