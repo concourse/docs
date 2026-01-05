@@ -150,23 +150,19 @@ As Concourse is running the steps in your job, it is creating a list of **named 
 like for the pipeline we just ran.
 
 * Concourse runs the task step `hello-world-task`
-  with [output](../tasks.md#task-config-schema) `the-artifact`
+  with [output](../tasks.md#task-config-schema) `some-files`
+    * Concourse creates an empty artifact, assigns it the name `some-files`,
+      and mounts it inside the task container.
 
-!!! note ""
-
-    Concourse creates an empty artifact, assigns it the name `the-artifact`, and mounts it inside the task container.
-
-* Concourse runs the task step `read-the-artifact`
-  with [input](../tasks.md#task-config-schema) `the-artifact`
-
-!!! note ""
-
-    Concourse looks up, in its list of artifacts for the build, for an artifact named `the-artifact`, and mounts 
-    it inside the task container. If no input with that name is found then the build would fail.
+* Concourse runs the task step `read-the-files`
+  with [input](../tasks.md#task-config-schema) `some-files`
+    * Concourse looks up, in its list of artifacts for the build, for an
+      artifact named `some-files`, and mounts it inside the task container. If
+      no input with that name is found then the build would fail.
 
 The next section will introduce you to the concept of [Resources](../resources/index.md).
 
-!!! note
+!!! question "Have Feedback?"
 
     If you have any feedback for this tutorial please share it in 
     [this GitHub discussion](https://github.com/concourse/concourse/discussions/7353).

@@ -172,7 +172,7 @@ Congratulations on building your first Concourse pipeline!
 In the next section we will build upon what we have learned about tasks and introduce inputs and outputs, which allow
 you to pass files between tasks.
 
-!!! note
+!!! question "Have Feedback?"
 
     If you have any feedback for this tutorial please share it in 
     [this GitHub discussion](https://github.com/concourse/concourse/discussions/7353).

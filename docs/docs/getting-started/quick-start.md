@@ -81,7 +81,7 @@ from hurting yourself!
 Once you've confirmed everything is up and running by logging in through fly and the [web UI](http://localhost:8080/),
 you can move onto the next section.
 
-!!! note
+!!! question "Have Feedback?"
 
     If you have any feedback for this tutorial please share it in this 
     [GitHub discussion](https://github.com/concourse/concourse/discussions/7353)

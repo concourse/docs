@@ -30,10 +30,7 @@ The Concourse team bundles a few basic resource types that come with the Linux r
 can [download from GitHub](https://github.com/concourse/concourse/releases). You'll notice that the Linux tarball is
 much larger than the macOS or Windows tarball because of all the bundled resources.
 
-!!! note
-
-    You can find out which resources a worker has by running:
-    
+!!! info "You can find out which resources a worker has by running:"
     ```shell
     fly -t tutorial workers --details
     ```
@@ -580,7 +577,7 @@ and start creating your own. Here are some other parts of the site to help you t
 
 Best of luck on your automation journey!
 
-!!! note
+!!! question "Have Feedback?"
 
     If you have any feedback for this tutorial please share it in this 
     [GitHub discussion](https://github.com/concourse/concourse/discussions/7353)
