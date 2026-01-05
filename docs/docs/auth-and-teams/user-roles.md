@@ -270,10 +270,6 @@ its permissions.
 
 ## Configuring RBAC
 
-!!! warning "Experimental Feature"
-
-    Configuring RBAC is **experimental**, and this may change in the future.
-
 It is possible to promote or demote the roles to which actions are assigned by passing the `--config-rbac` to the
 `concourse web` command with a path to a `.yml` file, like the following:
 
