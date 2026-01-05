@@ -12,12 +12,6 @@ setting (and eventually archiving) a pipeline for each feature branch would be q
 workflow, Concourse has a few important tools to help you out: the [`set_pipeline` step](../../steps/set-pipeline.md), [
 `across`](../../steps/modifier-and-hooks/across.md), and [instanced pipelines](../../pipelines/grouping-pipelines.md).
 
-!!! warning "Experimental Feature"
-
-    [`across`](../../steps/modifier-and-hooks/across.md) and [instanced 
-    pipelines](../../pipelines/grouping-pipelines.md) are both experimental features, and must be enabled with the 
-    feature flags `CONCOURSE_ENABLE_ACROSS_STEP` and `CONCOURSE_ENABLE_PIPELINE_INSTANCES`, respectively.
-
 In this guide, we'll cover:
 
 1. Writing a pipeline to [Test, Build & Deploy](#test-build-deploy) a branch to a staging environment. We'll
