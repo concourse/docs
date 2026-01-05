@@ -38,7 +38,7 @@ Concourse currently supports the following auth methods:
     ---
   [:octicons-arrow-right-24: Configure](cf-uaa.md)
 
-- :material-database: LDAP Auth
+- :material-account-multiple: LDAP Auth
 
     ---
   [:octicons-arrow-right-24: Configure](ldap.md)

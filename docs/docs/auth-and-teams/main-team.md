@@ -6,7 +6,7 @@ title: The main team
 
 Out of the box, Concourse comes with a single team called `main`.
 
-The `main` team is an _admin_ team, meaning members (specifically, users with
+The `main` team is an _admin_ team, meaning members (specifically users with
 the [owner](user-roles.md#owner-role) role) can create and update other teams. Currently,
 there is no way to promote a team to become an admin team, so `main` is a special-case.
 
