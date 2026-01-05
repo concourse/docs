@@ -22,14 +22,14 @@ A task's configuration specifies the following:
 
 ## `task-config` schema
 
-??? warning "**`platform`**: `linux` | `darwin` | `windows`"
+??? warning "**`platform`**: `linux` | `darwin` | `windows` (required)"
 
     The platform the task should run on. This determines the pool of workers that the task can run against.
 
     Technically any string value is allowed so long as a worker advertises the same platform, but in practice only 
     `linux`, `darwin`, and `windows` are in use.
 
-??? warning "**`in_parallel`**: [`anonymous_resource`](#anonymous_resource-schema)"
+??? info "**`image_resource`**: [`anonymous_resource`](#anonymous_resource-schema)"
 
     The container image to run with, as provided by an anonymous [resource](resources/index.md) definition.
 
@@ -177,9 +177,16 @@ A task's configuration specifies the following:
     Pipelines can override these params by setting [`task` step `params`](steps/task.md) on the `task` step. This is a 
     common method of providing credentials to a task.
 
-??? warning "**`run`**: [`command`](#command-schema)"
+??? info "**`run`**: [`command`](#command-schema)"
 
-    The command to execute in the container.
+    The command to execute in the container. If not specified, Concourse will
+    try running any `ENTRYPOINT`/`CMD` commands found in the container,
+    following the same logic as Docker. Any `args` specified in the task config
+    will be appended to `ENTRYPOINT`/`CMD`.
+
+    ??? warning "`ENTRYPOINT`/`CMD` execution is only supported on >= v8 of Concourse."
+
+        If you're on an older version of Concourse you must specify `run.path` in your task config.
 
     !!! note
 
@@ -188,9 +195,9 @@ A task's configuration specifies the following:
 
     ### `command` schema
 
-    ??? warning "**`path`**: [`file-path`](config-basics.md#file-path-schema)"
+    ??? info "**`path`**: [`file-path`](config-basics.md#file-path-schema)"
 
-        The name of or path to the executable to run.
+        The name of or path to the executable to run found inside the container.
 
         `path` is relative to the working directory. If `dir` is specified to set the working directory, then `path` is 
         relative to it.
@@ -258,6 +265,8 @@ A task's configuration specifies the following:
 
         The maximum amount of memory available to the task container, measured in bytes. 0 means unlimited. Can use 
         units such as `KB/MB/GB`.
+
+## Examples
 
 ??? example "Testing a Ruby app"
 
