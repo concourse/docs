@@ -56,10 +56,6 @@ CONCOURSE_CONTAINER_PLACEMENT_STRATEGY=random
 
 ## The `limit-active-tasks` strategy
 
-!!! warning "Experimental Feature"
-
-    `limit-active-tasks` is an experimental feature.
-
 When selecting the `limit-active-tasks` placement strategy, each `task` executed on a worker will increase the number
 of "active tasks" on that worker by one. When the task completes the number is decreased by one.
 The [`web` node](../install/running-web.md) then places `get`, `put`, and `task` containers on the worker that currently
@@ -84,10 +80,6 @@ CONCOURSE_MAX_ACTIVE_TASKS_PER_WORKER=1
 
 ## The `limit-active-containers` strategy
 
-!!! warning "Experimental Feature"
-
-    `limit-active-containers` is an experimental feature.
-
 The `limit-active-containers` placement strategy rejects workers that already have too many containers. It makes no
 effort to find the worker with the fewest number of containers present, and is therefore most useful when combined with
 other placement strategies by [Chaining Placement Strategies](#chaining-placement-strategies).
@@ -102,10 +94,6 @@ CONCOURSE_MAX_ACTIVE_CONTAINERS_PER_WORKER=200
 ```
 
 ## The `limit-active-volumes` strategy
-
-!!! warning "Experimental Feature"
-
-    `limit-active-volumes` is an experimental feature.
 
 The `limit-active-volumes` placement strategy rejects workers that already have too many volumes. It makes no effort to
 find the worker with the fewest number of volumes present, and is therefore most useful when combined with other
