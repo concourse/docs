@@ -6,7 +6,7 @@ title: Put Step
 
 Pushes to the given [resource](../resources/index.md). Expand each section below for more details and examples.
 
-??? warning "**`put`**: [`resource.name`](../resources/index.md#resource-schema) | [`identifier`](../config-basics.md#identifier-schema)"
+??? warning "**`put`**: [`resource.name`](../resources/index.md#resource-schema) | [`identifier`](../config-basics.md#identifier-schema) (required)"
 
     When the step succeeds, the version by the step will be immediately fetched via an additional implicit 
     [`get` step](get.md). This is so that later steps in your plan can use the artifact that was produced. The artifact 

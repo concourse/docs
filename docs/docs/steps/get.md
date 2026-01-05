@@ -6,7 +6,7 @@ title: Get Step
 
 Fetches a version of a [resource](../resources/index.md). Expand each section below for more details and examples.
 
-??? warning "**`get`**: [`resource.name`](../resources/index.md#resource-schema) | [`identifier`](../config-basics.md#identifier-schema)"
+??? warning "**`get`**: [`resource.name`](../resources/index.md#resource-schema) | [`identifier`](../config-basics.md#identifier-schema) (required)"
 
     The fetched bits will be registered in the build's artifact namespace under the given identifier. Subsequent 
     [`task` step](task.md) and [`put` step](put.md) which list the identifier as an input will have a copy of the bits 

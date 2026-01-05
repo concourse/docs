@@ -15,7 +15,7 @@ conform to the following schema:
 
 ## `pipeline` schema
 
-??? warning "**`jobs`**: [`[job]`](../jobs.md#job-schema)"
+??? warning "**`jobs`**: [`[job]`](../jobs.md#job-schema) (required)"
 
     A set of [jobs](../jobs.md) for the pipeline to continuously schedule. At least one job is required for 
     a pipeline to be valid.
