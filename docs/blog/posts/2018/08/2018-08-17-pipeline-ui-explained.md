@@ -219,4 +219,4 @@ and [design-system repo](https://github.com/concourse/design-system)!
 
 [get]: ../../../../docs/steps/get.md
 
-[group]: ../../../../docs/pipelines/index.md##group_config-schema
+[group]: ../../../../docs/pipelines/index.md#group_config-schema

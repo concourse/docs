@@ -33,7 +33,7 @@ via [Resources](../docs/resources/index.md).
 
 ## References
 
-* [`task-config.outputs`](../docs/tasks.md#output)
+* [`task-config.outputs`](../docs/tasks.md#output-schema)
 * [Jobs](../docs/jobs.md)
 * [Steps](../docs/steps/index.md)
 * [Tasks](../docs/tasks.md)

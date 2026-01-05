@@ -25,5 +25,6 @@ documentation.
 
 Required Dependencies:
 
+- Python >= 3.14
+- npm
 - ytt by Carvel
--

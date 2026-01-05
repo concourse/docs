@@ -95,7 +95,7 @@ IAM roles are a bit of a thorn in our side when it comes to designing features l
 support for them in a way that doesn't have this problem
 in [concourse/concourse#3023](https://github.com/concourse/concourse/issues/3023).
 
-### Intercepting check containers is no longer safe
+### Intercepting `check` containers is no longer safe
 
 Now that `check` containers are shared across teams, it would be dangerous to allow anyone
 to [`fly intercept`](../builds.md#fly-intercept) to `check` containers. For this reason, this capability is limited
