@@ -2,17 +2,18 @@
 title: Open Policy Agent Integration
 ---
 
-!!! note
+The [Open Policy Agent](https://www.openpolicyagent.org/docs/latest/) (OPA,
+pronounced “oh-pa”) is an open source, general-purpose policy engine that
+unifies policy enforcement across the stack.
 
-    The [Open Policy Agent](https://www.openpolicyagent.org/docs/latest/) (OPA, pronounced “oh-pa”) is an open source, 
-    general-purpose policy engine that unifies policy enforcement across the stack.
+OPA allows you to create arbitrary rules within Concourse without having to add
+a new feature to Concourse. You could even recreate Concourse's [RBAC
+system](../auth-and-teams/user-roles.md) using OPA.
 
-OPA allows you to create arbitrary rules within Concourse without having to add a new feature to Concourse. You could
-even recreate Concourse's [RBAC system](../auth-and-teams/user-roles.md) using OPA.
-
-More likely use-cases are to enforce rules your organization may have, such as not using certain container images or
-disallowing the use of privileged workloads. With OPA you can be as general or fine-grained as you want, enforcing these
-rules at the team or pipeline level.
+More likely use-cases are to enforce rules your organization may have, such as
+not using certain container images or disallowing the use of privileged
+workloads. With OPA you can be as general or fine-grained as you want, enforcing
+these rules at the team or pipeline level.
 
 The next few sections explain how to configure Concourse to talk to an OPA server and how to write OPA rules for
 Concourse.
@@ -21,25 +22,26 @@ Concourse.
 
 There are four configuration options you need to set on the `concourse web` nodes to have them interact with OPA.
 
-`CONCOURSE_OPA_URL`: The OPA policy check endpoint.
+!!! info "`CONCOURSE_OPA_URL`"
+    The OPA policy check endpoint. Should point to a specific `package/rule` that contains all Concourse rules for your cluster.
 
-:   Should point to a specific `package/rule` that contains all Concourse rules for your cluster.
+    _Example_: `http://opa-endpoint.com/v1/data/concourse/decision`
 
-:   _Example_: `http://opa-endpoint.com/v1/data/concourse/decision`
+!!! info "`CONCOURSE_POLICY_CHECK_FILTER_HTTP_METHOD`"
+    API http methods to go through policy check. You will need to make sure
+    these match up with an API action in the next two configuration options.
 
-`CONCOURSE_POLICY_CHECK_FILTER_HTTP_METHOD`: API http methods to go through policy check.
+    _Example_: `PUT,POST`
 
-:   You will need to make sure these match up with an API action in the next two configuration options.
+!!! info "`CONCOURSE_POLICY_CHECK_FILTER_ACTION`"
+    Actions in this list will go through policy check.
 
-:   _Example_: `PUT,POST`
+    _Example_: `ListWorkers,ListContainers`
 
-`CONCOURSE_POLICY_CHECK_FILTER_ACTION`: Actions in this list will go through policy check.
+!!! info "`CONCOURSE_POLICY_CHECK_FILTER_ACTION_SKIP`"
+    Actions in this list will not go through policy check
 
-:   _Example_: `ListWorkers,ListContainers`
-
-`CONCOURSE_POLICY_CHECK_FILTER_ACTION_SKIP`: Actions in this list will not go through policy check
-
-:   _Example_: `PausePipeline,UnpausePipeline`
+    _Example_: `PausePipeline,UnpausePipeline`
 
 For the last three configuration options you can refer
 to [this list of routes](https://github.com/concourse/concourse/blob/master/atc/routes.go) for a list of API actions and
