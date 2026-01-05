@@ -51,7 +51,7 @@ The prefix prepended to the namespace used by Concourse to search for secrets
 (in the examples above, `concourse-`) can be changed by configuring the following
 in the web node:
 
-```
+```properties
 CONCOURSE_KUBERNETES_NAMESPACE_PREFIX=some-other-prefix-
 ```
 
@@ -79,7 +79,7 @@ For instance, if you have the following teams which you want to read secrets fro
 
 Assuming the following [web node](../../install/running-web.md) configuration:
 
-```
+```properties
 CONCOURSE_KUBERNETES_NAMESPACE_PREFIX=myprefix-
 ```
 
