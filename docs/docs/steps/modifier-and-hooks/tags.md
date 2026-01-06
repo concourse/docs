@@ -5,7 +5,7 @@ title: Tags Step Modifier
 # `tags` Step Modifier
 
 
-???+ info "`attempts`: [`[string]`](../../config-basics.md#string-schema)"
+???+ info "`tags`: [`[string]`](../../config-basics.md#string-schema)"
 
     The tags by which to match workers. The step will be placed within the pool
     of workers that match all the given set of tags.
