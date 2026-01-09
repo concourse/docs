@@ -1,5 +1,7 @@
 ---
 title: Getting Started
+search:
+  exclude: true
 ---
 
 This tutorial will guide you through the basics of creating Concourse pipelines. You will use a local instance of
@@ -16,13 +18,12 @@ containers then you may want to [get started with Docker](https://docs.docker.co
 this tutorial.
 
 It will also help if you know how to read YAML. We have a
-quick [Intro to YAML](https://concourse-ci.org/config-basics.html#intro-to-yaml) if you're not familiar with the syntax.
+quick [Intro to YAML](../config-basics.md#intro-to-yaml) if you're not familiar with the syntax.
 
-!!! note
+!!! question "Have Feedback?"
 
     If you have any feedback for this tutorial please share it in 
     [this GitHub discussion](https://github.com/concourse/concourse/discussions/7353).
 
     If you get stuck at any point, you can try asking for help on our [Discord server](https://discord.gg/MeRxXKW) 
     in the #need-help channel.
-

@@ -1,7 +1,7 @@
 # Concourse Docs
 
 This is where you will find the source for the Concourse website and overall
-documentation. 
+documentation.
 
 # Examples Status
 
@@ -25,5 +25,6 @@ documentation.
 
 Required Dependencies:
 
+- Python >= 3.14
+- npm
 - ytt by Carvel
-- 

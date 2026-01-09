@@ -2,12 +2,13 @@
 title: Grouping Pipelines
 ---
 
-!!! warning "Experimental Feature"
+!!! info
 
-    Instanced Pipelines/Instance Groups are currently experimental, and are subject to change.
-
-    To experiment with Instanced Pipelines on your deployment, you need to set the feature flag 
-    `--enable-pipeline-instances` (`CONCOURSE_ENABLE_PIPELINE_INSTANCES=true`)
+    [Instance pipelines](../pipelines/grouping-pipelines.md) are not enabled
+    by default if your Concourse is on a version <v8. To enable this
+    feature, set the `--enable-pipeline-instances` flag or env var
+    `CONCOURSE_ENABLE_PIPELINE_INSTANCES` to `true` on the [`web`
+    node](../install/running-web.md).
 
 Although pipelines operate independently of one another, it's not uncommon to have several pipelines that are highly
 related, and possibly derived from the same pipeline template. It's useful to be able to group these pipelines to reduce

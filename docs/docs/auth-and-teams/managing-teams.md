@@ -4,9 +4,9 @@ title: Managing Teams
 
 ## `fly set-team`
 
-Once you've [logged in as the `main` team with `fly`](https://concourse-ci.org/fly.html#fly-login), you can run [
+Once you've [logged in as the `main` team with `fly`](../fly.md#fly-login), you can run [
 `fly set-team`](#fly-set-team) to create or update other teams. Users with a [
-`owner` role](https://concourse-ci.org/user-roles.html#team-owner-role) can also update their own configuration with the
+`owner` role](user-roles.md#owner-role) can also update their own configuration with the
 same command.
 
 For example, to create a new team that authorizes the local `foo` user, you would run:
@@ -20,18 +20,18 @@ operation.
 
 There are many different ways to configure team auth; see [Configuring Auth](configuring/index.md) for more information.
 
-Once the team has been created, you can use [`fly login`](https://concourse-ci.org/fly.html#fly-login) to log in:
+Once the team has been created, you can use [`fly login`](../fly.md#fly-login) to log in:
 
 ```shell
 fly -t example login -n my-team
 ```
 
 Any newly configured pipelines (via [
-`fly set-pipeline`](https://concourse-ci.org/setting-pipelines.html#fly-set-pipeline)) and one-off builds (via [
-`fly execute`](https://concourse-ci.org/tasks.html#running-tasks)) will be owned by the authorized team. Commands that
+`fly set-pipeline`](../pipelines/setting-pipelines.md#fly-set-pipeline)) and one-off builds (via [
+`fly execute`](../tasks.md#running-tasks-with-fly-execute)) will be owned by the authorized team. Commands that
 list content will be scoped to the current team by default, such as [
-`fly pipelines`](https://concourse-ci.org/managing-pipelines.html#fly-pipelines) and [
-`fly builds`](https://concourse-ci.org/builds.html#fly-builds). The web UI will reflect the same state.
+`fly pipelines`](../pipelines/managing-pipelines.md#fly-pipelines) and [
+`fly builds`](../builds.md#fly-builds). The web UI will reflect the same state.
 
 Newly configured pipelines are hidden by default, meaning other teams and unauthorized visitors cannot view them. To
 make them publicly viewable, see [Pipeline & Build Visibility](exposing.md).
@@ -39,9 +39,9 @@ make them publicly viewable, see [Pipeline & Build Visibility](exposing.md).
 ### Setting User Roles
 
 By default, authorization config passed to `set-team` configures the [
-`owner` role](https://concourse-ci.org/user-roles.html#team-owner-role).
+`owner` role](user-roles.md#owner-role).
 
-More advanced [roles](https://concourse-ci.org/user-roles.html) configuration can be specified through the `--config` or
+More advanced [roles](user-roles.md) configuration can be specified through the `--config` or
 `-c` flag.
 
 The `-c` flag expects a `.yml` file with a single field, `roles:`, pointing to a list of role authorization configs.

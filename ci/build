@@ -1,17 +1,18 @@
 #!/bin/bash
 
-set -e -x
+set -e
 
 apk add git
 
 git config --global user.email "concourseteam+concourse-github-bot@gmail.com"
 git config --global user.name "Concourse Bot"
 
-# Change to the docs repo
 pushd docs
-  # Install dependencies
   pip install zensical nodeenv
   nodeenv env --node=22.21.1
+
+  source env/bin/activate
+
   npm ci
 
   # Remove apps before build
@@ -33,10 +34,8 @@ pushd docs
     mv site/{.,}* .
     rmdir site
 
-    # Create CNAME file
     echo -n "concourse-ci.org" > CNAME
 
-    # Create robots.txt file
     echo "User-agent: *" > robots.txt
     echo -n "Disallow: /single-page.html" >> robots.txt
 

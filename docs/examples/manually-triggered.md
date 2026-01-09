@@ -1,5 +1,7 @@
 ---
 title: Manually triggered job example
+search:
+  exclude: true
 hide:
   - toc
 ---
@@ -21,7 +23,7 @@ A job can be triggered by a resource. After it's complete, the next job can run 
 
 ## References
 
-* [Resources](https://concourse-ci.org/resources.html)
-* [Jobs](https://concourse-ci.org/jobs.html)
-* [Steps](https://concourse-ci.org/steps.html)
-* [Tasks](https://concourse-ci.org/tasks.html)
+* [Resources](../docs/resources/index.md)
+* [Jobs](../docs/jobs.md)
+* [Steps](../docs/steps/index.md)
+* [Tasks](../docs/tasks.md)

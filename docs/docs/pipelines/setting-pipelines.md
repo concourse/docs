@@ -3,7 +3,7 @@ title: Setting Pipelines
 ---
 
 Pipelines are configured entirely via the [`fly` CLI](../fly.md) or the [
-`set_pipeline` step](https://concourse-ci.org/set-pipeline-step.html#set-pipeline). There is no GUI for configuring
+`set_pipeline` step](../steps/set-pipeline.md). There is no GUI for configuring
 pipelines.
 
 ## `fly set-pipeline`

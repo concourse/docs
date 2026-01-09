@@ -2,23 +2,26 @@
 {
   "compilerOptions": {
     // ------------------ Compilation Targets ------------------
-    "target": "ES2020",         /* Compile to modern JS. Rollup handles the final bundle format. */
-    "module": "ESNext",         /* Use modern ES module format. */
-    "moduleResolution": "node", /* Standard module resolution. */
-    "allowSyntheticDefaultImports": true, /* Allows default imports from modules with no default export. */
-    "esModuleInterop": true,    /* Compatibility for CommonJS imports (like Lit/MWC modules). */
-    "lib": ["ES2020", "DOM"],   /* Include modern JS features and browser DOM APIs. */
+    "target": "ES2020" /* Compile to modern JS. Rollup handles the final bundle format. */,
+    "module": "ESNext" /* Use modern ES module format. */,
+    "moduleResolution": "node" /* Standard module resolution. */,
+    "allowSyntheticDefaultImports": true /* Allows default imports from modules with no default export. */,
+    "esModuleInterop": true /* Compatibility for CommonJS imports (like Lit/MWC modules). */,
+    "lib": [
+      "ES2020",
+      "DOM"
+    ] /* Include modern JS features and browser DOM APIs. */,
 
     // ------------------ Output and Source Maps ------------------
-    "sourceMap": true,          /* Generate source map files. */
-    "rootDir": "src",           /* Specify the root directory of source files. */
+    "sourceMap": true /* Generate source map files. */,
+    "rootDir": "src" /* Specify the root directory of source files. */,
 
     // ------------------ Type Checking and Strictness ------------------
-    "strict": true,             /* Enable all strict type-checking options. Highly recommended. */
-    "skipLibCheck": true        /* Skip type checking of declaration files (faster compilation). */
+    "strict": true /* Enable all strict type-checking options. Highly recommended. */,
+    "skipLibCheck": true /* Skip type checking of declaration files (faster compilation). */
   },
   "include": [
-    "src/**/*.ts",               /* Only include TypeScript files in the src folder. */
+    "src/**/*.ts" /* Only include TypeScript files in the src folder. */,
     "src/**/*.d.ts" // ⬅️ Ensure .d.ts files are included
   ]
 }

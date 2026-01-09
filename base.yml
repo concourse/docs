@@ -1,10 +1,10 @@
 site_name: Concourse
-site_url: https://aviator-labs.github.io/docs-ci/
+site_url: https://concourse-ci.org/
 
 repo_url: https://github.com/concourse/concourse
 repo_name: concourse/concourse
 
-edit_uri: https://github.com/Aviator-Labs/docs-ci/edit/main/docs/
+edit_uri: https://github.com/concourse/docs/blob/master/docs/
 
 watch:
   - docs
@@ -22,6 +22,7 @@ markdown_extensions:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.superfences
+  - pymdownx.blocks.caption
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
@@ -53,20 +54,20 @@ exclude_docs: |
 theme:
   name: material
   custom_dir: overrides
-  font: 
+  font:
     text: Roboto Slab
   features:
-    - navigation.tabs         # Top-level tabs
-    - navigation.tabs.sticky  # Keep tabs visible
-    - navigation.indexes      # Section index pages
-    - navigation.instant      # SPA-like navigation
-    - navigation.top          # Back to top button
-    - navigation.footer       # Previous/next links
-    - content.action.edit     # Edit Page in GitHub
-    - content.action.view     # View raw Page in GitHub
-    - content.code.copy       # Copy code
-    - attr_list               # Attribute Lists
-    - md_in_html              # Markdown in HTML
+    - navigation.tabs # Top-level tabs
+    - navigation.tabs.sticky # Keep tabs visible
+    - navigation.indexes # Section index pages
+    - navigation.instant # SPA-like navigation
+    - navigation.top # Back to top button
+    - navigation.footer # Previous/next links
+    - content.action.edit # Edit Page in GitHub
+    - content.action.view # View raw Page in GitHub
+    - content.code.copy # Copy code
+    - attr_list # Attribute Lists
+    - md_in_html # Markdown in HTML
     - pymdownx.blocks.caption # Caption
 
   palette:
@@ -85,7 +86,7 @@ theme:
   favicon: assets/favicon.ico
 
 copyright: >-
-  Copyright &copy; 2025 The Linux Foundation &trade; –
+  Copyright &copy; 2026 The Linux Foundation &reg; –
   <a href="#__consent">Change cookie settings</a>
 
 extra:
@@ -111,7 +112,6 @@ extra:
       link: https://bsky.app/profile/concourse-ci.org
     - icon: fontawesome/solid/paper-plane
       link: mailto:contact@concourse-ci.org
-  version: 7.14.2
 
 not_in_nav: |
   index.md
@@ -259,5 +259,6 @@ nav:
   - project/index.md
   - ecosystem/index.md
   - support/index.md
+  - Resource Types: https://resource-types.concourse-ci.org/" target="_blank
   - Blog:
       - blog/index.md

@@ -21,7 +21,7 @@ provided, or a [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) hash of the passwo
 
 When local users are configured, the log-in page in the web UI will show a username/password prompt.
 
-Local users can also log in via [`fly login`](https://concourse-ci.org/fly.html#fly-login) with the `--username` and
+Local users can also log in via [`fly login`](../../fly.md#fly-login) with the `--username` and
 `--password` flags.
 
 ### Bcrypt Hashing Passwords
@@ -58,14 +58,14 @@ CONCOURSE_ADD_LOCAL_USER='myuser:$2a$12$L8Co5QYhD..S1l9mIIVHlucvRjfte4tuymMCk9qu
 
 ## Authorization
 
-Local users are granted access to teams via [`fly set-team`](https://concourse-ci.org/managing-teams.html#fly-set-team),
+Local users are granted access to teams via [`fly set-team`](../managing-teams.md#fly-set-team),
 using the `--local-user` flag:
 
 ```shell
 fly set-team -n my-team --local-user some_username
 ```
 
-...or via --config for [setting user roles](https://concourse-ci.org/managing-teams.html#setting-roles):
+...or via --config for [setting user roles](../managing-teams.md#setting-user-roles):
 
 ```yaml
 roles:
