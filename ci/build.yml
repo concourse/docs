@@ -18,4 +18,9 @@ outputs:
     path: docs
 
 run:
-  path: docs/ci/build
+  path: sh
+  args:
+    - -c
+    - |
+      apk add --no-progress bash
+      docs/ci/build
