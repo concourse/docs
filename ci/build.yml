@@ -4,8 +4,8 @@ platform: linux
 image_resource:
   type: registry-image
   source:
-    repository: python
-    tag: 3.14-alpine
+    repository: cgr.dev/chainguard/python
+    tag: latest-dev
 
 inputs:
   - name: docs
@@ -18,9 +18,5 @@ outputs:
     path: docs
 
 run:
-  path: sh
-  args:
-    - -c
-    - |
-      apk add --no-progress bash
-      docs/ci/build
+  path: docs/ci/build
+  user: root #needed for the chainguard python image
