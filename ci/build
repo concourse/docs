@@ -2,7 +2,7 @@
 
 set -e
 
-apk add git
+apk add --no-progress git
 
 git config --global user.email "concourseteam+concourse-github-bot@gmail.com"
 git config --global user.name "Concourse Bot"
