@@ -24,6 +24,8 @@ pushd docs
 
   # Copy well-known for BlueSky
   cp -R .well-known site/.well-known
+  # To tell Github to publish immediately and skip it's automatic build step
+  touch site/.nojekyll
 
   if [ -e .git ]; then
     git checkout gh-pages
