@@ -1,0 +1,396 @@
+body {
+  background-image: url("../images/concourse-pattern.svg");
+  position: cover;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.centered-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.feature-box {
+  background-color: var(--md-default-bg-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  padding: 2em;
+  margin: 1.5em;
+  width: calc(100% - 3em);
+}
+
+.feature-box h2 {
+  margin-top: 0em;
+  margin-bottom: 0.5em;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.feature-box h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.feature-box p {
+  flex: 1;
+  margin-top: 0em;
+  margin-bottom: 1em;
+}
+
+.feature-content {
+  display: flex;
+  gap: 2em;
+  align-items: flex-start;
+}
+
+.feature-content .highlight {
+  flex: 0 0 auto;
+  margin: 0;
+  border-radius: 8px;
+  overflow-x: auto;
+  min-width: 0;
+}
+
+.feature-content .feature-description {
+  flex: 1;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.feature-content .feature-description p {
+  margin: 0 0 1em 0;
+  line-height: 1.6;
+}
+
+/* Side-by-side feature columns */
+.features-side-by-side {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2em;
+}
+
+.feature-column {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.feature-column h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 0.75em;
+}
+
+.feature-column .highlight {
+  max-width: 100%;
+  overflow-x: auto;
+  min-width: 0;
+}
+
+.feature-column .highlight pre {
+  margin: 0;
+  overflow-x: auto;
+}
+
+.feature-visual {
+  margin-bottom: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-visual .highlight {
+  border-radius: 8px;
+  overflow-x: auto;
+  width: 100%;
+  min-width: 0;
+}
+
+.feature-visual .pipeline-svg {
+  width: 100%;
+  height: 100%;
+  min-height: 249px;
+}
+
+.feature-text p {
+  margin: 0 0 1em 0;
+  line-height: 1.6;
+}
+
+.feature-text p:last-child {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .features-side-by-side {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-visual {
+    min-height: auto;
+  }
+}
+
+.side-by-side {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.9);
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0 4%;
+  padding: 3em 1.5em;
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.side-by-side .segment {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 10px;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.splash-intro {
+  color: #efeeee;
+}
+
+.splash-intro p {
+  font-size: 1rem;
+}
+
+.splash-intro h1 {
+  font-size: xx-large;
+  font-weight: bold;
+  color: #efeeee;
+  margin-bottom: 0em;
+}
+
+.splash-intro > * > .text-links {
+  text-decoration: underline !important;
+  color: #efeeee;
+}
+
+.splash-intro > * > .text-links:hover {
+  color: #efeeee;
+}
+
+.quick-start {
+  width: fit-content;
+  flex-grow: 0;
+}
+
+.splash-downloads {
+  background: #2a2929;
+  justify-self: stretch;
+  position: relative;
+}
+
+/* Initially set downloads to hidden */
+.segment.splash-downloads {
+  display: none;
+}
+
+.split-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: absolute;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.md-button.download-dropdown-btn:hover {
+  border-left: 1px solid white;
+}
+
+.download-btn,
+.download-dropdown-btn {
+  height: 3em;
+}
+
+.download-dropdown-btn {
+  width: fit-content;
+}
+
+.md-button.download-btn {
+  border-radius: 1em 0 0 1em;
+}
+
+.md-button.download-dropdown-btn {
+  border-radius: 0 1em 1em 0;
+  border-left: 1px solid white;
+}
+
+.download-ctr {
+  display: grid;
+  grid-template-columns: 0.75fr 1.25fr;
+}
+
+.std-flex-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em;
+}
+
+.std-flex-box > div > .tool-select {
+  width: 17em;
+  height: 2em;
+}
+
+#release-text {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.splash-split {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  margin: 1.5em 1em;
+  color: white;
+}
+
+.quick-start-download {
+  display: flex;
+  justify-content: space-between;
+  width: 18rem;
+}
+
+@media screen and (max-width: 1219px) {
+  /* Example breakpoint for tablets */
+  .side-by-side,
+  .download-ctr {
+    grid-template-columns: 1fr; /* Two equal columns */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  /* Mobile responsive fixes for content overflow */
+
+  .side-by-side {
+    grid-template-columns: 1fr;
+    padding: 1.5em 1em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+  }
+
+  .feature-box {
+    padding: 1em;
+    margin: 0.5em;
+    width: calc(100% - 1em);
+    overflow-x: hidden;
+  }
+
+  .feature-content {
+    flex-direction: column;
+    gap: 1em;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .feature-content .highlight {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .feature-content .highlight pre {
+    font-size: 0.75em;
+  }
+
+  .features-side-by-side .feature-column .highlight {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .features-side-by-side .feature-column .highlight pre {
+    font-size: 0.75em;
+  }
+
+  .feature-content .pipeline-svg {
+    max-width: 100%;
+  }
+
+  .quick-start-download {
+    flex-direction: column;
+    width: 100%;
+    gap: 1em;
+  }
+
+  .splash-intro h1 {
+    font-size: x-large;
+  }
+
+  .splash-intro p {
+    font-size: 0.9rem;
+  }
+
+  .centered-section {
+    padding: 0 0.5em;
+  }
+
+  /* Mobile-friendly download dropdowns */
+  .std-flex-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5em;
+  }
+
+  .std-flex-box > div {
+    width: 100%;
+  }
+
+  .std-flex-box > div > .tool-select {
+    width: 100%;
+    max-width: 100%;
+  }
+}
