@@ -27,7 +27,8 @@ pushd docs
 
   if [ -e .git ]; then
     git checkout gh-pages
-    git rm --cached libs/examples
+    # avoid committing submodule
+    git rm -rf libs/examples
     git rm -rf .
 
     rm -rf venv/ node_modules/ env/ .cache/ overrides/ docs/ .idea/
