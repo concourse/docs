@@ -24,8 +24,6 @@ pushd docs
 
   # Copy well-known for BlueSky
   cp -R .well-known site/.well-known
-  # To tell Github to publish immediately and skip it's automatic build step
-  touch site/.nojekyll
 
   if [ -e .git ]; then
     git checkout gh-pages
@@ -40,6 +38,9 @@ pushd docs
 
     echo "User-agent: *" > robots.txt
     echo -n "Disallow: /single-page.html" >> robots.txt
+
+    # Tells Github to publish immediately and skip it's automatic build step
+    touch .nojekyll
 
     git add -A
     git commit --allow-empty -m "build"
