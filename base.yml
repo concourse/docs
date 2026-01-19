@@ -166,6 +166,7 @@ nav:
           - docs/resources/managing-resources.md
       - Resource Types:
           - docs/resource-types/index.md
+          - docs/resource-types/interface-reference.md
           - docs/resource-types/implementing.md
           - docs/resource-types/managing-types.md
       - docs/jobs.md
