@@ -2243,6 +2243,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Get Step
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -2259,6 +2277,91 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#get" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        resource
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#passed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        passed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#params" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        params
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trigger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        trigger
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        version
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -5580,6 +5683,80 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#get" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        resource
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#passed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        passed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#params" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        params
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trigger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        trigger
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        version
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -5615,6 +5792,7 @@
 <p>Fetches a version of a <a href="../../resources/">resource</a>. Expand each section below for more details and examples.</p>
 <details class="warning">
 <summary><strong><code>get</code></strong>: <a href="../../resources/#resource-schema"><code>resource.name</code></a> | <a href="../../config-basics/#identifier-schema"><code>identifier</code></a> (required)</summary>
+<h3 id="get"><code>get</code></h3>
 <p>The fetched bits will be registered in the build's artifact namespace under the given identifier. Subsequent 
 <a href="../task/"><code>task</code> step</a> and <a href="../put/"><code>put</code> step</a> which list the identifier as an input will have a copy of the bits 
 in their working directory.</p>
@@ -5652,6 +5830,7 @@ something (run tests) with it in a <a href="../task/"><code>task</code> step</a>
 </details>
 <details class="info">
 <summary><strong><code>resource</code></strong>: <a href="../../resources/#resource-schema"><code>resource.name</code></a></summary>
+<h3 id="resource"><code>resource</code></h3>
 <p><em>Defaults to the value of <code>get</code></em>. The resource to fetch, as configured in 
 <a href="../../pipelines/#pipeline-schema"><code>pipeline.resources</code></a>.</p>
 <p>Use this attribute to rename a resource from the overall pipeline context into the job-specific context.</p>
@@ -5688,6 +5867,7 @@ something (run tests) with it in a <a href="../task/"><code>task</code> step</a>
 </details>
 <details class="info">
 <summary><strong><code>passed</code></strong>: <a href="../../jobs/#job-schema"><code>[job.name]</code></a></summary>
+<h3 id="passed"><code>passed</code></h3>
 <p>When specified, only the versions of the resource that made it through the given list of jobs (AND-ed together) will
 be considered when triggering and fetching.</p>
 <details class="example">
@@ -5764,6 +5944,7 @@ be considered when triggering and fetching.</p>
 </details>
 <details class="info">
 <summary><strong><code>params</code></strong>: <a href="../../config-basics/#config-schema"><code>config</code></a></summary>
+<h3 id="params"><code>params</code></h3>
 <p>Arbitrary configuration to pass to the resource. Refer to the resource type's documentation to see what it supports.</p>
 <details class="example">
 <summary>Fetching with params</summary>
@@ -5787,6 +5968,7 @@ be considered when triggering and fetching.</p>
 </details>
 <details class="info">
 <summary><strong><code>trigger</code></strong>: <a href="../../config-basics/#boolean-schema"><code>boolean</code></a></summary>
+<h3 id="trigger"><code>trigger</code></h3>
 <p><em>Default <code>false</code></em>. If set to <code>true</code>, new builds of the job will be automatically created when a new version for this
 input becomes available.</p>
 <div class="admonition note">
@@ -5823,6 +6005,7 @@ input becomes available.</p>
 </details>
 <details class="info">
 <summary><strong><code>version</code></strong>: <code>latest</code> | <code>every</code> | <a href="../../config-basics/#version-schema"><code>version</code></a></summary>
+<h3 id="version"><code>version</code></h3>
 <p><em>Default <code>latest</code></em>. The version of the resource to fetch.</p>
 <p>If set to <code>latest</code>, scheduling will just find the latest available version of a resource and use it, allowing 
 versions to be skipped. This is usually what you want, e.g. if someone pushes 100 git commits.</p>

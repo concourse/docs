@@ -2271,6 +2271,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Put Step
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -2287,6 +2305,91 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#put" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        put
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        resource
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        inputs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#params" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        params
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get_params" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_params
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#no_get" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        no_get
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -5580,6 +5683,80 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#put" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        put
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        resource
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        inputs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#params" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        params
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get_params" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_params
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#no_get" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        no_get
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -5615,6 +5792,7 @@
 <p>Pushes to the given <a href="../../resources/">resource</a>. Expand each section below for more details and examples.</p>
 <details class="warning">
 <summary><strong><code>put</code></strong>: <a href="../../resources/#resource-schema"><code>resource.name</code></a> | <a href="../../config-basics/#identifier-schema"><code>identifier</code></a> (required)</summary>
+<h3 id="put"><code>put</code></h3>
 <p>When the step succeeds, the version by the step will be immediately fetched via an additional implicit 
 <a href="../get/"><code>get</code> step</a>. This is so that later steps in your plan can use the artifact that was produced. The artifact 
 will be available under the identifier <code>put</code> specifies.</p>
@@ -5642,6 +5820,7 @@ will be available under the identifier <code>put</code> specifies.</p>
 </details>
 <details class="info">
 <summary><strong><code>resource</code></strong>: <a href="../../resources/#resource-schema"><code>resource.name</code></a></summary>
+<h3 id="resource"><code>resource</code></h3>
 <p><em>Defaults to the value of <code>put</code></em>. The resource to fetch, as configured in 
 <a href="../../pipelines/#pipeline-schema"><code>pipeline.resources</code></a>.</p>
 <p>Use this attribute to rename a resource from the overall pipeline context into the job-specific context.</p>
@@ -5678,7 +5857,8 @@ will be available under the identifier <code>put</code> specifies.</p>
 </details>
 </details>
 <details class="info">
-<summary><strong><code>version</code></strong>: <code>detect</code> | <code>all</code> | <a href="../../config-basics/#identifier-schema"><code>[identifier]</code></a></summary>
+<summary><strong><code>inputs</code></strong>: <code>detect</code> | <code>all</code> | <a href="../../config-basics/#identifier-schema"><code>[identifier]</code></a></summary>
+<h3 id="inputs"><code>inputs</code></h3>
 <p><em>Default <code>detect</code></em>.</p>
 <p>When not set, or set to <code>detect</code>, the artifacts are detected based on the
 configured <code>put</code> step <code>params</code> by looking for all string values and using
@@ -5734,6 +5914,7 @@ provided to the container.</p>
 </details>
 <details class="info">
 <summary><strong><code>params</code></strong>: <a href="../../config-basics/#config-schema"><code>config</code></a></summary>
+<h3 id="params"><code>params</code></h3>
 <p>Arbitrary configuration to pass to the resource. Refer to the resource type's documentation to see what it supports.</p>
 <details class="example">
 <summary>Putting with params</summary>
@@ -5752,6 +5933,7 @@ provided to the container.</p>
 </details>
 <details class="info">
 <summary><strong><code>get_params</code></strong>: <a href="../../config-basics/#config-schema"><code>config</code></a></summary>
+<h3 id="get_params"><code>get_params</code></h3>
 <p>Arbitrary configuration to pass to the resource during the implicit <code>get</code> step. Refer to the resource type's 
 documentation to see what it supports.</p>
 <details class="example">
@@ -5771,6 +5953,7 @@ type</a> to download the image, you would implement your
 </details>
 <details class="info">
 <summary><strong><code>no_get</code></strong>: <a href="../../config-basics/#boolean-schema"><code>boolean</code></a></summary>
+<h3 id="no_get"><code>no_get</code></h3>
 <p>Skips the get step that usually follows the completion of the put step.
 This is useful to set if your <code>put</code> steps are at the very end of your job
 and no further steps would use the artifact generated by the implicit
