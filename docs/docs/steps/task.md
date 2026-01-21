@@ -12,6 +12,7 @@ the result of a task.
 
 ??? warning "**`task`**: [`identifier`](../config-basics.md#identifier-schema) (required)"
 
+    ### `task`
     The identifier value is just a name - short and sweet. The value is shown in the web UI but otherwise has no effect 
     on anything. This may change in the future; [RFC #32](https://github.com/concourse/rfcs/pull/32) proposes that the 
     name be used to reference a file within the project.
@@ -68,6 +69,7 @@ the result of a task.
 
 ??? info "**`config`**: [`task-config`](../tasks.md#task-config-schema)"
 
+    ### `config`
     The [task config](../tasks.md#task-config-schema) to execute.
 
     ??? example "Task Config"
@@ -92,6 +94,7 @@ the result of a task.
 
 ??? info "**`file`**: [`file-path`](../config-basics.md#file-path-schema)"
 
+    ### `file`
     A dynamic alternative to `task` step `config`.
 
     `file` points at a `.yml` file containing the [task config](../tasks.md#task-config-schema), which allows this to be
@@ -128,6 +131,7 @@ the result of a task.
 
 ??? info "**`image`**: [`identifier`](../config-basics.md#identifier-schema)"
 
+    ### `image`
     Specifies an artifact source containing an image to use for the task. This overrides any 
     `task-config.image_resource` configuration present in the task configuration.
 
@@ -170,6 +174,7 @@ the result of a task.
 
 ??? info "`privileged`: [`boolean`](../config-basics.md#boolean-schema)"
 
+    ### `privileged`
     _Default `false`_. If set to `true`, the task will run with escalated capabilities available on the task's platform.
 
     !!! warning
@@ -185,6 +190,7 @@ the result of a task.
 
 ??? info "`vars`: [`vars`](../config-basics.md#vars-schema)"
 
+    ### `vars`
     A map of template variables to pass to an external task. Not to be confused with `task` step `params`, which 
     provides _environment variables_ to the task.
 
@@ -260,6 +266,7 @@ the result of a task.
 
 ??? info "`params`: [`env-vars`](../config-basics.md#env-vars-schema)"
 
+    ### `params`
     A map of task environment variable parameters to set, overriding those configured in the task's `config` or `file`.
 
     The difference between `params` and `vars` is that `vars` allows you to interpolate any template variable in an 
@@ -398,6 +405,8 @@ the result of a task.
 
 ??? info "`hermetic`: [`boolean`](../config-basics.md#boolean-schema)"
 
+    ### `hermetic`
+
     !!! warning 
     
         This setting is only supported by the `containerd` runtime on Linux. For other runtimes this setting has no 
@@ -411,6 +420,7 @@ the result of a task.
 
 ??? info "`input_mapping`: { `input.name` : [`identifier`](../config-basics.md#identifier-schema) }"
 
+    ### `input_mapping`
     A map from task input names to concrete names in the build plan. This allows a task with generic input names to be 
     used multiple times in the same plan, mapping its inputs to specific resources within the plan.
 
@@ -447,6 +457,7 @@ the result of a task.
 
 ??? info "`output_mapping`: { `output.name` : [`identifier`](../config-basics.md#identifier-schema) }"
 
+    ### `output_mapping`
     A map from task output names to concrete names to register in the build plan. This allows a task with generic output
     names to be used multiple times in the same plan.
 

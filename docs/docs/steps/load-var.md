@@ -10,6 +10,7 @@ details and examples.
 
 ??? warning "**`load_var`**: [`identifier`](../config-basics.md#identifier-schema) (required)"
 
+    ### `load_var`
     The identifier will be the name of var, available to subsequent steps as a [local build var](../vars.md#local-var).
 
     ??? example "Loading a simple value as a var"
@@ -27,7 +28,7 @@ details and examples.
               - put: img
                 params:
                   version: ((.:version))
-        
+
         
         resources:
           - name: examples
@@ -47,10 +48,12 @@ details and examples.
 
 ??? warning "**`file`**: [`file-path`](../config-basics.md#file-path-schema) (required)"
 
+    ### `file`
     The path to a file whose content shall be read and used as the var's value.
 
 ??? info "**`format`**: `json` | `yaml` | `yml` | `trim` | `raw`"
 
+    ### `format`
     The format of the file's content.
 
     If unset, Concourse will try to detect the format from the file extension. If the file format cannot be determined, 
@@ -87,7 +90,7 @@ details and examples.
               - put: img
                 params:
                   version: "((.:version.hello))-((.:version.number))"
-        
+
         
         resources:
           - name: examples
@@ -104,5 +107,6 @@ details and examples.
 
 ??? info "**`reveal`**: [`boolean`](../config-basics.md#boolean-schema)"
 
+    ### `reveal`
     _Default `false`_. If set to `true`, allow the var's content to be printed in the build output even with secret 
     redaction enabled.

@@ -8,6 +8,7 @@ Fetches a version of a [resource](../resources/index.md). Expand each section be
 
 ??? warning "**`get`**: [`resource.name`](../resources/index.md#resource-schema) | [`identifier`](../config-basics.md#identifier-schema) (required)"
 
+    ### `get`
     The fetched bits will be registered in the build's artifact namespace under the given identifier. Subsequent 
     [`task` step](task.md) and [`put` step](put.md) which list the identifier as an input will have a copy of the bits 
     in their working directory.
@@ -47,6 +48,7 @@ Fetches a version of a [resource](../resources/index.md). Expand each section be
 
 ??? info "**`resource`**: [`resource.name`](../resources/index.md#resource-schema)"
 
+    ### `resource`
     _Defaults to the value of `get`_. The resource to fetch, as configured in 
     [`pipeline.resources`](../pipelines/index.md#pipeline-schema).
     
@@ -85,6 +87,7 @@ Fetches a version of a [resource](../resources/index.md). Expand each section be
 
 ??? info "**`passed`**: [`[job.name]`](../jobs.md#job-schema)"
 
+    ### `passed`
     When specified, only the versions of the resource that made it through the given list of jobs (AND-ed together) will
     be considered when triggering and fetching.
 
@@ -165,6 +168,7 @@ Fetches a version of a [resource](../resources/index.md). Expand each section be
 
 ??? info "**`params`**: [`config`](../config-basics.md#config-schema)"
 
+    ### `params`
     Arbitrary configuration to pass to the resource. Refer to the resource type's documentation to see what it supports.
 
     ??? example "Fetching with params"
@@ -180,7 +184,7 @@ Fetches a version of a [resource](../resources/index.md). Expand each section be
               - put: cyberdeck
                 params:
                   file: cyberdeck/version_to_put.txt
-        
+
         
         resources:
           - name: cyberdeck
@@ -189,6 +193,7 @@ Fetches a version of a [resource](../resources/index.md). Expand each section be
 
 ??? info "**`trigger`**: [`boolean`](../config-basics.md#boolean-schema)"
 
+    ### `trigger`
     _Default `false`_. If set to `true`, new builds of the job will be automatically created when a new version for this
     input becomes available.
     
@@ -226,6 +231,7 @@ Fetches a version of a [resource](../resources/index.md). Expand each section be
 
 ??? info "**`version`**: `latest` | `every` | [`version`](../config-basics.md#version-schema)"
 
+    ### `version`
     _Default `latest`_. The version of the resource to fetch.
 
     If set to `latest`, scheduling will just find the latest available version of a resource and use it, allowing 

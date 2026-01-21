@@ -17,19 +17,23 @@ conform to the following schema:
 
 ??? warning "**`jobs`**: [`[job]`](../jobs.md#job-schema) (required)"
 
+    ### `jobs`
     A set of [jobs](../jobs.md) for the pipeline to continuously schedule. At least one job is required for 
     a pipeline to be valid.
 
 ??? info "`resources`: [`[resource]`](../resources/index.md#resource-schema)"
 
+    ### `resources`
     A set of resources for the pipeline to continuously check.
 
 ??? info "`resource_types`: [`[resource_type]`](../resource-types/index.md#resource_type-schema)"
 
+    ### `resource_types`
     A set of resource types for resources within the pipeline to use.
 
 ??? info "`var_sources`: [`[var_source]`](../vars.md#var_source-schema)"
 
+    ### `var_sources`
     A set of Var sources for the pipeline to use.
 
 ??? info "`groups`: [`[group]`](#group_config-schema)"

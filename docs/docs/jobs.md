@@ -14,14 +14,17 @@ A pipeline's jobs are listed under [`pipeline.jobs`](pipelines/index.md#pipeline
 
 ??? warning "**`name`**: [`identifier`](config-basics.md#identifier-schema) (required)"
 
+    ### `name`
     The name of the job. This should be short; it will show up in URLs. If you want to rename a job, use `job.old_name`.
 
 ??? warning "`steps`: [`[step]`](steps/index.md) (required)"
 
+    ### `steps`
     The sequence of [steps](steps/index.md) to execute.
 
 ??? info "**`old_name`**: [`identifier`](config-basics.md#identifier-schema)"
 
+    ### `old_name`
     The old name of the job. If configured, the history of old job will be inherited to the new one. Once the pipeline 
     is set, this field can be removed as the builds have been transfered.
 
@@ -48,10 +51,12 @@ A pipeline's jobs are listed under [`pipeline.jobs`](pipelines/index.md#pipeline
 
 ??? info "**`serial`**: [`boolean`](config-basics.md#boolean-schema)"
 
+    ### `serial`
     _Default `false`_. If set to `true`, builds will queue up and execute one-by-one, rather than executing in parallel.
 
 ??? info "**`serial_groups`**: [`[identifier]`](config-basics.md#identifier-schema)"
 
+    ### `serial_groups`
     _Default `[]`_. When set to an array of arbitrary tag-like strings, builds of this job and other jobs referencing 
     the same tags will be serialized.
 
@@ -82,11 +87,13 @@ A pipeline's jobs are listed under [`pipeline.jobs`](pipelines/index.md#pipeline
 
 ??? info "**`max_in_flight`**: [`number`](config-basics.md#number-schema)"
 
+    ### `max_in_flight`
     If set, specifies a maximum number of builds to run at a time. If `serial` or `serial_groups` are set, they take 
     precedence and force this value to be `1`.
 
 ??? info "**`build_log_retention`**: [`build_log_retention_policy`](#build_log_retention_policy-schema)"
 
+    ### `build_log_retention`
     Configures the retention policy for build logs. This is useful if you have a job that runs often but after some 
     amount of time the logs aren't worth keeping around.
 
@@ -117,7 +124,7 @@ A pipeline's jobs are listed under [`pipeline.jobs`](pipelines/index.md#pipeline
         the `builds` configuration. And if they all happened to have failed, the `minimum_succeeded_builds` will keep 
         around at least one successful build. All policies operate independently.
 
-    ### `build_log_retention_policy` schema
+    #### `build_log_retention_policy` schema
 
     ??? info "**`days`**: [`number`](config-basics.md#number-schema)"
     
@@ -138,6 +145,7 @@ A pipeline's jobs are listed under [`pipeline.jobs`](pipelines/index.md#pipeline
 
 ??? info "`public`: [`boolean`](config-basics.md#boolean-schema)"
 
+    ### `public`
     _Default `false`_. If set to `true`, the build log of this job will be viewable by unauthenticated users. 
     Unauthenticated users will always be able to see the inputs, outputs, and build status history of a job. This is 
     useful if you would like to expose your pipeline publicly without showing sensitive information in the build log.
@@ -150,37 +158,44 @@ A pipeline's jobs are listed under [`pipeline.jobs`](pipelines/index.md#pipeline
 
 ??? info "`disable_manual_trigger`: [`boolean`](config-basics.md#boolean-schema)"
 
+    ### `disable_manual_trigger`
     _Default `false`_. If set to `true`, manual triggering of the job (via the web UI or 
     [`fly trigger-job`](#fly-trigger-job)) will be disabled.
 
 ??? info "`interruptible`: [`boolean`](config-basics.md#boolean-schema)"
 
+    ### `interruptible`
     _Default `false`_. Normally, when a worker is shutting down it will wait for builds with containers running on that 
     worker to finish before exiting. If this value is set to `true`, the worker will not wait on the builds of this job.
     You may want this if you have a self-deploying Concourse or long-running-but-low-importance jobs.
 
 ??? info "`on_success`: [`step`](steps/index.md)"
 
+    ### `on_success`
     Step to execute when the job succeeds. Equivalent to the [`on_success`](steps/modifier-and-hooks/on-success.md) 
     hook.
 
 ??? info "`on_failure`: [`step`](steps/index.md)"
 
+    ### `on_failure`
     Step to execute when the job fails. Equivalent to the [`on_failure`](steps/modifier-and-hooks/on-failure.md) 
     hook.
 
 ??? info "`on_error`: [`step`](steps/index.md)"
 
+    ### `on_error`
     Step to execute when the job errors. Equivalent to the [`on_error`](steps/modifier-and-hooks/on-error.md) 
     hook.
 
 ??? info "`on_abort`: [`step`](steps/index.md)"
 
+    ### `on_abort`
     Step to execute when the job aborts. Equivalent to the [`on_abort`](steps/modifier-and-hooks/on-abort.md) 
     hook.
 
 ??? info "`ensure`: [`step`](steps/index.md)"
 
+    ### `ensure`
     Step to execute regardless of whether the job succeeds, fails, errors, or aborts. Equivalent to the 
     [`ensure`](steps/modifier-and-hooks/ensure.md) hook.
 
