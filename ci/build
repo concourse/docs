@@ -33,6 +33,8 @@ pushd docs
 
     mv site/{.,}* .
     rmdir site
+    # avoid committing submodule
+    rm -rf ./libs
 
     echo -n "concourse-ci.org" > CNAME
 
