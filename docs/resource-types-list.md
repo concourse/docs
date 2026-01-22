@@ -1557,7 +1557,7 @@ to add a resource type that you've made, make a Pull Request in the
       </tr>
       <tr>
           <td class="name">
-              <a href="https://github.com/ardavanhashemzadeh/metadata-resource">metadata-resource</a>
+              <a href="https://github.com/ardavanhashemzadeh/metadata-resource">metadata</a>
           </td>
           <td class="description">
               Simple concourse resource which saves build metadata to a file
@@ -1591,6 +1591,22 @@ to add a resource type that you've made, make a Pull Request in the
                 type: registry-image
                 source:
                   repository: ghcr.io/homeport/duct-tape-resource
+              ```
+          </td>
+      </tr>
+      <tr>
+          <td class="name">
+              <a href="https://github.com/higuoxing/concourse-google-chat-alert-resource">google-chat-alert</a>
+          </td>
+          <td class="description">
+              A structured Google Chat notification resource for Concourse
+          </td>
+          <td class="pipeline-yaml">
+              ```yaml
+              - name: semver-config
+                type: registry-image
+                source:
+                  repository: epic2/concourse-google-chat-alert-resource
               ```
           </td>
       </tr>
