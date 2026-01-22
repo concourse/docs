@@ -1555,6 +1555,25 @@ to add a resource type that you've made, make a Pull Request in the
               ```
           </td>
       </tr>
+      <tr>
+          <td class="name">
+              <a href="https://github.com/ardavanhashemzadeh/metadata-resource">metadata-resource</a>
+          </td>
+          <td class="description">
+              Simple concourse resource which saves build metadata to a file
+              which may be used by tasks because by default the environment
+              variables are only available to resources and not tasks.
+          </td>
+          <td class="pipeline-yaml">
+              ```yaml
+              - name: semver-config
+                type: registry-image
+                source:
+                  repository: ghcr.io/ardavanhashemzadeh/metadata-resource
+                  tag: main
+              ```
+          </td>
+      </tr>
     </tbody>
   </table>
 
