@@ -44,7 +44,7 @@ pushd docs
 
     git add -A
     # avoid committing submodule
-    git rm -rf ./libs/examples
+    git rm --cached ./libs/examples
     git commit --allow-empty -m "build"
   fi
 popd
