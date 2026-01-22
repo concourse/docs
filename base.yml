@@ -259,6 +259,6 @@ nav:
   - project/index.md
   - ecosystem/index.md
   - support/index.md
-  - Resource Types: https://resource-types.concourse-ci.org/" target="_blank
+  - Resource Types: resource-types-list.md
   - Blog:
       - blog/index.md
