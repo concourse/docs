@@ -27,7 +27,7 @@ pushd docs
 
   if [ -e .git ]; then
     git checkout gh-pages
-    git rm -rf .
+    git rm -rf . ':!.gitignore'
 
     rm -rf venv/ node_modules/ env/ .cache/ overrides/ docs/ .idea/
 
