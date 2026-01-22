@@ -33,8 +33,6 @@ pushd docs
 
     mv site/{.,}* .
     rmdir site
-    # avoid committing submodule
-    rm -rf ./libs
 
     echo -n "concourse-ci.org" > CNAME
 
@@ -45,6 +43,8 @@ pushd docs
     touch .nojekyll
 
     git add -A
+    # avoid committing submodule
+    git rm -rf ./libs/examples
     git commit --allow-empty -m "build"
   fi
 popd
