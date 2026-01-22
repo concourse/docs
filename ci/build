@@ -42,8 +42,6 @@ pushd docs
     # Tells Github to publish immediately and skip it's automatic build step
     touch .nojekyll
 
-    # avoid committing submodule
-    git rm --cached ./libs/examples
     git add -A
     git commit --allow-empty -m "build"
   fi
