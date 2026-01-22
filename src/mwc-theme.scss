@@ -25,3 +25,17 @@ $primary: #2094f3;
 .md-typeset details {
   font-size: 0.7rem;
 }
+
+.md-typeset__table {
+  min-width: 100%;
+}
+
+.md-typeset table:not([class]) {
+  display: table;
+}
+
+input.search {
+  padding: 1em;
+  width: 50%;
+  border: 0.1em solid;
+}
