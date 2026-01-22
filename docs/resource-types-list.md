@@ -1574,6 +1574,26 @@ to add a resource type that you've made, make a Pull Request in the
               ```
           </td>
       </tr>
+      <tr>
+          <td class="name">
+              <a href="https://github.com/homeport/duct-tape-resource">duct-tape</a>
+          </td>
+          <td class="description">
+              Generic custom Concourse resource with which one can define the
+              check, in, and out as inline scripts right in the pipeline
+              resource definition. It is for when you quickly need a Concourse
+              resource for a specific task, but writing one from scratch would
+              take too long. With this resource, one can glue things together.
+          </td>
+          <td class="pipeline-yaml">
+              ```yaml
+              - name: semver-config
+                type: registry-image
+                source:
+                  repository: ghcr.io/homeport/duct-tape-resource
+              ```
+          </td>
+      </tr>
     </tbody>
   </table>
 
