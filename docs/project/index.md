@@ -5,11 +5,13 @@ title: Project
 Concourse began as a side-project by [`@vito`](https://github.com/vito) and [`@xoebus`](https://github.com/xoebus)
 in 2014. Since then, Concourse has evolved into a dedicated community with contributors from all around the world.
 
-Concourse is a project of the [Cloud Foundry foundation (CFF)](https://www.cloudfoundry.org/), currently lead
-by [Taylor Silva](https://github.com/taylorsilva/) and [Derek Richard](https://github.com/drich10). The CFF pays for the
-infrastructure costs of the project. [Pixel Air IO](https://pixelair.io/), lead by Taylor, is currently the main
-developer behind Concourse; reviewing and merging Pull Requests, squashing bugs, and stewarding the project and
-community.
+Concourse is a project of the [Cloud Foundry foundation
+(CFF)](https://www.cloudfoundry.org/), currently lead by [Taylor
+Silva](https://github.com/taylorsilva/) and [Derek
+Richard](https://github.com/drich10). The CFF pays for the infrastructure costs
+of the project. [Pixel Air IO](https://pixelair.io/), lead by Taylor, is the
+main developer behind Concourse; reviewing and merging Pull Requests, squashing
+bugs, and stewarding the project and community.
 
 ## Where is everything?
 
@@ -53,8 +55,9 @@ worldwide.
 If you're interested in contributing, head over to GitHub and check out
 the [contributing docs](https://github.com/concourse/concourse/blob/master/CONTRIBUTING.md)!
 
-If you're able to financially contribute to the continued development of Concourse, please reach out
-to [Taylor](https://github.com/taylorsilva/).
+If you're able to financially contribute to the continued development of
+Concourse, you can sponsor [Taylor Silva on
+GitHub](https://github.com/sponsors/taylorsilva).
 
 ## Report a security issue
 
