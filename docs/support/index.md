@@ -14,7 +14,9 @@ The maintainers of Concourse provide commercial support and training for
 Concourse through [Pixel Air IO](https://pixelair.io/). If you're interested in
 commercial support you can [book a call](https://pixelair.io/contact/) with us.
 
-## Sponsorship
+---
+
+## Sponsoring the Project
 
 If you're interested in financially sponsoring Concourse, either as an
 individual or a corporation, you can sponsor [Taylor Silva on

@@ -69,11 +69,14 @@ as [`concourse/concourse` GitHub Security Advisories](https://github.com/concour
 ## Thanks
 
 It's been a long journey and we're grateful to many people for our continued success. We are deeply indebted to all who
-help sustain this project, but the extraordinary efforts of the following organizations deserve special recognition.
+help sustain this project, but the extraordinary efforts of the following organization deserves special recognition.
 
 ### Pivotal
 
-Concourse wouldn't be what it is today without [Pivotal](https://pivotal.io/). This extends beyond the sponsorship,
-which began in early 2015 - without the experiences we gained and the practices we learned while working
-on [Cloud Foundry](https://cloudfoundry.org/) and [BOSH](https://bosh.io/), we would have neither the technical
-expertise nor the strong opinions that led to Concourse's creation.
+Concourse wouldn't be what it is today without
+[Pivotal](https://en.wikipedia.org/wiki/Pivotal_Software). This extends beyond
+the sponsorship, which began in early 2015 - without the experiences we gained
+and the practices we learned while working on [Cloud
+Foundry](https://cloudfoundry.org/) and [BOSH](https://bosh.io/), we would have
+neither the technical expertise nor the strong opinions that led to Concourse's
+creation.
