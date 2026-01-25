@@ -246,6 +246,16 @@ made available to the [`get` step](../steps/get.md).
 
 :   The public URL for your ATC; useful for debugging.
 
+`$BUILD_URL`
+
+:   The URL of the build using team, pipeline, instance vars, and job name in
+the URL. Same as what you would see in the web UI. Will be the same value as
+`$BUILD_URL_SHORT` if it's a one-off build.
+
+`$BUILD_URL_SHORT`
+
+:   The short URL of the build in the form `$ATC_EXTERNAL_URL/builds/$BUILD_ID`
+
 If the build is a one-off, `$BUILD_NAME`, `$BUILD_JOB_NAME`, `$BUILD_PIPELINE_NAME`, and `$BUILD_PIPELINE_INSTANCE_VARS`
 will not be set.
 

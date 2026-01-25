@@ -17,6 +17,7 @@ following schema:
 
 ??? warning "**`name`**: [`identifier`](../config-basics.md#identifier-schema) (required)"
 
+    ### `name`
     The name of the resource type. This should be short and simple. This name will be referenced by 
     [`pipeline.resources`](../pipelines/index.md#pipeline-schema) defined within the same pipeline, and 
     [`task-config.image_resource`](../tasks.md#task-config-schema)s used by tasks running in the pipeline.
@@ -25,6 +26,7 @@ following schema:
 
 ??? warning "**`type`**: [`resource_type.name`](../resource-types/index.md#resource_type-schema) | [`identifier`](../config-basics.md#identifier-schema) (required)"
 
+    ### `type`
     The type of the resource used to provide the resource type's container image.
 
     This is a bit meta. Usually this value will be `registry-image` as the resource type must result in a container 
@@ -35,6 +37,7 @@ following schema:
 
 ??? warning "**`source`**: [`config`](../config-basics.md#config-schema) (required)"
 
+    ### `source`
     The configuration for the resource type's resource. This varies by resource type, and is a black box to Concourse; 
     it is blindly passed to the resource at runtime.
 
@@ -44,6 +47,7 @@ following schema:
 
 ??? info "`privileged`: [`boolean`](../config-basics.md#boolean-schema)"
 
+    ### `privileged`
     _Default `false`_. If set to `true`, the resource's containers will be run with full capabilities, as determined by 
     the worker backend the task runs on.
 
@@ -57,22 +61,26 @@ following schema:
 
 ??? info "`params`: [`config`](../config-basics.md#config-schema)"
 
+    ### `params`
     Arbitrary config to pass when running the [`get` step](../steps/get.md) to fetch the resource type's image. This is 
     equivalent to [`get` step `params`](../steps/get.md#get-step).
 
 ??? info "`check_every`: [`duration`](../config-basics.md#duration-schema)"
 
+    ### `check_every`
     _Default `1m`_. The interval on which to check for new versions of the resource. Acceptable interval options are 
     defined by the [time.ParseDuration function](https://golang.org/pkg/time/#ParseDuration).
 
 ??? info "`tags`: [`[string]`](../config-basics.md#string-schema)"
 
+    ### `tags`
     _Default `[]`_. A list of tags to determine which workers the checks will be performed on. You'll want to specify 
     this if the source is internal to a worker's network, for example. See also 
     [`tags`](../steps/modifier-and-hooks/tags.md)
 
 ??? info "`defaults`: [`config`](../config-basics.md#config-schema)"
 
+    ### `defaults`
     The default configuration for the resource type. This varies by resource type, and is a black box to Concourse; it 
     is merged with (duplicate fields are overwritten by) [`resource.source`](../resources/index.md#resource-schema) and 
     passed to the resource at runtime.
@@ -129,7 +137,7 @@ following schema:
         ```
 
     Alternatively, the web node can be configured to use 
-    [defaults for base resource types](../install/running-web.md#configuring-defaults-for-resource-types)
+    [defaults for base resource types](../install/running-web.md#configuring-defaults-for-resource-types).
 
 ---
 

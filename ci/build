@@ -2,7 +2,7 @@
 
 set -e
 
-apk add git
+apk add --no-progress git gcc ytt
 
 git config --global user.email "concourseteam+concourse-github-bot@gmail.com"
 git config --global user.name "Concourse Bot"
@@ -27,7 +27,7 @@ pushd docs
 
   if [ -e .git ]; then
     git checkout gh-pages
-    git rm -rf .
+    git rm -rf . ':!.gitignore'
 
     rm -rf venv/ node_modules/ env/ .cache/ overrides/ docs/ .idea/
 
@@ -38,6 +38,9 @@ pushd docs
 
     echo "User-agent: *" > robots.txt
     echo -n "Disallow: /single-page.html" >> robots.txt
+
+    # Tells Github to publish immediately and skip it's automatic build step
+    touch .nojekyll
 
     git add -A
     git commit --allow-empty -m "build"

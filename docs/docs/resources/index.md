@@ -20,15 +20,18 @@ schema.
 
 ??? warning "**`name`**: [`identifier`](../config-basics.md#identifier-schema) (required)"
 
+    ### `name`
     The name of the resource. This should be short and simple. This name will be referenced by 
     [build plans](../steps/index.md) of jobs in the pipeline.
 
 ??? warning "**`type`**: [`resource_type.name`](../resource-types/index.md#resource_type-schema) (required)"
 
+    ### `type`
     The [resource type](../resource-types/index.md) implementing the resource.
 
 ??? warning "**`source`**: [`config`](../config-basics.md#config-schema) (required)"
 
+    ### `source`
     The configuration for the resource. This varies by resource type, and is a black box to Concourse; it is blindly 
     passed to the resource at runtime.
     
@@ -42,6 +45,7 @@ schema.
 
 ??? info "**`old_name`**: [`identifier`](../config-basics.md#identifier-schema)"
 
+    ### `old_name`
     The old name of the resource. If configured, the history of the old resource will be inherited to the new one. Once 
     the pipeline is set, this field can be removed as the history has been transferred.
 
@@ -71,11 +75,13 @@ schema.
 
 ??? info "`icon`: [`string`](../config-basics.md#string-schema)"
 
+    ### `icon`
     The name of a [Material Design icon](https://materialdesignicons.com/) to show next to the resource name in the web 
     UI. For example, `github`.
 
 ??? info "`version`: [`version`](../config-basics.md#version-schema)"
 
+    ### `version`
     A version to pin the resource to across the pipeline. This has the same effect as setting 
     [`get` step `version`](../steps/get.md#get-step) on every `get` step referencing the resource.
 
@@ -85,6 +91,7 @@ schema.
 
 ??? info "`check_every`: [`duration`](../config-basics.md#duration-schema) | `never`"
 
+    ### `check_every`
     _Default `1m`_. The interval on which to check for new versions of the resource. Acceptable interval options are 
     defined by the [time.ParseDuration function](https://golang.org/pkg/time/#ParseDuration).
 
@@ -93,17 +100,20 @@ schema.
 
 ??? info "`check_timeout`: [`duration`](../config-basics.md#duration-schema)"
 
+    ### `check_timeout`
     _Default `1h`_. The time limit on checking new versions of resources. Acceptable interval options are defined by the
     [time.ParseDuration function](https://golang.org/pkg/time/#ParseDuration).
 
 ??? info "`expose_build_created_by`: [`boolean`](../config-basics.md#boolean-schema)"
 
+    ### `expose_build_created_by`
     _Default `false`_. If set to `true`, environment variable 
     [`BUILD_CREATED_BY`](../resource-types/implementing.md#metadata) will be available in the metadata of a 
     [`put` step](../steps/put.md). This field is not made available to the [`get` step](../steps/get.md).
 
 ??? info "`tags`: [`[string]`](../config-basics.md#string-schema)"
 
+    ### `tags`
     _Default `[]`_. A list of tags to determine which workers the checks will be performed on. You'll want to specify 
     this if the source is internal to a worker's network, for example.
 
@@ -115,6 +125,7 @@ schema.
 
 ??? info "`public`: [`boolean`](../config-basics.md#boolean-schema)"
 
+    ### `public`
     _Default `false`_. If set to `true`, the metadata for each version of the resource will be viewable by 
     unauthenticated users (assuming the pipeline has been [exposed](../auth-and-teams/exposing.md)).
 
@@ -128,6 +139,7 @@ schema.
 
 ??? info "`webhook_token`: [`string`](../config-basics.md#string-schema)"
 
+    ### `webhook_token`
     If specified, web hooks can be sent to trigger an immediate _check_ of the resource, specifying this value as a 
     primitive form of authentication via query params.
 

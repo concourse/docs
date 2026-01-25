@@ -21,8 +21,9 @@ them one-by-one through many builds.
 See [`fly archive-pipeline`](../pipelines/managing-pipelines.md#fly-archive-pipeline) for what happens when a pipeline
 is archived.
 
-??? warning "**`set_pipline`**: [`identifier`](../config-basics.md#identifier-schema) | `self` (required)"
+??? warning "**`set_pipeline`**: [`identifier`](../config-basics.md#identifier-schema) | `self` (required)"
 
+    ### `set_pipeline`
     The identifier specifies the name of the pipeline to configure. Unless `set_pipeline` step `team` is set, it will be
     configured within the current team and be created _unpaused_. If set to self, the current pipeline will update its 
     own config.
@@ -51,6 +52,7 @@ is archived.
 
 ??? warning "**`file`**: [`file-path`](../config-basics.md#file-path-schema) (required)"
 
+    ### `file`
     The path to the pipeline's configuration file.
 
     `file` points at a `.yml` file containing the pipeline configuration, which allows this to be tracked with your 
@@ -83,6 +85,7 @@ is archived.
 
 ??? info "**`instance_vars`**: [`vars`](../config-basics.md#vars-schema)"
 
+    ### `instance_vars`
     A map of instance vars used to identify [instanced pipelines](../pipelines/grouping-pipelines.md). These vars will 
     also be [interpolated into the pipeline config](../vars.md#static-vars).
 
@@ -169,6 +172,7 @@ is archived.
 
 ??? info "**`vars`**: [`vars`](../config-basics.md#vars-schema)"
 
+    ### `vars`
     A map of template variables to pass to the pipeline config. Unlike `instance_vars`, `vars` are solely used to for 
     [interpolation](../vars.md#static-vars), and do not become a part of the pipeline's identifier.
     
@@ -201,6 +205,7 @@ is archived.
 
 ??? info "**`vars_files`**: [`file-path`](../config-basics.md#file-path-schema)"
 
+    ### `vars_files`
     A list of paths to `.yml` files that will be passed to the pipeline config in the same manner as the 
     `--load-vars-from` flag to [`fly set-pipeline`](../pipelines/setting-pipelines.md#fly-set-pipeline). This means that
     if a variable appears in multiple files, the value from a file that is passed later in the list will override the 
@@ -238,6 +243,7 @@ is archived.
 
 ??? info "**`team`**: [`identifier`](../config-basics.md#identifier-schema)"
 
+    ### `team`
     By default, the `set_pipeline` step sets the pipeline for the same [team](../auth-and-teams/index.md) that is 
     running the build.
 
