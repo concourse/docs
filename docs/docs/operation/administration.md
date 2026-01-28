@@ -2,7 +2,9 @@
 title: Administration
 ---
 
-## `fly workers`
+## Managing Workers
+
+### `fly workers`
 
 To list the currently registered workers, including additional metadata, run:
 
@@ -13,7 +15,7 @@ fly -t example workers
 This can be useful for monitoring the status of your workers, if you suspect that one keeps dropping out of the pool or
 getting tasked with too many containers, etc.
 
-## `fly prune-worker`
+### `fly prune-worker`
 
 To remove a stalled, landing, landed, or retiring worker, run:
 
@@ -33,7 +35,7 @@ This is for those cases where you know a worker is not coming back.
 
     Running workers cannot be pruned, since they'll just re-register themselves anyway.
 
-## `fly land-worker`
+### `fly land-worker`
 
 To initiate landing of a worker and eventually (after draining) cause it to exit, run:
 
@@ -41,7 +43,46 @@ To initiate landing of a worker and eventually (after draining) cause it to exit
 fly -t example land-worker --worker worker-name
 ```
 
-## `fly containers`
+## Broadcast Message System
+
+Concourse Admins who operate a big Concourse with many teams often want a way
+to communicate to everyone that the system is unstable/recovering. Setting
+a message on the Wall will result in a banner displaying the wall message in
+the Concourse web UI. The following commands are used to manage the Wall.
+
+!!! tip "Fun Fact!"
+
+    "Wall" is a reference to the [Unix `wall`](https://en.wikipedia.org/wiki/Wall_(Unix)) CLI.
+
+### `fly set-wall`
+
+_Requires being a member of the main team_. To set a new wall with a message and expiration, run:
+
+```shell
+fly -t main set-wall --message="⚠️ Hello World, there is an error ⚠️" --ttl=5m
+```
+
+This will set a wall of "⚠️ Hello World, there is an error ⚠️" with an expiration of five minutes.
+
+### `fly get-wall`
+
+To get the current wall, run:
+
+```shell
+fly -t main get-wall
+```
+
+### `fly clear-wall`
+
+_Requires being a member of the main team_. To clear a current wall, run:
+
+```shell
+fly -t main clear-wall
+```
+
+## Diagnostic / Troubleshooting
+
+### `fly containers`
 
 To list the active containers across all your workers, run:
 
@@ -51,7 +92,7 @@ fly -t example containers
 
 This can be useful when discovering the containers available for [`fly intercept`](../builds.md#fly-intercept)ing.
 
-## `fly volumes`
+### `fly volumes`
 
 To list the active volumes across all your workers, run:
 
@@ -61,7 +102,7 @@ fly -t example volumes
 
 This can be useful to observe the caches warming across your cluster, and could be a good indicator of disk use.
 
-## `fly curl`
+### `fly curl`
 
 To execute an arbitrary API request, you can run something like the following:
 
