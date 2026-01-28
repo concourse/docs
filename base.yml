@@ -212,7 +212,6 @@ nav:
               - docs/how-to/container-image-guides/build-use.md
       - Operation:
           - docs/operation/index.md
-          - docs/operation/broadcast.md
           - docs/operation/metrics.md
           - docs/operation/tracing.md
           - docs/operation/encryption.md
