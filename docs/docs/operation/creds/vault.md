@@ -168,7 +168,7 @@ token_policies     [concourse default]
 
 !!! warning
 
-      Choose your `--period` wisely, as the timer starts counting down as soon as the token is created. You should also 
+      Choose your `--period` wisely, as the timer starts counting down as soon as the token is created. You should also
       use a duration long enough to account for any planned `web` node downtime.
 
 Once you have the token, just set the following env on the `web` node:
@@ -180,6 +180,65 @@ CONCOURSE_VAULT_CLIENT_TOKEN=s.mSNnbhGAqxK2ZbMasOQ91rIA
 Periodic tokens are the quickest way to get started, but they have one fatal flaw: if the `web` node is down for longer
 than the token's configured period, the token will expire and a new one will have to be created and configured. This can
 be avoided by using the [`approle` auth backend](#using-the-approle-auth-backend).
+
+### Using the `userpass` auth backend
+
+The [`userpass`](https://www.vaultproject.io/docs/auth/userpass.html) backend allows for _users_ (in this case,
+Concourse) to authenticate with a _user_ pre-configured in Vault.
+
+With this backend, the [`web` node](../../install/running-web.md) is configured with a `username` corresponding to a
+pre-configured user, and a `password` which is used to authenticate and acquire a token.
+
+The `userpass` backend must first be configured in Vault. Vault's `userpass` backend allows for a few parameters which you
+may want to set to determine the permissions and lifecycle of its issued tokens:
+
+`policies=names`
+
+: This determines the policies (comma-separated) to set on each token. Be sure to set one that has access to the secrets
+path - see [Configuring the secrets engine](#configuring-the-secrets-engine) for more information.
+
+`token_ttl=duration`
+
+: This determines the TTL for each token granted. The token can be continuously renewed, as long as it is renewed before
+the TTL elapses.
+
+`token_max_ttl=duration`
+
+: This sets a maximum lifetime for each token, after which the token can no longer be renewed.
+
+: If configured, be sure to set the same value on the `web` node so that it can re-auth before this duration is reached:
+```properties
+CONCOURSE_VAULT_AUTH_BACKEND_MAX_TTL=1h
+```
+
+`period=duration`
+
+: If configured, tokens issued will be [periodic](https://www.vaultproject.io/docs/concepts/tokens.html#periodic-tokens)
+. Periodic tokens are not bound by any configured max TTL, and can be renewed continuously. It does not make sense to
+configure both `period` and `token_max_ttl` as the max TTL will be ignored.
+
+`token_num_uses=count`
+
+: This sets a limit on how often a token can be used. **We do not recommend setting this value**, as it will effectively
+hamstring Concourse after a few credential acquisitions. The `web` node does not currently know to re-acquire a token
+when this limit is reached.
+
+: For a full list of options refer to [userpass api docs](https://developer.hashicorp.com/vault/api-docs/auth/userpass#parameters).
+```shell
+$ vault auth enable userpass
+Success! Enabled userpass auth method at: userpass/
+$ vault write auth/userpass/users/concourse policies=concourse period=1h password=<....>
+Success! Data written to: auth/userpass/users/concourse
+```
+
+Now that the backend is configured, we can use the `username` and `password`:
+
+These should then be set on the [`web` node](../../install/running-web.md) like so:
+
+```properties
+CONCOURSE_VAULT_AUTH_BACKEND="userpass"
+CONCOURSE_VAULT_AUTH_PARAM="username:concourse,password:<....>"
+```
 
 ### Using the `approle` auth backend
 
