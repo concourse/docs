@@ -223,7 +223,7 @@ configure both `period` and `token_max_ttl` as the max TTL will be ignored.
 hamstring Concourse after a few credential acquisitions. The `web` node does not currently know to re-acquire a token
 when this limit is reached.
 
-: For a full list of options refer to [userpass api docs](https://developer.hashicorp.com/vault/api-docs/auth/userpass#parameters)
+: For a full list of options refer to [userpass api docs](https://developer.hashicorp.com/vault/api-docs/auth/userpass#parameters).
 ```shell
 $ vault auth enable userpass
 Success! Enabled userpass auth method at: userpass/
