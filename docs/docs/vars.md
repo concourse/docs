@@ -279,8 +279,9 @@ For the [across step](steps/modifier-and-hooks/across.md), more fields can be dy
 
 !!! warning "Experimental Feature"
 
-    `var_sources` was introduced in Concourse v5.8.0. It is considered an **experimental** feature until its associated 
-    [RFC](https://github.com/concourse/rfcs/pull/39) is resolved.
+    `var_sources` was introduced in Concourse v5.8.0. It is considered an
+    **experimental** feature until its implementation is complete. See
+    [concourse/concourse#5229](https://github.com/concourse/concourse/issues/5229).
 
 Var sources can be configured for a pipeline via [`pipeline.var_sources`](pipelines/index.md).
 
