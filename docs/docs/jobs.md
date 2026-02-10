@@ -25,29 +25,24 @@ A pipeline's jobs are listed under [`pipeline.jobs`](pipelines/index.md#pipeline
 ??? info "**`old_name`**: [`identifier`](config-basics.md#identifier-schema)"
 
     ### `old_name`
-    The old name of the job. If configured, the history of old job will be inherited to the new one. Once the pipeline 
-    is set, this field can be removed as the builds have been transfered.
+    The old name of the job. This can be used to rename a job without losing its history, like so:
 
-    ??? example "Renaming a job"
-    
-        This can be used to rename a job without losing its history, like so:
-        
-        ```yaml
-        jobs:
-          - name: new-name
-            old_name: current-name
-            plan:
-              - get: 10m
-        ```
-        
-        After the pipeline is set, because the builds have been inherited, the job can have the field removed:
-        
-        ```yaml
-        jobs:
-          - name: new-name
-            plan:
-              - get: 10m
-        ```
+    ```yaml
+    jobs:
+      - name: new-name
+        old_name: current-name
+        plan:
+          - get: 10m
+    ```
+
+    After the pipeline is set, because the builds have been transferred, the job can have the field removed:
+
+    ```yaml
+    jobs:
+      - name: new-name
+        plan:
+          - get: 10m
+    ```
 
 ??? info "**`serial`**: [`boolean`](config-basics.md#boolean-schema)"
 
@@ -169,35 +164,39 @@ A pipeline's jobs are listed under [`pipeline.jobs`](pipelines/index.md#pipeline
     worker to finish before exiting. If this value is set to `true`, the worker will not wait on the builds of this job.
     You may want this if you have a self-deploying Concourse or long-running-but-low-importance jobs.
 
+### Job Hooks
+
 ??? info "`on_success`: [`step`](steps/index.md)"
 
-    ### `on_success`
+    #### `on_success`
     Step to execute when the job succeeds. Equivalent to the [`on_success`](steps/modifier-and-hooks/on-success.md) 
     hook.
 
 ??? info "`on_failure`: [`step`](steps/index.md)"
 
-    ### `on_failure`
+    #### `on_failure`
     Step to execute when the job fails. Equivalent to the [`on_failure`](steps/modifier-and-hooks/on-failure.md) 
     hook.
 
 ??? info "`on_error`: [`step`](steps/index.md)"
 
-    ### `on_error`
+    #### `on_error`
     Step to execute when the job errors. Equivalent to the [`on_error`](steps/modifier-and-hooks/on-error.md) 
     hook.
 
 ??? info "`on_abort`: [`step`](steps/index.md)"
 
-    ### `on_abort`
+    #### `on_abort`
     Step to execute when the job aborts. Equivalent to the [`on_abort`](steps/modifier-and-hooks/on-abort.md) 
     hook.
 
 ??? info "`ensure`: [`step`](steps/index.md)"
 
-    ### `ensure`
+    #### `ensure`
     Step to execute regardless of whether the job succeeds, fails, errors, or aborts. Equivalent to the 
     [`ensure`](steps/modifier-and-hooks/ensure.md) hook.
+
+---
 
 ## Managing Jobs
 
