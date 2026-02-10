@@ -6249,7 +6249,7 @@ is set, this field can be removed as the builds have been transfered.</p>
 <summary><strong><code>serial_groups</code></strong>: <a href="../config-basics/#identifier-schema"><code>[identifier]</code></a></summary>
 <h3 id="serial_groups"><code>serial_groups</code></h3>
 <p><em>Default <code>[]</code></em>. When set to an array of arbitrary tag-like strings, builds of this job and other jobs referencing 
-the same tags will be serialized.</p>
+the same tags will be serialized. Only affects jobs in the same pipeline.</p>
 <details class="example">
 <summary>Limiting parallelism</summary>
 <p>This can be used to ensure that certain jobs do not run at the same time, like so:</p>
