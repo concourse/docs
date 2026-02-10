@@ -58,7 +58,7 @@ A pipeline's jobs are listed under [`pipeline.jobs`](pipelines/index.md#pipeline
 
     ### `serial_groups`
     _Default `[]`_. When set to an array of arbitrary tag-like strings, builds of this job and other jobs referencing 
-    the same tags will be serialized.
+    the same tags will be serialized. Only affects jobs in the same pipeline.
 
     ??? example "Limiting parallelism"
     
