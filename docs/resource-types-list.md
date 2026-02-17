@@ -58,6 +58,27 @@ to add a resource type that you've made, make a Pull Request in the
       END TEMPLATE -->
       <tr>
           <td class="hidden-search-field">
+              send-to-slack
+          </td>
+          <td class="name">
+              <a href="https://github.com/bluekornchips/send-to-slack">send-to-slack</a>
+          </td>
+          <td class="description">
+              A resource designed to send <a
+              href="https://docs.slack.dev/reference/block-kit">block kit
+              content</a> to Slack via the Slack Web API.
+          </td>
+          <td class="pipeline-yaml">
+              ```yaml
+              - name: send-to-slack
+                type: registry-image
+                source:
+                  repository: sunflowersoftware/send-to-slack
+              ```
+          </td>
+      </tr>
+      <tr>
+          <td class="hidden-search-field">
               metadata Returns the build metadata for a given build
           </td>
           <td class="name">
