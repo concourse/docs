@@ -168,7 +168,8 @@ A task's configuration specifies the following:
 
         The path to a directory to be cached.
 
-        Paths are relative to the working directory of the task. Absolute paths are not respected.
+        Paths are relative to the working directory of the task. Absolute paths
+        can be specified and are respected.
 
 ??? info "**`params`**: [`env-vars`](config-basics.md#env-vars-schema)"
 
