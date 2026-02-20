@@ -157,6 +157,12 @@ A pipeline's jobs are listed under [`pipeline.jobs`](pipelines/index.md#pipeline
     _Default `false`_. If set to `true`, manual triggering of the job (via the web UI or 
     [`fly trigger-job`](#fly-trigger-job)) will be disabled.
 
+??? info "`disable_reruns`: [`boolean`](config-basics.md#boolean-schema)"
+
+    ### `disable_reruns`
+    _Default `false`_. If set to `true`, rerunning builds of the job (via the
+    web UI or [`fly rerun-build`](#fly-rerun-build)) will be disabled.
+
 ??? info "`interruptible`: [`boolean`](config-basics.md#boolean-schema)"
 
     ### `interruptible`
