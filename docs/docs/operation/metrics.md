@@ -28,6 +28,30 @@ To make this document easy to maintain, Prometheus is used as the "source of tru
 built-in, making this list easy to generate. Treat this list as a reference when looking for the equivalent metric names
 for your emitter of choice.
 
+[counter]: https://prometheus.io/docs/concepts/metric_types/#counter
+
+[gauge]: https://prometheus.io/docs/concepts/metric_types/#gauge
+
+???+ info "**`concourse_builds_aborted_total`**: [`counter`][counter]"
+
+    Total number of Concourse builds aborted.
+
+???+ info "**`concourse_builds_errored_total`**: [`counter`][counter]"
+
+    Total number of Concourse builds errored.
+
+???+ info "**`concourse_builds_failed_total`**: [`counter`][counter]"
+
+    Total number of Concourse builds failed.
+
+???+ info "**`concourse_builds_finished_total`**: [`counter`][counter]"
+
+    Total number of Concourse builds finished.
+
+???+ info "**`concourse_builds_latest_completed_build_status`**: [`gauge`][gauge]"
+
+    Status of Latest Completed Build. 0=Success, 1=Failed, 2=Aborted, 3=Errored.
+
 ```
 # HELP concourse_builds_latest_completed_build_status Status of Latest Completed Build. 0=Success, 1=Failed, 2=Aborted, 3=Errored.
 # TYPE concourse_builds_latest_completed_build_status gauge
