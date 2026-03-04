@@ -88,8 +88,11 @@ Fetches a version of a [resource](../resources/index.md). Expand each section be
 ??? info "**`passed`**: [`[job.name]`](../jobs.md#job-schema)"
 
     ### `passed`
-    When specified, only the versions of the resource that made it through the given list of jobs (AND-ed together) will
-    be considered when triggering and fetching.
+    When specified, only the versions of the resource that made it through the
+    given list of jobs (AND-ed together) will be considered when triggering and
+    fetching. Shell glob patterns can be used instead of listing every single
+    upstream job. Patterns are evaluated using Go's
+    [`path.Match()`](https://pkg.go.dev/path#Match).
 
     ??? example "Fanning out and in"
 
@@ -135,16 +138,13 @@ Fetches a version of a [resource](../resources/index.md). Expand each section be
               - in_parallel:
                   - get: black-ice
                     passed:
-                      - lvl-2-unit
-                      - lvl-2-integration
+                      - lvl-2-*
                   - get: control-node
                     passed:
-                      - lvl-2-unit
-                      - lvl-2-integration
+                      - lvl-2-*
                   - get: cyberdeck
                     passed:
-                      - lvl-2-unit
-                      - lvl-2-integration
+                      - lvl-2-*
         
         resources:
           - name: black-ice
