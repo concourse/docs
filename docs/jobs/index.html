@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
     
     
       
@@ -119,6 +119,18 @@
       
     </div>
     <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+<center>
+  🎉 <a href="/blog/2026-03-03-v810-release/">v8.1.0 is out!</a>
+</center>
+
+          </div>
+          
+        </aside>
       
     </div>
     
@@ -2286,6 +2298,17 @@
     <span class="md-ellipsis">
       
         disable_manual_trigger
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disable_reruns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        disable_reruns
       
     </span>
   </a>
@@ -6031,6 +6054,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#disable_reruns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        disable_reruns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#interruptible" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6371,6 +6405,12 @@ metadata for their resource version, regardless of whether the resource itself h
 <h3 id="disable_manual_trigger"><code>disable_manual_trigger</code></h3>
 <p><em>Default <code>false</code></em>. If set to <code>true</code>, manual triggering of the job (via the web UI or 
 <a href="#fly-trigger-job"><code>fly trigger-job</code></a>) will be disabled.</p>
+</details>
+<details class="info">
+<summary><code>disable_reruns</code>: <a href="../config-basics/#boolean-schema"><code>boolean</code></a></summary>
+<h3 id="disable_reruns"><code>disable_reruns</code></h3>
+<p><em>Default <code>false</code></em>. If set to <code>true</code>, rerunning builds of the job (via the
+web UI or <a href="#fly-rerun-build"><code>fly rerun-build</code></a>) will be disabled.</p>
 </details>
 <details class="info">
 <summary><code>interruptible</code>: <a href="../config-basics/#boolean-schema"><code>boolean</code></a></summary>
