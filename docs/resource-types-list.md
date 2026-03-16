@@ -535,6 +535,25 @@ to add a resource type that you've made, make a Pull Request in the
       </tr>
       <tr>
           <td class="hidden-search-field">
+              forgejo A resource for interacting with Forgejo statuses, comments, pull requests, etc.
+          </td>
+          <td class="name">
+              <a href="https://codeberg.org/aniva/forgejo-concourse">forgejo</a>
+          </td>
+          <td class="description">
+              A resource for interacting with Forgejo statuses, comments, pull requests, etc.
+          </td>
+          <td class="pipeline-yaml">
+              ```yaml
+              - name: forgejo
+                type: registry-image
+                source:
+                  repository: codeberg.org/aniva/concourse-forgejo
+              ```
+          </td>
+      </tr>
+      <tr>
+          <td class="hidden-search-field">
               bitbucket-pr Tracks pull requests on BitBucket and updates it's status
           </td>
           <td class="name">
