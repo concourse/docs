@@ -109,10 +109,6 @@ conform to the following schema:
 
 ??? info "`display`: [`display_config`](#display_config-schema)"
 
-    !!! warning "Experimental Feature"
-        
-        Display was introduced in Concourse v6.6.0. It is considered an **experimental** feature.
-    
     Visual configurations for personalizing your pipeline.
 
     ??? example "Background image"
