@@ -10,13 +10,6 @@ If you use Concourse, or your organization offers Concourse-related services, we
 Please [submit a pull request](https://github.com/concourse/docs/pulls) adding your organization's name in alphabetical
 order to one of the lists below, and help us showcase how many people do things continuously with Concourse.
 
-## Concourse-as-a-Service
-
-The following organizations deliver Concourse as a fully-managed cloud solution, eliminating infrastructure overhead and
-providing dedicated support.
-
-* [CentralCI](https://centralci.com/)
-
 ## 3rd Party Service Providers
 
 The following organizations provide various Concourse-related services, including training, consulting, support and
