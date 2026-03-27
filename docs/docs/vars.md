@@ -40,9 +40,16 @@ _secret-field_ to `field:1`.
 
 The special var source name `.` refers to a "local var source."
 
-The precise scope for these "local vars" depends on where they're being used. Currently, the only mechanism that uses
-the local var source is the [`load_var` step](steps/load-var.md), which sets a var in a local var source provided to all
-steps executed in the build.
+The precise scope for these "local vars" depends on where they're being used.
+Currently there are only three mechanisms that populate the local var source:
+
+1. The [`load_var` step](steps/load-var.md), which sets a var in a local var
+   source and is available to all steps executed in the build.
+1. The [`across` step modifier](steps/modifier-and-hooks/across.md), but the
+   local var(s) it sets are only available to the steps running within the
+   `across` step.
+1. The [`get` step](steps/get.md), which adds a local var with the same name as
+   the `get` step and contains all the metadata from the step.
 
 ## Interpolation
 
