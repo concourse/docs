@@ -5997,9 +5997,17 @@ like <code>.</code> and <code>:</code>. For instance, <code>((source:"my.secret"
 <em>secret-field</em> to <code>field:1</code>.</p>
 <h2 id="local-var">The "<code>.</code>" var source</h2>
 <p>The special var source name <code>.</code> refers to a "local var source."</p>
-<p>The precise scope for these "local vars" depends on where they're being used. Currently, the only mechanism that uses
-the local var source is the <a href="../steps/load-var/"><code>load_var</code> step</a>, which sets a var in a local var source provided to all
-steps executed in the build.</p>
+<p>The precise scope for these "local vars" depends on where they're being used.
+Currently there are only three mechanisms that populate the local var source:</p>
+<ol>
+<li>The <a href="../steps/load-var/"><code>load_var</code> step</a>, which sets a var in a local var
+   source and is available to all steps executed in the build.</li>
+<li>The <a href="../steps/modifier-and-hooks/across/"><code>across</code> step modifier</a>, but the
+   local var(s) it sets are only available to the steps running within the
+   <code>across</code> step.</li>
+<li>The <a href="../steps/get/"><code>get</code> step</a>, which adds a local var with the same name as
+   the <code>get</code> step and contains all the metadata from the step.</li>
+</ol>
 <h2 id="interpolation">Interpolation</h2>
 <p>Values for vars are substituted structurally. That is, if you have <code>foo: ((bar))</code>, whatever value <code>((bar))</code> resolves to
 will become the value of the <code>foo</code> field in the object. This can be a value of any type and structure: a boolean, a
