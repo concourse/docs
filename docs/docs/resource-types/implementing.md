@@ -205,7 +205,7 @@ And output:
 }
 ```
 
-## Metadata
+## Build Metadata
 
 When used in a [`get` step](../steps/get.md) or a [`put` step](../steps/put.md), metadata about the running build is
 made available via the following environment variables:
