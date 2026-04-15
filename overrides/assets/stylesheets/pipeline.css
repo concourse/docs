@@ -66,7 +66,7 @@
   stroke: #7a7373;
 }
 .pipeline-svg .edge.pending {
-  stroke: #868585;
+  stroke: #ffffff;
 }
 .pipeline-svg .edge.succeeded {
   stroke: #11c560;
@@ -100,7 +100,7 @@
   fill: #fff;
 }
 .pipeline-svg .node.constrained-input text {
-  fill: #868585;
+  fill: #ffffff;
 }
 .pipeline-svg .node.constrained-input.pinned text {
   fill: #fff;
