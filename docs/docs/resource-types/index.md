@@ -156,14 +156,14 @@ following schema:
           tag: latest
     
     resources:
-      - name: booklit-releases
+      - name: dino-comic
         type: rss
         source:
           url: http://www.qwantz.com/rssfeed.php
     
     jobs:
-      - name: announce
+      - name: get-comic
         plan:
-          - get: booklit-releases
+          - get: dino-comic
             trigger: true
     ```
