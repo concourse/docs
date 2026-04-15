@@ -112,7 +112,7 @@ An arbitrary object representing configuration that is not directly interpreted 
 a [resource type](resource-types/index.md).
 
 ```yaml
-uri: https://github.com/vito/booklit
+uri: https://github.com/concourse/examples
 branch: master
 ```
 

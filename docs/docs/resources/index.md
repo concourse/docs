@@ -59,7 +59,7 @@ schema.
             old_name: current-name
             type: git
             source:
-              uri: "https://github.com/vito/booklit"
+              uri: "https://github.com/concourse/examples"
         ```
 
         After the pipeline is set, the resource was successfully renamed, so the `old_name` field can be removed from 
@@ -70,7 +70,7 @@ schema.
           - name: new-name
             type: git
             source:
-              uri: "https://github.com/vito/booklit"
+              uri: "https://github.com/concourse/examples"
         ```
 
 ??? info "`icon`: [`string`](../config-basics.md#string-schema)"

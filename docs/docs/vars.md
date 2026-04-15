@@ -101,10 +101,10 @@ overriding individual values by hand.
         tag: ((tag))
     
     inputs:
-      - name: booklit
+      - name: repo
     
     run:
-      path: booklit/ci/unit
+      path: repo/ci/unit
     ```
 
     We could use [vars](tasks.md#task-config-schema) to run this task against different versions of Go:
@@ -113,13 +113,13 @@ overriding individual values by hand.
     jobs:
       - name: unit
         plan:
-          - get: booklit
+          - get: repo
             trigger: true
           - task: unit-1.13
-            file: booklit/ci/unit.yml
+            file: repo/ci/unit.yml
             vars: { tag: 1.13 }
           - task: unit-1.8
-            file: booklit/ci/unit.yml
+            file: repo/ci/unit.yml
             vars: { tag: 1.8 }
     ```
 
@@ -129,20 +129,20 @@ overriding individual values by hand.
 
     ```yaml
     resources:
-    - name: booklit
-      type: booklit
+    - name: examples
+      type: git
       source:
-        uri: https://github.com/concourse/booklit
+        uri: https://github.com/concourse/examples
         branch: ((branch))
         private_key: (("github.com".private_key))
     
     jobs:
-    - name: unit
+    - name: hello
       plan:
-      - get: booklit
+      - get: examples
         trigger: ((trigger))
-      - task: unit
-        file: booklit/ci/unit.yml
+      - task: hello
+        file: examples/tasks/hello-world.yml
     ```
 
     Let's say we have a private key in a file called `private_key`.
@@ -155,7 +155,7 @@ overriding individual values by hand.
       -c pipeline.yml \
       -y trigger=true \
       -v \"github.com\".private_key="$(cat private_key)" \
-      -v branch=master \
+      -v branch=main \
       --output
     ```
 
@@ -163,22 +163,22 @@ overriding individual values by hand.
 
     ```yaml
     jobs:
-      - name: unit
+      - name: hello
         plan:
-          - get: booklit
+          - get: examples
             trigger: true
-          - file: booklit/ci/unit.yml
-            task: unit
+          - file: examples/tasks/hello-world.yml
+            task: hello
     resources:
-      - name: booklit
-        type: booklit
+      - name: examples
+        type: git
         source:
-          branch: master
+          branch: main
           private_key: |
             -----BEGIN RSA PRIVATE KEY-----
             # ... snipped ...
             -----END RSA PRIVATE KEY-----
-          uri: https://github.com/concourse/booklit
+          uri: https://github.com/concourse/examples
     ```
 
     Note that we had to use `-y` so that the `trigger: true` ends up with a boolean value instead of the 
@@ -190,20 +190,20 @@ overriding individual values by hand.
 
     ```yaml
     resources:
-      - name: booklit
-        type: booklit
+      - name: examples
+        type: git
         source:
-          uri: https://github.com/concourse/booklit
+          uri: https://github.com/concourse/examples
           branch: ((branch))
           private_key: (("github.com".private_key))
     
     jobs:
-      - name: unit
+      - name: hello-world
         plan:
-          - get: booklit
+          - get: examples
             trigger: ((trigger))
-          - task: unit
-            file: booklit/ci/unit.yml
+          - task: hello
+            file: examples/tasks/hello-world.yml
     ```
 
     Let's say I've put the `private_key` var in a file called `vars.yml`, since it's quite large and hard to pass 
@@ -233,22 +233,22 @@ overriding individual values by hand.
 
     ```yaml
     jobs:
-      - name: unit
+      - name: hello
         plan:
-          - get: booklit
+          - get: examples
             trigger: true
-          - task: unit
-            file: booklit/ci/unit.yml
+          - file: examples/tasks/hello-world.yml
+            task: hello
     resources:
-      - name: booklit
-        type: booklit
+      - name: examples
+        type: git
         source:
-          branch: master
+          branch: main
           private_key: |
             -----BEGIN RSA PRIVATE KEY-----
             # ... snipped ...
             -----END RSA PRIVATE KEY-----
-          uri: https://github.com/concourse/booklit
+          uri: https://github.com/concourse/examples
     ```
 
     Note that we had to use `-y` so that the `trigger: true` ends up with a boolean value instead of the 
