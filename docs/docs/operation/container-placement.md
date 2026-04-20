@@ -16,14 +16,17 @@ The advantage of this approach is that it reduces the likelihood that large arti
 one [`worker` node](../install/running-worker.md), through the [`web` node](../install/running-web.md), and to the
 target `worker` node. For large artifacts, this can result in quite a bit of overhead.
 
-The disadvantage of this approach is that it can sometimes result in builds "gravitating" to a particular worker and
-overloading it, at least until the resource caches warm across the worker pool. This disadvantage can be partially
-mitigated using the (currently experimental) [`limit-active-volumes` strategy](#the-limit-active-volumes-strategy) in
-conjunction with [Chaining Placement Strategies](#chaining-placement-strategies).
+The disadvantage of this approach is that it can sometimes result in builds
+"gravitating" to a particular worker and overloading it, at least until the
+resource caches warm across the worker pool. This disadvantage can be partially
+mitigated using the [`limit-active-volumes`
+strategy](#the-limit-active-volumes-strategy) in conjunction with [Chaining
+Placement Strategies](#chaining-placement-strategies).
 
-If your builds tend to be light on artifacts and heavy on task execution, you may want to try
-the [`fewest-build-containers` strategy](#the-fewest-build-containers-strategy) or the (currently
-experimental) [`limit-active-tasks` strategy](#the-limit-active-tasks-strategy).
+If your builds tend to be light on artifacts and heavy on task execution, you
+may want to try the [`fewest-build-containers`
+strategy](#the-fewest-build-containers-strategy) or the [`limit-active-tasks`
+strategy](#the-limit-active-tasks-strategy).
 
 ## The `fewest-build-containers` strategy
 
