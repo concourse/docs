@@ -417,7 +417,13 @@ used just like resource types.
 
                 When retrying during authentication, start with this retry interval. The interval will increase 
                 exponentially until `auth_retry_max` is reached.
-    
+            
+            ??? info "**`enable_kv_mount_cache`**: [`boolean`](config-basics.md#boolean-schema)"
+
+                By default, this feature is disabled. When disabled, Concourse queries Vault on every secret lookup to determine whether the secret resides in a KV version 1 or version 2 mount, as this affects how the secret is retrieved.
+
+                When enabled, KV mount metadata is cached. This allows Concourse to fetch mount information once and reuse it for subsequent lookups, reducing the number of Vault API calls and improving performance.
+                    
     === "Dummy"
     
         ??? warning "**`type`**: `dummy`"
