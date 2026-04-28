@@ -96,6 +96,9 @@ A pipeline's jobs are listed under [`pipeline.jobs`](pipelines/index.md#pipeline
     omitted, logs are kept forever (unless [Build log retention](install/running-web.md#build-log-retention) is 
     configured globally).
 
+    When both `days` and `builds` are configured, a build's logs will only be
+    reaped if it's older than the `days` specified.
+
     ??? example "A complicated example"
 
         The following example will keep logs for any builds that have completed in the last 2 days, while also keeping 
