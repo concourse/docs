@@ -49,8 +49,6 @@ CONCOURSE_CONTAINER_PLACEMENT_STRATEGY=fewest-build-containers
 With the `random` strategy, the [`web` node](../install/running-web.md) places `get`, `put`, and `task` containers on
 any worker, ignoring any affinity.
 
-As this is truly random, this will be fine until one day it's not fine.
-
 To use this strategy, set the following env var on the [`web` node](../install/running-web.md):
 
 ```properties
