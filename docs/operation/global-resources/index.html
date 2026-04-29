@@ -5852,17 +5852,14 @@
 
   <h1>Global Resources</h1>
 
-<div class="admonition warning">
-<p class="admonition-title">Experimental Feature</p>
-<p>Global Resources is an experimental feature introduced in Concourse v5.0 . It is enabled by passing the 
-<code>--enable-global-resources</code> flag to the <code>concourse web</code> command.</p>
-</div>
 <p>The basic concept of global resources is to share detected resource versions between all resources that have the same
 <code>resource.type</code> and <code>resource.source</code> configuration.</p>
 <p>Before v5.0.0, each pipeline resource had its own version history, associated to the resource by name. This meant that
 multiple pipelines with the same resource configs would redundantly collect the same version and metadata information.</p>
-<p>With v5.0.0's experimental 'global resources' feature, resource versions are instead associated to an
-anonymous '<a href="../../resources/#resource-schema">resource config</a>' i.e. its <code>resource.type</code> and <code>resource.source</code>.</p>
+<p>Starting in v5.0.0, when the 'global resources' feature is enabled, resource
+versions are instead associated to an anonymous '<a href="../../resources/#resource-schema">resource
+config</a>' i.e. its <code>resource.type</code> and
+<code>resource.source</code>.</p>
 <h2 id="benefits-of-global-resources">Benefits of Global Resources</h2>
 <h3 id="fewer-resource-checks-to-perform">Fewer resource <code>check</code>s to perform</h3>
 <p>With global resources, all resources that have the same configuration will share the same version history and share only

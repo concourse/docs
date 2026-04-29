@@ -5804,13 +5804,16 @@ the default strategy</strong>.</p>
 <p>The advantage of this approach is that it reduces the likelihood that large artifacts will have to be streamed from
 one <a href="../../install/running-worker/"><code>worker</code> node</a>, through the <a href="../../install/running-web/"><code>web</code> node</a>, and to the
 target <code>worker</code> node. For large artifacts, this can result in quite a bit of overhead.</p>
-<p>The disadvantage of this approach is that it can sometimes result in builds "gravitating" to a particular worker and
-overloading it, at least until the resource caches warm across the worker pool. This disadvantage can be partially
-mitigated using the (currently experimental) <a href="#the-limit-active-volumes-strategy"><code>limit-active-volumes</code> strategy</a> in
-conjunction with <a href="#chaining-placement-strategies">Chaining Placement Strategies</a>.</p>
-<p>If your builds tend to be light on artifacts and heavy on task execution, you may want to try
-the <a href="#the-fewest-build-containers-strategy"><code>fewest-build-containers</code> strategy</a> or the (currently
-experimental) <a href="#the-limit-active-tasks-strategy"><code>limit-active-tasks</code> strategy</a>.</p>
+<p>The disadvantage of this approach is that it can sometimes result in builds
+"gravitating" to a particular worker and overloading it, at least until the
+resource caches warm across the worker pool. This disadvantage can be partially
+mitigated using the <a href="#the-limit-active-volumes-strategy"><code>limit-active-volumes</code>
+strategy</a> in conjunction with <a href="#chaining-placement-strategies">Chaining
+Placement Strategies</a>.</p>
+<p>If your builds tend to be light on artifacts and heavy on task execution, you
+may want to try the <a href="#the-fewest-build-containers-strategy"><code>fewest-build-containers</code>
+strategy</a> or the <a href="#the-limit-active-tasks-strategy"><code>limit-active-tasks</code>
+strategy</a>.</p>
 <h2 id="the-fewest-build-containers-strategy">The <code>fewest-build-containers</code> strategy</h2>
 <p>When using the <code>fewest-build-containers</code> strategy, step containers (<code>get</code>, <code>put</code>, <code>task</code>) are placed on the worker that
 has the fewest build containers (i.e. containers for other steps of other builds).</p>

@@ -6337,6 +6337,8 @@ amount of time the logs aren't worth keeping around.</p>
 <p>Builds which are not retained by the configured policy will have their logs reaped. If this configuration is 
 omitted, logs are kept forever (unless <a href="../install/running-web/#build-log-retention">Build log retention</a> is 
 configured globally).</p>
+<p>When both <code>days</code> and <code>builds</code> are configured, a build's logs will only be
+reaped if it's older than the <code>days</code> specified.</p>
 <details class="example">
 <summary>A complicated example</summary>
 <p>The following example will keep logs for any builds that have completed in the last 2 days, while also keeping 
