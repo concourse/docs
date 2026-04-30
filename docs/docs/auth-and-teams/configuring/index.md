@@ -28,6 +28,11 @@ Concourse currently supports the following auth methods:
     ---
   [:octicons-arrow-right-24: Configure](gitlab.md)
 
+- :simple-gitea: Gitea Auth
+
+    ---
+  [:octicons-arrow-right-24: Configure](gitea.md)
+
 - :material-bitbucket: BitBucket Cloud Auth
 
     ---
