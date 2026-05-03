@@ -197,6 +197,10 @@ nav:
       - docs/builds.md
       - How-To Guides:
           - docs/how-to/index.md
+          - Install Guides:
+              - docs/how-to/install-guides/index.md
+              - docs/how-to/install-guides/docker-compose.md
+              - docs/how-to/install-guides/systemd.md
           - Pipeline Guides:
               - docs/how-to/pipeline-guides/index.md
               - docs/how-to/pipeline-guides/managing-pipeline-configs.md
