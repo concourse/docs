@@ -96,6 +96,9 @@ A pipeline's jobs are listed under [`pipeline.jobs`](pipelines/index.md#pipeline
     omitted, logs are kept forever (unless [Build log retention](install/running-web.md#build-log-retention) is 
     configured globally).
 
+    When both `days` and `builds` are configured, a build's logs will only be
+    reaped if it's older than the `days` specified.
+
     ??? example "A complicated example"
 
         The following example will keep logs for any builds that have completed in the last 2 days, while also keeping 
@@ -156,6 +159,12 @@ A pipeline's jobs are listed under [`pipeline.jobs`](pipelines/index.md#pipeline
     ### `disable_manual_trigger`
     _Default `false`_. If set to `true`, manual triggering of the job (via the web UI or 
     [`fly trigger-job`](#fly-trigger-job)) will be disabled.
+
+??? info "`disable_reruns`: [`boolean`](config-basics.md#boolean-schema)"
+
+    ### `disable_reruns`
+    _Default `false`_. If set to `true`, rerunning builds of the job (via the
+    web UI or [`fly rerun-build`](#fly-rerun-build)) will be disabled.
 
 ??? info "`interruptible`: [`boolean`](config-basics.md#boolean-schema)"
 

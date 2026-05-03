@@ -10,13 +10,6 @@ If you use Concourse, or your organization offers Concourse-related services, we
 Please [submit a pull request](https://github.com/concourse/docs/pulls) adding your organization's name in alphabetical
 order to one of the lists below, and help us showcase how many people do things continuously with Concourse.
 
-## Concourse-as-a-Service
-
-The following organizations deliver Concourse as a fully-managed cloud solution, eliminating infrastructure overhead and
-providing dedicated support.
-
-* [CentralCI](https://centralci.com/)
-
 ## 3rd Party Service Providers
 
 The following organizations provide various Concourse-related services, including training, consulting, support and
@@ -54,10 +47,10 @@ financial institutions and security firms).
 17. (United
     Kingdom) [Government Digital Services](https://www.gov.uk/government/organisations/government-digital-service)
 18. [Gstack](https://www.gstack.io/)
-19. [The Home Depot](https://www.homedepot.com/)
-20. [IBM](https://www.ibm.com/)
-21. [LeapYear](https://www.leapyear.io/)
-22. [Napoleon Sports & Casino](https://www.napoleongames.be/)
+19. [Halter](https://www.halterhq.com/)
+20. [The Home Depot](https://www.homedepot.com/)
+21. [IBM](https://www.ibm.com/)
+22. [LeapYear](https://www.leapyear.io/)
 23. [Nasdaq](https://nasdaq.com/)
 24. [Nokogiri](https://nokogiri.org/)
 25. [RabbitMQ](https://www.rabbitmq.com/)

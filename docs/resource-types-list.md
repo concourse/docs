@@ -58,6 +58,25 @@ to add a resource type that you've made, make a Pull Request in the
       END TEMPLATE -->
       <tr>
           <td class="hidden-search-field">
+              Github resource. pull requests status checks commits
+          </td>
+          <td class="name">
+              <a href="https://github.com/PixelAirIO/github-resource">Github</a>
+          </td>
+          <td class="description">
+              Resource that allows pipelines to interact with Github, like checking out and running status checks on Pull Requests.
+          </td>
+          <td class="pipeline-yaml">
+              ```yaml
+              - name: github
+                type: registry-image
+                source:
+                  repository: docker.io/pixelairio/github-resource
+              ```
+          </td>
+      </tr>
+      <tr>
+          <td class="hidden-search-field">
               send-to-slack
           </td>
           <td class="name">
@@ -530,6 +549,25 @@ to add a resource type that you've made, make a Pull Request in the
                 type: registry-image
                 source:
                   repository: ghcr.io/cludden/concourse-steampipe-resource
+              ```
+          </td>
+      </tr>
+      <tr>
+          <td class="hidden-search-field">
+              forgejo A resource for interacting with Forgejo statuses, comments, pull requests, etc.
+          </td>
+          <td class="name">
+              <a href="https://codeberg.org/aniva/forgejo-concourse">forgejo</a>
+          </td>
+          <td class="description">
+              A resource for interacting with Forgejo statuses, comments, pull requests, etc.
+          </td>
+          <td class="pipeline-yaml">
+              ```yaml
+              - name: forgejo
+                type: registry-image
+                source:
+                  repository: codeberg.org/aniva/concourse-forgejo
               ```
           </td>
       </tr>

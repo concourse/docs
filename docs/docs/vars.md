@@ -40,9 +40,16 @@ _secret-field_ to `field:1`.
 
 The special var source name `.` refers to a "local var source."
 
-The precise scope for these "local vars" depends on where they're being used. Currently, the only mechanism that uses
-the local var source is the [`load_var` step](steps/load-var.md), which sets a var in a local var source provided to all
-steps executed in the build.
+The precise scope for these "local vars" depends on where they're being used.
+Currently there are only three mechanisms that populate the local var source:
+
+1. The [`load_var` step](steps/load-var.md), which sets a var in a local var
+   source and is available to all steps executed in the build.
+1. The [`across` step modifier](steps/modifier-and-hooks/across.md), but the
+   local var(s) it sets are only available to the steps running within the
+   `across` step.
+1. The [`get` step](steps/get.md), which adds a local var with the same name as
+   the `get` step and contains all the metadata from the step.
 
 ## Interpolation
 
@@ -94,10 +101,10 @@ overriding individual values by hand.
         tag: ((tag))
     
     inputs:
-      - name: booklit
+      - name: repo
     
     run:
-      path: booklit/ci/unit
+      path: repo/ci/unit
     ```
 
     We could use [vars](tasks.md#task-config-schema) to run this task against different versions of Go:
@@ -106,13 +113,13 @@ overriding individual values by hand.
     jobs:
       - name: unit
         plan:
-          - get: booklit
+          - get: repo
             trigger: true
           - task: unit-1.13
-            file: booklit/ci/unit.yml
+            file: repo/ci/unit.yml
             vars: { tag: 1.13 }
           - task: unit-1.8
-            file: booklit/ci/unit.yml
+            file: repo/ci/unit.yml
             vars: { tag: 1.8 }
     ```
 
@@ -122,20 +129,20 @@ overriding individual values by hand.
 
     ```yaml
     resources:
-    - name: booklit
-      type: booklit
+    - name: examples
+      type: git
       source:
-        uri: https://github.com/concourse/booklit
+        uri: https://github.com/concourse/examples
         branch: ((branch))
         private_key: (("github.com".private_key))
     
     jobs:
-    - name: unit
+    - name: hello
       plan:
-      - get: booklit
+      - get: examples
         trigger: ((trigger))
-      - task: unit
-        file: booklit/ci/unit.yml
+      - task: hello
+        file: examples/tasks/hello-world.yml
     ```
 
     Let's say we have a private key in a file called `private_key`.
@@ -148,7 +155,7 @@ overriding individual values by hand.
       -c pipeline.yml \
       -y trigger=true \
       -v \"github.com\".private_key="$(cat private_key)" \
-      -v branch=master \
+      -v branch=main \
       --output
     ```
 
@@ -156,22 +163,22 @@ overriding individual values by hand.
 
     ```yaml
     jobs:
-      - name: unit
+      - name: hello
         plan:
-          - get: booklit
+          - get: examples
             trigger: true
-          - file: booklit/ci/unit.yml
-            task: unit
+          - file: examples/tasks/hello-world.yml
+            task: hello
     resources:
-      - name: booklit
-        type: booklit
+      - name: examples
+        type: git
         source:
-          branch: master
+          branch: main
           private_key: |
             -----BEGIN RSA PRIVATE KEY-----
             # ... snipped ...
             -----END RSA PRIVATE KEY-----
-          uri: https://github.com/concourse/booklit
+          uri: https://github.com/concourse/examples
     ```
 
     Note that we had to use `-y` so that the `trigger: true` ends up with a boolean value instead of the 
@@ -183,20 +190,20 @@ overriding individual values by hand.
 
     ```yaml
     resources:
-      - name: booklit
-        type: booklit
+      - name: examples
+        type: git
         source:
-          uri: https://github.com/concourse/booklit
+          uri: https://github.com/concourse/examples
           branch: ((branch))
           private_key: (("github.com".private_key))
     
     jobs:
-      - name: unit
+      - name: hello-world
         plan:
-          - get: booklit
+          - get: examples
             trigger: ((trigger))
-          - task: unit
-            file: booklit/ci/unit.yml
+          - task: hello
+            file: examples/tasks/hello-world.yml
     ```
 
     Let's say I've put the `private_key` var in a file called `vars.yml`, since it's quite large and hard to pass 
@@ -226,22 +233,22 @@ overriding individual values by hand.
 
     ```yaml
     jobs:
-      - name: unit
+      - name: hello
         plan:
-          - get: booklit
+          - get: examples
             trigger: true
-          - task: unit
-            file: booklit/ci/unit.yml
+          - file: examples/tasks/hello-world.yml
+            task: hello
     resources:
-      - name: booklit
-        type: booklit
+      - name: examples
+        type: git
         source:
-          branch: master
+          branch: main
           private_key: |
             -----BEGIN RSA PRIVATE KEY-----
             # ... snipped ...
             -----END RSA PRIVATE KEY-----
-          uri: https://github.com/concourse/booklit
+          uri: https://github.com/concourse/examples
     ```
 
     Note that we had to use `-y` so that the `trigger: true` ends up with a boolean value instead of the 
