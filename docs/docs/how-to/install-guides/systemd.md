@@ -118,7 +118,7 @@ chown -R concourse:concourse /usr/local/concourse
 We can now create a new `systemd` Unit file at `/etc/systemd/system/` named `concourse-web.service`. Place the following
 configuration in the unit file:
 
-```systemd
+```systemd title="concourse-web.service"
 [Unit]
 Description=Concourse Web node
 [Service]
@@ -204,7 +204,7 @@ chmod 0444 worker.env
 We can now create a new `systemd` Unit file at `/etc/systemd/system/` named `concourse-worker.service`. Place the
 following configuration in the unit file:
 
-```systemd
+```systemd title="concourse-worker.service"
 [Unit]
 Description=Concourse Worker
 [Service]
