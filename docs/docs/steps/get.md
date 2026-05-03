@@ -4,7 +4,10 @@ title: Get Step
 
 # `get` Step
 
-Fetches a version of a [resource](../resources/index.md). Expand each section below for more details and examples.
+Fetches a version of a [resource](../resources/index.md) and potentially
+metadata about the resource. Metadata is exposed as a [local
+var](../vars.md#local-var) under the name of `get` step. Expand each section
+below for more details and examples.
 
 ??? warning "**`get`**: [`resource.name`](../resources/index.md#resource-schema) | [`identifier`](../config-basics.md#identifier-schema) (required)"
 
@@ -88,8 +91,11 @@ Fetches a version of a [resource](../resources/index.md). Expand each section be
 ??? info "**`passed`**: [`[job.name]`](../jobs.md#job-schema)"
 
     ### `passed`
-    When specified, only the versions of the resource that made it through the given list of jobs (AND-ed together) will
-    be considered when triggering and fetching.
+    When specified, only the versions of the resource that made it through the
+    given list of jobs (AND-ed together) will be considered when triggering and
+    fetching. Shell glob patterns can be used instead of listing every single
+    upstream job. Patterns are evaluated using Go's
+    [`path.Match()`](https://pkg.go.dev/path#Match).
 
     ??? example "Fanning out and in"
 
@@ -135,16 +141,13 @@ Fetches a version of a [resource](../resources/index.md). Expand each section be
               - in_parallel:
                   - get: black-ice
                     passed:
-                      - lvl-2-unit
-                      - lvl-2-integration
+                      - lvl-2-*
                   - get: control-node
                     passed:
-                      - lvl-2-unit
-                      - lvl-2-integration
+                      - lvl-2-*
                   - get: cyberdeck
                     passed:
-                      - lvl-2-unit
-                      - lvl-2-integration
+                      - lvl-2-*
         
         resources:
           - name: black-ice
@@ -250,3 +253,50 @@ Fetches a version of a [resource](../resources/index.md). Expand each section be
         want to use [`fly check-resource`](../resources/managing-resources.md#fly-check-resource) to force detection of 
         resource versions, if you need to use an older one that was never detected (as all newly configured resources 
         start from the latest version).
+
+---
+
+??? example "Access Metadata from Local Var"
+
+    ### Access Metadata from Local Var
+
+    Resources have the option to expose metadata for any version that it fetches.
+    You'll need to reference the documentation for the resource type you're using
+    to see if it exposes any metadata. Metadata is rendered as a table of key-value
+    strings if viewed from the web UI.
+
+    If the resource does expose metadata, it is then added as a [local
+    var](../vars.md#local-var) named after the `get` step. This example results
+    in a local var called `my-resource`, with keys `hello` and `foo`.
+
+    ```yaml
+    resources:
+      - name: my-resource
+        type: mock
+        source:
+          metadata:
+            - name: hello
+              value: world
+            - name: foo
+              value: bar
+
+    jobs:
+      - name: job
+        plan:
+          - get: my-resource
+          - task: ref-local-vars
+            config:
+              platform: linux
+              image_resource:
+                type: mock
+                source: {mirror_self: true}
+              params:
+                FOO: ((.:my-resource.foo))
+              run:
+                path: sh
+                args:
+                  - -c
+                  - |
+                    echo Hello ((.:my-resource.hello))
+                    echo foo $FOO
+    ```

@@ -2,19 +2,16 @@
 title: Global Resources
 ---
 
-!!! warning "Experimental Feature"
-
-    Global Resources is an experimental feature introduced in Concourse v5.0 . It is enabled by passing the 
-    `--enable-global-resources` flag to the `concourse web` command.
-
 The basic concept of global resources is to share detected resource versions between all resources that have the same
 `resource.type` and `resource.source` configuration.
 
 Before v5.0.0, each pipeline resource had its own version history, associated to the resource by name. This meant that
 multiple pipelines with the same resource configs would redundantly collect the same version and metadata information.
 
-With v5.0.0's experimental 'global resources' feature, resource versions are instead associated to an
-anonymous '[resource config](../resources/index.md#resource-schema)' i.e. its `resource.type` and `resource.source`.
+Starting in v5.0.0, when the 'global resources' feature is enabled, resource
+versions are instead associated to an anonymous '[resource
+config](../resources/index.md#resource-schema)' i.e. its `resource.type` and
+`resource.source`.
 
 ## Benefits of Global Resources
 
