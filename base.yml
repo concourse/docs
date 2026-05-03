@@ -10,6 +10,9 @@ watch:
   - docs
   - overrides
 
+hooks:
+  - hooks.py
+
 markdown_extensions:
   - admonition
   - def_list
