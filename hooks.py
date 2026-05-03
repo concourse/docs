@@ -1,8 +1,6 @@
 import re
 
 def on_page_markdown(markdown, **kwargs):
-    # This pattern looks for blocks fenced with ```metrics ... ```
-    # It captures the raw content inside the code block
     pattern = re.compile(
         r"```metrics\n(.*?)\n```",
         re.DOTALL
