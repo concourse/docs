@@ -5828,7 +5828,6 @@ multiple checks, and therefore consume very little resources on the worker.</p>
 <h2 id="the-random-strategy">The <code>random</code> strategy</h2>
 <p>With the <code>random</code> strategy, the <a href="../../install/running-web/"><code>web</code> node</a> places <code>get</code>, <code>put</code>, and <code>task</code> containers on
 any worker, ignoring any affinity.</p>
-<p>As this is truly random, this will be fine until one day it's not fine.</p>
 <p>To use this strategy, set the following env var on the <a href="../../install/running-web/"><code>web</code> node</a>:</p>
 <div class="language-properties highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="na">CONCOURSE_CONTAINER_PLACEMENT_STRATEGY</span><span class="o">=</span><span class="s">random</span>
 </span></code></pre></div>
