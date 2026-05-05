@@ -389,14 +389,14 @@ to add a resource type that you've made, make a Pull Request in the
               <a href="https://github.com/haiku/irccat-resource">irccat</a>
           </td>
           <td class="description">
-              A resource to send notifications to irc via an irccat service
+              A resource to send notifications to irc via an irccat (https://github.com/irccloud/irccat) service
           </td>
           <td class="pipeline-yaml">
               ```yaml
               - name: irccat
                 type: registry-image
                 source:
-                  repository: haiku/irccat-resource
+                  repository: ghcr.io/haiku/irccat-resource
               ```
           </td>
       </tr>
