@@ -5943,7 +5943,7 @@ release notes. For the sake of brevity, here's a list of the remaining features
 I'm excited about:</p>
 <ul>
 <li>Task caches have a TTL now - <a href="https://github.com/concourse/concourse/pull/9533">#9533</a><ul>
-<li>Previously task caches would only be garbage collected when their pipeline or job were deleted or paused, resulting in disk space errors</li>
+<li>Previously task caches would only be garbage collected when their pipeline or job was deleted or paused, resulting in disk space errors if left unmanaged</li>
 <li>Can be configured in the task config or at a global level using <code>CONCOURSE_DEFAULT_TASK_CACHE_TTL</code></li>
 </ul>
 </li>
