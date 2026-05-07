@@ -144,6 +144,7 @@ nav:
               - docs/auth-and-teams/configuring/local-user.md
               - docs/auth-and-teams/configuring/github.md
               - docs/auth-and-teams/configuring/gitlab.md
+              - docs/auth-and-teams/configuring/gitea.md
               - docs/auth-and-teams/configuring/bitbucket-cloud.md
               - docs/auth-and-teams/configuring/cf-uaa.md
               - docs/auth-and-teams/configuring/ldap.md
