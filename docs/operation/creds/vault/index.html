@@ -120,6 +120,18 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+<center>
+  🎉 <a href="/blog/2026-05-07-v820-release/">v8.2.0 is out! Read The Announcement Blog Post to Learn About the New Features</a> ✈️
+</center>
+
+          </div>
+          
+        </aside>
+      
     </div>
     
     
@@ -1129,6 +1141,8 @@
       
         
       
+        
+      
     
     
     
@@ -1252,6 +1266,34 @@
     
   
     GitLab Auth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../auth-and-teams/configuring/gitea/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gitea Auth
   
 
     
@@ -3832,6 +3874,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Configuring the secrets engine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enabling-kv-mount-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enabling KV mount caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -5810,6 +5869,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Configuring the secrets engine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enabling-kv-mount-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enabling KV mount caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -5999,6 +6075,12 @@ found <a href="https://www.vaultproject.io/docs/secrets/kv">here</a>.</p>
 </span></code></pre></div>
 <p>This configuration will allow Concourse to read all credentials under <code>/concourse</code>. This should match your configured
 path prefix.</p>
+<h3 id="enabling-kv-mount-caching">Enabling KV mount caching</h3>
+<p>When Concourse looks up secrets in Vault, it needs to determine which KV mount version (v1 or v2) contains the secret.
+By default, this information is fetched from Vault for each lookup. Enabling KV mount caching allows this information to be fetched once and reused for subsequent lookups, significantly reducing the number of Vault API calls.</p>
+<p>To enable KV mount caching, set the following environment variable on the <code>web</code> node:</p>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="na">CONCOURSE_VAULT_ENABLE_KV_MOUNT_CACHE</span><span class="o">=</span><span class="s">true</span>
+</span></code></pre></div>
 <h2 id="authenticating-with-vault">Authenticating with Vault</h2>
 <p>There are many ways to authenticate with a Vault server. The <code>web</code> node can be configured with either a token or an
 arbitrary auth backend and arbitrary auth params, so just about all of them should be configurable.</p>
@@ -6006,14 +6088,14 @@ arbitrary auth backend and arbitrary auth params, so just about all of them shou
 continuously renew the token to ensure it doesn't expire. The renewal interval is half of the token's lease duration.</p>
 <h3 id="using-a-periodic-token">Using a periodic token</h3>
 <p>The simplest way to authenticate is by generating a periodic token:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>$<span class="w"> </span>vault<span class="w"> </span>token<span class="w"> </span>create<span class="w"> </span>--policy<span class="w"> </span>concourse<span class="w"> </span>--period<span class="w"> </span>1h
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Key<span class="w">                </span>Value
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>---<span class="w">                </span>-----
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>token<span class="w">              </span>s.mSNnbhGAqxK2ZbMasOQ91rIA
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>token_accessor<span class="w">     </span>0qsib5YcYvROm86cT08IFxIT
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>token_duration<span class="w">     </span>1h
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>token_renewable<span class="w">    </span><span class="nb">true</span>
-</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>token_policies<span class="w">     </span><span class="o">[</span>concourse<span class="w"> </span>default<span class="o">]</span>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>$<span class="w"> </span>vault<span class="w"> </span>token<span class="w"> </span>create<span class="w"> </span>--policy<span class="w"> </span>concourse<span class="w"> </span>--period<span class="w"> </span>1h
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>Key<span class="w">                </span>Value
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>---<span class="w">                </span>-----
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>token<span class="w">              </span>s.mSNnbhGAqxK2ZbMasOQ91rIA
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>token_accessor<span class="w">     </span>0qsib5YcYvROm86cT08IFxIT
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>token_duration<span class="w">     </span>1h
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>token_renewable<span class="w">    </span><span class="nb">true</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>token_policies<span class="w">     </span><span class="o">[</span>concourse<span class="w"> </span>default<span class="o">]</span>
 </span></code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -6021,7 +6103,7 @@ continuously renew the token to ensure it doesn't expire. The renewal interval i
   use a duration long enough to account for any planned <code>web</code> node downtime.</p>
 </div>
 <p>Once you have the token, just set the following env on the <code>web</code> node:</p>
-<div class="language-properties highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="na">CONCOURSE_VAULT_CLIENT_TOKEN</span><span class="o">=</span><span class="s">s.mSNnbhGAqxK2ZbMasOQ91rIA</span>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="na">CONCOURSE_VAULT_CLIENT_TOKEN</span><span class="o">=</span><span class="s">s.mSNnbhGAqxK2ZbMasOQ91rIA</span>
 </span></code></pre></div>
 <p>Periodic tokens are the quickest way to get started, but they have one fatal flaw: if the <code>web</code> node is down for longer
 than the token's configured period, the token will expire and a new one will have to be created and configured. This can
@@ -6050,7 +6132,7 @@ the TTL elapses.</p>
 </dd>
 <dd>
 <p>If configured, be sure to set the same value on the <code>web</code> node so that it can re-auth before this duration is reached:
-</p><div class="language-properties highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="na">CONCOURSE_VAULT_AUTH_BACKEND_MAX_TTL</span><span class="o">=</span><span class="s">1h</span>
+</p><div class="language-properties highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="na">CONCOURSE_VAULT_AUTH_BACKEND_MAX_TTL</span><span class="o">=</span><span class="s">1h</span>
 </span></code></pre></div><p></p>
 </dd>
 <dt><code>period=duration</code></dt>
@@ -6067,17 +6149,17 @@ when this limit is reached.</p>
 </dd>
 <dd>
 <p>For a full list of options refer to <a href="https://developer.hashicorp.com/vault/api-docs/auth/userpass#parameters">userpass api docs</a>.
-</p><div class="language-shell highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>$<span class="w"> </span>vault<span class="w"> </span>auth<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>userpass
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>Success!<span class="w"> </span>Enabled<span class="w"> </span>userpass<span class="w"> </span>auth<span class="w"> </span>method<span class="w"> </span>at:<span class="w"> </span>userpass/
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>$<span class="w"> </span>vault<span class="w"> </span>write<span class="w"> </span>auth/userpass/users/concourse<span class="w"> </span><span class="nv">policies</span><span class="o">=</span>concourse<span class="w"> </span><span class="nv">period</span><span class="o">=</span>1h<span class="w"> </span><span class="nv">password</span><span class="o">=</span>&lt;....&gt;
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>Success!<span class="w"> </span>Data<span class="w"> </span>written<span class="w"> </span>to:<span class="w"> </span>auth/userpass/users/concourse
+</p><div class="language-shell highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>$<span class="w"> </span>vault<span class="w"> </span>auth<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>userpass
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>Success!<span class="w"> </span>Enabled<span class="w"> </span>userpass<span class="w"> </span>auth<span class="w"> </span>method<span class="w"> </span>at:<span class="w"> </span>userpass/
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>$<span class="w"> </span>vault<span class="w"> </span>write<span class="w"> </span>auth/userpass/users/concourse<span class="w"> </span><span class="nv">policies</span><span class="o">=</span>concourse<span class="w"> </span><span class="nv">period</span><span class="o">=</span>1h<span class="w"> </span><span class="nv">password</span><span class="o">=</span>&lt;....&gt;
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>Success!<span class="w"> </span>Data<span class="w"> </span>written<span class="w"> </span>to:<span class="w"> </span>auth/userpass/users/concourse
 </span></code></pre></div><p></p>
 </dd>
 </dl>
 <p>Now that the backend is configured, we can use the <code>username</code> and <code>password</code>:</p>
 <p>These should then be set on the <a href="../../../install/running-web/"><code>web</code> node</a> like so:</p>
-<div class="language-properties highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="na">CONCOURSE_VAULT_AUTH_BACKEND</span><span class="o">=</span><span class="s">"userpass"</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="na">CONCOURSE_VAULT_AUTH_PARAM</span><span class="o">=</span><span class="s">"username:concourse,password:&lt;....&gt;"</span>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="na">CONCOURSE_VAULT_AUTH_BACKEND</span><span class="o">=</span><span class="s">"userpass"</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="na">CONCOURSE_VAULT_AUTH_PARAM</span><span class="o">=</span><span class="s">"username:concourse,password:&lt;....&gt;"</span>
 </span></code></pre></div>
 <h3 id="using-the-approle-auth-backend">Using the <code>approle</code> auth backend</h3>
 <p>The <a href="https://www.vaultproject.io/docs/auth/approle.html"><code>approle</code></a> backend allows for an <em>app</em> (in this case,
@@ -6103,7 +6185,7 @@ the TTL elapses.</p>
 </dd>
 <dd>
 <p>If configured, be sure to set the same value on the <code>web</code> node so that it can re-auth before this duration is reached:
-</p><div class="language-properties highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="na">CONCOURSE_VAULT_AUTH_BACKEND_MAX_TTL</span><span class="o">=</span><span class="s">1h</span>
+</p><div class="language-properties highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="na">CONCOURSE_VAULT_AUTH_BACKEND_MAX_TTL</span><span class="o">=</span><span class="s">1h</span>
 </span></code></pre></div><p></p>
 </dd>
 <dt><code>period=duration</code></dt>
@@ -6129,25 +6211,25 @@ nodes accordingly.</p>
 </dd>
 </dl>
 <p>Given all that, a typical configuration may look something like this:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>$<span class="w"> </span>vault<span class="w"> </span>auth<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>approle
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>Success!<span class="w"> </span>Enabled<span class="w"> </span>approle<span class="w"> </span>auth<span class="w"> </span>method<span class="w"> </span>at:<span class="w"> </span>approle/
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>$<span class="w"> </span>vault<span class="w"> </span>write<span class="w"> </span>auth/approle/role/concourse<span class="w"> </span><span class="nv">policies</span><span class="o">=</span>concourse<span class="w"> </span><span class="nv">period</span><span class="o">=</span>1h
-</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>Success!<span class="w"> </span>Data<span class="w"> </span>written<span class="w"> </span>to:<span class="w"> </span>auth/approle/role/concourse
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>$<span class="w"> </span>vault<span class="w"> </span>auth<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>approle
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>Success!<span class="w"> </span>Enabled<span class="w"> </span>approle<span class="w"> </span>auth<span class="w"> </span>method<span class="w"> </span>at:<span class="w"> </span>approle/
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>$<span class="w"> </span>vault<span class="w"> </span>write<span class="w"> </span>auth/approle/role/concourse<span class="w"> </span><span class="nv">policies</span><span class="o">=</span>concourse<span class="w"> </span><span class="nv">period</span><span class="o">=</span>1h
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>Success!<span class="w"> </span>Data<span class="w"> </span>written<span class="w"> </span>to:<span class="w"> </span>auth/approle/role/concourse
 </span></code></pre></div>
 <p>Now that the backend is configured, we'll need to obtain the <code>role_id</code> and generate a <code>secret_id</code>:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>$<span class="w"> </span>vault<span class="w"> </span><span class="nb">read</span><span class="w"> </span>auth/approle/role/concourse/role-id
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>Key<span class="w">        </span>Value
-</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>---<span class="w">        </span>-----
-</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>role_id<span class="w">    </span>5f3420cd-3c66-2eff-8bcc-0e8e258a7d18
-</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>$<span class="w"> </span>vault<span class="w"> </span>write<span class="w"> </span>-f<span class="w"> </span>auth/approle/role/concourse/secret-id
-</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>Key<span class="w">                   </span>Value
-</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>---<span class="w">                   </span>-----
-</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>secret_id<span class="w">             </span>f7ec2ac8-ad07-026a-3e1c-4c9781423155
-</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>secret_id_accessor<span class="w">    </span>1bd17fc6-dae1-0c82-d325-3b8f9b5654ee
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>$<span class="w"> </span>vault<span class="w"> </span><span class="nb">read</span><span class="w"> </span>auth/approle/role/concourse/role-id
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>Key<span class="w">        </span>Value
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>---<span class="w">        </span>-----
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>role_id<span class="w">    </span>5f3420cd-3c66-2eff-8bcc-0e8e258a7d18
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>$<span class="w"> </span>vault<span class="w"> </span>write<span class="w"> </span>-f<span class="w"> </span>auth/approle/role/concourse/secret-id
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>Key<span class="w">                   </span>Value
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>---<span class="w">                   </span>-----
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>secret_id<span class="w">             </span>f7ec2ac8-ad07-026a-3e1c-4c9781423155
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>secret_id_accessor<span class="w">    </span>1bd17fc6-dae1-0c82-d325-3b8f9b5654ee
 </span></code></pre></div>
 <p>These should then be set on the <a href="../../../install/running-web/"><code>web</code> node</a> like so:</p>
-<div class="language-properties highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="na">CONCOURSE_VAULT_AUTH_BACKEND</span><span class="o">=</span><span class="s">"approle"</span>
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="na">CONCOURSE_VAULT_AUTH_PARAM</span><span class="o">=</span><span class="s">"role_id:5f3420cd-3c66-2eff-8bcc-0e8e258a7d18,secret_id:f7ec2ac8-ad07-026a-3e1c-4c9781423155"</span>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="na">CONCOURSE_VAULT_AUTH_BACKEND</span><span class="o">=</span><span class="s">"approle"</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="na">CONCOURSE_VAULT_AUTH_PARAM</span><span class="o">=</span><span class="s">"role_id:5f3420cd-3c66-2eff-8bcc-0e8e258a7d18,secret_id:f7ec2ac8-ad07-026a-3e1c-4c9781423155"</span>
 </span></code></pre></div>
 <h3 id="using-the-cert-auth-backend">Using the <code>cert</code> auth backend</h3>
 <p>The <a href="https://www.vaultproject.io/docs/auth/cert.html"><code>cert</code></a> auth method allows authentication using SSL/TLS client
@@ -6175,7 +6257,7 @@ the TTL elapses.</p>
 </dd>
 <dd>
 <p>If configured, be sure to set the same value on the <code>web</code> node so that it can re-auth before this duration is reached:
-</p><div class="language-properties highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="na">CONCOURSE_VAULT_AUTH_BACKEND_MAX_TTL</span><span class="o">=</span><span class="s">1h</span>
+</p><div class="language-properties highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="na">CONCOURSE_VAULT_AUTH_BACKEND_MAX_TTL</span><span class="o">=</span><span class="s">1h</span>
 </span></code></pre></div><p></p>
 </dd>
 <dt><code>period=duration</code></dt>
@@ -6184,15 +6266,15 @@ the TTL elapses.</p>
 configured max TTL, and can be renewed continuously. It does not make sense to configure both <code>period</code> and <code>max_ttl</code> as
 the max TTL will be ignored.</dd>
 </dl>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>$<span class="w"> </span>vault<span class="w"> </span>auth<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>cert
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>Success!<span class="w"> </span>Enabled<span class="w"> </span>cert<span class="w"> </span>auth<span class="w"> </span>method<span class="w"> </span>at:<span class="w"> </span>cert/
-</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>$<span class="w"> </span>vault<span class="w"> </span>write<span class="w"> </span>auth/cert/certs/concourse<span class="w"> </span><span class="nv">policies</span><span class="o">=</span>concourse<span class="w"> </span><span class="nv">certificate</span><span class="o">=</span>@out/vault-ca.crt<span class="w"> </span><span class="nv">ttl</span><span class="o">=</span>1h
-</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>Success!<span class="w"> </span>Data<span class="w"> </span>written<span class="w"> </span>to:<span class="w"> </span>auth/cert/certs/concourse
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>$<span class="w"> </span>vault<span class="w"> </span>auth<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>cert
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>Success!<span class="w"> </span>Enabled<span class="w"> </span>cert<span class="w"> </span>auth<span class="w"> </span>method<span class="w"> </span>at:<span class="w"> </span>cert/
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>$<span class="w"> </span>vault<span class="w"> </span>write<span class="w"> </span>auth/cert/certs/concourse<span class="w"> </span><span class="nv">policies</span><span class="o">=</span>concourse<span class="w"> </span><span class="nv">certificate</span><span class="o">=</span>@out/vault-ca.crt<span class="w"> </span><span class="nv">ttl</span><span class="o">=</span>1h
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>Success!<span class="w"> </span>Data<span class="w"> </span>written<span class="w"> </span>to:<span class="w"> </span>auth/cert/certs/concourse
 </span></code></pre></div>
 <p>Once that's all set up, you'll just need to configure the client cert and key on the <code>web</code> node like so:</p>
-<div class="language-properties highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="na">CONCOURSE_VAULT_AUTH_BACKEND</span><span class="o">=</span><span class="s">"cert"</span>
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="na">CONCOURSE_VAULT_CLIENT_CERT</span><span class="o">=</span><span class="s">vault-certs/concourse.crt</span>
-</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="na">CONCOURSE_VAULT_CLIENT_KEY</span><span class="o">=</span><span class="s">vault-certs/concourse.key</span>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="na">CONCOURSE_VAULT_AUTH_BACKEND</span><span class="o">=</span><span class="s">"cert"</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="na">CONCOURSE_VAULT_CLIENT_CERT</span><span class="o">=</span><span class="s">vault-certs/concourse.crt</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="na">CONCOURSE_VAULT_CLIENT_KEY</span><span class="o">=</span><span class="s">vault-certs/concourse.key</span>
 </span></code></pre></div>
 <p>In this case no additional auth params are necessary, as the Vault's TLS auth backend will check the certificate against
 all roles if no name is specified.</p>

@@ -120,6 +120,18 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+<center>
+  🎉 <a href="/blog/2026-05-07-v820-release/">v8.2.0 is out! Read The Announcement Blog Post to Learn About the New Features</a> ✈️
+</center>
+
+          </div>
+          
+        </aside>
+      
     </div>
     
     
@@ -1129,6 +1141,8 @@
       
         
       
+        
+      
     
     
     
@@ -1252,6 +1266,34 @@
     
   
     GitLab Auth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auth-and-teams/configuring/gitea/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gitea Auth
   
 
     
@@ -6321,6 +6363,11 @@ information.</p>
 <summary><strong><code>auth_retry_initial</code></strong>: <a href="../config-basics/#duration-schema"><code>duration</code></a></summary>
 <p>When retrying during authentication, start with this retry interval. The interval will increase 
 exponentially until <code>auth_retry_max</code> is reached.</p>
+</details>
+<details class="info">
+<summary><strong><code>enable_kv_mount_cache</code></strong>: <a href="../config-basics/#boolean-schema"><code>boolean</code></a></summary>
+<p>By default, this feature is disabled. When disabled, Concourse queries Vault on every secret lookup to determine whether the secret resides in a KV version 1 or version 2 mount, as this affects how the secret is retrieved.</p>
+<p>When enabled, KV mount metadata is cached. This allows Concourse to fetch mount information once and reuse it for subsequent lookups, reducing the number of Vault API calls and improving performance.</p>
 </details>
 </details>
 </div>

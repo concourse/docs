@@ -120,6 +120,18 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+<center>
+  🎉 <a href="/blog/2026-05-07-v820-release/">v8.2.0 is out! Read The Announcement Blog Post to Learn About the New Features</a> ✈️
+</center>
+
+          </div>
+          
+        </aside>
+      
     </div>
     
     
@@ -1129,6 +1141,8 @@
       
         
       
+        
+      
     
     
     
@@ -1252,6 +1266,34 @@
     
   
     GitLab Auth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../auth-and-teams/configuring/gitea/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gitea Auth
   
 
     
@@ -5983,6 +6025,12 @@ the URL. Same as what you would see in the web UI. Will be the same value as
 <dd>
 <p>The short URL of the build in the form <code>$ATC_EXTERNAL_URL/builds/$BUILD_ID</code></p>
 </dd>
+<dt><code>$BUILD_STATUS</code></dt>
+<dd>
+<p>Will have a value of <code>success/failure/aborted/errored</code>. Only present when
+the resource is under one of the hook steps
+<a href="../../steps/modifier-and-hooks/"><code>on_[success/failure/abort/error]</code></a></p>
+</dd>
 </dl>
 <p>If the build is a one-off, <code>$BUILD_NAME</code>, <code>$BUILD_JOB_NAME</code>, <code>$BUILD_PIPELINE_NAME</code>, and <code>$BUILD_PIPELINE_INSTANCE_VARS</code>
 will not be set.</p>
@@ -5991,8 +6039,9 @@ an instanced pipeline).</p>
 <p>None of these variables are available to <a href="#check-check-for-new-versions">check</a>.</p>
 <p>These variables should be used solely for annotating things with metadata for traceability, i.e. for linking to the
 build in an alert or annotating an automated commit to facilitate its origin discovery.</p>
-<p>They should <em>not</em> be used to emulate versioning (e.g. by using the increasing build number). They are not provided
-to <a href="../../steps/task/"><code>task</code> steps</a> to avoid this anti-pattern.</p>
+<p>They should <em>not</em> be used to emulate versioning (e.g. by using the increasing
+build number). By default they are not provided to <a href="../../steps/task/"><code>task</code>
+steps</a> to avoid this anti-pattern.</p>
 <h2 id="certificate-propagation">Certificate Propagation</h2>
 <p>Certificates can be automatically propagated into each resource container, if the worker is configured to do so. The
 BOSH release configures this automatically, while the <code>concourse</code> binary must be given a <code>--certs-dir</code> flag pointing to

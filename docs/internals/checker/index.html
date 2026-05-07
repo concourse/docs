@@ -120,6 +120,18 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+<center>
+  🎉 <a href="/blog/2026-05-07-v820-release/">v8.2.0 is out! Read The Announcement Blog Post to Learn About the New Features</a> ✈️
+</center>
+
+          </div>
+          
+        </aside>
+      
     </div>
     
     
@@ -1129,6 +1141,8 @@
       
         
       
+        
+      
     
     
     
@@ -1252,6 +1266,34 @@
     
   
     GitLab Auth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../auth-and-teams/configuring/gitea/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gitea Auth
   
 
     
@@ -4334,6 +4376,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="When are resources checked?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checks-when-a-build-starts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checks When a Build Starts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -5636,6 +5695,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="When are resources checked?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checks-when-a-build-starts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checks When a Build Starts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -5684,39 +5760,89 @@
 
   <h1>Resource Checker</h1>
 
-<p><a href="../../resources/">Resources</a> represent external state such as a git repository, files in an S3 bucket, or anything
-else that changes over time. By modelling these as resources, it allows you to use this external state as inputs (or
-triggers) to your workloads.</p>
+<p><a href="../../resources/">Resources</a> represent external state such as a git
+repository, files in an S3 bucket, or anything else that changes over time. By
+modelling these as resources, it allows you to use this external state as
+inputs (or triggers) to your workloads.</p>
 <h2 id="when-are-resources-checked">When are resources checked?</h2>
-<p>The component that schedules resource checks is called the <strong>resource checker</strong>. The rate at which these checks happen
-is called the check interval (configurable via <code>CONCOURSE_LIDAR_SCANNER_INTERVAL</code>). There's an obvious tradeoff, whereby
-the more frequently you poll, the bigger the strain on Concourse (as well as the external source). However, if you want
-to pick up those new commits as quickly as possible, then you need to poll as often as possible.</p>
-<p>The resource checker uses the <a href="../../resources/#resource-schema"><code>resource.check_every</code></a> interval in order to
-figure out if a resource needs to be checked. A resource's <code>check_every</code> interval dictates how often it should be
-checked for new versions, with a default of 1 minute. If that seems like a lot of checking, it is, but it's how
-Concourse keeps everything snappy. You can configure this interval independently for each resource using <code>check_every</code>.</p>
-<p>If your external service supports it, you can set <a href="../../resources/#resource-schema"><code>resource.webhook_token</code></a> to
-eliminate the need for periodic checking altogether. If a <code>webhook_token</code> is configured, the external service can notify
-Concourse when to check for new versions. Note that configuring a <code>webhook_token</code> will not stop Concourse from
-periodically checking your resource. If you wish to rely solely on webhooks for detecting new versions, you can
-set <code>check_every</code> to <code>never</code>.</p>
-<p>On every interval tick, the resource checker will see if there are any resources that need to be checked. It does this
-by first finding resources which are used as inputs to jobs, and then comparing the current time against the last time
-each resource was checked. If it has been longer than a resource's configured <code>check_every</code> interval, a new check will
-be scheduled. In practice this means that if a resource has a <code>check_every</code> of <code>1m</code>, it is not guaranteed to be checked
-precisely every 60 seconds. <code>check_every</code> simply sets a lower bound on the time between checks.</p>
-<p>When the resource checker finds a resource to check (either because its <code>check_every</code> interval elapsed, or because its
-configured <code>webhook_token</code> was triggered), it schedules a new build that invokes
-the <a href="../../resource-types/implementing/#check-check-for-new-versions"><code>check</code> script</a> of the resource's
-underlying <a href="../../resource-types/">resource type</a>.</p>
+<p>The component that schedules resource checks is called the <strong>Resource
+Checker</strong>, internally called <code>lidar</code>. The Resource Checker runs on an interval
+and will check for any resources that need to be checked since it last ran. The
+interval the Resource Checker runs at by default is 10 seconds and can be
+configured by setting <code>CONCOURSE_LIDAR_SCANNER_INTERVAL</code> on the web node.</p>
+<p>The Resource Checker checks for any resources that have surpassed their
+individual <a href="../../resources/#resource-schema"><code>resource.check_every</code></a>
+interval. The default check interval is one minute and can be globally
+configured by setting <code>CONCOURSE_RESOURCE_CHECKING_INTERVAL</code> on the web node.</p>
+<p>If one minute seems like a lot of checking, it is, but it's how Concourse keeps
+everything snappy. You can configure this interval independently for each
+resource using <code>check_every</code>.</p>
+<p>There's an obvious trade-off with regards to checking frequency. The more
+frequently you check a resource, the bigger the strain on Concourse (as well as
+the external source). However, if you want to pick up those new commits as
+quickly as possible, then you need to poll as often as possible.</p>
+<p>If your external service supports it, you can set
+<a href="../../resources/#resource-schema"><code>resource.webhook_token</code></a> to eliminate
+the need for periodic checking altogether. If a <code>webhook_token</code> is configured,
+the external service can notify Concourse when to check for new versions. Note
+that configuring a <code>webhook_token</code> will not stop Concourse from periodically
+checking your resource. If you wish to rely solely on webhooks for detecting
+new versions, you can set <code>check_every</code> to <code>never</code> for a resource.</p>
+<p>On every interval tick, the Resource Checker will see if there are any
+resources that need to be checked. It does this by looking for resources that
+match the following criteria:</p>
+<ul>
+<li>Resource is an input AND a trigger for a job<ul>
+<li>Has to have been longer than the <code>check_every</code> interval of the resource</li>
+</ul>
+</li>
+<li>Resource has not returned a version yet</li>
+<li>Resource has never been checked before</li>
+<li>Resource errored the last time it was checked</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Prior to v8.2.0, the Resource Checker looked for resources that were JUST
+inputs to jobs and didn't check if they triggered the job or not. This
+resulted in more checks being run than was necessary for Concourse to
+schedule builds.</p>
+</div>
+<p>With one of the four top-level criteria met, a check for the resource will be
+scheduled. In practice this means that if a resource has a <code>check_every</code> of
+<code>1m</code>, it is not guaranteed to be checked precisely every 60 seconds.
+<code>check_every</code> simply sets a lower bound on the time between checks.</p>
+<p>When a resource check is scheduled, it creates a new build that invokes the
+<a href="../../resource-types/implementing/#check-check-for-new-versions"><code>check</code>
+script</a> of the
+resource's underlying <a href="../../resource-types/">resource type</a>.</p>
+<h3 id="checks-when-a-build-starts">Checks When a Build Starts</h3>
+<p>When a job is triggered, Concourse will likely create a few resource checks
+before it starts the job. Concourse will create resource checks in the
+following scenarios:</p>
+<ul>
+<li>Manually triggered job:<ul>
+<li>All input resources are checked, regardless of their <code>check_every</code> interval</li>
+</ul>
+</li>
+<li>Automatically triggered job<ul>
+<li>All input resources that have passed their <code>check_every</code> interval are checked</li>
+</ul>
+</li>
+<li>Re-run of previous build - no resource checks are made</li>
+</ul>
+<p>In all cases, if a resource has a <code>passed</code> constraint on it, it won't be
+checked because checking won't find new versions that could be used by the
+current job.</p>
 <h2 id="what-do-resource-checks-produce">What do resource checks produce?</h2>
-<p>The whole point of running checks is to produce versions. Concourse's <a href="../scheduler/">Build Scheduler</a> is centered around
-the idea of resource versions. It's how Concourse determines that something is new and a new build needs to be
+<p>The whole point of running checks is to produce versions. Concourse's <a href="../scheduler/">Build
+Scheduler</a> is centered around the idea of resource versions. It's
+how Concourse determines that something is new and a new build needs to be
 triggered.</p>
-<p>The versions produced by each resource are unique to the underlying <a href="../../resource-types/">resource type</a>. For
-instance, the <code>git</code> resource type uses commit SHAs as versions. The <code>registry-image</code> resource uses the image digest and
-tag in the version.</p>
+<p>The versions produced by each resource are unique to the underlying <a href="../../resource-types/">resource
+type</a>. For instance, the <code>git</code> resource type uses
+commit SHAs as versions. The <code>registry-image</code> resource uses the image digest
+and tag in the version. A version is simply a set of key-value strings. The
+resource gets to decide what keys it uses.</p>
 
 
 

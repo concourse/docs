@@ -120,6 +120,18 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+<center>
+  🎉 <a href="/blog/2026-05-07-v820-release/">v8.2.0 is out! Read The Announcement Blog Post to Learn About the New Features</a> ✈️
+</center>
+
+          </div>
+          
+        </aside>
+      
     </div>
     
     
@@ -1129,6 +1141,8 @@
       
         
       
+        
+      
     
     
     
@@ -1252,6 +1266,34 @@
     
   
     GitLab Auth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auth-and-teams/configuring/gitea/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gitea Auth
   
 
     
@@ -5791,6 +5833,29 @@ pipeline.</p>
 <p>Default <em><code>opacity(30%) grayscale(100%)</code></em>. Allows users to specify custom 
 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter">CSS filters</a> that are applied to the 
 <code>background_image</code>.</p>
+</details>
+</details>
+<details class="info">
+<summary><code>user_data</code>: <a href="../vars/#value-schema"><code>value</code></a></summary>
+<p>This field is meant to store arbitrary metadata. Its value can be any type
+you can express in YAML, even a string. The data in this field is NOT
+exposed in the pipeline during runtime. You can reference the data using YAML
+anchors when setting your pipelines.</p>
+<p>The main benefit of this field is having a way to preserve arbitrary data
+that will survive the <code>fly set-pipeline/get-pipeline</code> lifecycle. Any other
+top-level keys are not preserved by Concourse.</p>
+<details class="example">
+<summary>Example: Arbitrary User Data</summary>
+<p>You can set <code>user_data</code> to any value, like a map:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">user_data</span><span class="p">:</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">team</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SRE</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">contact</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sre@example.com</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">labels</span><span class="p">:</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prod</span>
+</span></code></pre></div>
+<p>Or a string:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">user_data</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">This is my user data value</span>
+</span></code></pre></div>
 </details>
 </details>
 
