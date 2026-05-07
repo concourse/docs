@@ -256,6 +256,12 @@ the URL. Same as what you would see in the web UI. Will be the same value as
 
 :   The short URL of the build in the form `$ATC_EXTERNAL_URL/builds/$BUILD_ID`
 
+`$BUILD_STATUS`
+
+:   Will have a value of `success/failure/aborted/errored`. Only present when
+the resource is under one of the hook steps
+[`on_[success/failure/abort/error]`](../steps/modifier-and-hooks/index.md)
+
 If the build is a one-off, `$BUILD_NAME`, `$BUILD_JOB_NAME`, `$BUILD_PIPELINE_NAME`, and `$BUILD_PIPELINE_INSTANCE_VARS`
 will not be set.
 
@@ -267,8 +273,9 @@ None of these variables are available to [check](#check-check-for-new-versions).
 These variables should be used solely for annotating things with metadata for traceability, i.e. for linking to the
 build in an alert or annotating an automated commit to facilitate its origin discovery.
 
-They should _not_ be used to emulate versioning (e.g. by using the increasing build number). They are not provided
-to [`task` steps](../steps/task.md) to avoid this anti-pattern.
+They should _not_ be used to emulate versioning (e.g. by using the increasing
+build number). By default they are not provided to [`task`
+steps](../steps/task.md) to avoid this anti-pattern.
 
 ## Certificate Propagation
 
