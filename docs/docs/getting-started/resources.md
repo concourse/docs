@@ -322,7 +322,7 @@ we'll continue to leverage that.
 Let's create a new branch in our `examples` repository called `version`. We'll create a file in there that will contain
 the name of the next tag we want to publish our app under. You can run the following commands to do this:
 
-```shell linenums="1"
+```shell
 # Make a new, empty branch called "version"
 git switch --orphan version
 # You can make the initial version whatever you want
@@ -555,7 +555,7 @@ built-in [registry-image resource](https://github.com/concourse/registry-image-r
 resource type is just like adding a regular resource, just under the top-level `resource_types` key instead.
 
 If you're looking for more resource types, there's a catalog of them
-at [resource-types.concourse-ci.org](https://resource-types.concourse-ci.org/).
+at [this page](../../resource-types-list.md).
 
 ## Time For Takeoff ✈️
 
