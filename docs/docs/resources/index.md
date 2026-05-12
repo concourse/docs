@@ -111,7 +111,7 @@ schema.
 
     ### `expose_build_created_by`
     _Default `false`_. If set to `true`, environment variable 
-    [`BUILD_CREATED_BY`](../resource-types/implementing.md#metadata) will be available in the metadata of a 
+    [`BUILD_CREATED_BY`](../resource-types/implementing.md#build-metadata) will be available in the metadata of a 
     [`put` step](../steps/put.md). This field is not made available to the [`get` step](../steps/get.md).
 
 ??? info "`tags`: [`[string]`](../config-basics.md#string-schema)"

@@ -329,7 +329,7 @@ To test an already packaged resource (a docker image) outside concourse, you nee
 
 1. If you use the exact configuration in this example, the git resource will print an error about the format of the
    private key being invalid. Adjust the content `out-config.json` as necessary to get it working with your resource.
-2. If the resource you are testing uses [Metadata](#metadata), you will need to provide the required metadata as
+2. If the resource you are testing uses [Metadata](#build-metadata), you will need to provide the required metadata as
    environment variables to your `docker run` command like so:
    <br/>
     ```shell
