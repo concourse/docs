@@ -208,6 +208,7 @@ nav:
           - Git:
               - docs/how-to/git-guides/basic.md
               - docs/how-to/git-guides/multi-branch.md
+              - docs/how-to/git-guides/monorepo.md
           - Container Images:
               - docs/how-to/container-image-guides/build-push.md
               - docs/how-to/container-image-guides/build-use.md
