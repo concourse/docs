@@ -3089,10 +3089,6 @@
     
       
         
-          
-        
-      
-        
       
         
       
@@ -3118,15 +3114,14 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_15_2">
         
           
-          <div class="md-nav__link md-nav__container">
-            <a href="../../how-to/pipeline-guides/" class="md-nav__link ">
-              
+          <label class="md-nav__link" for="__nav_1_15_2" id="__nav_1_15_2_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
     
   
-    Pipeline Guides
+    Pipelines
   
 
     
@@ -3134,27 +3129,19 @@
   
   
 
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_1_15_2" id="__nav_1_15_2_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
         
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_15_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1_15_2">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Pipeline Guides
+    Pipelines
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix="">
-            
-              
             
               
                 
@@ -3342,8 +3329,6 @@
     
       
         
-          
-        
       
         
       
@@ -3363,15 +3348,14 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_15_3">
         
           
-          <div class="md-nav__link md-nav__container">
-            <a href="../../how-to/git-guides/" class="md-nav__link ">
-              
+          <label class="md-nav__link" for="__nav_1_15_3" id="__nav_1_15_3_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
     
   
-    Git Guides
+    Git
   
 
     
@@ -3379,27 +3363,19 @@
   
   
 
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_1_15_3" id="__nav_1_15_3_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
         
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_15_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1_15_3">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Git Guides
+    Git
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix="">
-            
-              
             
               
                 
@@ -3457,6 +3433,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/git-guides/monorepo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monorepo Workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3473,10 +3477,6 @@
   
     
     
-      
-        
-          
-        
       
         
       
@@ -3496,15 +3496,14 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_15_4">
         
           
-          <div class="md-nav__link md-nav__container">
-            <a href="../../how-to/container-image-guides/" class="md-nav__link ">
-              
+          <label class="md-nav__link" for="__nav_1_15_4" id="__nav_1_15_4_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
     
   
-    Container Image Guides
+    Container Images
   
 
     
@@ -3512,27 +3511,19 @@
   
   
 
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_1_15_4" id="__nav_1_15_4_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
         
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_15_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1_15_4">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Container Image Guides
+    Container Images
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix="">
-            
-              
             
               
                 
@@ -6086,20 +6077,14 @@ represent the tag we want to publish.</p>
 we'll continue to leverage that.</p>
 <p>Let's create a new branch in our <code>examples</code> repository called <code>version</code>. We'll create a file in there that will contain
 the name of the next tag we want to publish our app under. You can run the following commands to do this:</p>
-<div class="language-shell highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
-<span class="normal"><a href="#__codelineno-11-2">2</a></span>
-<span class="normal"><a href="#__codelineno-11-3">3</a></span>
-<span class="normal"><a href="#__codelineno-11-4">4</a></span>
-<span class="normal"><a href="#__codelineno-11-5">5</a></span>
-<span class="normal"><a href="#__codelineno-11-6">6</a></span>
-<span class="normal"><a href="#__codelineno-11-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="c1"># Make a new, empty branch called "version"</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a>git<span class="w"> </span>switch<span class="w"> </span>--orphan<span class="w"> </span>version
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="c1"># You can make the initial version whatever you want</span>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"v0.0.1"</span><span class="w"> </span>&gt;<span class="w"> </span>next-version
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a>git<span class="w"> </span>add<span class="w"> </span>next-version
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"initial version"</span>
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7"></a>git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>version
-</span></code></pre></div></td></tr></tbody></table></div>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Make a new, empty branch called "version"</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>git<span class="w"> </span>switch<span class="w"> </span>--orphan<span class="w"> </span>version
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="c1"># You can make the initial version whatever you want</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"v0.0.1"</span><span class="w"> </span>&gt;<span class="w"> </span>next-version
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>git<span class="w"> </span>add<span class="w"> </span>next-version
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"initial version"</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>version
+</span></code></pre></div>
 <p>Now we can add this as a resource in our pipeline, so our <code>resources</code> look like this:</p>
 <div class="language-yaml highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
@@ -6435,15 +6420,15 @@ the image from. This is done by using the
 built-in <a href="https://github.com/concourse/registry-image-resource/">registry-image resource</a>. The process of adding a
 resource type is just like adding a regular resource, just under the top-level <code>resource_types</code> key instead.</p>
 <p>If you're looking for more resource types, there's a catalog of them
-at <a href="https://resource-types.concourse-ci.org/">resource-types.concourse-ci.org</a>.</p>
+at <a href="../../../resource-types-list/">this page</a>.</p>
 <h2 id="time-for-takeoff">Time For Takeoff ✈️</h2>
 <p>This brings us to the end of the tutorial. You should have a basic understanding about how to read Concourse pipelines
 and start creating your own. Here are some other parts of the site to help you take off with Concourse:</p>
 <ul>
 <li><a href="../../how-to/">How-To Guides</a> - Contains practical guides
-  for <a href="../../how-to/pipeline-guides/">working with pipelines</a> and examples of common pipeline workflows,
-  such as <a href="../../how-to/git-guides/">git</a>
-  and <a href="../../how-to/container-image-guides/">container</a> workflows.</li>
+  for <a href="../../how-to/pipeline-guides/common-pipeline/">working with pipelines</a> and examples of common pipeline workflows,
+  such as <a href="../../how-to/git-guides/basic/">git</a>
+  and <a href="../../how-to/container-image-guides/build-push/">container</a> workflows.</li>
 <li>Check out all the reference documentation:<ul>
 <li><a href="../../jobs/">Jobs</a></li>
 <li><a href="../../tasks/">Tasks</a></li>

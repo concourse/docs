@@ -3078,10 +3078,6 @@
     
       
         
-          
-        
-      
-        
       
         
       
@@ -3107,15 +3103,14 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_15_2">
         
           
-          <div class="md-nav__link md-nav__container">
-            <a href="../../how-to/pipeline-guides/" class="md-nav__link ">
-              
+          <label class="md-nav__link" for="__nav_1_15_2" id="__nav_1_15_2_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
     
   
-    Pipeline Guides
+    Pipelines
   
 
     
@@ -3123,27 +3118,19 @@
   
   
 
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_1_15_2" id="__nav_1_15_2_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
         
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_15_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1_15_2">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Pipeline Guides
+    Pipelines
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix="">
-            
-              
             
               
                 
@@ -3331,8 +3318,6 @@
     
       
         
-          
-        
       
         
       
@@ -3352,15 +3337,14 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_15_3">
         
           
-          <div class="md-nav__link md-nav__container">
-            <a href="../../how-to/git-guides/" class="md-nav__link ">
-              
+          <label class="md-nav__link" for="__nav_1_15_3" id="__nav_1_15_3_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
     
   
-    Git Guides
+    Git
   
 
     
@@ -3368,27 +3352,19 @@
   
   
 
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_1_15_3" id="__nav_1_15_3_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
         
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_15_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1_15_3">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Git Guides
+    Git
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix="">
-            
-              
             
               
                 
@@ -3446,6 +3422,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to/git-guides/monorepo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monorepo Workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3462,10 +3466,6 @@
   
     
     
-      
-        
-          
-        
       
         
       
@@ -3485,15 +3485,14 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_15_4">
         
           
-          <div class="md-nav__link md-nav__container">
-            <a href="../../how-to/container-image-guides/" class="md-nav__link ">
-              
+          <label class="md-nav__link" for="__nav_1_15_4" id="__nav_1_15_4_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
     
   
-    Container Image Guides
+    Container Images
   
 
     
@@ -3501,27 +3500,19 @@
   
   
 
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_1_15_4" id="__nav_1_15_4_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
         
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_15_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1_15_4">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Container Image Guides
+    Container Images
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix="">
-            
-              
             
               
                 
@@ -6088,7 +6079,7 @@ below for details.</p>
 <ol>
 <li>If you use the exact configuration in this example, the git resource will print an error about the format of the
    private key being invalid. Adjust the content <code>out-config.json</code> as necessary to get it working with your resource.</li>
-<li>If the resource you are testing uses <a href="#metadata">Metadata</a>, you will need to provide the required metadata as
+<li>If the resource you are testing uses <a href="#build-metadata">Metadata</a>, you will need to provide the required metadata as
    environment variables to your <code>docker run</code> command like so:
    <br>
     <div class="language-shell highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-i<span class="w"> </span>-e<span class="w"> </span><span class="nv">ATC_EXTERNAL_URL</span><span class="o">=</span><span class="s2">"https://concourse.example.com"</span><span class="w"> </span><span class="se">\</span>

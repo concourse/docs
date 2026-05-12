@@ -8,7 +8,7 @@
         <link rel="canonical" href="https://concourse-ci.org/docs/how-to/git-guides/basic/">
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../../pipeline-guides/manual-approval/">
       
       
         <link rel="next" href="../multi-branch/">
@@ -2969,10 +2969,6 @@
     
       
         
-          
-        
-      
-        
       
         
       
@@ -2998,15 +2994,14 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_15_2">
         
           
-          <div class="md-nav__link md-nav__container">
-            <a href="../../pipeline-guides/" class="md-nav__link ">
-              
+          <label class="md-nav__link" for="__nav_1_15_2" id="__nav_1_15_2_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
     
   
-    Pipeline Guides
+    Pipelines
   
 
     
@@ -3014,27 +3009,19 @@
   
   
 
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_1_15_2" id="__nav_1_15_2_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
         
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_15_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1_15_2">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Pipeline Guides
+    Pipelines
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix="">
-            
-              
             
               
                 
@@ -3224,8 +3211,6 @@
     
       
         
-          
-        
       
         
       
@@ -3245,15 +3230,14 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_15_3" checked="">
         
           
-          <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
-              
+          <label class="md-nav__link" for="__nav_1_15_3" id="__nav_1_15_3_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
     
   
-    Git Guides
+    Git
   
 
     
@@ -3261,27 +3245,19 @@
   
   
 
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_1_15_3" id="__nav_1_15_3_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
         
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_15_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_1_15_3">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Git Guides
+    Git
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix="">
-            
-              
             
               
                 
@@ -3415,6 +3391,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monorepo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monorepo Workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3431,10 +3435,6 @@
   
     
     
-      
-        
-          
-        
       
         
       
@@ -3454,15 +3454,14 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_15_4">
         
           
-          <div class="md-nav__link md-nav__container">
-            <a href="../../container-image-guides/" class="md-nav__link ">
-              
+          <label class="md-nav__link" for="__nav_1_15_4" id="__nav_1_15_4_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
     
   
-    Container Image Guides
+    Container Images
   
 
     
@@ -3470,27 +3469,19 @@
   
   
 
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_1_15_4" id="__nav_1_15_4_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
         
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_15_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1_15_4">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Container Image Guides
+    Container Images
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix="">
-            
-              
             
               
                 
@@ -5750,14 +5741,20 @@
 
   <h1>Basic Git Operations</h1>
 
-<p>All of these examples use the <a href="https://github.com/concourse/git-resource">concourse/git-resource</a> image. That image is
-probably the most popular git resource for Concourse since it is shipped in
-the <a href="https://hub.docker.com/r/concourse/concourse">concourse/concourse</a> image and in the tarball on
-the <a href="https://github.com/concourse/concourse/releases">GitHub release page</a>. It is not the only resource available for
-working with git-related resources. If you don't see your use-case on this page then there is probably another resource
-that you can use. For example, Pull Request workflows can be accomplished with
-the <a href="https://github.com/telia-oss/github-pr-resource">teliaoss/github-pr-resource</a>.</p>
-<p>Check out the <a href="https://github.com/concourse/git-resource">docs</a> for the git resource for all configuration options.</p>
+<p>All of these examples use the
+<a href="https://github.com/concourse/git-resource">concourse/git-resource</a> resource
+type. That resource is the most popular git resource for Concourse since it is
+shipped in the
+<a href="https://hub.docker.com/r/concourse/concourse">concourse/concourse</a> image and
+in the tarball on the <a href="https://github.com/concourse/concourse/releases">GitHub release
+page</a>. It is not the only
+resource available for working with git-related resources. If you don't see
+your use-case on this page then there is probably another resource that you can
+use. Check out the <a href="../../../../resource-types-list/">Resource Types</a> page for
+other Git-related resources.</p>
+<p>Check out the
+<a href="https://github.com/concourse/git-resource/blob/master/README.md">README</a> for
+the git resource for all configuration options.</p>
 <h2 id="fetching-a-repository">Fetching a Repository</h2>
 <p>Here is how you fetch the contents of a git repository and use it in a task.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">resources</span><span class="p">:</span>
@@ -5897,7 +5894,7 @@ branch into <code>main</code> every so often.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer">
         
           
-          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Git Guides">
+          <a href="../../pipeline-guides/manual-approval/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Manual Approval Step">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
@@ -5907,7 +5904,7 @@ branch into <code>main</code> every so often.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Git Guides
+                Manual Approval Step
               </div>
             </div>
           </a>
