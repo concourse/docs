@@ -2008,20 +2008,3 @@ to add a resource type that you've made, make a Pull Request in the
 
 </div>
 
-<script>
-(function() {
-  var script = document.createElement('script');
-  script.src = '/assets/javascripts/list.min.js';
-  script.onload = function() {
-    console.log("list.min.js loaded");
-    var options = {
-      valueNames: [ 'hidden-search-field' ]
-    };
-
-    var resourceList = new List('resource-types-table', options);
-    // Randomly sort the list so we're never playing favourites
-    resourceList.sort('name', { sortFunction: function() { return Math.random() - 0.5; }});
-  };
-  document.head.appendChild(script);
-})();
-</script>

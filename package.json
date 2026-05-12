@@ -4,21 +4,28 @@
     "build:ytt": "ytt -f mkdocs.template.yml -f redirects > mkdocs.yml",
     "build:scss": "sass --style=compressed src/mwc-theme.scss overrides/assets/stylesheets/mwc-theme.css",
     "build:mwc": "rollup -c rollup.config.mwc.js",
-    "build:all": "npm run build:scss && npm run build:mwc && npm run build:ytt",
+    "build:mwc-debug": "rollup -c rollup.config.mwc-debug.js",
+    "build:all": "npm run build:scss && npm run build:mwc && npm run build:ytt && npm run build:icon-list",
+    "build:debug": "npm run build:scss && npm run build:mwc-debug && npm run build:ytt && npm run build:icon-list",
+    "build:icon-list": "node ./tools/icon-list/generate-icon-list.mjs",
     "build": "npm run build:all && mkdocs build",
-    "start": "npm run build:all && mkdocs serve --livereload --clean"
+    "start": "npm run build:debug && mkdocs serve --livereload --clean"
   },
   "dependencies": {
     "@material/web": "^2.4.1",
+    "list.js": "^2.3.1",
     "rxjs": "^7.8.2"
   },
   "devDependencies": {
+    "@mdi/svg": "^7.4.47",
+    "@rollup/plugin-commonjs": "^29.0.2",
     "@rollup/plugin-node-resolve": "^16.0.3",
-    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-terser": "^1.0.0",
     "@rollup/plugin-typescript": "^12.3.0",
     "prettier": "^3.7.4",
     "rollup": "^4.59.0",
     "sass": "^1.93.3",
+    "simple-icons": "16.4.0",
     "typescript": "^5.9.3"
   }
 }

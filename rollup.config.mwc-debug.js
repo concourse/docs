@@ -1,6 +1,5 @@
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
-import terser from "@rollup/plugin-terser";
 import typescript from "@rollup/plugin-typescript";
 
 export default {
@@ -9,7 +8,6 @@ export default {
     // Target the specific overrides asset folder
     file: "overrides/assets/javascripts/mwc-bundle.min.js",
     format: "esm", // MWC requires ES Module format
-    sourcemap: true,
   },
   plugins: [
     // Resolve imports from node_modules
@@ -19,7 +17,5 @@ export default {
       // Ensure Rollup uses your tsconfig.json
       tsconfig: "./tsconfig.json",
     }),
-    // Minify the output
-    terser(),
   ],
 };
