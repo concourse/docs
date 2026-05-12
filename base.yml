@@ -72,6 +72,7 @@ theme:
     - attr_list # Attribute Lists
     - md_in_html # Markdown in HTML
     - pymdownx.blocks.caption # Caption
+    - content.tooltips # Enhanced tooltips
 
   palette:
     - scheme: default
@@ -264,5 +265,6 @@ nav:
   - ecosystem/index.md
   - support/index.md
   - Resource Types: resource-types-list.md
+  - Avaiable Resource Icons: available-resource-icons.md
   - Blog:
       - blog/index.md
