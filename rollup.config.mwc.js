@@ -1,5 +1,4 @@
 import { nodeResolve } from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
 import terser from "@rollup/plugin-terser";
 import typescript from "@rollup/plugin-typescript";
 
@@ -14,7 +13,6 @@ export default {
   plugins: [
     // Resolve imports from node_modules
     nodeResolve(),
-    commonjs(),  // ⬅️ NEW: Needed to allow list.js to be treated as CommonJS so Typescript can handle the default import
     typescript({  
       // Ensure Rollup uses your tsconfig.json
       tsconfig: "./tsconfig.json",
