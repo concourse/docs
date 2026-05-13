@@ -81,7 +81,7 @@ schema.
     name in the web UI. For example, `github` or `si/concourse`.
 
     Simple Icons were added in v8.2.0 and their names must be prefixed by `si/`.
-    You can find all available icons [here](./available-resoure-icons.md).
+    You can find all available icons [here](./available-resource-icons.md).
 
 ??? info "`version`: [`version`](../config-basics.md#version-schema)"
 
