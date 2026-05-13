@@ -169,6 +169,7 @@ nav:
           - docs/resources/index.md
           - docs/resources/resource-versions.md
           - docs/resources/managing-resources.md
+          - docs/resources/available-resource-icons.md
       - Resource Types:
           - docs/resource-types/index.md
           - docs/resource-types/implementing.md
@@ -265,6 +266,5 @@ nav:
   - ecosystem/index.md
   - support/index.md
   - Resource Types: resource-types-list.md
-  - Avaiable Resource Icons: available-resource-icons.md
   - Blog:
       - blog/index.md

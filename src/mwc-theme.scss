@@ -42,13 +42,16 @@ input.search {
   border: 0.1em solid;
 }
 
-#icon-list {
+#icon-list .grid {
   grid-template-columns: repeat(
     auto-fit,
-    minmax(min(100%, 90px), min(100%, 90px))
+    minmax(min(100%, 175px), min(100%, 175px))
   );
 }
 
+#icon-list .card {
+  text-align: center;
+}
 #icon-list code {
   font-size: 0.6rem;
 }
@@ -65,4 +68,8 @@ input.search {
 
 #icon-list .copied span.twemoji > svg {
   color: var(--md-success-color);
+}
+
+#icon-list span.twemoji {
+  display: block;
 }
