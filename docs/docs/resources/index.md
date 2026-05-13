@@ -78,9 +78,10 @@ schema.
     ### `icon`
     The name of a [Material Design](https://materialdesignicons.com/) or
     [Simple Icons](https://simpleicons.org/) icon to show next to the resource
-    name in the web UI. For example, `github`.
+    name in the web UI. For example, `github` or `si/concourse`.
 
     Simple Icons were added in v8.2.0 and their names must be prefixed by `si/`.
+    You can find all available icons [here](./available-resoure-icons.md).
 
 ??? info "`version`: [`version`](../config-basics.md#version-schema)"
 
