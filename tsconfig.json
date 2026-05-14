@@ -9,7 +9,7 @@
     "esModuleInterop": true /* Compatibility for CommonJS imports (like Lit/MWC modules). */,
     "lib": [
       "ES2020",
-      "DOM"
+      "DOM",
     ] /* Include modern JS features and browser DOM APIs. */,
 
     // ------------------ Output and Source Maps ------------------
@@ -18,10 +18,11 @@
 
     // ------------------ Type Checking and Strictness ------------------
     "strict": true /* Enable all strict type-checking options. Highly recommended. */,
-    "skipLibCheck": true /* Skip type checking of declaration files (faster compilation). */
+    "skipLibCheck": true /* Skip type checking of declaration files (faster compilation). */,
+    "typeRoots": ["./node_modules/@types", "./src/types"] /* include the .d.ts files in src */
   },
   "include": [
     "src/**/*.ts" /* Only include TypeScript files in the src folder. */,
-    "src/**/*.d.ts" // ⬅️ Ensure .d.ts files are included
-  ]
+    "src/**/*.d.ts", // ⬅️ Ensure .d.ts files are included
+  ],
 }
