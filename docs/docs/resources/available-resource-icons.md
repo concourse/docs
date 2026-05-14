@@ -1,5 +1,7 @@
 ---
 title: Available Resource Icons
+hide:
+  - toc
 ---
 
 # Available Resource Icons
