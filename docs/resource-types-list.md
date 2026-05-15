@@ -2003,6 +2003,29 @@ to add a resource type that you've made, make a Pull Request in the
               ```
           </td>
       </tr>
+      <tr>
+          <td class="hidden-search-field">
+            monitor git repositories for new tags, regardless of provider. Uses pure git operations
+            instead of provider APIs trigger
+          </td>
+          <td class="name">
+              <a href="https://tangled.org/joshghiloni.me/git-tags-resource">git-tags</a>
+          </td>
+          <td class="description">
+            Check generic git repositories for new tags, regardless of provider. Uses pure git operations
+            instead of provider APIs
+          </td>
+          <td class="pipeline-yaml">
+              ```yaml
+              - name: repo-tags
+                type: git-tags
+                source:
+                  uri: git@tangled.org:joshghiloni.me/git-tags-resource
+                  private_key: ((private-key))
+                  pattern: v*.*
+              ```
+          </td>
+      </tr>
     </tbody>
   </table>
   <script>
