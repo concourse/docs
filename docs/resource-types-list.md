@@ -2017,12 +2017,11 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
           <td class="pipeline-yaml">
               ```yaml
-              - name: repo-tags
-                type: git-tags
+              - name: git-tags
+                type: registry-image
                 source:
-                  uri: git@tangled.org:joshghiloni.me/git-tags-resource
-                  private_key: ((private-key))
-                  pattern: v*.*
+                  repository: atcr.io/joshghiloni.me/git-tags-resource
+                  tag: stable
               ```
           </td>
       </tr>
