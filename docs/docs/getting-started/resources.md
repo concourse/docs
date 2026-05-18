@@ -572,7 +572,7 @@ and start creating your own. Here are some other parts of the site to help you t
     * [Resources](../resources/index.md)
     * [Resource Types](../resource-types/index.md)
 * [Implement your own resource type](../resource-types/implementing.md)
-* Find other resources at [resource-types.concourse-ci.org](https://resource-types.concourse-ci.org/) or put
+* Find other resources at the [Resource Types Catalog page](../../resource-types-list.md) or put
   `_something_ concourse resource` into your favorite search engine.
 
 Best of luck on your automation journey!

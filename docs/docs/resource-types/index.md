@@ -6,9 +6,10 @@ Each resource in a pipeline has a `type`. The resource's type determines what ve
 fetched when the resource's [`get` step](../steps/get.md) runs, and the side effect that occurs when the
 resource's [put step](../steps/put.md) runs.
 
-Concourse comes with a few "core" resource types to cover common use cases like `git` and `s3` - the rest are developed
-and supported by the Concourse community. An exhaustive list of all resource types is available in
-the [Resource Types catalog](https://resource-types.concourse-ci.org/).
+Concourse comes with a few "core" resource types to cover common use cases like
+`git` and `s3` - the rest are developed and supported by the Concourse
+community. An exhaustive list of all resource types is available in the
+[Resource Types Catalog page](../../resource-types-list.md).
 
 A pipeline's resource types are listed under [`pipeline.resource_types`](../pipelines/index.md#pipeline-schema) with the
 following schema:
