@@ -70,7 +70,8 @@ format.
     "action": "SaveConfig",
     "user": "test",
     "team": "main",
-    "pipeline": "check-pipeline",
+    "pipeline": "target-pipeline",
+    "origin_pipeline": "check-pipeline",
     "data": {
       "jobs": [
         {
@@ -195,7 +196,8 @@ will contain the pipeline config in JSON format under the `data` key:
     "cluster_version": "7.4.0",
     "action": "SetPipeline",
     "team": "main",
-    "pipeline": "simple",
+    "pipeline": "target-pipeline", // pipeline being set
+    "origin_pipeline": "simple", // pipeline doing the setting
     "data": {
       "jobs": [
         {
