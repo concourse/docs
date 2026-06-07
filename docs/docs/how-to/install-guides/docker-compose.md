@@ -53,9 +53,6 @@ services:
       CONCOURSE_ADD_LOCAL_USER: test:test
       CONCOURSE_MAIN_TEAM_LOCAL_USER: test
       CONCOURSE_CLUSTER_NAME: Concourse
-      CONCOURSE_ENABLE_ACROSS_STEP: "true"
-      CONCOURSE_ENABLE_REDACT_SECRETS: "true"
-      CONCOURSE_ENABLE_PIPELINE_INSTANCES: "true"
       CONCOURSE_ENABLE_CACHE_STREAMED_VOLUMES: "true"
     logging:
       driver: local
