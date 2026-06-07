@@ -23,6 +23,9 @@ By default, Concourse will not delete any of your logs from your pipelines. You 
 automatically delete build logs for you. You can set a time-based retention policy and/or a policy based on the number
 of logs a job generates.
 
+If you configure a mixed time and build numbers policy, a build's logs will
+only be reaped if it's older than the `DAYS_TO_RETAIN` specified.
+
 ### `CONCOURSE_DEFAULT_BUILD_LOGS_TO_RETAIN`
 
 Determines how many build logs to retain per job by default. If you set this to `10` then any jobs in your pipelines

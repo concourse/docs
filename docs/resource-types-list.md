@@ -389,14 +389,14 @@ to add a resource type that you've made, make a Pull Request in the
               <a href="https://github.com/haiku/irccat-resource">irccat</a>
           </td>
           <td class="description">
-              A resource to send notifications to irc via an irccat service
+              A resource to send notifications to irc via an irccat (https://github.com/irccloud/irccat) service
           </td>
           <td class="pipeline-yaml">
               ```yaml
               - name: irccat
                 type: registry-image
                 source:
-                  repository: haiku/irccat-resource
+                  repository: ghcr.io/haiku/irccat-resource
               ```
           </td>
       </tr>
@@ -2003,25 +2003,48 @@ to add a resource type that you've made, make a Pull Request in the
               ```
           </td>
       </tr>
+      <tr>
+          <td class="hidden-search-field">
+            monitor git repositories for new tags, regardless of provider. Uses pure git operations
+            instead of provider APIs trigger
+          </td>
+          <td class="name">
+              <a href="https://tangled.org/joshghiloni.me/git-tags-resource">git-tags</a>
+          </td>
+          <td class="description">
+            Check generic git repositories for new tags, regardless of provider. Uses pure git operations
+            instead of provider APIs
+          </td>
+          <td class="pipeline-yaml">
+              ```yaml
+              - name: git-tags
+                type: registry-image
+                source:
+                  repository: atcr.io/joshghiloni.me/git-tags-resource
+                  tag: stable
+              ```
+          </td>
+      </tr>
     </tbody>
   </table>
-
-</div>
-
-<script>
-(function() {
-  var script = document.createElement('script');
-  script.src = '/assets/javascripts/list.min.js';
-  script.onload = function() {
-    console.log("list.min.js loaded");
-    var options = {
-      valueNames: [ 'hidden-search-field' ]
+  <script>
+  (function() {
+    var script = document.createElement('script');
+    script.src = '/assets/javascripts/list.min.js';
+    script.onload = function() {
+      console.log("list.min.js loaded");
+      var options = {
+          valueNames: ["hidden-search-field"],
+      };
+      var resourceList = new List("resource-types-table", options);
+      // Randomly sort the list so we're never playing favourites
+      resourceList.sort("name", {
+        sortFunction: function () {
+            return Math.random() - 0.5;
+        },
+      });
     };
-
-    var resourceList = new List('resource-types-table', options);
-    // Randomly sort the list so we're never playing favourites
-    resourceList.sort('name', { sortFunction: function() { return Math.random() - 0.5; }});
-  };
-  document.head.appendChild(script);
-})();
-</script>
+    document.head.appendChild(script);
+  })();
+  </script>
+</div>

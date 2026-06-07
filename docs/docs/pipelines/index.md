@@ -131,3 +131,32 @@ conform to the following schema:
         Default _`opacity(30%) grayscale(100%)`_. Allows users to specify custom 
         [CSS filters](https://developer.mozilla.org/en-US/docs/Web/CSS/filter) that are applied to the 
         `background_image`.
+
+??? info "`user_data`: [`value`](../vars.md#value-schema)"
+
+    This field is meant to store arbitrary metadata. Its value can be any type
+    you can express in YAML, even a string. The data in this field is NOT
+    exposed in the pipeline during runtime. You can reference the data using YAML
+    anchors when setting your pipelines.
+
+    The main benefit of this field is having a way to preserve arbitrary data
+    that will survive the `fly set-pipeline/get-pipeline` lifecycle. Any other
+    top-level keys are not preserved by Concourse.
+
+    ??? example "Example: Arbitrary User Data"
+
+        You can set `user_data` to any value, like a map:
+
+        ```yaml
+        user_data:
+          team: SRE
+          contact: sre@example.com
+          labels:
+            - prod
+        ```
+
+        Or a string:
+
+        ```yaml
+        user_data: This is my user data value
+        ```

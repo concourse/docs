@@ -35,7 +35,7 @@ If you're configuring a self-hosted GitLab instance, you'll also need to set the
 CONCOURSE_GITLAB_HOST=https://gitlab.example.com
 ```
 
-The GitLab host must contain a scheme and not a trailing slash.
+The GitLab host must contain a scheme and no trailing slash.
 
 ## Authorization
 

@@ -160,8 +160,6 @@ docs:
       - from: how-to-guides
         to: index
 
-      - from: pipeline-guides
-        to: pipeline-guides/index
       - from: managing-pipeline-configurations
         to: pipeline-guides/managing-pipeline-configs
       - from: common-pipeline-practices
@@ -175,15 +173,11 @@ docs:
       - from: manual-approval-step
         to: pipeline-guides/manual-approval
 
-      - from: git-guides
-        to: git-guides/index
       - from: basic-git-operations
         to: git-guides/basic
       - from: multi-branch-workflows
         to: git-guides/multi-branch
 
-      - from: container-image-guides
-        to: container-image-guides/index
       - from: building-and-pushing-an-image
         to: container-image-guides/build-push
       - from: building-an-image-and-using-it-in-a-task
