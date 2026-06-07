@@ -7,7 +7,7 @@ This guide makes the following assumptions:
 
 1. You have a PostgreSQL database running somewhere already. You created a database called `concourse` and created a
    user for Concourse to authenticate as.
-2. You have generated the necessary [encryption Keys](../../install/generating-keys.md)
+2. You have generated the necessary [encryption keys](../../install/generating-keys.md)
 3. The Web node will be directly exposed to the internet and can therefore accept inbound traffic on port `443`.
 4. The Web and Worker node are being installed on separate servers, and you will figure out networking between the two
    servers. The Web node needs to accept ingress traffic on the TSA port (default is port `2222`) from the Worker 

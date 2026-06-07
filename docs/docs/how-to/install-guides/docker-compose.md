@@ -10,7 +10,7 @@ This guide makes the following assumptions:
 1. The host system has Docker installed already.
 2. You have a PostgreSQL database running somewhere already. You created a database called `concourse` and created a
    user for Concourse to authenticate as.
-3. You have generated the necessary [encryption Keys](../../install/generating-keys.md).
+3. You have generated the necessary [encryption keys](../../install/generating-keys.md).
 4. The host system the Web node will be running on is exposed to the internet and can therefore accept inbound traffic
    on port `443`.
 5. The Web and Worker node are being installed on separate servers, and you will figure out networking between the two
