@@ -143,6 +143,17 @@ vault policy write concourse ./concourse-policy.hcl
 This configuration will allow Concourse to read all credentials under `/concourse`. This should match your configured
 path prefix.
 
+### Enabling KV mount caching
+
+When Concourse looks up secrets in Vault, it needs to determine which KV mount version (v1 or v2) contains the secret.
+By default, this information is fetched from Vault for each lookup. Enabling KV mount caching allows this information to be fetched once and reused for subsequent lookups, significantly reducing the number of Vault API calls.
+
+To enable KV mount caching, set the following environment variable on the `web` node:
+
+```properties
+CONCOURSE_VAULT_ENABLE_KV_MOUNT_CACHE=true
+```
+
 ## Authenticating with Vault
 
 There are many ways to authenticate with a Vault server. The `web` node can be configured with either a token or an

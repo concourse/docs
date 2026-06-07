@@ -76,8 +76,12 @@ schema.
 ??? info "`icon`: [`string`](../config-basics.md#string-schema)"
 
     ### `icon`
-    The name of a [Material Design icon](https://materialdesignicons.com/) to show next to the resource name in the web 
-    UI. For example, `github`.
+    The name of a [Material Design](https://materialdesignicons.com/) or
+    [Simple Icons](https://simpleicons.org/) icon to show next to the resource
+    name in the web UI. For example, `github` or `si/concourse`.
+
+    Simple Icons were added in v8.2.0 and their names must be prefixed by `si/`.
+    You can find all available icons [here](./available-resource-icons.md).
 
 ??? info "`version`: [`version`](../config-basics.md#version-schema)"
 
@@ -108,7 +112,7 @@ schema.
 
     ### `expose_build_created_by`
     _Default `false`_. If set to `true`, environment variable 
-    [`BUILD_CREATED_BY`](../resource-types/implementing.md#metadata) will be available in the metadata of a 
+    [`BUILD_CREATED_BY`](../resource-types/implementing.md#build-metadata) will be available in the metadata of a 
     [`put` step](../steps/put.md). This field is not made available to the [`get` step](../steps/get.md).
 
 ??? info "`tags`: [`[string]`](../config-basics.md#string-schema)"

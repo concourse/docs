@@ -322,7 +322,7 @@ we'll continue to leverage that.
 Let's create a new branch in our `examples` repository called `version`. We'll create a file in there that will contain
 the name of the next tag we want to publish our app under. You can run the following commands to do this:
 
-```shell linenums="1"
+```shell
 # Make a new, empty branch called "version"
 git switch --orphan version
 # You can make the initial version whatever you want
@@ -555,7 +555,7 @@ built-in [registry-image resource](https://github.com/concourse/registry-image-r
 resource type is just like adding a regular resource, just under the top-level `resource_types` key instead.
 
 If you're looking for more resource types, there's a catalog of them
-at [resource-types.concourse-ci.org](https://resource-types.concourse-ci.org/).
+at [this page](../../resource-types-list.md).
 
 ## Time For Takeoff ✈️
 
@@ -563,16 +563,16 @@ This brings us to the end of the tutorial. You should have a basic understanding
 and start creating your own. Here are some other parts of the site to help you take off with Concourse:
 
 * [How-To Guides](../how-to/index.md) - Contains practical guides
-  for [working with pipelines](../how-to/pipeline-guides/index.md) and examples of common pipeline workflows,
-  such as [git](../how-to/git-guides/index.md)
-  and [container](../how-to/container-image-guides/index.md) workflows.
+  for [working with pipelines](../how-to/pipeline-guides/common-pipeline.md) and examples of common pipeline workflows,
+  such as [git](../how-to/git-guides/basic.md)
+  and [container](../how-to/container-image-guides/build-push.md) workflows.
 * Check out all the reference documentation:
     * [Jobs](../jobs.md)
     * [Tasks](../tasks.md)
     * [Resources](../resources/index.md)
     * [Resource Types](../resource-types/index.md)
 * [Implement your own resource type](../resource-types/implementing.md)
-* Find other resources at [resource-types.concourse-ci.org](https://resource-types.concourse-ci.org/) or put
+* Find other resources at the [Resource Types Catalog page](../../resource-types-list.md) or put
   `_something_ concourse resource` into your favorite search engine.
 
 Best of luck on your automation journey!

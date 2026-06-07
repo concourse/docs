@@ -72,6 +72,7 @@ theme:
     - attr_list # Attribute Lists
     - md_in_html # Markdown in HTML
     - pymdownx.blocks.caption # Caption
+    - content.tooltips # Enhanced tooltips
 
   palette:
     - scheme: default
@@ -144,6 +145,7 @@ nav:
               - docs/auth-and-teams/configuring/local-user.md
               - docs/auth-and-teams/configuring/github.md
               - docs/auth-and-teams/configuring/gitlab.md
+              - docs/auth-and-teams/configuring/gitea.md
               - docs/auth-and-teams/configuring/bitbucket-cloud.md
               - docs/auth-and-teams/configuring/cf-uaa.md
               - docs/auth-and-teams/configuring/ldap.md
@@ -167,6 +169,7 @@ nav:
           - docs/resources/index.md
           - docs/resources/resource-versions.md
           - docs/resources/managing-resources.md
+          - docs/resources/available-resource-icons.md
       - Resource Types:
           - docs/resource-types/index.md
           - docs/resource-types/implementing.md
@@ -197,24 +200,21 @@ nav:
       - docs/builds.md
       - How-To Guides:
           - docs/how-to/index.md
-          - Install Guides:
-              - docs/how-to/install-guides/index.md
+          - Installs:
               - docs/how-to/install-guides/docker-compose.md
               - docs/how-to/install-guides/systemd.md
-          - Pipeline Guides:
-              - docs/how-to/pipeline-guides/index.md
+          - Pipelines:
               - docs/how-to/pipeline-guides/managing-pipeline-configs.md
               - docs/how-to/pipeline-guides/common-pipeline.md
               - docs/how-to/pipeline-guides/task-inputs-outputs.md
               - docs/how-to/pipeline-guides/gated-pipelines.md
               - docs/how-to/pipeline-guides/time-triggered-pipelines.md
               - docs/how-to/pipeline-guides/manual-approval.md
-          - Git Guides:
-              - docs/how-to/git-guides/index.md
+          - Git:
               - docs/how-to/git-guides/basic.md
               - docs/how-to/git-guides/multi-branch.md
-          - Container Image Guides:
-              - docs/how-to/container-image-guides/index.md
+              - docs/how-to/git-guides/monorepo.md
+          - Container Images:
               - docs/how-to/container-image-guides/build-push.md
               - docs/how-to/container-image-guides/build-use.md
       - Operation:
