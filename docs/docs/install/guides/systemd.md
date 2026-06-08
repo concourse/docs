@@ -5,11 +5,11 @@ running [systemd](https://github.com/systemd/systemd).
 
 This guide makes the following assumptions:
 
-1. You have a PostgreSQL database running somewhere already. You created a database called `concourse` and created a
-   user for Concourse to authenticate as.
-2. You have generated the necessary [encryption keys](../../install/generating-keys.md)
-3. The Web node will be directly exposed to the internet and can therefore accept inbound traffic on port `443`.
-4. The Web and Worker node are being installed on separate servers, and you will figure out networking between the two
+1. You have a PostgreSQL database running somewhere already. You created a database called `atc` and created a
+   user for Concourse to authenticate as. See [Running a PostgreSQL Node](../running-postgres.md).
+1. You have generated the necessary [encryption keys](../../install/generating-keys.md)
+1. The Web node will be directly exposed to the internet and can therefore accept inbound traffic on port `443`.
+1. The Web and Worker node are being installed on separate servers, and you will figure out networking between the two
    servers. The Web node needs to accept ingress traffic on the TSA port (default is port `2222`) from the Worker 
    node(s).
 
@@ -25,9 +25,10 @@ Run the following commands to install the Concourse CLI.
     You will need to do this on both your Web and Worker servers
 
 ```bash
-CONCOURSE_VERSION="<select-a-concourse-version>"
+CONCOURSE_VERSION="M.m.p" # Just the version number, no "v" prefix
+SYSTEM_ARCH="$(case "$(uname -m)" in x86_64) echo amd64;; aarch64|arm64) echo arm64;; *) uname -m;; esac)"
 CONCOURSE_TAR="concourse.tgz"
-CONCOURSE_URL="https://github.com/concourse/concourse/releases/download/v${CONCOURSE_VERSION}/concourse-${CONCOURSE_VERSION}-linux-amd64.tgz"
+CONCOURSE_URL="https://github.com/concourse/concourse/releases/download/v${CONCOURSE_VERSION}/concourse-${CONCOURSE_VERSION}-linux-${SYSTEM_ARCH}.tgz"
 curl -L --output ./${CONCOURSE_TAR} ${CONCOURSE_URL}
 tar xzf ./${CONCOURSE_TAR} -C /usr/local/
 rm ./${CONCOURSE_TAR}
@@ -76,17 +77,16 @@ Change the following values:
 
 ```properties title="web.env"
 PATH=/usr/local/concourse/bin
+CONCOURSE_CLUSTER_NAME=Concourse
 CONCOURSE_EXTERNAL_URL=https://ci.example.com
 CONCOURSE_ENABLE_LETS_ENCRYPT=true
 CONCOURSE_TLS_BIND_PORT=443
-CONCOURSE_POSTGRES_HOST=db.example.com
-CONCOURSE_POSTGRES_USER=<user>
-CONCOURSE_POSTGRES_PASSWORD=<password>
-CONCOURSE_POSTGRES_DATABASE=concourse
+CONCOURSE_POSTGRES_HOST=<postgres-host>
+CONCOURSE_POSTGRES_USER=<postgres-user>
+CONCOURSE_POSTGRES_PASSWORD=<postgres-password>
 CONCOURSE_SESSION_SIGNING_KEY=/usr/local/concourse/keys/session_signing_key
 CONCOURSE_TSA_HOST_KEY=/usr/local/concourse/keys/tsa_host_key
 CONCOURSE_TSA_AUTHORIZED_KEYS=/usr/local/concourse/keys/worker_key.pub
-CONCOURSE_CLUSTER_NAME=Concourse
 CONCOURSE_MAIN_TEAM_LOCAL_USER=local
 CONCOURSE_ADD_LOCAL_USER=test:test
 CONCOURSE_ENABLE_CACHE_STREAMED_VOLUMES=true
@@ -117,7 +117,7 @@ configuration in the unit file:
 
 ```systemd title="concourse-web.service"
 [Unit]
-Description=Concourse Web node
+Description=Concourse Web
 [Service]
 User=concourse
 Group=concourse
@@ -172,16 +172,15 @@ Create the directory `/opt/concourse` where the worker will place runtime artifa
 temporary and are managed by the worker.
 
 Next create a file named `worker.env` in `/usr/local/concourse/` that will be used to configure the Worker. To see all
-possible configuration options run `concourse worker --help` and read more about running a worker node.
+possible configuration options run `concourse worker --help` and read more about [running a worker node](../running-worker.md).
 
 ```properties title="worker.env"
 PATH=/usr/local/concourse/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 CONCOURSE_NAME=worker-01
-CONCOURSE_WORK_DIR=/opt/concourse/worker
+CONCOURSE_WORK_DIR=/opt/concourse
 CONCOURSE_TSA_HOST="<web-hostname-or-ip>:2222"
 CONCOURSE_TSA_PUBLIC_KEY=/usr/local/concourse/keys/tsa_host_key.pub
 CONCOURSE_TSA_WORKER_PRIVATE_KEY=/usr/local/concourse/keys/worker_key
-CONCOURSE_RUNTIME=containerd
 CONCOURSE_BAGGAGECLAIM_DRIVER=overlay
 ```
 
