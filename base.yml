@@ -137,6 +137,9 @@ nav:
           - docs/install/running-web.md
           - docs/install/running-worker.md
           - docs/install/upgrading-concourse.md
+          - Install Guides:
+              - docs/install/guides/docker-compose.md
+              - docs/install/guides/systemd.md
       - Auth & Teams:
           - docs/auth-and-teams/index.md
           - docs/auth-and-teams/main-team.md
@@ -200,9 +203,6 @@ nav:
       - docs/builds.md
       - How-To Guides:
           - docs/how-to/index.md
-          - Installs:
-              - docs/how-to/install-guides/docker-compose.md
-              - docs/how-to/install-guides/systemd.md
           - Pipelines:
               - docs/how-to/pipeline-guides/managing-pipeline-configs.md
               - docs/how-to/pipeline-guides/common-pipeline.md
