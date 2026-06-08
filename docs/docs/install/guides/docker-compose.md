@@ -8,12 +8,12 @@ using [Docker Compose](https://docs.docker.com/compose/).
 This guide makes the following assumptions:
 
 1. The host system has Docker installed already.
-2. You have a PostgreSQL database running somewhere already. You created a database called `concourse` and created a
-   user for Concourse to authenticate as.
-3. You have generated the necessary [encryption keys](../../install/generating-keys.md).
-4. The host system the Web node will be running on is exposed to the internet and can therefore accept inbound traffic
+1. You have a PostgreSQL database running somewhere already. You created a database called `atc` and created a
+   user for Concourse to authenticate as. See [Running a PostgreSQL Node](../running-postgres.md).
+1. You have generated the necessary [encryption keys](../../install/generating-keys.md).
+1. The host system the Web node will be running on is exposed to the internet and can accept inbound traffic
    on port `443`.
-5. The Web and Worker node are being installed on separate servers, and you will figure out networking between the two
+1. The Web and Worker node are being installed on separate servers and you will figure out networking between the two
    servers. The Web node needs to accept ingress traffic on the TSA port (default is port `2222`) from the Worker
    node(s).
 
@@ -27,7 +27,11 @@ Create a directory called `keys` (`~/concourse/keys`). Place the following encry
 * `tsa_host_key`
 * `worker_key.pub`
 
-Next, create a `docker-compose.yml` file with the following content:
+Next, create a `docker-compose.yml` file with the following content, making sure to change the following values:
+
+* `CONCOURSE_POSTGRES_*` - Used to tell Concourse how to connect to PostgreSQL
+* `CONCOURSE_EXTERNAL_URL` - The URL users will use to access the web UI. A Let's Encrypt certificate will also be
+  generated for the hostname in this URL.
 
 ```yaml title="~/concourse/docker-compose.yml"
 services:
@@ -41,18 +45,17 @@ services:
     volumes:
       - ~/concourse/keys:/concourse-keys:ro
     environment:
+      CONCOURSE_CLUSTER_NAME: Concourse
       CONCOURSE_EXTERNAL_URL: https://ci.example.com
       CONCOURSE_ENABLE_LETS_ENCRYPT: "true"
       CONCOURSE_SESSION_SIGNING_KEY: /concourse-keys/session_signing_key
       CONCOURSE_TSA_AUTHORIZED_KEYS: /concourse-keys/worker_key.pub
       CONCOURSE_TSA_HOST_KEY: /concourse-keys/tsa_host_key
-      CONCOURSE_POSTGRES_HOST: <psql hostname>
-      CONCOURSE_POSTGRES_USER: <psql user>
-      CONCOURSE_POSTGRES_PASSWORD: <psql password>
-      CONCOURSE_POSTGRES_DATABASE: concourse
+      CONCOURSE_POSTGRES_HOST: <postgres-hostname>
+      CONCOURSE_POSTGRES_USER: <postgres-user>
+      CONCOURSE_POSTGRES_PASSWORD: <postgres-password>
       CONCOURSE_ADD_LOCAL_USER: test:test
       CONCOURSE_MAIN_TEAM_LOCAL_USER: test
-      CONCOURSE_CLUSTER_NAME: Concourse
       CONCOURSE_ENABLE_CACHE_STREAMED_VOLUMES: "true"
     logging:
       driver: local
