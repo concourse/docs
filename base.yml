@@ -200,6 +200,9 @@ nav:
       - docs/builds.md
       - How-To Guides:
           - docs/how-to/index.md
+          - Installs:
+              - docs/how-to/install-guides/docker-compose.md
+              - docs/how-to/install-guides/systemd.md
           - Pipelines:
               - docs/how-to/pipeline-guides/managing-pipeline-configs.md
               - docs/how-to/pipeline-guides/common-pipeline.md
