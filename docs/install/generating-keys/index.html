@@ -765,6 +765,8 @@
       
         
       
+        
+      
     
     
     
@@ -1045,6 +1047,126 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_3_8">
+        
+          
+          <label class="md-nav__link" for="__nav_1_3_8" id="__nav_1_3_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Install Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/systemd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install Concourse with systemd
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/docker-compose/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install Concourse with Docker Compose
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -5777,7 +5899,7 @@
 </ul>
 <p>You can remove the <code>session_signing_key.pub</code> file if you have one, it is not needed by any process in Concourse.</p>
 <h2 id="multiple-worker-keys">Multiple Worker Keys</h2>
-<p>Currently you have one <code>worker_key</code>. You can use this one key-pair with multiple <a href="../running-worker/"><code>worker</code> node</a>s.
+<p>Currently you have one <code>worker_key</code>. You can use this one key-pair with multiple <a href="../running-worker/"><code>worker</code> nodes</a>.
 Another good strategy is to have each worker or group of workers use a key that's unique to that one worker or group of
 workers.</p>
 <p>In the second case you will end up with multiple private and public worker keys. The <a href="../running-web/"><code>web</code> node</a> needs
