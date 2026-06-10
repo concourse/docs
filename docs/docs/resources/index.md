@@ -99,8 +99,10 @@ schema.
     _Default `1m`_. The interval on which to check for new versions of the resource. Acceptable interval options are 
     defined by the [time.ParseDuration function](https://golang.org/pkg/time/#ParseDuration).
 
-    If set to `never` the resource will not be automatically checked. The resource can still be checked manually via the
-    web UI, fly, or webhooks.
+    If set to `never` the resource will not be automatically checked. The
+    resource can still be checked manually via the web UI, fly, or webhooks.
+    You will need to manually check the resource before any jobs downstream
+    of this resource can be run.
 
 ??? info "`check_timeout`: [`duration`](../config-basics.md#duration-schema)"
 
