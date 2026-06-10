@@ -97,7 +97,7 @@ schema.
 
     ### `check_every`
     _Default `1m`_. The interval on which to check for new versions of the resource. Acceptable interval options are 
-    defined by the [time.ParseDuration function](https://golang.org/pkg/time/#ParseDuration).
+    defined by the Go's [time.ParseDuration function](https://golang.org/pkg/time/#ParseDuration).
 
     If set to `never` the resource will not be automatically checked. The
     resource can still be checked manually via the web UI, fly, or webhooks if
