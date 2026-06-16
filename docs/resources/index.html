@@ -5999,9 +5999,11 @@ also pinned in the web UI, the configuration takes precedence and will clear out
 <summary><code>check_every</code>: <a href="../config-basics/#duration-schema"><code>duration</code></a> | <code>never</code></summary>
 <h3 id="check_every"><code>check_every</code></h3>
 <p><em>Default <code>1m</code></em>. The interval on which to check for new versions of the resource. Acceptable interval options are 
-defined by the <a href="https://golang.org/pkg/time/#ParseDuration">time.ParseDuration function</a>.</p>
-<p>If set to <code>never</code> the resource will not be automatically checked. The resource can still be checked manually via the
-web UI, fly, or webhooks.</p>
+defined by the Go's <a href="https://golang.org/pkg/time/#ParseDuration">time.ParseDuration function</a>.</p>
+<p>If set to <code>never</code> the resource will not be automatically checked except
+when the job it's connected to has been triggered. The resource can still
+be checked manually via the web UI, fly, or webhooks if you need the
+resource to find new versions.</p>
 </details>
 <details class="info">
 <summary><code>check_timeout</code>: <a href="../config-basics/#duration-schema"><code>duration</code></a></summary>
