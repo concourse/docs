@@ -5927,6 +5927,12 @@ they are simply common and may or may not work for you and your team.</p>
 </span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">task</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">business-stuff</span>
 </span></code></pre></div>
 <h2 id="specify-inputs-for-put-steps">Specify Inputs for Put Steps</h2>
+<div class="admonition info">
+<p class="admonition-title">Default is now <code>inputs: detect</code></p>
+<p>Starting in v8 of Concourse, <code>put</code> steps now default to <code>inputs: detect</code>.
+You can still manually specify <code>inputs</code> if <code>detect</code> doesn't find all inputs
+needed by your <code>put</code> step.</p>
+</div>
 <p>By default, <a href="../../../steps/put/"><code>put</code> step's</a> have all artifacts from a job mounted in their resource container. This
 can result in long initialization times for put steps. It's likely that a <a href="../../../steps/put/"><code>put</code> step</a> only needs a
 subset of all available artifacts generated throughout the job.</p>
