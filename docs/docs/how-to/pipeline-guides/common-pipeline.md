@@ -35,6 +35,11 @@ jobs:
 
 ## Specify Inputs for Put Steps
 
+!!! info "Default is now `inputs: detect`"
+    Starting in v8 of Concourse, `put` steps now default to `inputs: detect`.
+    You can still manually specify `inputs` if `detect` doesn't find all inputs
+    needed by your `put` step.
+
 By default, [`put` step's](../../steps/put.md) have all artifacts from a job mounted in their resource container. This
 can result in long initialization times for put steps. It's likely that a [`put` step](../../steps/put.md) only needs a
 subset of all available artifacts generated throughout the job.
