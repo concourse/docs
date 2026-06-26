@@ -47,6 +47,7 @@ financial institutions and security firms).
 1. [The Home Depot](https://www.homedepot.com/)
 1. [IBM](https://www.ibm.com/)
 1. [MIT Office of Digital Learning](https://openlearning.mit.edu/)
+1. [MITRE](https://www.mitre.org/)
 1. [Nasdaq](https://nasdaq.com/)
 1. [RabbitMQ](https://www.rabbitmq.com/)
 1. [Resilient Scale](https://www.rscale.io/)
