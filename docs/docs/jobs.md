@@ -173,6 +173,19 @@ A pipeline's jobs are listed under [`pipeline.jobs`](pipelines/index.md#pipeline
     worker to finish before exiting. If this value is set to `true`, the worker will not wait on the builds of this job.
     You may want this if you have a self-deploying Concourse or long-running-but-low-importance jobs.
 
+??? info "`tags`: [`[string]`](config-basics.md#string-schema)"
+
+    ### `tags`
+    _⚠️ Only in v8.3.0 or higher_
+
+    _Default `[]`_. The tags by which to match workers. All steps and `on_*`
+    hook steps for the job will be placed within the pool of workers that match
+    all the given set of tags.
+
+    Child steps can override these `tags` with their own set of `tags`. Tags
+    cannot be cleared by child steps though. You'll need to create a more
+    granular job plan if you want certain steps to remain untagged.
+
 ### Job Hooks
 
 ??? info "`on_success`: [`step`](steps/index.md)"
