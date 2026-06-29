@@ -1949,7 +1949,7 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
           <td class="pipeline-yaml">
               ```yaml
-              - name: semver-config
+              - name: metadata
                 type: registry-image
                 source:
                   repository: ghcr.io/ardavanhashemzadeh/metadata-resource
@@ -1977,7 +1977,7 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
           <td class="pipeline-yaml">
               ```yaml
-              - name: semver-config
+              - name: duct-tape
                 type: registry-image
                 source:
                   repository: ghcr.io/homeport/duct-tape-resource
@@ -1996,7 +1996,7 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
           <td class="pipeline-yaml">
               ```yaml
-              - name: semver-config
+              - name: google-chat-alert
                 type: registry-image
                 source:
                   repository: epic2/concourse-google-chat-alert-resource
