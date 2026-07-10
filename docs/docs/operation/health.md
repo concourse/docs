@@ -31,28 +31,29 @@ The response body is a JSON object with the following top-level fields:
 
 | Field | Description |
 |---|---|
-| `status` | One of `"healthy"`, `"degraded"`, or `"failing"` |
-| `database` | Database connectivity status |
-| `workers` | Connected worker counts |
-| `components` | Array of internal background components and their health |
+| `status` | One of `"healthy"`, `"degraded"`, or `"failing"`. |
+| `database` | Database connectivity status. |
+| `workers` | Connected worker counts. See below for details. |
+| `components` | Array of internal background components and their health. See below for details. |
 
 **`workers` fields:**
 
 | Field | Description |
 |---|---|
-| `status` | One of `"healthy"`, `"degraded"`, or `"failing"` |
-| `total` | Total number of registered workers |
-| `running` | Number of workers currently in the `running` state |
+| `status` | One of `"healthy"`, `"degraded"`, or `"failing"`. |
+| `total` | Total number of registered workers. |
+| `running` | Number of workers currently in the `running` state. |
+| `unhealthy_workers` | Array of the names of unhealthy workers. Not present if all workers are healthy. |
 
 **`components` fields (one object per component):**
 
 | Field | Description |
 |---|---|
-| `name` | Component identifier (e.g. `"scheduler"`, `"tracker"`, `"collector_volumes"`) |
-| `healthy` | `true` if the component is keeping up with its scheduled work |
-| `paused` | `true` if the component has been administratively paused |
-| `last_ran` | RFC 3339 timestamp of the last completed run |
-| `stale` | `true` if the component has not run within the expected interval |
+| `name` | Component identifier (e.g. `"scheduler"`, `"tracker"`, `"collector_volumes"`). |
+| `healthy` | `true` if the component is keeping up with its scheduled work. |
+| `paused` | `true` if the component has been administratively paused. |
+| `last_ran` | RFC 3339 timestamp of the last completed run. |
+| `stale` | `true` if the component has not run within the expected interval. |
 
 ### Healthy
 
@@ -92,12 +93,14 @@ HTTP 333 Degraded
 }
 ```
 
-Here `scheduler` is stale, which drives the top-level `degraded` status. `collector_volumes` is also stale, but
-because it is not a runtime-critical component, it does not contribute to the top-level status on its own.
+In this example the `scheduler` component is stale, which drives the top-level
+`degraded` status. `collector_volumes` is also stale, but because it is not a
+runtime-critical component, it does not contribute to the top-level status on
+its own.
 
 !!! note
 
-    The `333` status code is non-standard. It is used by Concourse specifically for the degraded state.
+    The `HTTP 333` status code is non-standard. It is used by Concourse specifically for the degraded state.
 
 ### Failing
 
@@ -132,7 +135,8 @@ if a component stays stale.
 
 ### Which components affect the top-level status?
 
-Not all stale components drive the top-level `status` field. Only three are considered critical for scheduling:
+Not all stale components drive the top-level `status` field. Only three are
+considered critical for scheduling and running builds:
 
 | Component | Description |
 |---|---|
@@ -145,9 +149,11 @@ If any of these three fall behind, the top-level `status` becomes `degraded` (or
 All other components — the garbage collection collectors, `pipeline_pauser`, `being_watched_build_marker`,
 `signing_key_lifecycler`, and others — appear in the `components` array with their own `healthy` and `stale` fields,
 but a stale value for any of them does not change the top-level `status`. They are worth monitoring, but a stale GC
-collector does not by itself indicate that builds are at risk.
+collector does not by itself indicate that builds are at risk of not running.
 
-## Configuration flags
+## Web Configuration flags
+
+The following flags can be set on the `concourse web` command to change the behaviour of the health endpoint.
 
 ### `--health-min-worker-count`
 
@@ -252,7 +258,7 @@ To get the raw JSON response instead — useful for scripting or piping to `jq`:
 fly -t example health --json
 ```
 
-`fly h` is a supported alias.
+`fly h` is a supported alias of `fly health`.
 
 ## Usage as a monitoring probe
 
