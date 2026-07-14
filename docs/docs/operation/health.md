@@ -244,12 +244,12 @@ scheduler          healthy    last ran: 2026-06-08T10:04:50Z
 tracker            healthy    last ran: 2026-06-08T10:04:55Z
 scanner            healthy    last ran: 2026-06-08T10:04:45Z
 collector_volumes  unhealthy  last ran: 2026-06-07T08:00:00Z
-pipeline_pauser    healthy    paused
+pipeline_pauser    healthy  paused, last ran: 2026-06-07T06:00:00Z
 ```
 
 The `overall` row shows the top-level status and the timestamp from the response. The `workers` row shows how many
 workers are running out of how many are registered; if any are not running, their names appear in the detail column.
-Each component row shows when it last ran, or `paused` if the component has been administratively paused.
+Each component row shows when it last ran and `paused` if the component has been administratively paused.
 
 Status values are color-coded: green for `ok` / `healthy`, yellow for `degraded`, red for `failing` / `unhealthy`.
 
