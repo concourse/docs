@@ -100,11 +100,11 @@ forwarded over the SSH connection made to the [TSA](#tsa-worker-registration-for
 
 ### The worker lifecycle
 
-#### **RUNNING**
+#### RUNNING
 
 : A worker in this state is registered with the cluster and ready to start running containers and storing volumes.
 
-#### **STALLED**
+#### STALLED
 
 : A worker in this state was previously registered with the cluster, but stopped advertising itself for some reason.
 Usually this is due to network connectivity issues, or the worker stopping unexpectedly.
@@ -112,23 +112,25 @@ Usually this is due to network connectivity issues, or the worker stopping unexp
 : If the worker remains in this state and cannot be recovered, it can be removed using
 the [`fly prune-worker`](../operation/administration.md#fly-prune-worker) command.
 
-#### **LANDING**
+#### LANDING
 
-: The `concourse land-worker` command will put a worker in the `LANDING` state to safely drain its assignments for
+: The `concourse land-worker` command, or sending the worker process `SIGUSR1`,
+will put a worker in the `LANDING` state to safely drain its assignments for
 temporary downtime.
 
 : The ATC will wait for builds on the worker for jobs which are uninterruptible to finish, and transition the worker
 into `LANDED` state.
 
-#### **LANDED**
+#### LANDED
 
 : A worker in this state has successfully waited for all uninterruptible jobs on it after having `concourse land-worker`
 called. It will no longer be used to schedule any new containers or create volumes until it registers as `RUNNING`
 again.
 
-#### **RETIRING**
+#### RETIRING
 
-: The `concourse retire-worker` command will put a worker in the `RETIRING` state to remove it from the cluster
-permanently.
+: The `concourse retire-worker` command, or sending the worker process
+`SIGUSR2`, will put a worker in the `RETIRING` state to remove it from the
+cluster permanently.
 
 : The ATC will wait for builds on the worker for jobs which are uninterruptible to finish, and remove the worker.
