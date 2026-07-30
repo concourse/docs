@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -5969,34 +5969,36 @@ is crucial to whether your pipeline works or not.</p>
 <p>Workers by default listen on port <code>7777</code> for Garden and port <code>7788</code> for Baggageclaim. Connections to both servers are
 forwarded over the SSH connection made to the <a href="#tsa-worker-registration-forwarding">TSA</a>.</p>
 <h3 id="the-worker-lifecycle">The worker lifecycle</h3>
-<h4 id="running"><strong>RUNNING</strong></h4>
+<h4 id="running">RUNNING</h4>
 <dl>
 <dd>A worker in this state is registered with the cluster and ready to start running containers and storing volumes.</dd>
 </dl>
-<h4 id="stalled"><strong>STALLED</strong></h4>
+<h4 id="stalled">STALLED</h4>
 <dl>
 <dd>A worker in this state was previously registered with the cluster, but stopped advertising itself for some reason.
 Usually this is due to network connectivity issues, or the worker stopping unexpectedly.</dd>
 <dd>If the worker remains in this state and cannot be recovered, it can be removed using
 the <a href="../operation/administration/#fly-prune-worker"><code>fly prune-worker</code></a> command.</dd>
 </dl>
-<h4 id="landing"><strong>LANDING</strong></h4>
+<h4 id="landing">LANDING</h4>
 <dl>
-<dd>The <code>concourse land-worker</code> command will put a worker in the <code>LANDING</code> state to safely drain its assignments for
+<dd>The <code>concourse land-worker</code> command, or sending the worker process <code>SIGUSR1</code>,
+will put a worker in the <code>LANDING</code> state to safely drain its assignments for
 temporary downtime.</dd>
 <dd>The ATC will wait for builds on the worker for jobs which are uninterruptible to finish, and transition the worker
 into <code>LANDED</code> state.</dd>
 </dl>
-<h4 id="landed"><strong>LANDED</strong></h4>
+<h4 id="landed">LANDED</h4>
 <dl>
 <dd>A worker in this state has successfully waited for all uninterruptible jobs on it after having <code>concourse land-worker</code>
 called. It will no longer be used to schedule any new containers or create volumes until it registers as <code>RUNNING</code>
 again.</dd>
 </dl>
-<h4 id="retiring"><strong>RETIRING</strong></h4>
+<h4 id="retiring">RETIRING</h4>
 <dl>
-<dd>The <code>concourse retire-worker</code> command will put a worker in the <code>RETIRING</code> state to remove it from the cluster
-permanently.</dd>
+<dd>The <code>concourse retire-worker</code> command, or sending the worker process
+<code>SIGUSR2</code>, will put a worker in the <code>RETIRING</code> state to remove it from the
+cluster permanently.</dd>
 <dd>The ATC will wait for builds on the worker for jobs which are uninterruptible to finish, and remove the worker.</dd>
 </dl>
 
@@ -6240,7 +6242,7 @@ permanently.</dd>
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.instant", "navigation.top", "navigation.footer", "content.action.edit", "content.action.view", "content.code.copy", "attr_list", "md_in_html", "pymdownx.blocks.caption", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../assets/javascripts/mwc-bundle.min.js"></script>
       
