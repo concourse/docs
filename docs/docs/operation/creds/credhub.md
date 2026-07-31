@@ -24,8 +24,6 @@ When resolving a parameter such as `((foo_param))`, it will look in the followin
 * `/concourse/TEAM_NAME/PIPELINE_NAME/foo_param`
 * `/concourse/TEAM_NAME/foo_param`
 
-The leading `/concourse` can be changed by specifying `--credhub-path-prefix`.
-
 CredHub credentials actually have different types, which may contain multiple values. For example, the `user` type
 specifies both `username` and `password.` You can specify the field to grab via `.` syntax,
 e.g. `((foo_param.username))`.
@@ -34,4 +32,32 @@ If the action is being run in the context of a pipeline (e.g. a `check` or a ste
 first look in the pipeline path. If it's not found there, it will look in the team path. This allows credentials to be
 scoped widely if they're common across many pipelines.
 
-If an action is being run in a one-off build, the ATC will only look in the team path.
+When executing a one-off task, there is no pipeline: so in this case, only the team path `/concourse/TEAM_NAME/foo` is
+searched.
+
+There are several ways to customize the lookup logic:
+
+1. Add a "shared path", for secrets common to all teams.
+2. Change the path prefix from `/concourse` to something else.
+
+Each of these can be controlled by Concourse command line flags, or environment variables.
+
+### Configuring a shared path
+
+A "shared path" can also be configured for credentials that you would like to share across all teams and pipelines,
+foregoing the default team/pipeline namespacing. Use with care!
+
+```properties
+CONCOURSE_CREDHUB_SHARED_PATH=some-shared-path
+```
+
+This path must exist under the configured path prefix. The above configuration would correspond
+to `/concourse/some-shared-path` with the default `/concourse` prefix.
+
+### Changing the path prefix
+
+The leading `/concourse` can be changed by specifying the following:
+
+```properties
+CONCOURSE_CREDHUB_PATH_PREFIX=/some-other-prefix
+```
