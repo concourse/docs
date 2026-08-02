@@ -3,7 +3,7 @@ title: AWS Systems Manager credential manager
 ---
 
 Concourse can be configured to pull credentials
-from [AWS Systems Manager]([https://aws.amazon.com/secrets-manager/](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html)).
+from [AWS Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html).
 
 ## Configuration
 
