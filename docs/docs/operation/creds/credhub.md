@@ -2,19 +2,47 @@
 title: The CredHub credential manager
 ---
 
+Concourse can be configured to pull credentials from a [CredHub](https://github.com/cloudfoundry/credhub) instance.
+
 ## Configuration
 
-The ATC is statically configured with a CredHub server URL with TLS and client config.
+To enable this credential manager, configure the following environment variables on the [
+`web` node](../../install/running-web.md):
 
-For example, to point the ATC at an internal CredHub server with TLS signed by a local CA, using client id and secret,
-you may configure:
+```properties
+CONCOURSE_CREDHUB_URL=https://credhub-server:9000
+CONCOURSE_CREDHUB_CLIENT_ID=db02de05-fa39-4855-059b-67221c5c2f63
+CONCOURSE_CREDHUB_CLIENT_SECRET=6a174c20-f6de-a53c-74d2-6018fcceff64
+```
 
-```shell
-concourse web ... \
-  --credhub-url https://10.2.0.3:9000 \
-  --credhub-ca-cert /etc/my-ca.cert \
-  --credhub-client-id =db02de05-fa39-4855-059b-67221c5c2f63 \
-  --credhub-client-secret 6a174c20-f6de-a53c-74d2-6018fcceff64
+### TLS Configuration
+
+If your CredHub instance is signed with TLS by a local Certificate Authority, you can use the following environment
+variable:
+
+```properties
+CONCOURSE_CREDHUB_CA_CERT=/etc/ca.crt
+```
+
+??? danger "Skip SSL Verification"
+
+    CredHub can also be configured to skip SSL Verification. This property should not be used within production.
+
+    ```properties
+    CONCOURSE_CREDHUB_INSECURE_SKIP_VERIFY=true
+    ```
+
+### mTLS Configuration
+
+CredHub can also be configured to authenticate
+using [Mutual TLS (mTLS)](https://github.com/cloudfoundry/credhub/blob/main/docs/mutual-tls.md) instead of traditional
+password or token-based methods. This can be accomplished using the following environment variables:
+
+```properties
+CONCOURSE_CREDHUB_URL=https://credhub-server:9000
+CONCOURSE_CREDHUB_CA_CERT=/etc/ca.crt
+CONCOURSE_CREDHUB_CLIENT_CERT=/etc/client.crt
+CONCOURSE_CREDHUB_CLIENT_KEY=/etc/client.pem
 ```
 
 ## Credential Lookup Rules
@@ -25,8 +53,8 @@ When resolving a parameter such as `((foo_param))`, it will look in the followin
 * `/concourse/TEAM_NAME/foo_param`
 
 CredHub credentials actually have different types, which may contain multiple values. For example, the `user` type
-specifies both `username` and `password.` You can specify the field to grab via `.` syntax,
-e.g. `((foo_param.username))`.
+specifies both `username` and `password.` You can specify the field to grab via `.` syntax, e.g.
+`((foo_param.username))`.
 
 If the action is being run in the context of a pipeline (e.g. a `check` or a step in a build of a job), the ATC will
 first look in the pipeline path. If it's not found there, it will look in the team path. This allows credentials to be
@@ -51,8 +79,8 @@ foregoing the default team/pipeline namespacing. Use with care!
 CONCOURSE_CREDHUB_SHARED_PATH=some-shared-path
 ```
 
-This path must exist under the configured path prefix. The above configuration would correspond
-to `/concourse/some-shared-path` with the default `/concourse` prefix.
+This path must exist under the configured path prefix. The above configuration would correspond to
+`/concourse/some-shared-path` with the default `/concourse` prefix.
 
 ### Changing the path prefix
 
