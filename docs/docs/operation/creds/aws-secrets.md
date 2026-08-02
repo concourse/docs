@@ -233,10 +233,6 @@ When resolving a parameter such as `((foo_param))`, it will look in the followin
 * `/concourse/TEAM_NAME/PIPELINE_NAME/foo_param`
 * `/concourse/TEAM_NAME/foo_param`
 
-CredHub credentials actually have different types, which may contain multiple values. For example, the `user` type
-specifies both `username` and `password.` You can specify the field to grab via `.` syntax, e.g.
-`((foo_param.username))`.
-
 If the action is being run in the context of a pipeline (e.g. a `check` or a step in a build of a job), the ATC will
 first look in the pipeline path. If it's not found there, it will look in the team path. This allows credentials to be
 scoped widely if they're common across many pipelines.
