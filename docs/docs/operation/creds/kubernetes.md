@@ -2,11 +2,12 @@
 title: Kubernetes Credential Manager
 ---
 
-Concourse can be configured to pull credentials
-from [Kubernetes `secret` objects](https://kubernetes.io/docs/concepts/configuration/secret).
+Concourse can be configured to pull credentials from [Kubernetes `secret` objects](https://kubernetes.io/docs/concepts/configuration/secret).
 
-To configure it, either enable the in-cluster client by setting the following environment variable on
-the [`web` node](../../install/running-web.md):
+## Configuration
+
+To enable this credential manager, configure the following environment variable on the [
+`web` node](../../install/running-web.md):
 
 ```properties
 CONCOURSE_KUBERNETES_IN_CLUSTER=true
@@ -18,47 +19,7 @@ or set the path to a `kubeconfig` file:
 CONCOURSE_KUBERNETES_CONFIG_PATH=~/.kube/config
 ```
 
-## Credential lookup rules
-
-When resolving a parameter such as `((foo))`, Concourse will look for it in the following order in the namespace
-configured for that team:
-
-1. 
-    ```
-    Name:         PIPELINE_NAME.foo
-    Namespace:    concourse-TEAM_NAME
-    Type:         Opaque
-
-    Data
-    ====
-    value:        32 bytes
-    ```
-1.  
-    ```
-    Name:         foo
-    Namespace:    concourse-TEAM_NAME
-    Type:         Opaque
-
-    Data
-    ====
-    value:        32 bytes
-    ```
-
-You can also have nested fields if the contents of the secret is JSON, which can
-be accessed using `.` syntax (e.g. `((foo.bar))`).
-
-The prefix prepended to the namespace used by Concourse to search for secrets
-(in the examples above, `concourse-`) can be changed by configuring the following
-in the web node:
-
-```properties
-CONCOURSE_KUBERNETES_NAMESPACE_PREFIX=some-other-prefix-
-```
-
-If an action is being run in a one-off build, Concourse will not include the
-pipeline name in the secret that it looks for.
-
-## Configuring Kubernetes RBAC
+### RBAC Permissions
 
 As the Web nodes need to retrieve secrets from namespaces that are not their
 own, they needs extra permissions to do so.
@@ -77,16 +38,10 @@ For instance, if you have the following teams which you want to read secrets fro
 * team-a
 * team-b
 
-Assuming the following [web node](../../install/running-web.md) configuration:
-
-```properties
-CONCOURSE_KUBERNETES_NAMESPACE_PREFIX=myprefix-
-```
-
 The web node must be able to get secrets from the following namespaces:
 
-* `myprefix-team-a`
-* `myprefix-team-b`
+* `concourse-team-a`
+* `concourse-team-b`
 
 To allow the web node to interpolate credentials for "team-a" and "team-b", we'd
 then need to create a few Kubernetes RBAC objects.
@@ -146,7 +101,7 @@ apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
 metadata:
   name: web-team-a
-  namespace: myprefix-team-a
+  namespace: concourse-team-a
   labels:
     app: web
 roleRef:
@@ -166,7 +121,7 @@ apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
 metadata:
   name: web-team-b
-  namespace: myprefix-team-b
+  namespace: concourse-team-b
   labels:
     app: web
 roleRef:
@@ -203,8 +158,68 @@ spec:
         - name: web
           image: "concourse/concourse:latest"
           args: [ web ]
-          env:
-            - name: CONCOURSE_KUBERNETES_NAMESPACE_PREFIX
-              value: "myprefix-"
           # ...
+```
+
+## Credential lookup rules
+
+When resolving a parameter such as `((foo))`, Concourse will look for it in the following order in the namespace
+configured for that team:
+
+1. 
+    ```
+    Name:         PIPELINE_NAME.foo
+    Namespace:    concourse-TEAM_NAME
+    Type:         Opaque
+
+    Data
+    ====
+    value:        32 bytes
+    ```
+1.  
+    ```
+    Name:         foo
+    Namespace:    concourse-TEAM_NAME
+    Type:         Opaque
+
+    Data
+    ====
+    value:        32 bytes
+    ```
+
+You can also have nested fields if the contents of the secret is JSON, which can
+be accessed using `.` syntax (e.g. `((foo.bar))`).
+
+If the action is being run in the context of a pipeline (e.g. a `check` or a step in a build of a job), the ATC will
+first look in the pipeline path. If it's not found there, it will look in the team path. This allows credentials to be
+scoped widely if they're common across many pipelines.
+
+When executing a one-off task, there is no pipeline: so in this case, only the namespace of `concourse-TEAM_NAME` is
+searched.
+
+There are several ways to customize the lookup logic:
+
+1. Add a "shared namespace suffix", for secrets common to all teams.
+2. Change the namespace prefix from `concourse-` to something else.
+
+Each of these can be controlled by Concourse command line flags, or environment variables.
+
+### Configuring a shared namespace suffix
+
+A "shared namespace suffix" can also be configured for credentials that you would like to share across all teams and 
+pipelines, foregoing the default team/pipeline namespacing. Use with care!
+
+```properties
+CONCOURSE_KUBERNETES_NAMESPACE_SHARED_SUFFIX=shared-suffix
+```
+
+This namespace must exist when combined with the namespace prefix. The above configuration would correspond to
+a namespace of `concourse-shared-suffix` with the default `concourse-` prefix.
+
+### Changing the namespace prefix
+
+The leading `concourse-` can be changed by specifying the following:
+
+```properties
+CONCOURSE_KUBERNETES_NAMESPACE_PREFIX=some-other-prefix-
 ```
