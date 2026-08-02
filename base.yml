@@ -224,13 +224,13 @@ nav:
           - docs/operation/encryption.md
           - Credential Management:
               - docs/operation/creds/index.md
-              - docs/operation/creds/vault.md
-              - docs/operation/creds/credhub.md
-              - docs/operation/creds/aws-ssm.md
               - docs/operation/creds/aws-secrets.md
-              - docs/operation/creds/kubernetes.md
+              - docs/operation/creds/aws-ssm.md
               - docs/operation/creds/conjur.md
+              - docs/operation/creds/credhub.md
               - docs/operation/creds/id-token.md
+              - docs/operation/creds/kubernetes.md
+              - docs/operation/creds/vault.md
               - docs/operation/creds/caching.md
               - docs/operation/creds/redacting.md
               - docs/operation/creds/retrying-failed.md
