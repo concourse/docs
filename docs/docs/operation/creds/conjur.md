@@ -1,5 +1,5 @@
 ---
-title: The Conjur credential manager
+title: Conjur credential manager
 ---
 
 Concourse can be configured to pull credentials from a [CyberArk Conjur](https://conjur.org/) instance.
