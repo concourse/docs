@@ -36,8 +36,8 @@ CONCOURSE_CONJUR_CERT_FILE=/etc/ca.crt
 
 ### Permissions
 
-The following is an example Conjur policy that can be used to grant permissions to a Conjur host. In this
-example `host/concourse` will have permissions to read and update all the secrets within the `TEAM_NAME`
+The following is an example Conjur policy that can be used to grant permissions to a Conjur host. In this example
+`host/concourse` will have permissions to read and update all the secrets within the `TEAM_NAME`
 and `PIPELINE_NAME` policies.
 
 ```yaml
@@ -77,22 +77,9 @@ searched.
 
 There are several ways to customize the lookup logic:
 
-1. Add a "shared path", for secrets common to all teams.
-2. Change the team-, pipeline-, and absolute secret dependent path templates.
+1. Change the team-, pipeline-, and absolute secret dependent path templates.
 
 Each of these can be controlled by Concourse command line flags, or environment variables.
-
-### Configuring a shared path
-
-A "shared path" can also be configured for credentials that you would like to share across all teams and pipelines,
-foregoing the default team/pipeline namespacing. Use with care!
-
-```properties
-CONCOURSE_CONJUR_SHARED_PATH=some-shared-path
-```
-
-This path must exist under the configured path prefix. The above configuration would correspond to
-`/concourse/some-shared-path` with the default `/concourse` prefix.
 
 ### Changing the path templates
 
@@ -112,7 +99,6 @@ the current pipeline (if any), and `{{.Secret}}` to the name of the secret. So i
 CONCOURSE_CONJUR_TEAM_SECRET_TEMPLATE="{{.Team}}/concourse/{{.Secret}}
 CONCOURSE_CONJUR_PIPELINE_SECRET_TEMPLATE=/{{.Team}}/concourse/{{.Pipeline}}/{{.Secret}}
 CONCOURSE_CONJUR_SECRET_TEMPLATE=conjur/{{.Secret}}
-CONCOURSE_CONJUR_SHARED_PATH=common
 ```
 
 and `((password))` is used in team `myteam` and pipeline `mypipeline`, Concourse will look for the following, in order:
@@ -120,4 +106,3 @@ and `((password))` is used in team `myteam` and pipeline `mypipeline`, Concourse
 1. `/myteam/concourse/mypipeline/password`
 2. `/myteam/concourse/password`
 3. `/conjur/password`
-4. `/common/password`
