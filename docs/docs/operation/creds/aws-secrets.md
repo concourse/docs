@@ -1,176 +1,219 @@
 ---
-title: The AWS Secrets Manager credential manager
+title: AWS Secrets Manager credential manager
 ---
+
+Concourse can be configured to pull credentials from [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/).
 
 ## Configuration
 
-In order to integrate with AWS Secrets Manager for credential management, the web node must be configured with:
+To enable this credential manager, configure the following environment variables on the [
+`web` node](../../install/running-web.md):
 
-* an access key and secret key, or a session token
-* the AWS region that your parameters are stored within.
-
-If no access key, secret key, or session token is provided, Concourse will attempt to use environment variables or the
-instance credentials assigned to the instance.
-
-The web node's configuration specifies the following:
-
-**`aws-secretsmanager-access-key`**: string
-
-: A valid AWS access key.
-
-: Environment variable `CONCOURSE_AWS_SECRETSMANAGER_ACCESS_KEY`.
-
-**`aws-secretsmanager-secret-key`**: string
-
-: The secret key that corresponds to the access key defined above.
-
-: Environment variable `CONCOURSE_AWS_SECRETSMANAGER_SECRET_KEY`.
-
-**`aws-secretsmanager-session-token`**: string
-
-: A valid AWS session token.
-
-: Environment variable `CONCOURSE_AWS_SECRETSMANAGER_SESSION_TOKEN`.
-
-**`aws-secretsmanager-region`**: string
-
-: The AWS region that requests to Secrets Manager will be sent to.
-
-: Environment variable `CONCOURSE_AWS_SECRETSMANAGER_REGION`.
-
-**`aws-secretsmanager-pipeline-secret-template`**: string
-
-: The base path used when attempting to locate a pipeline-level secret.
-
-: Environment variable `CONCOURSE_AWS_SECRETSMANAGER_PIPELINE_SECRET_TEMPLATE`.
-
-: !!! example
-
-        Default: `/concourse/{{.Team}}/{{.Pipeline}}/{{.Secret}}`
-
-**`aws-secretsmanager-team-secret-template`**: string
-
-: The base path used when attempting to locate a team-level secret.
-
-: Environment variable `CONCOURSE_AWS_SECRETSMANAGER_TEAM_SECRET_TEMPLATE`.
-
-: !!! example
-
-        Default: `/concourse/{{.Team}}/{{.Secret}}`
-
-For example, to launch the ATC and enable Secrets Manager, you may configure:
-
-```shell
-concourse web ... \
-  --aws-secretsmanager-region us-east-1 \
-  --aws-secretsmanager-access-key AKIAIOSFODNN7EXAMPLE \
-  --aws-secretsmanager-secret-key wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-
-# or use env variables
-CONCOURSE_AWS_SECRETSMANAGER_REGION="us-east-1" \
-CONCOURSE_AWS_SECRETSMANAGER_ACCESS_KEY="AKIAIOSFODNN7EXAMPLE" \
-CONCOURSE_AWS_SECRETSMANAGER_SECRET_KEY="wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY" \
-concourse web ...
+```properties
+CONCOURSE_AWS_SECRETSMANAGER_REGION=us-east-1
+CONCOURSE_AWS_SECRETSMANAGER_ACCESS_KEY=AKIAIOSFODNN7EXAMPLE
+CONCOURSE_AWS_SECRETSMANAGER_SECRET_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 ```
 
-A more secure method is to configure
-an [IAM role](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html) for your EC2 ATC
-instance so that credentials are fetched automatically from the EC2 metadata service.
+### Session Token Configuration
 
-## Saving credentials in AWS
+AWS Secrets Manager can also be configured to use a Session Token for short lived credentials by using the following
+environment variables:
 
-It seems to be best to use the 'other type of secret' option and the 'plaintext' entry (otherwise your secrets will be
-interpolated as JSON) for best results. Make sure your secret locations match the lookup templates exactly; include the
-leading `/`, for example.
+```properties
+CONCOURSE_AWS_SECRETSMANAGER_REGION=us-east-1
+CONCOURSE_AWS_SECRETSMANAGER_ACCESS_KEY=AKIAIOSFODNN7EXAMPLE
+CONCOURSE_AWS_SECRETSMANAGER_SECRET_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+CONCOURSE_AWS_SECRETSMANAGER_SESSION_TOKEN=AQoDYXdzEJr...<remainder of session token>
+```
 
-## IAM Permissions
+### Instance Profile Configuration
 
-The following is an example of an IAM policy that can be used to grant permissions to an IAM user or instance role. Note
-that the `Resource` section can contain a wildcard to a secret or be restricted to an individual secret. In order for
-the health check to work properly (see [Scaling](#scaling)), Concourse needs to have access to
-the `__concourse-health-check` secret.
+AWS Secrets Manager can also be configured to use an
+[IAM role](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html) assigned on the [
+`web` node](../../install/running-web.md). When using an IAM Role, credentials are fetched automatically from the EC2
+metadata service and only the region needs to be configured:
 
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
+```properties
+CONCOURSE_AWS_SECRETSMANAGER_REGION=us-east-1
+```
+
+### IAM Permissions
+
+The following is an example of an IAM policy that can be used to grant permissions to an IAM user or instance role.
+
+!!! note
+
+    The `Resource` section can contain a wildcard to a secret or be restricted to an individual secret. 
+
+In order for the health check to work properly (see [Scaling](#scaling)), Concourse needs to have access to the
+`__concourse-health-check` secret.
+
+=== "JSON"
+
+    ```json
     {
-      "Sid": "AllowAccessToSecretManagerParameters",
-      "Effect": "Allow",
-      "Action": [
-        "secretsmanager:ListSecrets"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Sid": "AllowAccessGetSecret",
-      "Effect": "Allow",
-      "Action": [
-        "secretsmanager:GetSecretValue",
-        "secretsmanager:DescribeSecret"
-      ],
-      "Resource": [
-        "arn:aws:secretsmanager:*:*:secret:/concourse/*",
-        "arn:aws:secretsmanager:*:*:secret:__concourse-health-check-??????"
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Sid": "AllowAccessToSecretManagerParameters",
+
+          "Effect": "Allow",
+
+          "Action": [
+            "secretsmanager:ListSecrets"
+          ],
+
+          "Resource": "*"
+        },
+        {
+          "Sid": "AllowAccessGetSecret",
+
+          "Effect": "Allow",
+
+          "Action": [
+            "secretsmanager:GetSecretValue",
+            "secretsmanager:DescribeSecret"
+          ],
+
+          "Resource": [
+            "arn:aws:secretsmanager:*:*:secret:/concourse/*",
+            "arn:aws:secretsmanager:*:*:secret:__concourse-health-check-??????"
+          ]
+        }
       ]
     }
-  ]
-}
-```
+    ```
 
-If you wish to restrict concourse to only have access to secrets for a specific pipeline, you can
-replace `"arn:aws:secretsmanager:*:*:secret:/concourse/*"` in the example above with:
+=== "Terraform / OpenTofu"
 
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
+    ```hcl
+    data "aws_iam_policy_document" "secrets_lookup" {
+      statement {
+        sid = "AllowAccessToSecretManagerParameters"
+    
+        effect = "Allow"
+        
+        actions = [
+          "secretsmanager:ListSecrets"
+        ]
+    
+        resources = [
+          "*",
+        ]
+      }
+      
+      statement {
+        sid = "AllowAccessGetSecret"
+    
+        effect = "Allow"
+        
+        actions = [
+          "secretsmanager:GetSecretValue",
+          "secretsmanager:DescribeSecret"
+        ]
+    
+        resources = [
+          "arn:aws:secretsmanager:*:*:secret:/concourse/*",
+          "arn:aws:secretsmanager:*:*:secret:__concourse-health-check-??????"
+        ]
+      }
+    }
+    ```
+
+If you wish to restrict concourse to only have access to secrets for a specific pipeline, you can replace
+`"arn:aws:secretsmanager:*:*:secret:/concourse/*"` in the example above with:
+
+=== "JSON"
+
+    ```json
     {
-      "Sid": "AllowAccessToSecretManagerParameters",
-      "Effect": "Allow",
-      "Action": [
-        "secretsmanager:ListSecrets"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Sid": "AllowAccessGetSecret",
-      "Effect": "Allow",
-      "Action": [
-        "secretsmanager:GetSecretValue",
-        "secretsmanager:DescribeSecret"
-      ],
-      "Resource": [
-        "arn:aws:secretsmanager:*:*:secret:/concourse/TEAM_NAME/*",
-        "arn:aws:secretsmanager:*:*:secret:/concourse/TEAM_NAME/PIPELINE_NAME/*",
-        "arn:aws:secretsmanager:*:*:secret:__concourse-health-check-??????"
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Sid": "AllowAccessToSecretManagerParameters",
+          
+          "Effect": "Allow",
+          
+          "Action": [
+            "secretsmanager:ListSecrets"
+          ],
+          
+          "Resource": "*"
+        },
+        {
+          "Sid": "AllowAccessGetSecret",
+          
+          "Effect": "Allow",
+          
+          "Action": [
+            "secretsmanager:GetSecretValue",
+            "secretsmanager:DescribeSecret"
+          ],
+          
+          "Resource": [
+            "arn:aws:secretsmanager:*:*:secret:/concourse/TEAM_NAME/*",
+            "arn:aws:secretsmanager:*:*:secret:/concourse/TEAM_NAME/PIPELINE_NAME/*",
+            "arn:aws:secretsmanager:*:*:secret:__concourse-health-check-??????"
+          ]
+        }
       ]
     }
-  ]
-}
-```
+    ```
+
+=== "Terraform / OpenTofu"
+
+    ```hcl
+    variable "team_name" {
+      type    = string
+      default = "my_team"
+    }
+    
+    variable "pipeline_name" {
+      type    = string
+      default = "my_pipeline"
+    }
+    
+    data "aws_iam_policy_document" "secrets_lookup" {
+      statement {
+        sid = "AllowAccessToSecretManagerParameters"
+    
+        effect = "Allow"
+    
+        actions = [
+          "secretsmanager:ListSecrets"
+        ]
+    
+        resources = [
+          "*",
+        ]
+      }
+    
+      statement {
+        sid = "AllowAccessGetSecret"
+    
+        effect = "Allow"
+    
+        actions = [
+          "secretsmanager:GetSecretValue",
+          "secretsmanager:DescribeSecret"
+        ]
+    
+        resources = [
+          "arn:aws:secretsmanager:*:*:secret:/concourse/${var.team_name}/*",
+          "arn:aws:secretsmanager:*:*:secret:/concourse/${var.team_name}/${var.pipeline_name}/*",
+          "arn:aws:secretsmanager:*:*:secret:__concourse-health-check-??????"
+        ]
+      }
+    }
+    ```
 
 where `TEAM_NAME` and `PIPELINE_NAME` are replaced with the team and name of the pipeline in question.
 
 For more information on how to use IAM roles to restrict access to Secrets Manager, review
 the [official documentation](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_identity-based-policies.html).
 
-## Credential Lookup Rules
-
-When resolving a parameter such as `((foo_param))`, Concourse will look in the following paths, in order:
-
-* `/concourse/TEAM_NAME/PIPELINE_NAME/foo_param`
-* `/concourse/TEAM_NAME/foo_param`
-
-The leading `/concourse` can be changed by specifying `--aws-secretsmanager-pipeline-secret-template`
-or `--aws-secretsmanager-team-secret-template` variables.
-
-!!! note
-
-    If Concourse does not have [permission](#iam-permissions) to access the pipeline-scoped paths, then credential 
-    lookups will fail even for credentials which are stored at the team level.
-
-## Scaling
+### Scaling
 
 If your cluster has a large workload, in particular if there are many resources, Concourse can generate a lot of traffic
 to AWS and subsequently get rate-limited.
@@ -182,3 +225,68 @@ a [Concourse Admin](../../auth-and-teams/user-roles.md#concourse-admin).
 Depending on your workflow for updating secrets and your reliability requirements it may be
 worth [Caching credentials](caching.md) and/or [Retrying failed fetches](retrying-failed.md) to mitigate
 rate-limit-related errors.
+
+## Credential Lookup Rules
+
+When resolving a parameter such as `((foo_param))`, it will look in the following paths, in order:
+
+* `/concourse/TEAM_NAME/PIPELINE_NAME/foo_param`
+* `/concourse/TEAM_NAME/foo_param`
+
+If the action is being run in the context of a pipeline (e.g. a `check` or a step in a build of a job), the ATC will
+first look in the pipeline path. If it's not found there, it will look in the team path. This allows credentials to be
+scoped widely if they're common across many pipelines.
+
+When executing a one-off task, there is no pipeline: so in this case, only the team path `/concourse/TEAM_NAME/foo` is
+searched.
+
+There are several ways to customize the lookup logic:
+
+1. Add a "shared path", for secrets common to all teams.
+2. Change the team- and pipeline-dependent path templates.
+
+Each of these can be controlled by Concourse command line flags, or environment variables.
+
+### Configuring a shared path
+
+A "shared path" can also be configured for credentials that you would like to share across all teams and pipelines,
+foregoing the default team/pipeline namespacing. Use with care!
+
+```properties
+CONCOURSE_AWS_SECRETSMANAGER_SHARED_SECRET_TEMPLATE=some-shared-path
+```
+
+This path must exist under the configured path prefix. The above configuration would correspond to
+`/concourse/some-shared-path` with the default `/concourse` prefix.
+
+### Changing the path templates
+
+You can choose your own list of templates, which will expand to team- or pipeline-specific paths. By default, the
+templates used are:
+
+```properties
+CONCOURSE_AWS_SECRETSMANAGER_TEAM_SECRET_TEMPLATE=/concourse/{{.Team}}/{{.Secret}}
+CONCOURSE_AWS_SECRETSMANAGER_PIPELINE_SECRET_TEMPLATE=/concourse/{{.Team}}/{{.Pipeline}}/{{.Secret}}
+
+```
+
+When secrets are to be looked up, these are evaluated where `{{.Team}}` expands to the current team, `{{.Pipeline}}` to
+the current pipeline (if any), and `{{.Secret}}` to the name of the secret. So if the settings are:
+
+```properties
+CONCOURSE_AWS_SECRETSMANAGER_TEAM_SECRET_TEMPLATE=/{{.Team}}/concourse/{{.Secret}}
+CONCOURSE_AWS_SECRETSMANAGER_PIPELINE_SECRET_TEMPLATE=/{{.Team}}/concourse/{{.Pipeline}}/{{.Secret}}
+CONCOURSE_AWS_SECRETSMANAGER_SHARED_SECRET_TEMPLATE=/common/{{.Secret}}
+```
+
+and `((password))` is used in team `myteam` and pipeline `mypipeline`, Concourse will look for the following, in order:
+
+1. `/myteam/concourse/mypipeline/password`
+2. `/myteam/concourse/password`
+3. `/common/password`
+
+## Saving credentials in AWS
+
+It seems to be best to use the 'other type of secret' option and the 'plaintext' entry (otherwise your secrets will be
+interpolated as JSON) for best results. Make sure your secret locations match the lookup templates exactly; include the
+leading `/`, for example.
