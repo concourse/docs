@@ -239,6 +239,7 @@ nav:
           - docs/operation/opa-integration.md
           - docs/operation/tuning.md
           - docs/operation/global-resources.md
+          - docs/operation/health.md
           - docs/operation/administration.md
       - docs/observation.md
       - Internals:
