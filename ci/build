@@ -9,7 +9,7 @@ git config --global user.email "concourseteam+concourse-github-bot@gmail.com"
 git config --global user.name "Concourse Bot"
 
 pushd docs
-  pip install mkdocs-material mkdocs-redirects mkdocs-glightbox nodeenv
+  pip install -r requirements.txt
   nodeenv env --node=22.21.1
 
   source env/bin/activate

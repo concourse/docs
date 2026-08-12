@@ -25,39 +25,39 @@ relevant section below for whichever backend you want to use.
 
 <div class="grid cards" markdown>
 
-- :simple-vault: Vault
+- :material-aws: AWS Secrets Manager
 
     ---
-  [:octicons-arrow-right-24: Configure](vault.md)
-
-- :material-lock: CredHub
-
-    ---
-  [:octicons-arrow-right-24: Configure](credhub.md)
+  [:octicons-arrow-right-24: Configure](aws-secrets.md)
 
 - :material-aws: AWS SSM
 
     ---
   [:octicons-arrow-right-24: Configure](aws-ssm.md)
 
-- :material-aws: AWS Secrets Manager
+- :material-lock: Conjur
 
     ---
-  [:octicons-arrow-right-24: Configure](aws-secrets.md)
+  [:octicons-arrow-right-24: Configure](conjur.md)
+
+- :material-lock: CredHub
+
+    ---
+  [:octicons-arrow-right-24: Configure](credhub.md)
+
+- :material-openid: IDToken
+
+    ---
+  [:octicons-arrow-right-24: Configure](id-token.md)
 
 - :material-kubernetes: Kubernetes
 
     ---
   [:octicons-arrow-right-24: Configure](kubernetes.md)
 
-- :material-lock: Conjur
+- :simple-vault: Vault
 
     ---
-  [:octicons-arrow-right-24: Configure](conjur.md)
-
-- :material-openid: IDToken
-
-    ---
-  [:octicons-arrow-right-24: Configure](id-token.md)
+  [:octicons-arrow-right-24: Configure](vault.md)
 
 </div>
