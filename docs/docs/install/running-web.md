@@ -391,3 +391,56 @@ registry-image:
   registry_mirror:
     host: https://registry.mirror.example.com
 ```
+
+### Configuring HTTP security headers
+
+Concourse includes a security handler that adds HTTP headers to every response. Most have sensible defaults; all can be
+tuned to meet your organisation's requirements.
+
+#### Headers set on every response
+
+The following headers are always present with default values as follows:
+
+| Header | Value |
+|---|---|
+| `X-Content-Type-Options` | `nosniff` |
+| `X-Download-Options` | `noopen` |
+| `Cache-Control` | `no-store, private` |
+
+All can be overridden using `CONCOURSE_CUSTOM_HTTP_HEADERS` if your deployment requires different values.
+
+#### Configurable security headers
+
+Three additional headers can be set via environment variables:
+
+| Env var | Default | Description |
+|---|---|---|
+| `CONCOURSE_X_FRAME_OPTIONS` | `deny` | Controls whether the UI may be embedded in a frame |
+| `CONCOURSE_CONTENT_SECURITY_POLICY` | `frame-ancestors 'none'` | CSP directive that also blocks framing |
+| `CONCOURSE_STRICT_TRANSPORT_SECURITY` | _(not set)_ | Tells browsers to require HTTPS for this origin |
+
+
+#### Adding custom headers
+
+`CONCOURSE_CUSTOM_HTTP_HEADERS` points to a YAML or JSON file of custom headers to include on every response.
+These are applied after all other headers, so they can override any value above - including the hardcoded ones.
+
+```properties
+CONCOURSE_CUSTOM_HTTP_HEADERS=./http-headers.yml
+```
+
+Example `http-headers.yml`:
+```yaml
+# http-headers.yml
+Permissions-Policy: geolocation=(), microphone=()
+Referrer-Policy: strict-origin-when-cross-origin
+```
+
+Example `http-headers.json`:
+
+```json
+{
+  "Permissions-Policy": "geolocation=(), microphone=()",
+  "Referrer-Policy": "strict-origin-when-cross-origin"
+}
+```
