@@ -8,10 +8,10 @@
         <link rel="canonical" href="https://concourse-ci.org/docs/operation/creds/credhub/">
       
       
-        <link rel="prev" href="../vault/">
+        <link rel="prev" href="../conjur/">
       
       
-        <link rel="next" href="../aws-ssm/">
+        <link rel="next" href="../id-token/">
       
       
         
@@ -22,7 +22,7 @@
     
     
       
-        <title>The CredHub credential manager - Concourse</title>
+        <title>CredHub credential manager - Concourse</title>
       
     
     
@@ -120,6 +120,18 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+<center>
+  🎉 <a href="/blog/2026-08-12-v830-release/">v8.3.0 is out! Click Here to Learn About the New Features</a> ✈️
+</center>
+
+          </div>
+          
+        </aside>
+      
     </div>
     
     
@@ -148,7 +160,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              The CredHub credential manager
+              CredHub credential manager
             
           </span>
         </div>
@@ -3650,6 +3662,8 @@
       
         
       
+        
+      
     
     
     
@@ -3880,14 +3894,70 @@
   
   
     <li class="md-nav__item">
-      <a href="../vault/" class="md-nav__link">
+      <a href="../aws-secrets/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    The Vault credential manager
+    AWS Secrets Manager credential manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-ssm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS Systems Manager credential manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conjur/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conjur credential manager
   
 
     
@@ -3922,7 +3992,7 @@
   <span class="md-ellipsis">
     
   
-    The CredHub credential manager
+    CredHub credential manager
   
 
     
@@ -3940,7 +4010,7 @@
   <span class="md-ellipsis">
     
   
-    The CredHub credential manager
+    CredHub credential manager
   
 
     
@@ -3972,6 +4042,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tls-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TLS Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mtls-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mTLS Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3982,6 +4080,34 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Credential Lookup Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuring-a-shared-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring a shared path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-the-path-prefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changing the path prefix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4001,42 +4127,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../aws-ssm/" class="md-nav__link">
+      <a href="../id-token/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    The AWS SSM credential manager
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../aws-secrets/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    The AWS Secrets Manager credential manager
+    IDToken credential manager
   
 
     
@@ -4085,42 +4183,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../conjur/" class="md-nav__link">
+      <a href="../vault/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    The Conjur credential manager
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../id-token/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    The IDToken credential manager
+    Vault credential manager
   
 
     
@@ -4353,6 +4423,34 @@
     
   
     Global Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Health Endpoint
   
 
     
@@ -5811,6 +5909,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tls-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TLS Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mtls-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mTLS Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -5821,6 +5947,34 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Credential Lookup Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuring-a-shared-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring a shared path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-the-path-prefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changing the path prefix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -5857,17 +6011,35 @@
   
 
 
-  <h1>The CredHub credential manager</h1>
+  <h1>CredHub credential manager</h1>
 
+<p>Concourse can be configured to pull credentials from a <a href="https://github.com/cloudfoundry/credhub">CredHub</a> instance.</p>
 <h2 id="configuration">Configuration</h2>
-<p>The ATC is statically configured with a CredHub server URL with TLS and client config.</p>
-<p>For example, to point the ATC at an internal CredHub server with TLS signed by a local CA, using client id and secret,
-you may configure:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>concourse<span class="w"> </span>web<span class="w"> </span>...<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span>--credhub-url<span class="w"> </span>https://10.2.0.3:9000<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>--credhub-ca-cert<span class="w"> </span>/etc/my-ca.cert<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span>--credhub-client-id<span class="w"> </span><span class="o">=</span>db02de05-fa39-4855-059b-67221c5c2f63<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span>--credhub-client-secret<span class="w"> </span>6a174c20-f6de-a53c-74d2-6018fcceff64
+<p>To enable this credential manager, configure the following environment variables on the <a href="../../../install/running-web/">
+<code>web</code> node</a>:</p>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="na">CONCOURSE_CREDHUB_URL</span><span class="o">=</span><span class="s">https://credhub-server:9000</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="na">CONCOURSE_CREDHUB_CLIENT_ID</span><span class="o">=</span><span class="s">db02de05-fa39-4855-059b-67221c5c2f63</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="na">CONCOURSE_CREDHUB_CLIENT_SECRET</span><span class="o">=</span><span class="s">6a174c20-f6de-a53c-74d2-6018fcceff64</span>
+</span></code></pre></div>
+<h3 id="tls-configuration">TLS Configuration</h3>
+<p>If your CredHub instance is signed with TLS by a local Certificate Authority, you can use the following environment
+variable:</p>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="na">CONCOURSE_CREDHUB_CA_CERT</span><span class="o">=</span><span class="s">/etc/ca.crt</span>
+</span></code></pre></div>
+<details class="danger">
+<summary>Skip SSL Verification</summary>
+<p>CredHub can also be configured to skip SSL Verification. This property should not be used within production.</p>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="na">CONCOURSE_CREDHUB_INSECURE_SKIP_VERIFY</span><span class="o">=</span><span class="s">true</span>
+</span></code></pre></div>
+</details>
+<h3 id="mtls-configuration">mTLS Configuration</h3>
+<p>CredHub can also be configured to authenticate
+using <a href="https://github.com/cloudfoundry/credhub/blob/main/docs/mutual-tls.md">Mutual TLS (mTLS)</a> instead of traditional
+password or token-based methods. This can be accomplished using the following environment variables:</p>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="na">CONCOURSE_CREDHUB_URL</span><span class="o">=</span><span class="s">https://credhub-server:9000</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="na">CONCOURSE_CREDHUB_CA_CERT</span><span class="o">=</span><span class="s">/etc/ca.crt</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="na">CONCOURSE_CREDHUB_CLIENT_CERT</span><span class="o">=</span><span class="s">/etc/client.crt</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="na">CONCOURSE_CREDHUB_CLIENT_KEY</span><span class="o">=</span><span class="s">/etc/client.pem</span>
 </span></code></pre></div>
 <h2 id="credential-lookup-rules">Credential Lookup Rules</h2>
 <p>When resolving a parameter such as <code>((foo_param))</code>, it will look in the following paths, in order:</p>
@@ -5875,14 +6047,31 @@ you may configure:</p>
 <li><code>/concourse/TEAM_NAME/PIPELINE_NAME/foo_param</code></li>
 <li><code>/concourse/TEAM_NAME/foo_param</code></li>
 </ul>
-<p>The leading <code>/concourse</code> can be changed by specifying <code>--credhub-path-prefix</code>.</p>
 <p>CredHub credentials actually have different types, which may contain multiple values. For example, the <code>user</code> type
-specifies both <code>username</code> and <code>password.</code> You can specify the field to grab via <code>.</code> syntax,
-e.g. <code>((foo_param.username))</code>.</p>
+specifies both <code>username</code> and <code>password.</code> You can specify the field to grab via <code>.</code> syntax, e.g.
+<code>((foo_param.username))</code>.</p>
 <p>If the action is being run in the context of a pipeline (e.g. a <code>check</code> or a step in a build of a job), the ATC will
 first look in the pipeline path. If it's not found there, it will look in the team path. This allows credentials to be
 scoped widely if they're common across many pipelines.</p>
-<p>If an action is being run in a one-off build, the ATC will only look in the team path.</p>
+<p>When executing a one-off task, there is no pipeline: so in this case, only the team path <code>/concourse/TEAM_NAME/foo</code> is
+searched.</p>
+<p>There are several ways to customize the lookup logic:</p>
+<ol>
+<li>Add a "shared path", for secrets common to all teams.</li>
+<li>Change the path prefix from <code>/concourse</code> to something else.</li>
+</ol>
+<p>Each of these can be controlled by Concourse command line flags, or environment variables.</p>
+<h3 id="configuring-a-shared-path">Configuring a shared path</h3>
+<p>A "shared path" can also be configured for credentials that you would like to share across all teams and pipelines,
+foregoing the default team/pipeline namespacing. Use with care!</p>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="na">CONCOURSE_CREDHUB_SHARED_PATH</span><span class="o">=</span><span class="s">some-shared-path</span>
+</span></code></pre></div>
+<p>This path must exist under the configured path prefix. The above configuration would correspond to
+<code>/concourse/some-shared-path</code> with the default <code>/concourse</code> prefix.</p>
+<h3 id="changing-the-path-prefix">Changing the path prefix</h3>
+<p>The leading <code>/concourse</code> can be changed by specifying the following:</p>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="na">CONCOURSE_CREDHUB_PATH_PREFIX</span><span class="o">=</span><span class="s">/some-other-prefix</span>
+</span></code></pre></div>
 
 
 
@@ -5923,7 +6112,7 @@ scoped widely if they're common across many pipelines.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer">
         
           
-          <a href="../vault/" class="md-footer__link md-footer__link--prev" aria-label="Previous: The Vault credential manager">
+          <a href="../conjur/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Conjur credential manager">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
@@ -5933,20 +6122,20 @@ scoped widely if they're common across many pipelines.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                The Vault credential manager
+                Conjur credential manager
               </div>
             </div>
           </a>
         
         
           
-          <a href="../aws-ssm/" class="md-footer__link md-footer__link--next" aria-label="Next: The AWS SSM credential manager">
+          <a href="../id-token/" class="md-footer__link md-footer__link--next" aria-label="Next: IDToken credential manager">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                The AWS SSM credential manager
+                IDToken credential manager
               </div>
             </div>
             <div class="md-footer__button md-icon">

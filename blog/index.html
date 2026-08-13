@@ -120,6 +120,18 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+<center>
+  🎉 <a href="/blog/2026-08-12-v830-release/">v8.3.0 is out! Click Here to Learn About the New Features</a> ✈️
+</center>
+
+          </div>
+          
+        </aside>
+      
     </div>
     
     
@@ -3643,6 +3655,8 @@
       
         
       
+        
+      
     
     
     
@@ -3871,42 +3885,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../docs/operation/creds/vault/" class="md-nav__link">
+      <a href="../docs/operation/creds/aws-secrets/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    The Vault credential manager
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../docs/operation/creds/credhub/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    The CredHub credential manager
+    AWS Secrets Manager credential manager
   
 
     
@@ -3934,7 +3920,7 @@
   <span class="md-ellipsis">
     
   
-    The AWS SSM credential manager
+    AWS Systems Manager credential manager
   
 
     
@@ -3955,14 +3941,70 @@
   
   
     <li class="md-nav__item">
-      <a href="../docs/operation/creds/aws-secrets/" class="md-nav__link">
+      <a href="../docs/operation/creds/conjur/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    The AWS Secrets Manager credential manager
+    Conjur credential manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/operation/creds/credhub/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CredHub credential manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/operation/creds/id-token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDToken credential manager
   
 
     
@@ -4011,42 +4053,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../docs/operation/creds/conjur/" class="md-nav__link">
+      <a href="../docs/operation/creds/vault/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    The Conjur credential manager
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../docs/operation/creds/id-token/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    The IDToken credential manager
+    Vault credential manager
   
 
     
@@ -4279,6 +4293,34 @@
     
   
     Global Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/operation/health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Health Endpoint
   
 
     
@@ -5756,6 +5798,57 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
+          <time datetime="2026-08-12 00:00:00+00:00">August 12, 2026</time></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              8 min read
+            
+          </li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="v830-release"><a class="toclink" href="2026-08-12-v830-release/">v8.3.0 Release</a></h2>
+<p><a href="https://github.com/concourse/concourse/releases/tag/v8.3.0">v8.3.0</a> has been
+released. This release was brought to you by 50 PRs from 13 contributors, seven
+of them first-time contributors. Thank you to everyone who contributed to this
+release!</p>
+<p>Read the <a href="https://github.com/concourse/concourse/releases/tag/v8.2.0">release
+notes</a> on GitHub
+for a full rundown of what's new and fixed. The rest of this post will go over
+the biggest features I'm excited about in this release.</p>
+
+    
+      <nav class="md-post__action">
+        <a href="2026-08-12-v830-release/">
+          Continue reading
+        </a>
+      </nav>
+    
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+      <nav class="md-post__authors md-typeset">
+        
+          <span class="md-author">
+            <img src="https://github.com/taylorsilva.png" alt="Taylor Silva">
+          </span>
+        
+      </nav>
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
           <time datetime="2026-05-07 00:00:00+00:00">May 7, 2026</time></li>
         
         
@@ -6150,47 +6243,6 @@ pipelines!</p>
     
       <nav class="md-post__action">
         <a href="2020-08-24-gitops-for-your-pipelines/">
-          Continue reading
-        </a>
-      </nav>
-    
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2020-07-10 00:00:00+00:00">July 10, 2020</time></li>
-        
-          <li class="md-meta__item">
-            in
-            
-              <a href="category/rfcs/" class="md-meta__link">rfcs</a></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              1 min read
-            
-          </li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="rfc-round-up-july-10th-2020"><a class="toclink" href="2020-07-10-rfc-round-up-july-10th-2020/">RFC round-up: July 10th, 2020</a></h2>
-<p>Happy Friday! This one's brief.</p>
-
-    
-      <nav class="md-post__action">
-        <a href="2020-07-10-rfc-round-up-july-10th-2020/">
           Continue reading
         </a>
       </nav>

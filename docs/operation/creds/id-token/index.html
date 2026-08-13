@@ -8,10 +8,10 @@
         <link rel="canonical" href="https://concourse-ci.org/docs/operation/creds/id-token/">
       
       
-        <link rel="prev" href="../conjur/">
+        <link rel="prev" href="../credhub/">
       
       
-        <link rel="next" href="../caching/">
+        <link rel="next" href="../kubernetes/">
       
       
         
@@ -22,7 +22,7 @@
     
     
       
-        <title>The IDToken credential manager - Concourse</title>
+        <title>IDToken credential manager - Concourse</title>
       
     
     
@@ -120,6 +120,18 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+<center>
+  🎉 <a href="/blog/2026-08-12-v830-release/">v8.3.0 is out! Click Here to Learn About the New Features</a> ✈️
+</center>
+
+          </div>
+          
+        </aside>
+      
     </div>
     
     
@@ -148,7 +160,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              The IDToken credential manager
+              IDToken credential manager
             
           </span>
         </div>
@@ -3650,6 +3662,8 @@
       
         
       
+        
+      
     
     
     
@@ -3880,42 +3894,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../vault/" class="md-nav__link">
+      <a href="../aws-secrets/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    The Vault credential manager
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../credhub/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    The CredHub credential manager
+    AWS Secrets Manager credential manager
   
 
     
@@ -3943,63 +3929,7 @@
   <span class="md-ellipsis">
     
   
-    The AWS SSM credential manager
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../aws-secrets/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    The AWS Secrets Manager credential manager
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../kubernetes/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Kubernetes Credential Manager
+    AWS Systems Manager credential manager
   
 
     
@@ -4027,7 +3957,35 @@
   <span class="md-ellipsis">
     
   
-    The Conjur credential manager
+    Conjur credential manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../credhub/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CredHub credential manager
   
 
     
@@ -4062,7 +4020,7 @@
   <span class="md-ellipsis">
     
   
-    The IDToken credential manager
+    IDToken credential manager
   
 
     
@@ -4080,7 +4038,7 @@
   <span class="md-ellipsis">
     
   
-    The IDToken credential manager
+    IDToken credential manager
   
 
     
@@ -4229,6 +4187,62 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes Credential Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vault/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vault credential manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -4453,6 +4467,34 @@
     
   
     Global Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Health Endpoint
   
 
     
@@ -6057,7 +6099,7 @@
   
 
 
-  <h1>The IDToken credential manager</h1>
+  <h1>IDToken credential manager</h1>
 
 <p>This idtoken credential manager is a bit special. It doesn't load any credentials from an external source but instead
 generates <a href="https://datatracker.ietf.org/doc/html/rfc7519">JWTs</a> which are signed by concourse and contain information
@@ -6456,7 +6498,7 @@ job name, where instance vars would go.&nbsp;<a class="footnote-backref" href="#
       <nav class="md-footer__inner md-grid" aria-label="Footer">
         
           
-          <a href="../conjur/" class="md-footer__link md-footer__link--prev" aria-label="Previous: The Conjur credential manager">
+          <a href="../credhub/" class="md-footer__link md-footer__link--prev" aria-label="Previous: CredHub credential manager">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
@@ -6466,20 +6508,20 @@ job name, where instance vars would go.&nbsp;<a class="footnote-backref" href="#
                 Previous
               </span>
               <div class="md-ellipsis">
-                The Conjur credential manager
+                CredHub credential manager
               </div>
             </div>
           </a>
         
         
           
-          <a href="../caching/" class="md-footer__link md-footer__link--next" aria-label="Next: Caching credentials">
+          <a href="../kubernetes/" class="md-footer__link md-footer__link--next" aria-label="Next: Kubernetes Credential Manager">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Caching credentials
+                Kubernetes Credential Manager
               </div>
             </div>
             <div class="md-footer__button md-icon">

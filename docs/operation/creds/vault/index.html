@@ -8,10 +8,10 @@
         <link rel="canonical" href="https://concourse-ci.org/docs/operation/creds/vault/">
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../kubernetes/">
       
       
-        <link rel="next" href="../credhub/">
+        <link rel="next" href="../caching/">
       
       
         
@@ -22,7 +22,7 @@
     
     
       
-        <title>The Vault credential manager - Concourse</title>
+        <title>Vault credential manager - Concourse</title>
       
     
     
@@ -113,12 +113,24 @@
     <div data-md-component="skip">
       
         
-        <a href="#credential-lookup-rules" class="md-skip">
+        <a href="#configuration" class="md-skip">
           Skip to content
         </a>
       
     </div>
     <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+<center>
+  🎉 <a href="/blog/2026-08-12-v830-release/">v8.3.0 is out! Click Here to Learn About the New Features</a> ✈️
+</center>
+
+          </div>
+          
+        </aside>
       
     </div>
     
@@ -148,7 +160,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              The Vault credential manager
+              Vault credential manager
             
           </span>
         </div>
@@ -3650,6 +3662,8 @@
       
         
       
+        
+      
     
     
     
@@ -3877,6 +3891,174 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-secrets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS Secrets Manager credential manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-ssm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS Systems Manager credential manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conjur/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conjur credential manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../credhub/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CredHub credential manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../id-token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDToken credential manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes Credential Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -3894,7 +4076,7 @@
   <span class="md-ellipsis">
     
   
-    The Vault credential manager
+    Vault credential manager
   
 
     
@@ -3912,7 +4094,7 @@
   <span class="md-ellipsis">
     
   
-    The Vault credential manager
+    Vault credential manager
   
 
     
@@ -3934,6 +4116,123 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tls-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TLS Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-the-secrets-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring the secrets engine
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring the secrets engine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enabling-kv-mount-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enabling KV mount caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring Authentication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring Authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-a-periodic-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using a periodic token
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-userpass-auth-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the userpass auth backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-approle-auth-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the approle auth backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-cert-auth-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the cert auth backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#credential-lookup-rules" class="md-nav__link">
@@ -3996,267 +4295,10 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#configuring-the-secrets-engine" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configuring the secrets engine
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Configuring the secrets engine">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#enabling-kv-mount-caching" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Enabling KV mount caching
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#authenticating-with-vault" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Authenticating with Vault
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Authenticating with Vault">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#using-a-periodic-token" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Using a periodic token
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#using-the-userpass-auth-backend" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Using the userpass auth backend
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#using-the-approle-auth-backend" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Using the approle auth backend
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#using-the-cert-auth-backend" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Using the cert auth backend
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../credhub/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    The CredHub credential manager
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../aws-ssm/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    The AWS SSM credential manager
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../aws-secrets/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    The AWS Secrets Manager credential manager
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../kubernetes/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Kubernetes Credential Manager
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../conjur/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    The Conjur credential manager
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../id-token/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    The IDToken credential manager
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -4481,6 +4523,34 @@
     
   
     Global Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Health Endpoint
   
 
     
@@ -5931,6 +6001,123 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tls-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TLS Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-the-secrets-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring the secrets engine
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring the secrets engine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enabling-kv-mount-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enabling KV mount caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring Authentication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring Authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-a-periodic-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using a periodic token
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-userpass-auth-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the userpass auth backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-approle-auth-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the approle auth backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-cert-auth-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the cert auth backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#credential-lookup-rules" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5991,95 +6178,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#configuring-the-secrets-engine" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configuring the secrets engine
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Configuring the secrets engine">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#enabling-kv-mount-caching" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Enabling KV mount caching
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#authenticating-with-vault" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Authenticating with Vault
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Authenticating with Vault">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#using-a-periodic-token" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Using a periodic token
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#using-the-userpass-auth-backend" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Using the userpass auth backend
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#using-the-approle-auth-backend" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Using the approle auth backend
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#using-the-cert-auth-backend" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Using the cert auth backend
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -6113,19 +6211,248 @@
   
 
 
-  <h1>The Vault credential manager</h1>
+  <h1>Vault credential manager</h1>
 
-<p>Concourse can be configured to pull credentials from a <a href="https://vaultproject.io/">Vault</a> instance.</p>
-<p>To configure this, first configure the URL of your Vault server by setting the following env on
-the <a href="../../../install/running-web/"><code>web</code> node</a>:</p>
+<p>Concourse can be configured to pull credentials from <a href="https://vaultproject.io/">Vault</a>.</p>
+<h2 id="configuration">Configuration</h2>
+<p>To enable this credential manager, configure the following environment variables on the <a href="../../../install/running-web/">
+<code>web</code> node</a>:</p>
 <div class="language-properties highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="na">CONCOURSE_VAULT_URL</span><span class="o">=</span><span class="s">https://vault.example.com:8200</span>
 </span></code></pre></div>
-<p>You may also need to configure the CA cert for Vault:</p>
-<div class="language-properties highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="na">CONCOURSE_VAULT_CA_CERT</span><span class="o">=</span><span class="s">path/to/ca.crt</span>
+<h3 id="tls-configuration">TLS Configuration</h3>
+<p>If your Vault instance is signed with TLS by a local Certificate Authority, you can use the following environment
+variable:</p>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="na">CONCOURSE_VAULT_CA_CERT</span><span class="o">=</span><span class="s">/etc/ca.crt</span>
 </span></code></pre></div>
 <p>You'll also need to configure how the <code>web</code> node authenticates with Vault -
-see <a href="#authenticating-with-vault">Authenticating with Vault</a> for
+see <a href="#configuring-authentication">Authenticating with Vault</a> for
 more details as that step is quite involved.</p>
+<h3 id="configuring-the-secrets-engine">Configuring the secrets engine</h3>
+<p>Concourse is currently limited to looking under a single path, meaning enabling only one secrets engine is
+supported: <code>kv</code>, or <code>kv_v2</code>.</p>
+<p>Using kv version 2 enables versioned secrets and the ability to restore previous versions or deleted secrets. Concourse
+will read the latest version of a secret at all times and if it is deleted it will appear as if the secret does not
+exist. More information regarding the Vault KV backend and the differences in versions can be
+found <a href="https://www.vaultproject.io/docs/secrets/kv">here</a>.</p>
+<p>So, let's configure the kv secrets engine and mount it at <code>/concourse</code>:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>vault<span class="w"> </span>secrets<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>-version<span class="o">=</span><span class="m">1</span><span class="w"> </span>-path<span class="o">=</span>concourse<span class="w"> </span>kv
+</span></code></pre></div>
+<p>To enable kv_v2 and versioned secrets:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>vault<span class="w"> </span>secrets<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>-version<span class="o">=</span><span class="m">2</span><span class="w"> </span>-path<span class="o">=</span>concourse<span class="w"> </span>kv
+</span></code></pre></div>
+<p>Next, you'll want to create a policy to allow Concourse to read from this path.</p>
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="err">path</span><span class="w"> </span><span class="s2">"concourse/*"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="na">capabilities</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"read"</span><span class="p">]</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Save this to <code>concourse-policy.hcl</code>, and then run:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>vault<span class="w"> </span>policy<span class="w"> </span>write<span class="w"> </span>concourse<span class="w"> </span>./concourse-policy.hcl
+</span></code></pre></div>
+<p>This configuration will allow Concourse to read all credentials under <code>/concourse</code>. This should match your configured
+path prefix.</p>
+<h4 id="enabling-kv-mount-caching">Enabling KV mount caching</h4>
+<p>When Concourse looks up secrets in Vault, it needs to determine which KV mount version (v1 or v2) contains the secret.
+By default, this information is fetched from Vault for each lookup. Enabling KV mount caching allows this information to be fetched once and reused for subsequent lookups, significantly reducing the number of Vault API calls.</p>
+<p>To enable KV mount caching, set the following environment variable on the <code>web</code> node:</p>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="na">CONCOURSE_VAULT_ENABLE_KV_MOUNT_CACHE</span><span class="o">=</span><span class="s">true</span>
+</span></code></pre></div>
+<h3 id="configuring-authentication">Configuring Authentication</h3>
+<p>There are many ways to authenticate with a Vault server. The <code>web</code> node can be configured with either a token or an
+arbitrary auth backend and arbitrary auth params, so just about all of them should be configurable.</p>
+<p>When the <code>web</code> node acquires a token, either by logging in with an auth backend or by being given one directly, it will
+continuously renew the token to ensure it doesn't expire. The renewal interval is half of the token's lease duration.</p>
+<h4 id="using-a-periodic-token">Using a periodic token</h4>
+<p>The simplest way to authenticate is by generating a periodic token:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$<span class="w"> </span>vault<span class="w"> </span>token<span class="w"> </span>create<span class="w"> </span>--policy<span class="w"> </span>concourse<span class="w"> </span>--period<span class="w"> </span>1h
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Key<span class="w">                </span>Value
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>---<span class="w">                </span>-----
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>token<span class="w">              </span>s.mSNnbhGAqxK2ZbMasOQ91rIA
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>token_accessor<span class="w">     </span>0qsib5YcYvROm86cT08IFxIT
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>token_duration<span class="w">     </span>1h
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>token_renewable<span class="w">    </span><span class="nb">true</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>token_policies<span class="w">     </span><span class="o">[</span>concourse<span class="w"> </span>default<span class="o">]</span>
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Choose your <code>--period</code> wisely, as the timer starts counting down as soon as the token is created. You should also
+  use a duration long enough to account for any planned <code>web</code> node downtime.</p>
+</div>
+<p>Once you have the token, just set the following env on the <code>web</code> node:</p>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="na">CONCOURSE_VAULT_CLIENT_TOKEN</span><span class="o">=</span><span class="s">s.mSNnbhGAqxK2ZbMasOQ91rIA</span>
+</span></code></pre></div>
+<p>Periodic tokens are the quickest way to get started, but they have one fatal flaw: if the <code>web</code> node is down for longer
+than the token's configured period, the token will expire and a new one will have to be created and configured. This can
+be avoided by using the <a href="#using-the-approle-auth-backend"><code>approle</code> auth backend</a>.</p>
+<h4 id="using-the-userpass-auth-backend">Using the <code>userpass</code> auth backend</h4>
+<p>The <a href="https://www.vaultproject.io/docs/auth/userpass.html"><code>userpass</code></a> backend allows for <em>users</em> (in this case,
+Concourse) to authenticate with a <em>user</em> pre-configured in Vault.</p>
+<p>With this backend, the <a href="../../../install/running-web/"><code>web</code> node</a> is configured with a <code>username</code> corresponding to a
+pre-configured user, and a <code>password</code> which is used to authenticate and acquire a token.</p>
+<p>The <code>userpass</code> backend must first be configured in Vault. Vault's <code>userpass</code> backend allows for a few parameters which you
+may want to set to determine the permissions and lifecycle of its issued tokens:</p>
+<dl>
+<dt><code>policies=names</code></dt>
+<dd>
+<p>This determines the policies (comma-separated) to set on each token. Be sure to set one that has access to the secrets
+path - see <a href="#configuring-the-secrets-engine">Configuring the secrets engine</a> for more information.</p>
+</dd>
+<dt><code>token_ttl=duration</code></dt>
+<dd>
+<p>This determines the TTL for each token granted. The token can be continuously renewed, as long as it is renewed before
+the TTL elapses.</p>
+</dd>
+<dt><code>token_max_ttl=duration</code></dt>
+<dd>
+<p>This sets a maximum lifetime for each token, after which the token can no longer be renewed.</p>
+</dd>
+<dd>
+<p>If configured, be sure to set the same value on the <code>web</code> node so that it can re-auth before this duration is reached:
+</p><div class="language-properties highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="na">CONCOURSE_VAULT_AUTH_BACKEND_MAX_TTL</span><span class="o">=</span><span class="s">1h</span>
+</span></code></pre></div><p></p>
+</dd>
+<dt><code>period=duration</code></dt>
+<dd>
+<p>If configured, tokens issued will be <a href="https://www.vaultproject.io/docs/concepts/tokens.html#periodic-tokens">periodic</a>
+. Periodic tokens are not bound by any configured max TTL, and can be renewed continuously. It does not make sense to
+configure both <code>period</code> and <code>token_max_ttl</code> as the max TTL will be ignored.</p>
+</dd>
+<dt><code>token_num_uses=count</code></dt>
+<dd>
+<p>This sets a limit on how often a token can be used. <strong>We do not recommend setting this value</strong>, as it will effectively
+hamstring Concourse after a few credential acquisitions. The <code>web</code> node does not currently know to re-acquire a token
+when this limit is reached.</p>
+</dd>
+<dd>
+<p>For a full list of options refer to <a href="https://developer.hashicorp.com/vault/api-docs/auth/userpass#parameters">userpass api docs</a>.
+</p><div class="language-shell highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>$<span class="w"> </span>vault<span class="w"> </span>auth<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>userpass
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Success!<span class="w"> </span>Enabled<span class="w"> </span>userpass<span class="w"> </span>auth<span class="w"> </span>method<span class="w"> </span>at:<span class="w"> </span>userpass/
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>$<span class="w"> </span>vault<span class="w"> </span>write<span class="w"> </span>auth/userpass/users/concourse<span class="w"> </span><span class="nv">policies</span><span class="o">=</span>concourse<span class="w"> </span><span class="nv">period</span><span class="o">=</span>1h<span class="w"> </span><span class="nv">password</span><span class="o">=</span>&lt;....&gt;
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>Success!<span class="w"> </span>Data<span class="w"> </span>written<span class="w"> </span>to:<span class="w"> </span>auth/userpass/users/concourse
+</span></code></pre></div><p></p>
+</dd>
+</dl>
+<p>Now that the backend is configured, we can use the <code>username</code> and <code>password</code>:</p>
+<p>These should then be set on the <a href="../../../install/running-web/"><code>web</code> node</a> like so:</p>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="na">CONCOURSE_VAULT_AUTH_BACKEND</span><span class="o">=</span><span class="s">"userpass"</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="na">CONCOURSE_VAULT_AUTH_PARAM</span><span class="o">=</span><span class="s">"username:concourse,password:&lt;....&gt;"</span>
+</span></code></pre></div>
+<h4 id="using-the-approle-auth-backend">Using the <code>approle</code> auth backend</h4>
+<p>The <a href="https://www.vaultproject.io/docs/auth/approle.html"><code>approle</code></a> backend allows for an <em>app</em> (in this case,
+Concourse) to authenticate with a <em>role</em> pre-configured in Vault.</p>
+<p>With this backend, the <a href="../../../install/running-web/"><code>web</code> node</a> is configured with a <code>role_id</code> corresponding to a
+pre-configured role, and a <code>secret_id</code> which is used to authenticate and acquire a token.</p>
+<p>The <code>approle</code> backend must first be configured in Vault. Vault's <code>approle</code> backend allows for a few parameters which you
+may want to set to determine the permissions and lifecycle of its issued tokens:</p>
+<dl>
+<dt><code>policies=names</code></dt>
+<dd>
+<p>This determines the policies (comma-separated) to set on each token. Be sure to set one that has access to the secrets
+path - see <a href="#configuring-the-secrets-engine">Configuring the secrets engine</a> for more information.</p>
+</dd>
+<dt><code>token_ttl=duration</code></dt>
+<dd>
+<p>This determines the TTL for each token granted. The token can be continuously renewed, as long as it is renewed before
+the TTL elapses.</p>
+</dd>
+<dt><code>token_max_ttl=duration</code></dt>
+<dd>
+<p>This sets a maximum lifetime for each token, after which the token can no longer be renewed.</p>
+</dd>
+<dd>
+<p>If configured, be sure to set the same value on the <code>web</code> node so that it can re-auth before this duration is reached:
+</p><div class="language-properties highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="na">CONCOURSE_VAULT_AUTH_BACKEND_MAX_TTL</span><span class="o">=</span><span class="s">1h</span>
+</span></code></pre></div><p></p>
+</dd>
+<dt><code>period=duration</code></dt>
+<dd>
+<p>If configured, tokens issued will be <a href="https://www.vaultproject.io/docs/concepts/tokens.html#periodic-tokens">periodic</a>
+. Periodic tokens are not bound by any configured max TTL, and can be renewed continuously. It does not make sense to
+configure both <code>period</code> and <code>token_max_ttl</code> as the max TTL will be ignored.</p>
+</dd>
+<dt><code>token_num_uses=count</code></dt>
+<dd>
+<p>This sets a limit on how often a token can be used. <strong>We do not recommend setting this value</strong>, as it will effectively
+hamstring Concourse after a few credential acquisitions. The <code>web</code> node does not currently know to re-acquire a token
+when this limit is reached.</p>
+</dd>
+<dt><code>secret_id_ttl=duration</code> and <code>secret_id_num_uses=count</code></dt>
+<dd>
+<p>These two configurations will result in the secret ID expiring after the configured time or configured number of
+log-ins, respectively.</p>
+</dd>
+<dd>
+<p>You should only set these if you have something periodically re-generating secret IDs and re-configuring your <code>web</code>
+nodes accordingly.</p>
+</dd>
+</dl>
+<p>Given all that, a typical configuration may look something like this:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>$<span class="w"> </span>vault<span class="w"> </span>auth<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>approle
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>Success!<span class="w"> </span>Enabled<span class="w"> </span>approle<span class="w"> </span>auth<span class="w"> </span>method<span class="w"> </span>at:<span class="w"> </span>approle/
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>$<span class="w"> </span>vault<span class="w"> </span>write<span class="w"> </span>auth/approle/role/concourse<span class="w"> </span><span class="nv">policies</span><span class="o">=</span>concourse<span class="w"> </span><span class="nv">period</span><span class="o">=</span>1h
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>Success!<span class="w"> </span>Data<span class="w"> </span>written<span class="w"> </span>to:<span class="w"> </span>auth/approle/role/concourse
+</span></code></pre></div>
+<p>Now that the backend is configured, we'll need to obtain the <code>role_id</code> and generate a <code>secret_id</code>:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>$<span class="w"> </span>vault<span class="w"> </span><span class="nb">read</span><span class="w"> </span>auth/approle/role/concourse/role-id
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>Key<span class="w">        </span>Value
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>---<span class="w">        </span>-----
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>role_id<span class="w">    </span>5f3420cd-3c66-2eff-8bcc-0e8e258a7d18
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>$<span class="w"> </span>vault<span class="w"> </span>write<span class="w"> </span>-f<span class="w"> </span>auth/approle/role/concourse/secret-id
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>Key<span class="w">                   </span>Value
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>---<span class="w">                   </span>-----
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>secret_id<span class="w">             </span>f7ec2ac8-ad07-026a-3e1c-4c9781423155
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>secret_id_accessor<span class="w">    </span>1bd17fc6-dae1-0c82-d325-3b8f9b5654ee
+</span></code></pre></div>
+<p>These should then be set on the <a href="../../../install/running-web/"><code>web</code> node</a> like so:</p>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="na">CONCOURSE_VAULT_AUTH_BACKEND</span><span class="o">=</span><span class="s">"approle"</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="na">CONCOURSE_VAULT_AUTH_PARAM</span><span class="o">=</span><span class="s">"role_id:5f3420cd-3c66-2eff-8bcc-0e8e258a7d18,secret_id:f7ec2ac8-ad07-026a-3e1c-4c9781423155"</span>
+</span></code></pre></div>
+<h4 id="using-the-cert-auth-backend">Using the <code>cert</code> auth backend</h4>
+<p>The <a href="https://www.vaultproject.io/docs/auth/cert.html"><code>cert</code></a> auth method allows authentication using SSL/TLS client
+certificates.</p>
+<p>With this backend, the <a href="../../../install/running-web/"><code>web</code> node</a> is configured with a client cert and a client key.
+Vault must be configured with TLS, which you should be almost certainly be doing anyway.</p>
+<p>The <code>cert</code> backend must first be configured in Vault. Vault's <code>cert</code> backend allows for a few parameters which you may
+want to set to determine the lifecycle of its issued tokens:</p>
+<dl>
+<dt><code>policies=names</code></dt>
+<dd>
+<p>This determines the policies (comma-separated) to set on each token. Be sure to set one that has access to the secrets
+path -
+see <a href="#configuring-the-secrets-engine">Configuring the secrets engine</a>
+for more information.</p>
+</dd>
+<dt><code>ttl=duration</code></dt>
+<dd>
+<p>This determines the TTL for each token granted. The token can be continuously renewed, as long as it is renewed before
+the TTL elapses.</p>
+</dd>
+<dt><code>max_ttl=duration</code></dt>
+<dd>
+<p>This sets a maximum lifetime for each token, after which the token can no longer be renewed.</p>
+</dd>
+<dd>
+<p>If configured, be sure to set the same value on the <code>web</code> node so that it can re-auth before this duration is reached:
+</p><div class="language-properties highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="na">CONCOURSE_VAULT_AUTH_BACKEND_MAX_TTL</span><span class="o">=</span><span class="s">1h</span>
+</span></code></pre></div><p></p>
+</dd>
+<dt><code>period=duration</code></dt>
+<dd>If configured, tokens issued will be <a href="https://www.vaultproject.io/docs/concepts/tokens.html#periodic-tokens">
+<em>periodic</em></a>. Periodic tokens are not bound by any
+configured max TTL, and can be renewed continuously. It does not make sense to configure both <code>period</code> and <code>max_ttl</code> as
+the max TTL will be ignored.</dd>
+</dl>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>$<span class="w"> </span>vault<span class="w"> </span>auth<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>cert
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>Success!<span class="w"> </span>Enabled<span class="w"> </span>cert<span class="w"> </span>auth<span class="w"> </span>method<span class="w"> </span>at:<span class="w"> </span>cert/
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>$<span class="w"> </span>vault<span class="w"> </span>write<span class="w"> </span>auth/cert/certs/concourse<span class="w"> </span><span class="nv">policies</span><span class="o">=</span>concourse<span class="w"> </span><span class="nv">certificate</span><span class="o">=</span>@out/vault-ca.crt<span class="w"> </span><span class="nv">ttl</span><span class="o">=</span>1h
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>Success!<span class="w"> </span>Data<span class="w"> </span>written<span class="w"> </span>to:<span class="w"> </span>auth/cert/certs/concourse
+</span></code></pre></div>
+<p>Once that's all set up, you'll just need to configure the client cert and key on the <code>web</code> node like so:</p>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="na">CONCOURSE_VAULT_AUTH_BACKEND</span><span class="o">=</span><span class="s">"cert"</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="na">CONCOURSE_VAULT_CLIENT_CERT</span><span class="o">=</span><span class="s">vault-certs/concourse.crt</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="na">CONCOURSE_VAULT_CLIENT_KEY</span><span class="o">=</span><span class="s">vault-certs/concourse.key</span>
+</span></code></pre></div>
+<p>In this case no additional auth params are necessary, as the Vault's TLS auth backend will check the certificate against
+all roles if no name is specified.</p>
 <h2 id="credential-lookup-rules">Credential lookup rules</h2>
 <p>Vault lets you organize secrets into hierarchies, which is useful for when they should be accessible for particular
 pipelines or teams. When you have a parameter like <code>((foo))</code> in a pipeline definition, Concourse will (by default) look
@@ -6152,20 +6479,20 @@ searched.</p>
 <h3 id="configuring-a-shared-path">Configuring a shared path</h3>
 <p>A "shared path" can also be configured for credentials that you would like to share across all teams and pipelines,
 foregoing the default team/pipeline namespacing. Use with care!</p>
-<div class="language-properties highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="na">CONCOURSE_VAULT_SHARED_PATH</span><span class="o">=</span><span class="s">some-shared-path</span>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="na">CONCOURSE_VAULT_SHARED_PATH</span><span class="o">=</span><span class="s">some-shared-path</span>
 </span></code></pre></div>
 <p>This path must exist under the configured path prefix. The above configuration would correspond
 to <code>/concourse/some-shared-path</code> with the default <code>/concourse</code> prefix.</p>
 <h3 id="changing-the-path-templates">Changing the path templates</h3>
 <p>You can choose your own list of templates, which will expand to team- or pipeline-specific paths. These are subject to
 the path prefix. By default, the templates used are:</p>
-<div class="language-properties highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="na">CONCOURSE_VAULT_LOOKUP_TEMPLATES</span><span class="o">=</span><span class="s">/{{.Team}}/{{.Pipeline}}/{{.Secret}},/{{.Team}}/{{.Secret}}</span>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="na">CONCOURSE_VAULT_LOOKUP_TEMPLATES</span><span class="o">=</span><span class="s">/{{.Team}}/{{.Pipeline}}/{{.Secret}},/{{.Team}}/{{.Secret}}</span>
 </span></code></pre></div>
 <p>When secrets are to be looked up, these are evaluated subject to the configured path prefix, where <code>{{.Team}}</code> expands
 to the current team, <code>{{.Pipeline}}</code> to the current pipeline (if any), and <code>{{.Secret}}</code> to the name of the secret. So
 if the settings are:</p>
-<div class="language-properties highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="na">CONCOURSE_VAULT_PATH_PREFIX</span><span class="o">=</span><span class="s">/secrets</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="na">CONCOURSE_VAULT_LOOKUP_TEMPLATES</span><span class="o">=</span><span class="s">/{{.Team}}/concourse/{{.Pipeline}}/{{.Secret}},/{{.Team}}/concourse/{{.Secret}},/common/{{.Secret}}</span>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="na">CONCOURSE_VAULT_PATH_PREFIX</span><span class="o">=</span><span class="s">/secrets</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="na">CONCOURSE_VAULT_LOOKUP_TEMPLATES</span><span class="o">=</span><span class="s">/{{.Team}}/concourse/{{.Pipeline}}/{{.Secret}},/{{.Team}}/concourse/{{.Secret}},/common/{{.Secret}}</span>
 </span></code></pre></div>
 <p>and <code>((password))</code> is used in team <code>myteam</code> and pipeline <code>mypipeline</code>, Concourse will look for the following, in order:</p>
 <ol>
@@ -6175,240 +6502,13 @@ if the settings are:</p>
 </ol>
 <h3 id="changing-the-path-prefix">Changing the path prefix</h3>
 <p>The leading <code>/concourse</code> can be changed by specifying the following:</p>
-<div class="language-properties highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="na">CONCOURSE_VAULT_PATH_PREFIX</span><span class="o">=</span><span class="s">/some-other-prefix</span>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="na">CONCOURSE_VAULT_PATH_PREFIX</span><span class="o">=</span><span class="s">/some-other-prefix</span>
 </span></code></pre></div>
 <h3 id="using-a-vault-namespace">Using a Vault namespace</h3>
 <p>If you are using Vault Enterprise, you can make secret lookups and authentication happen under a namespace.</p>
-<div class="language-properties highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="na">CONCOURSE_VAULT_NAMESPACE</span><span class="o">=</span><span class="s">chosen/namespace/path</span>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="na">CONCOURSE_VAULT_NAMESPACE</span><span class="o">=</span><span class="s">chosen/namespace/path</span>
 </span></code></pre></div>
 <p>This setting applies to all teams equally.</p>
-<h2 id="configuring-the-secrets-engine">Configuring the secrets engine</h2>
-<p>Concourse is currently limited to looking under a single path, meaning enabling only one secrets engine is
-supported: <code>kv</code>, or <code>kv_v2</code>. This may change in the future - we're still collecting ideas
-in <a href="https://github.com/concourse/rfcs/pull/21">RFC #21</a>.</p>
-<p>Using kv version 2 enables versioned secrets and the ability to restore previous versions or deleted secrets. Concourse
-will read the latest version of a secret at all times and if it is deleted it will appear as if the secret does not
-exist. More information regarding the Vault KV backend and the differences in versions can be
-found <a href="https://www.vaultproject.io/docs/secrets/kv">here</a>.</p>
-<p>So, let's configure the kv secrets engine and mount it at <code>/concourse</code>:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>vault<span class="w"> </span>secrets<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>-version<span class="o">=</span><span class="m">1</span><span class="w"> </span>-path<span class="o">=</span>concourse<span class="w"> </span>kv
-</span></code></pre></div>
-<p>To enable kv_v2 and versioned secrets:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>vault<span class="w"> </span>secrets<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>-version<span class="o">=</span><span class="m">2</span><span class="w"> </span>-path<span class="o">=</span>concourse<span class="w"> </span>kv
-</span></code></pre></div>
-<p>Next, you'll want to create a policy to allow Concourse to read from this path.</p>
-<div class="language-hcl highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="err">path</span><span class="w"> </span><span class="s2">"concourse/*"</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="na">capabilities</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"read"</span><span class="p">]</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="p">}</span>
-</span></code></pre></div>
-<p>Save this to <code>concourse-policy.hcl</code>, and then run:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>vault<span class="w"> </span>policy<span class="w"> </span>write<span class="w"> </span>concourse<span class="w"> </span>./concourse-policy.hcl
-</span></code></pre></div>
-<p>This configuration will allow Concourse to read all credentials under <code>/concourse</code>. This should match your configured
-path prefix.</p>
-<h3 id="enabling-kv-mount-caching">Enabling KV mount caching</h3>
-<p>When Concourse looks up secrets in Vault, it needs to determine which KV mount version (v1 or v2) contains the secret.
-By default, this information is fetched from Vault for each lookup. Enabling KV mount caching allows this information to be fetched once and reused for subsequent lookups, significantly reducing the number of Vault API calls.</p>
-<p>To enable KV mount caching, set the following environment variable on the <code>web</code> node:</p>
-<div class="language-properties highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="na">CONCOURSE_VAULT_ENABLE_KV_MOUNT_CACHE</span><span class="o">=</span><span class="s">true</span>
-</span></code></pre></div>
-<h2 id="authenticating-with-vault">Authenticating with Vault</h2>
-<p>There are many ways to authenticate with a Vault server. The <code>web</code> node can be configured with either a token or an
-arbitrary auth backend and arbitrary auth params, so just about all of them should be configurable.</p>
-<p>When the <code>web</code> node acquires a token, either by logging in with an auth backend or by being given one directly, it will
-continuously renew the token to ensure it doesn't expire. The renewal interval is half of the token's lease duration.</p>
-<h3 id="using-a-periodic-token">Using a periodic token</h3>
-<p>The simplest way to authenticate is by generating a periodic token:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>$<span class="w"> </span>vault<span class="w"> </span>token<span class="w"> </span>create<span class="w"> </span>--policy<span class="w"> </span>concourse<span class="w"> </span>--period<span class="w"> </span>1h
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>Key<span class="w">                </span>Value
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>---<span class="w">                </span>-----
-</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>token<span class="w">              </span>s.mSNnbhGAqxK2ZbMasOQ91rIA
-</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>token_accessor<span class="w">     </span>0qsib5YcYvROm86cT08IFxIT
-</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>token_duration<span class="w">     </span>1h
-</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>token_renewable<span class="w">    </span><span class="nb">true</span>
-</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>token_policies<span class="w">     </span><span class="o">[</span>concourse<span class="w"> </span>default<span class="o">]</span>
-</span></code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Choose your <code>--period</code> wisely, as the timer starts counting down as soon as the token is created. You should also
-  use a duration long enough to account for any planned <code>web</code> node downtime.</p>
-</div>
-<p>Once you have the token, just set the following env on the <code>web</code> node:</p>
-<div class="language-properties highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="na">CONCOURSE_VAULT_CLIENT_TOKEN</span><span class="o">=</span><span class="s">s.mSNnbhGAqxK2ZbMasOQ91rIA</span>
-</span></code></pre></div>
-<p>Periodic tokens are the quickest way to get started, but they have one fatal flaw: if the <code>web</code> node is down for longer
-than the token's configured period, the token will expire and a new one will have to be created and configured. This can
-be avoided by using the <a href="#using-the-approle-auth-backend"><code>approle</code> auth backend</a>.</p>
-<h3 id="using-the-userpass-auth-backend">Using the <code>userpass</code> auth backend</h3>
-<p>The <a href="https://www.vaultproject.io/docs/auth/userpass.html"><code>userpass</code></a> backend allows for <em>users</em> (in this case,
-Concourse) to authenticate with a <em>user</em> pre-configured in Vault.</p>
-<p>With this backend, the <a href="../../../install/running-web/"><code>web</code> node</a> is configured with a <code>username</code> corresponding to a
-pre-configured user, and a <code>password</code> which is used to authenticate and acquire a token.</p>
-<p>The <code>userpass</code> backend must first be configured in Vault. Vault's <code>userpass</code> backend allows for a few parameters which you
-may want to set to determine the permissions and lifecycle of its issued tokens:</p>
-<dl>
-<dt><code>policies=names</code></dt>
-<dd>
-<p>This determines the policies (comma-separated) to set on each token. Be sure to set one that has access to the secrets
-path - see <a href="#configuring-the-secrets-engine">Configuring the secrets engine</a> for more information.</p>
-</dd>
-<dt><code>token_ttl=duration</code></dt>
-<dd>
-<p>This determines the TTL for each token granted. The token can be continuously renewed, as long as it is renewed before
-the TTL elapses.</p>
-</dd>
-<dt><code>token_max_ttl=duration</code></dt>
-<dd>
-<p>This sets a maximum lifetime for each token, after which the token can no longer be renewed.</p>
-</dd>
-<dd>
-<p>If configured, be sure to set the same value on the <code>web</code> node so that it can re-auth before this duration is reached:
-</p><div class="language-properties highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="na">CONCOURSE_VAULT_AUTH_BACKEND_MAX_TTL</span><span class="o">=</span><span class="s">1h</span>
-</span></code></pre></div><p></p>
-</dd>
-<dt><code>period=duration</code></dt>
-<dd>
-<p>If configured, tokens issued will be <a href="https://www.vaultproject.io/docs/concepts/tokens.html#periodic-tokens">periodic</a>
-. Periodic tokens are not bound by any configured max TTL, and can be renewed continuously. It does not make sense to
-configure both <code>period</code> and <code>token_max_ttl</code> as the max TTL will be ignored.</p>
-</dd>
-<dt><code>token_num_uses=count</code></dt>
-<dd>
-<p>This sets a limit on how often a token can be used. <strong>We do not recommend setting this value</strong>, as it will effectively
-hamstring Concourse after a few credential acquisitions. The <code>web</code> node does not currently know to re-acquire a token
-when this limit is reached.</p>
-</dd>
-<dd>
-<p>For a full list of options refer to <a href="https://developer.hashicorp.com/vault/api-docs/auth/userpass#parameters">userpass api docs</a>.
-</p><div class="language-shell highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>$<span class="w"> </span>vault<span class="w"> </span>auth<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>userpass
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>Success!<span class="w"> </span>Enabled<span class="w"> </span>userpass<span class="w"> </span>auth<span class="w"> </span>method<span class="w"> </span>at:<span class="w"> </span>userpass/
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>$<span class="w"> </span>vault<span class="w"> </span>write<span class="w"> </span>auth/userpass/users/concourse<span class="w"> </span><span class="nv">policies</span><span class="o">=</span>concourse<span class="w"> </span><span class="nv">period</span><span class="o">=</span>1h<span class="w"> </span><span class="nv">password</span><span class="o">=</span>&lt;....&gt;
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>Success!<span class="w"> </span>Data<span class="w"> </span>written<span class="w"> </span>to:<span class="w"> </span>auth/userpass/users/concourse
-</span></code></pre></div><p></p>
-</dd>
-</dl>
-<p>Now that the backend is configured, we can use the <code>username</code> and <code>password</code>:</p>
-<p>These should then be set on the <a href="../../../install/running-web/"><code>web</code> node</a> like so:</p>
-<div class="language-properties highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="na">CONCOURSE_VAULT_AUTH_BACKEND</span><span class="o">=</span><span class="s">"userpass"</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="na">CONCOURSE_VAULT_AUTH_PARAM</span><span class="o">=</span><span class="s">"username:concourse,password:&lt;....&gt;"</span>
-</span></code></pre></div>
-<h3 id="using-the-approle-auth-backend">Using the <code>approle</code> auth backend</h3>
-<p>The <a href="https://www.vaultproject.io/docs/auth/approle.html"><code>approle</code></a> backend allows for an <em>app</em> (in this case,
-Concourse) to authenticate with a <em>role</em> pre-configured in Vault.</p>
-<p>With this backend, the <a href="../../../install/running-web/"><code>web</code> node</a> is configured with a <code>role_id</code> corresponding to a
-pre-configured role, and a <code>secret_id</code> which is used to authenticate and acquire a token.</p>
-<p>The <code>approle</code> backend must first be configured in Vault. Vault's <code>approle</code> backend allows for a few parameters which you
-may want to set to determine the permissions and lifecycle of its issued tokens:</p>
-<dl>
-<dt><code>policies=names</code></dt>
-<dd>
-<p>This determines the policies (comma-separated) to set on each token. Be sure to set one that has access to the secrets
-path - see <a href="#configuring-the-secrets-engine">Configuring the secrets engine</a> for more information.</p>
-</dd>
-<dt><code>token_ttl=duration</code></dt>
-<dd>
-<p>This determines the TTL for each token granted. The token can be continuously renewed, as long as it is renewed before
-the TTL elapses.</p>
-</dd>
-<dt><code>token_max_ttl=duration</code></dt>
-<dd>
-<p>This sets a maximum lifetime for each token, after which the token can no longer be renewed.</p>
-</dd>
-<dd>
-<p>If configured, be sure to set the same value on the <code>web</code> node so that it can re-auth before this duration is reached:
-</p><div class="language-properties highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="na">CONCOURSE_VAULT_AUTH_BACKEND_MAX_TTL</span><span class="o">=</span><span class="s">1h</span>
-</span></code></pre></div><p></p>
-</dd>
-<dt><code>period=duration</code></dt>
-<dd>
-<p>If configured, tokens issued will be <a href="https://www.vaultproject.io/docs/concepts/tokens.html#periodic-tokens">periodic</a>
-. Periodic tokens are not bound by any configured max TTL, and can be renewed continuously. It does not make sense to
-configure both <code>period</code> and <code>token_max_ttl</code> as the max TTL will be ignored.</p>
-</dd>
-<dt><code>token_num_uses=count</code></dt>
-<dd>
-<p>This sets a limit on how often a token can be used. <strong>We do not recommend setting this value</strong>, as it will effectively
-hamstring Concourse after a few credential acquisitions. The <code>web</code> node does not currently know to re-acquire a token
-when this limit is reached.</p>
-</dd>
-<dt><code>secret_id_ttl=duration</code> and <code>secret_id_num_uses=count</code></dt>
-<dd>
-<p>These two configurations will result in the secret ID expiring after the configured time or configured number of
-log-ins, respectively.</p>
-</dd>
-<dd>
-<p>You should only set these if you have something periodically re-generating secret IDs and re-configuring your <code>web</code>
-nodes accordingly.</p>
-</dd>
-</dl>
-<p>Given all that, a typical configuration may look something like this:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>$<span class="w"> </span>vault<span class="w"> </span>auth<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>approle
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>Success!<span class="w"> </span>Enabled<span class="w"> </span>approle<span class="w"> </span>auth<span class="w"> </span>method<span class="w"> </span>at:<span class="w"> </span>approle/
-</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>$<span class="w"> </span>vault<span class="w"> </span>write<span class="w"> </span>auth/approle/role/concourse<span class="w"> </span><span class="nv">policies</span><span class="o">=</span>concourse<span class="w"> </span><span class="nv">period</span><span class="o">=</span>1h
-</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>Success!<span class="w"> </span>Data<span class="w"> </span>written<span class="w"> </span>to:<span class="w"> </span>auth/approle/role/concourse
-</span></code></pre></div>
-<p>Now that the backend is configured, we'll need to obtain the <code>role_id</code> and generate a <code>secret_id</code>:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>$<span class="w"> </span>vault<span class="w"> </span><span class="nb">read</span><span class="w"> </span>auth/approle/role/concourse/role-id
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>Key<span class="w">        </span>Value
-</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>---<span class="w">        </span>-----
-</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>role_id<span class="w">    </span>5f3420cd-3c66-2eff-8bcc-0e8e258a7d18
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>$<span class="w"> </span>vault<span class="w"> </span>write<span class="w"> </span>-f<span class="w"> </span>auth/approle/role/concourse/secret-id
-</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>Key<span class="w">                   </span>Value
-</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>---<span class="w">                   </span>-----
-</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>secret_id<span class="w">             </span>f7ec2ac8-ad07-026a-3e1c-4c9781423155
-</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>secret_id_accessor<span class="w">    </span>1bd17fc6-dae1-0c82-d325-3b8f9b5654ee
-</span></code></pre></div>
-<p>These should then be set on the <a href="../../../install/running-web/"><code>web</code> node</a> like so:</p>
-<div class="language-properties highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="na">CONCOURSE_VAULT_AUTH_BACKEND</span><span class="o">=</span><span class="s">"approle"</span>
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="na">CONCOURSE_VAULT_AUTH_PARAM</span><span class="o">=</span><span class="s">"role_id:5f3420cd-3c66-2eff-8bcc-0e8e258a7d18,secret_id:f7ec2ac8-ad07-026a-3e1c-4c9781423155"</span>
-</span></code></pre></div>
-<h3 id="using-the-cert-auth-backend">Using the <code>cert</code> auth backend</h3>
-<p>The <a href="https://www.vaultproject.io/docs/auth/cert.html"><code>cert</code></a> auth method allows authentication using SSL/TLS client
-certificates.</p>
-<p>With this backend, the <a href="../../../install/running-web/"><code>web</code> node</a> is configured with a client cert and a client key.
-Vault must be configured with TLS, which you should be almost certainly be doing anyway.</p>
-<p>The <code>cert</code> backend must first be configured in Vault. Vault's <code>cert</code> backend allows for a few parameters which you may
-want to set to determine the lifecycle of its issued tokens:</p>
-<dl>
-<dt><code>policies=names</code></dt>
-<dd>
-<p>This determines the policies (comma-separated) to set on each token. Be sure to set one that has access to the secrets
-path -
-see <a href="#configuring-the-secrets-engine">Configuring the secrets engine</a>
-for more information.</p>
-</dd>
-<dt><code>ttl=duration</code></dt>
-<dd>
-<p>This determines the TTL for each token granted. The token can be continuously renewed, as long as it is renewed before
-the TTL elapses.</p>
-</dd>
-<dt><code>max_ttl=duration</code></dt>
-<dd>
-<p>This sets a maximum lifetime for each token, after which the token can no longer be renewed.</p>
-</dd>
-<dd>
-<p>If configured, be sure to set the same value on the <code>web</code> node so that it can re-auth before this duration is reached:
-</p><div class="language-properties highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="na">CONCOURSE_VAULT_AUTH_BACKEND_MAX_TTL</span><span class="o">=</span><span class="s">1h</span>
-</span></code></pre></div><p></p>
-</dd>
-<dt><code>period=duration</code></dt>
-<dd>If configured, tokens issued will be <a href="https://www.vaultproject.io/docs/concepts/tokens.html#periodic-tokens">
-<em>periodic</em></a>. Periodic tokens are not bound by any
-configured max TTL, and can be renewed continuously. It does not make sense to configure both <code>period</code> and <code>max_ttl</code> as
-the max TTL will be ignored.</dd>
-</dl>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>$<span class="w"> </span>vault<span class="w"> </span>auth<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>cert
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>Success!<span class="w"> </span>Enabled<span class="w"> </span>cert<span class="w"> </span>auth<span class="w"> </span>method<span class="w"> </span>at:<span class="w"> </span>cert/
-</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>$<span class="w"> </span>vault<span class="w"> </span>write<span class="w"> </span>auth/cert/certs/concourse<span class="w"> </span><span class="nv">policies</span><span class="o">=</span>concourse<span class="w"> </span><span class="nv">certificate</span><span class="o">=</span>@out/vault-ca.crt<span class="w"> </span><span class="nv">ttl</span><span class="o">=</span>1h
-</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>Success!<span class="w"> </span>Data<span class="w"> </span>written<span class="w"> </span>to:<span class="w"> </span>auth/cert/certs/concourse
-</span></code></pre></div>
-<p>Once that's all set up, you'll just need to configure the client cert and key on the <code>web</code> node like so:</p>
-<div class="language-properties highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="na">CONCOURSE_VAULT_AUTH_BACKEND</span><span class="o">=</span><span class="s">"cert"</span>
-</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="na">CONCOURSE_VAULT_CLIENT_CERT</span><span class="o">=</span><span class="s">vault-certs/concourse.crt</span>
-</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="na">CONCOURSE_VAULT_CLIENT_KEY</span><span class="o">=</span><span class="s">vault-certs/concourse.key</span>
-</span></code></pre></div>
-<p>In this case no additional auth params are necessary, as the Vault's TLS auth backend will check the certificate against
-all roles if no name is specified.</p>
 
 
 
@@ -6449,7 +6549,7 @@ all roles if no name is specified.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer">
         
           
-          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Credential Management">
+          <a href="../kubernetes/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Kubernetes Credential Manager">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
@@ -6459,20 +6559,20 @@ all roles if no name is specified.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Credential Management
+                Kubernetes Credential Manager
               </div>
             </div>
           </a>
         
         
           
-          <a href="../credhub/" class="md-footer__link md-footer__link--next" aria-label="Next: The CredHub credential manager">
+          <a href="../caching/" class="md-footer__link md-footer__link--next" aria-label="Next: Caching credentials">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                The CredHub credential manager
+                Caching credentials
               </div>
             </div>
             <div class="md-footer__button md-icon">
