@@ -2,117 +2,165 @@
 title: Multi-Branch Workflows
 ---
 
-Teams may make use of multiple branches for their development. For instance, some teams create feature branches while
-working on new functionality - once this functionality is ready, the branch will be merged into the main branch and the
-feature branch will be deleted.
+Teams may make use of multiple branches for their development. For instance,
+some teams create feature branches while working on new functionality - once
+this functionality is ready, the branch will be merged into the main branch and
+the feature branch will be deleted.
 
-While a feature is under development, you'll often want to run tests against the feature branch and possibly deploy to a
-staging environment. To model this in Concourse, you'll need to have a pipeline for each active feature branch. Manually
-setting (and eventually archiving) a pipeline for each feature branch would be quite a burden. For this type of
-workflow, Concourse has a few important tools to help you out: the [`set_pipeline` step](../../steps/set-pipeline.md), [
-`across`](../../steps/modifier-and-hooks/across.md), and [instanced pipelines](../../pipelines/grouping-pipelines.md).
+While a feature is under development, you'll often want to run tests against
+the feature branch. To model this in Concourse, you'll need to have a pipeline
+for each active feature branch. Manually setting (and eventually archiving) a
+pipeline for each feature branch would be quite a burden. For this type of
+workflow, Concourse has a few important tools to help you out: the
+[`set_pipeline` step](../../steps/set-pipeline.md), [
+`across`](../../steps/modifier-and-hooks/across.md), and [instance
+pipelines](../../pipelines/grouping-pipelines.md).
 
 In this guide, we'll cover:
 
-1. Writing a pipeline to [Test, Build & Deploy](#test-build-deploy) a branch to a staging environment. We'll
-   use [Terraform](https://www.terraform.io/) for our deployment
-2. [Tracking Branches](#tracking-branches) in a repository; for each branch, we'll set a pipeline (using the [
-   `set_pipeline` step](../../steps/set-pipeline.md) and [across](../../steps/modifier-and-hooks/across.md))
-3. Automatically [Cleaning Up Old Workspaces](#cleaning-up-old-workspaces) after branches get merged or deleted
+1. Writing a pipeline to [Test and Build](#test-build-deploy) a feature branch.
+1. Automatically creating pipelines for each feature branch from a "parent"
+   pipeline. We'll use the [git
+   resource](https://github.com/concourse/git-resource/), [`set_pipeline`
+   step](../../steps/set-pipeline.md), and [`across`
+   step](../../steps/modifier-and-hooks/across.md) to create instance
+   pipelines.
+1. Cleaning up pipelines once feature branches are merged and deleted.
 
-## Test, Build & Deploy
+We'll use [this example Go
+app](https://github.com/concourse/examples/tree/main/apps/golang) for testing
+and building in our pipeline. It's just a silly CLI that prints ASCII banners,
+similar to [cowsay](https://en.wikipedia.org/wiki/Cowsay).
 
-We'll start out by defining the pipeline that should run for each active branch. For this example, we'll be working with
-the following [sample Go application](https://github.com/concourse/examples/tree/master/apps/golang).
+## The Feature Branch Pipeline
 
-Our pipeline will have three stages:
+First we will write a pipeline that will test and build against commits on a
+single feature branch. We only need two resources in our pipeline:
 
-1. Run unit tests
-2. Build and upload a binary to a blobstore (in our case, we'll
-   use [Google Cloud Storage](https://cloud.google.com/storage))
-3. Trigger a `terraform apply` to deploy our app to a staging environment.
-   The [Terraform module](https://github.com/concourse/examples/blob/master/terraform/staging/main.tf) we'll use here
-   doesn't actually provision any infrastructure, and is just used as an example
+1. A `git` resource that will track and fetch commits from our feature branch.
+   The `((branch))` is how we'll tell the pipeline which feature branch to
+   track.
+1. A `registry-image` resource that will pull the [golang
+   image](https://hub.docker.com/_/golang) to test and build our example app.
 
-Since the pipeline config is intended to be used as a template for multiple different branches, we can
-use [Vars](../../vars.md) to parameterize the config. In particular, we'll use the vars `((feature))` and `((branch))`,
-which represent the name of the feature and the name of the branch, respectively.
+We'll then have two jobs:
 
-Below is the full pipeline config from
-the [Examples Repo](https://github.com/concourse/examples/blob/master/pipelines/multi-branch/template.yml):
+1. The first job will run unit tests using this task file which runs `go test`:
+    ```yaml linenums="1" title="go-test.yml"
+    --8<-- "libs/examples/tasks/go-test.yml"
+    ```
+1. The second job will compile and run the binary using these two task files.
+   The first runs `go build` and tars up the final binary into a `.tgz` file.
+   Both the binary and the tgz are saved in the output directory `binary`.
+    ```yaml linenums="1" title="go-build.yml"
+    --8<-- "libs/examples/tasks/go-build.yml"
+    ```
+    The second task here takes the compiled binary and runs it. The task will
+    fail if the binary fails to run (`exit 1`).
+    ```yaml linenums="1" title="binary-test.yml"
+    --8<-- "libs/examples/apps/golang/binary-test.yml"
+    ```
 
+Putting all of that together we get our pipeline for the feature branches.
 ```yaml linenums="1" title="template.yml"
 --8<-- "libs/examples/pipelines/multi-branch/template.yml"
 ```
 
-## Tracking Branches
+Next we'll create the pipeline that will create the instance pipelines using
+`template.yml`.
 
-In addition to the branch pipeline template, we'll also need a pipeline to track the list of branches and set a pipeline
-for each one.
+## Automatically Creating Feature Branches
 
-To track the list of branches in a repository, we can use [
-`aoldershaw/git-branches-resource`](https://github.com/aoldershaw/git-branches-resource). This [
-`resource_type`](../../resource-types/index.md) emits a new [resource version](../../resources/resource-versions.md)
-whenever a branch is created or deleted. It also lets us filter the list of branches by a regular expression. In this
-case, let's assume our feature branches match the regular expression `feature/.*`.
+The pipeline that creates other pipelines is what we call the "parent
+pipeline". Our parent pipeline will include one extra resource and job compared
+to the previous pipeline config we made above. Along with creating the instance
+pipelines, this pipeline will also test and build all commits that get merged
+into the `main` branch. We're doing this to demonstrate that all instance
+pipelines don't all need the same pipeline configuration.
 
-Below is the current pipeline config for this tracker pipeline:
+The extra resource we'll include is going to track branches from our git
+repository. We'll use the [`git`
+resource](https://github.com/concourse/git-resource/) with
+`source.version_type` set to `branches`. By default it'll find all branches in
+the repository, so we'll also set `source.branch_filters` to filter to a subset
+of branches; those starting with `feat/` or `feature/`.
 
-```yaml linenums="1" title="tracker.yml"
-resource_types:
-  - name: git-branches
-    type: registry-image
-    source:
-      repository: aoldershaw/git-branches-resource
+We'll then use that resource in a job called `set-feature-pipelines` and use
+the `across` and `set_pipeline` steps to create one instance pipeline per
+branch.
 
-resources:
-  - name: feature-branches
-    type: git-branches
-    source:
-      uri: https://github.com/concourse/examples
-      # The "(?P<name>pattern)" syntax defines a named capture group.
-      # aoldershaw/git-branches-resource emits the value of each named capture
-      # group under the `groups` key.
-      #
-      # e.g. feature/some-feature ==> {"groups": {"feature": "some-feature"}}
-      branch_regex: 'feature/(?P<feature>.*)'
+Here's what our parent pipeline's configuration looks like all put together:
 
-  - name: examples
-    type: git
-    source:
-      uri: https://github.com/concourse/examples
-
-jobs:
-  - name: set-feature-pipelines
-    plan:
-      - in_parallel:
-          - get: feature-branches
-            trigger: true
-          - get: examples
-      - load_var: branches
-        file: feature-branches/branches.json
-      - across:
-          - var: branch
-            values: ((.:branches))
-        set_pipeline: dev
-        file: examples/pipelines/multi-branch/template.yml
-        instance_vars: { feature: ((.:branch.groups.feature)) }
-        vars: { branch: ((.:branch.name)) }
+```yaml linenums="1" title="parent.yml"
+--8<-- "libs/examples/pipelines/multi-branch/parent.yml"
 ```
 
-We set each pipeline as an [instanced pipeline](../../pipelines/grouping-pipelines.md) - this will result in Concourse
-grouping all the related `dev` pipelines in the UI.
+You can then set the parent pipeline in two ways: as an instance pipeline that
+will live alongside the instance pipelines it creates, or as a separate
+pipeline under a different name. Either way is fine, it won't make a difference
+on the end result.
 
-## Cleaning Up Old Workspaces
+```sh
+# running from the root of github.com/concourse/examples
 
-With the setup described in [Tracking Branches](#tracking-branches), Concourse will automatically archive any pipelines
-for branches that get removed. However, Concourse doesn't know that it should destroy Terraform workspaces when a branch
-is removed. To accomplish this, we can yet again make use of
-the [Terraform resource](https://github.com/ljfranklin/terraform-resource) to destroy these workspaces. We'll add
-another job to
-the [tracker pipeline](https://github.com/concourse/examples/blob/master/pipelines/multi-branch/tracker.yml) that
-figures out which workspaces don't belong to an active branch and destroy them.
+# setting parent pipeline as a separate pipeline.
+# Instance pipelines will be named "ascii-feature"
+fly -t ci set-pipeline \
+  --pipeline ascii-banner \
+  --config pipelines/multi-branch/parent.yml \
+  --var instance_pipeline_name=ascii-feature
 
-```yaml linenums="1" title="template.yml"
---8<-- "libs/examples/pipelines/multi-branch/tracker.yml"
+# or set the parent pipeline as an instance pipeline. Both parent and child
+# pipelines are named "ascii-banner" in this situation. We also set an instance
+# var for the parent pipeline, though the var is unused in our parent pipeline.
+# The instance var will display in the web UI.
+fly -t ci set-pipeline \
+  --pipeline ascii-banner \
+  --config pipelines/multi-branch/parent.yml \
+  --var instance_pipeline_name=ascii-banner \
+  --instance-var branch=main
 ```
+
+There are some feature branches in the `concourse/examples` repo, so you should
+get a few instance pipelines being made once you set and unpause the parent
+pipeline.
+
+If you set the parent pipeline as a separate pipeline, it will look like
+this in the web UI:
+![](assets/ascii-banner-separate.png)
+
+If you set the parent pipeline as an instance pipeline, it'll appear grouped
+with the instance pipelines it creates in the web UI:
+![](assets/ascii-banner-grouped.png)
+
+Clicking on the instance group will look like this:
+![](assets/ascii-banner-grouped-overview.png)
+
+Which setup you choose is up to you. They are functionally the same.
+
+## Automatically Archiving Feature Branch Pipelines
+
+The last thing we need to figure out with this setup is how to delete the
+instance pipelines when we're done with them. Feature branches will be merged
+into `main` at some point and likely deleted too.
+
+Once the feature branch is deleted from the git repository, our git resource
+that tracks branches will notice the branch no longer exists and will trigger
+the `set-feature-pipelines` job.
+
+`set-feature-pipelines` will run and set/update the pipelines for branches that
+still exist. When this happens, Concourse will notice that the instance
+pipeline belonging to the deleted feature branch is not being updated by the
+parent pipeline anymore; the parent-child relationship between the two
+pipelines has been broken. Concourse will automatically archive the feature
+branch's pipeline. Archived pipelines are hidden from the web UI and paused.
+
+You can test out the final piece of this workflow by deleting one of the
+feature branches in the `examples` repo. Shortly after `set-feature-pipelines`
+runs, the pipeline tied to the deleted branch will be archived. You can press
+the "show archived" toggle in the web UI to verify this.
+
+That brings us to the end of this guide. Hopefully this has helped illustrate
+the basic mechanics required to set up multi-branch workflows using Concourse
+pipelines. If you have any thoughts or suggestions, feel free to share them in
+our [GitHub Discussions](https://github.com/orgs/concourse/discussions) forum.
