@@ -113,7 +113,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#test-build-deploy" class="md-skip">
+        <a href="#the-feature-branch-pipeline" class="md-skip">
           Skip to content
         </a>
       
@@ -3502,10 +3502,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
-  <a href="#test-build-deploy" class="md-nav__link">
+  <a href="#the-feature-branch-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Test, Build &amp; Deploy
+        The Feature Branch Pipeline
       
     </span>
   </a>
@@ -3513,10 +3513,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tracking-branches" class="md-nav__link">
+  <a href="#automatically-creating-feature-branches" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tracking Branches
+        Automatically Creating Feature Branches
       
     </span>
   </a>
@@ -3524,10 +3524,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cleaning-up-old-workspaces" class="md-nav__link">
+  <a href="#automatically-archiving-feature-branch-pipelines" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Cleaning Up Old Workspaces
+        Automatically Archiving Feature Branch Pipelines
       
     </span>
   </a>
@@ -5856,10 +5856,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
-  <a href="#test-build-deploy" class="md-nav__link">
+  <a href="#the-feature-branch-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Test, Build &amp; Deploy
+        The Feature Branch Pipeline
       
     </span>
   </a>
@@ -5867,10 +5867,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tracking-branches" class="md-nav__link">
+  <a href="#automatically-creating-feature-branches" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tracking Branches
+        Automatically Creating Feature Branches
       
     </span>
   </a>
@@ -5878,10 +5878,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cleaning-up-old-workspaces" class="md-nav__link">
+  <a href="#automatically-archiving-feature-branch-pipelines" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Cleaning Up Old Workspaces
+        Automatically Archiving Feature Branch Pipelines
       
     </span>
   </a>
@@ -5923,40 +5923,47 @@
 
   <h1>Multi-Branch Workflows</h1>
 
-<p>Teams may make use of multiple branches for their development. For instance, some teams create feature branches while
-working on new functionality - once this functionality is ready, the branch will be merged into the main branch and the
-feature branch will be deleted.</p>
-<p>While a feature is under development, you'll often want to run tests against the feature branch and possibly deploy to a
-staging environment. To model this in Concourse, you'll need to have a pipeline for each active feature branch. Manually
-setting (and eventually archiving) a pipeline for each feature branch would be quite a burden. For this type of
-workflow, Concourse has a few important tools to help you out: the <a href="../../../steps/set-pipeline/"><code>set_pipeline</code> step</a>, <a href="../../../steps/modifier-and-hooks/across/">
-<code>across</code></a>, and <a href="../../../pipelines/grouping-pipelines/">instanced pipelines</a>.</p>
+<p>Teams may make use of multiple branches for their development. For instance,
+some teams create feature branches while working on new functionality - once
+this functionality is ready, the branch will be merged into the main branch and
+the feature branch will be deleted.</p>
+<p>While a feature is under development, you'll often want to run tests against
+the feature branch. To model this in Concourse, you'll need to have a pipeline
+for each active feature branch. Manually setting (and eventually archiving) a
+pipeline for each feature branch would be quite a burden. For this type of
+workflow, Concourse has a few important tools to help you out: the
+<a href="../../../steps/set-pipeline/"><code>set_pipeline</code> step</a>, <a href="../../../steps/modifier-and-hooks/across/">
+<code>across</code></a>, and <a href="../../../pipelines/grouping-pipelines/">instance
+pipelines</a>.</p>
 <p>In this guide, we'll cover:</p>
 <ol>
-<li>Writing a pipeline to <a href="#test-build-deploy">Test, Build &amp; Deploy</a> a branch to a staging environment. We'll
-   use <a href="https://www.terraform.io/">Terraform</a> for our deployment</li>
-<li><a href="#tracking-branches">Tracking Branches</a> in a repository; for each branch, we'll set a pipeline (using the <a href="../../../steps/set-pipeline/">
-   <code>set_pipeline</code> step</a> and <a href="../../../steps/modifier-and-hooks/across/">across</a>)</li>
-<li>Automatically <a href="#cleaning-up-old-workspaces">Cleaning Up Old Workspaces</a> after branches get merged or deleted</li>
+<li>Writing a pipeline to <a href="#test-build-deploy">Test and Build</a> a feature branch.</li>
+<li>Automatically creating pipelines for each feature branch from a "parent"
+   pipeline. We'll use the <a href="https://github.com/concourse/git-resource/">git
+   resource</a>, <a href="../../../steps/set-pipeline/"><code>set_pipeline</code>
+   step</a>, and <a href="../../../steps/modifier-and-hooks/across/"><code>across</code>
+   step</a> to create instance
+   pipelines.</li>
+<li>Cleaning up pipelines once feature branches are merged and deleted.</li>
 </ol>
-<h2 id="test-build-deploy">Test, Build &amp; Deploy</h2>
-<p>We'll start out by defining the pipeline that should run for each active branch. For this example, we'll be working with
-the following <a href="https://github.com/concourse/examples/tree/master/apps/golang">sample Go application</a>.</p>
-<p>Our pipeline will have three stages:</p>
+<p>We'll use <a href="https://github.com/concourse/examples/tree/main/apps/golang">this example Go
+app</a> for testing
+and building in our pipeline. It's just a silly CLI that prints ASCII banners,
+similar to <a href="https://en.wikipedia.org/wiki/Cowsay">cowsay</a>.</p>
+<h2 id="the-feature-branch-pipeline">The Feature Branch Pipeline</h2>
+<p>First we will write a pipeline that will test and build against commits on a
+single feature branch. We only need two resources in our pipeline:</p>
 <ol>
-<li>Run unit tests</li>
-<li>Build and upload a binary to a blobstore (in our case, we'll
-   use <a href="https://cloud.google.com/storage">Google Cloud Storage</a>)</li>
-<li>Trigger a <code>terraform apply</code> to deploy our app to a staging environment.
-   The <a href="https://github.com/concourse/examples/blob/master/terraform/staging/main.tf">Terraform module</a> we'll use here
-   doesn't actually provision any infrastructure, and is just used as an example</li>
+<li>A <code>git</code> resource that will track and fetch commits from our feature branch.
+   The <code>((branch))</code> is how we'll tell the pipeline which feature branch to
+   track.</li>
+<li>A <code>registry-image</code> resource that will pull the <a href="https://hub.docker.com/_/golang">golang
+   image</a> to test and build our example app.</li>
 </ol>
-<p>Since the pipeline config is intended to be used as a template for multiple different branches, we can
-use <a href="../../../vars/">Vars</a> to parameterize the config. In particular, we'll use the vars <code>((feature))</code> and <code>((branch))</code>,
-which represent the name of the feature and the name of the branch, respectively.</p>
-<p>Below is the full pipeline config from
-the <a href="https://github.com/concourse/examples/blob/master/pipelines/multi-branch/template.yml">Examples Repo</a>:</p>
-<div class="language-yaml highlight"><table class="highlighttable"><tbody><tr><th colspan="2" class="filename"><span class="filename">template.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<p>We'll then have two jobs:</p>
+<ol>
+<li>The first job will run unit tests using this task file which runs <code>go test</code>:
+    <div class="language-yaml highlight"><table class="highlighttable"><tbody><tr><th colspan="2" class="filename"><span class="filename">go-test.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
@@ -5974,172 +5981,30 @@ the <a href="https://github.com/concourse/examples/blob/master/pipelines/multi-b
 <span class="normal"><a href="#__codelineno-0-16">16</a></span>
 <span class="normal"><a href="#__codelineno-0-17">17</a></span>
 <span class="normal"><a href="#__codelineno-0-18">18</a></span>
-<span class="normal"><a href="#__codelineno-0-19">19</a></span>
-<span class="normal"><a href="#__codelineno-0-20">20</a></span>
-<span class="normal"><a href="#__codelineno-0-21">21</a></span>
-<span class="normal"><a href="#__codelineno-0-22">22</a></span>
-<span class="normal"><a href="#__codelineno-0-23">23</a></span>
-<span class="normal"><a href="#__codelineno-0-24">24</a></span>
-<span class="normal"><a href="#__codelineno-0-25">25</a></span>
-<span class="normal"><a href="#__codelineno-0-26">26</a></span>
-<span class="normal"><a href="#__codelineno-0-27">27</a></span>
-<span class="normal"><a href="#__codelineno-0-28">28</a></span>
-<span class="normal"><a href="#__codelineno-0-29">29</a></span>
-<span class="normal"><a href="#__codelineno-0-30">30</a></span>
-<span class="normal"><a href="#__codelineno-0-31">31</a></span>
-<span class="normal"><a href="#__codelineno-0-32">32</a></span>
-<span class="normal"><a href="#__codelineno-0-33">33</a></span>
-<span class="normal"><a href="#__codelineno-0-34">34</a></span>
-<span class="normal"><a href="#__codelineno-0-35">35</a></span>
-<span class="normal"><a href="#__codelineno-0-36">36</a></span>
-<span class="normal"><a href="#__codelineno-0-37">37</a></span>
-<span class="normal"><a href="#__codelineno-0-38">38</a></span>
-<span class="normal"><a href="#__codelineno-0-39">39</a></span>
-<span class="normal"><a href="#__codelineno-0-40">40</a></span>
-<span class="normal"><a href="#__codelineno-0-41">41</a></span>
-<span class="normal"><a href="#__codelineno-0-42">42</a></span>
-<span class="normal"><a href="#__codelineno-0-43">43</a></span>
-<span class="normal"><a href="#__codelineno-0-44">44</a></span>
-<span class="normal"><a href="#__codelineno-0-45">45</a></span>
-<span class="normal"><a href="#__codelineno-0-46">46</a></span>
-<span class="normal"><a href="#__codelineno-0-47">47</a></span>
-<span class="normal"><a href="#__codelineno-0-48">48</a></span>
-<span class="normal"><a href="#__codelineno-0-49">49</a></span>
-<span class="normal"><a href="#__codelineno-0-50">50</a></span>
-<span class="normal"><a href="#__codelineno-0-51">51</a></span>
-<span class="normal"><a href="#__codelineno-0-52">52</a></span>
-<span class="normal"><a href="#__codelineno-0-53">53</a></span>
-<span class="normal"><a href="#__codelineno-0-54">54</a></span>
-<span class="normal"><a href="#__codelineno-0-55">55</a></span>
-<span class="normal"><a href="#__codelineno-0-56">56</a></span>
-<span class="normal"><a href="#__codelineno-0-57">57</a></span>
-<span class="normal"><a href="#__codelineno-0-58">58</a></span>
-<span class="normal"><a href="#__codelineno-0-59">59</a></span>
-<span class="normal"><a href="#__codelineno-0-60">60</a></span>
-<span class="normal"><a href="#__codelineno-0-61">61</a></span>
-<span class="normal"><a href="#__codelineno-0-62">62</a></span>
-<span class="normal"><a href="#__codelineno-0-63">63</a></span>
-<span class="normal"><a href="#__codelineno-0-64">64</a></span>
-<span class="normal"><a href="#__codelineno-0-65">65</a></span>
-<span class="normal"><a href="#__codelineno-0-66">66</a></span>
-<span class="normal"><a href="#__codelineno-0-67">67</a></span>
-<span class="normal"><a href="#__codelineno-0-68">68</a></span>
-<span class="normal"><a href="#__codelineno-0-69">69</a></span>
-<span class="normal"><a href="#__codelineno-0-70">70</a></span>
-<span class="normal"><a href="#__codelineno-0-71">71</a></span>
-<span class="normal"><a href="#__codelineno-0-72">72</a></span>
-<span class="normal"><a href="#__codelineno-0-73">73</a></span>
-<span class="normal"><a href="#__codelineno-0-74">74</a></span>
-<span class="normal"><a href="#__codelineno-0-75">75</a></span>
-<span class="normal"><a href="#__codelineno-0-76">76</a></span>
-<span class="normal"><a href="#__codelineno-0-77">77</a></span>
-<span class="normal"><a href="#__codelineno-0-78">78</a></span>
-<span class="normal"><a href="#__codelineno-0-79">79</a></span>
-<span class="normal"><a href="#__codelineno-0-80">80</a></span>
-<span class="normal"><a href="#__codelineno-0-81">81</a></span>
-<span class="normal"><a href="#__codelineno-0-82">82</a></span>
-<span class="normal"><a href="#__codelineno-0-83">83</a></span>
-<span class="normal"><a href="#__codelineno-0-84">84</a></span>
-<span class="normal"><a href="#__codelineno-0-85">85</a></span>
-<span class="normal"><a href="#__codelineno-0-86">86</a></span>
-<span class="normal"><a href="#__codelineno-0-87">87</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nt">resource_types</span><span class="p">:</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">terraform</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">registry-image</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">  </span><span class="nt">source</span><span class="p">:</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ljfranklin/terraform-resource</span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="nt">image_resource</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">registry-image</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">  </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> repository</span><span class="p">:</span><span class="w"> </span><span class="nv">golang</span><span class="w"> </span><span class="p p-Indicator">}</span>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gcs</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">registry-image</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">  </span><span class="nt">source</span><span class="p">:</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">frodenas/gcs-resource</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="nt">resources</span><span class="p">:</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">branch</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">git</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">  </span><span class="nt">source</span><span class="p">:</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">    </span><span class="nt">uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/concourse/examples</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="w">    </span><span class="nt">branch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">((branch))</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18"></a>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">examples</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">git</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="w">  </span><span class="nt">source</span><span class="p">:</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="w">    </span><span class="nt">uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/concourse/examples</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23"></a>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build-artifact</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gcs</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="w">  </span><span class="nt">source</span><span class="p">:</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="w">    </span><span class="nt">bucket</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">concourse-examples</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="w">    </span><span class="nt">json_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">((gcp_service_account_key))</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="w">    </span><span class="nt">regexp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">multi-branch/features/((feature))/my-app-(.+)\.tgz</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30"></a>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">staging-env</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">terraform</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="w">  </span><span class="nt">source</span><span class="p">:</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="w">    </span><span class="nt">env_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">((feature))</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="w">    </span><span class="nt">backend_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gcs</span>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="w">    </span><span class="nt">backend_config</span><span class="p">:</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="w">      </span><span class="nt">bucket</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">concourse-examples</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="w">      </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">multi-branch/terraform</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="w">      </span><span class="nt">credentials</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">((gcp_service_account_key))</span>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40"></a>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="nt">jobs</span><span class="p">:</span>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="w">  </span><span class="nt">build_log_retention</span><span class="p">:</span>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="w">    </span><span class="nt">builds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50</span>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45"></a><span class="w">  </span><span class="nt">plan</span><span class="p">:</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">in_parallel</span><span class="p">:</span>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">get</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">branch</span>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="w">      </span><span class="nt">trigger</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">get</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">examples</span>
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">task</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unit</span>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">examples/tasks/go-test.yml</span>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="w">    </span><span class="nt">input_mapping</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="nv">branch</span><span class="p p-Indicator">}</span>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="w">    </span><span class="nt">params</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">MODULE</span><span class="p">:</span><span class="w"> </span><span class="nv">apps/golang</span><span class="p p-Indicator">}</span>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54"></a>
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build</span>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="w">  </span><span class="nt">build_log_retention</span><span class="p">:</span>
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="w">    </span><span class="nt">builds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50</span>
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="w">  </span><span class="nt">plan</span><span class="p">:</span>
-</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">in_parallel</span><span class="p">:</span>
-</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">get</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">branch</span>
-</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="w">      </span><span class="nt">passed</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">test</span><span class="p p-Indicator">]</span>
-</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="w">      </span><span class="nt">trigger</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">get</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">examples</span>
-</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">task</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build</span>
-</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">examples/tasks/go-build.yml</span>
-</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="w">    </span><span class="nt">params</span><span class="p">:</span>
-</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="w">      </span><span class="nt">MODULE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/golang</span>
-</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68"></a><span class="w">      </span><span class="nt">BINARY_NAME</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-app</span>
-</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="w">    </span><span class="nt">input_mapping</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="nv">branch</span><span class="p p-Indicator">}</span>
-</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">put</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build-artifact</span>
-</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="w">    </span><span class="nt">params</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="s">"binary/my-app-*.tgz"</span><span class="p p-Indicator">}</span>
-</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72"></a>
-</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy</span>
-</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="w">  </span><span class="nt">build_log_retention</span><span class="p">:</span>
-</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="w">    </span><span class="nt">builds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50</span>
-</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76"></a><span class="w">  </span><span class="nt">plan</span><span class="p">:</span>
-</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">in_parallel</span><span class="p">:</span>
-</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">get</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build-artifact</span>
-</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79"></a><span class="w">      </span><span class="nt">passed</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">build</span><span class="p p-Indicator">]</span>
-</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80"></a><span class="w">      </span><span class="nt">trigger</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">get</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">examples</span>
-</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">load_var</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bundle_url</span>
-</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83"></a><span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build-artifact/url</span>
-</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">put</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">staging-env</span>
-</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85"></a><span class="w">    </span><span class="nt">params</span><span class="p">:</span>
-</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86"></a><span class="w">      </span><span class="nt">terraform_source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">examples/terraform/staging</span>
-</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87"></a><span class="w">      </span><span class="nt">vars</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">bundle_url</span><span class="p">:</span><span class="w"> </span><span class="nv">((.</span><span class="p p-Indicator">:</span><span class="nv">bundle_url))</span><span class="p p-Indicator">}</span>
-</span></code></pre></div></td></tr></tbody></table></div>
-<h2 id="tracking-branches">Tracking Branches</h2>
-<p>In addition to the branch pipeline template, we'll also need a pipeline to track the list of branches and set a pipeline
-for each one.</p>
-<p>To track the list of branches in a repository, we can use <a href="https://github.com/aoldershaw/git-branches-resource">
-<code>aoldershaw/git-branches-resource</code></a>. This <a href="../../../resource-types/">
-<code>resource_type</code></a> emits a new <a href="../../../resources/resource-versions/">resource version</a>
-whenever a branch is created or deleted. It also lets us filter the list of branches by a regular expression. In this
-case, let's assume our feature branches match the regular expression <code>feature/.*</code>.</p>
-<p>Below is the current pipeline config for this tracker pipeline:</p>
-<div class="language-yaml highlight"><table class="highlighttable"><tbody><tr><th colspan="2" class="filename"><span class="filename">tracker.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="nt">inputs</span><span class="p">:</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repo</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="nt">params</span><span class="p">:</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">  </span><span class="nt">MODULE</span><span class="p">:</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="nt">run</span><span class="p">:</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sh</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">  </span><span class="nt">args</span><span class="p">:</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-ce</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">|</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="w">    </span><span class="no">cd "repo/${MODULE}"</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="w">    </span><span class="no">go test -v ./...</span>
+</span></code></pre></div></td></tr></tbody></table></div></li>
+<li>The second job will compile and run the binary using these two task files.
+   The first runs <code>go build</code> and tars up the final binary into a <code>.tgz</code> file.
+   Both the binary and the tgz are saved in the output directory <code>binary</code>.
+    <div class="language-yaml highlight"><table class="highlighttable"><tbody><tr><th colspan="2" class="filename"><span class="filename">go-build.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
@@ -6165,284 +6030,383 @@ case, let's assume our feature branches match the regular expression <code>featu
 <span class="normal"><a href="#__codelineno-1-24">24</a></span>
 <span class="normal"><a href="#__codelineno-1-25">25</a></span>
 <span class="normal"><a href="#__codelineno-1-26">26</a></span>
-<span class="normal"><a href="#__codelineno-1-27">27</a></span>
-<span class="normal"><a href="#__codelineno-1-28">28</a></span>
-<span class="normal"><a href="#__codelineno-1-29">29</a></span>
-<span class="normal"><a href="#__codelineno-1-30">30</a></span>
-<span class="normal"><a href="#__codelineno-1-31">31</a></span>
-<span class="normal"><a href="#__codelineno-1-32">32</a></span>
-<span class="normal"><a href="#__codelineno-1-33">33</a></span>
-<span class="normal"><a href="#__codelineno-1-34">34</a></span>
-<span class="normal"><a href="#__codelineno-1-35">35</a></span>
-<span class="normal"><a href="#__codelineno-1-36">36</a></span>
-<span class="normal"><a href="#__codelineno-1-37">37</a></span>
-<span class="normal"><a href="#__codelineno-1-38">38</a></span>
-<span class="normal"><a href="#__codelineno-1-39">39</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nt">resource_types</span><span class="p">:</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">git-branches</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">registry-image</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">    </span><span class="nt">source</span><span class="p">:</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">      </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aoldershaw/git-branches-resource</span>
+<span class="normal"><a href="#__codelineno-1-27">27</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="nt">image_resource</span><span class="p">:</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">registry-image</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">  </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> repository</span><span class="p">:</span><span class="w"> </span><span class="nv">golang</span><span class="w"> </span><span class="p p-Indicator">}</span>
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="nt">resources</span><span class="p">:</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">feature-branches</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">git-branches</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">    </span><span class="nt">source</span><span class="p">:</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">      </span><span class="nt">uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/concourse/examples</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">      </span><span class="c1"># The "(?P&lt;name&gt;pattern)" syntax defines a named capture group.</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">      </span><span class="c1"># aoldershaw/git-branches-resource emits the value of each named capture</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">      </span><span class="c1"># group under the `groups` key.</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">      </span><span class="c1">#</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">      </span><span class="c1"># e.g. feature/some-feature ==&gt; {"groups": {"feature": "some-feature"}}</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="w">      </span><span class="nt">branch_regex</span><span class="p">:</span><span class="w"> </span><span class="s">'feature/(?P&lt;feature&gt;.*)'</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18"></a>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">examples</span>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">git</span>
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="w">    </span><span class="nt">source</span><span class="p">:</span>
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="w">      </span><span class="nt">uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/concourse/examples</span>
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23"></a>
-</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="nt">jobs</span><span class="p">:</span>
-</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">set-feature-pipelines</span>
-</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26"></a><span class="w">    </span><span class="nt">plan</span><span class="p">:</span>
-</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">in_parallel</span><span class="p">:</span>
-</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">get</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">feature-branches</span>
-</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29"></a><span class="w">            </span><span class="nt">trigger</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">get</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">examples</span>
-</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">load_var</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">branches</span>
-</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32"></a><span class="w">        </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">feature-branches/branches.json</span>
-</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">across</span><span class="p">:</span>
-</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">var</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">branch</span>
-</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35"></a><span class="w">            </span><span class="nt">values</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">((.:branches))</span>
-</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36"></a><span class="w">        </span><span class="nt">set_pipeline</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dev</span>
-</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37"></a><span class="w">        </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">examples/pipelines/multi-branch/template.yml</span>
-</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38"></a><span class="w">        </span><span class="nt">instance_vars</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> feature</span><span class="p">:</span><span class="w"> </span><span class="nv">((.</span><span class="p p-Indicator">:</span><span class="nv">branch.groups.feature))</span><span class="w"> </span><span class="p p-Indicator">}</span>
-</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39"></a><span class="w">        </span><span class="nt">vars</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> branch</span><span class="p">:</span><span class="w"> </span><span class="nv">((.</span><span class="p p-Indicator">:</span><span class="nv">branch.name))</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="nt">inputs</span><span class="p">:</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repo</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="nt">outputs</span><span class="p">:</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">binary</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="nt">params</span><span class="p">:</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">  </span><span class="nt">MODULE</span><span class="p">:</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">  </span><span class="nt">BINARY_NAME</span><span class="p">:</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="nt">run</span><span class="p">:</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sh</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="w">  </span><span class="nt">args</span><span class="p">:</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-cex</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">|</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="w">    </span><span class="no">root=$(pwd)</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23"></a><span class="w">    </span><span class="no">cd "repo/${MODULE}"</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="w">    </span><span class="no">go build -o "${root}/binary/${BINARY_NAME}"</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25"></a>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26"></a><span class="w">    </span><span class="no">timestamp=$(date '+%Y%m%d%H%M%S')</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27"></a><span class="w">    </span><span class="no">tar czf "$root/binary/$BINARY_NAME-$timestamp.tgz" "${root}/binary/${BINARY_NAME}"</span>
 </span></code></pre></div></td></tr></tbody></table></div>
-<p>We set each pipeline as an <a href="../../../pipelines/grouping-pipelines/">instanced pipeline</a> - this will result in Concourse
-grouping all the related <code>dev</code> pipelines in the UI.</p>
-<h2 id="cleaning-up-old-workspaces">Cleaning Up Old Workspaces</h2>
-<p>With the setup described in <a href="#tracking-branches">Tracking Branches</a>, Concourse will automatically archive any pipelines
-for branches that get removed. However, Concourse doesn't know that it should destroy Terraform workspaces when a branch
-is removed. To accomplish this, we can yet again make use of
-the <a href="https://github.com/ljfranklin/terraform-resource">Terraform resource</a> to destroy these workspaces. We'll add
-another job to
-the <a href="https://github.com/concourse/examples/blob/master/pipelines/multi-branch/tracker.yml">tracker pipeline</a> that
-figures out which workspaces don't belong to an active branch and destroy them.</p>
-<div class="language-yaml highlight"><table class="highlighttable"><tbody><tr><th colspan="2" class="filename"><span class="filename">template.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">  1</a></span>
-<span class="normal"><a href="#__codelineno-2-2">  2</a></span>
-<span class="normal"><a href="#__codelineno-2-3">  3</a></span>
-<span class="normal"><a href="#__codelineno-2-4">  4</a></span>
-<span class="normal"><a href="#__codelineno-2-5">  5</a></span>
-<span class="normal"><a href="#__codelineno-2-6">  6</a></span>
-<span class="normal"><a href="#__codelineno-2-7">  7</a></span>
-<span class="normal"><a href="#__codelineno-2-8">  8</a></span>
-<span class="normal"><a href="#__codelineno-2-9">  9</a></span>
-<span class="normal"><a href="#__codelineno-2-10"> 10</a></span>
-<span class="normal"><a href="#__codelineno-2-11"> 11</a></span>
-<span class="normal"><a href="#__codelineno-2-12"> 12</a></span>
-<span class="normal"><a href="#__codelineno-2-13"> 13</a></span>
-<span class="normal"><a href="#__codelineno-2-14"> 14</a></span>
-<span class="normal"><a href="#__codelineno-2-15"> 15</a></span>
-<span class="normal"><a href="#__codelineno-2-16"> 16</a></span>
-<span class="normal"><a href="#__codelineno-2-17"> 17</a></span>
-<span class="normal"><a href="#__codelineno-2-18"> 18</a></span>
-<span class="normal"><a href="#__codelineno-2-19"> 19</a></span>
-<span class="normal"><a href="#__codelineno-2-20"> 20</a></span>
-<span class="normal"><a href="#__codelineno-2-21"> 21</a></span>
-<span class="normal"><a href="#__codelineno-2-22"> 22</a></span>
-<span class="normal"><a href="#__codelineno-2-23"> 23</a></span>
-<span class="normal"><a href="#__codelineno-2-24"> 24</a></span>
-<span class="normal"><a href="#__codelineno-2-25"> 25</a></span>
-<span class="normal"><a href="#__codelineno-2-26"> 26</a></span>
-<span class="normal"><a href="#__codelineno-2-27"> 27</a></span>
-<span class="normal"><a href="#__codelineno-2-28"> 28</a></span>
-<span class="normal"><a href="#__codelineno-2-29"> 29</a></span>
-<span class="normal"><a href="#__codelineno-2-30"> 30</a></span>
-<span class="normal"><a href="#__codelineno-2-31"> 31</a></span>
-<span class="normal"><a href="#__codelineno-2-32"> 32</a></span>
-<span class="normal"><a href="#__codelineno-2-33"> 33</a></span>
-<span class="normal"><a href="#__codelineno-2-34"> 34</a></span>
-<span class="normal"><a href="#__codelineno-2-35"> 35</a></span>
-<span class="normal"><a href="#__codelineno-2-36"> 36</a></span>
-<span class="normal"><a href="#__codelineno-2-37"> 37</a></span>
-<span class="normal"><a href="#__codelineno-2-38"> 38</a></span>
-<span class="normal"><a href="#__codelineno-2-39"> 39</a></span>
-<span class="normal"><a href="#__codelineno-2-40"> 40</a></span>
-<span class="normal"><a href="#__codelineno-2-41"> 41</a></span>
-<span class="normal"><a href="#__codelineno-2-42"> 42</a></span>
-<span class="normal"><a href="#__codelineno-2-43"> 43</a></span>
-<span class="normal"><a href="#__codelineno-2-44"> 44</a></span>
-<span class="normal"><a href="#__codelineno-2-45"> 45</a></span>
-<span class="normal"><a href="#__codelineno-2-46"> 46</a></span>
-<span class="normal"><a href="#__codelineno-2-47"> 47</a></span>
-<span class="normal"><a href="#__codelineno-2-48"> 48</a></span>
-<span class="normal"><a href="#__codelineno-2-49"> 49</a></span>
-<span class="normal"><a href="#__codelineno-2-50"> 50</a></span>
-<span class="normal"><a href="#__codelineno-2-51"> 51</a></span>
-<span class="normal"><a href="#__codelineno-2-52"> 52</a></span>
-<span class="normal"><a href="#__codelineno-2-53"> 53</a></span>
-<span class="normal"><a href="#__codelineno-2-54"> 54</a></span>
-<span class="normal"><a href="#__codelineno-2-55"> 55</a></span>
-<span class="normal"><a href="#__codelineno-2-56"> 56</a></span>
-<span class="normal"><a href="#__codelineno-2-57"> 57</a></span>
-<span class="normal"><a href="#__codelineno-2-58"> 58</a></span>
-<span class="normal"><a href="#__codelineno-2-59"> 59</a></span>
-<span class="normal"><a href="#__codelineno-2-60"> 60</a></span>
-<span class="normal"><a href="#__codelineno-2-61"> 61</a></span>
-<span class="normal"><a href="#__codelineno-2-62"> 62</a></span>
-<span class="normal"><a href="#__codelineno-2-63"> 63</a></span>
-<span class="normal"><a href="#__codelineno-2-64"> 64</a></span>
-<span class="normal"><a href="#__codelineno-2-65"> 65</a></span>
-<span class="normal"><a href="#__codelineno-2-66"> 66</a></span>
-<span class="normal"><a href="#__codelineno-2-67"> 67</a></span>
-<span class="normal"><a href="#__codelineno-2-68"> 68</a></span>
-<span class="normal"><a href="#__codelineno-2-69"> 69</a></span>
-<span class="normal"><a href="#__codelineno-2-70"> 70</a></span>
-<span class="normal"><a href="#__codelineno-2-71"> 71</a></span>
-<span class="normal"><a href="#__codelineno-2-72"> 72</a></span>
-<span class="normal"><a href="#__codelineno-2-73"> 73</a></span>
-<span class="normal"><a href="#__codelineno-2-74"> 74</a></span>
-<span class="normal"><a href="#__codelineno-2-75"> 75</a></span>
-<span class="normal"><a href="#__codelineno-2-76"> 76</a></span>
-<span class="normal"><a href="#__codelineno-2-77"> 77</a></span>
-<span class="normal"><a href="#__codelineno-2-78"> 78</a></span>
-<span class="normal"><a href="#__codelineno-2-79"> 79</a></span>
-<span class="normal"><a href="#__codelineno-2-80"> 80</a></span>
-<span class="normal"><a href="#__codelineno-2-81"> 81</a></span>
-<span class="normal"><a href="#__codelineno-2-82"> 82</a></span>
-<span class="normal"><a href="#__codelineno-2-83"> 83</a></span>
-<span class="normal"><a href="#__codelineno-2-84"> 84</a></span>
-<span class="normal"><a href="#__codelineno-2-85"> 85</a></span>
-<span class="normal"><a href="#__codelineno-2-86"> 86</a></span>
-<span class="normal"><a href="#__codelineno-2-87"> 87</a></span>
-<span class="normal"><a href="#__codelineno-2-88"> 88</a></span>
-<span class="normal"><a href="#__codelineno-2-89"> 89</a></span>
-<span class="normal"><a href="#__codelineno-2-90"> 90</a></span>
-<span class="normal"><a href="#__codelineno-2-91"> 91</a></span>
-<span class="normal"><a href="#__codelineno-2-92"> 92</a></span>
-<span class="normal"><a href="#__codelineno-2-93"> 93</a></span>
-<span class="normal"><a href="#__codelineno-2-94"> 94</a></span>
-<span class="normal"><a href="#__codelineno-2-95"> 95</a></span>
-<span class="normal"><a href="#__codelineno-2-96"> 96</a></span>
-<span class="normal"><a href="#__codelineno-2-97"> 97</a></span>
-<span class="normal"><a href="#__codelineno-2-98"> 98</a></span>
-<span class="normal"><a href="#__codelineno-2-99"> 99</a></span>
-<span class="normal"><a href="#__codelineno-2-100">100</a></span>
-<span class="normal"><a href="#__codelineno-2-101">101</a></span>
-<span class="normal"><a href="#__codelineno-2-102">102</a></span>
-<span class="normal"><a href="#__codelineno-2-103">103</a></span>
-<span class="normal"><a href="#__codelineno-2-104">104</a></span>
-<span class="normal"><a href="#__codelineno-2-105">105</a></span>
-<span class="normal"><a href="#__codelineno-2-106">106</a></span>
-<span class="normal"><a href="#__codelineno-2-107">107</a></span>
-<span class="normal"><a href="#__codelineno-2-108">108</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nt">resource_types</span><span class="p">:</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">git-branches</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">registry-image</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">  </span><span class="nt">source</span><span class="p">:</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aoldershaw/git-branches-resource</span>
+    The second task here takes the compiled binary and runs it. The task will
+    fail if the binary fails to run (<code>exit 1</code>).
+    <div class="language-yaml highlight"><table class="highlighttable"><tbody><tr><th colspan="2" class="filename"><span class="filename">binary-test.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="nt">image_resource</span><span class="p">:</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mock</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">  </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">mirror_self</span><span class="p">:</span><span class="w"> </span><span class="nv">true</span><span class="p p-Indicator">}</span>
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">terraform</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">registry-image</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">  </span><span class="nt">source</span><span class="p">:</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ljfranklin/terraform-resource</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="nt">resources</span><span class="p">:</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">feature-branches</span>
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">git-branches</span>
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="w">  </span><span class="nt">source</span><span class="p">:</span>
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="w">    </span><span class="nt">uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/concourse/examples</span>
-</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="w">    </span><span class="c1"># The "(?P&lt;name&gt;pattern)" syntax defines a named capture group.</span>
-</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="w">    </span><span class="c1"># aoldershaw/git-branches-resource emits the value of each named capture</span>
-</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="w">    </span><span class="c1"># group under the `groups` key.</span>
-</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="w">    </span><span class="c1">#</span>
-</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="w">    </span><span class="c1"># e.g. feature/some-feature ==&gt; {"groups": {"feature": "some-feature"}}</span>
-</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="w">    </span><span class="nt">branch_regex</span><span class="p">:</span><span class="w"> </span><span class="s">'feature/(?P&lt;feature&gt;.*)'</span>
-</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23"></a>
-</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">examples</span>
-</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">git</span>
-</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26"></a><span class="w">  </span><span class="nt">source</span><span class="p">:</span>
-</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27"></a><span class="w">    </span><span class="nt">uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/concourse/examples</span>
-</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28"></a>
-</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">staging-env</span>
-</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">terraform</span>
-</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31"></a><span class="w">  </span><span class="nt">source</span><span class="p">:</span>
-</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32"></a><span class="w">    </span><span class="nt">backend_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gcs</span>
-</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33"></a><span class="w">    </span><span class="nt">backend_config</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;terraform_backend_config</span>
-</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34"></a><span class="w">      </span><span class="nt">bucket</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">concourse-examples</span>
-</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35"></a><span class="w">      </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">multi-branch/terraform</span>
-</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36"></a><span class="w">      </span><span class="nt">credentials</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">((gcp_service_account_key))</span>
-</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37"></a>
-</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38"></a><span class="nt">jobs</span><span class="p">:</span>
-</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">set-feature-pipelines</span>
-</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40"></a><span class="w">  </span><span class="nt">build_log_retention</span><span class="p">:</span>
-</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41"></a><span class="w">    </span><span class="nt">builds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50</span>
-</span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42"></a><span class="w">  </span><span class="nt">plan</span><span class="p">:</span>
-</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">in_parallel</span><span class="p">:</span>
-</span><span id="__span-2-44"><a id="__codelineno-2-44" name="__codelineno-2-44"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">get</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">feature-branches</span>
-</span><span id="__span-2-45"><a id="__codelineno-2-45" name="__codelineno-2-45"></a><span class="w">      </span><span class="nt">trigger</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">get</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">examples</span>
-</span><span id="__span-2-47"><a id="__codelineno-2-47" name="__codelineno-2-47"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">load_var</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">branches</span>
-</span><span id="__span-2-48"><a id="__codelineno-2-48" name="__codelineno-2-48"></a><span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">feature-branches/branches.json</span>
-</span><span id="__span-2-49"><a id="__codelineno-2-49" name="__codelineno-2-49"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">across</span><span class="p">:</span>
-</span><span id="__span-2-50"><a id="__codelineno-2-50" name="__codelineno-2-50"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">var</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">branch</span>
-</span><span id="__span-2-51"><a id="__codelineno-2-51" name="__codelineno-2-51"></a><span class="w">      </span><span class="nt">values</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">((.:branches))</span>
-</span><span id="__span-2-52"><a id="__codelineno-2-52" name="__codelineno-2-52"></a><span class="w">    </span><span class="nt">set_pipeline</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dev</span>
-</span><span id="__span-2-53"><a id="__codelineno-2-53" name="__codelineno-2-53"></a><span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">examples/pipelines/multi-branch/template.yml</span>
-</span><span id="__span-2-54"><a id="__codelineno-2-54" name="__codelineno-2-54"></a><span class="w">    </span><span class="nt">instance_vars</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">feature</span><span class="p">:</span><span class="w"> </span><span class="nv">((.</span><span class="p p-Indicator">:</span><span class="nv">branch.groups.feature))</span><span class="p p-Indicator">}</span>
-</span><span id="__span-2-55"><a id="__codelineno-2-55" name="__codelineno-2-55"></a><span class="w">    </span><span class="nt">vars</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">branch</span><span class="p">:</span><span class="w"> </span><span class="nv">((.</span><span class="p p-Indicator">:</span><span class="nv">branch.name))</span><span class="p p-Indicator">}</span>
-</span><span id="__span-2-56"><a id="__codelineno-2-56" name="__codelineno-2-56"></a>
-</span><span id="__span-2-57"><a id="__codelineno-2-57" name="__codelineno-2-57"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cleanup-inactive-workspaces</span>
-</span><span id="__span-2-58"><a id="__codelineno-2-58" name="__codelineno-2-58"></a><span class="w">  </span><span class="nt">build_log_retention</span><span class="p">:</span>
-</span><span id="__span-2-59"><a id="__codelineno-2-59" name="__codelineno-2-59"></a><span class="w">    </span><span class="nt">builds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50</span>
-</span><span id="__span-2-60"><a id="__codelineno-2-60" name="__codelineno-2-60"></a><span class="w">  </span><span class="nt">plan</span><span class="p">:</span>
-</span><span id="__span-2-61"><a id="__codelineno-2-61" name="__codelineno-2-61"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">in_parallel</span><span class="p">:</span>
-</span><span id="__span-2-62"><a id="__codelineno-2-62" name="__codelineno-2-62"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">get</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">feature-branches</span>
-</span><span id="__span-2-63"><a id="__codelineno-2-63" name="__codelineno-2-63"></a><span class="w">      </span><span class="nt">passed</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">set-feature-pipelines</span><span class="p p-Indicator">]</span>
-</span><span id="__span-2-64"><a id="__codelineno-2-64" name="__codelineno-2-64"></a><span class="w">      </span><span class="nt">trigger</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span><span id="__span-2-65"><a id="__codelineno-2-65" name="__codelineno-2-65"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">get</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">examples</span>
-</span><span id="__span-2-66"><a id="__codelineno-2-66" name="__codelineno-2-66"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">task</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">find-inactive-workspaces</span>
-</span><span id="__span-2-67"><a id="__codelineno-2-67" name="__codelineno-2-67"></a><span class="w">    </span><span class="nt">config</span><span class="p">:</span>
-</span><span id="__span-2-68"><a id="__codelineno-2-68" name="__codelineno-2-68"></a><span class="w">      </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux</span>
-</span><span id="__span-2-69"><a id="__codelineno-2-69" name="__codelineno-2-69"></a><span class="w">      </span><span class="nt">image_resource</span><span class="p">:</span>
-</span><span id="__span-2-70"><a id="__codelineno-2-70" name="__codelineno-2-70"></a><span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">registry-image</span>
-</span><span id="__span-2-71"><a id="__codelineno-2-71" name="__codelineno-2-71"></a><span class="w">        </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="nv">hashicorp/terraform</span><span class="p p-Indicator">}</span>
-</span><span id="__span-2-72"><a id="__codelineno-2-72" name="__codelineno-2-72"></a><span class="w">      </span><span class="nt">inputs</span><span class="p">:</span>
-</span><span id="__span-2-73"><a id="__codelineno-2-73" name="__codelineno-2-73"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">feature-branches</span>
-</span><span id="__span-2-74"><a id="__codelineno-2-74" name="__codelineno-2-74"></a><span class="w">      </span><span class="nt">outputs</span><span class="p">:</span>
-</span><span id="__span-2-75"><a id="__codelineno-2-75" name="__codelineno-2-75"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extra-workspaces</span>
-</span><span id="__span-2-76"><a id="__codelineno-2-76" name="__codelineno-2-76"></a><span class="w">      </span><span class="nt">params</span><span class="p">:</span>
-</span><span id="__span-2-77"><a id="__codelineno-2-77" name="__codelineno-2-77"></a><span class="w">        </span><span class="nt">TERRAFORM_BACKEND_CONFIG</span><span class="p">:</span>
-</span><span id="__span-2-78"><a id="__codelineno-2-78" name="__codelineno-2-78"></a><span class="w">          </span><span class="nt">gcs</span><span class="p">:</span><span class="w"> </span><span class="nv">*terraform_backend_config</span>
-</span><span id="__span-2-79"><a id="__codelineno-2-79" name="__codelineno-2-79"></a><span class="w">      </span><span class="nt">run</span><span class="p">:</span>
-</span><span id="__span-2-80"><a id="__codelineno-2-80" name="__codelineno-2-80"></a><span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sh</span>
-</span><span id="__span-2-81"><a id="__codelineno-2-81" name="__codelineno-2-81"></a><span class="w">        </span><span class="nt">args</span><span class="p">:</span>
-</span><span id="__span-2-82"><a id="__codelineno-2-82" name="__codelineno-2-82"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-c</span>
-</span><span id="__span-2-83"><a id="__codelineno-2-83" name="__codelineno-2-83"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">|</span>
-</span><span id="__span-2-84"><a id="__codelineno-2-84" name="__codelineno-2-84"></a><span class="w">          </span><span class="no">set -euo pipefail</span>
-</span><span id="__span-2-85"><a id="__codelineno-2-85" name="__codelineno-2-85"></a>
-</span><span id="__span-2-86"><a id="__codelineno-2-86" name="__codelineno-2-86"></a><span class="w">          </span><span class="no">apk add -q jq</span>
-</span><span id="__span-2-87"><a id="__codelineno-2-87" name="__codelineno-2-87"></a>
-</span><span id="__span-2-88"><a id="__codelineno-2-88" name="__codelineno-2-88"></a><span class="w">          </span><span class="no">active_features="$(jq '[.[].groups.feature]' feature-branches/branches.json)"</span>
-</span><span id="__span-2-89"><a id="__codelineno-2-89" name="__codelineno-2-89"></a>
-</span><span id="__span-2-90"><a id="__codelineno-2-90" name="__codelineno-2-90"></a><span class="w">          </span><span class="no">jq -n "{terraform: {backend: $TERRAFORM_BACKEND_CONFIG}}" &gt; backend.tf.json</span>
-</span><span id="__span-2-91"><a id="__codelineno-2-91" name="__codelineno-2-91"></a><span class="w">          </span><span class="no">terraform init</span>
-</span><span id="__span-2-92"><a id="__codelineno-2-92" name="__codelineno-2-92"></a>
-</span><span id="__span-2-93"><a id="__codelineno-2-93" name="__codelineno-2-93"></a><span class="w">          </span><span class="no"># List all active workspaces, ignoring the default workspace</span>
-</span><span id="__span-2-94"><a id="__codelineno-2-94" name="__codelineno-2-94"></a><span class="w">          </span><span class="no">active_workspaces="$(terraform workspace list | grep -v '^[*]' | tr -d ' ' | jq --raw-input --slurp 'split("\n") | map(select(. != ""))')"</span>
-</span><span id="__span-2-95"><a id="__codelineno-2-95" name="__codelineno-2-95"></a>
-</span><span id="__span-2-96"><a id="__codelineno-2-96" name="__codelineno-2-96"></a><span class="w">          </span><span class="no">jq -n "$active_workspaces - $active_features" &gt; extra-workspaces/workspaces.json</span>
-</span><span id="__span-2-97"><a id="__codelineno-2-97" name="__codelineno-2-97"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">load_var</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extra_workspaces</span>
-</span><span id="__span-2-98"><a id="__codelineno-2-98" name="__codelineno-2-98"></a><span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extra-workspaces/workspaces.json</span>
-</span><span id="__span-2-99"><a id="__codelineno-2-99" name="__codelineno-2-99"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">across</span><span class="p">:</span>
-</span><span id="__span-2-100"><a id="__codelineno-2-100" name="__codelineno-2-100"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">var</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">workspace</span>
-</span><span id="__span-2-101"><a id="__codelineno-2-101" name="__codelineno-2-101"></a><span class="w">      </span><span class="nt">values</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">((.:extra_workspaces))</span>
-</span><span id="__span-2-102"><a id="__codelineno-2-102" name="__codelineno-2-102"></a><span class="w">    </span><span class="nt">put</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">staging-env</span>
-</span><span id="__span-2-103"><a id="__codelineno-2-103" name="__codelineno-2-103"></a><span class="w">    </span><span class="nt">params</span><span class="p">:</span>
-</span><span id="__span-2-104"><a id="__codelineno-2-104" name="__codelineno-2-104"></a><span class="w">      </span><span class="nt">terraform_source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">examples/terraform/staging</span>
-</span><span id="__span-2-105"><a id="__codelineno-2-105" name="__codelineno-2-105"></a><span class="w">      </span><span class="nt">env_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">((.:workspace))</span>
-</span><span id="__span-2-106"><a id="__codelineno-2-106" name="__codelineno-2-106"></a><span class="w">      </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">destroy</span>
-</span><span id="__span-2-107"><a id="__codelineno-2-107" name="__codelineno-2-107"></a><span class="w">    </span><span class="nt">get_params</span><span class="p">:</span>
-</span><span id="__span-2-108"><a id="__codelineno-2-108" name="__codelineno-2-108"></a><span class="w">      </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">destroy</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="nt">inputs</span><span class="p">:</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">binary</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="nt">run</span><span class="p">:</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sh</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="w">  </span><span class="nt">args</span><span class="p">:</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-cex</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">|</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="w">      </span><span class="no">./binary/ascii-banner -list</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="w">      </span><span class="no">./binary/ascii-banner concourse</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="w">      </span><span class="no">./binary/ascii-banner plane</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="w">      </span><span class="no">./binary/ascii-banner pilot</span>
+</span></code></pre></div></td></tr></tbody></table></div></li>
+</ol>
+<p>Putting all of that together we get our pipeline for the feature branches.
+</p><div class="language-yaml highlight"><table class="highlighttable"><tbody><tr><th colspan="2" class="filename"><span class="filename">template.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span>
+<span class="normal"><a href="#__codelineno-3-18">18</a></span>
+<span class="normal"><a href="#__codelineno-3-19">19</a></span>
+<span class="normal"><a href="#__codelineno-3-20">20</a></span>
+<span class="normal"><a href="#__codelineno-3-21">21</a></span>
+<span class="normal"><a href="#__codelineno-3-22">22</a></span>
+<span class="normal"><a href="#__codelineno-3-23">23</a></span>
+<span class="normal"><a href="#__codelineno-3-24">24</a></span>
+<span class="normal"><a href="#__codelineno-3-25">25</a></span>
+<span class="normal"><a href="#__codelineno-3-26">26</a></span>
+<span class="normal"><a href="#__codelineno-3-27">27</a></span>
+<span class="normal"><a href="#__codelineno-3-28">28</a></span>
+<span class="normal"><a href="#__codelineno-3-29">29</a></span>
+<span class="normal"><a href="#__codelineno-3-30">30</a></span>
+<span class="normal"><a href="#__codelineno-3-31">31</a></span>
+<span class="normal"><a href="#__codelineno-3-32">32</a></span>
+<span class="normal"><a href="#__codelineno-3-33">33</a></span>
+<span class="normal"><a href="#__codelineno-3-34">34</a></span>
+<span class="normal"><a href="#__codelineno-3-35">35</a></span>
+<span class="normal"><a href="#__codelineno-3-36">36</a></span>
+<span class="normal"><a href="#__codelineno-3-37">37</a></span>
+<span class="normal"><a href="#__codelineno-3-38">38</a></span>
+<span class="normal"><a href="#__codelineno-3-39">39</a></span>
+<span class="normal"><a href="#__codelineno-3-40">40</a></span>
+<span class="normal"><a href="#__codelineno-3-41">41</a></span>
+<span class="normal"><a href="#__codelineno-3-42">42</a></span>
+<span class="normal"><a href="#__codelineno-3-43">43</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="nt">resources</span><span class="p">:</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repo</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">git</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">  </span><span class="nt">check_every</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30m</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="w">  </span><span class="nt">source</span><span class="p">:</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="w">    </span><span class="nt">uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/concourse/examples</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="w">    </span><span class="nt">branch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">((branch))</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">golang</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">registry-image</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="w">  </span><span class="nt">source</span><span class="p">:</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">golang</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">latest</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14"></a>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="nt">jobs</span><span class="p">:</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="w">  </span><span class="nt">plan</span><span class="p">:</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">in_parallel</span><span class="p">:</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">get</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repo</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20"></a><span class="w">      </span><span class="nt">trigger</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">get</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">golang</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">task</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tests</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">golang</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24"></a><span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repo/tasks/go-test.yml</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25"></a><span class="w">    </span><span class="nt">params</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">MODULE</span><span class="p">:</span><span class="w"> </span><span class="nv">apps/golang</span><span class="p p-Indicator">}</span>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26"></a>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build</span>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28"></a><span class="w">  </span><span class="nt">plan</span><span class="p">:</span>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">in_parallel</span><span class="p">:</span>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">get</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repo</span>
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31"></a><span class="w">      </span><span class="nt">passed</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">test</span><span class="p p-Indicator">]</span>
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32"></a><span class="w">      </span><span class="nt">trigger</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">get</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">golang</span>
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">task</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build</span>
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">golang</span>
+</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36"></a><span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repo/tasks/go-build.yml</span>
+</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37"></a><span class="w">    </span><span class="nt">params</span><span class="p">:</span>
+</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38"></a><span class="w">      </span><span class="nt">MODULE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/golang</span>
+</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39"></a><span class="w">      </span><span class="nt">BINARY_NAME</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ascii-banner</span>
+</span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">task</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">run-binary</span>
+</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">golang</span>
+</span><span id="__span-3-42"><a id="__codelineno-3-42" name="__codelineno-3-42"></a><span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repo/apps/golang/binary-test.yml</span>
+</span><span id="__span-3-43"><a id="__codelineno-3-43" name="__codelineno-3-43"></a><span class="w">  </span><span class="c1"># Could then upload the tgz file somewhere like S3</span>
+</span></code></pre></div></td></tr></tbody></table></div><p></p>
+<p>Next we'll create the pipeline that will create the instance pipelines using
+<code>template.yml</code>.</p>
+<h2 id="automatically-creating-feature-branches">Automatically Creating Feature Branches</h2>
+<p>The pipeline that creates other pipelines is what we call the "parent
+pipeline". Our parent pipeline will include one extra resource and job compared
+to the previous pipeline config we made above. Along with creating the instance
+pipelines, this pipeline will also test and build all commits that get merged
+into the <code>main</code> branch. We're doing this to demonstrate that all instance
+pipelines don't all need the same pipeline configuration.</p>
+<p>The extra resource we'll include is going to track branches from our git
+repository. We'll use the <a href="https://github.com/concourse/git-resource/"><code>git</code>
+resource</a> with
+<code>source.version_type</code> set to <code>branches</code>. By default it'll find all branches in
+the repository, so we'll also set <code>source.branch_filters</code> to filter to a subset
+of branches; those starting with <code>feat/</code> or <code>feature/</code>.</p>
+<p>We'll then use that resource in a job called <code>set-feature-pipelines</code> and use
+the <code>across</code> and <code>set_pipeline</code> steps to create one instance pipeline per
+branch.</p>
+<p>Here's what our parent pipeline's configuration looks like all put together:</p>
+<div class="language-yaml highlight"><table class="highlighttable"><tbody><tr><th colspan="2" class="filename"><span class="filename">parent.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span>
+<span class="normal"><a href="#__codelineno-4-15">15</a></span>
+<span class="normal"><a href="#__codelineno-4-16">16</a></span>
+<span class="normal"><a href="#__codelineno-4-17">17</a></span>
+<span class="normal"><a href="#__codelineno-4-18">18</a></span>
+<span class="normal"><a href="#__codelineno-4-19">19</a></span>
+<span class="normal"><a href="#__codelineno-4-20">20</a></span>
+<span class="normal"><a href="#__codelineno-4-21">21</a></span>
+<span class="normal"><a href="#__codelineno-4-22">22</a></span>
+<span class="normal"><a href="#__codelineno-4-23">23</a></span>
+<span class="normal"><a href="#__codelineno-4-24">24</a></span>
+<span class="normal"><a href="#__codelineno-4-25">25</a></span>
+<span class="normal"><a href="#__codelineno-4-26">26</a></span>
+<span class="normal"><a href="#__codelineno-4-27">27</a></span>
+<span class="normal"><a href="#__codelineno-4-28">28</a></span>
+<span class="normal"><a href="#__codelineno-4-29">29</a></span>
+<span class="normal"><a href="#__codelineno-4-30">30</a></span>
+<span class="normal"><a href="#__codelineno-4-31">31</a></span>
+<span class="normal"><a href="#__codelineno-4-32">32</a></span>
+<span class="normal"><a href="#__codelineno-4-33">33</a></span>
+<span class="normal"><a href="#__codelineno-4-34">34</a></span>
+<span class="normal"><a href="#__codelineno-4-35">35</a></span>
+<span class="normal"><a href="#__codelineno-4-36">36</a></span>
+<span class="normal"><a href="#__codelineno-4-37">37</a></span>
+<span class="normal"><a href="#__codelineno-4-38">38</a></span>
+<span class="normal"><a href="#__codelineno-4-39">39</a></span>
+<span class="normal"><a href="#__codelineno-4-40">40</a></span>
+<span class="normal"><a href="#__codelineno-4-41">41</a></span>
+<span class="normal"><a href="#__codelineno-4-42">42</a></span>
+<span class="normal"><a href="#__codelineno-4-43">43</a></span>
+<span class="normal"><a href="#__codelineno-4-44">44</a></span>
+<span class="normal"><a href="#__codelineno-4-45">45</a></span>
+<span class="normal"><a href="#__codelineno-4-46">46</a></span>
+<span class="normal"><a href="#__codelineno-4-47">47</a></span>
+<span class="normal"><a href="#__codelineno-4-48">48</a></span>
+<span class="normal"><a href="#__codelineno-4-49">49</a></span>
+<span class="normal"><a href="#__codelineno-4-50">50</a></span>
+<span class="normal"><a href="#__codelineno-4-51">51</a></span>
+<span class="normal"><a href="#__codelineno-4-52">52</a></span>
+<span class="normal"><a href="#__codelineno-4-53">53</a></span>
+<span class="normal"><a href="#__codelineno-4-54">54</a></span>
+<span class="normal"><a href="#__codelineno-4-55">55</a></span>
+<span class="normal"><a href="#__codelineno-4-56">56</a></span>
+<span class="normal"><a href="#__codelineno-4-57">57</a></span>
+<span class="normal"><a href="#__codelineno-4-58">58</a></span>
+<span class="normal"><a href="#__codelineno-4-59">59</a></span>
+<span class="normal"><a href="#__codelineno-4-60">60</a></span>
+<span class="normal"><a href="#__codelineno-4-61">61</a></span>
+<span class="normal"><a href="#__codelineno-4-62">62</a></span>
+<span class="normal"><a href="#__codelineno-4-63">63</a></span>
+<span class="normal"><a href="#__codelineno-4-64">64</a></span>
+<span class="normal"><a href="#__codelineno-4-65">65</a></span>
+<span class="normal"><a href="#__codelineno-4-66">66</a></span>
+<span class="normal"><a href="#__codelineno-4-67">67</a></span>
+<span class="normal"><a href="#__codelineno-4-68">68</a></span>
+<span class="normal"><a href="#__codelineno-4-69">69</a></span>
+<span class="normal"><a href="#__codelineno-4-70">70</a></span>
+<span class="normal"><a href="#__codelineno-4-71">71</a></span>
+<span class="normal"><a href="#__codelineno-4-72">72</a></span>
+<span class="normal"><a href="#__codelineno-4-73">73</a></span>
+<span class="normal"><a href="#__codelineno-4-74">74</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nt">resources</span><span class="p">:</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">branches</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">git</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">  </span><span class="nt">check_every</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30m</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">  </span><span class="nt">source</span><span class="p">:</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">    </span><span class="nt">version_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">branches</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">    </span><span class="nt">uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/concourse/examples</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">    </span><span class="c1"># Could use branch_regex instead if you want</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">    </span><span class="nt">branch_filters</span><span class="p">:</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">feat/*</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">feature/*</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">golang</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">registry-image</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="w">  </span><span class="nt">source</span><span class="p">:</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16"></a><span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">golang</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17"></a><span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">latest</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18"></a>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repo</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">git</span>
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21"></a><span class="w">  </span><span class="nt">check_every</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30m</span>
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22"></a><span class="w">  </span><span class="nt">source</span><span class="p">:</span>
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23"></a><span class="w">    </span><span class="nt">uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/concourse/examples</span>
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24"></a>
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25"></a><span class="nt">jobs</span><span class="p">:</span>
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">set-feature-pipelines</span>
+</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27"></a><span class="w">  </span><span class="nt">plan</span><span class="p">:</span>
+</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">in_parallel</span><span class="p">:</span>
+</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">get</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">branches</span>
+</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30"></a><span class="w">      </span><span class="nt">trigger</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">get</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repo</span>
+</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32"></a>
+</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33"></a><span class="w">  </span><span class="c1"># creates the ((.:branches)) var</span>
+</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">load_var</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">branches</span>
+</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35"></a><span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">branches/branches.json</span>
+</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36"></a>
+</span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">across</span><span class="p">:</span>
+</span><span id="__span-4-38"><a id="__codelineno-4-38" name="__codelineno-4-38"></a><span class="w">    </span><span class="c1"># creates the ((.:branch)) var, set to the value of one branch</span>
+</span><span id="__span-4-39"><a id="__codelineno-4-39" name="__codelineno-4-39"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">var</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">branch</span>
+</span><span id="__span-4-40"><a id="__codelineno-4-40" name="__codelineno-4-40"></a><span class="w">      </span><span class="nt">values</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">((.:branches))</span>
+</span><span id="__span-4-41"><a id="__codelineno-4-41" name="__codelineno-4-41"></a><span class="w">    </span><span class="nt">do</span><span class="p">:</span>
+</span><span id="__span-4-42"><a id="__codelineno-4-42" name="__codelineno-4-42"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">set_pipeline</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">((instance_pipeline_name))</span>
+</span><span id="__span-4-43"><a id="__codelineno-4-43" name="__codelineno-4-43"></a><span class="w">        </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repo/pipelines/multi-branch/template.yml</span>
+</span><span id="__span-4-44"><a id="__codelineno-4-44" name="__codelineno-4-44"></a><span class="w">        </span><span class="nt">instance_vars</span><span class="p">:</span>
+</span><span id="__span-4-45"><a id="__codelineno-4-45" name="__codelineno-4-45"></a><span class="w">          </span><span class="nt">branch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">((.:branch))</span>
+</span><span id="__span-4-46"><a id="__codelineno-4-46" name="__codelineno-4-46"></a>
+</span><span id="__span-4-47"><a id="__codelineno-4-47" name="__codelineno-4-47"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+</span><span id="__span-4-48"><a id="__codelineno-4-48" name="__codelineno-4-48"></a><span class="w">  </span><span class="nt">plan</span><span class="p">:</span>
+</span><span id="__span-4-49"><a id="__codelineno-4-49" name="__codelineno-4-49"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">in_parallel</span><span class="p">:</span>
+</span><span id="__span-4-50"><a id="__codelineno-4-50" name="__codelineno-4-50"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">get</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repo</span>
+</span><span id="__span-4-51"><a id="__codelineno-4-51" name="__codelineno-4-51"></a><span class="w">      </span><span class="nt">trigger</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-4-52"><a id="__codelineno-4-52" name="__codelineno-4-52"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">get</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">golang</span>
+</span><span id="__span-4-53"><a id="__codelineno-4-53" name="__codelineno-4-53"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">task</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tests</span>
+</span><span id="__span-4-54"><a id="__codelineno-4-54" name="__codelineno-4-54"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">golang</span>
+</span><span id="__span-4-55"><a id="__codelineno-4-55" name="__codelineno-4-55"></a><span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repo/tasks/go-test.yml</span>
+</span><span id="__span-4-56"><a id="__codelineno-4-56" name="__codelineno-4-56"></a><span class="w">    </span><span class="nt">params</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">MODULE</span><span class="p">:</span><span class="w"> </span><span class="nv">apps/golang</span><span class="p p-Indicator">}</span>
+</span><span id="__span-4-57"><a id="__codelineno-4-57" name="__codelineno-4-57"></a>
+</span><span id="__span-4-58"><a id="__codelineno-4-58" name="__codelineno-4-58"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build</span>
+</span><span id="__span-4-59"><a id="__codelineno-4-59" name="__codelineno-4-59"></a><span class="w">  </span><span class="nt">plan</span><span class="p">:</span>
+</span><span id="__span-4-60"><a id="__codelineno-4-60" name="__codelineno-4-60"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">in_parallel</span><span class="p">:</span>
+</span><span id="__span-4-61"><a id="__codelineno-4-61" name="__codelineno-4-61"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">get</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repo</span>
+</span><span id="__span-4-62"><a id="__codelineno-4-62" name="__codelineno-4-62"></a><span class="w">      </span><span class="nt">passed</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">test</span><span class="p p-Indicator">]</span>
+</span><span id="__span-4-63"><a id="__codelineno-4-63" name="__codelineno-4-63"></a><span class="w">      </span><span class="nt">trigger</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-4-64"><a id="__codelineno-4-64" name="__codelineno-4-64"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">get</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">golang</span>
+</span><span id="__span-4-65"><a id="__codelineno-4-65" name="__codelineno-4-65"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">task</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build</span>
+</span><span id="__span-4-66"><a id="__codelineno-4-66" name="__codelineno-4-66"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">golang</span>
+</span><span id="__span-4-67"><a id="__codelineno-4-67" name="__codelineno-4-67"></a><span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repo/tasks/go-build.yml</span>
+</span><span id="__span-4-68"><a id="__codelineno-4-68" name="__codelineno-4-68"></a><span class="w">    </span><span class="nt">params</span><span class="p">:</span>
+</span><span id="__span-4-69"><a id="__codelineno-4-69" name="__codelineno-4-69"></a><span class="w">      </span><span class="nt">MODULE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/golang</span>
+</span><span id="__span-4-70"><a id="__codelineno-4-70" name="__codelineno-4-70"></a><span class="w">      </span><span class="nt">BINARY_NAME</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ascii-banner</span>
+</span><span id="__span-4-71"><a id="__codelineno-4-71" name="__codelineno-4-71"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">task</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">run-binary</span>
+</span><span id="__span-4-72"><a id="__codelineno-4-72" name="__codelineno-4-72"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">golang</span>
+</span><span id="__span-4-73"><a id="__codelineno-4-73" name="__codelineno-4-73"></a><span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repo/apps/golang/binary-test.yml</span>
+</span><span id="__span-4-74"><a id="__codelineno-4-74" name="__codelineno-4-74"></a><span class="w">  </span><span class="c1"># Could then upload the tgz file somewhere like S3</span>
 </span></code></pre></div></td></tr></tbody></table></div>
+<p>You can then set the parent pipeline in two ways: as an instance pipeline that
+will live alongside the instance pipelines it creates, or as a separate
+pipeline under a different name. Either way is fine, it won't make a difference
+on the end result.</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># running from the root of github.com/concourse/examples</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># setting parent pipeline as a separate pipeline.</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Instance pipelines will be named "ascii-feature"</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>fly<span class="w"> </span>-t<span class="w"> </span>ci<span class="w"> </span>set-pipeline<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span>--pipeline<span class="w"> </span>ascii-banner<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span>--config<span class="w"> </span>pipelines/multi-branch/parent.yml<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span>--var<span class="w"> </span><span class="nv">instance_pipeline_name</span><span class="o">=</span>ascii-feature
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c1"># or set the parent pipeline as an instance pipeline. Both parent and child</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="c1"># pipelines are named "ascii-banner" in this situation. We also set an instance</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="c1"># var for the parent pipeline, though the var is unused in our parent pipeline.</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="c1"># The instance var will display in the web UI.</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>fly<span class="w"> </span>-t<span class="w"> </span>ci<span class="w"> </span>set-pipeline<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">  </span>--pipeline<span class="w"> </span>ascii-banner<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">  </span>--config<span class="w"> </span>pipelines/multi-branch/parent.yml<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">  </span>--var<span class="w"> </span><span class="nv">instance_pipeline_name</span><span class="o">=</span>ascii-banner<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">  </span>--instance-var<span class="w"> </span><span class="nv">branch</span><span class="o">=</span>main
+</span></code></pre></div>
+<p>There are some feature branches in the <code>concourse/examples</code> repo, so you should
+get a few instance pipelines being made once you set and unpause the parent
+pipeline.</p>
+<p>If you set the parent pipeline as a separate pipeline, it will look like
+this in the web UI:
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/ascii-banner-separate.png" data-desc-position="bottom"><img alt="" src="../assets/ascii-banner-separate.png"></a></p>
+<p>If you set the parent pipeline as an instance pipeline, it'll appear grouped
+with the instance pipelines it creates in the web UI:
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/ascii-banner-grouped.png" data-desc-position="bottom"><img alt="" src="../assets/ascii-banner-grouped.png"></a></p>
+<p>Clicking on the instance group will look like this:
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/ascii-banner-grouped-overview.png" data-desc-position="bottom"><img alt="" src="../assets/ascii-banner-grouped-overview.png"></a></p>
+<p>Which setup you choose is up to you. They are functionally the same.</p>
+<h2 id="automatically-archiving-feature-branch-pipelines">Automatically Archiving Feature Branch Pipelines</h2>
+<p>The last thing we need to figure out with this setup is how to delete the
+instance pipelines when we're done with them. Feature branches will be merged
+into <code>main</code> at some point and likely deleted too.</p>
+<p>Once the feature branch is deleted from the git repository, our git resource
+that tracks branches will notice the branch no longer exists and will trigger
+the <code>set-feature-pipelines</code> job.</p>
+<p><code>set-feature-pipelines</code> will run and set/update the pipelines for branches that
+still exist. When this happens, Concourse will notice that the instance
+pipeline belonging to the deleted feature branch is not being updated by the
+parent pipeline anymore; the parent-child relationship between the two
+pipelines has been broken. Concourse will automatically archive the feature
+branch's pipeline. Archived pipelines are hidden from the web UI and paused.</p>
+<p>You can test out the final piece of this workflow by deleting one of the
+feature branches in the <code>examples</code> repo. Shortly after <code>set-feature-pipelines</code>
+runs, the pipeline tied to the deleted branch will be archived. You can press
+the "show archived" toggle in the web UI to verify this.</p>
+<p>That brings us to the end of this guide. Hopefully this has helped illustrate
+the basic mechanics required to set up multi-branch workflows using Concourse
+pipelines. If you have any thoughts or suggestions, feel free to share them in
+our <a href="https://github.com/orgs/concourse/discussions">GitHub Discussions</a> forum.</p>
 
 
 
