@@ -20,7 +20,7 @@ bugs, and stewarding the project and community.
 * The [Docs repo](https://github.com/concourse/docs) contains the source for the website you're reading now!
 * [GitHub Discussions](https://github.com/concourse/concourse/discussions) are used for support, announcements, idea
   sharing, and general conversations.
-* The [Concourse blog](https://blog.concourse-ci.org/) features tutorials and updates from the development perspective.
+* The [Concourse blog](https://concourse-ci.org/blog/) features tutorials and updates from the development perspective.
 * The [Concourse Discord server](https://discord.gg/MeRxXKW) offers a great space to chat with other contributors.
 * The Concourse working group charter is available in the Cloud
   Foundry [community repo](https://github.com/cloudfoundry/community/blob/main/toc/working-groups/concourse.md).
