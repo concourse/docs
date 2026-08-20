@@ -3,6 +3,10 @@ authors:
     name: Taylor Silva
     description: Lead Maintainer
     avatar: https://github.com/taylorsilva.png
+  kumper:
+    name: Kalin
+    description: Contributor
+    avatar: https://github.com/Kump3r.png
   jamesma:
     name: James Ma
     description: Former Product Manager
