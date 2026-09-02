@@ -5991,6 +5991,15 @@ env on the <a href="../../../install/running-web/"><code>web</code> node</a>:</p
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="na">CONCOURSE_MAIN_TEAM_SAML_GROUP</span><span class="o">=</span><span class="s">my-group</span>
 </span></code></pre></div>
 <p>Multiple users and groups may be specified by comma-separating them.</p>
+<p>If you use LDAP group descriptions (e.g.
+<code>CN=my_concourse_admin,OU=SecurityGroups,DC=example,DC=com</code>) to specify the
+main team group(s), you'll have to use the flag version of the previous configs
+because LDAP group descriptions contain commas:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>--main-team-saml-user<span class="w"> </span><span class="s2">"my-user"</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>--main-team-saml-group<span class="w"> </span><span class="s2">"CN=my_concourse_admin,OU=SecurityGroups,DC=example,DC=com"</span>
+</span></code></pre></div>
+<p>Both flags can be specified multiple times for when you want to add multiple
+users/groups to the main team.</p>
 
 
 
