@@ -83,3 +83,16 @@ CONCOURSE_MAIN_TEAM_SAML_GROUP=my-group
 ```
 
 Multiple users and groups may be specified by comma-separating them.
+
+If you use LDAP group descriptions (e.g.
+`CN=my_concourse_admin,OU=SecurityGroups,DC=example,DC=com`) to specify the
+main team group(s), you'll have to use the flag version of the previous configs
+because LDAP group descriptions contain commas:
+
+```shell
+--main-team-saml-user "my-user"
+--main-team-saml-group "CN=my_concourse_admin,OU=SecurityGroups,DC=example,DC=com"
+```
+
+Both flags can be specified multiple times for when you want to add multiple
+users/groups to the main team.
