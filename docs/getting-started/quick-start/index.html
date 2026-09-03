@@ -5931,9 +5931,15 @@ version &gt;=v7.14.0 of Concourse, you can visit <a href="http://localhost:8080/
 <div class="tabbed-block">
 <div class="language-sh highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
 <span class="normal"><a href="#__codelineno-2-2">2</a></span>
-<span class="normal"><a href="#__codelineno-2-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>curl<span class="w"> </span><span class="s1">'http://localhost:8080/api/v1/cli?arch=amd64&amp;platform=darwin'</span><span class="w"> </span>-o<span class="w"> </span>fly
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>curl<span class="w"> </span><span class="s1">'http://localhost:8080/api/v1/cli?arch=amd64&amp;platform=darwin'</span><span class="w"> </span>-o<span class="w"> </span>fly
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>chmod<span class="w"> </span>+x<span class="w"> </span>./fly
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>mv<span class="w"> </span>./fly<span class="w"> </span>/usr/local/bin/
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="c1"># Latest versions of macOS may prevent you from running the unsigned fly</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="c1"># binary. Run the following as a workaround:</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>xattr<span class="w"> </span>-d<span class="w"> </span>com.apple.quarantine<span class="w"> </span>/usr/local/bin/fly
 </span></code></pre></div></td></tr></tbody></table></div>
 </div>
 <div class="tabbed-block">
@@ -5950,6 +5956,7 @@ version &gt;=v7.14.0 of Concourse, you can visit <a href="http://localhost:8080/
 </div>
 </div>
 </div>
+<hr>
 <p>Use <a href="../../fly/#fly-login"><code>fly login</code></a> to log into your local Concourse as the <code>test</code> user:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>fly -t tutorial login -c http://localhost:8080 -u test -p test
 </span></code></pre></div>
