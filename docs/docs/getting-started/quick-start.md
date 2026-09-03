@@ -47,6 +47,9 @@ Otherwise, you can follow these steps to install fly for your OS:
     curl 'http://localhost:8080/api/v1/cli?arch=amd64&platform=darwin' -o fly
     chmod +x ./fly
     mv ./fly /usr/local/bin/
+    # Latest versions of macOS may prevent you from running the unsigned fly
+    # binary. Run the following as a workaround:
+    xattr -d com.apple.quarantine /usr/local/bin/fly
     ```
 
 === "Windows (Powershell)"
@@ -58,6 +61,8 @@ Otherwise, you can follow these steps to install fly for your OS:
     $concourseURL = 'http://localhost:8080/api/v1/cli?arch=amd64&platform=windows'
     Invoke-WebRequest $concourseURL -OutFile "${concoursePath}\fly.exe"
     ```
+
+---
 
 Use [`fly login`](../fly.md#fly-login) to log into your local Concourse as the `test` user:
 
