@@ -201,22 +201,6 @@ nav:
               - docs/steps/modifier-and-hooks/ensure.md
       - docs/tasks.md
       - docs/builds.md
-      - How-To Guides:
-          - docs/how-to/index.md
-          - Pipelines:
-              - docs/how-to/pipeline-guides/managing-pipeline-configs.md
-              - docs/how-to/pipeline-guides/common-pipeline.md
-              - docs/how-to/pipeline-guides/task-inputs-outputs.md
-              - docs/how-to/pipeline-guides/gated-pipelines.md
-              - docs/how-to/pipeline-guides/time-triggered-pipelines.md
-              - docs/how-to/pipeline-guides/manual-approval.md
-          - Git:
-              - docs/how-to/git-guides/basic.md
-              - docs/how-to/git-guides/multi-branch.md
-              - docs/how-to/git-guides/monorepo.md
-          - Container Images:
-              - docs/how-to/container-image-guides/build-push.md
-              - docs/how-to/container-image-guides/build-use.md
       - Operation:
           - docs/operation/index.md
           - docs/operation/metrics.md
@@ -250,20 +234,53 @@ nav:
           - docs/internals/garbage-collector.md
   - Examples:
       - examples/index.md
-      - examples/hello-world.md
-      - examples/serial-job.md
-      - examples/pipeline-vars.md
-      - examples/set-pipeline.md
-      - examples/inputs-outputs.md
-      - examples/time-triggered.md
-      - examples/git-triggered.md
-      - examples/manually-triggered.md
-      - examples/job-and-task-hooks.md
-      - examples/golang-lib.md
-      - examples/rails-app.md
-      - examples/java-app.md
-      - examples/nodejs-app.md
-      - examples/php-app.md
+      - Fundamentals:
+          - examples/fundamentals/index.md
+          - examples/fundamentals/hello-world.md
+          - examples/fundamentals/inputs-outputs.md
+          - examples/fundamentals/set-pipeline.md
+      - Pipeline Patterns:
+          - examples/pipeline-patterns/index.md
+          - examples/pipeline-patterns/common-pipeline.md
+          - examples/pipeline-patterns/managing-pipeline-configs.md
+          - examples/pipeline-patterns/task-inputs-outputs.md
+          - examples/pipeline-patterns/gated-pipelines.md
+          - examples/pipeline-patterns/manual-approval.md
+          - examples/pipeline-patterns/time-triggered.md
+          - examples/pipeline-patterns/serial-job.md
+          - examples/pipeline-patterns/pipeline-vars.md
+          - examples/pipeline-patterns/manually-triggered.md
+      - Git Workflows:
+          - examples/git-workflows/index.md
+          - examples/git-workflows/basic.md
+          - examples/git-workflows/multi-branch.md
+          - examples/git-workflows/monorepo.md
+          - examples/git-workflows/git-triggered.md
+      - Container Images:
+          - examples/container-images/index.md
+          - examples/container-images/build-push.md
+          - examples/container-images/build-use.md
+      - Task Composition:
+          - examples/task-composition/index.md
+          - examples/task-composition/job-and-task-hooks.md
+      - Language Pipelines:
+          - examples/language-pipelines/index.md
+          - examples/language-pipelines/golang-lib.md
+          - examples/language-pipelines/rails-app.md
+          - examples/language-pipelines/java-app.md
+          - examples/language-pipelines/nodejs-app.md
+          - examples/language-pipelines/php-app.md
+      - Credentials:
+          - examples/credentials/index.md
+          - examples/credentials/idtoken-vault.md
+          - examples/credentials/idtoken-aws.md
+          - examples/credentials/idtoken-azure.md
+          - examples/credentials/idtoken-gcp.md
+      - Templating:
+          - examples/templating/index.md
+          - examples/templating/ytt-single-pipeline.md
+          - examples/templating/ytt-multi-file-pipeline.md
+
   - project/index.md
   - ecosystem/index.md
   - support/index.md

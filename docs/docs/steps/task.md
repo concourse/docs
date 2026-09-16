@@ -143,7 +143,7 @@ the result of a task.
 
         This can be used to explicitly keep track of dependent images. You could also modify it to build and push the 
         image in one job and use it in later jobs. See [Building and Pushing an 
-        Image](../how-to/container-image-guides/build-push.md).
+        Image](../../examples/container-images/build-push.md).
 
         ```yaml
         resources:
@@ -169,7 +169,7 @@ the result of a task.
 
     ??? example "Building and using an image"
 
-        [Building an Image and Using it in a Task](../how-to/container-image-guides/build-use.md)
+        [Building an Image and Using it in a Task](../../examples/container-images/build-use.md)
 
 
 ??? info "`privileged`: [`boolean`](../config-basics.md#boolean-schema)"

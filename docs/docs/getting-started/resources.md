@@ -13,7 +13,7 @@ resources can do:
 * Run a job every five minutes: [Time resource](https://github.com/concourse/time-resource/).
 * Run tests on new commits to the main branch: [Git resource](https://github.com/concourse/git-resource).
 * Publish a new release of your app on
-  Github: [GitHub Release resource](https://github.com/concourse/github-release-resource/).
+  GitHub: [GitHub Release resource](https://github.com/concourse/github-release-resource/).
 * Pull or push the latest image of your
   app: [Registry-image resource](https://github.com/concourse/registry-image-resource/)
 
@@ -562,10 +562,10 @@ at [this page](../../resource-types-list.md).
 This brings us to the end of the tutorial. You should have a basic understanding about how to read Concourse pipelines
 and start creating your own. Here are some other parts of the site to help you take off with Concourse:
 
-* [How-To Guides](../how-to/index.md) - Contains practical guides
-  for [working with pipelines](../how-to/pipeline-guides/common-pipeline.md) and examples of common pipeline workflows,
-  such as [git](../how-to/git-guides/basic.md)
-  and [container](../how-to/container-image-guides/build-push.md) workflows.
+* [Examples and Guides](../../examples/index.md) - Contains practical guides
+  for [working with pipelines](../../examples/pipeline-patterns/common-pipeline.md) and examples of common pipeline workflows,
+  such as [git](../../examples/git-workflows/basic.md)
+  and [container](../../examples/container-images/build-push.md) workflows.
 * Check out all the reference documentation:
     * [Jobs](../jobs.md)
     * [Tasks](../tasks.md)

@@ -155,33 +155,6 @@ docs:
         to: modifier-and-hooks/on-error
       - from: ensure-hook
         to: modifier-and-hooks/ensure
-  how_to:
-    routes:
-      - from: how-to-guides
-        to: index
-
-      - from: managing-pipeline-configurations
-        to: pipeline-guides/managing-pipeline-configs
-      - from: common-pipeline-practices
-        to: pipeline-guides/common-pipeline
-      - from: exploring-task-input-and-output-scenarios
-        to: pipeline-guides/task-inputs-outputs
-      - from: gated-pipeline-patterns
-        to: pipeline-guides/gated-pipelines
-      - from: time-triggered-pipeline-patterns
-        to: pipeline-guides/time-triggered-pipelines
-      - from: manual-approval-step
-        to: pipeline-guides/manual-approval
-
-      - from: basic-git-operations
-        to: git-guides/basic
-      - from: multi-branch-workflows
-        to: git-guides/multi-branch
-
-      - from: building-and-pushing-an-image
-        to: container-image-guides/build-push
-      - from: building-an-image-and-using-it-in-a-task
-        to: container-image-guides/build-use
 
   operation:
     routes:
@@ -249,33 +222,137 @@ examples:
       to: index
       html_only: true
     - from: hello-world-example
-      to: hello-world
+      to: fundamentals/hello-world
     - from: serial-job-example
-      to: serial-job
+      to: pipeline-patterns/serial-job
     - from: pipeline-vars-example
-      to: pipeline-vars
+      to: pipeline-patterns/pipeline-vars
     - from: set-pipelines-example
-      to: set-pipeline
+      to: fundamentals/set-pipeline
     - from: task-inputs-outputs-example
-      to: inputs-outputs
+      to: fundamentals/inputs-outputs
     - from: time-trigger-example
-      to: time-triggered
+      to: pipeline-patterns/time-triggered
     - from: git-trigger-example
-      to: git-triggered
+      to: git-workflows/git-triggered
     - from: manual-trigger-example
-      to: manually-triggered
+      to: pipeline-patterns/manually-triggered
     - from: hooks-example
-      to: job-and-task-hooks
+      to: task-composition/job-and-task-hooks
     - from: golang-library-example
-      to: golang-lib
+      to: language-pipelines/golang-lib
     - from: rails-example
-      to: rails-app
+      to: language-pipelines/rails-app
     - from: java-example
-      to: java-app
+      to: language-pipelines/java-app
     - from: nodejs-example
-      to: nodejs-app
+      to: language-pipelines/nodejs-app
     - from: php-example
-      to: php-app
+      to: language-pipelines/php-app
+
+    #! --- Legacy Booklit aliases: How-To Guides (retired docs/how-to root -> examples) ---
+    - from: how-to-guides
+      to: index
+    - from: managing-pipeline-configurations
+      to: pipeline-patterns/managing-pipeline-configs
+    - from: common-pipeline-practices
+      to: pipeline-patterns/common-pipeline
+    - from: exploring-task-input-and-output-scenarios
+      to: pipeline-patterns/task-inputs-outputs
+    - from: gated-pipeline-patterns
+      to: pipeline-patterns/gated-pipelines
+    - from: time-triggered-pipeline-patterns
+      to: pipeline-patterns/time-triggered
+    - from: manual-approval-step
+      to: pipeline-patterns/manual-approval
+    - from: basic-git-operations
+      to: git-workflows/basic
+    - from: multi-branch-workflows
+      to: git-workflows/multi-branch
+    - from: building-and-pushing-an-image
+      to: container-images/build-push
+    - from: building-an-image-and-using-it-in-a-task
+      to: container-images/build-use
+
+    #! --- Current mkdocs-era URLs being retired by the consolidation ---
+    - from: docs/how-to/index
+      to: index
+      md_only: true
+    - from: docs/how-to/pipeline-guides/managing-pipeline-configs
+      to: pipeline-patterns/managing-pipeline-configs
+      md_only: true
+    - from: docs/how-to/pipeline-guides/common-pipeline
+      to: pipeline-patterns/common-pipeline
+      md_only: true
+    - from: docs/how-to/pipeline-guides/task-inputs-outputs
+      to: pipeline-patterns/task-inputs-outputs
+      md_only: true
+    - from: docs/how-to/pipeline-guides/gated-pipelines
+      to: pipeline-patterns/gated-pipelines
+      md_only: true
+    - from: docs/how-to/pipeline-guides/time-triggered-pipelines
+      to: pipeline-patterns/time-triggered
+      md_only: true
+    - from: docs/how-to/pipeline-guides/manual-approval
+      to: pipeline-patterns/manual-approval
+      md_only: true
+    - from: docs/how-to/git-guides/basic
+      to: git-workflows/basic
+      md_only: true
+    - from: docs/how-to/git-guides/multi-branch
+      to: git-workflows/multi-branch
+      md_only: true
+    - from: docs/how-to/git-guides/monorepo
+      to: git-workflows/monorepo
+      md_only: true
+    - from: docs/how-to/container-image-guides/build-push
+      to: container-images/build-push
+      md_only: true
+    - from: docs/how-to/container-image-guides/build-use
+      to: container-images/build-use
+      md_only: true
+    - from: examples/hello-world
+      to: fundamentals/hello-world
+      md_only: true
+    - from: examples/inputs-outputs
+      to: fundamentals/inputs-outputs
+      md_only: true
+    - from: examples/set-pipeline
+      to: fundamentals/set-pipeline
+      md_only: true
+    - from: examples/serial-job
+      to: pipeline-patterns/serial-job
+      md_only: true
+    - from: examples/pipeline-vars
+      to: pipeline-patterns/pipeline-vars
+      md_only: true
+    - from: examples/time-triggered
+      to: pipeline-patterns/time-triggered
+      md_only: true
+    - from: examples/manually-triggered
+      to: pipeline-patterns/manually-triggered
+      md_only: true
+    - from: examples/git-triggered
+      to: git-workflows/git-triggered
+      md_only: true
+    - from: examples/job-and-task-hooks
+      to: task-composition/job-and-task-hooks
+      md_only: true
+    - from: examples/golang-lib
+      to: language-pipelines/golang-lib
+      md_only: true
+    - from: examples/rails-app
+      to: language-pipelines/rails-app
+      md_only: true
+    - from: examples/java-app
+      to: language-pipelines/java-app
+      md_only: true
+    - from: examples/nodejs-app
+      to: language-pipelines/nodejs-app
+      md_only: true
+    - from: examples/php-app
+      to: language-pipelines/php-app
+      md_only: true
 
 project:
   routes:

@@ -23,7 +23,6 @@ plugins:
         resources: #@ template.replace(generateRoutes(docs.resources))
         resource-types: #@ template.replace(generateRoutes(docs.resource_types))
         steps: #@ template.replace(generateRoutes(docs.steps))
-        how-to: #@ template.replace(generateRoutes(docs.how_to))
         operation: #@ template.replace(generateRoutes(docs.operation))
         internals: #@ template.replace(generateRoutes(docs.internals))
         examples: #@ template.replace(generateRoutes(data.values.examples))

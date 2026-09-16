@@ -43,7 +43,7 @@ Now we can start building out our pipeline. Let's declare our [resources](../../
 first. We will need one resource to pull in the repo where our Dockerfile is located, and a second resource pointing to
 where we want to push the built container image to.
 
-_There are some [variables](../../../../examples/pipeline-vars.md#variables) in this file that we will
+_There are some [variables](../../../../examples/pipeline-patterns/pipeline-vars.md#variables) in this file that we will
 fill out later._
 
 ```yaml

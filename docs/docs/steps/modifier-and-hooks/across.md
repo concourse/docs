@@ -303,7 +303,7 @@ See [Across Step & Dynamic Vars](../../vars.md#across-step-dynamic-vars) for det
     When a new branch is added, a new pipeline will be created. When a branch is deleted, the pipeline will be 
     automatically archived as described in the [`set_pipeline` step](../set-pipeline.md).
     
-    For a more complete example, refer to [Multi-Branch Workflows](../../how-to/git-guides/multi-branch.md).
+    For a more complete example, refer to [Multi-Branch Workflows](../../../examples/git-workflows/multi-branch.md).
 
 ## Limitations
 
