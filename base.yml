@@ -228,6 +228,7 @@ nav:
               - docs/operation/creds/aws-ssm.md
               - docs/operation/creds/conjur.md
               - docs/operation/creds/credhub.md
+              - docs/operation/creds/gcp-secret.md
               - docs/operation/creds/id-token.md
               - docs/operation/creds/kubernetes.md
               - docs/operation/creds/vault.md
