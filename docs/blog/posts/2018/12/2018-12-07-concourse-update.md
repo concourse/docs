@@ -1,6 +1,8 @@
 ---
 title: Concourse Update (Dec 3–7)
 date: 2018-12-07
+tags:
+  - blog
 categories:
   - product-update
 authors:

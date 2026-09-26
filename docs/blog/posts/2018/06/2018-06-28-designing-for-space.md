@@ -1,6 +1,8 @@
 ---
 title: Designing for Space in Concourse
 date: 2018-06-28
+tags:
+  - blog
 authors:
   - lauchinachie
   - speinado

@@ -1,6 +1,8 @@
 ---
 title: "Concourse Update (\U0001F937-April 1, 2019)"
 date: 2019-04-01
+tags:
+  - blog
 categories:
   - product-update
 authors:

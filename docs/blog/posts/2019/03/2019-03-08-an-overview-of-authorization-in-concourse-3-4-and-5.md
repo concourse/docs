@@ -1,6 +1,8 @@
 ---
 title: An Overview of Authorization in Concourse 3, 4 and 5
 date: 2019-03-08
+tags:
+  - blog
 categories:
   - product-update
 authors:

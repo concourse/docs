@@ -1,6 +1,8 @@
 ---
 title: Concourse Update (August 13–17)
 date: 2018-08-17
+tags:
+  - blog
 categories:
 - product-update
 authors:

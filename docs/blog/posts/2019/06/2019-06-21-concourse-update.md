@@ -2,6 +2,8 @@
 layout: post
 title: Concourse Update (July 21 2019)
 date: 2019-06-21
+tags:
+  - blog
 categories:
   - product-update
 authors:

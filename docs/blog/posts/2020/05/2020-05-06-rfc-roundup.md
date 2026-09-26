@@ -2,6 +2,8 @@
 layout: post
 title: 'RFC round-up: May 6th, 2020'
 date: 2020-05-06
+tags:
+  - blog
 categories:
   - rfcs
 ---

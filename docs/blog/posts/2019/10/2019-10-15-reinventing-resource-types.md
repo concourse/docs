@@ -1,6 +1,8 @@
 ---
 title: Re-inventing resource types
 date: 2019-10-15
+tags:
+  - blog
 categories:
 - roadmap
 authors:

@@ -1,6 +1,8 @@
 ---
 title: Concourse Updates (Nov 26–30)
 date: 2018-11-30
+tags:
+  - blog
 categories:
   - product-update
 authors:

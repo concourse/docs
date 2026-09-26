@@ -1,6 +1,8 @@
 ---
 title: Suspicious Volume Usage on Workers
 date: 2018-08-10
+tags:
+  - blog
 authors:
   - jamesma
 links:

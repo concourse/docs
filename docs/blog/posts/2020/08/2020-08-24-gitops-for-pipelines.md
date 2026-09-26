@@ -2,6 +2,8 @@
 layout: post
 title: GitOps For Your Pipelines
 date: 2020-08-24
+tags:
+  - blog
 categories:
   - tutorials
 ---

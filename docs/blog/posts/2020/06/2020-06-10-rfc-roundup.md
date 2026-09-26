@@ -1,6 +1,8 @@
 ---
 title: 'RFC round-up: June 10th, 2020'
 date: 2020-06-10
+tags:
+  - blog
 categories:
   - rfcs
 ---

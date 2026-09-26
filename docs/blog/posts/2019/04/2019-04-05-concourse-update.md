@@ -1,6 +1,8 @@
 ---
 title: Concourse Update (April 1–5)
 date: 2019-04-05
+tags:
+  - blog
 categories:
 - product-update
 authors:

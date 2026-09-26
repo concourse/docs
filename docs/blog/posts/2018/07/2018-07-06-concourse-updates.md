@@ -1,6 +1,8 @@
 ---
 title: Concourse Updates (July 3–6)
 date: 2018-07-06
+tags:
+  - blog
 categories:
   - product-update
 authors:

@@ -2,6 +2,8 @@
 layout: post
 title: Concourse Update (April 9–13)
 date: 2018-04-13
+tags:
+  - blog
 categories:
   - product-update
 authors:

@@ -1,6 +1,8 @@
 ---
 title: Designing a Dashboard for Concourse
 date: 2017-11-27
+tags:
+  - blog
 authors:
   - lauchinachie
 ---

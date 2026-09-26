@@ -1,6 +1,8 @@
 ---
 title: Getting Started with Concourse on macOS
 date: 2018-04-28
+tags:
+  - blog
 authors:
   - dforde
 ---

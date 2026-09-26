@@ -2,6 +2,8 @@
 layout: post
 title: Concourse Update (Jan 21–25)
 date: 2019-01-25
+tags:
+  - blog
 categories:
   - product-update
 authors:
