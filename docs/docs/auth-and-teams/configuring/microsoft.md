@@ -1,5 +1,7 @@
 ---
 title: Microsoft Auth
+tags:
+  - authorization
 ---
 
 A Concourse server can authenticate against Microsoft Azure AD to leverage its permission model.

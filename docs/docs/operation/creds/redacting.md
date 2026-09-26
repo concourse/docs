@@ -1,5 +1,7 @@
 ---
 title: Redacting credentials
+tags:
+  - credential
 ---
 
 Concourse will automatically try to redact credentials from build output.

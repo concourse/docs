@@ -1,5 +1,7 @@
 ---
 title: CredHub credential manager
+tags:
+  - credential
 ---
 
 Concourse can be configured to pull credentials from a [CredHub](https://github.com/cloudfoundry/credhub) instance.
