@@ -10,6 +10,9 @@ watch:
   - docs
   - overrides
 
+hooks:
+  - hooks.py
+
 markdown_extensions:
   - admonition
   - def_list
@@ -69,6 +72,7 @@ theme:
     - attr_list # Attribute Lists
     - md_in_html # Markdown in HTML
     - pymdownx.blocks.caption # Caption
+    - content.tooltips # Enhanced tooltips
 
   palette:
     - scheme: default
@@ -133,6 +137,9 @@ nav:
           - docs/install/running-web.md
           - docs/install/running-worker.md
           - docs/install/upgrading-concourse.md
+          - Install Guides:
+              - docs/install/guides/systemd.md
+              - docs/install/guides/docker-compose.md
       - Auth & Teams:
           - docs/auth-and-teams/index.md
           - docs/auth-and-teams/main-team.md
@@ -141,6 +148,7 @@ nav:
               - docs/auth-and-teams/configuring/local-user.md
               - docs/auth-and-teams/configuring/github.md
               - docs/auth-and-teams/configuring/gitlab.md
+              - docs/auth-and-teams/configuring/gitea.md
               - docs/auth-and-teams/configuring/bitbucket-cloud.md
               - docs/auth-and-teams/configuring/cf-uaa.md
               - docs/auth-and-teams/configuring/ldap.md
@@ -164,6 +172,7 @@ nav:
           - docs/resources/index.md
           - docs/resources/resource-versions.md
           - docs/resources/managing-resources.md
+          - docs/resources/available-resource-icons.md
       - Resource Types:
           - docs/resource-types/index.md
           - docs/resource-types/implementing.md
@@ -194,20 +203,18 @@ nav:
       - docs/builds.md
       - How-To Guides:
           - docs/how-to/index.md
-          - Pipeline Guides:
-              - docs/how-to/pipeline-guides/index.md
+          - Pipelines:
               - docs/how-to/pipeline-guides/managing-pipeline-configs.md
               - docs/how-to/pipeline-guides/common-pipeline.md
               - docs/how-to/pipeline-guides/task-inputs-outputs.md
               - docs/how-to/pipeline-guides/gated-pipelines.md
               - docs/how-to/pipeline-guides/time-triggered-pipelines.md
               - docs/how-to/pipeline-guides/manual-approval.md
-          - Git Guides:
-              - docs/how-to/git-guides/index.md
+          - Git:
               - docs/how-to/git-guides/basic.md
               - docs/how-to/git-guides/multi-branch.md
-          - Container Image Guides:
-              - docs/how-to/container-image-guides/index.md
+              - docs/how-to/git-guides/monorepo.md
+          - Container Images:
               - docs/how-to/container-image-guides/build-push.md
               - docs/how-to/container-image-guides/build-use.md
       - Operation:
@@ -217,13 +224,13 @@ nav:
           - docs/operation/encryption.md
           - Credential Management:
               - docs/operation/creds/index.md
-              - docs/operation/creds/vault.md
-              - docs/operation/creds/credhub.md
-              - docs/operation/creds/aws-ssm.md
               - docs/operation/creds/aws-secrets.md
-              - docs/operation/creds/kubernetes.md
+              - docs/operation/creds/aws-ssm.md
               - docs/operation/creds/conjur.md
+              - docs/operation/creds/credhub.md
               - docs/operation/creds/id-token.md
+              - docs/operation/creds/kubernetes.md
+              - docs/operation/creds/vault.md
               - docs/operation/creds/caching.md
               - docs/operation/creds/redacting.md
               - docs/operation/creds/retrying-failed.md
@@ -232,6 +239,7 @@ nav:
           - docs/operation/opa-integration.md
           - docs/operation/tuning.md
           - docs/operation/global-resources.md
+          - docs/operation/health.md
           - docs/operation/administration.md
       - docs/observation.md
       - Internals:

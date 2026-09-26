@@ -13,7 +13,6 @@
   font-family: "Iosevka", monospace;
   letter-spacing: 0.0425em;
   font-weight: bold;
-  font-size: 0.65em;
   line-height: 1.4;
   background: #3d3c3c;
   flex-grow: 1;
@@ -67,7 +66,7 @@
   stroke: #7a7373;
 }
 .pipeline-svg .edge.pending {
-  stroke: #868585;
+  stroke: #ffffff;
 }
 .pipeline-svg .edge.succeeded {
   stroke: #11c560;
@@ -101,7 +100,7 @@
   fill: #fff;
 }
 .pipeline-svg .node.constrained-input text {
-  fill: #868585;
+  fill: #ffffff;
 }
 .pipeline-svg .node.constrained-input.pinned text {
   fill: #fff;

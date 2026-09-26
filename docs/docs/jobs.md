@@ -25,29 +25,24 @@ A pipeline's jobs are listed under [`pipeline.jobs`](pipelines/index.md#pipeline
 ??? info "**`old_name`**: [`identifier`](config-basics.md#identifier-schema)"
 
     ### `old_name`
-    The old name of the job. If configured, the history of old job will be inherited to the new one. Once the pipeline 
-    is set, this field can be removed as the builds have been transfered.
+    The old name of the job. This can be used to rename a job without losing its history, like so:
 
-    ??? example "Renaming a job"
-    
-        This can be used to rename a job without losing its history, like so:
-        
-        ```yaml
-        jobs:
-          - name: new-name
-            old_name: current-name
-            plan:
-              - get: 10m
-        ```
-        
-        After the pipeline is set, because the builds have been inherited, the job can have the field removed:
-        
-        ```yaml
-        jobs:
-          - name: new-name
-            plan:
-              - get: 10m
-        ```
+    ```yaml
+    jobs:
+      - name: new-name
+        old_name: current-name
+        plan:
+          - get: 10m
+    ```
+
+    After the pipeline is set, because the builds have been transferred, the job can have the field removed:
+
+    ```yaml
+    jobs:
+      - name: new-name
+        plan:
+          - get: 10m
+    ```
 
 ??? info "**`serial`**: [`boolean`](config-basics.md#boolean-schema)"
 
@@ -58,7 +53,7 @@ A pipeline's jobs are listed under [`pipeline.jobs`](pipelines/index.md#pipeline
 
     ### `serial_groups`
     _Default `[]`_. When set to an array of arbitrary tag-like strings, builds of this job and other jobs referencing 
-    the same tags will be serialized.
+    the same tags will be serialized. Only affects jobs in the same pipeline.
 
     ??? example "Limiting parallelism"
     
@@ -100,6 +95,9 @@ A pipeline's jobs are listed under [`pipeline.jobs`](pipelines/index.md#pipeline
     Builds which are not retained by the configured policy will have their logs reaped. If this configuration is 
     omitted, logs are kept forever (unless [Build log retention](install/running-web.md#build-log-retention) is 
     configured globally).
+
+    When both `days` and `builds` are configured, a build's logs will only be
+    reaped if it's older than the `days` specified.
 
     ??? example "A complicated example"
 
@@ -162,6 +160,12 @@ A pipeline's jobs are listed under [`pipeline.jobs`](pipelines/index.md#pipeline
     _Default `false`_. If set to `true`, manual triggering of the job (via the web UI or 
     [`fly trigger-job`](#fly-trigger-job)) will be disabled.
 
+??? info "`disable_reruns`: [`boolean`](config-basics.md#boolean-schema)"
+
+    ### `disable_reruns`
+    _Default `false`_. If set to `true`, rerunning builds of the job (via the
+    web UI or [`fly rerun-build`](#fly-rerun-build)) will be disabled.
+
 ??? info "`interruptible`: [`boolean`](config-basics.md#boolean-schema)"
 
     ### `interruptible`
@@ -169,35 +173,52 @@ A pipeline's jobs are listed under [`pipeline.jobs`](pipelines/index.md#pipeline
     worker to finish before exiting. If this value is set to `true`, the worker will not wait on the builds of this job.
     You may want this if you have a self-deploying Concourse or long-running-but-low-importance jobs.
 
+??? info "`tags`: [`[string]`](config-basics.md#string-schema)"
+
+    ### `tags`
+    _⚠️ Only in v8.3.0 or higher_
+
+    _Default `[]`_. The tags by which to match workers. All steps and `on_*`
+    hook steps for the job will be placed within the pool of workers that match
+    all the given set of tags.
+
+    Child steps can override these `tags` with their own set of `tags`. Tags
+    cannot be cleared by child steps though. You'll need to create a more
+    granular job plan if you want certain steps to remain untagged.
+
+### Job Hooks
+
 ??? info "`on_success`: [`step`](steps/index.md)"
 
-    ### `on_success`
+    #### `on_success`
     Step to execute when the job succeeds. Equivalent to the [`on_success`](steps/modifier-and-hooks/on-success.md) 
     hook.
 
 ??? info "`on_failure`: [`step`](steps/index.md)"
 
-    ### `on_failure`
+    #### `on_failure`
     Step to execute when the job fails. Equivalent to the [`on_failure`](steps/modifier-and-hooks/on-failure.md) 
     hook.
 
 ??? info "`on_error`: [`step`](steps/index.md)"
 
-    ### `on_error`
+    #### `on_error`
     Step to execute when the job errors. Equivalent to the [`on_error`](steps/modifier-and-hooks/on-error.md) 
     hook.
 
 ??? info "`on_abort`: [`step`](steps/index.md)"
 
-    ### `on_abort`
+    #### `on_abort`
     Step to execute when the job aborts. Equivalent to the [`on_abort`](steps/modifier-and-hooks/on-abort.md) 
     hook.
 
 ??? info "`ensure`: [`step`](steps/index.md)"
 
-    ### `ensure`
+    #### `ensure`
     Step to execute regardless of whether the job succeeds, fails, errors, or aborts. Equivalent to the 
     [`ensure`](steps/modifier-and-hooks/ensure.md) hook.
+
+---
 
 ## Managing Jobs
 

@@ -13,8 +13,7 @@ export default {
   plugins: [
     // Resolve imports from node_modules
     nodeResolve(),
-    // ⬅️ NEW: Add the TypeScript plugin *before* terser
-    typescript({
+    typescript({  
       // Ensure Rollup uses your tsconfig.json
       tsconfig: "./tsconfig.json",
     }),

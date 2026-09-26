@@ -1,103 +1,43 @@
 ---
-title: The Conjur credential manager
+title: Conjur credential manager
 ---
-
-## Configuration
 
 Concourse can be configured to pull credentials from a [CyberArk Conjur](https://conjur.org/) instance.
 
-The ATC is configured with a Conjur host username and api key or session token. If no host username, api key, or session
-token is provided, Concourse will attempt to use environment variables.
+## Configuration
 
-The ATC's configuration specifies the following:
+To enable this credential manager, configure the following environment variables on the [
+`web` node](../../install/running-web.md):
 
-**`conjur-appliance-url`**: string
-
-: URL of the Conjur instance.
-
-: Environment variable `CONCOURSE_CONJUR_APPLIANCE_URL`.
-
-**`conjur-account`**: string
-
-: The Conjur account.
-
-: Environment variable `CONCOURSE_CONJUR_ACCOUNT`.
-
-**`conjur-authn-login`**: string
-
-: A valid Conjur host username.
-
-: Environment variable `CONCOURSE_CONJUR_AUTHN_LOGIN`.
-
-**`conjur-authn-api-key`**: string
-
-: The api key that corresponds to the Conjur host username.
-
-: Environment variable `CONCOURSE_CONJUR_AUTHN_API_KEY`.
-
-**`conjur-authn-token-file`**: string
-
-: Token file used if Conjur instance is running in k8s or iam.
-
-: Environment variable `CONCOURSE_CONJUR_AUTHN_TOKEN_FILE`.
-
-**`conjur-cert-file`**: string
-
-: Cert file used if conjur instance is using a self-signed cert.
-
-: Environment variable `CONCOURSE_CONJUR_CERT_FILE`.
-
-**`conjur-pipeline-secret-template`**: string
-
-: The base path used when attempting to locate a pipeline-level secret.
-
-: Environment variable `CONCOURSE_CONJUR_PIPELINE_SECRET_TEMPLATE`.
-
-: !!! example
-
-        Default: `/concourse/{{.Team}}/{{.Secret}}`
-
-**`conjur-team-secret-template`**: string
-
-: The base path used when attempting to locate a team-level secret.
-
-: Environment variable `CONCOURSE_CONJUR_TEAM_SECRET_TEMPLATE`.
-
-: !!! example
-
-        Default: `/concourse/{{.Team}}/{{.Secret}}`
-
-**`conjur-secret-template`**: string
-
-: The base path used when attempting to locate a vault or safe level secret.
-
-: Environment variable `CONCOURSE_CONJUR_SECRET_TEMPLATE`.
-
-: !!! example
-
-        Default: `vaultName/{{.Secret}}`
-
-For example, to launch the ATC and enable Conjur, you may configure:
-
-```shell
-concourse web ... \
-  --conjur-appliance-url https://conjur-master.local \
-  --conjur-account conjur \
-  --conjur-authn-login host/concourse/dev \
-  --conjur-authn-api-key 107eaqz167jkzm2q8wjv4mnyj0z12gfkws9wq9gzsjt29v2sn7yvy
-
-# or use env variables
-CONCOURSE_CONJUR_APPLIANCE_URL="https://conjur-master.local" \
-CONCOURSE_CONJUR_ACCOUNT="conjur" \
-CONCOURSE_CONJUR_AUTHN_LOGIN="host/concourse/dev" \
-CONCOURSE_CONJUR_AUTHN_API_KEY="107eaqz167jkzm2q8wjv4mnyj0z12gfkws9wq9gzsjt29v2sn7yvy" \
-concourse web ...
+```properties
+CONCOURSE_CONJUR_APPLIANCE_URL=https://credhub-server:9000
+CONCOURSE_CONJUR_ACCOUNT=db02de05-fa39-4855-059b-67221c5c2f63
+CONCOURSE_CONJUR_AUTHN_LOGIN=6a174c20-f6de-a53c-74d2-6018fcceff64
+CONCOURSE_CONJUR_AUTHN_API_KEY=6a174c20-f6de-a53c-74d2-6018fcceff64
 ```
 
-## Conjur Permissions
+### Token File Configuration
 
-The following is an example Conjur policy that can be used to grant permissions to a Conjur host. In this
-example `host/concourse` will have permissions to read and update all the secrets within the `TEAM_NAME`
+Conjur can also be configured to use a token file instead of login and API keys by configuring the following environment
+variable:
+
+```properties
+CONCOURSE_CONJUR_AUTHN_TOKEN_FILE=/etc/token
+```
+
+### TLS Configuration
+
+If your Conjur instance is signed with TLS by a local Certificate Authority, you can use the following environment
+variable:
+
+```properties
+CONCOURSE_CONJUR_CERT_FILE=/etc/ca.crt
+```
+
+### Permissions
+
+The following is an example Conjur policy that can be used to grant permissions to a Conjur host. In this example
+`host/concourse` will have permissions to read and update all the secrets within the `TEAM_NAME`
 and `PIPELINE_NAME` policies.
 
 ```yaml
@@ -123,13 +63,46 @@ the [official documentation](https://docs.conjur.org/Latest/en/Content/Operation
 
 ## Credential Lookup Rules
 
-When resolving a parameter such as `((foo_param))`, Concourse will look in the following paths, in order:
+When resolving a parameter such as `((foo_param))`, it will look in the following paths, in order:
 
 * `/concourse/TEAM_NAME/PIPELINE_NAME/foo_param`
 * `/concourse/TEAM_NAME/foo_param`
-* `vaultName/foo_param`
 
-The leading `/concourse` can be changed by specifying `--conjur-pipeline-secret-template`
-or `--conjur-team-secret-template` variables.
+If the action is being run in the context of a pipeline (e.g. a `check` or a step in a build of a job), the ATC will
+first look in the pipeline path. If it's not found there, it will look in the team path. This allows credentials to be
+scoped widely if they're common across many pipelines.
 
-The leading `vaultName` can be changed by specifying `--conjur-secret-template` variable.
+When executing a one-off task, there is no pipeline: so in this case, only the team path `/concourse/TEAM_NAME/foo` is
+searched.
+
+There are several ways to customize the lookup logic:
+
+1. Change the team-, pipeline-, and absolute secret dependent path templates.
+
+Each of these can be controlled by Concourse command line flags, or environment variables.
+
+### Changing the path templates
+
+You can choose your own list of templates, which will expand to team-, pipeline-, and absolute secret specific paths. By
+default, the templates used are:
+
+```properties
+CONCOURSE_CONJUR_TEAM_SECRET_TEMPLATE="concourse/{{.Team}}/{{.Secret}}
+CONCOURSE_CONJUR_PIPELINE_SECRET_TEMPLATE=/concourse/{{.Team}}/{{.Pipeline}}/{{.Secret}}
+CONCOURSE_CONJUR_SECRET_TEMPLATE=vaultName/{{.Secret}}
+```
+
+When secrets are to be looked up, these are evaluated where `{{.Team}}` expands to the current team, `{{.Pipeline}}` to
+the current pipeline (if any), and `{{.Secret}}` to the name of the secret. So if the settings are:
+
+```properties
+CONCOURSE_CONJUR_TEAM_SECRET_TEMPLATE="{{.Team}}/concourse/{{.Secret}}
+CONCOURSE_CONJUR_PIPELINE_SECRET_TEMPLATE=/{{.Team}}/concourse/{{.Pipeline}}/{{.Secret}}
+CONCOURSE_CONJUR_SECRET_TEMPLATE=conjur/{{.Secret}}
+```
+
+and `((password))` is used in team `myteam` and pipeline `mypipeline`, Concourse will look for the following, in order:
+
+1. `/myteam/concourse/mypipeline/password`
+2. `/myteam/concourse/password`
+3. `/conjur/password`

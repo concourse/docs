@@ -12,7 +12,14 @@ of the community have written and made public for others to use. If you'd like
 to add a resource type that you've made, make a Pull Request in the
 [`concourse/docs`](https://github.com/concourse/docs/) repo.
 
-<script src="/assets/javascripts/list.min.js"></script>
+
+<style>
+    /* Hide the first column */
+    td:nth-child(1),
+    th:nth-child(1) {
+      display: none;
+    }
+</style>
 
 <div id="resource-types-table">
   <input type="search" class="search" placeholder="Search for a Resource Type" autofocus>
@@ -20,6 +27,7 @@ to add a resource type that you've made, make a Pull Request in the
   <table>
     <thead>
       <tr>
+        <th>Values in this column are visually hidden and are used for the search bar</th>
         <th>Name</th>
         <th>Description</th>
         <th>Add to Pipeline</th>
@@ -27,7 +35,71 @@ to add a resource type that you've made, make a Pull Request in the
     </thead>
     <!-- IMPORTANT: tbody must have class "list" for List.js to work -->
     <tbody class="list">
+      <!-- TEMPLATE: copy and paste the following table row
       <tr>
+          <td class="hidden-search-field">
+              PUT RESOURCE NAME AND DESCRIPTION HERE. CAN INCLUDE OTHER KEYWOARDS THAT USERS MAY SEARCH. KEEP IT PLAINTEXT.
+          </td>
+          <td class="name">
+              <a href="LINK TO RESOURCE SOURCE CODE">RESOURCE NAME</a>
+          </td>
+          <td class="description">
+              DESCRIPTION OF THE RESOURCE
+          </td>
+          <td class="pipeline-yaml">
+              ```yaml
+              - name: RESOURCE-NAME
+                type: registry-image
+                source:
+                  repository: URI TO PULL RESOURCE IMAGE
+              ```
+          </td>
+      </tr>
+      END TEMPLATE -->
+      <tr>
+          <td class="hidden-search-field">
+              Github resource. pull requests status checks commits
+          </td>
+          <td class="name">
+              <a href="https://github.com/PixelAirIO/github-resource">Github</a>
+          </td>
+          <td class="description">
+              Resource that allows pipelines to interact with Github, like checking out and running status checks on Pull Requests.
+          </td>
+          <td class="pipeline-yaml">
+              ```yaml
+              - name: github
+                type: registry-image
+                source:
+                  repository: docker.io/pixelairio/github-resource
+              ```
+          </td>
+      </tr>
+      <tr>
+          <td class="hidden-search-field">
+              send-to-slack
+          </td>
+          <td class="name">
+              <a href="https://github.com/bluekornchips/send-to-slack">send-to-slack</a>
+          </td>
+          <td class="description">
+              A resource designed to send <a
+              href="https://docs.slack.dev/reference/block-kit">block kit
+              content</a> to Slack via the Slack Web API.
+          </td>
+          <td class="pipeline-yaml">
+              ```yaml
+              - name: send-to-slack
+                type: registry-image
+                source:
+                  repository: sunflowersoftware/send-to-slack
+              ```
+          </td>
+      </tr>
+      <tr>
+          <td class="hidden-search-field">
+              metadata Returns the build metadata for a given build
+          </td>
           <td class="name">
               <a href="https://github.com/PixelAirIO/metadata-resource">metadata</a>
           </td>
@@ -44,6 +116,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              github-pr Let Concourse pipelines to interact with GitHub Pull Requests
+          </td>
           <td class="name">
               <a href="https://github.com/cloudfoundry-community/github-pr-resource">github-pr</a>
           </td>
@@ -60,6 +135,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              slack-notifier A structured and opinionated Slack notification resource
+          </td>
           <td class="name">
               <a href="https://github.com/mockersf/concourse-slack-notifier">slack-notifier</a>
           </td>
@@ -76,6 +154,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              keyval A resource for passing arbitrary data between steps/jobs and curating dynamic filesystem content
+          </td>
           <td class="name">
               <a href="https://github.com/cludden/concourse-keyval-resource">keyval</a>
           </td>
@@ -92,6 +173,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              sentry-releases Manage releases in Sentry, can be used to upload sourcemaps.
+          </td>
           <td class="name">
               <a href="https://github.com/rubenv/concourse-sentry-releases-resource">sentry-releases</a>
           </td>
@@ -108,6 +192,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              semver Automated semantic version bumping
+          </td>
           <td class="name">
               <a href="https://github.com/concourse/semver-resource">semver</a>
           </td>
@@ -124,6 +211,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              appcenter-resource Concourse resource for distributing a build artifact to Microsoft App Center.
+          </td>
           <td class="name">
               <a href="https://github.com/tomoyukim/concourse-appcenter-resource">appcenter-resource</a>
           </td>
@@ -140,6 +230,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              s3 Concourse resource for interacting with AWS S3
+          </td>
           <td class="name">
               <a href="https://github.com/concourse/s3-resource">s3</a>
           </td>
@@ -156,11 +249,14 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              registry-image A resource for images in a Docker or OCI registry
+          </td>
           <td class="name">
               <a href="https://github.com/concourse/registry-image-resource">registry-image</a>
           </td>
           <td class="description">
-              A resource for images in a Docker registry
+              A resource for images in a Docker or OCI registry
           </td>
           <td class="pipeline-yaml">
               ```yaml
@@ -172,6 +268,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              git Tracks commits in a branch of a Git repository
+          </td>
           <td class="name">
               <a href="https://github.com/concourse/git-resource">git</a>
           </td>
@@ -188,6 +287,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              datadog-event Fetch or emit events to Datadog.
+          </td>
           <td class="name">
               <a href="https://github.com/concourse/datadog-event-resource">datadog-event</a>
           </td>
@@ -204,6 +306,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              coralogix-event Sends build events to Coralogix
+          </td>
           <td class="name">
               <a href="https://github.com/coralogix/eng-concourse-resource-coralogix-event">coralogix-event</a>
           </td>
@@ -220,6 +325,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              artifactory-docker Concourse resource for triggering, getting and putting new versions of docker / container image artifacts within Artifactory repositories.
+          </td>
           <td class="name">
               <a href="https://github.com/digitalocean/artifactory-docker-resource">artifactory-docker</a>
           </td>
@@ -236,6 +344,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              prometheus-pushgateway Send metrics to Prometheus Push Gateway
+          </td>
           <td class="name">
               <a href="https://github.com/michaellihs/prometheus-pushgateway-resource">prometheus-pushgateway</a>
           </td>
@@ -252,6 +363,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              sonarqube-notifier Gets Sonarqube results
+          </td>
           <td class="name">
               <a href="https://github.com/elgohr/concourse-sonarqube-notifier">sonarqube-notifier</a>
           </td>
@@ -268,22 +382,28 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              irccat A resource to send notifications to irc via an irccat service
+          </td>
           <td class="name">
               <a href="https://github.com/haiku/irccat-resource">irccat</a>
           </td>
           <td class="description">
-              A resource to send notifications to irc via an irccat service
+              A resource to send notifications to irc via an irccat (https://github.com/irccloud/irccat) service
           </td>
           <td class="pipeline-yaml">
               ```yaml
               - name: irccat
                 type: registry-image
                 source:
-                  repository: haiku/irccat-resource
+                  repository: ghcr.io/haiku/irccat-resource
               ```
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              sonarqube Performs SonarQube analyses and tracks the state of SonarQube quality gates.
+          </td>
           <td class="name">
               <a href="https://github.com/cathive/concourse-sonarqube-resource">sonarqube</a>
           </td>
@@ -300,6 +420,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              apache-directory-index Tracks changes to an Apache Directory Index (e.g. http://mirror.easyname.ch/apache/tomcat/)
+          </td>
           <td class="name">
               <a href="https://github.com/cloudlena/apache-directory-index-resource">apache-directory-index</a>
           </td>
@@ -316,6 +439,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              pulumi Manages infrastructure via Pulumi
+          </td>
           <td class="name">
               <a href="https://github.com/ringods/pulumi-resource">pulumi</a>
           </td>
@@ -332,6 +458,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              github-app-token Get an installation token for your GitHub App to access the GitHub API
+          </td>
           <td class="name">
               <a href="https://github.com/tenjaa/concourse-github-app-token">github-app-token</a>
           </td>
@@ -348,6 +477,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              gcs Concourse resource for interacting with Google Cloud Storage
+          </td>
           <td class="name">
               <a href="https://github.com/frodenas/gcs-resource">gcs</a>
           </td>
@@ -364,6 +496,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              slack-alert A structured Slack notification resource for Concourse
+          </td>
           <td class="name">
               <a href="https://github.com/arbourd/concourse-slack-alert-resource">slack-alert</a>
           </td>
@@ -380,6 +515,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              datetime-version A resource to generate a date time version
+          </td>
           <td class="name">
               <a href="https://github.com/dcsg/datetime-version-resource">datetime-version</a>
           </td>
@@ -396,6 +534,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              steampipe A resource for implementing a wide variety of triggers and data integrations via Steampipe and its expansive plugin ecosystem
+          </td>
           <td class="name">
               <a href="https://github.com/cludden/concourse-steampipe-resource">steampipe</a>
           </td>
@@ -412,6 +553,28 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              forgejo A resource for interacting with Forgejo statuses, comments, pull requests, etc.
+          </td>
+          <td class="name">
+              <a href="https://codeberg.org/aniva/forgejo-concourse">forgejo</a>
+          </td>
+          <td class="description">
+              A resource for interacting with Forgejo statuses, comments, pull requests, etc.
+          </td>
+          <td class="pipeline-yaml">
+              ```yaml
+              - name: forgejo
+                type: registry-image
+                source:
+                  repository: codeberg.org/aniva/concourse-forgejo
+              ```
+          </td>
+      </tr>
+      <tr>
+          <td class="hidden-search-field">
+              bitbucket-pr Tracks pull requests on BitBucket and updates it's status
+          </td>
           <td class="name">
               <a href="https://github.com/n7mobile/concourse-bitbucket-pr">bitbucket-pr</a>
           </td>
@@ -428,6 +591,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              chartmuseum Fetches, verifies and publishes Helm Charts from a running ChartMuseum instance. Harbor works as well, since it uses ChartMuseum under the hood.
+          </td>
           <td class="name">
               <a href="https://github.com/cathive/concourse-chartmuseum-resource">chartmuseum</a>
           </td>
@@ -445,6 +611,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              github-release A resource for github releases
+          </td>
           <td class="name">
               <a href="https://github.com/concourse/github-release-resource">github-release</a>
           </td>
@@ -461,6 +630,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              vrealize-automation Executes vRealize Automation pipelines
+          </td>
           <td class="name">
               <a href="https://github.com/vmware-archive/concourse-vrealize-automation-resource">vrealize-automation</a>
           </td>
@@ -477,6 +649,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              artifactory-deb Fetch from, and publish to Debian/Ubuntu apt repositories in Artifactory.
+          </td>
           <td class="name">
               <a href="https://github.com/troykinsella/concourse-artifactory-deb-resource">artifactory-deb</a>
           </td>
@@ -493,6 +668,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              aptly-cli Enables you to transfer packages between your job and an aptly repository
+          </td>
           <td class="name">
               <a href="https://github.com/SHyx0rmZ/aptly-cli-resource">aptly-cli</a>
           </td>
@@ -509,6 +687,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              k8s Custom K8s resource type to deploy manifests to K8s kubernetes
+          </td>
           <td class="name">
               <a href="https://github.com/srinivasa-vasu/concourse-k8s">k8s</a>
           </td>
@@ -525,6 +706,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              http-jq Exposing version of a resource over an HTTP endpoint and parsing it via jq into Concourse jobs
+          </td>
           <td class="name">
               <a href="https://github.com/qudini/concourse-http-jq-resource">http-jq</a>
           </td>
@@ -541,6 +725,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              githubapps-content-resource A resource for clone github private repository with GithubApps credential.
+          </td>
           <td class="name">
               <a href="https://github.com/totegamma/githubapps-content-resource">githubapps-content-resource</a>
           </td>
@@ -557,6 +744,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              digitalocean-kubernetes-resource Create, update and delete Digitalocean Kubernetes Clusters.
+          </td>
           <td class="name">
               <a href="https://git.sr.ht/~kdihalas/concourse-do-kubernetes-resource">digitalocean-kubernetes-resource</a>
           </td>
@@ -573,6 +763,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              terraform Manages infrastructure via Terraform
+          </td>
           <td class="name">
               <a href="https://github.com/ljfranklin/terraform-resource">terraform</a>
           </td>
@@ -589,6 +782,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              slack-notification A resource for sending notifications to Slack
+          </td>
           <td class="name">
               <a href="https://github.com/cloudfoundry-community/slack-notification-resource">slack-notification</a>
           </td>
@@ -605,6 +801,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              Artifactory Check, deploy and retrieve artifacts using the "builds" and "artifact properties" Artifactory features.
+          </td>
           <td class="name">
               <a href="https://github.com/spring-io/artifactory-resource">artifactory</a>
           </td>
@@ -621,6 +820,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              consul-kv Get or set a key/value pair in Consul's KV store.
+          </td>
           <td class="name">
               <a href="https://github.com/mdb/concourse-consul-kv-resource">consul-kv</a>
           </td>
@@ -637,6 +839,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              cf Concourse resource for interacting with Cloud Foundry
+          </td>
           <td class="name">
               <a href="https://github.com/cloudfoundry-community/cf-resource">cf</a>
           </td>
@@ -653,6 +858,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              bosh-config A resource for interacting with configs (Cloud, Runtime, CPI, etc…) living on a Bosh server
+          </td>
           <td class="name">
               <a href="https://github.com/cloudfoundry-community/bosh-config-resource">bosh-config</a>
           </td>
@@ -669,6 +877,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              pool Atomically manages the state of the world (e.g. external environments)
+          </td>
           <td class="name">
               <a href="https://github.com/concourse/pool-resource">pool</a>
           </td>
@@ -685,6 +896,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              rubygems Fetch and publish Ruby gem packages to a RubyGems repository.
+          </td>
           <td class="name">
               <a href="https://github.com/troykinsella/concourse-rubygems-resource">rubygems</a>
           </td>
@@ -701,6 +915,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              repo Track changes for projects using Google's repo (Gerrit).
+          </td>
           <td class="name">
               <a href="https://github.com/makohoek/repo-resource">repo</a>
           </td>
@@ -717,6 +934,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              helm-chart Download and publish helm charts from helm repositories.
+          </td>
           <td class="name">
               <a href="https://github.com/jghiloni/helm-chart-resource">helm-chart</a>
           </td>
@@ -733,6 +953,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              kubectl Deploys resources to a Kubernetes cluster using "kubectl apply -f" command
+          </td>
           <td class="name">
               <a href="https://github.com/jmkarthik/concourse-kubectl-resource">kubectl</a>
           </td>
@@ -749,6 +972,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              dhall Tracks the changes in a remote Dhall expression, and makes them available locally.
+          </td>
           <td class="name">
               <a href="https://github.com/coralogix/eng-concourse-resource-dhall">dhall</a>
           </td>
@@ -765,6 +991,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              fly Manipulate the Concourse fly command-line client.
+          </td>
           <td class="name">
               <a href="https://github.com/troykinsella/concourse-fly-resource">fly</a>
           </td>
@@ -781,6 +1010,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              teams-notification Resource for pipeline notifications to Microsoft Teams
+          </td>
           <td class="name">
               <a href="https://github.com/navicore/teams-notification-resource">teams-notification</a>
           </td>
@@ -797,6 +1029,11 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              tfe Create/read/update workspace variables, create/apply runs, and
+              read root-level state outputs for Hashicorp Terraform Cloud and
+              Terraform Enterprise workspaces.
+          </td>
           <td class="name">
               <a href="https://github.com/orstensemantics/concourse-tfe-resource">tfe</a>
           </td>
@@ -815,6 +1052,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              maven Integrate your pipeline with any Maven Repository Manager (Artifactory, Nexus, GitHub Packages, etc.)
+          </td>
           <td class="name">
               <a href="https://github.com/nulldriver/maven-resource">maven</a>
           </td>
@@ -831,6 +1071,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              rclone Publish arbitrary files and directories using Rclone.
+          </td>
           <td class="name">
               <a href="https://github.com/warricksothr/concourse-rclone-resource">rclone</a>
           </td>
@@ -847,6 +1090,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              static A resource to expose static information as a directory
+          </td>
           <td class="name">
               <a href="https://github.com/ktchen14/static-resource">static</a>
           </td>
@@ -863,6 +1109,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              awx Launches AWX job templates and workflows
+          </td>
           <td class="name">
               <a href="https://github.com/mamercad/concourse-awx-resource">awx</a>
           </td>
@@ -879,6 +1128,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              blackduck Use Blackduck from Concourse
+          </td>
           <td class="name">
               <a href="https://github.com/elgohr/concourse-blackduck">blackduck</a>
           </td>
@@ -895,6 +1147,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              irc-notification Sends notification messages to an IRC channel
+          </td>
           <td class="name">
               <a href="https://github.com/flavorjones/irc-notification-resource">irc-notification</a>
           </td>
@@ -911,6 +1166,10 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              gate A generic gate resource for Concourse CI. Allows you to model
+              quality gates and pipeline control flow.
+          </td>
           <td class="name">
               <a href="https://github.com/meshcloud/gate-resource">gate</a>
           </td>
@@ -928,6 +1187,12 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              github-pr-comment Monitors incoming comments on a Github Pull Request and is able
+              to monitor for comments matching regular expressions, match
+              comment author's association with the project, the pull request's
+              state and any labels it has been assigned.
+          </td>
           <td class="name">
               <a href="https://github.com/nderjung/concourse-github-pr-comment-resource">github-pr-comment</a>
           </td>
@@ -947,6 +1212,10 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              webhook-notification Sends notification messages to services like Discord and Gitter
+              via webhook. Easily extensible to other services.
+          </td>
           <td class="name">
               <a href="https://github.com/flavorjones/webhook-notification-resource">webhook-notification</a>
           </td>
@@ -964,6 +1233,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              time A resource for triggering on an interval
+          </td>
           <td class="name">
               <a href="https://github.com/concourse/time-resource">time</a>
           </td>
@@ -980,6 +1252,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              capistrano Enables you to run Capistrano deployments from your pipeline
+          </td>
           <td class="name">
               <a href="https://github.com/SHyx0rmZ/capistrano-resource">capistrano</a>
           </td>
@@ -996,6 +1271,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              github-list-repos Lists the repositories that belong to a GitHub organization or team, but does not clone them.
+          </td>
           <td class="name">
               <a href="https://github.com/coralogix/eng-concourse-resource-github-list-repos">github-list-repos</a>
           </td>
@@ -1012,6 +1290,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              bugsnag-build Notifies Bugsnag Build API of a new release
+          </td>
           <td class="name">
               <a href="https://github.com/dcsg/bugsnag-build-resource">bugsnag-build</a>
           </td>
@@ -1028,11 +1309,14 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              cf-cli The missing link between Concourse and Cloud Foundry. Push apps, create services, manage container networking and more!
+          </td>
           <td class="name">
               <a href="https://github.com/nulldriver/cf-cli-resource">cf-cli</a>
           </td>
           <td class="description">
-              The missing link between Concourse and Cloud Foundry.  Push apps, create services, manage container networking and more!
+              The missing link between Concourse and Cloud Foundry. Push apps, create services, manage container networking and more!
           </td>
           <td class="pipeline-yaml">
               ```yaml
@@ -1044,6 +1328,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              k8s-resource Tracks resources in a Kubernetes cluster
+          </td>
           <td class="name">
               <a href="https://github.com/jgriff/k8s-resource">k8s-resource</a>
           </td>
@@ -1060,6 +1347,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              grafana-annotation Creates or updates a Grafana annotation
+          </td>
           <td class="name">
               <a href="https://github.com/alphagov/paas-grafana-annotation-resource">grafana-annotation</a>
           </td>
@@ -1076,6 +1366,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              pagerduty-incident Triggers PagerDuty incidents
+          </td>
           <td class="name">
               <a href="https://github.com/coralogix/eng-concourse-resource-pagerduty-incident">pagerduty-incident</a>
           </td>
@@ -1092,6 +1385,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              bosh-io-release Tracks BOSH releases published on bosh.io
+          </td>
           <td class="name">
               <a href="https://github.com/concourse/bosh-io-release-resource">bosh-io-release</a>
           </td>
@@ -1108,6 +1404,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              artifacthub Tracks and gets new versions of Helm Charts which are registered at artifacthub.io
+          </td>
           <td class="name">
               <a href="https://github.com/hdisysteme/artifacthub-resource">artifacthub</a>
           </td>
@@ -1124,6 +1423,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              cron Implements a resource that reports new versions when the current time matches the crontab expression
+          </td>
           <td class="name">
               <a href="https://github.com/vmware-archive/cron-resource">cron</a>
           </td>
@@ -1140,6 +1442,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              http-resource Tracks resources from HTTP endpoints using custom version strategies (headers, body jq, hash, etc) from response
+          </td>
           <td class="name">
               <a href="https://github.com/jgriff/http-resource">http-resource</a>
           </td>
@@ -1156,6 +1461,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              hg Mercurial resource for Concourse
+          </td>
           <td class="name">
               <a href="https://github.com/concourse/hg-resource">hg</a>
           </td>
@@ -1172,6 +1480,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              openssl-source-code Concourse resource to track and fetch OpenSSL source code tarballs
+          </td>
           <td class="name">
               <a href="https://github.com/gstackio/openssl-source-code-resource">openssl-source-code</a>
           </td>
@@ -1188,6 +1499,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              ansible-playbook Execute ansible-playbook to provision remote systems.
+          </td>
           <td class="name">
               <a href="https://github.com/troykinsella/concourse-ansible-playbook-resource">ansible-playbook</a>
           </td>
@@ -1204,6 +1518,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              Cogito updates the GitHub status of a commit during a build. Simple configuration and lightweight image.
+          </td>
           <td class="name">
               <a href="https://github.com/Pix4D/cogito">cogito</a>
           </td>
@@ -1220,6 +1537,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              docker-compose Use docker-compose to control Docker containers on remote hosts.
+          </td>
           <td class="name">
               <a href="https://github.com/troykinsella/concourse-docker-compose-resource">docker-compose</a>
           </td>
@@ -1236,6 +1556,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              registry-tag A resource for image tags in a Docker registry
+          </td>
           <td class="name">
               <a href="https://github.com/tlwr/registry-tag-resource">registry-tag</a>
           </td>
@@ -1252,6 +1575,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              rocketchat-notification Send notification messages to RocketChat
+          </td>
           <td class="name">
               <a href="https://github.com/michaellihs/rocketchat-notification-resource">rocketchat-notification</a>
           </td>
@@ -1268,6 +1594,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              marathon Deploy applications to Marathon
+          </td>
           <td class="name">
               <a href="https://github.com/ckaznocha/marathon-resource">marathon</a>
           </td>
@@ -1284,6 +1613,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              wechat-notification-resource Send notification messages to WeChat
+          </td>
           <td class="name">
               <a href="https://github.com/huangyisan/wechat_notification_resource">wechat-notification-resource</a>
           </td>
@@ -1300,6 +1632,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              Artifactory Publish artifacts, such as tarballs, to Artifactory generic repositories.
+          </td>
           <td class="name">
               <a href="https://github.com/troykinsella/concourse-artifactory-resource">artifactory</a>
           </td>
@@ -1316,6 +1651,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              bitbucket-build-status Lets you update the build status for commits in Bitbucket
+          </td>
           <td class="name">
               <a href="https://github.com/SHyx0rmZ/bitbucket-build-status-resource">bitbucket-build-status</a>
           </td>
@@ -1332,6 +1670,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              phraseapp A resource to trigger a job on changes on a PhraseApp project
+          </td>
           <td class="name">
               <a href="https://github.com/tenjaa/concourse-phraseapp-resource">phraseapp</a>
           </td>
@@ -1348,6 +1689,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              rss Tracks an RSS feed and provides the pubDate of items as new versions.
+          </td>
           <td class="name">
               <a href="https://github.com/suhlig/concourse-rss-resource">rss</a>
           </td>
@@ -1364,6 +1708,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              docker-image A resource for docker images
+          </td>
           <td class="name">
               <a href="https://github.com/concourse/docker-image-resource">docker-image</a>
           </td>
@@ -1380,6 +1727,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              bosh-io-stemcell Tracks BOSH stemcells published on bosh.io
+          </td>
           <td class="name">
               <a href="https://github.com/concourse/bosh-io-stemcell-resource">bosh-io-stemcell</a>
           </td>
@@ -1396,6 +1746,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              helm3 Download and deploy Helm 3 charts to Kubernetes.
+          </td>
           <td class="name">
               <a href="https://github.com/Typositoire/concourse-helm3-resource">helm3</a>
           </td>
@@ -1412,6 +1765,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              concourse-webhook-resource Use files in git repo to track and throttle API calls as pipeline trigger.
+          </td>
           <td class="name">
               <a href="https://github.com/ardavanhashemzadeh/concourse-webhook-resource">concourse-webhook-resource</a>
           </td>
@@ -1428,6 +1784,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              lastpass Tracks LastPass items
+          </td>
           <td class="name">
               <a href="https://github.com/ansd/lastpass-resource">lastpass</a>
           </td>
@@ -1444,6 +1803,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              observability-event Publish events to VMware Tanzu Observability by Wavefront
+          </td>
           <td class="name">
               <a href="https://github.com/vmware-tanzu/observability-event-resource">observability-event</a>
           </td>
@@ -1460,6 +1822,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              hipchat-notification Send notification messages to HipChat
+          </td>
           <td class="name">
               <a href="https://github.com/jgriff/hipchat-notification-resource">hipchat-notification</a>
           </td>
@@ -1476,6 +1841,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              fossil Tracks commits in a branch of a Fossil repository
+          </td>
           <td class="name">
               <a href="https://fossil.avalos.me/fossil-concourse">fossil</a>
           </td>
@@ -1492,6 +1860,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              newrelic-deployment-resource A concourse resource for adding deployment markers in New Relic
+          </td>
           <td class="name">
               <a href="https://github.com/shyamz-22/newrelic-deployment-resource">newrelic-deployment-resource</a>
           </td>
@@ -1508,6 +1879,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              mock A resource for testing. reflects the version it's told, and is able to mirror itself
+          </td>
           <td class="name">
               <a href="https://github.com/concourse/mock-resource">mock</a>
           </td>
@@ -1524,6 +1898,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              key-value A resource that passes key-value pairs between jobs, using plain files in some directory
+          </td>
           <td class="name">
               <a href="https://github.com/gstackio/keyval-resource">key-value</a>
           </td>
@@ -1540,6 +1917,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              semver-config Detect desired semantic version changes and retrieve a set of semantic version-based configs from one single YAML file.
+          </td>
           <td class="name">
               <a href="https://github.com/brightzheng100/semver-config-concourse-resource">semver-config</a>
           </td>
@@ -1556,17 +1936,20 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              metadata Simple concourse resource which saves build metadata to a file
+              which may be used by tasks
+          </td>
           <td class="name">
               <a href="https://github.com/ardavanhashemzadeh/metadata-resource">metadata</a>
           </td>
           <td class="description">
               Simple concourse resource which saves build metadata to a file
-              which may be used by tasks because by default the environment
-              variables are only available to resources and not tasks.
+              which may be used by tasks.
           </td>
           <td class="pipeline-yaml">
               ```yaml
-              - name: semver-config
+              - name: metadata
                 type: registry-image
                 source:
                   repository: ghcr.io/ardavanhashemzadeh/metadata-resource
@@ -1575,6 +1958,13 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              duct-tape Generic custom Concourse resource with which one can define the
+              check, in, and out as inline scripts right in the pipeline
+              resource definition. It is for when you quickly need a Concourse
+              resource for a specific task, but writing one from scratch would
+              take too long. With this resource, one can glue things together.
+          </td>
           <td class="name">
               <a href="https://github.com/homeport/duct-tape-resource">duct-tape</a>
           </td>
@@ -1587,7 +1977,7 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
           <td class="pipeline-yaml">
               ```yaml
-              - name: semver-config
+              - name: duct-tape
                 type: registry-image
                 source:
                   repository: ghcr.io/homeport/duct-tape-resource
@@ -1595,6 +1985,9 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
       </tr>
       <tr>
+          <td class="hidden-search-field">
+              google-chat-alert A structured Google Chat notification resource for Concourse
+          </td>
           <td class="name">
               <a href="https://github.com/higuoxing/concourse-google-chat-alert-resource">google-chat-alert</a>
           </td>
@@ -1603,25 +1996,55 @@ to add a resource type that you've made, make a Pull Request in the
           </td>
           <td class="pipeline-yaml">
               ```yaml
-              - name: semver-config
+              - name: google-chart-alert
                 type: registry-image
                 source:
                   repository: epic2/concourse-google-chat-alert-resource
               ```
           </td>
       </tr>
+      <tr>
+          <td class="hidden-search-field">
+            monitor git repositories for new tags, regardless of provider. Uses pure git operations
+            instead of provider APIs trigger
+          </td>
+          <td class="name">
+              <a href="https://tangled.org/joshghiloni.me/git-tags-resource">git-tags</a>
+          </td>
+          <td class="description">
+            Check generic git repositories for new tags, regardless of provider. Uses pure git operations
+            instead of provider APIs
+          </td>
+          <td class="pipeline-yaml">
+              ```yaml
+              - name: git-tags
+                type: registry-image
+                source:
+                  repository: atcr.io/joshghiloni.me/git-tags-resource
+                  tag: stable
+              ```
+          </td>
+      </tr>
     </tbody>
   </table>
-
+  <script>
+  (function() {
+    var script = document.createElement('script');
+    script.src = '/assets/javascripts/list.min.js';
+    script.onload = function() {
+      console.log("list.min.js loaded");
+      var options = {
+          valueNames: ["hidden-search-field"],
+      };
+      var resourceList = new List("resource-types-table", options);
+      // Randomly sort the list so we're never playing favourites
+      resourceList.sort("name", {
+        sortFunction: function () {
+            return Math.random() - 0.5;
+        },
+      });
+    };
+    document.head.appendChild(script);
+  })();
+  </script>
 </div>
-
-<script>
-var options = {
-  valueNames: [ 'name', 'description' ]
-};
-
-var resourceList = new List('resource-types-table', options);
-// Randomly sort the list so we're never playing favourites
-resourceList.sort('name', { sortFunction: function() { return Math.random() - 0.5; }})
-</script>
-

@@ -59,7 +59,7 @@ schema.
             old_name: current-name
             type: git
             source:
-              uri: "https://github.com/vito/booklit"
+              uri: "https://github.com/concourse/examples"
         ```
 
         After the pipeline is set, the resource was successfully renamed, so the `old_name` field can be removed from 
@@ -70,14 +70,18 @@ schema.
           - name: new-name
             type: git
             source:
-              uri: "https://github.com/vito/booklit"
+              uri: "https://github.com/concourse/examples"
         ```
 
 ??? info "`icon`: [`string`](../config-basics.md#string-schema)"
 
     ### `icon`
-    The name of a [Material Design icon](https://materialdesignicons.com/) to show next to the resource name in the web 
-    UI. For example, `github`.
+    The name of a [Material Design](https://materialdesignicons.com/) or
+    [Simple Icons](https://simpleicons.org/) icon to show next to the resource
+    name in the web UI. For example, `github` or `si/concourse`.
+
+    Simple Icons were added in v8.2.0 and their names must be prefixed by `si/`.
+    You can find all available icons [here](./available-resource-icons.md).
 
 ??? info "`version`: [`version`](../config-basics.md#version-schema)"
 
@@ -93,10 +97,12 @@ schema.
 
     ### `check_every`
     _Default `1m`_. The interval on which to check for new versions of the resource. Acceptable interval options are 
-    defined by the [time.ParseDuration function](https://golang.org/pkg/time/#ParseDuration).
+    defined by the Go's [time.ParseDuration function](https://golang.org/pkg/time/#ParseDuration).
 
-    If set to `never` the resource will not be automatically checked. The resource can still be checked manually via the
-    web UI, fly, or webhooks.
+    If set to `never` the resource will not be automatically checked except
+    when the job it's connected to has been triggered. The resource can still
+    be checked manually via the web UI, fly, or webhooks if you need the
+    resource to find new versions.
 
 ??? info "`check_timeout`: [`duration`](../config-basics.md#duration-schema)"
 
@@ -108,7 +114,7 @@ schema.
 
     ### `expose_build_created_by`
     _Default `false`_. If set to `true`, environment variable 
-    [`BUILD_CREATED_BY`](../resource-types/implementing.md#metadata) will be available in the metadata of a 
+    [`BUILD_CREATED_BY`](../resource-types/implementing.md#build-metadata) will be available in the metadata of a 
     [`put` step](../steps/put.md). This field is not made available to the [`get` step](../steps/get.md).
 
 ??? info "`tags`: [`[string]`](../config-basics.md#string-schema)"

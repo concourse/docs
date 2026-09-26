@@ -168,7 +168,8 @@ A task's configuration specifies the following:
 
         The path to a directory to be cached.
 
-        Paths are relative to the working directory of the task. Absolute paths are not respected.
+        Paths are relative to the working directory of the task. Absolute paths
+        can be specified and are respected.
 
 ??? info "**`params`**: [`env-vars`](config-basics.md#env-vars-schema)"
 
@@ -217,8 +218,10 @@ A task's configuration specifies the following:
 
     ??? info "**`user`**: [`string`](config-basics.md#string-schema)"
 
-        Explicitly set the user to run as. If not specified, this defaults to the user configured by the task's image. 
-        If not specified there, it's up to the Garden backend, and may be e.g. `root` on Linux.
+        Explicitly set the user to run as. If not specified, this defaults to
+        the user configured by the task's image. If not specified it defaults
+        to `root` on Linux. On Windows and macOS this setting is ignored and
+        tasks run as the same user as the `concourse worker` process.
 
 ??? info "**`rootfs_uri`**: [`string`](config-basics.md#string-schema)"
 

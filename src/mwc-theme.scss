@@ -1,6 +1,7 @@
 // Colors
 
 $primary: #2094f3;
+$success: #43e073;
 
 :root > * {
   --md-primary-fg-color: #{$primary};
@@ -8,6 +9,7 @@ $primary: #2094f3;
   --md-primary-fg-color--dark: #1975d2;
   --md-primary-bg-color: #fff;
   --md-primary-bg-color--light: #ffffffb3;
+  --md-success-color: #{$success};
 }
 
 :root {
@@ -38,4 +40,35 @@ input.search {
   padding: 1em;
   width: 50%;
   border: 0.1em solid;
+}
+
+#icon-list .grid {
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, 180px), min(100%, 180px))
+  );
+}
+
+#icon-list .card {
+  text-align: center;
+  cursor: copy;
+}
+#icon-list code {
+  font-size: 0.5rem;
+}
+
+#icon-list .copied {
+  border-color: var(--md-success-color);
+}
+
+#icon-list .copied span.twemoji > svg {
+  color: var(--md-success-color);
+}
+
+#icon-list span.twemoji {
+  display: block;
+}
+
+#icon-list.notready .card {
+  cursor: not-allowed;
 }

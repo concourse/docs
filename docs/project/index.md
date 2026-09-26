@@ -20,7 +20,7 @@ bugs, and stewarding the project and community.
 * The [Docs repo](https://github.com/concourse/docs) contains the source for the website you're reading now!
 * [GitHub Discussions](https://github.com/concourse/concourse/discussions) are used for support, announcements, idea
   sharing, and general conversations.
-* The [Concourse blog](https://blog.concourse-ci.org/) features tutorials and updates from the development perspective.
+* The [Concourse blog](https://concourse-ci.org/blog/) features tutorials and updates from the development perspective.
 * The [Concourse Discord server](https://discord.gg/MeRxXKW) offers a great space to chat with other contributors.
 * The Concourse working group charter is available in the Cloud
   Foundry [community repo](https://github.com/cloudfoundry/community/blob/main/toc/working-groups/concourse.md).
@@ -47,7 +47,7 @@ understand and easy to maintain as your project grows; both in the complexity of
 We aimed to build a CI with robust abstractions and fewer concepts to learn, making it easier to comprehend and allowing
 Concourse to evolve gracefully.
 
-## How can I help?
+## Contributing
 
 Concourse is a free and Open Source software project that depends on the contributions of sponsors and volunteers
 worldwide.
@@ -55,9 +55,15 @@ worldwide.
 If you're interested in contributing, head over to GitHub and check out
 the [contributing docs](https://github.com/concourse/concourse/blob/master/CONTRIBUTING.md)!
 
+## Sponsorship
+
 If you're able to financially contribute to the continued development of
 Concourse, you can sponsor [Taylor Silva on
-GitHub](https://github.com/sponsors/taylorsilva).
+GitHub](https://github.com/sponsors/taylorsilva) as either an individual or
+organization.
+
+For commercial support or trainining that helps fund development of Concourse,
+reach out to [Pixel Air IO](https://pixelair.io/).
 
 ## Report a security issue
 
@@ -66,14 +72,16 @@ To report a security issue, please email [security@concourse-ci.org](mailto:secu
 Security advisories will be published
 as [`concourse/concourse` GitHub Security Advisories](https://github.com/concourse/concourse/security/advisories).
 
-## Thanks
+## Thanks Pivotal
 
-It's been a long journey and we're grateful to many people for our continued success. We are deeply indebted to all who
-help sustain this project, but the extraordinary efforts of the following organizations deserve special recognition.
+It's been a long journey and we're grateful to many people for our continued
+success. We are deeply indebted to all who help sustain this project, but the
+extraordinary efforts of Pivotal deserves special recognition.
 
-### Pivotal
-
-Concourse wouldn't be what it is today without [Pivotal](https://pivotal.io/). This extends beyond the sponsorship,
-which began in early 2015 - without the experiences we gained and the practices we learned while working
-on [Cloud Foundry](https://cloudfoundry.org/) and [BOSH](https://bosh.io/), we would have neither the technical
-expertise nor the strong opinions that led to Concourse's creation.
+Concourse wouldn't be what it is today without
+[Pivotal](https://en.wikipedia.org/wiki/Pivotal_Software). This extends beyond
+the sponsorship, which began in early 2015 - without the experiences we gained
+and the practices we learned while working on [Cloud
+Foundry](https://cloudfoundry.org/) and [BOSH](https://bosh.io/), we would have
+neither the technical expertise nor the strong opinions that led to Concourse's
+creation.

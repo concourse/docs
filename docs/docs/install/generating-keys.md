@@ -48,7 +48,7 @@ You can remove the `session_signing_key.pub` file if you have one, it is not nee
 
 ## Multiple Worker Keys
 
-Currently you have one `worker_key`. You can use this one key-pair with multiple [`worker` node](running-worker.md)s.
+Currently you have one `worker_key`. You can use this one key-pair with multiple [`worker` nodes](running-worker.md).
 Another good strategy is to have each worker or group of workers use a key that's unique to that one worker or group of
 workers.
 
