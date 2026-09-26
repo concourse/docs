@@ -55,7 +55,7 @@ exclude_docs: |
   libs/examples/LICENSE
 
 theme:
-  name: material
+  variant: classic
   custom_dir: overrides
   font:
     text: Roboto Slab

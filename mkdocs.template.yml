@@ -8,10 +8,8 @@ INHERIT: base.yml
 plugins:
   - search
   - glightbox
-  - blog:
-      blog_dir: blog
-      post_url_date_format: yyyy-MM-dd
-      post_url_format: "{date}-{slug}"
+  - blog
+  - tags
   - redirects:
       #@ docs = data.values.docs
       redirect_maps:

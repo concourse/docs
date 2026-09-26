@@ -1,5 +1,7 @@
 ---
 title: Try Step
+tags:
+  - step
 ---
 
 ???+ warning "**`try`**: [`step`](index.md) (required)"
