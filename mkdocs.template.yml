@@ -10,6 +10,9 @@ plugins:
   - glightbox
   - blog
   - tags
+  - macros:
+      include_yaml:
+        - docs/assets/resource-types.yml
   - redirects:
       #@ docs = data.values.docs
       redirect_maps:

@@ -10,10 +10,8 @@ watch:
   - docs
   - overrides
 
-hooks:
-  - hooks.py
-
 markdown_extensions:
+  - mkdocs_metrics_fence.extension
   - admonition
   - def_list
   - tables
