@@ -1,5 +1,7 @@
 ---
 title: Get Step
+tags:
+  - step
 ---
 
 # `get` Step

@@ -1,4 +1,2 @@
-mkdocs-glightbox==0.5.2
-mkdocs-material==9.7.7
-mkdocs-redirects==1.2.3
-nodeenv==1.10.0
+nodeenv==1.11.0
+zensical==0.0.65

@@ -1,5 +1,7 @@
 ---
 title: Put Step
+tags:
+  - step
 ---
 
 # `put` Step
