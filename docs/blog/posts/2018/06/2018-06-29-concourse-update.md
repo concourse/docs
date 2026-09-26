@@ -3,7 +3,7 @@ layout: post
 title: Concourse Update (Jun 25–29)
 date: 2018-06-29
 tags:
-  - blog
+  - Blog
 categories:
   - product-update
 authors:

@@ -2,7 +2,7 @@
 title: Concourse Resource Page Explained
 date: 2018-11-09
 tags:
-  - blog
+  - Blog
 authors:
   - jklassen
 links:

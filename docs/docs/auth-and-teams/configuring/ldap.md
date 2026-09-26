@@ -1,7 +1,7 @@
 ---
 title: LDAP Auth
 tags:
-  - authorization
+  - Authorization
 ---
 
 The LDAP provider can be used for operators who wish to authenticate their users against an LDAP server.

@@ -2,7 +2,7 @@
 title: "Design & Dev Pairing: What we learned during a one week technical discovery"
 date: 2018-10-05
 tags:
-  - blog
+  - Blog
 authors:
   - saman
 ---

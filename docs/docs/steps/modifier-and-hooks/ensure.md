@@ -1,8 +1,8 @@
 ---
 title: Ensure Step Hook
 tags:
-  - step
-  - hook
+  - Step
+  - Hook
 ---
 
 # `ensure` Step Hook

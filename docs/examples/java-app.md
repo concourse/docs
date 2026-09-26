@@ -1,7 +1,7 @@
 ---
 title: Java application testing example
 tags:
-  - example
+  - Example
 search:
   exclude: true
 hide:

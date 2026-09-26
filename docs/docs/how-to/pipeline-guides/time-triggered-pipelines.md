@@ -1,7 +1,7 @@
 ---
 title: Time Triggered Pipeline Patterns
 tags:
-  - example
+  - Example
 ---
 
 The [time resource](https://github.com/concourse/time-resource/) produces a

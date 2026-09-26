@@ -1,7 +1,7 @@
 ---
 title: Generic SAML Auth
 tags:
-  - authorization
+  - Authorization
 ---
 
 A Concourse server can authenticate against any valid SAML auth provider.

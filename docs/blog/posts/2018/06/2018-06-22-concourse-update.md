@@ -2,7 +2,7 @@
 title: Concourse Update (Jun 18–22)
 date: 2018-06-22
 tags:
-  - blog
+  - Blog
 categories:
   - product-update
 authors:

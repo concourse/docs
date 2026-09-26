@@ -1,7 +1,7 @@
 ---
 title: AWS Secrets Manager credential manager
 tags:
-  - credential
+  - Credential
 ---
 
 Concourse can be configured to pull credentials from [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/).

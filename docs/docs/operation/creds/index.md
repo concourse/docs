@@ -1,7 +1,7 @@
 ---
 title: Credential Management
 tags:
-  - credential
+  - Credential
 ---
 
 Going beyond [Encryption](../encryption.md), explicit credential management will provide credentials to your builds for

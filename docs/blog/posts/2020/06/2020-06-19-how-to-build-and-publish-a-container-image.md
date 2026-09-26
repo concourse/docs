@@ -3,7 +3,7 @@ layout: post
 title: How To Build and Publish a Container Image
 date: 2020-06-19
 tags:
-  - blog
+  - Blog
 categories:
   - tutorials
 ---

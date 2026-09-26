@@ -2,7 +2,7 @@
 title: Concourse Update (July 30 — Aug 3)
 date: 2018-08-03
 tags:
-  - blog
+  - Blog
 categories:
   - product-update
 authors:

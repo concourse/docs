@@ -3,7 +3,7 @@ layout: post
 title: Introduction to Task Inputs and Outputs
 date: 2020-05-25
 tags:
-  - blog
+  - Blog
 categories:
   - tutorials
 ---

@@ -1,7 +1,7 @@
 ---
 title: Local User Auth
 tags:
-  - authorization
+  - Authorization
 ---
 
 Local User auth is a primitive username/password-based auth mechanism. All users and passwords are configured

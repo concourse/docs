@@ -1,7 +1,7 @@
 ---
 title: IDToken credential manager
 tags:
-  - credential
+  - Credential
 ---
 
 This idtoken credential manager is a bit special. It doesn't load any credentials from an external source but instead

@@ -2,7 +2,7 @@
 title: Concourse Update (Dec 3–7)
 date: 2018-12-07
 tags:
-  - blog
+  - Blog
 categories:
   - product-update
 authors:

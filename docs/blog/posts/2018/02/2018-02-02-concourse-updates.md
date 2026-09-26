@@ -2,7 +2,7 @@
 title: Concourse Updates (Jan 29 — Feb 2, 2018)
 date: 2018-02-02
 tags:
-  - blog
+  - Blog
 categories:
   - product-update
 authors:

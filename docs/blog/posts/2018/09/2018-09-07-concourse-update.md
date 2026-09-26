@@ -2,7 +2,7 @@
 title: Concourse Update (Sept 03 — Sept 07)
 date: 2018-09-07
 tags:
-  - blog
+  - Blog
 categories:
   - product-update
 authors:

@@ -2,7 +2,7 @@
 title: Concourse Build Page Explained
 date: 2018-08-30
 tags:
-  - blog
+  - Blog
 authors:
   - lauchinachie
 links:

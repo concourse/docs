@@ -2,7 +2,7 @@
 title: Concourse Update (Jul 23–27)
 date: 2018-07-27
 tags:
-  - blog
+  - Blog
 categories:
   - product-update
 authors:

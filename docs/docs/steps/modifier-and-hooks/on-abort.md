@@ -1,8 +1,8 @@
 ---
 title: On Abort Step Hook
 tags:
-  - step
-  - hook
+  - Step
+  - Hook
 ---
 
 # `on_abort` Step Hook

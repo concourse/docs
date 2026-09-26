@@ -1,7 +1,7 @@
 ---
 title: Hello World pipeline
 tags:
-  - example
+  - Example
 search:
   exclude: true
 hide:

@@ -3,7 +3,7 @@ layout: post
 title: A renewed focus & community changes
 date: 2018-03-29
 tags:
-  - blog
+  - Blog
 authors:
   - asuraci
 ---

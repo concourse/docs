@@ -2,7 +2,7 @@
 title: Concourse Pipeline UI Explained
 date: 2018-08-17
 tags:
-  - blog
+  - Blog
 authors:
   - lauchinachie
 links:

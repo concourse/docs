@@ -1,8 +1,8 @@
 ---
 title: Across Step Modifier
 tags:
-  - step
-  - modifier
+  - Step
+  - Modifier
 ---
 
 # `across` Step Modifier

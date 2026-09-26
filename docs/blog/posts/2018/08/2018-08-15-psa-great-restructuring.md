@@ -2,7 +2,7 @@
 title: "PSA: The Great Code Restructuring of 2018"
 date: 2018-08-15
 tags:
-  - blog
+  - Blog
 authors:
   - asuraci
 ---

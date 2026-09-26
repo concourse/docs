@@ -1,7 +1,7 @@
 ---
 title: Get Step
 tags:
-  - step
+  - Step
 ---
 
 # `get` Step

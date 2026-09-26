@@ -1,7 +1,7 @@
 ---
 title: GitLab Auth
 tags:
-  - authorization
+  - Authorization
 ---
 
 A Concourse server can authenticate against GitLab to leverage their permission model.

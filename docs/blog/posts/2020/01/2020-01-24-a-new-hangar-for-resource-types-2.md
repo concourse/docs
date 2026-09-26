@@ -3,7 +3,7 @@ layout: post
 title: A New Hangar For Resource Types
 date: 2020-01-24
 tags:
-  - blog
+  - Blog
 ---
 
 ![](assets/2020-01-24-a-new-hangar-for-resource-types-2-01.jpg)

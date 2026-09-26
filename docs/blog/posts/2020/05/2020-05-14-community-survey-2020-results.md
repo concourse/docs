@@ -2,7 +2,7 @@
 title: Concourse 2020 Community Report
 date: 2020-05-14
 tags:
-  - blog
+  - Blog
 categories:
 - design
 ---

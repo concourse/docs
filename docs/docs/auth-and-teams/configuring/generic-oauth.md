@@ -1,7 +1,7 @@
 ---
 title: Generic OAuth Auth
 tags:
-  - authorization
+  - Authorization
 ---
 
 A Concourse server can authenticate against any valid OAuth auth provider, though it's a bit "closer to the metal" as

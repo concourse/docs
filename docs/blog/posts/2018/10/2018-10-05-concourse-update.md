@@ -2,7 +2,7 @@
 title: Concourse Update (Oct 1–5)
 date: 2018-10-05
 tags:
-  - blog
+  - Blog
 categories:
 - product-update
 authors:

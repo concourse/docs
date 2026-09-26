@@ -2,7 +2,7 @@
 title: The Great Process Update of 2018
 date: 2018-12-20
 tags:
-  - blog
+  - Blog
 authors:
   - asuraci
 ---

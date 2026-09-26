@@ -2,7 +2,7 @@
 title: My first month on Concourse
 date: 2018-05-14
 tags:
-  - blog
+  - Blog
 authors:
   - sreddy
 ---

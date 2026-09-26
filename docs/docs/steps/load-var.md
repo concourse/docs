@@ -1,7 +1,7 @@
 ---
 title: Load Var Step
 tags:
-  - step
+  - Step
 ---
 
 # `load_var` Step

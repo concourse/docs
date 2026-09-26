@@ -1,7 +1,7 @@
 ---
 title: Examples
 tags:
-  - example
+  - Example
 search:
   exclude: true
 hide:

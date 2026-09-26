@@ -2,7 +2,7 @@
 title: Concourse Update (Nov 19–23)
 date: 2018-11-23
 tags:
-  - blog
+  - Blog
 categories:
   - product-update
 authors:

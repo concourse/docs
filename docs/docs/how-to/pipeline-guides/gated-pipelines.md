@@ -1,7 +1,7 @@
 ---
 title: Gated Pipeline Patterns
 tags:
-  - example
+  - Example
 ---
 
 Gated pipelines provide control for administrators and release managers on when a given software release is deployed to

@@ -2,7 +2,7 @@
 title: Earning our Wings
 date: 2017-11-20
 tags:
-  - blog
+  - Blog
 authors:
   - tbullock
 ---

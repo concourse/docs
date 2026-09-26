@@ -1,7 +1,7 @@
 ---
 title: Do Step
 tags:
-  - step
+  - Step
 ---
 
 # `do` Step

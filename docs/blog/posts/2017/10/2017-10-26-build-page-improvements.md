@@ -2,7 +2,7 @@
 title: Build Page Improvements
 date: 2017-10-26
 tags:
-  - blog
+  - Blog
 authors:
   - jamesma
 ---

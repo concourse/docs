@@ -2,7 +2,7 @@
 title: Concourse Update June 7
 date: 2019-06-07
 tags:
-  - blog
+  - Blog
 categories:
   - product-update
 authors:

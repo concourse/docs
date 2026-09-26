@@ -3,7 +3,7 @@ layout: post
 title: "Community update: enter Discussions! \U0001F389"
 date: 2020-04-16
 tags:
-  - blog
+  - Blog
 ---
 
 Hasta la vista, stale bot.

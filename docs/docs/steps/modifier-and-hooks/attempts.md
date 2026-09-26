@@ -1,8 +1,8 @@
 ---
 title: Attempts Step Modifier
 tags:
-  - step
-  - modifier
+  - Step
+  - Modifier
 ---
 
 # `attempts` Step Modifier

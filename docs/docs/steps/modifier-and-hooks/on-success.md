@@ -1,8 +1,8 @@
 ---
 title: On Success Step Hook
 tags:
-  - step
-  - hook
+  - Step
+  - Hook
 ---
 
 # `on_success` Step Hook

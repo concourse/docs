@@ -1,8 +1,8 @@
 ---
 title: Tags Step Modifier
 tags:
-  - step
-  - modifier
+  - Step
+  - Modifier
 ---
 
 # `tags` Step Modifier

@@ -1,7 +1,7 @@
 ---
 title: Building an Image and Using it in a Task
 tags:
-  - example
+  - Example
 ---
 
 This guide will show you how to build and use an image within one [job](../../jobs.md) without pushing the image to an

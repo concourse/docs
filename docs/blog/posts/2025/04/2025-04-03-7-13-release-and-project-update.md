@@ -2,7 +2,7 @@
 title: v7.13.0 Release and Project Update
 date: 2025-04-03
 tags:
-  - blog
+  - Blog
 authors:
   - tsilva
 ---

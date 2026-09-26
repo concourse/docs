@@ -3,7 +3,7 @@ layout: post
 title: Concourse Update (Feb 26 — Mar2)
 date: 2018-03-02
 tags:
-  - blog
+  - Blog
 categories:
 - product-update
 authors:

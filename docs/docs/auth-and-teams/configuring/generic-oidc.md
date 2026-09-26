@@ -1,7 +1,7 @@
 ---
 title: Generic OIDC Auth
 tags:
-  - authorization
+  - Authorization
 ---
 
 A Concourse server can authenticate against any valid OIDC auth provider. This provider is similar

@@ -1,7 +1,7 @@
 ---
 title: Gitea Auth
 tags:
-  - authorization
+  - Authorization
 ---
 
 A Concourse server can authenticate against Gitea (or Forgejo) to leverage their permission model.

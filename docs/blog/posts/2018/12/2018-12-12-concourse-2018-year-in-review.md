@@ -2,7 +2,7 @@
 title: Concourse 2018 Year in Review
 date: 2018-12-12
 tags:
-  - blog
+  - Blog
 categories:
   - product-update
 authors:

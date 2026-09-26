@@ -1,7 +1,7 @@
 ---
 title: Common Pipeline Practices
 tags:
-  - example
+  - Example
 ---
 
 The following are practices that we see a lot of people use in their pipelines. These are by no means "Best" practices,

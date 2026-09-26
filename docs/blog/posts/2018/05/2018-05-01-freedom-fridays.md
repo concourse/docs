@@ -2,7 +2,7 @@
 title: Freedom Fridays
 date: 2018-05-01
 tags:
-  - blog
+  - Blog
 authors:
   - tbullock
 ---

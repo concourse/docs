@@ -2,7 +2,7 @@
 title: Concourse at SpringOne 2017
 date: 2017-12-01
 tags:
-  - blog
+  - Blog
 categories:
   - product-update
 authors:

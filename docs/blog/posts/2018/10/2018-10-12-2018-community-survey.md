@@ -2,7 +2,7 @@
 title: 2018 Community Survey
 date: 2018-10-12
 tags:
-  - blog
+  - Blog
 authors:
   - sfoerster
 ---

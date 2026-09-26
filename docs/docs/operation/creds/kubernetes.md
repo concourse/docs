@@ -1,7 +1,7 @@
 ---
 title: Kubernetes Credential Manager
 tags:
-  - credential
+  - Credential
 ---
 
 Concourse can be configured to pull credentials from [Kubernetes `secret` objects](https://kubernetes.io/docs/concepts/configuration/secret).

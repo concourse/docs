@@ -1,8 +1,8 @@
 ---
 title: Timeout Step Modifier
 tags:
-  - step
-  - modifier
+  - Step
+  - Modifier
 ---
 
 # `timeout` Step Modifier

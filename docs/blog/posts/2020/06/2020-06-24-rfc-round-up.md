@@ -2,7 +2,7 @@
 title: 'RFC round-up: June 24th, 2020'
 date: 2020-06-24
 tags:
-  - blog
+  - Blog
 categories:
   - rfcs
 ---

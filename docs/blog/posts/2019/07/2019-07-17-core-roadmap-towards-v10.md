@@ -2,7 +2,7 @@
 title: 'Core roadmap: towards v10'
 date: 2019-07-17
 tags:
-  - blog
+  - Blog
 categories:
   - roadmap
 authors:

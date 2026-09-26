@@ -2,7 +2,7 @@
 title: Concourse Update (Mar 12–16)
 date: 2018-03-16
 tags:
-  - blog
+  - Blog
 categories:
   - product-update
 authors:
