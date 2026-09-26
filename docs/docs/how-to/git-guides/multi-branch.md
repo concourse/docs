@@ -1,5 +1,7 @@
 ---
 title: Multi-Branch Workflows
+tags:
+  - example
 ---
 
 Teams may make use of multiple branches for their development. For instance,

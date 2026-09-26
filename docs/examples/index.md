@@ -1,5 +1,7 @@
 ---
 title: Examples
+tags:
+  - example
 search:
   exclude: true
 hide:

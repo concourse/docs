@@ -1,5 +1,7 @@
 ---
 title: Basic Git Operations
+tags:
+  - example
 ---
 
 All of these examples use the

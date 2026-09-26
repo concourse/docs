@@ -1,5 +1,7 @@
 ---
 title: Golang library testing example
+tags:
+  - example
 search:
   exclude: true
 hide:

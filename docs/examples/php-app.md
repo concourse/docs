@@ -1,5 +1,7 @@
 ---
 title: PHP application testing example
+tags:
+  - example
 search:
   exclude: true
 hide:

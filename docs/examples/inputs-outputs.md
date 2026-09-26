@@ -1,5 +1,7 @@
 ---
 title: Task inputs and outputs example
+tags:
+  - example
 search:
   exclude: true
 hide:

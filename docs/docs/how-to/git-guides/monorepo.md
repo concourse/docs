@@ -1,5 +1,7 @@
 ---
 title: Monorepo Workflows
+tags:
+  - example
 ---
 
 All of these examples use the

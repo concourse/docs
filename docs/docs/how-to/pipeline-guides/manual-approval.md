@@ -1,5 +1,7 @@
 ---
 title: Manual Approval Step
+tags:
+  - example
 ---
 
 This is an example of a [`task` step](../../tasks.md) you can add to your [Jobs](../../jobs.md) that requires a human to

@@ -1,5 +1,7 @@
 ---
 title: Nodejs application testing example
+tags:
+  - example
 search:
   exclude: true
 hide:
