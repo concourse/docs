@@ -45,13 +45,6 @@ extra_css:
 extra_javascript:
   - assets/javascripts/mwc-bundle.min.js
 
-exclude_docs: |
-  libs/**/*.md
-  libs/examples/apps
-  libs/examples/terraform
-  libs/examples/misc
-  libs/examples/LICENSE
-
 theme:
   variant: classic
   custom_dir: overrides
@@ -121,9 +114,6 @@ extra:
 
   tags:
     default: default
-
-not_in_nav: |
-  index.md
 
 nav:
   - Docs:
