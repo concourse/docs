@@ -20,7 +20,7 @@ pipelines](../../pipelines/grouping-pipelines.md).
 
 In this guide, we'll cover:
 
-1. Writing a pipeline to [Test and Build](#test-build-deploy) a feature branch.
+1. Writing a pipeline to [Test and Build](#the-feature-branch-pipeline) a feature branch.
 1. Automatically creating pipelines for each feature branch from a "parent"
    pipeline. We'll use the [git
    resource](https://github.com/concourse/git-resource/), [`set_pipeline`
