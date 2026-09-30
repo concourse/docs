@@ -10,6 +10,10 @@ plugins:
   - glightbox
   - blog
   - tags
+  - exclude:
+      glob:
+        - libs/*/LICENSE
+        - libs/*/*.md
   - macros:
       include_yaml:
         - docs/assets/resource-types.yml
