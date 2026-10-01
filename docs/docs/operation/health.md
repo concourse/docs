@@ -19,7 +19,7 @@ The endpoint reports one of three states:
 all internal components are keeping up with their scheduled work.
 
 **Degraded** — the system is running but something needs attention. Either the number of connected workers has
-dropped below [`--health-min-worker-count`](#--health-min-worker-count), or one or more internal components (such as
+dropped below [`--health-min-worker-count`](#-health-min-worker-count), or one or more internal components (such as
 the build scheduler, resource checker, or build tracker) have fallen behind and are considered stale. Builds can
 still run. This is a warning state — the system is operational, but the operator should investigate.
 
