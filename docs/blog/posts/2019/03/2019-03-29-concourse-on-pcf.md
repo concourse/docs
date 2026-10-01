@@ -1,6 +1,8 @@
 ---
 title: Installing Concourse 5.0 on Kubernetes using Helm
 date: 2019-03-29
+tags:
+  - Blog
 authors:
   - jghiloni
 ---

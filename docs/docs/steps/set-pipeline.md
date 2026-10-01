@@ -1,5 +1,7 @@
 ---
 title: Set Pipeline Step
+tags:
+  - Step
 ---
 
 # `set_pipeline` Step

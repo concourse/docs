@@ -132,7 +132,7 @@ conform to the following schema:
         [CSS filters](https://developer.mozilla.org/en-US/docs/Web/CSS/filter) that are applied to the 
         `background_image`.
 
-??? info "`user_data`: [`value`](../vars.md#value-schema)"
+??? info "`user_data`: [`value`](../config-basics.md#value-schema)"
 
     This field is meant to store arbitrary metadata. Its value can be any type
     you can express in YAML, even a string. The data in this field is NOT

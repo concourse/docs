@@ -1,6 +1,8 @@
 ---
 title: Concourse Update (Aug 7–10)
 date: 2018-08-10
+tags:
+  - Blog
 categories:
 - roadmap
 authors:

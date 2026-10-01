@@ -1,5 +1,7 @@
 ---
 title: Caching credentials
+tags:
+  - Credential
 ---
 
 By default, credentials are fetched each time they're used. When many pipelines are configured this can result in a ton

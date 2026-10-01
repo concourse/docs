@@ -1,5 +1,8 @@
 ---
 title: Across Step Modifier
+tags:
+  - Step
+  - Modifier
 ---
 
 # `across` Step Modifier

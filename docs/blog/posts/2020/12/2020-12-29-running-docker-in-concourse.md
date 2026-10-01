@@ -2,6 +2,8 @@
 layout: post
 title: Running Docker in Concourse
 date: 2020-12-29
+tags:
+  - Blog
 categories:
   - tutorials
 ---

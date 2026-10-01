@@ -1,6 +1,8 @@
 ---
 title: Concourse Update (Sept 24–28)
 date: 2018-09-28
+tags:
+  - Blog
 categories:
 - product-update
 authors:

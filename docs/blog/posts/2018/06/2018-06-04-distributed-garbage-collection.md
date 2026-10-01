@@ -1,6 +1,8 @@
 ---
 title: Distributed Garbage Collection
 date: 2018-06-04
+tags:
+  - Blog
 authors:
   - sreddy
 ---

@@ -1,6 +1,8 @@
 ---
 title: Concourse Resource Volume Caching
 date: 2018-08-24
+tags:
+  - Blog
 authors:
   - tbullock
 links:

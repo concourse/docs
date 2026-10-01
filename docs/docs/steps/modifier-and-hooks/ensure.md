@@ -1,5 +1,8 @@
 ---
 title: Ensure Step Hook
+tags:
+  - Step
+  - Hook
 ---
 
 # `ensure` Step Hook

@@ -1,5 +1,7 @@
 ---
 title: Examples & Guides
+tags:
+  - Example
 hide:
   - toc
 ---

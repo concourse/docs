@@ -1,5 +1,7 @@
 ---
 title: Pipeline ((vars)) example
+tags:
+  - Example
 search:
   exclude: true
 hide:

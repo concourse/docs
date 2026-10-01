@@ -1,5 +1,7 @@
 ---
 title: Building and Pushing an Image
+tags:
+  - Example
 ---
 
 In this guide we are going to show how to build and publish container images using

@@ -1,5 +1,7 @@
 ---
 title: Git Triggered Job
+tags:
+  - Example
 search:
   exclude: true
 hide:

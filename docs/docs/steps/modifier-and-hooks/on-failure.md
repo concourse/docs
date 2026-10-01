@@ -1,5 +1,8 @@
 ---
 title: On Failure Step Hook
+tags:
+  - Step
+  - Hook
 ---
 
 # `on_failure` Step Hook

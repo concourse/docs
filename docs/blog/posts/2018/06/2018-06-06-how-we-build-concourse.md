@@ -1,6 +1,8 @@
 ---
 title: How We Build Concourse
 date: 2018-06-06
+tags:
+  - Blog
 authors:
   - jamesma
 ---

@@ -1,6 +1,8 @@
 ---
 title: Concourse Resource Page Explained
 date: 2018-11-09
+tags:
+  - Blog
 authors:
   - jklassen
 links:

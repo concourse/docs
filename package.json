@@ -8,8 +8,8 @@
     "build:all": "npm run build:scss && npm run build:mwc && npm run build:ytt && npm run build:icon-list",
     "build:debug": "npm run build:scss && npm run build:mwc-debug && npm run build:ytt && npm run build:icon-list",
     "build:icon-list": "node ./tools/icon-list/generate-icon-list.mjs",
-    "build": "npm run build:all && mkdocs build",
-    "start": "npm run build:all && mkdocs serve --livereload --clean"
+    "build": "npm run build:all && PYTHONPATH=. zensical build",
+    "start": "npm run build:all && PYTHONPATH=. zensical serve"
   },
   "dependencies": {
     "@material/web": "^2.4.1",
@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@mdi/svg": "^7.4.47",
+    "@rollup/plugin-commonjs": "^29.0.3",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-terser": "^1.0.0",
     "@rollup/plugin-typescript": "^12.3.0",

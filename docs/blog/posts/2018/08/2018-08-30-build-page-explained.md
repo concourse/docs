@@ -1,6 +1,8 @@
 ---
 title: Concourse Build Page Explained
 date: 2018-08-30
+tags:
+  - Blog
 authors:
   - lauchinachie
 links:

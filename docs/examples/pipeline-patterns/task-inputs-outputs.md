@@ -1,5 +1,7 @@
 ---
 title: Exploring Task Input and Output Scenarios
+tags:
+  - Example
 ---
 
 Understanding how task inputs and outputs work in Concourse can be a little confusing initially. This guide will walk

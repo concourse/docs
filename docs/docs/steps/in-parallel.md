@@ -1,5 +1,7 @@
 ---
 title: In Parallel Step
+tags:
+  - Step
 ---
 
 # `in_parallel` Step

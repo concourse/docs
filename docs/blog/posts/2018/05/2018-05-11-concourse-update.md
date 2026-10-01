@@ -1,6 +1,8 @@
 ---
 title: Concourse Update (May 7–11)
 date: 2018-05-11
+tags:
+  - Blog
 categories:
   - product-update
 authors:

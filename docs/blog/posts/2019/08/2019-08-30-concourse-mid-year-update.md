@@ -1,6 +1,8 @@
 ---
 title: Concourse Mid-year Update
 date: 2019-08-30
+tags:
+  - Blog
 authors:
   - jamesma
 ---

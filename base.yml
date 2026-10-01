@@ -10,10 +10,8 @@ watch:
   - docs
   - overrides
 
-hooks:
-  - hooks.py
-
 markdown_extensions:
+  - mkdocs_metrics_fence.extension
   - admonition
   - def_list
   - tables
@@ -47,15 +45,8 @@ extra_css:
 extra_javascript:
   - assets/javascripts/mwc-bundle.min.js
 
-exclude_docs: |
-  libs/**/*.md
-  libs/examples/apps
-  libs/examples/terraform
-  libs/examples/misc
-  libs/examples/LICENSE
-
 theme:
-  name: material
+  variant: classic
   custom_dir: overrides
   font:
     text: Roboto Slab
@@ -89,8 +80,13 @@ theme:
   logo: assets/logo-white.svg
   favicon: assets/favicon.ico
 
+  icon:
+    tag:
+      default: lucide/hash
+
 copyright: >-
-  Copyright &copy; 2026 The Linux Foundation &reg; –
+  Copyright &copy; 2026 The Linux Foundation &reg;
+  <br>
   <a href="#__consent">Change cookie settings</a>
 
 extra:
@@ -114,11 +110,11 @@ extra:
       link: https://discord.gg/MeRxXKW
     - icon: fontawesome/brands/bluesky
       link: https://bsky.app/profile/concourse-ci.org
-    - icon: fontawesome/solid/paper-plane
+    - icon: fontawesome/solid/envelope
       link: mailto:contact@concourse-ci.org
 
-not_in_nav: |
-  index.md
+  tags:
+    default: default
 
 nav:
   - Docs:

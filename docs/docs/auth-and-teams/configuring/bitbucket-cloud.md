@@ -1,5 +1,7 @@
 ---
 title: BitBucket Cloud Auth
+tags:
+  - Authorization
 ---
 
 A Concourse server can authenticate against BitBucket Cloud to leverage its permission model.

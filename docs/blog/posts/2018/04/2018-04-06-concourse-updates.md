@@ -1,6 +1,8 @@
 ---
 title: Concourse Updates (April 2–6)
 date: 2018-04-06
+tags:
+  - Blog
 categories:
   - product-update
 authors:

@@ -1,5 +1,7 @@
 ---
 title: Vault credential manager
+tags:
+  - Credential
 ---
 
 Concourse can be configured to pull credentials from [Vault](https://vaultproject.io/).

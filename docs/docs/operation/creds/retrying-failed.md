@@ -1,5 +1,7 @@
 ---
 title: Retrying failed fetches
+tags:
+  - Credential
 ---
 
 When a request to the credential manager fails due to an intermittent error (e.g. a timeout or `connection refused`),

@@ -1,5 +1,7 @@
 ---
 title: Set Pipelines Example
+tags:
+  - Example
 search:
   exclude: true
 hide:

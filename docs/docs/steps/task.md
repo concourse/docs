@@ -1,5 +1,7 @@
 ---
 title: Task Step
+tags:
+  - Step
 ---
 
 # `task` Step

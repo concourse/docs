@@ -1,6 +1,8 @@
 ---
 title: "Developing Concourse (from home \U0001F3E1)"
 date: 2020-03-25
+tags:
+  - Blog
 ---
 
 In March 2020, countless companies made a shift to have their employees work from home. For remote staff getting work

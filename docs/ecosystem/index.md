@@ -1,5 +1,8 @@
 ---
 title: Ecosystem
+hide:
+  - toc
+  - navigation
 ---
 
 Concourse is utilized by a diverse array of businesses, government agencies, open source projects and non-profit

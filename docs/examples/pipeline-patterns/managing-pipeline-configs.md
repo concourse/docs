@@ -1,5 +1,7 @@
 ---
 title: Managing Pipeline Configurations
+tags:
+  - Example
 ---
 
 When first starting with Concourse, it is common to write the pipeline and set it with `fly set-pipeline`. This works
