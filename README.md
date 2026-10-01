@@ -25,6 +25,15 @@ documentation.
 
 Required Dependencies:
 
-- Python >= 3.14
-- npm
-- ytt by Carvel
+- [Python](https://www.python.org/) >= 3.14
+- [npm](https://www.npmjs.com/)
+- [ytt by Carvel](https://github.com/carvel-dev/ytt)
+
+## Building & Running Locally
+
+```
+npm install
+npm run start
+```
+
+Website will be available on port 8000: [http://localhost:8000](http://localhost:8000)
