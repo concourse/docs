@@ -85,7 +85,8 @@ theme:
       default: lucide/hash
 
 copyright: >-
-  Copyright &copy; 2026 The Linux Foundation &reg; –
+  Copyright &copy; 2026 The Linux Foundation &reg;
+  <br>
   <a href="#__consent">Change cookie settings</a>
 
 extra:
