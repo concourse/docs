@@ -1,5 +1,7 @@
 ---
 title: Templating a Single Pipeline
+tags:
+  - Example
 ---
 
 The smallest ytt setup: one template file describing the shape of a pipeline, and one data values file supplying

@@ -1,5 +1,7 @@
 ---
 title: Templating Across Multiple Files
+tags:
+  - Example
 ---
 
 Once a template grows past a handful of jobs, keeping everything in one file gets unwieldy. ytt lets you split a

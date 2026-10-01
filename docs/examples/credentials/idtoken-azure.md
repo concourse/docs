@@ -1,5 +1,7 @@
 ---
 title: IDToken - Azure
+tags:
+  - Example
 ---
 
 Azure

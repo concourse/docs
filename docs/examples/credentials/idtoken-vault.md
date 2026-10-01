@@ -1,5 +1,7 @@
 ---
 title: IDToken - HashiCorp Vault
+tags:
+  - Example
 ---
 
 You can use JWTs to authenticate

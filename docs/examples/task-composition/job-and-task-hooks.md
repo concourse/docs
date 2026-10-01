@@ -1,5 +1,7 @@
 ---
 title: Job & task hooks example
+tags:
+  - Example
 search:
   exclude: true
 hide:
