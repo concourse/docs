@@ -109,7 +109,7 @@ extra:
       link: https://discord.gg/MeRxXKW
     - icon: fontawesome/brands/bluesky
       link: https://bsky.app/profile/concourse-ci.org
-    - icon: fontawesome/solid/paper-plane
+    - icon: fontawesome/solid/envelope
       link: mailto:contact@concourse-ci.org
 
   tags:
