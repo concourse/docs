@@ -11,7 +11,7 @@ to add a resource type that you've made, make a Pull Request in the
 [`concourse/docs`](https://github.com/concourse/docs/) repo.
 
 <div id="resource-types-table">
-  <input type="search" class="search" placeholder="Search for a Resource Type" autofocus>
+  <input id="resource-types-search" type="search" class="search" aria-label="Search resource types" placeholder="Search for a Resource Type" autofocus>
 
   <table>
     <thead>
@@ -21,8 +21,7 @@ to add a resource type that you've made, make a Pull Request in the
         <th>Add to Pipeline</th>
       </tr>
     </thead>
-    <!-- IMPORTANT: tbody must have class "list" for List.js to work -->
-        <tbody class="list">
+        <tbody>
 {% for rt in resource_types %}
             <tr>
               <td class="name">

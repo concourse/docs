@@ -17,12 +17,13 @@ declare const component$: Window["component$"];
 const refresh: BehaviorSubject<string> = new BehaviorSubject<string>("");
 
 if (document$) {
+    document$.subscribe(resourceTypesLogic);
+
     refresh.pipe(switchMap(() => document$)).subscribe((value: Document) => {
         const gitInformation: GitInfo | null =
             getValueFromSessionStoragePartialMatch<GitInfo>("__source");
 
         homePageLogic(value, gitInformation);
-        resourceTypesLogic(value);
     });
 }
 
