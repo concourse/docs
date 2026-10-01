@@ -1,5 +1,7 @@
 ---
 title: Do Step
+tags:
+  - Step
 ---
 
 # `do` Step

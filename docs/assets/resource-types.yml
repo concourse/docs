@@ -1,0 +1,514 @@
+resource_types:
+  - name: ansible-playbook
+    url: https://github.com/troykinsella/concourse-ansible-playbook-resource
+    description: "Execute ansible-playbook to provision remote systems."
+    image: troykinsella/concourse-ansible-playbook-resource
+
+  - name: apache-directory-index
+    url: https://github.com/cloudlena/apache-directory-index-resource
+    description: "Tracks changes to an Apache Directory Index (e.g. `http://mirror.easyname.ch/apache/tomcat/`)"
+    image: mastertinner/apache-directory-index-resource
+
+  - name: appcenter-resource
+    url: https://github.com/tomoyukim/concourse-appcenter-resource
+    description: "Concourse resource for distributing a build artifact to Microsoft App Center."
+    image: tomoyukim/concourse-appcenter-resource
+
+  - name: aptly-cli
+    url: https://github.com/SHyx0rmZ/aptly-cli-resource
+    description: "Enables you to transfer packages between your job and an aptly repository"
+    image: shyxormz/aptly-cli-resource
+
+  - name: artifacthub
+    url: https://github.com/hdisysteme/artifacthub-resource
+    description: "Tracks and gets new versions of Helm Charts which are registered at https://artifacthub.io/"
+    image: ghcr.io/hdisysteme/artifacthub-resource:latest
+
+  - name: artifactory
+    url: https://github.com/spring-io/artifactory-resource
+    description: 'Check, deploy and retrieve artifacts using the "builds" and "artifact properties" Artifactory features.'
+    image: springio/artifactory-resource
+
+  - name: artifactory
+    url: https://github.com/troykinsella/concourse-artifactory-resource
+    description: "Publish artifacts, such as tarballs, to Artifactory generic repositories."
+    image: troykinsella/concourse-artifactory-resource
+
+  - name: artifactory-deb
+    url: https://github.com/troykinsella/concourse-artifactory-deb-resource
+    description: "Fetch from, and publish to Debian/Ubuntu apt repositories in Artifactory."
+    image: troykinsella/concourse-artifactory-deb-resource
+
+  - name: artifactory-docker
+    url: https://github.com/digitalocean/artifactory-docker-resource
+    description: "Concourse resource for triggering, getting and putting new versions of docker / container image artifacts within Artifactory repositories."
+    image: digitalocean/artifactory-docker-resource
+
+  - name: awx
+    url: https://github.com/mamercad/concourse-awx-resource
+    description: "Launches AWX job templates and workflows"
+    image: quay.io/mamercad/concourse-awx-resource
+
+  - name: bitbucket-build-status
+    url: https://github.com/SHyx0rmZ/bitbucket-build-status-resource
+    description: "Lets you update the build status for commits in Bitbucket"
+    image: shyxormz/bitbucket-build-status-resource
+
+  - name: bitbucket-pr
+    url: https://github.com/n7mobile/concourse-bitbucket-pr
+    description: "Tracks pull requests on BitBucket and updates it's status"
+    image: n7docker/concourse-bitbucket-pr
+
+  - name: blackduck
+    url: https://github.com/elgohr/concourse-blackduck
+    description: "Use Blackduck from Concourse"
+    image: lgohr/blackduck-resource
+
+  - name: bosh-config
+    url: https://github.com/cloudfoundry-community/bosh-config-resource
+    description: "A resource for interacting with configs (Cloud, Runtime, CPI, etc…) living on a Bosh server"
+    image: cfcommunity/bosh-config-resource
+
+  - name: bosh-io-release
+    url: https://github.com/concourse/bosh-io-release-resource
+    description: "Tracks BOSH releases published on https://bosh.io"
+    image: concourse/bosh-io-release-resource
+
+  - name: bosh-io-stemcell
+    url: https://github.com/concourse/bosh-io-stemcell-resource
+    description: "Tracks BOSH stemcells published on https://bosh.io"
+    image: concourse/bosh-io-stemcell-resource
+
+  - name: bugsnag-build
+    url: https://github.com/dcsg/bugsnag-build-resource
+    description: "Notifies Bugsnag Build API of a new release"
+    image: dcsg/bugsnag-build-resource
+
+  - name: capistrano
+    url: https://github.com/SHyx0rmZ/capistrano-resource
+    description: "Enables you to run Capistrano deployments from your pipeline"
+    image: shyxormz/capistrano-resource
+
+  - name: cf
+    url: https://github.com/cloudfoundry-community/cf-resource
+    description: "Concourse resource for interacting with Cloud Foundry"
+    image: concourse/cf-resource
+
+  - name: cf-cli
+    url: https://github.com/nulldriver/cf-cli-resource
+    description: "The missing link between Concourse and Cloud Foundry. Push apps, create services, manage container networking and more!"
+    image: nulldriver/cf-cli-resource
+
+  - name: chartmuseum
+    url: https://github.com/cathive/concourse-chartmuseum-resource
+    description: "Fetches, verifies and publishes Helm Charts from a running ChartMuseum instance. Harbor works as well, since it uses ChartMuseum under the hood."
+    image: cathive/concourse-chartmuseum-resource
+
+  - name: cogito
+    url: https://github.com/Pix4D/cogito
+    description: "Cogito updates the GitHub status of a commit during a build. Simple configuration and lightweight image."
+    image: pix4d/cogito
+
+  - name: concourse-webhook-resource
+    url: https://github.com/ardavanhashemzadeh/concourse-webhook-resource
+    description: "Use files in git repo to track and throttle API calls as pipeline trigger."
+    image: ardavanhashemzadeh/concourse-webhook-resource
+
+  - name: consul-kv
+    url: https://github.com/mdb/concourse-consul-kv-resource
+    description: "Get or set a key/value pair in Consul's KV store."
+    image: clapclapexcitement/concourse-consul-kv-resource
+
+  - name: coralogix-event
+    url: https://github.com/coralogix/eng-concourse-resource-coralogix-event
+    description: "Sends build events to Coralogix"
+    image: quay.io/coralogix/eng-coralogix-event-resource
+
+  - name: cron
+    url: https://github.com/vmware-archive/cron-resource
+    description: "Implements a resource that reports new versions when the current time matches the crontab expression"
+    image: cftoolsmiths/cron-resource
+
+  - name: datadog-event
+    url: https://github.com/concourse/datadog-event-resource
+    description: "Fetch or emit events to Datadog."
+    image: concourse/datadog-event-resource
+
+  - name: datetime-version
+    url: https://github.com/dcsg/datetime-version-resource
+    description: "A resource to generate a date time version"
+    image: dcsg/datetime-version-resource
+
+  - name: dhall
+    url: https://github.com/coralogix/eng-concourse-resource-dhall
+    description: "Tracks the changes in a remote Dhall expression, and makes them available locally."
+    image: quay.io/coralogix/eng-concourse-resource-dhall
+
+  - name: digitalocean-kubernetes-resource
+    url: https://git.sr.ht/~kdihalas/concourse-do-kubernetes-resource
+    description: "Create, update and delete Digitalocean Kubernetes Clusters."
+    image: kdihalas/digitalocean-kubernetes-resource
+
+  - name: docker-compose
+    url: https://github.com/troykinsella/concourse-docker-compose-resource
+    description: "Use docker-compose to control Docker containers on remote hosts."
+    image: troykinsella/concourse-docker-compose-resource
+
+  - name: docker-image
+    url: https://github.com/concourse/docker-image-resource
+    description: "A resource for docker images"
+    image: concourse/docker-image-resource
+
+  - name: duct-tape
+    url: https://github.com/homeport/duct-tape-resource
+    description: "Generic custom Concourse resource with which one can define the check, in, and out as inline scripts right in the pipeline resource definition. It is for when you quickly need a Concourse resource for a specific task, but writing one from scratch would take too long. With this resource, one can glue things together."
+    image: ghcr.io/homeport/duct-tape-resource
+
+  - name: fly
+    url: https://github.com/troykinsella/concourse-fly-resource
+    description: "Manipulate the Concourse fly command-line client."
+    image: troykinsella/concourse-fly-resource
+
+  - name: forgejo
+    url: https://codeberg.org/aniva/forgejo-concourse
+    description: "A resource for interacting with Forgejo statuses, comments, pull requests, etc."
+    image: codeberg.org/aniva/concourse-forgejo
+
+  - name: fossil
+    url: https://fossil.avalos.me/fossil-concourse
+    description: "Tracks commits in a branch of a Fossil repository"
+    image: avalos/fossil-concourse-resource
+
+  - name: gate
+    url: https://github.com/meshcloud/gate-resource
+    description: "A generic gate resource for Concourse CI. Allows you to model quality gates and pipeline control flow."
+    image: meshcloud/gate-resource
+
+  - name: gcs
+    url: https://github.com/frodenas/gcs-resource
+    description: "Concourse resource for interacting with Google Cloud Storage"
+    image: frodenas/gcs-resource
+
+  - name: git
+    url: https://github.com/concourse/git-resource
+    description: "Tracks commits in a branch of a Git repository"
+    image: concourse/git-resource
+
+  - name: git-tags
+    url: https://tangled.org/joshghiloni.me/git-tags-resource
+    description: "Check generic git repositories for new tags, regardless of provider. Uses pure git operations instead of provider APIs"
+    image: atcr.io/joshghiloni.me/git-tags-resource
+    tag: stable
+
+  - name: Github
+    resource_name: github
+    url: https://github.com/PixelAirIO/github-resource
+    description: "Resource that allows pipelines to interact with Github, like checking out and running status checks on Pull Requests."
+    image: docker.io/pixelairio/github-resource
+
+  - name: github-app-token
+    url: https://github.com/tenjaa/concourse-github-app-token
+    description: "Get an installation token for your GitHub App to access the GitHub API"
+    image: tenjaa/concourse-github-app-token
+
+  - name: github-list-repos
+    url: https://github.com/coralogix/eng-concourse-resource-github-list-repos
+    description: "Lists the repositories that belong to a GitHub organization or team, but does not clone them."
+    image: quay.io/coralogix/concourse-resource-github-list-repos
+
+  - name: github-pr
+    url: https://github.com/cloudfoundry-community/github-pr-resource
+    description: "Let Concourse pipelines to interact with GitHub Pull Requests"
+    image: cfcommunity/github-pr-resource
+
+  - name: github-pr-comment
+    url: https://github.com/nderjung/concourse-github-pr-comment-resource
+    description: "Monitors incoming comments on a Github Pull Request and is able to monitor for comments matching regular expressions, match comment author's association with the project, the pull request's state and any labels it has been assigned."
+    image: ndrjng/concourse-github-pr-comment-resource
+
+  - name: github-release
+    url: https://github.com/concourse/github-release-resource
+    description: "A resource for github releases"
+    image: concourse/github-release-resource
+
+  - name: githubapps-content-resource
+    url: https://github.com/totegamma/githubapps-content-resource
+    description: "A resource for clone github private repository with GithubApps credential."
+    image: ghcr.io/totegamma/githubapps-content-resource:master
+
+  - name: google-chat-alert
+    resource_name: google-chat-alert
+    url: https://github.com/higuoxing/concourse-google-chat-alert-resource
+    description: "A structured Google Chat notification resource for Concourse"
+    image: epic2/concourse-google-chat-alert-resource
+
+  - name: grafana-annotation
+    url: https://github.com/alphagov/paas-grafana-annotation-resource
+    description: "Creates or updates a Grafana annotation"
+    image: gdsre/grafana-annotation-resource
+
+  - name: helm-chart
+    url: https://github.com/jghiloni/helm-chart-resource
+    description: "Download and publish helm charts from helm repositories."
+    image: jghiloni/helm-chart-resource
+
+  - name: helm3
+    url: https://github.com/Typositoire/concourse-helm3-resource
+    description: "Download and deploy Helm 3 charts to Kubernetes."
+    image: typositoire/concourse-helm3-resource
+
+  - name: hg
+    url: https://github.com/concourse/hg-resource
+    description: "Mercurial resource for Concourse"
+    image: concourse/hg-resource
+
+  - name: hipchat-notification
+    url: https://github.com/jgriff/hipchat-notification-resource
+    description: "Send notification messages to HipChat"
+    image: jgriff/hipchat-notification-resource
+
+  - name: http-jq
+    url: https://github.com/qudini/concourse-http-jq-resource
+    description: "Exposing version of a resource over an HTTP endpoint and parsing it via jq into Concourse jobs"
+    image: qudini/concourse-http-jq-resource
+
+  - name: http-resource
+    url: https://github.com/jgriff/http-resource
+    description: "Tracks resources from HTTP endpoints using custom version strategies (headers, body jq, hash, etc) from response"
+    image: jgriff/http-resource
+
+  - name: irc-notification
+    url: https://github.com/flavorjones/irc-notification-resource
+    description: "Sends notification messages to an IRC channel."
+    image: flavorjones/irc-notification-resource
+
+  - name: irccat
+    url: https://github.com/haiku/irccat-resource
+    description: "A resource to send notifications to irc via an irccat (https://github.com/irccloud/irccat) service"
+    image: ghcr.io/haiku/irccat-resource
+
+  - name: k8s
+    url: https://github.com/srinivasa-vasu/concourse-k8s
+    description: "Custom K8s resource type to deploy manifests to K8s"
+    image: srinivasavasu/concourse-k8s
+
+  - name: k8s-resource
+    url: https://github.com/jgriff/k8s-resource
+    description: "Tracks resources in a Kubernetes cluster"
+    image: jgriff/k8s-resource
+
+  - name: key-value
+    url: https://github.com/gstackio/keyval-resource
+    description: "A resource that passes key-value pairs between jobs, using plain files in some directory"
+    image: gstack/keyval-resource
+
+  - name: keyval
+    url: https://github.com/cludden/concourse-keyval-resource
+    description: "A resource for passing arbitrary data between steps/jobs and curating dynamic filesystem content"
+    image: ghcr.io/cludden/concourse-keyval-resource
+
+  - name: kubectl
+    url: https://github.com/jmkarthik/concourse-kubectl-resource
+    description: 'Deploys resources to a Kubernetes cluster using "kubectl apply -f" command'
+    image: jmkarthik/concourse-kubectl-resource
+
+  - name: lastpass
+    url: https://github.com/ansd/lastpass-resource
+    description: "Tracks LastPass items."
+    image: ansd/lastpass
+
+  - name: marathon
+    url: https://github.com/ckaznocha/marathon-resource
+    description: "Deploy applications to Marathon"
+    image: ckaznocha/marathon-resource
+
+  - name: maven
+    url: https://github.com/nulldriver/maven-resource
+    description: "Integrate your pipeline with any Maven Repository Manager (Artifactory, Nexus, GitHub Packages, etc.)"
+    image: nulldriver/maven-resource
+
+  - name: metadata
+    url: https://github.com/PixelAirIO/metadata-resource
+    description: "Returns the build metadata for a given build in a `build.json` file."
+    image: pixelairio/metadata-resource
+
+  - name: metadata
+    url: https://github.com/ardavanhashemzadeh/metadata-resource
+    description: "Simple concourse resource which saves build metadata to a file which may be used by tasks."
+    image: ghcr.io/ardavanhashemzadeh/metadata-resource
+    tag: main
+
+  - name: mock
+    url: https://github.com/concourse/mock-resource
+    description: "A resource for testing; reflects the version it's told, and is able to mirror itself"
+    image: concourse/mock-resource
+
+  - name: newrelic-deployment-resource
+    url: https://github.com/shyamz-22/newrelic-deployment-resource
+    description: "A concourse resource for adding deployment markers in New Relic"
+    image: shyamz22/newrelic-resource
+
+  - name: observability-event
+    url: https://github.com/vmware-tanzu/observability-event-resource
+    description: "Publish events to VMware Tanzu Observability by Wavefront"
+    image: projects.registry.vmware.com/tanzu/observability-event-resource
+
+  - name: openssl-source-code
+    url: https://github.com/gstackio/openssl-source-code-resource
+    description: "Concourse resource to track and fetch OpenSSL source code tarballs"
+    image: gstack/openssl-source-code-resource
+
+  - name: pagerduty-incident
+    url: https://github.com/coralogix/eng-concourse-resource-pagerduty-incident
+    description: "Triggers PagerDuty incidents (for example, on pipeline failure)"
+    image: ghcr.io/coralogix/eng-concourse-resource-pagerduty-incident
+
+  - name: phraseapp
+    url: https://github.com/tenjaa/concourse-phraseapp-resource
+    description: "A resource to trigger a job on changes on a PhraseApp project"
+    image: tenjaa/concourse-phraseapp-resource
+
+  - name: pool
+    url: https://github.com/concourse/pool-resource
+    description: "Atomically manages the state of the world (e.g. external environments)"
+    image: concourse/pool-resource
+
+  - name: prometheus-pushgateway
+    url: https://github.com/michaellihs/prometheus-pushgateway-resource
+    description: "Send metrics to Prometheus Push Gateway"
+    image: michaellihs/prometheus-pushgateway-resource
+
+  - name: pulumi
+    url: https://github.com/ringods/pulumi-resource
+    description: "Manages infrastructure via Pulumi"
+    image: ghcr.io/ringods/pulumi-resource
+
+  - name: rclone
+    url: https://github.com/warricksothr/concourse-rclone-resource
+    description: "Publish arbitrary files and directories using Rclone."
+    image: sothr/concourse-rclone-resource
+
+  - name: registry-image
+    url: https://github.com/concourse/registry-image-resource
+    description: "A resource for images in a Docker or OCI registry"
+    image: concourse/registry-image-resource
+
+  - name: registry-tag
+    url: https://github.com/tlwr/registry-tag-resource
+    description: "A resource for image tags in a Docker registry"
+    image: ghcr.io/tlwr/registry-tag-resource
+
+  - name: repo
+    url: https://github.com/makohoek/repo-resource
+    description: "Track changes for projects using Google's repo (Gerrit)."
+    image: mkorpershoek/repo-resource
+
+  - name: rocketchat-notification
+    url: https://github.com/michaellihs/rocketchat-notification-resource
+    description: "Send notification messages to RocketChat"
+    image: michaellihs/rocket-notify-resource
+
+  - name: rss
+    url: https://github.com/suhlig/concourse-rss-resource
+    description: "Tracks an RSS feed and provides the pubDate of items as new versions."
+    image: suhlig/concourse-rss-resource
+
+  - name: rubygems
+    url: https://github.com/troykinsella/concourse-rubygems-resource
+    description: "Fetch and publish Ruby gem packages to a RubyGems repository."
+    image: troykinsella/concourse-rubygems-resource
+
+  - name: s3
+    url: https://github.com/concourse/s3-resource
+    description: "Concourse resource for interacting with AWS S3"
+    image: concourse/s3-resource
+
+  - name: semver
+    url: https://github.com/concourse/semver-resource
+    description: "Automated semantic version bumping"
+    image: concourse/semver-resource
+
+  - name: semver-config
+    url: https://github.com/brightzheng100/semver-config-concourse-resource
+    description: "Detect desired semantic version changes and retrieve a set of semantic version-based configs from one single YAML file."
+    image: itstarting/semver-config-concourse-resource
+
+  - name: send-to-slack
+    url: https://github.com/bluekornchips/send-to-slack
+    description: "A resource designed to send [block kit content](https://docs.slack.dev/reference/block-kit) to Slack via the Slack Web API."
+    image: sunflowersoftware/send-to-slack
+
+  - name: sentry-releases
+    url: https://github.com/rubenv/concourse-sentry-releases-resource
+    description: "Manage releases in Sentry, can be used to upload sourcemaps."
+    image: rubenv/concourse-sentry-releases-resource
+
+  - name: slack-alert
+    url: https://github.com/arbourd/concourse-slack-alert-resource
+    description: "A structured Slack notification resource for Concourse"
+    image: arbourd/concourse-slack-alert-resource
+
+  - name: slack-notification
+    url: https://github.com/cloudfoundry-community/slack-notification-resource
+    description: "A resource for sending notifications to Slack"
+    image: cfcommunity/slack-notification-resource
+
+  - name: slack-notifier
+    url: https://github.com/mockersf/concourse-slack-notifier
+    description: "A structured and opinionated Slack notification resource"
+    image: mockersf/concourse-slack-notifier
+
+  - name: sonarqube
+    url: https://github.com/cathive/concourse-sonarqube-resource
+    description: "Performs SonarQube analyses and tracks the state of SonarQube quality gates."
+    image: cathive/concourse-sonarqube-resource
+
+  - name: sonarqube-notifier
+    url: https://github.com/elgohr/concourse-sonarqube-notifier
+    description: "Gets Sonarqube results"
+    image: lgohr/sonarqube
+
+  - name: static
+    url: https://github.com/ktchen14/static-resource
+    description: "A resource to expose static information as a directory"
+    image: ktchen14/static-resource
+
+  - name: steampipe
+    url: https://github.com/cludden/concourse-steampipe-resource
+    description: "A resource for implementing a wide variety of triggers and data integrations via Steampipe and its expansive plugin ecosystem"
+    image: ghcr.io/cludden/concourse-steampipe-resource
+
+  - name: teams-notification
+    url: https://github.com/navicore/teams-notification-resource
+    description: "Resource for pipeline notifications to Microsoft Teams"
+    image: navicore/teams-notification-resource
+
+  - name: terraform
+    url: https://github.com/ljfranklin/terraform-resource
+    description: "Manages infrastructure via Terraform"
+    image: ljfranklin/terraform-resource
+
+  - name: tfe
+    url: https://github.com/orstensemantics/concourse-tfe-resource
+    description: "Create/read/update workspace variables, create/apply runs, and read root-level state outputs for Hashicorp Terraform Cloud and Terraform Enterprise workspaces."
+    image: orstensemantics/concourse-tfe-resource
+
+  - name: time
+    url: https://github.com/concourse/time-resource
+    description: "A resource for triggering on an interval"
+    image: concourse/time-resource
+
+  - name: vrealize-automation
+    url: https://github.com/vmware-archive/concourse-vrealize-automation-resource
+    description: "Executes vRealize Automation pipelines"
+    image: projects.registry.vmware.com/concourse-vra-resource/concourse-vra-resource
+
+  - name: webhook-notification
+    url: https://github.com/flavorjones/webhook-notification-resource
+    description: "Sends notification messages to services like Discord and Gitter via webhook. Easily extensible to other services."
+    image: flavorjones/webhook-notification-resource
+
+  - name: wechat-notification-resource
+    url: https://github.com/huangyisan/wechat_notification_resource
+    description: "Send notification messages to WeChat"
+    image: dockerhuangyisan/wechat-notification-resource

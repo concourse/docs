@@ -3,6 +3,8 @@ title: Concourse 2024 in Review
 date: 
   created: 2025-01-06
   updated: 2025-05-14
+tags:
+  - Blog
 authors:
   - tsilva
 ---

@@ -1,5 +1,7 @@
 ---
 title: Configuring Auth
+tags:
+  - Authorization
 ---
 
 The very first thing to configure with Concourse is how users will log in, and what those users should be able to do.

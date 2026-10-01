@@ -1,5 +1,7 @@
 ---
 title: AWS Systems Manager credential manager
+tags:
+  - Credential
 ---
 
 Concourse can be configured to pull credentials

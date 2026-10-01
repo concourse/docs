@@ -1,5 +1,7 @@
 ---
 title: CF / UAA Auth
+tags:
+  - Authorization
 ---
 
 Cloud Foundry (CF) auth can be used for operators who wish to authenticate their users configured against their Cloud

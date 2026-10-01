@@ -1,5 +1,7 @@
 ---
 title: Rails application testing example
+tags:
+  - Example
 search:
   exclude: true
 hide:

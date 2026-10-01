@@ -1,6 +1,8 @@
 ---
 title: Open Sourcing the Design System for Concourse
 date: 2018-05-04
+tags:
+  - Blog
 authors:
   - lauchinachie
 ---

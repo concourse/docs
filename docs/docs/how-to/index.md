@@ -1,5 +1,7 @@
 ---
 title: How-To Guides
+tags:
+  - Example
 ---
 
 The following pages are guides that show how to accomplish certain workflows within Concourse. Most of the guides will

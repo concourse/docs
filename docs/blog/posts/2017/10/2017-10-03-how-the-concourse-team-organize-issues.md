@@ -1,6 +1,8 @@
 ---
 title: How the Concourse Team Organize Issues
 date: 2017-10-03
+tags:
+  - Blog
 categories:
   - product-update
 authors:

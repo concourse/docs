@@ -1,6 +1,8 @@
 ---
 title: Freedom Fridays
 date: 2018-05-01
+tags:
+  - Blog
 authors:
   - tbullock
 ---

@@ -1,5 +1,7 @@
 ---
 title: GitHub Auth
+tags:
+  - Authorization
 ---
 
 A Concourse server can authenticate against GitHub to leverage their permission model and other security improvements in

@@ -2,6 +2,8 @@
 layout: post
 title: 'RFC round-up: July 10th, 2020'
 date: 2020-07-10
+tags:
+  - Blog
 categories:
   - rfcs
 ---

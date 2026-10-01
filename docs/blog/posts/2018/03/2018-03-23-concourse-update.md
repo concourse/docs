@@ -1,6 +1,8 @@
 ---
 title: Concourse Update (April 19–23)
 date: 2018-03-23
+tags:
+  - Blog
 categories:
   - product-update
 authors:

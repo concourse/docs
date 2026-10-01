@@ -1,6 +1,8 @@
 ---
 title: Concourse Update (Jan 7–11)
 date: 2019-01-11
+tags:
+  - Blog
 categories:
   - product-update
 authors:
