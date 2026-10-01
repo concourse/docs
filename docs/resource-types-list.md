@@ -5,10 +5,11 @@ hide:
   - toc
 ---
 
-This is a list of [Resource Types](./docs/resource-types/index.md) that users
-of the community have written and made public for others to use. If you'd like
-to add a resource type that you've made, make a Pull Request in the
-[`concourse/docs`](https://github.com/concourse/docs/) repo.
+This is a list of [Resource Types](./docs/resource-types/index.md) that users of
+the community have written and made public for others to use. If you'd like to
+add a resource type that you've made, make a Pull Request in the
+[`concourse/docs`](https://github.com/concourse/docs/) repo that modifies
+[docs/assets/resource-types.yml](blob/master/docs/assets/resource-types.yml).
 
 <div id="resource-types-table">
   <input id="resource-types-search" type="search" class="search" aria-label="Search resource types" placeholder="Search for a Resource Type" autofocus>
