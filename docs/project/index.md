@@ -1,5 +1,8 @@
 ---
 title: Project
+hide:
+  - toc
+  - navigation
 ---
 
 Concourse began as a side-project by [`@vito`](https://github.com/vito) and [`@xoebus`](https://github.com/xoebus)

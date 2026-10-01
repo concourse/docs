@@ -1,5 +1,8 @@
 ---
 title: Support
+hide:
+  - toc
+  - navigation
 ---
 
 ## Community Support
