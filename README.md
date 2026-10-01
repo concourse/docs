@@ -40,4 +40,4 @@ Website will be available on port 8000: [http://localhost:8000](http://localhost
 
 # Adding Resource Types
 
-Add your resource type to [docs/assets/resource-types.yml](blob/master/docs/assets/resource-types.yml) and make a Pull Request to this repo.
+Add your resource type to [docs/assets/resource-types.yml](docs/assets/resource-types.yml) and make a Pull Request to this repo.
