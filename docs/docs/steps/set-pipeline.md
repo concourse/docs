@@ -205,9 +205,9 @@ is archived.
               uri: https://github.com/concourse/examples.git
         ```
 
-??? info "**`vars_files`**: [`file-path`](../config-basics.md#file-path-schema)"
+??? info "**`var_files`**: [`file-path`](../config-basics.md#file-path-schema)"
 
-    ### `vars_files`
+    ### `var_files`
     A list of paths to `.yml` files that will be passed to the pipeline config in the same manner as the 
     `--load-vars-from` flag to [`fly set-pipeline`](../pipelines/setting-pipelines.md#fly-set-pipeline). This means that
     if a variable appears in multiple files, the value from a file that is passed later in the list will override the 
