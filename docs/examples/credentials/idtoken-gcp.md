@@ -2,6 +2,7 @@
 title: IDToken - GCP
 tags:
   - Example
+  - IDToken
 ---
 
 GCP supports [workload identity federation](https://cloud.google.com/iam/docs/workload-identity-federation) with
