@@ -505,42 +505,6 @@
         <loc>https://concourse-ci.org/docs/getting-started/resources/</loc>
       </url>
       <url>
-        <loc>https://concourse-ci.org/docs/how-to/</loc>
-      </url>
-      <url>
-        <loc>https://concourse-ci.org/docs/how-to/container-image-guides/build-push/</loc>
-      </url>
-      <url>
-        <loc>https://concourse-ci.org/docs/how-to/container-image-guides/build-use/</loc>
-      </url>
-      <url>
-        <loc>https://concourse-ci.org/docs/how-to/git-guides/basic/</loc>
-      </url>
-      <url>
-        <loc>https://concourse-ci.org/docs/how-to/git-guides/monorepo/</loc>
-      </url>
-      <url>
-        <loc>https://concourse-ci.org/docs/how-to/git-guides/multi-branch/</loc>
-      </url>
-      <url>
-        <loc>https://concourse-ci.org/docs/how-to/pipeline-guides/common-pipeline/</loc>
-      </url>
-      <url>
-        <loc>https://concourse-ci.org/docs/how-to/pipeline-guides/gated-pipelines/</loc>
-      </url>
-      <url>
-        <loc>https://concourse-ci.org/docs/how-to/pipeline-guides/managing-pipeline-configs/</loc>
-      </url>
-      <url>
-        <loc>https://concourse-ci.org/docs/how-to/pipeline-guides/manual-approval/</loc>
-      </url>
-      <url>
-        <loc>https://concourse-ci.org/docs/how-to/pipeline-guides/task-inputs-outputs/</loc>
-      </url>
-      <url>
-        <loc>https://concourse-ci.org/docs/how-to/pipeline-guides/time-triggered-pipelines/</loc>
-      </url>
-      <url>
         <loc>https://concourse-ci.org/docs/install/</loc>
       </url>
       <url>
@@ -757,46 +721,118 @@
         <loc>https://concourse-ci.org/examples/</loc>
       </url>
       <url>
-        <loc>https://concourse-ci.org/examples/git-triggered/</loc>
+        <loc>https://concourse-ci.org/examples/container-images/</loc>
       </url>
       <url>
-        <loc>https://concourse-ci.org/examples/golang-lib/</loc>
+        <loc>https://concourse-ci.org/examples/container-images/build-push/</loc>
       </url>
       <url>
-        <loc>https://concourse-ci.org/examples/hello-world/</loc>
+        <loc>https://concourse-ci.org/examples/container-images/build-use/</loc>
       </url>
       <url>
-        <loc>https://concourse-ci.org/examples/inputs-outputs/</loc>
+        <loc>https://concourse-ci.org/examples/credentials/</loc>
       </url>
       <url>
-        <loc>https://concourse-ci.org/examples/java-app/</loc>
+        <loc>https://concourse-ci.org/examples/credentials/idtoken-aws/</loc>
       </url>
       <url>
-        <loc>https://concourse-ci.org/examples/job-and-task-hooks/</loc>
+        <loc>https://concourse-ci.org/examples/credentials/idtoken-azure/</loc>
       </url>
       <url>
-        <loc>https://concourse-ci.org/examples/manually-triggered/</loc>
+        <loc>https://concourse-ci.org/examples/credentials/idtoken-gcp/</loc>
       </url>
       <url>
-        <loc>https://concourse-ci.org/examples/nodejs-app/</loc>
+        <loc>https://concourse-ci.org/examples/credentials/idtoken-vault/</loc>
       </url>
       <url>
-        <loc>https://concourse-ci.org/examples/php-app/</loc>
+        <loc>https://concourse-ci.org/examples/fundamentals/</loc>
       </url>
       <url>
-        <loc>https://concourse-ci.org/examples/pipeline-vars/</loc>
+        <loc>https://concourse-ci.org/examples/fundamentals/hello-world/</loc>
       </url>
       <url>
-        <loc>https://concourse-ci.org/examples/rails-app/</loc>
+        <loc>https://concourse-ci.org/examples/fundamentals/inputs-outputs/</loc>
       </url>
       <url>
-        <loc>https://concourse-ci.org/examples/serial-job/</loc>
+        <loc>https://concourse-ci.org/examples/fundamentals/set-pipeline/</loc>
       </url>
       <url>
-        <loc>https://concourse-ci.org/examples/set-pipeline/</loc>
+        <loc>https://concourse-ci.org/examples/git-workflows/</loc>
       </url>
       <url>
-        <loc>https://concourse-ci.org/examples/time-triggered/</loc>
+        <loc>https://concourse-ci.org/examples/git-workflows/basic/</loc>
+      </url>
+      <url>
+        <loc>https://concourse-ci.org/examples/git-workflows/git-triggered/</loc>
+      </url>
+      <url>
+        <loc>https://concourse-ci.org/examples/git-workflows/monorepo/</loc>
+      </url>
+      <url>
+        <loc>https://concourse-ci.org/examples/git-workflows/multi-branch/</loc>
+      </url>
+      <url>
+        <loc>https://concourse-ci.org/examples/language-pipelines/</loc>
+      </url>
+      <url>
+        <loc>https://concourse-ci.org/examples/language-pipelines/golang-lib/</loc>
+      </url>
+      <url>
+        <loc>https://concourse-ci.org/examples/language-pipelines/java-app/</loc>
+      </url>
+      <url>
+        <loc>https://concourse-ci.org/examples/language-pipelines/nodejs-app/</loc>
+      </url>
+      <url>
+        <loc>https://concourse-ci.org/examples/language-pipelines/php-app/</loc>
+      </url>
+      <url>
+        <loc>https://concourse-ci.org/examples/language-pipelines/rails-app/</loc>
+      </url>
+      <url>
+        <loc>https://concourse-ci.org/examples/pipeline-patterns/</loc>
+      </url>
+      <url>
+        <loc>https://concourse-ci.org/examples/pipeline-patterns/common-pipeline/</loc>
+      </url>
+      <url>
+        <loc>https://concourse-ci.org/examples/pipeline-patterns/gated-pipelines/</loc>
+      </url>
+      <url>
+        <loc>https://concourse-ci.org/examples/pipeline-patterns/managing-pipeline-configs/</loc>
+      </url>
+      <url>
+        <loc>https://concourse-ci.org/examples/pipeline-patterns/manual-approval/</loc>
+      </url>
+      <url>
+        <loc>https://concourse-ci.org/examples/pipeline-patterns/manually-triggered/</loc>
+      </url>
+      <url>
+        <loc>https://concourse-ci.org/examples/pipeline-patterns/pipeline-vars/</loc>
+      </url>
+      <url>
+        <loc>https://concourse-ci.org/examples/pipeline-patterns/serial-job/</loc>
+      </url>
+      <url>
+        <loc>https://concourse-ci.org/examples/pipeline-patterns/task-inputs-outputs/</loc>
+      </url>
+      <url>
+        <loc>https://concourse-ci.org/examples/pipeline-patterns/time-triggered/</loc>
+      </url>
+      <url>
+        <loc>https://concourse-ci.org/examples/task-composition/</loc>
+      </url>
+      <url>
+        <loc>https://concourse-ci.org/examples/task-composition/job-and-task-hooks/</loc>
+      </url>
+      <url>
+        <loc>https://concourse-ci.org/examples/templating/</loc>
+      </url>
+      <url>
+        <loc>https://concourse-ci.org/examples/templating/ytt-multi-file-pipeline/</loc>
+      </url>
+      <url>
+        <loc>https://concourse-ci.org/examples/templating/ytt-single-pipeline/</loc>
       </url>
       <url>
         <loc>https://concourse-ci.org/project/</loc>
