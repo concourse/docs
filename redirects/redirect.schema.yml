@@ -43,11 +43,6 @@ docs:
     routes:
       - from: ""
         to: ""
-  how_to:
-    root: "docs/how-to"
-    routes:
-      - from: ""
-        to: ""
   operation:
     root: "docs/operation"
     routes:
@@ -65,6 +60,7 @@ examples:
     - from: ""
       to: ""
       html_only: false
+      md_only: false
 
 project:
   root: "project"
