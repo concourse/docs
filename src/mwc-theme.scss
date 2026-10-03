@@ -69,6 +69,10 @@ input.search {
   display: block;
 }
 
+#icon-list .card[hidden] {
+  display: none;
+}
+
 #icon-list.notready .card {
   cursor: not-allowed;
 }
