@@ -51,7 +51,7 @@ data "aws_iam_policy_document" "assume_role_policy" {
 
     condition {
       test     = "StringEquals"
-      variable = "${aws_iam_openid_connect_provider.oidc_provider.arn}:aud"
+      variable = "${trimprefix(var.aws_concourse_url, "https://")}:aud"
       values   = [
         "sts.amazonaws.com"
       ]
@@ -59,7 +59,7 @@ data "aws_iam_policy_document" "assume_role_policy" {
 
     condition {
       test     = "StringEquals"
-      variable = "${aws_iam_openid_connect_provider.oidc_provider.arn}:sub"
+      variable = "${trimprefix(var.aws_concourse_url, "https://")}:sub"
       values   = [
         "main/deploy-to-aws"
       ]
