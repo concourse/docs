@@ -302,6 +302,7 @@ Currently, only these types are supported:
 * [`dummy`](#dummy)
 * [`ssm`](#ssm)
 * [`secretmanager`](#secrets-manager) (since v7.7.0)
+* [`gcpsecretmanager`](#gcp-secret-manager) (since v8.4.0)
 * [`idtoken`](#id-token) (since v7.14.0)
 
 In the future we want to make use of something like
@@ -470,6 +471,62 @@ used just like resource types.
             ??? warning "**`region`**: [`string`](config-basics.md#string-schema)"
 
                 The AWS region to read secrets from.
+
+    === "GCP Secret Manager"
+
+        ??? warning "**`type`**: `gcpsecretmanager`"
+
+            The `gcpsecretmanager` type supports configuring a
+            [GCP Secret Manager](https://cloud.google.com/security/products/secret-manager) project as a `((var))` source.
+
+            See [GCP Secret Manager credential manager](operation/creds/gcp-secretmanager.md) for the lookup rules.
+
+        ??? warning "**`config`**: [`gcpsecretmanager_config`](#gcpsecretmanager_config-schema)"
+
+            ### `gcpsecretmanager_config` schema
+
+            ??? warning "**`project`**: [`string`](config-basics.md#string-schema)"
+
+                The ID or number of the GCP project that contains the secrets.
+
+            ??? warning "**`credentials_json`**: [`string`](config-basics.md#string-schema)"
+
+                The contents of a service account JSON key. A var source cannot use the credentials of the `web` node.
+
+                Do not write the key in the pipeline config. Use a `((var))` from the cluster-wide credential manager.
+
+            ??? info "**`request_timeout`**: [`duration`](config-basics.md#duration-schema)"
+
+                _Default `10s`_. The time limit for each request to Secret Manager.
+
+            ??? info "**`pipeline_secret_template`**: [`string`](config-basics.md#string-schema)"
+
+                _Default `/concourse/{{.Team}}/{{.Pipeline}}/{{.Secret}}`_.
+
+                See [Changing the path templates](operation/creds/gcp-secretmanager.md#changing-the-path-templates)
+                for more information.
+
+            ??? info "**`team_secret_template`**: [`string`](config-basics.md#string-schema)"
+
+                _Default `/concourse/{{.Team}}/{{.Secret}}`_.
+
+                See [Changing the path templates](operation/creds/gcp-secretmanager.md#changing-the-path-templates)
+                for more information.
+
+            ??? info "**`shared_secret_template`**: [`string`](config-basics.md#string-schema)"
+
+                _Default `/concourse-shared/{{.Secret}}`_.
+
+                See [Changing the path templates](operation/creds/gcp-secretmanager.md#changing-the-path-templates)
+                for more information.
+
+            ??? info "**`disable_value_unwrap`**: [`boolean`](config-basics.md#boolean-schema)"
+
+                _Default `false`_. If `true`, a secret that is a JSON object with a `value` key resolves to the full
+                object, not to the value of the key.
+
+                See [Saving credentials in Secret Manager](operation/creds/gcp-secretmanager.md#saving-credentials-in-secret-manager)
+                for more information.
 
     === "ID Token"
     
