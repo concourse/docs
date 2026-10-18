@@ -18,6 +18,7 @@ plugins:
         - libs/examples/terraform
         - libs/examples/misc
   - macros:
+      render_by_default: false
       include_yaml:
         - docs/assets/resource-types.yml
   - redirects:

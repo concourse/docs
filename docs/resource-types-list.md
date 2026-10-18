@@ -1,5 +1,6 @@
 ---
 title: Resource Types
+render_macros: true
 hide:
   - navigation
   - toc
