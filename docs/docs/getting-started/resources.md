@@ -119,7 +119,7 @@ resources:
     required is `read-write` access to `content`. You may scope the token to your fork of the `examples` repository.
 
 We've added a top-level key to our pipeline called [resources](../resources/index.md), which takes an
-unordered list of resouces that can be referenced by jobs in our pipeline.
+unordered list of resources that can be referenced by jobs in our pipeline.
 
 When declaring a resource, Concourse only requires you to declare
 the [`name`](../resources/index.md#resource-schema)
