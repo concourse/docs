@@ -454,7 +454,43 @@ used just like resource types.
 
             ??? warning "**`region`**: [`string`](config-basics.md#string-schema)"
 
-                The AWS region to read secrets from.
+                The AWS region to reassion Token
+
+            ??? warning "**`access_key`**: [`string`](config-basics.md#string-schema)"
+
+                AWS Access key ID
+
+            ??? warning "**`secret_key`**: [`string`](config-basics.md#string-schema)"
+
+                AWS Secret Access key
+
+            ??? info "**`session_token`**: [`string`](config-basics.md#string-schema)"
+
+                AWS Session Token
+
+            ??? info "**`pipeline_secret_template`**: [`string`](config-basics.md#string-schema)"
+
+                _Default `/concourse/{{.Team}}/{{.Pipeline}}/{{.Secret}}`_
+
+                A path template used for looking up pipeline-scoped secrets.
+
+                See [Changing the path templates](operation/creds/aws-ssm.md#changing-the-path-templates) for more information.
+
+            ??? info "**`team_secret_template`**: [`string`](config-basics.md#string-schema)"
+
+                _Default `/concourse/{{.Team}}/{{.Secret}}`_
+
+                A path template used for looking up team-scoped secrets.
+
+                See [Changing the path templates](operation/creds/aws-ssm.md#changing-the-path-templates) for more information.
+
+            ??? info "**`shared_path`**: [`string`](config-basics.md#string-schema)"
+
+                _No default set_
+
+                A path template used for looking up shared secrets available to all teams.
+
+                See [Changing the path templates](operation/creds/aws-ssm.md#changing-the-path-templates) for more information.
     
     === "Secrets Manager"
     
@@ -470,6 +506,42 @@ used just like resource types.
             ??? warning "**`region`**: [`string`](config-basics.md#string-schema)"
 
                 The AWS region to read secrets from.
+
+            ??? warning "**`access_key`**: [`string`](config-basics.md#string-schema)"
+
+                AWS Access key ID
+
+            ??? warning "**`secret_key`**: [`string`](config-basics.md#string-schema)"
+
+                AWS Secret Access key
+
+            ??? info "**`session_token`**: [`string`](config-basics.md#string-schema)"
+
+                AWS Session Token
+
+            ??? info "**`pipeline_secret_template`**: [`string`](config-basics.md#string-schema)"
+
+                _Default `/concourse/{{.Team}}/{{.Pipeline}}/{{.Secret}}`_
+
+                A path template used for looking up pipeline-scoped secrets.
+
+                See [Changing the path templates](operation/creds/aws-secrets.md#changing-the-path-templates) for more information.
+
+            ??? info "**`team_secret_template`**: [`string`](config-basics.md#string-schema)"
+
+                _Default `/concourse/{{.Team}}/{{.Secret}}`_
+
+                A path template used for looking up team-scoped secrets.
+
+                See [Changing the path templates](operation/creds/aws-secrets.md#changing-the-path-templates) for more information.
+
+            ??? info "**`shared_secret_template`**: [`string`](config-basics.md#string-schema)"
+
+                _No default set_
+
+                A path template used for looking up shared secrets available to all teams.
+
+                See [Changing the path templates](operation/creds/aws-secrets.md#changing-the-path-templates) for more information.
 
     === "ID Token"
     
