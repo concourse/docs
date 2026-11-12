@@ -47,6 +47,11 @@ relevant section below for whichever backend you want to use.
     ---
   [:octicons-arrow-right-24: Configure](credhub.md)
 
+- :material-google-cloud: GCP Secret Manager
+
+    ---
+  [:octicons-arrow-right-24: Configure](gcp-secretmanager.md)
+
 - :material-openid: IDToken
 
     ---
