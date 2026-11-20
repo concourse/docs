@@ -18,13 +18,14 @@ The endpoint reports one of three states:
 **Ok** — everything is working as expected. The number of connected workers meets the configured minimum, and
 all internal components are keeping up with their scheduled work.
 
-**Degraded** — the system is running but something needs attention. Either the number of connected workers has
-dropped below [`--health-min-worker-count`](#-health-min-worker-count), or one or more internal components (such as
-the build scheduler, resource checker, or build tracker) have fallen behind and are considered stale. Builds can
-still run. This is a warning state — the system is operational, but the operator should investigate.
+**Degraded** — the system is running but something needs attention. The number of connected workers has dropped
+below [`--health-min-worker-count`](#-health-min-worker-count), a `warn`- or `critical`-severity per-pool threshold
+is not met, or one or more internal components (such as the build scheduler, resource checker, or build tracker)
+have fallen behind and are considered stale. Builds can still run. This is a warning state — the system is
+operational, but the operator should investigate.
 
-**Failing** — the system is in a critical state. Either the database is unreachable or read-only, or there are no
-connected workers. Builds cannot run.
+**Failing** — the system is in a critical state. The database is unreachable or read-only, there are no
+connected workers, or a `critical`-severity worker-pool threshold has zero running workers. Builds cannot run.
 
 ## Response format
 
@@ -53,6 +54,9 @@ The response body is a JSON object with the following top-level fields:
 | `total` | Total number of registered workers. |
 | `running` | Number of workers currently in the `running` state. |
 | `unhealthy_workers` | Array of the names of workers not in the `running` state. Not present if all workers are healthy. |
+| `by_platform` | Object mapping platform name to `{ "total": N, "running": N }`. One entry per distinct worker platform. |
+| `by_team` | Object mapping team name to `{ "total": N, "running": N }`. Workers not scoped to a team appear under the empty-string key `""`. |
+| `by_tag` | Object mapping tag name to `{ "total": N, "running": N }`. A worker with multiple tags is counted in every matching bucket. |
 
 **`components` fields (one object per component):**
 
@@ -74,7 +78,33 @@ HTTP 200 OK
   "status": "ok",
   "timestamp": "2026-06-08T10:05:00Z",
   "database": { "status": "healthy" },
-  "workers": { "status": "healthy", "total": 3, "running": 3 },
+  "workers": {
+    "status": "healthy",
+    "total": 3,
+    "running": 3,
+    "by_platform": {
+      "linux": {
+        "total": 3,
+        "running": 3
+      }
+    },
+    "by_team": {
+      "": {
+        "total": 2,
+        "running": 2
+      },
+      "platform-team": {
+        "total": 1,
+        "running": 1
+      }
+    },
+    "by_tag": {
+      "spot": {
+        "total": 1,
+        "running": 1
+      }
+    }
+  },
   "components": [
     { "name": "scheduler",         "status": "healthy", "paused": false, "last_ran": "2026-06-08T10:05:00Z" },
     { "name": "tracker",           "status": "healthy", "paused": false, "last_ran": "2026-06-08T10:05:00Z" },
@@ -85,6 +115,8 @@ HTTP 200 OK
 
 ### Degraded
 
+**Example 1 — stale component:**
+
 ```
 HTTP 200 OK
 ```
@@ -94,7 +126,24 @@ HTTP 200 OK
   "status": "degraded",
   "timestamp": "2026-06-08T10:05:00Z",
   "database": { "status": "healthy" },
-  "workers": { "status": "healthy", "total": 3, "running": 3 },
+  "workers": {
+    "status": "healthy",
+    "total": 3,
+    "running": 3,
+    "by_platform": {
+      "linux": {
+        "total": 3,
+        "running": 3
+      }
+    },
+    "by_team": {
+      "": {
+        "total": 3,
+        "running": 3
+      }
+    },
+    "by_tag": {}
+  },
   "components": [
     { "name": "scheduler",         "status": "unhealthy", "paused": false, "last_ran": "2026-06-08T10:00:00Z" },
     { "name": "tracker",           "status": "healthy",   "paused": false, "last_ran": "2026-06-08T10:05:00Z" },
@@ -103,10 +152,53 @@ HTTP 200 OK
 }
 ```
 
-In this example the `scheduler` component is stale, which drives the top-level
-`degraded` status. `collector_volumes` is also stale, but because it is not a
-runtime-critical component, it does not contribute to the top-level status on
-its own.
+The `scheduler` component is stale, which drives the top-level `degraded` status. `collector_volumes` is also stale,
+but because it is not a runtime-critical component, it does not contribute to the top-level status on its own.
+
+**Example 2 — worker-pool threshold not met:**
+
+This example shows a deployment configured with `--health-min-worker-scopes platform:windows:1:warn`. The Windows
+worker pool has dropped to zero running workers, which the `warn` severity maps to `degraded`. The Windows platform
+is still present in `by_platform` with `total: 0, running: 0` because the threshold was configured — configured
+keys are always injected even when no workers are present.
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+  "status": "degraded",
+  "timestamp": "2026-06-08T10:05:00Z",
+  "database": { "status": "healthy" },
+  "workers": {
+    "status": "degraded",
+    "total": 2,
+    "running": 2,
+    "by_platform": {
+      "linux": {
+        "total": 2,
+        "running": 2
+      },
+      "windows": {
+        "total": 0,
+        "running": 0
+      }
+    },
+    "by_team": {
+      "": {
+        "total": 2,
+        "running": 2
+      }
+    },
+    "by_tag": {}
+  },
+  "components": [
+    { "name": "scheduler", "status": "healthy", "paused": false, "last_ran": "2026-06-08T10:05:00Z" },
+    { "name": "tracker",   "status": "healthy", "paused": false, "last_ran": "2026-06-08T10:05:00Z" }
+  ]
+}
+```
 
 ### Failing
 
@@ -119,7 +211,14 @@ HTTP 503 Service Unavailable
   "status": "failing",
   "timestamp": "2026-06-08T10:05:00Z",
   "database": { "status": "unhealthy", "error": "database unreachable" },
-  "workers": { "status": "unhealthy", "total": 0, "running": 0 },
+  "workers": {
+    "status": "unhealthy",
+    "total": 0,
+    "running": 0,
+    "by_platform": {},
+    "by_team": {},
+    "by_tag": {}
+  },
   "components": [
     { "name": "scheduler",         "status": "unhealthy", "paused": false, "last_ran": "2026-06-08T10:00:00Z" },
     { "name": "tracker",           "status": "unhealthy", "paused": false, "last_ran": "2026-06-08T10:00:00Z" },
@@ -199,6 +298,74 @@ you want earlier warnings when a component falls behind.
 
 ```properties
 CONCOURSE_HEALTH_COMPONENT_STALE_MULTIPLIER=3.0
+```
+
+### `--health-min-worker-scopes`
+
+Sets per-pool minimum running-worker thresholds. Each entry targets a specific platform, team, or tag and specifies
+both a minimum count and a severity that controls what health state is reported when the threshold is not met.
+
+The flag is repeatable; each value uses the format `kind:name:count:severity`. `kind` is one of `platform`,
+`team`, or `tag`. `name` is the platform name (`linux`, `darwin`, `windows`), team name, or tag name — for `team`,
+an empty name targets workers not scoped to any team (e.g. `team::2:critical`). `count` is the minimum number of
+running workers required (a non-negative integer). `severity` is one of `critical`, `warn`, or `info` and controls
+the outcome when the threshold is not met (see below). All four parts are required. Multiple entries are
+independent — all are evaluated and the worst result wins.
+
+**Severity levels:**
+
+| Severity | Threshold not met | Threshold met |
+|---|---|---|
+| `critical` | Zero running workers → `failing` (HTTP 503). Running but below minimum → `degraded`. | No effect. |
+| `warn` | `degraded`, whether the pool is absent or just below minimum. Never causes HTTP 503. | No effect. |
+| `info` | No effect on overall status. Pool counts still appear in breakdowns. | No effect. |
+
+Configured keys are always injected into the corresponding breakdown map, even when no workers of that kind have
+registered. A `total: 0, running: 0` entry in `by_platform` means the pool is configured but no matching worker
+has connected — the threshold is unmet.
+
+| | |
+|---|---|
+| **Flag** | `--health-min-worker-scopes` |
+| **Env var** | `CONCOURSE_HEALTH_MIN_WORKER_SCOPES` |
+| **Type** | repeatable string |
+| **Default** | none |
+
+```properties
+CONCOURSE_HEALTH_MIN_WORKER_SCOPES=platform:linux:2:critical,platform:windows:1:warn,tag:gpu:1:critical
+```
+
+**Use-case: always-required pool (`critical`)**
+
+Use `critical` when a pool must always be available and its absence should stop load-balancer traffic. If the
+minimum is not met and the pool is entirely absent, the endpoint returns HTTP 503.
+
+```properties
+# The Linux pool must have at least 2 running workers.
+# The GPU pool must have at least 1. Either absent → HTTP 503.
+CONCOURSE_HEALTH_MIN_WORKER_SCOPES=platform:linux:2:critical,tag:gpu:1:critical
+```
+
+**Use-case: optional pool (`warn`)**
+
+Use `warn` for pools that should normally be present but whose temporary absence should not trigger on-call pages
+or stop load-balancer routing. The endpoint reports `degraded` (HTTP 200) when the threshold is not met.
+
+```properties
+# Windows workers are used for a subset of pipelines.
+# Absence shows up as degraded in dashboards but does not page on-call.
+CONCOURSE_HEALTH_MIN_WORKER_SCOPES=platform:windows:1:warn
+```
+
+**Use-case: auto-scaling or ephemeral pools (`info`)**
+
+Use `info` when a pool may legitimately reach zero — for example, spot workers that scale down overnight. The
+pool still appears in the breakdown for observability, but the overall status is not affected.
+
+```properties
+# Spot workers may be at zero overnight. Track them in breakdowns only.
+# On-demand workers must always be available — flag their absence as failing.
+CONCOURSE_HEALTH_MIN_WORKER_SCOPES=tag:spot:1:info,tag:on-demand:1:critical
 ```
 
 ## Related `fly` commands
