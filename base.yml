@@ -284,6 +284,7 @@ nav:
           - examples/credentials/idtoken-aws.md
           - examples/credentials/idtoken-azure.md
           - examples/credentials/idtoken-gcp.md
+          - examples/credentials/idtoken-tailscale.md
       - Templating:
           - examples/templating/index.md
           - examples/templating/ytt-single-pipeline.md
