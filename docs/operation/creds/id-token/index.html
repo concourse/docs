@@ -5334,6 +5334,8 @@
       
         
       
+        
+      
     
     
     
@@ -5481,6 +5483,33 @@
     
   
   IDToken - GCP
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../examples/credentials/idtoken-tailscale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  IDToken - Tailscale
 
     
   </span>
@@ -6488,6 +6517,7 @@ configure how granular the <code>sub</code> claim's value should be.</p>
 </table>
 <p>This way all your pipelines can simply get a token with <code>subject_scope: team</code> and use this token to assume an AWS-Role
 that matches on <code>sub: "your_team_name"</code>.</p>
+<p><em>The default subject scope is <code>pipeline</code>.</em></p>
 <h2 id="example-jwt">Example JWT</h2>
 <p>The generated tokens usually look something like this:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3lvdXItY29uY291cnNlLmV4YW1wbGUuY29tIiwiZXhwIjoxNzUxMDE1NzM0LCJhdWQiOlsiYXBpOi8vQXp1cmVBRFRva2VuRXhjaGFuZ2UiXSwic3ViIjoibWFpbi9leGFtcGxlLXBpcGVsaW5lIiwidGVhbSI6Im1haW4iLCJwaXBlbGluZSI6ImV4YW1wbGUtcGlwZWxpbmUiLCJqb2IiOiJleGFtcGxlLWpvYiJ9.my7l44tH0wfz8vc6z3fMmzTMxZ8_orhjcsOti3BKSNo

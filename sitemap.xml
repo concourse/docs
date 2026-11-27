@@ -742,6 +742,9 @@
         <loc>https://concourse-ci.org/examples/credentials/idtoken-gcp/</loc>
       </url>
       <url>
+        <loc>https://concourse-ci.org/examples/credentials/idtoken-tailscale/</loc>
+      </url>
+      <url>
         <loc>https://concourse-ci.org/examples/credentials/idtoken-vault/</loc>
       </url>
       <url>
