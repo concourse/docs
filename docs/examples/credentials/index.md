@@ -47,6 +47,15 @@ Vault, AWS Secrets Manager, and other cluster-wide credential managers — see
 
     [:octicons-arrow-right-24: View guide](idtoken-gcp.md)
 
+-   :simple-tailscale:{ .sm .middle } __Authenticating to Tailscale via IDToken__
+
+    ---
+
+    Connect to a Tailscale tailnet using workload identity federation and
+    Trusted Credentials.
+
+    [:octicons-arrow-right-24: View guide](idtoken-tailscale.md)
+
 </div>
 
 For details on JWT claims, key rotation, and the `subject_scope` setting, see the

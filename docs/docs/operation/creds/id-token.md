@@ -96,6 +96,8 @@ Depending on the value of `subject_scope`, the content of the JWT's `sub` claim 
 This way all your pipelines can simply get a token with `subject_scope: team` and use this token to assume an AWS-Role
 that matches on `sub: "your_team_name"`.
 
+_The default subject scope is `pipeline`._
+
 ## Example JWT
 
 The generated tokens usually look something like this:
