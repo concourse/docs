@@ -7484,9 +7484,10 @@ streaming volumes through the web node(s). This can reduce the time it takes for
 reduce the amount of network traffic used by the Concourse cluster.</p>
 <p><strong>Pre-Requisites</strong></p>
 <ul>
-<li>All worker nodes need to be able to reach each other via IP address. This usually means they are on the same LAN. You
-  can test this by trying to ping one worker from another worker. If even one worker does not meet this requirement then
-  you cannot use P2P volume streaming.</li>
+<li>Worker nodes need to be able to reach each other via IP address. This usually
+    means they are on the same LAN. You can test this by trying to ping one worker
+    from another worker. If workers cannot reach each other they will
+    fallback to streaming volumes through the web node(s).</li>
 <li>The baggageclaim port (<code>7788</code> is the default) is open to traffic on all worker nodes. You can verify the port is open
   and reaching the baggageclaim API server by hitting the <code>/volumes</code> endpoint.
   <br/>
